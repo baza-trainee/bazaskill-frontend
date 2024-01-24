@@ -9,7 +9,7 @@
   "globals": {
     "React": "readonly"
   },
-  "plugins": ["prettier"],
+  "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
     "no-unused-vars": [
       1,
@@ -18,8 +18,8 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "prefer-const": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": "warn"
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
