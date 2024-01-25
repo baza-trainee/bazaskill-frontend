@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { initialState } from './state';
 import { PayloadAction } from '@reduxjs/toolkit';
 export const handleFullfiled = (
@@ -16,7 +15,7 @@ export const handlePenging = (
 
 export const handleRejected = (
   state: typeof initialState,
-  action: PayloadAction<string>
+  action: PayloadAction<unknown, string>
 ) => {
   state.loading = false;
   state.error = action.payload as string;
