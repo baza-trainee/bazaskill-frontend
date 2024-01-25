@@ -2,10 +2,12 @@ import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit';
-import { ITestimonial } from '@/types';
-import { AxiosError } from 'axios';
 import axios from '@/config/axios';
-import { TestimonialFormInput } from '@/types/testimonials';
+import { AxiosError } from 'axios';
+import {
+  ITestimonial,
+  TestimonialFormInput,
+} from '@/types/testimonials';
 
 type TestimonialState = {
   testimonials: ITestimonial[];

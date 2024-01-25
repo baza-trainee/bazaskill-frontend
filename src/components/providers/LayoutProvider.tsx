@@ -2,8 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
-import Header from '@/components/main/Header';
-import Footer from '@/components/main/Footer';
+import Header from '@/components/main/header/Header';
+import Footer from '@/components/main/footer/Footer';
 
 const LayoutProvider = ({
   children,
