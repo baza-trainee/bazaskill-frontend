@@ -12,10 +12,10 @@ import { useAppDispatch } from '@/redux/hook';
 import { defaultValues } from './defaultValues';
 import { testimonialValidation } from './validationSchema';
 import { TestimonialFormInput } from '@/types/testimonials';
-import { addNewTestimonial } from '@/redux/slices/testimonialSlice';
 
 import TextArea from '../ui/TextArea';
 import TextInput from '../ui/TextInput';
+import { addNewTestimonial } from '@/redux/Testimomials/thunk';
 
 const AddTestimonial = () => {
   const router = useRouter();
