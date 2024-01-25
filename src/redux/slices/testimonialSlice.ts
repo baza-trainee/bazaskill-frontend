@@ -1,7 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+} from '@reduxjs/toolkit';
 import { ITestimonial } from '@/types';
 import { AxiosError } from 'axios';
 import axios from '@/config/axios';
+import { TestimonialFormInput } from '@/types/testimonials';
 
 type TestimonialState = {
   testimonials: ITestimonial[];
@@ -15,18 +19,38 @@ const initialState: TestimonialState = {
   error: null,
 };
 
-export const fetchTestimonials = createAsyncThunk('testimonials/fetchTestimonials', async () => {
-  try {
-    const response = await axios.get<ITestimonial[]>('/testimonials');
-    const data = response.data;
-    return data;
-  } catch (error) {
-    const err = error as AxiosError;
-    return err.message;
+export const fetchTestimonials = createAsyncThunk(
+  'testimonials/fetchTestimonials',
+  async () => {
+    try {
+      const response =
+        await axios.get<ITestimonial[]>('/testimonials');
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
   }
-});
+);
 
-const reviewsSlice = createSlice({
+export const addNewTestimonial = createAsyncThunk(
+  'testimonials/addNewTestimonial',
+  async (values: TestimonialFormInput) => {
+    try {
+      const newTestimonial = {
+        name: values.name,
+        review: values.review,
+      };
+      await axios.post('/testimonials', newTestimonial);
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+const testimonialSlice = createSlice({
   name: 'testimonials',
   initialState,
   reducers: {},
@@ -36,11 +60,15 @@ const reviewsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchTestimonials.fulfilled, (state, action) => {
-        state.testimonials = action.payload as ITestimonial[];
-        state.loading = false;
-      });
+      .addCase(
+        fetchTestimonials.fulfilled,
+        (state, action) => {
+          state.testimonials =
+            action.payload as ITestimonial[];
+          state.loading = false;
+        }
+      );
   },
 });
 
-export default reviewsSlice.reducer;
+export default testimonialSlice.reducer;
