@@ -16,6 +16,7 @@ const config: Config = {
         white: '#FEFFFE',
         black: '#020202',
         gray: '#8E8D8D',
+        graphite: '#202020',
         green: '#4DC760',
         yellow: '#FFF854',
         pink: '#FF58B0',
