@@ -1,17 +1,16 @@
-import {
-  handlePenging,
-  handleFullfiled,
-  handleRejected,
-} from './helpers';
 import { initialState } from './state';
-
 import { ITestimonial } from '@/types/testimonials';
+import { fetchTestimonials } from './thunk';
 import {
   createSlice,
   isAnyOf,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { fetchTestimonials } from './thunk';
+import {
+  handlePenging,
+  handleFullfiled,
+  handleRejected,
+} from '../helpers';
 
 const testimonialSlice = createSlice({
   name: 'testimonials',

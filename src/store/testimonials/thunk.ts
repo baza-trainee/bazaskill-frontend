@@ -1,5 +1,5 @@
 import { getTestimonials, createTestimonial } from './api';
-import { TestimonialFormInput } from './../../types/testimonials/index';
+import { TestimonialFormInput } from '@/types/testimonials';
 import { AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
