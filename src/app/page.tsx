@@ -9,7 +9,7 @@ import Contacts from '@/components/main/contacts/Contacts';
 
 const Home = async () => {
   return (
-    <div className="flex min-h-[100vh] w-full flex-col items-center justify-center gap-2 bg-blue-100">
+    <div className="main-gradient flex min-h-[100vh] w-full flex-col items-center justify-center gap-2">
       <Hero />
       <Counters />
       <About />
