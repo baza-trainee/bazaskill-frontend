@@ -1,4 +1,4 @@
-import { initialState } from './state';
+import { initialState } from './testimonials/state';
 import { PayloadAction } from '@reduxjs/toolkit';
 export const handleFullfiled = (
   state: typeof initialState

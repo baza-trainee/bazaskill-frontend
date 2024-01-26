@@ -8,14 +8,14 @@ import {
   useForm,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppDispatch } from '@/redux/hook';
+import { useAppDispatch } from '@/store/hook';
 import { defaultValues } from './defaultValues';
 import { testimonialValidation } from './validationSchema';
 import { TestimonialFormInput } from '@/types/testimonials';
 
 import TextArea from '../ui/TextArea';
 import TextInput from '../ui/TextInput';
-import { addNewTestimonial } from '@/redux/Testimomials/thunk';
+import { addNewTestimonial } from '@/store/testimonials/thunk';
 
 const AddTestimonial = () => {
   const router = useRouter();

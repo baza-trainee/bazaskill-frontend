@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import testimonialSlice from './Testimomials/slice';
+import testimonialSlice from './testimonials/slice';
 
 export const rootStore = () => {
   return configureStore({
