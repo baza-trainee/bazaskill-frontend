@@ -7,6 +7,7 @@ import {
   useAppSelector,
 } from '@/store/hook';
 import { fetchTestimonials } from '@/store/testimonials/thunk';
+import Container from '../Container';
 
 const Testimonials = () => {
   const dispatch = useAppDispatch();
@@ -24,26 +25,28 @@ const Testimonials = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      {testimonials.map((item) => (
-        <div
-          key={item.id}
-          className="flex h-[10rem] w-[20rem] flex-col items-center justify-center gap-2 border border-black bg-white"
-        >
-          <h1 className="main-gradient bg-clip-text font-tahoma text-xl font-bold text-transparent">
-            {item.name}
-          </h1>
-          <p className="font-open-sans font-light">
-            {item.review}
-          </p>
-        </div>
-      ))}
-      <Link href="/admin/testimonials/add">
-        <button className="mt-4 border border-black p-2">
-          Add Testimonial
-        </button>
-      </Link>
-    </div>
+    <Container>
+      <div className="flex flex-col items-center justify-center">
+        {testimonials.map((item) => (
+          <div
+            key={item.id}
+            className="flex h-[10rem] w-[20rem] flex-col items-center justify-center gap-2 border border-black bg-white"
+          >
+            <h1 className="main-gradient bg-clip-text font-tahoma text-xl font-bold text-transparent">
+              {item.name}
+            </h1>
+            <p className="font-open-sans font-light">
+              {item.review}
+            </p>
+          </div>
+        ))}
+        <Link href="/admin/testimonials/add">
+          <button className="mt-4 border border-black p-2">
+            Add Testimonial
+          </button>
+        </Link>
+      </div>
+    </Container>
   );
 };
 
