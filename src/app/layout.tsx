@@ -1,10 +1,31 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Open_Sans } from 'next/font/google';
 import ReduxProvider from '@/components/providers/ReduxProvider';
 import LayoutProvider from '@/components/providers/LayoutProvider';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const open_sans = Open_Sans({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+});
+
+const tahoma = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Tahoma.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Tahoma-Bold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-tahoma',
+});
 
 export const metadata: Metadata = {
   title: 'BazaSkill',
@@ -19,7 +40,9 @@ export default function RootLayout({
   return (
     <ReduxProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body
+          className={`${open_sans.variable} ${tahoma.variable}`}
+        >
           <LayoutProvider>{children}</LayoutProvider>
         </body>
       </html>

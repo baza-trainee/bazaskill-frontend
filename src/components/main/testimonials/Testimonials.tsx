@@ -30,8 +30,12 @@ const Testimonials = () => {
           key={item.id}
           className="flex h-[10rem] w-[20rem] flex-col items-center justify-center gap-2 border border-black bg-white"
         >
-          <h1 className="text-xl font-bold">{item.name}</h1>
-          <p>{item.review}</p>
+          <h1 className="main-gradient bg-clip-text font-tahoma text-xl font-bold text-transparent">
+            {item.name}
+          </h1>
+          <p className="font-open-sans font-light">
+            {item.review}
+          </p>
         </div>
       ))}
       <Link href="/admin/testimonials/add">
