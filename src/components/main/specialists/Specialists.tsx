@@ -25,7 +25,7 @@ const Specialists = () => {
     <section>
       <div
         className="container flex  pb-[60px] pt-[60px]"
-        style={{ gap: '111.5px' }}>
+        style={{ gap: '98px' }}>
         <SpecialistList photos={photosArray} />
         <SpecialistsInform />
       </div>

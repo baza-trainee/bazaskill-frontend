@@ -2,19 +2,19 @@ import React from 'react';
 
 const SpecialistsInform = () => {
   return (
-    <div className="w-[590px] text-white">
-      <h2 className="leading-150 mb-[60px] font-tahoma text-[40px] font-bold  ">
+    <div className="w-[590px]  pt-[75px] text-white ">
+      <h2 className="leading-150 mb-[40px] font-tahoma text-[36px] font-bold  ">
         Допоможемо знайти гідного спеціаліста
       </h2>
-      <div className="leading-130  mb-[52px] font-open-sans text-[20px]">
-        <p className="mb-4">
+      <div className="leading-130   font-open-sans text-[20px]">
+        <p>
           Платформа Baza Skill допоможе вам підібрати
           досвідченого спеціаліста в сфері IT, оскільки
           кожен з наших кандидатів вже пройшов серйозну
           практику на Baza Trainee Ukraine.
         </p>
 
-        <p className="mb-4">
+        <p>
           Кожен представлений тут фахівець заґартовний в
           командній роботі, має досвід в розробці проєкту зі
           зняття вимог, знайомий з труднощами і успіхом на
