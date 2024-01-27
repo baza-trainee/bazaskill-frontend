@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 
 import Header from '@/components/main/header/Header';
 import Footer from '@/components/main/footer/Footer';
+import { Providers } from '@/app/provider';
 
 const LayoutProvider = ({
   children,
@@ -14,7 +15,7 @@ const LayoutProvider = ({
   const isAdminPage = pathname.split('/').includes('admin');
 
   return (
-    <>
+    <Providers>
       {!isAdminPage && (
         <header>
           <Header />
@@ -26,7 +27,7 @@ const LayoutProvider = ({
           <Footer />
         </footer>
       )}
-    </>
+    </Providers>
   );
 };
 
