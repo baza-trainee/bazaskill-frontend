@@ -8,18 +8,36 @@ import {
   useForm,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppDispatch } from '@/store/hook';
+
 import { defaultValues } from './defaultValues';
 import { testimonialValidation } from './validationSchema';
 import { TestimonialFormInput } from '@/types/testimonials';
 
 import TextArea from '../ui/TextArea';
 import TextInput from '../ui/TextInput';
-import { addNewTestimonial } from '@/store/testimonials/thunk';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
+
+import { constants } from '@/constants';
+import { createTestimonial } from '@/api/testimonials';
 
 const AddTestimonial = () => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationKey: [constants.testimonials.ADD_TESTIMONIAL],
+    mutationFn: (data: TestimonialFormInput) =>
+      createTestimonial(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          constants.testimonials.FETCH_TESTIMONIALS,
+        ],
+      });
+    },
+  });
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const {
@@ -37,7 +55,7 @@ const AddTestimonial = () => {
   > = async (values: TestimonialFormInput) => {
     try {
       setIsProcessing(true);
-      await dispatch(addNewTestimonial(values));
+      mutate(values);
       setIsProcessing(false);
       router.push('/');
     } catch (error: unknown) {
@@ -102,9 +120,9 @@ const AddTestimonial = () => {
           </p>
           <div className="flex gap-4">
             <button
-              className={`w-[13.5rem] border border-black px-6 py-2 font-medium text-green-700 ${
+              className={`text-green-700 w-[13.5rem] border border-black px-6 py-2 font-medium ${
                 isDirty && isValid
-                  ? 'cursor-pointer bg-green-300 text-black'
+                  ? 'bg-green-300 cursor-pointer text-black'
                   : 'cursor-not-allowed bg-slate-100 text-slate-500'
               }`}
             >
