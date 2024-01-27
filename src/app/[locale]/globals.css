@@ -13,4 +13,8 @@ html {
   .main-gradient {
     @apply bg-gradient-to-r from-green to-yellow;
   }
+
+  .container {
+    @apply w-full px-[80px]
+  }
 }
