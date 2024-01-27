@@ -6,10 +6,12 @@ import DesktopIcon from '@/components/icons/DesktopIcon';
 import ArrowIcon from '@/components/icons/ArrowIcon';
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
+import { useTranslations } from 'next-intl';
 
 interface HeroProps {}
 
 const Hero: React.FC<HeroProps> = () => {
+  const t = useTranslations('Main');
   return (
     <div className="my-[124px] w-full max-w-[1440]">
       <Container>
@@ -43,7 +45,7 @@ const Hero: React.FC<HeroProps> = () => {
 
           <button className=" main-gradient relative min-w-[272px] items-center text-xl font-medium	">
             <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-            Знайти кандидата
+            {t('hero_section.search')}
           </button>
         </form>
       </Container>

@@ -22,6 +22,7 @@
     "axios": "^1.6.5",
     "nanoid": "^5.0.4",
     "next": "14.0.4",
+    "next-intl": "^3.5.2",
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-countup": "^6.5.0",

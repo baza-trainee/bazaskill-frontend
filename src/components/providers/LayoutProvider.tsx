@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 
 import Header from '@/components/main/header/Header';
 import Footer from '@/components/main/footer/Footer';
-import { Providers } from '@/app/provider';
+import { Providers } from '@/app/[locale]/provider';
 
 const LayoutProvider = ({
   children,
