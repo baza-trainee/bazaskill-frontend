@@ -11,7 +11,7 @@ const SpecialistList: React.FC<SpecialistListProps> = ({
   return (
     <div>
       <ul
-        className="flex w-[592px] flex-wrap justify-center "
+        className="flex w-[592px] flex-wrap "
         style={{ gap: '32px' }}>
         {photos.map((photo) => (
           <li key={photo} className="rounded-[100px]">

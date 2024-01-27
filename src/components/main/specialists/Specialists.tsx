@@ -23,9 +23,7 @@ const Specialists = () => {
   ];
   return (
     <section>
-      <div
-        className="container flex  pb-[60px] pt-[60px]"
-        style={{ gap: '98px' }}>
+      <div className="container flex gap-[98px] py-[60px]">
         <SpecialistList photos={photosArray} />
         <SpecialistsInform />
       </div>
