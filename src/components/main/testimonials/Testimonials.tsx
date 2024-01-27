@@ -1,33 +1,20 @@
 'use client';
-
-import { useEffect } from 'react';
 import Link from 'next/link';
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '@/store/hook';
-import { fetchTestimonials } from '@/store/testimonials/thunk';
 import Container from '../Container';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getTestimonials } from '@/api/testimonials';
 
 const Testimonials = () => {
-  const dispatch = useAppDispatch();
-  const testimonials = useAppSelector(
-    (state) => state.testimonial.testimonials
-  );
-  const loading = useAppSelector(
-    (state) => state.testimonial.loading
-  );
-
-  useEffect(() => {
-    dispatch(fetchTestimonials());
-  }, [dispatch]);
-
-  if (loading) return <p>Loading...</p>;
-
+  const { data, isFetching } = useQuery({
+    queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
+    queryFn: getTestimonials,
+  });
+  if (isFetching) return <p>Loading...</p>;
   return (
     <Container>
       <div className="flex flex-col items-center justify-center">
-        {testimonials.map((item) => (
+        {data?.map((item) => (
           <div
             key={item.id}
             className="flex h-[10rem] w-[20rem] flex-col items-center justify-center gap-2 border border-black bg-white"

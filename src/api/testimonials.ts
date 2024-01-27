@@ -5,7 +5,7 @@ import {
 import axios from '@/config/axios';
 
 export const getTestimonials = async () => {
-  const data =
+  const { data } =
     await axios.get<ITestimonial[]>('/testimonials');
   return data;
 };

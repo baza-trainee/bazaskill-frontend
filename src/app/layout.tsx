@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
-import ReduxProvider from '@/components/providers/ReduxProvider';
-import LayoutProvider from '@/components/providers/LayoutProvider';
 import './globals.css';
+import { Providers } from '@/app/provider';
+import LayoutProvider from '@/components/providers/LayoutProvider';
 
 const open_sans = Open_Sans({
   weight: '400',
@@ -49,14 +49,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ReduxProvider>
-      <html lang="en">
-        <body
-          className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
-        >
-          <LayoutProvider>{children}</LayoutProvider>
-        </body>
-      </html>
-    </ReduxProvider>
+    <html lang="en">
+      <body
+        className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
+      >
+        <LayoutProvider>{children}</LayoutProvider>
+      </body>
+    </html>
   );
 }
