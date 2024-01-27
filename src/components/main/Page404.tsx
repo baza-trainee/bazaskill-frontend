@@ -3,7 +3,7 @@ import React from 'react';
 
 const Page404 = () => {
   return (
-    <div className="flex min-h-[calc(100vh-2rem)] w-full flex-col items-center justify-center  bg-graphite text-white">
+    <div className="flex min-h-[calc(100vh-100px)] w-full flex-col items-center justify-center  bg-graphite text-white">
       <span className="font-regular font-mont text-[180px]">
         404
       </span>
