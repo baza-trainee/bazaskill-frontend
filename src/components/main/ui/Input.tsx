@@ -35,7 +35,7 @@ const TextInput = forwardRef(function TextInput(
         id={id}
         value={inputValue}
         data-category={category}
-        className={` h-[64px] w-full p-2 placeholder:text-sm focus:outline-none
+        className={` h-[64px] w-full p-2 placeholder:text-xl focus:outline-none
   ${
     errorText
       ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
