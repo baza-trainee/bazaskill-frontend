@@ -1,5 +1,4 @@
-'use client';
-import React from 'react';
+import Link from 'next/link';
 
 const Page404 = () => {
   return (
@@ -11,9 +10,11 @@ const Page404 = () => {
         Вибачте, сторінка, яку ви шукаєте, переміщена або
         видалена
       </p>
-      <button className="main-gradient h-[54px] w-[272px] rounded-[5px] font-tahoma text-[20px] font-bold uppercase text-black">
-        На головну
-      </button>
+      <Link href="/">
+        <button className="main-gradient h-[54px] w-[272px] rounded-[5px] font-tahoma text-[20px] font-bold text-black">
+          На головну
+        </button>
+      </Link>
     </div>
   );
 };
