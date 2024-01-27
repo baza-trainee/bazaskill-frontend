@@ -11,6 +11,6 @@ html {
 
 @layer components {
   .main-gradient {
-    @apply from-green to-yellow bg-gradient-to-r;
+    @apply bg-gradient-to-r from-green to-yellow;
   }
 }
