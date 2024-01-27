@@ -6,7 +6,7 @@ const SpecialistsInform = () => {
       <h2 className="mb-[40px] font-['Tahoma'] text-[36px] font-bold leading-[1.5] tracking-[1.08px]  ">
         Допоможемо знайти гідного спеціаліста
       </h2>
-      <div className=" flex flex-col flex-nowrap gap-[40px] font-['Open-Sans'] text-[20px] font-light font-normal leading-[1.3] tracking-[0.4px]">
+      <div className=" Open-Sans flex flex-col flex-nowrap gap-[40px] text-[20px] font-normal leading-[1.3] tracking-[0.4px]">
         <p>
           Платформа Baza Skill допоможе вам підібрати
           досвідченого спеціаліста в сфері IT, оскільки

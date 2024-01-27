@@ -3,7 +3,7 @@ const Container = ({
 }: {
   children: React.ReactNode;
 }) => {
-  return <div className="px-[80px]">{children}</div>;
+  return <div className="container">{children}</div>;
 };
 
 export default Container;
