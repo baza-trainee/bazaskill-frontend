@@ -2,15 +2,21 @@ import Container from '../Container';
 import TextInput from '../ui/Input';
 import DesktopIcon from '../../icons/DesktopIcon';
 import ArrowIcon from '@/components/icons/ArrowIcon';
+import Pointer from '@/components/icons/Pointer';
+import SearchIcon from '@/components/icons/SearchIcon';
 
 interface HeroProps {}
 
 const Hero: React.FC<HeroProps> = () => {
   return (
-    <div className="w-full max-w-[1440]">
+    <div className="my-[124px] w-full max-w-[1440]">
       <Container>
-        <h2 className="text-6xl text-white text-center font-bold mb-10">
-          Знайди <span className='text-green'>свого</span> ІТ-фахівця
+        <h2 className="mb-10 text-center text-6xl font-bold text-white">
+          Знайди 
+          <span className="main-gradient bg-clip-text">
+            свого
+          </span>
+           ІТ-фахівця
         </h2>
         <form className="flex">
           <div className="relative flex w-full items-center">
@@ -20,8 +26,7 @@ const Hero: React.FC<HeroProps> = () => {
               style={{ paddingLeft: '3rem' }}
             />
             <DesktopIcon className="text-gray-500 absolute left-3" />
-
-            <ArrowIcon className="text-gray-500 absolute right-3" />
+            <ArrowIcon className="text-gray-500 absolute right-3 cursor-pointer" />
           </div>
 
           <div className="relative flex w-full items-center">
@@ -30,12 +35,12 @@ const Hero: React.FC<HeroProps> = () => {
               placeholder="Країна"
               style={{ paddingLeft: '3rem' }}
             />
-            <DesktopIcon className="text-gray-500 absolute left-3" />
-
-            <ArrowIcon className="text-gray-500 absolute right-3" />
+            <Pointer className="text-gray-500 absolute left-3" />
+            <ArrowIcon className="text-gray-500 absolute right-3 cursor-pointer" />
           </div>
 
-          <button className="min-w-[272px] bg-green text-white">
+          <button className=" main-gradient relative min-w-[272px] text-xl	font-medium	">
+            <SearchIcon className="text-gray-500 absolute left-3" />
             Знайти кандидата
           </button>
         </form>
