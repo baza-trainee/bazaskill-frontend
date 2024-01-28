@@ -33,14 +33,14 @@ const About = () => {
           src={Card}
           width={203}
           height={230}
-          className="object-contain"
+          className="rounded-[5%] object-contain"
         />
 
         <Image
           alt="Рекрутер який шукає кандидата"
           src={Pic}
-          width={203}
-          height={230}
+          width={272}
+          height={308}
           className="object-contain"
         />
       </div>
