@@ -5,8 +5,8 @@ import { photosArray } from '@/data/specialists';
 
 const Specialists = () => {
   return (
-    <section>
-      <div className="container flex gap-[98px] py-[60px]">
+    <section className="container py-[60px]">
+      <div className="flex gap-[98px]">
         <SpecialistList photos={photosArray} />
         <SpecialistsInform />
       </div>
