@@ -15,6 +15,6 @@ html {
   }
 
   .container {
-    @apply w-full px-[80px]
+    @apply w-full max-w-[1440px] px-[80px] box-border
   }
 }

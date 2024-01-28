@@ -49,51 +49,50 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-[60px]">
-      <Container>
-        <h3 className="mb-[50px] text-center font-tahoma text-4xl font-bold tracking-[1.08px] text-white">
-          Відгуки
-        </h3>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={60}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper">
-          {testimonials.map((item: Testimonials) => (
-            <SwiperSlide key={item.id}>
-              <div className="flex w-[1112px] items-center justify-between">
-                <div className="flex items-center gap-[18px]">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    width="122"
-                    height="122"
-                  />
-                  <div className="text-start">
-                    <h4 className="mb-[24px] font-tahoma text-2xl font-bold tracking-[.72px] text-white">
-                      {item.name}
-                    </h4>
-                    <p className="font-open-sans text-xl font-normal tracking-[.4px] text-white">
-                      {item.position}
-                    </p>
-                    <p className="font-open-sans text-sm font-normal text-white">
-                      {item.data}
-                    </p>
-                  </div>
+    <section className="relaive container py-[60px]">
+      <h3 className="mb-[50px] text-center font-tahoma text-4xl font-bold tracking-[1.08px] text-white">
+        Відгуки
+      </h3>
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={60}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {testimonials.map((item: Testimonials) => (
+          <SwiperSlide key={item.id}>
+            <div className="flex w-[88%] items-center justify-between 2xl:min-w-[1112px]">
+              <div className="flex items-center gap-[18px]">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  width="122"
+                  height="122"
+                />
+                <div className="text-start">
+                  <h4 className="mb-[24px] font-tahoma text-2xl font-bold tracking-[.72px] text-white">
+                    {item.name}
+                  </h4>
+                  <p className="font-open-sans text-xl font-normal tracking-[.4px] text-white">
+                    {item.position}
+                  </p>
+                  <p className="font-open-sans text-sm font-normal text-white">
+                    {item.data}
+                  </p>
                 </div>
-                <p className="w-[652px] text-start font-open-sans text-xl font-normal tracking-[.4px] text-white">
-                  {item.review}
-                </p>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Container>
+              <p className="w-[652px] text-start font-open-sans text-xl font-normal tracking-[.4px] text-white">
+                {item.review}
+              </p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };
