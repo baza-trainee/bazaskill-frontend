@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
 
-interface SpecialistListProps {
+interface InformationListProps {
   photos: string[];
 }
 
-const SpecialistList: React.FC<SpecialistListProps> = ({
+const InformationList: React.FC<InformationListProps> = ({
   photos,
 }) => {
   return (
@@ -28,4 +28,4 @@ const SpecialistList: React.FC<SpecialistListProps> = ({
   );
 };
 
-export default SpecialistList;
+export default InformationList;
