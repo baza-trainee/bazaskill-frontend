@@ -1,7 +1,7 @@
 import Hero from '@/components/main/hero/Hero';
 import Counters from '@/components/main/counters/Counters';
 import About from '@/components/main/about/About';
-import Information from '@/components/main/information/Information';
+import Help from '@/components/main/help/Help';
 import Testimonials from '@/components/main/testimonials/Testimonials';
 import Posts from '@/components/main/posts/Posts';
 import Partners from '@/components/main/partners/Partners';
@@ -25,7 +25,7 @@ const Home = async () => {
       <Hero />
       <Counters />
       <About />
-      <Information />
+      <Help />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Testimonials />
       </HydrationBoundary>

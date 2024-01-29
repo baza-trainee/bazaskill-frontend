@@ -1,17 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
 
-interface InformationListProps {
+interface HelpListProps {
   photos: string[];
 }
 
-const InformationList: React.FC<InformationListProps> = ({
-  photos,
-}) => {
+const HelpList: React.FC<HelpListProps> = ({ photos }) => {
   return (
-    <div>
+    <div className="w-[592px] p-[12px]">
       <ul
-        className="flex w-[592px] flex-wrap "
+        className=" flex  flex-wrap justify-center "
         style={{ gap: '32px' }}>
         {photos.map((photo) => (
           <li key={photo} className="rounded-[100px]">
@@ -28,4 +26,4 @@ const InformationList: React.FC<InformationListProps> = ({
   );
 };
 
-export default InformationList;
+export default HelpList;
