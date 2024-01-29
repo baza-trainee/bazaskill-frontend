@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import Input from '../ui/Input';
-
-const Hero = () => {
-  return <div><Input/></div>;
-=======
 import TextInput from '../ui/Input';
 import DesktopIcon from '@/components/icons/DesktopIcon';
 import ArrowIcon from '@/components/icons/ArrowIcon';
@@ -53,7 +46,6 @@ const Hero: React.FC<HeroProps> = () => {
       </form>
     </div>
   );
->>>>>>> affb44b03b27ad777e0e3cd057503bf3bcdbaece
 };
 
 export default Hero;
