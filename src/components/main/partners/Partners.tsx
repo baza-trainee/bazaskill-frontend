@@ -1,7 +1,28 @@
-import React from 'react';
+'use client';
 
-const Partners = () => {
-  return <div>Partners</div>;
+import React from 'react';
+import Slider from './Slider';
+import partnersData from './partnersData';
+
+const Partners: React.FC = () => {
+  return (
+    <div className="mx-auto my-[60px] w-screen">
+      <div
+        className="mb-[43px]
+          text-center
+          font-tahoma
+          text-[40px]
+          font-bold
+          not-italic
+          text-white"
+      >
+        Наші партнери
+      </div>
+      <div>
+        <Slider partners={partnersData} />
+      </div>
+    </div>
+  );
 };
 
 export default Partners;
