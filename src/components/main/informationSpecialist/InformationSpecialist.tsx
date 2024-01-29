@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SpecialistsInform = () => {
+const InformationSpecialist = () => {
   return (
     <div className="w-[590px]  pt-[75px] text-white ">
       <h2 className="mb-[40px] font-['Tahoma'] text-[36px] font-bold leading-[1.5] tracking-[1.08px]  ">
@@ -28,4 +28,4 @@ const SpecialistsInform = () => {
   );
 };
 
-export default SpecialistsInform;
+export default InformationSpecialist;
