@@ -1,14 +1,14 @@
 import React from 'react';
 import { photosArray } from '@/data/specialists';
-import InformationSpecialist from '../helpSpecialist/HelpSpecialist';
-import HelpList from '../helpList/HelpList';
+import HelpList from './helpList/HelpList';
+import HelpSpecialist from './helpSpecialist/HelpSpecialist';
 
 const Help = () => {
   return (
     <section className="container py-[60px]">
       <div className="flex gap-[78px]">
         <HelpList photos={photosArray} />
-        <InformationSpecialist />
+        <HelpSpecialist />
       </div>
     </section>
   );
