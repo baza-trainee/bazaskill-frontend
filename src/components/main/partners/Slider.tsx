@@ -41,9 +41,6 @@ const Slider: React.FC<SliderProps> = ({ partners }) => {
                 width={320}
                 height={135}
                 alt={partner.alt}
-                onError={(e) =>
-                  console.error('Image failed to load', e)
-                }
               />
             </SwiperSlide>
           ))}
