@@ -1,11 +1,15 @@
-.swiper {
+.testimonials_container {
+  position: relative;
+  width: 100%;
+}
+.testimonials {
   position: relative;
   width: 100%;
   height: 100%;
   overflow-y: visible;
 }
 
-.swiper-slide {
+.testimonials_slide {
   position: relative;
   text-align: center;
   font-size: 18px;
@@ -15,12 +19,12 @@
   align-items: center;
 }
 
-.swiper {
+.testimonials {
   margin-left: auto;
   margin-right: auto;
 }
 
-.swiper-pagination-bullet {
+.testimonials .swiper-pagination-bullet {
   width: 16px;
   height: 16px;
   background-color: #fefffe;
@@ -35,25 +39,16 @@
   top: 30%;
 }
 
-
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 30px;
 }
 
-.swiper-horizontal
-  > .swiper-pagination-bullets
-  .swiper-pagination-bullet,
-.swiper-pagination-horizontal.swiper-pagination-bullets
-  .swiper-pagination-bullet {
-  margin: 0;
-}
-
-.swiper-pagination-bullet-active {
+.testimonials .swiper-pagination-bullet-active {
   background-color: #ff58b0;
 }
 
-.swiper-pagination {
+.testimonials .swiper-pagination {
   position: static;
   margin-top: 50px;
 }
