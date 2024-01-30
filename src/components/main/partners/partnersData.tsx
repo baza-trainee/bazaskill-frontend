@@ -22,12 +22,19 @@ const partnersData: Partner[] = [
     height: 135,
     alt: 'iscaImage',
   },
+  // {
+  //   id: 4,
+  //   image: '/partners/5663360.png',
+  //   width: 302,
+  //   height: 135,
+  //   alt: '5663360',
+  // },
   {
     id: 4,
-    image: '/partners/5663360.png',
+    image: '/partners/iscaImage.png',
     width: 302,
     height: 135,
-    alt: '5663360',
+    alt: 'iscaImage',
   },
 ];
 

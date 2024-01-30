@@ -1,4 +1,4 @@
-.swiper {
+.partnerSlider {
   max-width: 1006px;
   height: 100%;
 }
@@ -9,14 +9,14 @@
   position: relative;
 }
 
-.swiper-slide {
+.partnerSlide {
   max-width: 302px;
   display: flex;
   justify-content: center;
   transition: transform 0.3s ease;
 }
 
-.swiper-slide:hover {
+.partnerSlide:hover {
   transform: scale(1.1);
 }
 
@@ -26,16 +26,6 @@
   background-color: #fefffe;
   opacity: 1;
   margin-right: 16px !important;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-100%);
-  width: 30px;
-  height: 30px;
 }
 
 .swiper-pagination-bullet-active {
