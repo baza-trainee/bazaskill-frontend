@@ -1,14 +1,3 @@
-.partnerSlider {
-  max-width: 1006px;
-  height: 100%;
-}
-
-.swiper-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  position: relative;
-}
-
 .partnerSlide {
   max-width: 302px;
   display: flex;
