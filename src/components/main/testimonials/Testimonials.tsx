@@ -54,6 +54,7 @@ const Testimonials = () => {
         Відгуки
       </h3>
       <Swiper
+        key={'testimonialsSlider'}
         slidesPerView={1}
         spaceBetween={60}
         loop={true}
