@@ -16,7 +16,6 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.1.0",
-    "@types/swiper": "^6.0.0",
     "axios": "^1.6.5",
     "nanoid": "^5.0.4",
     "next": "14.0.4",
