@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         'open-sans': 'var(--font-open-sans)',
         tahoma: 'var(--font-tahoma)',
+        mont: 'var(--font-mont)',
       },
       colors: {
         white: '#FEFFFE',

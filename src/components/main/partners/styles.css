@@ -1,0 +1,27 @@
+.partnerSlide {
+  max-width: 302px;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.partnerSlide:hover {
+  transform: scale(1.1);
+}
+
+.swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background-color: #fefffe;
+  opacity: 1;
+  margin-right: 16px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff58b0;
+}
+
+.swiper-pagination {
+  position: static;
+  margin-top: 48px;
+}
