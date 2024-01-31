@@ -2,11 +2,11 @@ import React from 'react';
 
 const HelpSpecialist = () => {
   return (
-    <div className=" w-[610px] p-[24px]  text-white ">
+    <div className=" w-[610px] px-[24px] pt-[66.5px]  text-white ">
       <h2 className="mb-[48px] font-tahoma text-[40px] font-bold leading-[1.5] tracking-[1.2px]  ">
         Допоможемо знайти гідного спеціаліста
       </h2>
-      <div className="  w-[562px]   font-open-sans text-[20px] font-normal leading-[1.3] tracking-[.4px]  text-white">
+      <div className="  w-[562px]   font-open-sans text-[20px] font-normal leading-[1.3] tracking-[.4px]  text-white ">
         <p>
           Платформа Baza Skill допоможе вам підібрати
           досвідченого спеціаліста в сфері IT, оскільки
