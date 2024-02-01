@@ -24,6 +24,8 @@ const config: Config = {
         pink: '#FF58B0',
         rose: '#DD8DB7',
         dateBlack: '#333333B2',
+        lightGreen: '#EEFFF1',
+        lightGray: '#FEFFFE'
       },
       backgroundImage: {
         'gradient-radial':
