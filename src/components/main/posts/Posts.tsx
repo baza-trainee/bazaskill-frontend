@@ -47,18 +47,21 @@ const Posts = () => {
           return (
             <article
               key={post.id}
-              className="relative flex h-[321px] w-[358px] flex-col justify-between overflow-hidden rounded-md bg-white bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${post.img})`,
-              }}
+              className="relative flex h-[321px] w-[358px] flex-col justify-between overflow-hidden rounded-md "
             >
+              <div
+                className="absolute left-0 top-0 h-full w-full bg-cover bg-center grayscale"
+                style={{
+                  backgroundImage: `url(${post.img})`,
+                }}
+              ></div>
               <p className="z-10 w-[108px] rounded-br-lg bg-dateBlack p-2 text-center text-white">
                 {post.date}
               </p>
               <a
                 href={post.link}
                 target="_blank"
-                className="main-gradient p-2.5"
+                className="main-gradient z-10 p-2.5"
               >
                 <h4 className="text-center leading-relaxed text-black">
                   {post.heading}
