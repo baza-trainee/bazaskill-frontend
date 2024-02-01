@@ -22,9 +22,7 @@ const Hero: React.FC<HeroProps> = () => {
       <form className="flex">
         <div className="relative flex w-full items-center">
           <TextInput
-            className="placeholder-pl-2 p-5"
             placeholder="Спеціальність"
-            style={{ paddingLeft: '3rem' }}
             options={[
               'Frontend Developer',
               'Backend Developer',
@@ -38,9 +36,7 @@ const Hero: React.FC<HeroProps> = () => {
 
         <div className="relative flex w-full items-center">
           <TextInput
-            className="border-none p-5 text-lg placeholder:text-xl "
             placeholder="Країна"
-            style={{ paddingLeft: '3rem' }}
             options={['Україна', 'Польша', 'Німеччина']}
           />
           <Pointer className="text-gray-500 absolute left-3" />
