@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, {
   useState,
   useEffect,
@@ -14,7 +14,6 @@ interface TextInputProps {
   errorText?: string;
   category?: string;
   options?: string[];
-  [key: string]: any;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -62,7 +61,8 @@ const TextInput: FC<TextInputProps> = ({
 
   return (
     <div
-      className={`w-full ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-full ${errorText ? 'text-red-500' : 'text-inherit'}`}
+    >
       {title && (
         <label htmlFor={id} className="text-sm font-medium">
           {title}
@@ -94,8 +94,9 @@ const TextInput: FC<TextInputProps> = ({
             {options.map((option) => (
               <div
                 key={option}
-                className="text-red hover:bg-lightGreen border-gray-300 cursor-pointer border-b p-2"
-                onClick={() => handleSelectOption(option)}>
+                className="text-red border-gray-300 cursor-pointer border-b p-2 hover:bg-lightGreen"
+                onClick={() => handleSelectOption(option)}
+              >
                 {option}
               </div>
             ))}
