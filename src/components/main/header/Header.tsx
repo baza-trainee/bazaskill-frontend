@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Container from '../Container';
-import Link from 'next/link';
 
 const occupations = [
   'Design',
@@ -133,6 +131,7 @@ const Header = () => {
             <ul className="absolute top-full mt-2 rounded bg-[#202020] shadow-lg">
               {languageOptions.map((lang, index) => (
                 <li
+                  key={index}
                   onClick={() => {
                     handleLanguageSelect();
                   }}
