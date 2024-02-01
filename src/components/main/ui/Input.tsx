@@ -15,6 +15,7 @@ interface TextInputProps {
   errorText: string;
   category: string;
   options: string[];
+  placeholder: string;
 }
 
 const TextInput: FC<TextInputProps> = ({

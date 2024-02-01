@@ -22,6 +22,9 @@ const Hero: React.FC<HeroProps> = () => {
       <form className="flex">
         <div className="relative flex w-full items-center">
           <TextInput
+            title=""
+            errorText=""
+            category=""
             placeholder="Спеціальність"
             options={[
               'Frontend Developer',
@@ -36,6 +39,9 @@ const Hero: React.FC<HeroProps> = () => {
 
         <div className="relative flex w-full items-center">
           <TextInput
+            title=""
+            errorText=""
+            category=""
             placeholder="Країна"
             options={['Україна', 'Польша', 'Німеччина']}
           />
