@@ -26,11 +26,11 @@ const Home = async () => {
       <Counters />
       <About />
       <Help />
+      <Posts />
+      <Partners />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Testimonials />
       </HydrationBoundary>
-      <Posts />
-      <Partners />
       <Contacts />
     </div>
   );
