@@ -1,7 +1,6 @@
 import Hero from '@/components/main/hero/Hero';
 import Counters from '@/components/main/counters/Counters';
 import About from '@/components/main/about/About';
-import Help from '@/components/main/help/Help';
 import Testimonials from '@/components/main/testimonials/Testimonials';
 import Posts from '@/components/main/posts/Posts';
 import Partners from '@/components/main/partners/Partners';
@@ -13,6 +12,7 @@ import {
 } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
+import Help from '@/components/main/help/Help';
 
 const Home = async () => {
   const queryClient = new QueryClient();
