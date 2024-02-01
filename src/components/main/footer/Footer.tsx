@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Logo } from '@/components/main/ui/logo/logo';
+import Logo from '@/components/icons/Logo';
 
 type FooterLinkProps = {
   href: string;
@@ -12,7 +12,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({
   children,
 }) => (
   <a
-    className="decoration gray-700 block py-2 text-xl font-normal text-white underline-offset-2 hover:text-yellow hover:underline"
+    className="decoration gray-700 all block cursor-pointer py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow hover:underline"
     href={href}
     target="_blank"
     rel="noopener noreferrer"
@@ -36,26 +36,30 @@ const Footer = () => {
   return (
     <div className="flex flex-col justify-center bg-darkGraphite px-32 pt-20">
       <div className="flex justify-start">
-        <div className="w-110">
-          <a href="/" aria-label="logo-icon">
-            <Logo className="hover:scale-125" />
+        <div className="w-110 transition-all">
+          <a
+            href="/"
+            aria-label="logo-icon"
+            className="bg-pink"
+          >
+            <Logo className="transition duration-500 hover:scale-110" />
           </a>
-          <h3 className="mb-20 mt-12 block font-tahoma text-2xl font-bold text-white hover:text-yellow">
+          <h3 className="mb-20 mt-12 block cursor-pointer font-tahoma text-2xl font-bold text-white transition-all hover:text-yellow">
             За крок до офферу
           </h3>
         </div>
         <div className="ml-72 mr-24 w-96 text-white">
-          <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline">
+          <button className="inline-block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline">
             <a href="#aboutus">Про нас</a>
           </button>
           <button
-            className="block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline"
+            className="block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline"
             onClick={openModal}
           >
             Стати нашим HRом
           </button>
           <button
-            className="block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline"
+            className="block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline"
             onClick={openModal}
           >
             Стати нашим партнером
@@ -74,12 +78,12 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex justify-start">
-        <p className="mr-36 font-open-sans text-sm font-normal leading-4 text-white hover:text-yellow">
+        <p className="mr-36 font-open-sans text-sm font-normal leading-4 text-white">
           Розробка Baza Trainee Ukraine 2024 &#169; Усі
           права захищені
         </p>
         <a
-          className="hover: decoration gray-700 mr-72 inline-block font-open-sans text-sm text-white underline underline-offset-2 hover:text-yellow"
+          className="hover:decoration gray-700 mr-72 inline-block cursor-pointer font-open-sans text-sm text-white underline underline-offset-2 transition-all hover:text-yellow"
           target="_blank"
           rel="noopener noreferrer"
           href="/document/privacypolicy.pdf"
@@ -87,7 +91,7 @@ const Footer = () => {
           Політика конфіденційності
         </a>
         <a
-          className="hover: decoration gray-700 inline-block font-open-sans text-sm text-white underline underline-offset-2 hover:text-yellow"
+          className="hover:decoration gray-700 inline-block cursor-pointer font-open-sans text-sm text-white underline underline-offset-2 transition-all hover:text-yellow"
           target="_blank"
           rel="noopener noreferrer"
           href="/document/siteusagerules.pdf"
