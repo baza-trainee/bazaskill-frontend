@@ -92,7 +92,7 @@ const TextInput: FC<TextInputProps> = ({
         />
 
         {isOpen && (
-          <div className="max-h-25 absolute left-0 top-full w-full overflow-y-auto rounded-b-md bg-white shadow-lg">
+          <div className="absolute left-0  top-full max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg">
             {options.map((option) => (
               <div
                 key={option}

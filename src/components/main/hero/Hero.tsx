@@ -58,4 +58,3 @@ const Hero: React.FC<HeroProps> = () => {
 };
 
 export default Hero;
-``;
