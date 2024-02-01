@@ -6,6 +6,7 @@ import React, {
   FC,
   ChangeEvent,
 } from 'react';
+
 import { nanoid } from 'nanoid';
 import ArrowIcon from '@/components/icons/ArrowIcon';
 
