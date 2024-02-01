@@ -5,7 +5,6 @@ import CountUp from 'react-countup';
 
 import VisibilitySensor from 'react-visibility-sensor';
 
-
 interface Counters {
   id: number;
   count: number;
@@ -64,6 +63,7 @@ const Counters = () => {
                       end={item.count}
                       duration={2}
                       redraw={true}
+                      formattingFn={(value) => `${value}+`}
                     />
                   ) : (
                     0
