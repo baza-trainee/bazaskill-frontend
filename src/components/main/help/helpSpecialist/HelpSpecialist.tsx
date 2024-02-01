@@ -2,7 +2,7 @@ import React from 'react';
 
 const HelpSpecialist = () => {
   return (
-    <div className=" w-[610px] px-[24px] pt-[66.5px]  text-white ">
+    <div className=" w-[590px]  pt-[66.5px]  text-white ">
       <h2 className="mb-[48px] font-tahoma text-[40px] font-bold leading-[1.5] tracking-[1.2px]  ">
         Допоможемо знайти гідного спеціаліста
       </h2>
