@@ -17,17 +17,21 @@ const config: Config = {
         white: '#FEFFFE',
         black: '#020202',
         gray: '#8E8D8D',
-        graphite: '#202020',
+        darkGraphite: '#191919',
+        graphite: '#212121',
         green: '#4DC760',
         yellow: '#FFF854',
         pink: '#FF58B0',
         rose: '#DD8DB7',
+        dateBlack: '#333333B2',
       },
       backgroundImage: {
         'gradient-radial':
           'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'contacts-photo':
+          "url('/public/img/contactsectionphotodesk@1x.jpg')",
       },
     },
   },
