@@ -32,8 +32,8 @@ const config: Config = {
           'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'contacts-photo':
-          "url('/public/img/contactsectionphotodesk@1x.jpg')",
+        'contacts-photo': "url('/public/img/workprocessdesk@1x.jpg')"
+
       },
     },
   },

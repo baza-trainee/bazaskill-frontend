@@ -48,8 +48,8 @@ const Footer = () => {
             За крок до офферу
           </h3>
         </div>
-        <div className="ml-72 mr-24 w-96 text-white">
-          <button className="inline-block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline">
+        <div className="w-96 ml-[292px] mr-[90px] text-white">
+          <button className="inline-block py-2 text-xl font-normal hover:text-yellow hover:underline decoration-yellow underline-offset-4">
             <a href="#aboutus">Про нас</a>
           </button>
           <button

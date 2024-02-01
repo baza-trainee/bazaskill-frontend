@@ -18,13 +18,13 @@ const Contacts = () => {
   return (
     <div className="py-14 px-32">
       <h2 className="flex justify-center mb-12 text-5xl text-white font-bold">Контакти</h2>
-      <div className="bg-[url('/img/contactsectionphotodesk@1x.jpg')] rounded-xl w-[1280px] h-[390px] priority={true} alt={people's hands}" >
+      <div className="bg-[url('/img/workprocessdesk@1x.jpg')] w-[1280px] h-[445px] priority={true} alt={employees are sitting at the table}" >
         
-         <div className="flex flex-col pl-48 pt-14 width={270} height={288}">
-          <ul className="mb-16 mr-auto">
+         <div className="flex flex-col pl-48 pt-20 width={270} height={288}">
+          <ul className="mb-12 mr-auto">
             {contactData.map((contact, index) => (
               <li key={index} className="p-1">
-                <a className="flex text-lg font-bold leading-6 p-1.5 mb-1.5" href={contact.link} target="_blank" rel="noopener noreferrer">
+                <a className="flex text-lg font-semibold leading-6 p-1.5 mb-1.5" href={contact.link} target="_blank" rel="noopener noreferrer">
                   <svg className="mr-3 hover:scale-125" width={24} height={24}>
                     {contact.type === 'tel' ? (
                       <use href="/Icons/sprite.svg#icon-tel"></use>
@@ -38,9 +38,9 @@ const Contacts = () => {
             ))}
           </ul>
           <div className="mr-auto">
-            <ul className="flex space-x-4">
+            <ul className="flex space-x-8">
               {socialLinks.map((socialLink, index) => (
-                <li key={index} className="p-4">
+                <li key={index} className="p-2">
                   <a href={socialLink.link} target="_blank" rel="noopener noreferrer">
                     <svg className="hover:scale-125" width={24} height={24}>
                       <use href={`/Icons/sprite.svg#icon-${socialLink.icon}`}></use>
