@@ -92,7 +92,7 @@ const Testimonials = () => {
           <SwiperSlide
             className="testimonials_slide"
             key={item.id}>
-            <div className="flex w-[88%] items-center justify-between 2xl:min-w-[1112px]">
+            <div className="flex w-[86%] items-center justify-between">
               <div className="flex items-center gap-[36px]">
                 <Image
                   src={item.image}
@@ -114,7 +114,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="w-[652px] text-start font-open-sans text-xl font-normal tracking-[.4px] text-white">
-                {item.review}
+                {'“' + item.review + '”'}
               </p>
             </div>
           </SwiperSlide>
