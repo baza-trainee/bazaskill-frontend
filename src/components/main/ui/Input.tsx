@@ -11,10 +11,10 @@ import { nanoid } from 'nanoid';
 import ArrowIcon from '@/components/icons/ArrowIcon';
 
 interface TextInputProps {
-  title?: string;
-  errorText?: string;
-  category?: string;
-  options?: string[];
+  title: string;
+  errorText: string;
+  category: string;
+  options: string[];
 }
 
 const TextInput: FC<TextInputProps> = ({
