@@ -7,9 +7,12 @@ type FooterLinkProps = {
   children: React.ReactNode;
 };
 
-const FooterLink: React.FC<FooterLinkProps> = ({ href, children }) => (
+const FooterLink: React.FC<FooterLinkProps> = ({
+  href,
+  children,
+}) => (
   <a
-    className="block text-xl font-normal text-white py-2 hover:underline decoration gray-700 underline-offset-2 hover:text-yellow"
+    className="decoration gray-700 block py-2 text-xl font-normal text-white underline-offset-2 hover:text-yellow hover:underline"
     href={href}
     target="_blank"
     rel="noopener noreferrer"
@@ -23,7 +26,7 @@ const Footer = () => {
 
   const openModal = () => {
     setModalOpen(true);
-    console.log("open modal");
+    console.log('open modal');
   };
 
   const closeModal = () => {
@@ -31,42 +34,75 @@ const Footer = () => {
   };
 
   return (
-    <div className="pt-20 px-32 flex justify-center flex-col bg-black">
+    <div className="flex flex-col justify-center bg-darkGraphite px-32 pt-20">
       <div className="flex justify-start">
         <div className="w-110">
           <a href="/" aria-label="logo-icon">
             <Logo className="hover:scale-125" />
           </a>
-          <h3 className="block font-tahoma font-bold text-2xl text-white mb-20 mt-12 hover:text-yellow">За крок до офферу</h3>
+          <h3 className="mb-20 mt-12 block font-tahoma text-2xl font-bold text-white hover:text-yellow">
+            За крок до офферу
+          </h3>
         </div>
-        <div className="w-96 ml-72 mr-24 text-white">
-          <button className="inline-block py-2 text-xl font-normal hover:text-yellow hover:underline decoration-yellow underline-offset-4">
+        <div className="ml-72 mr-24 w-96 text-white">
+          <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline">
             <a href="#aboutus">Про нас</a>
           </button>
-          <button className="block py-2 text-xl font-normal hover:text-yellow hover:underline decoration-yellow underline-offset-4" onClick={openModal}>
+          <button
+            className="block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline"
+            onClick={openModal}
+          >
             Стати нашим HRом
           </button>
-          <button className="block py-2 text-xl font-normal hover:text-yellow hover:underline decoration-yellow underline-offset-4" onClick={openModal}>
+          <button
+            className="block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline"
+            onClick={openModal}
+          >
             Стати нашим партнером
           </button>
         </div>
         <div>
-          <FooterLink href="https://baza-trainee.tech/ua">Baza Trainee Ukraine</FooterLink>
-          <FooterLink href="https://baza-educat.com.ua/">Стажування на Baza Educat</FooterLink>
-          <FooterLink href="/">Розробка Baza Poligon</FooterLink>
+          <FooterLink href="https://baza-trainee.tech/ua">
+            Baza Trainee Ukraine
+          </FooterLink>
+          <FooterLink href="https://baza-educat.com.ua/">
+            Стажування на Baza Educat
+          </FooterLink>
+          <FooterLink href="/">
+            Розробка Baza Poligon
+          </FooterLink>
         </div>
       </div>
       <div className="flex justify-start">
-        <p className="font-normal text-sm mr-36 font-open-sans leading-4 text-white hover:text-yellow">Розробка Baza Trainee Ukraine 2024 &#169; Усі права захищені</p>
-        <a className="inline-block text-sm mr-72 text-white font-open-sans hover: underline decoration gray-700 underline-offset-2 hover:text-yellow" target="_blank" rel="noopener noreferrer" href="/document/privacypolicy.pdf">Політика конфіденційності</a>
-        <a className="inline-block text-sm text-white font-open-sans hover: underline decoration gray-700 underline-offset-2 hover:text-yellow" target="_blank" rel="noopener noreferrer" href="/document/siteusagerules.pdf">Правила користування сайтом</a>
+        <p className="mr-36 font-open-sans text-sm font-normal leading-4 text-white hover:text-yellow">
+          Розробка Baza Trainee Ukraine 2024 &#169; Усі
+          права захищені
+        </p>
+        <a
+          className="hover: decoration gray-700 mr-72 inline-block font-open-sans text-sm text-white underline underline-offset-2 hover:text-yellow"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="/document/privacypolicy.pdf"
+        >
+          Політика конфіденційності
+        </a>
+        <a
+          className="hover: decoration gray-700 inline-block font-open-sans text-sm text-white underline underline-offset-2 hover:text-yellow"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="/document/siteusagerules.pdf"
+        >
+          Правила користування сайтом
+        </a>
       </div>
       <div className="flex justify-center px-10 py-8">
-        <p className="text-xs text-white">Компанія направляє 10% прибутку на підтримку 59-тої бригади ім.Якова Гандзюка</p>
+        <p className="text-xs text-white">
+          Компанія направляє 10% прибутку на підтримку
+          59-тої бригади ім.Якова Гандзюка
+        </p>
       </div>
     </div>
   );
 };
 
 export default Footer;
-
