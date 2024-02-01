@@ -46,6 +46,7 @@ const Header = () => {
     const handlePressESC = (event: KeyboardEvent): void => {
       if (event.key === 'Escape') {
         setActiveIndex(null);
+        setIsOpen(false);
       }
     };
 
