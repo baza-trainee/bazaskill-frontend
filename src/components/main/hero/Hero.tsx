@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = () => {
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
 
-        <button className="relative	 min-w-[272px] items-center main-gradient text-xl font-medium ">
+        <button className="main-gradient	 relative min-w-[272px] items-center text-xl font-medium hover:bg-green hover:from-transparent ">
           <SearchIcon className="text-gray-500 absolute left-3 top-5" />
           {t('hero_section.search')}
         </button>
@@ -56,4 +56,4 @@ const Hero: React.FC<HeroProps> = () => {
 };
 
 export default Hero;
-``
+``;
