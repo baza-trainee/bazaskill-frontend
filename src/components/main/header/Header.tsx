@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
+import Logo from '@/components/icons/Logo';
+import Link from 'next/link';
 
 const occupations = [
   'Design',
@@ -49,16 +50,11 @@ const Header = () => {
   ));
 
   return (
-    <header className="border-b  border-[#4E4E4E] bg-darkGraphite px-20">
+    <header className="border-b border-[#4E4E4E] bg-darkGraphite px-20">
       <div className="flex h-[100px] items-center justify-between">
-        <div>
-          <Image
-            src="icons/logo.svg"
-            alt="baza trainee label"
-            width={160}
-            height={40}
-          />
-        </div>
+        <Link href="/">
+          <Logo />
+        </Link>
         <div>
           <ul className="flex hover:text-rose">
             {occupations.map((occupation, index) => (
