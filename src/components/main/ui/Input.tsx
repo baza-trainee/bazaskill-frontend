@@ -28,6 +28,8 @@ const TextInput: FC<TextInputProps> = ({
   const id = nanoid();
   const [inputValue, setInputValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [filteredOptions, setFilteredOptions] =
+    useState<string[]>(options);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleSelectOption = (option: string) => {
@@ -57,8 +59,19 @@ const TextInput: FC<TextInputProps> = ({
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>
   ) => {
-    setInputValue(e.target.value);
+    const inputValue = e.target.value;
+    setInputValue(inputValue);
     setIsOpen(true);
+    filterOptions(inputValue);
+  };
+
+  const filterOptions = (inputValue: string) => {
+    const filteredOptions = options.filter((option) =>
+      option
+        .toLowerCase()
+        .includes(inputValue.toLowerCase())
+    );
+    setFilteredOptions(filteredOptions);
   };
 
   return (
@@ -92,8 +105,8 @@ const TextInput: FC<TextInputProps> = ({
         />
 
         {isOpen && (
-          <div className="absolute left-0  top-full max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg">
-            {options.map((option) => (
+          <div className="absolute left-0  top-full max-h-[120px] w-full overflow-y-hidden rounded-b-md bg-white shadow-lg">
+            {filteredOptions.map((option) => (
               <div
                 key={option}
                 className="text-red border-gray-300 cursor-pointer border-b p-2 hover:bg-lightGreen"
