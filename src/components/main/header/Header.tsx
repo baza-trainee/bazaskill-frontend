@@ -13,20 +13,43 @@ import { usePathname, useRouter } from 'next/navigation';
 import DropDown from './DropDown';
 
 const languages = ['ua', 'en', 'pl'];
-
+const data = [
+  'React',
+  'Redux',
+  'Vue',
+  'React Query',
+  'Angular',
+  'Next.js',
+  'HTML',
+  'CSS',
+  'Tailwind',
+  'Material UI',
+  'Zustand',
+  'React Native',
+];
 const Header = () => {
   return (
-    <header className="relative flex h-[100px] w-full items-center border-b border-[#4E4E4E] bg-graphite px-[80px]">
+    <header className="sticky z-50 flex h-[100px] w-full items-center border-b border-[#4E4E4E] bg-graphite px-[80px]">
       <div>
         <Link href="/">
           <Logo />
         </Link>
       </div>
 
-      <DropDown
-        title="Front End"
-        inputs={['React', 'Redux', 'Vue', 'React Query']}
-      />
+      <div className="ml-[30px] flex justify-between">
+        <div className="flex justify-center gap-[15px]">
+          <DropDown title="Design" inputs={data} />
+
+          <DropDown title="Front End" inputs={data} />
+
+          <DropDown title="Back End" inputs={data} />
+          <DropDown title="Full Stack" inputs={data} />
+          <DropDown title="QA Manual" inputs={data} />
+          <DropDown title="PM" inputs={data} />
+        </div>
+
+        <DropDown title="UA" inputs={data} />
+      </div>
     </header>
   );
 };
