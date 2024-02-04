@@ -4,8 +4,8 @@ import React from 'react';
 import Logo from '@/components/icons/Logo';
 import Link from 'next/link';
 import MenuItem from './MenuItem';
+import LanguageSwitcher from './LanguageSwitcher';
 
-const languages = ['ua', 'en', 'pl'];
 const data = [
   'React',
   'Redux',
@@ -39,7 +39,7 @@ const Header = () => {
           <MenuItem title="PM" inputs={data} />
         </div>
 
-        <MenuItem title="UA" inputs={data} />
+        <LanguageSwitcher />
       </div>
     </header>
   );
