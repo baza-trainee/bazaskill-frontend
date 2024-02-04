@@ -13,9 +13,11 @@ const MenuItem = ({
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const submenuRef = useRef<HTMLFormElement>(null);
+
   const openDropDownHandler = (): void => {
     setIsOpen(!isOpen);
   };
+
   const handleOutsideClick = (event: Event): void => {
     if (
       !submenuRef.current?.contains(
@@ -31,6 +33,7 @@ const MenuItem = ({
       setIsOpen(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener('click', handleOutsideClick);
     return () =>
@@ -39,6 +42,7 @@ const MenuItem = ({
         handleOutsideClick
       );
   }, [isOpen]);
+
   return (
     <div
       className={`relative flex h-[50px] cursor-pointer items-center justify-center rounded-t-[8px] transition-all hover:bg-[#525252] lg:box-content lg:w-max  lg:px-[12px] xl:w-max ${isOpen && 'bg-[#525252]'} `}
