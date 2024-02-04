@@ -21,7 +21,7 @@ const LayoutProvider = ({
           <Header />
         </header>
       )}
-      <main> {children}</main>
+      <main>{children}</main>
       {!isAdminPage && (
         <footer>
           <Footer />

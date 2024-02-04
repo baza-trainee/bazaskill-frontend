@@ -1,6 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import { useModal } from '@/stores/useModal';
 import Logo from '@/components/icons/Logo';
+import RegisterModal from '../modals/RegisterModal';
+import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 
 type FooterLinkProps = {
   href: string;
@@ -22,19 +24,14 @@ const FooterLink: React.FC<FooterLinkProps> = ({
 );
 
 const Footer = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-    console.log('open modal');
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  const isModalOpen = useModal(
+    (state) => state.isModalOpen
+  );
+  const modalType = useModal((state) => state.modalType);
+  const { openModal, closeModal } = useModal();
 
   return (
-    <div className="flex flex-col justify-center bg-darkGraphite px-32 pt-20">
+    <div className="relative flex flex-col justify-center bg-darkGraphite px-32 pt-20">
       <div className="flex justify-start">
         <div className="w-110 transition-all">
           <a
@@ -48,19 +45,19 @@ const Footer = () => {
             За крок до офферу
           </h3>
         </div>
-        <div className="w-96 ml-[292px] mr-[90px] text-white">
-          <button className="inline-block py-2 text-xl font-normal hover:text-yellow hover:underline decoration-yellow underline-offset-4">
+        <div className="ml-[292px] mr-[90px] w-96 text-white">
+          <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline">
             <a href="#aboutus">Про нас</a>
           </button>
           <button
             className="block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline"
-            onClick={openModal}
+            onClick={() => openModal('hr')}
           >
             Стати нашим HRом
           </button>
           <button
             className="block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline"
-            onClick={openModal}
+            onClick={() => openModal('partner')}
           >
             Стати нашим партнером
           </button>
@@ -105,6 +102,11 @@ const Footer = () => {
           59-тої бригади ім.Якова Гандзюка
         </p>
       </div>
+      {isModalOpen && modalType === 'hr' && (
+        <RegisterModal handleClose={closeModal}>
+          <RegisterHrForm />
+        </RegisterModal>
+      )}
     </div>
   );
 };
