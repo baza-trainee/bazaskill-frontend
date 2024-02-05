@@ -4,6 +4,7 @@ import DesktopIcon from '@/components/icons/DesktopIcon';
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
 import { useTranslations } from 'next-intl';
+import MarqueeTitle from '../ui/MarqueeTitle';
 
 interface HeroProps {}
 
@@ -12,13 +13,9 @@ const Hero: React.FC<HeroProps> = () => {
 
   return (
     <div className="container my-[124px] w-full">
-      <h2 className="mb-10 text-center text-6xl font-bold text-white">
-        Знайди{' '}
-        <span className="main-gradient bg-clip-text text-transparent">
-          свого{' '}
-        </span>
-        ІТ-фахівця
-      </h2>
+      <div className="mx-auto max-w-[837px]">
+        <MarqueeTitle />
+      </div>
       <form className="flex">
         <div className="relative flex w-full items-center">
           <TextInput

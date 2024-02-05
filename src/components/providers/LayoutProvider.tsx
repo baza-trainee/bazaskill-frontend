@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import Header from '@/components/main/header/Header';
 import Footer from '@/components/main/footer/Footer';
 import { Providers } from '@/app/[locale]/provider';
-import Ticker from '../main/Ticker';
 
 const LayoutProvider = ({
   children,
@@ -17,7 +16,6 @@ const LayoutProvider = ({
 
   return (
     <Providers>
-      <Ticker />
       {!isAdminPage && (
         <header>
           <Header />
