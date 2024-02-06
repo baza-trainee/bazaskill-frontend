@@ -12,6 +12,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
+import TextInput from '@/components/main/ui/form_inputs/TextInput';
+import TextArea from '@/components/main/ui/form_inputs/TextArea';
 
 const RegisterHrForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -31,8 +33,10 @@ const RegisterHrForm = () => {
   > = async (values: z.infer<typeof registerScheme>) => {
     try {
       setIsProcessing(true);
-      console.log(`+380${values.phone}`);
-      setIsProcessing(false);
+      console.log(values);
+      setTimeout(() => {
+        setIsProcessing(false);
+      }, 2000);
     } catch (error: unknown) {
       console.log(error);
     }
@@ -46,7 +50,8 @@ const RegisterHrForm = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
-        className="flex flex-col">
+        className="flex flex-col"
+      >
         <div className="flex">
           <Controller
             name="phone"
@@ -63,8 +68,7 @@ const RegisterHrForm = () => {
             name="first_name"
             control={control}
             render={({ field }) => (
-              //text input
-              <PhoneInput
+              <TextInput
                 {...field}
                 errorText={errors.first_name?.message}
                 placeholder="Ім’я"
@@ -72,27 +76,41 @@ const RegisterHrForm = () => {
             )}
           />
         </div>
-        <Controller
-          name="specialty"
-          control={control}
-          defaultValue=""
-          render={({ field }) => (
-            <SelectInput
-              {...field}
-              title="Шукаю"
-              options={options}
-              placeholder="Спеціальність"
-            />
-          )}
-        />
+        <div className="flex">
+          <Controller
+            name="speciality"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <SelectInput
+                {...field}
+                title="Шукаю"
+                options={options}
+                placeholder="Спеціальність"
+              />
+            )}
+          />
+          <Controller
+            name="message"
+            control={control}
+            render={({ field }) => (
+              <TextArea
+                {...field}
+                errorText={errors.message?.message}
+                placeholder="Ім’я"
+              />
+            )}
+          />
+        </div>
 
         <div className="">
           <button
             type="submit"
-            className="mt-[2rem] rounded-sm border border-graphite px-8 py-2"
+            className="mt-[2rem] rounded-sm border border-graphite px-8 py-2 hover:bg-yellow"
             disabled={
               errors && !!Object.keys(errors).length
-            }>
+            }
+          >
             {isProcessing
               ? 'Обробка запиту...'
               : 'Відправити'}
