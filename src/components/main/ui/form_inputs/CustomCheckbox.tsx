@@ -25,16 +25,16 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
         type="checkbox"
         id={checkboxId}
         ref={ref}
-        className="peer z-30 h-[24px] w-[24px] shrink-0 cursor-pointer appearance-none rounded-[2px] border-[1px] border-gray"
+        className="peer h-[24px] w-[24px] shrink-0 cursor-pointer appearance-none rounded-[2px] border-[1px] border-gray"
       />
       <label
         htmlFor={checkboxId}
-        className="z-[1] ml-2 max-w-[359px] cursor-pointer font-sans text-[15px] after:absolute after:left-0 after:top-0 after:z-[-1] after:h-full  after:cursor-pointer"
+        className="ml-2 max-w-[359px] cursor-pointer font-sans text-[15px] after:absolute after:left-1 after:top-1 after:z-[-1] after:h-full  after:cursor-pointer"
       >
         {title}
       </label>
       <svg
-        className="pointer-events-none absolute left-[20px] z-[1] hidden h-[24px] w-[24px] text-gray peer-checked:block"
+        className="pointer-events-none absolute z-[1] hidden h-[24px] w-[24px] text-gray peer-checked:block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
