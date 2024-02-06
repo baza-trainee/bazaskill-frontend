@@ -47,19 +47,7 @@ export const selectStyles: StylesConfig = {
     ...provided,
     backgroundColor: '#F5F5F5',
     maxHeight: '120px',
-    padding: '0',
-    overflowY: 'scroll',
-    '-webkit-overflow-scrolling': 'touch',
     zIndex: 9999,
-    '::-webkit-scrollbar-thumb': {
-      backgroundColor: '#FAFAFA',
-      borderRadius: '4px',
-    },
-    '::-webkit-scrollbar-track': {
-      backgroundColor: '#C1C1C1',
-      borderRadius: '4px',
-    },
-    scrollbarWidth: 'thin',
-    scrollbarColor: '#C1C1C1 #FAFAFA',
+    overflowY: 'auto',
   }),
 };
