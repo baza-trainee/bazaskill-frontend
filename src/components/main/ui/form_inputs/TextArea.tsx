@@ -17,10 +17,7 @@ const TextArea = forwardRef(function TextArea(
   return (
     <div className="relative m-2 w-[358px]">
       {!!title && (
-        <label
-          htmlFor={title}
-          className="text-sm font-medium"
-        >
+        <label htmlFor={title} className="font-medium">
           {title}
         </label>
       )}

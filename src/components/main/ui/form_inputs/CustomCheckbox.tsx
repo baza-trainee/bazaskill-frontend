@@ -17,7 +17,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
 ) {
   const checkboxId = uuidv4();
   return (
-    <div className="relative flex h-[50px] items-center px-[20px]">
+    <div className="relative ml-2 flex h-[50px] w-[359px] items-center">
       <input
         {...rest}
         value={title}
@@ -29,7 +29,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
       />
       <label
         htmlFor={checkboxId}
-        className="z-[1] ml-2 max-w-[258px] cursor-pointer font-sans text-[14px] text-gray after:absolute after:left-0 after:top-0 after:z-[-1] after:h-full  after:cursor-pointer"
+        className="z-[1] ml-2 max-w-[359px] cursor-pointer font-sans text-[15px] after:absolute after:left-0 after:top-0 after:z-[-1] after:h-full  after:cursor-pointer"
       >
         {title}
       </label>

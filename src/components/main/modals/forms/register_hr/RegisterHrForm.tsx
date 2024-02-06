@@ -14,6 +14,7 @@ import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
+import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 
 const RegisterHrForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -43,8 +44,8 @@ const RegisterHrForm = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center">
-      <h1 className="mb-[2rem] text-3xl font-bold">
+    <div className="mb-[64px] flex w-full flex-col items-center justify-center">
+      <h1 className="mb-[48px] mt-[60px] text-3xl font-bold">
         Стати нашим HRom
       </h1>
       <form
@@ -54,10 +55,37 @@ const RegisterHrForm = () => {
       >
         <div className="flex">
           <Controller
+            name="first_name"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                title="Імʼя*"
+                {...field}
+                errorText={errors.first_name?.message}
+                placeholder="Імʼя"
+              />
+            )}
+          />
+          <Controller
+            name="last_name"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                title="Прізвище*"
+                {...field}
+                errorText={errors.last_name?.message}
+                placeholder="Імʼя"
+              />
+            )}
+          />
+        </div>
+        <div className="flex">
+          <Controller
             name="phone"
             control={control}
             render={({ field }) => (
               <PhoneInput
+                title="Телефон*"
                 {...field}
                 errorText={errors.phone?.message}
                 placeholder="Телефон"
@@ -65,39 +93,74 @@ const RegisterHrForm = () => {
             )}
           />
           <Controller
-            name="first_name"
+            name="email"
             control={control}
             render={({ field }) => (
               <TextInput
+                title="Email*"
                 {...field}
-                errorText={errors.first_name?.message}
-                placeholder="Ім’я"
+                errorText={errors.email?.message}
+                placeholder="Email"
               />
             )}
           />
         </div>
         <div className="flex">
           <Controller
-            name="speciality"
+            name="company"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextInput
+                title="Компанія"
+                {...field}
+                placeholder="Компанія"
+              />
+            )}
+          />
+          <Controller
+            name="country"
             control={control}
             defaultValue=""
             render={({ field }) => (
               <SelectInput
+                title="Країна"
                 {...field}
-                title="Шукаю"
                 options={options}
-                placeholder="Спеціальність"
+                placeholder="Країна"
               />
             )}
           />
+        </div>
+        <div className="flex">
+          <div>
+            <Controller
+              name="speciality"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <SelectInput
+                  {...field}
+                  title="Шукаю"
+                  options={options}
+                  placeholder="Спеціальність"
+                />
+              )}
+            />
+            <div className="mt-[32px] flex-col">
+              <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
+              <CustomCheckbox title="Даю згоду на обробку персональних даних" />
+            </div>
+          </div>
           <Controller
             name="message"
             control={control}
             render={({ field }) => (
               <TextArea
+                title="Коментар"
                 {...field}
                 errorText={errors.message?.message}
-                placeholder="Ім’я"
+                placeholder="Коментар"
               />
             )}
           />

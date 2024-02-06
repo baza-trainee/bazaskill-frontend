@@ -20,8 +20,8 @@ const SelectInput: React.FC<SelectInputProps> = ({
   placeholder,
   title,
 }) => (
-  <div className="relative m-2 w-[358px]">
-    <p className="mb-[8px]">{title}</p>
+  <div className="relative mx-2 w-[358px]">
+    <p className="pt-2">{title}</p>
     <Select
       styles={selectStyles}
       options={options}
