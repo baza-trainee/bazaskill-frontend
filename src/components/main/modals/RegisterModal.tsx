@@ -11,8 +11,8 @@ const RegisterModal = ({
   handleClose,
 }: ModalProps) => {
   return (
-    <div className="absolute bottom-0 left-0 flex h-full w-full items-center justify-center bg-black/50">
-      <div className="relative w-[70%] bg-white p-[1rem]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50">
+      <div className="relative max-h-[780px] w-[70%] max-w-[900px] rounded-lg bg-white">
         <div
           onClick={handleClose}
           className="absolute right-[1rem] top-[1rem] h-[1.5rem] w-[1.5rem] cursor-pointer"

@@ -7,7 +7,11 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { defaultValues, options } from './defaultValues';
+import {
+  defaultValues,
+  options,
+  stack,
+} from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
@@ -51,7 +55,7 @@ const RegisterHrForm = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
-        className="flex flex-col"
+        className="mb-[32px] flex flex-col"
       >
         <div className="flex">
           <Controller
@@ -140,9 +144,9 @@ const RegisterHrForm = () => {
               defaultValue=""
               render={({ field }) => (
                 <SelectInput
+                  title="Шукаю*"
                   {...field}
-                  title="Шукаю"
-                  options={options}
+                  options={stack}
                   placeholder="Спеціальність"
                 />
               )}
@@ -169,7 +173,7 @@ const RegisterHrForm = () => {
         <div className="">
           <button
             type="submit"
-            className="mt-[2rem] rounded-sm border border-graphite px-8 py-2 hover:bg-yellow"
+            className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-yellow"
             disabled={
               errors && !!Object.keys(errors).length
             }

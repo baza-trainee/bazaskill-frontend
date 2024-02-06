@@ -16,11 +16,7 @@ const TextArea = forwardRef(function TextArea(
 ) {
   return (
     <div className="relative m-2 w-[358px]">
-      {!!title && (
-        <label htmlFor={title} className="font-medium">
-          {title}
-        </label>
-      )}
+      {!!title && <label htmlFor={title}>{title}</label>}
       <textarea
         {...rest}
         id={title}
@@ -28,7 +24,7 @@ const TextArea = forwardRef(function TextArea(
         rows={5}
         cols={30}
         style={{ overflow: 'hidden' }}
-        className="w-full bg-inputBgGray p-2"
+        className="mt-[10px] w-full bg-inputBgGray p-2"
       />
 
       {errorText && (

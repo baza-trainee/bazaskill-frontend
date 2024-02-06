@@ -19,3 +19,10 @@ export const options: Option[] = [
   { value: 'option5', label: 'Опція 5' },
   { value: 'option6', label: 'Опція 6' },
 ];
+
+export const stack: Option[] = [
+  { value: 'fulstack', label: 'Full-stack' },
+  { value: 'frontend', label: 'Front-end' },
+  { value: 'backend', label: 'Back-end' },
+  { value: 'design', label: 'Design' },
+];

@@ -19,7 +19,9 @@ export const registerScheme = z.object({
       }
     ),
 
-  email: z.string(),
+  email: z.string().email({
+    message: 'Неправильний формат Email',
+  }),
 
   company: z.string(),
 

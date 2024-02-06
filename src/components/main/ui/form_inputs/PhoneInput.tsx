@@ -49,11 +49,11 @@ const PhoneInput = forwardRef(function PhoneInput(
         {...rest}
         id={title}
         value={value}
-        className="w-full bg-inputBgGray py-2 pl-[16px]"
+        className="mt-[10px] w-full bg-inputBgGray p-2"
         autoComplete="off"
       />
       {errorText && (
-        <span className="absolute -bottom-4 left-0 text-xs text-error">
+        <span className="text-xs text-error">
           {errorText}
         </span>
       )}
