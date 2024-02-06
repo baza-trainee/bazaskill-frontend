@@ -23,20 +23,17 @@ const PhoneInput = forwardRef(function PhoneInput(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
-    <div className="relative m-2 w-[358px]">
+    <div className="relative m-2 h-[14px] w-[358px]">
       {!!title && (
         <label htmlFor={title} className="">
           {title}
         </label>
       )}
-      <span className="absolute left-0 top-[50%] translate-y-[-50%] border-r border-gray px-2 ">
-        +380
-      </span>
       <input
         {...rest}
         id={title}
         value={value}
-        className="w-full bg-inputBgGray py-2 pl-16"
+        className="w-full bg-inputBgGray py-2 pl-[16px]"
         autoComplete="off"
       />
       {errorText && (
