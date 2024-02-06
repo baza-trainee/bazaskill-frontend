@@ -50,8 +50,7 @@ const RegisterHrForm = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
-        className="flex flex-col"
-      >
+        className="flex flex-col">
         <div className="flex">
           <Controller
             name="phone"
@@ -78,7 +77,7 @@ const RegisterHrForm = () => {
         </div>
         <div className="flex">
           <Controller
-            name="speciality"
+            name="specialist"
             control={control}
             defaultValue=""
             render={({ field }) => (
@@ -109,8 +108,7 @@ const RegisterHrForm = () => {
             className="mt-[2rem] rounded-sm border border-graphite px-8 py-2 hover:bg-yellow"
             disabled={
               errors && !!Object.keys(errors).length
-            }
-          >
+            }>
             {isProcessing
               ? 'Обробка запиту...'
               : 'Відправити'}

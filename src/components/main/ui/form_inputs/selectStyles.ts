@@ -4,6 +4,7 @@ import { StylesConfig } from 'react-select';
 export const selectStyles: StylesConfig = {
   control: (provided) => ({
     ...provided,
+    margin: '0px',
     backgroundColor: '#F5F5F5',
     padding: '6px 16px',
     color: 'black',
@@ -43,9 +44,15 @@ export const selectStyles: StylesConfig = {
     ...provided,
     display: 'none',
   }),
+  menu: (provided) => ({
+    ...provided,
+
+    marginTop: '0px',
+    backgroundColor: '#F5F5F5',
+  }),
   menuList: (provided) => ({
     ...provided,
-    backgroundColor: '#F5F5F5',
+    padding: '0px',
     maxHeight: '120px',
     zIndex: 9999,
     overflowY: 'auto',
