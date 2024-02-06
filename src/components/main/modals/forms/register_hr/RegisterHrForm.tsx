@@ -1,16 +1,17 @@
 'use client';
 
 import * as z from 'zod';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Controller,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { defaultValues } from './defaultValues';
+import { defaultValues, options } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
+import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 
 const RegisterHrForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -45,8 +46,7 @@ const RegisterHrForm = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
-        className="flex flex-col"
-      >
+        className="flex flex-col">
         <div className="flex">
           <Controller
             name="phone"
@@ -72,6 +72,19 @@ const RegisterHrForm = () => {
             )}
           />
         </div>
+        <Controller
+          name="specialty"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <SelectInput
+              {...field}
+              title="Шукаю"
+              options={options}
+              placeholder="Спеціальність"
+            />
+          )}
+        />
 
         <div className="">
           <button
@@ -79,8 +92,7 @@ const RegisterHrForm = () => {
             className="mt-[2rem] rounded-sm border border-graphite px-8 py-2"
             disabled={
               errors && !!Object.keys(errors).length
-            }
-          >
+            }>
             {isProcessing
               ? 'Обробка запиту...'
               : 'Відправити'}

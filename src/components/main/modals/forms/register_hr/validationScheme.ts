@@ -23,6 +23,7 @@ export const registerScheme = z.object({
   country: z.string(),
 
   occupation: z.string(),
+  specialty: z.string(),
 
   message: z.string(),
 });
