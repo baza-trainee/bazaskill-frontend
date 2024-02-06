@@ -7,7 +7,6 @@ export const registerScheme = z.object({
 
   phone: z
     .string()
-    .length(1, 'Поле має бути заповнене')
     .max(
       9,
       'Номер телефону має містити максимум 9 символів'
@@ -22,8 +21,7 @@ export const registerScheme = z.object({
 
   country: z.string(),
 
-  occupation: z.string(),
-  specialty: z.string(),
+  speciality: z.string(),
 
   message: z.string(),
 });
