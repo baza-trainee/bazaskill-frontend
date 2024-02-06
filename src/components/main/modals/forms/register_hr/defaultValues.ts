@@ -7,8 +7,8 @@ export const defaultValues = {
   email: '',
   company: '',
   country: '',
-  occupation: '',
-  comment: '',
+  speciality: '',
+  message: '',
 };
 
 export const options: Option[] = [

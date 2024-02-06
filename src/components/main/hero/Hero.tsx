@@ -1,10 +1,10 @@
-import TextInput from '../ui/Input';
+import TextInput from '../ui/TextInput';
 import DesktopIcon from '@/components/icons/DesktopIcon';
 
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
 import { useTranslations } from 'next-intl';
-import MarqueeTitle from '../ui/MarqueeTitle';
+import HeroTitle from './HeroTitle';
 
 interface HeroProps {}
 
@@ -13,8 +13,13 @@ const Hero: React.FC<HeroProps> = () => {
 
   return (
     <div className="container my-[124px] w-full">
-      <div className="mx-auto max-w-[837px]">
-        <MarqueeTitle />
+      <div className="relative mx-auto flex max-w-[837px]">
+        <span className="mb-10 w-[50%] text-center text-6xl font-bold text-white">
+          Знайди свого{' '}
+        </span>
+        <div className="main-gradient absolute right-0 top-0 w-1/2 flex-1 bg-clip-text text-6xl text-transparent">
+          <HeroTitle />
+        </div>
       </div>
       <form className="flex">
         <div className="relative flex w-full items-center">
