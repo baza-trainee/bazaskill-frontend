@@ -104,11 +104,15 @@ const TextInput: FC<TextInputProps> = ({
         />
 
         {isOpen && (
-          <div className="absolute left-0  top-full max-h-[120px] w-full overflow-y-hidden rounded-b-md bg-white shadow-lg">
+          <div
+            className="custom-scrollbar
+            absolute
+            left-0 top-full max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg [&::-webkit-scrollbar]:[width:10px]"
+          >
             {filteredOptions.map((option) => (
               <div
                 key={option}
-                className="text-red border-gray-300 cursor-pointer border-b p-2 hover:bg-lightGreen"
+                className="text-red border-gray-300 cursor-pointer border-b p-2 last:border-none hover:bg-lightGreen"
                 onClick={() => handleSelectOption(option)}
               >
                 {option}
