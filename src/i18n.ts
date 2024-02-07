@@ -15,3 +15,9 @@ export default getRequestConfig(async ({ locale }) => {
     ).default,
   };
 });
+
+export const localePrefix = undefined;
+
+export const pathnames = {
+  '/': '/',
+};

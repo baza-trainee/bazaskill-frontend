@@ -11,6 +11,9 @@ html {
 }
 
 @layer components {
+  .container {
+    @apply w-full max-w-[1440px] mx-auto px-[80px]
+  }
   .main-gradient {
     @apply bg-gradient-to-r from-green to-yellow;
   }
