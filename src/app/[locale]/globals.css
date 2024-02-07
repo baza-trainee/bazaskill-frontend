@@ -13,6 +13,9 @@ html {
 @layer components {
   .main-gradient {
     @apply bg-gradient-to-r from-green to-yellow;
-    
   }
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 6px;
 }
