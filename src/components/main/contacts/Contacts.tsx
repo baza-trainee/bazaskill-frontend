@@ -8,10 +8,11 @@ const contactData = [
 ];
 
 const socialLinks = [
-  { icon: 'lnkedIn', link: 'https://www.linkedin.com/company/baza-trainee-ukraine/' },
+  { icon: 'instagram', link: 'https://www.linkedin.com/company/baza-trainee-ukraine/' },
+  { icon: 'lnkedIn', link: '/' },
+  { icon: 'discord', link: '/' },
   { icon: 'telegram', link: '/' },
-  { icon: 'instagram', link: '/' },
-  { icon: 'facebook', link: '/' },
+  { icon: 'facebook', link: '/'},
 ];
 
 const Contacts = () => {
@@ -38,7 +39,7 @@ const Contacts = () => {
             ))}
           </ul>
           <div className="mr-auto">
-            <ul className="flex space-x-8">
+            <ul className="flex space-x-4">
               {socialLinks.map((socialLink, index) => (
                 <li key={index} className="p-2">
                   <a href={socialLink.link} target="_blank" rel="noopener noreferrer">
