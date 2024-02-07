@@ -34,7 +34,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
         {title}
       </label>
       <svg
-        className="pointer-events-none absolute z-[1] hidden h-[24px] w-[24px] text-gray peer-checked:block"
+        className="pointer-events-none absolute hidden h-[24px] w-[24px] text-gray peer-checked:block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
