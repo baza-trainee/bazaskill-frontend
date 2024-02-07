@@ -1,48 +1,62 @@
 import React, {
   ForwardedRef,
-  InputHTMLAttributes,
   forwardRef,
   useState,
 } from 'react';
 
 import Select from 'react-select';
 import { selectStyles } from './selectStyles';
-import { ValueType } from 'tailwindcss/types/config';
+import DropdownIndicator from '@/components/icons/DropdownIndicator';
 
-export interface Option {
+export type Option = {
   value: string;
   label: string;
-}
+};
 
-interface SelectInputProps
-  extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
+interface SelectInputProps {
+  value: string;
   options: Option[];
-  placeholder: string;
   title?: string;
+  placeholder: string;
+  onChange: (value: string) => void;
 }
 const SelectInput = forwardRef(function SelectInput(
-  { options, placeholder, title }: SelectInputProps,
+  {
+    options,
+    onChange,
+    title,
+    value,
+    placeholder,
+  }: SelectInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
-  const [selectedOption, setSelectedOption] =
-    useState<Option | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelectChange = (
-    selectedOption: ValueType<Option>
-  ) => {
-    setSelectedOption(selectedOption as Option | null);
-    console.log('Selected option:', selectedOption.value); // Виводимо обране значення у консоль
+  const handleMenuOpen = () => {
+    setIsOpen(true);
   };
+
+  const handleMenuClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative m-2 w-[358px]">
       <p className="mb-[8px]">{title}</p>
+
       <Select
         styles={selectStyles}
         options={options}
+        value={options.find((c) => c.value === value)}
+        onChange={(val) => onChange((val as Option).value)}
         placeholder={placeholder}
-        value={selectedOption}
-        onChange={handleSelectChange}
+        onMenuOpen={handleMenuOpen}
+        onMenuClose={handleMenuClose}
+        components={{
+          DropdownIndicator: (props) => (
+            <DropdownIndicator isOpen={isOpen} {...props} />
+          ),
+        }}
       />
     </div>
   );

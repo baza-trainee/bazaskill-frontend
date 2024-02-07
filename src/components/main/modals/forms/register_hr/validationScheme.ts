@@ -8,14 +8,20 @@ export const registerScheme = z.object({
   phone: z
     .string()
     .max(
-      9,
-      'Номер телефону має містити максимум 9 символів'
+      17,
+      'Номер телефону має містити максимум 17 символів'
     )
-    .refine((value) => /^^\d{9}$/.test(value), {
-      message: 'Некоректно введений номер телефону',
-    }),
+    .refine(
+      (value) =>
+        /^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(value),
+      {
+        message: 'Некоректно введений номер телефону',
+      }
+    ),
 
-  email: z.string(),
+  email: z.string().email({
+    message: 'Неправильний формат Email',
+  }),
 
   company: z.string(),
 

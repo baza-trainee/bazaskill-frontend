@@ -19,3 +19,10 @@ export const options: Option[] = [
   { value: 'QA Manual', label: 'QA Manual' },
   { value: 'PM', label: 'PM' },
 ];
+
+export const stack: Option[] = [
+  { value: 'fulstack', label: 'Full-stack' },
+  { value: 'frontend', label: 'Front-end' },
+  { value: 'backend', label: 'Back-end' },
+  { value: 'design', label: 'Design' },
+];

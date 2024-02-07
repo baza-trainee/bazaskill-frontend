@@ -16,23 +16,16 @@ const TextInput = forwardRef(function TextInput(
 ) {
   return (
     <div className="relative m-2 w-[358px]">
-      {!!title && (
-        <label
-          htmlFor={title}
-          className="text-sm font-medium"
-        >
-          {title}
-        </label>
-      )}
+      {!!title && <label htmlFor={title}>{title}</label>}
       <input
         {...rest}
         id={title}
         value={value}
-        className="w-full bg-inputBgGray p-2"
+        className="mt-[10px] w-full rounded-sm bg-inputBgGray p-2"
       />
 
       {errorText && (
-        <span className="absolute -bottom-4 left-0 text-xs text-error">
+        <span className="text-xs text-error">
           {errorText}
         </span>
       )}

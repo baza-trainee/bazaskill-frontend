@@ -4,9 +4,8 @@ import { StylesConfig } from 'react-select';
 export const selectStyles: StylesConfig = {
   control: (provided) => ({
     ...provided,
-    margin: '0px',
     backgroundColor: '#F5F5F5',
-    padding: '6px 16px',
+    margin: '10px 0 0 0',
     color: 'black',
     fontSize: '16px',
     fontFamily: 'Open Sans, sans-serif',
@@ -31,7 +30,8 @@ export const selectStyles: StylesConfig = {
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused ? '#e3e3e3' : 'white',
-    padding: '7px 20px',
+    // padding: '7px 20px',
+    rounded: 'md',
     cursor: 'pointer',
     borderBottom: '1px solid #787878',
     color: state.isFocused ? 'black' : 'inherit',
@@ -49,6 +49,7 @@ export const selectStyles: StylesConfig = {
 
     marginTop: '0px',
     backgroundColor: '#F5F5F5',
+    zIndex: 9999,
   }),
   menuList: (provided) => ({
     ...provided,
