@@ -29,7 +29,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className="ml-[30px] flex grow justify-between">
+      <div className="ml-[30px] flex grow justify-between gap-[30px]">
         <div className="flex grow justify-center gap-[15px]">
           <MenuItem title="Design" inputs={data} />
           <MenuItem title="Front End" inputs={data} />

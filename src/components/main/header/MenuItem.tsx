@@ -45,18 +45,21 @@ const MenuItem = ({
 
   return (
     <div
-      className={`relative flex h-[50px] cursor-pointer items-center justify-center rounded-t-[8px] transition-all hover:bg-[#525252] lg:box-content lg:w-max  lg:px-[12px] xl:w-max ${isOpen && 'bg-[#525252]'} `}
+      className={`relative flex h-[50px] grow cursor-pointer items-center justify-center rounded-t-[8px] transition-all hover:bg-[#525252] lg:box-content lg:w-max xl:w-max ${isOpen && 'bg-[#525252]'} `}
     >
       <div
-        className="flex items-center justify-center text-white"
+        className="flex h-full w-full items-center justify-between pl-[16px] pr-[20px] text-white"
         onClick={openDropDownHandler}
         ref={menuRef}
       >
-        <span className="relative top-[-3px]">
-          <HeaderSearchIcon />
-        </span>
+        <div className="flex items-center">
+          <span className="relative top-[-3px]">
+            <HeaderSearchIcon />
+          </span>
 
-        <h3>{title}</h3>
+          <h3>{title}</h3>
+        </div>
+
         <span
           className={`relative flex h-[20px] w-[20px] items-center justify-center ${!isOpen && 'top-[3px]  rotate-[180deg]'}`}
         >
