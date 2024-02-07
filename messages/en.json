@@ -5,6 +5,7 @@
       }
   },
   "Error": {
-    "title": "We are appologise but page deleted or replaced"
+    "title": "We are appologise but page deleted or replaced",
+    "button": "Home"
   }
 }

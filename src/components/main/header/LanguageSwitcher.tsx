@@ -1,11 +1,12 @@
 import HeaderCaretDown from '@/components/icons/HeaderCaretDown';
 import { locales } from '@/i18n';
+import { usePathname, useRouter } from '@/navigation';
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 const LanguageSwitcher = () => {
   const router = useRouter();
+  const path = usePathname();
   const locale: string = useLocale();
   const [currentLocale, setCurrentLocale] =
     useState(locale);
@@ -15,7 +16,7 @@ const LanguageSwitcher = () => {
   const handleCheckLocale = (item: string) => {
     setIsOpen(!isOpen);
     setCurrentLocale(item);
-    router.replace(`/${item}`);
+    router.replace(path, { locale: item });
   };
   const handleOutsideClick = (event: Event): void => {
     if (
@@ -50,9 +51,7 @@ const LanguageSwitcher = () => {
         className="flex h-[50px] w-[60px] items-center justify-between px-[6px] text-white"
       >
         <span className="text-[18px] font-semibold">
-          {locales.indexOf(currentLocale) !== -1
-            ? currentLocale.toUpperCase()
-            : 'UA'}
+          {currentLocale.toUpperCase()}
         </span>
         <span className={`${!isOpen && 'rotate-[180deg]'}`}>
           <HeaderCaretDown />
