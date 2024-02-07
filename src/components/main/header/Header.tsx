@@ -22,7 +22,7 @@ const data = [
 ];
 const Header = () => {
   return (
-    <header className="relative z-50 flex h-[100px] w-full items-center border-b border-[#4E4E4E] bg-graphite px-[80px] xl:px-[60px]">
+    <div className="container relative z-50 flex h-[100px] w-full items-center border-b border-[#4E4E4E] bg-graphite">
       <div>
         <Link href="/">
           <Logo />
@@ -41,7 +41,7 @@ const Header = () => {
 
         <LanguageSwitcher />
       </div>
-    </header>
+    </div>
   );
 };
 
