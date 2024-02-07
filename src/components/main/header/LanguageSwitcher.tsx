@@ -1,25 +1,21 @@
 import HeaderCaretDown from '@/components/icons/HeaderCaretDown';
 import { locales } from '@/i18n';
-import {
-  useParams,
-  usePathname,
-  useRouter,
-} from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 const LanguageSwitcher = () => {
   const router = useRouter();
-  const params = useParams();
-  const loacale: string = params.locale as string;
+  const locale: string = useLocale();
   const [currentLocale, setCurrentLocale] =
-    useState(loacale);
+    useState(locale);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const submenuRef = useRef<HTMLDivElement>(null);
   const handleCheckLocale = (item: string) => {
     setIsOpen(!isOpen);
     setCurrentLocale(item);
-    router.refresh();
+    router.replace(`/${item}`);
   };
   const handleOutsideClick = (event: Event): void => {
     if (
@@ -44,9 +40,6 @@ const LanguageSwitcher = () => {
         handleOutsideClick
       );
   }, [isOpen]);
-  useEffect(() => {
-    router.push(currentLocale);
-  }, [setCurrentLocale, currentLocale]);
   return (
     <div
       className={`relative flex cursor-pointer items-center rounded-t-[8px] transition-all hover:bg-[#525252] ${isOpen && 'bg-[#525252]'}`}
@@ -57,7 +50,9 @@ const LanguageSwitcher = () => {
         className="flex h-[50px] w-[60px] items-center justify-between px-[6px] text-white"
       >
         <span className="text-[18px] font-semibold">
-          {currentLocale.toUpperCase()}
+          {locales.indexOf(currentLocale) !== -1
+            ? currentLocale.toUpperCase()
+            : 'UA'}
         </span>
         <span className={`${!isOpen && 'rotate-[180deg]'}`}>
           <HeaderCaretDown />
