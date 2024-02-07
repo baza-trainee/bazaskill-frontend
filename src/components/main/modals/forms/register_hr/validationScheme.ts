@@ -46,7 +46,7 @@ export const registerScheme = z.object({
 
   country: z.string(),
 
-  speciality: z.string(),
+  specialist: z.string(),
 
   message: z.string(),
 });

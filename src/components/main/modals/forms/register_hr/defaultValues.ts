@@ -12,12 +12,12 @@ export const defaultValues = {
 };
 
 export const options: Option[] = [
-  { value: 'option1', label: 'Опція 1' },
-  { value: 'option2', label: 'Опція 2' },
-  { value: 'option3', label: 'Опція 3' },
-  { value: 'option4', label: 'Опція 4' },
-  { value: 'option5', label: 'Опція 5' },
-  { value: 'option6', label: 'Опція 6' },
+  { value: 'Design', label: 'Design' },
+  { value: 'Front-end', label: 'Front-end' },
+  { value: 'Back-end', label: 'Back-end' },
+  { value: 'Full Stack', label: 'Full Stack' },
+  { value: 'QA Manual', label: 'QA Manual' },
+  { value: 'PM', label: 'PM' },
 ];
 
 export const stack: Option[] = [

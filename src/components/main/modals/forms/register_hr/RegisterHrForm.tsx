@@ -1,7 +1,7 @@
 'use client';
 
 import * as z from 'zod';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -147,7 +147,7 @@ const RegisterHrForm = () => {
             <div className="flex">
               <div>
                 <Controller
-                  name="speciality"
+                  name="specialist"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
