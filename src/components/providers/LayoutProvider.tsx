@@ -17,7 +17,7 @@ const LayoutProvider = ({
   return (
     <Providers>
       {!isAdminPage && (
-        <header>
+        <header className="bg-graphite">
           <Header />
         </header>
       )}
