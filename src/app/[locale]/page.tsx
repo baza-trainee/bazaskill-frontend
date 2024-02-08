@@ -12,6 +12,7 @@ import {
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
 import Help from '@/components/main/help/Help';
+import ContentCards from '@/components/main/contentCards/ContentCards';
 
 const Home = async () => {
   const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const Home = async () => {
       <Counters />
       <Help />
       <Posts />
+      <ContentCards />
       <Partners />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Testimonials />

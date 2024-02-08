@@ -1,4 +1,8 @@
 import { z } from 'zod';
+import isURL from 'validator/lib/isURL';
+
+const emailPattern =
+  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const registerScheme = z.object({
   name: z
@@ -16,28 +20,38 @@ export const registerScheme = z.object({
     .string()
     .nonempty('Це поле обовʼязкове')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) => isURL(value, { require_protocol: true }),
       {
         message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+          'Будь ласка, введіть дійсний URL сайту компанії',
       }
     ),
 
   phone: z
     .string()
     .nonempty('Це поле обовʼязкове')
-    .min(9, 'Номер телефону має містити мінімум 9 символів' )
+    .min(9, 'Номер телефону має містити мінімум 9 символів')
     .max(
       10,
       'Номер телефону має містити максимум 10 символів'
     )
     .refine((value) => /^\+\d{9,10}$/.test(value), {
-      message: 'Некоректно введений номер телефону, повинен почнатися з +',
+      message:
+        'Некоректно введений номер телефону, повинен почнатися з +',
     }),
 
-  email: z.string().nonempty('Це поле обовʼязкове').email({
-    message: 'Неправильний формат Email',
-  }),
+  email: z
+    .string()
+    .nonempty('Це поле обовʼязкове')
+    .regex(emailPattern, {
+      message: 'Введіть дійсний email',
+    })
+    .refine(
+      (value) => !/(.ru|.by)$/.test(value.split('@')[1]),
+      {
+        message: 'Домени .ru і .by не допускаються',
+      }
+    ),
 
   first_name: z
     .string()
@@ -76,7 +90,12 @@ export const registerScheme = z.object({
 
   country: z.string(),
 
-  speciality: z.string(),
+  speciality: z.string().nonempty('Це поле обовʼязкове'),
 
-  message: z.string(),
+  message: z
+    .string()
+    .max(
+      300,
+      'Максимальна довжина повідомлення - 300 символів'
+    ),
 });

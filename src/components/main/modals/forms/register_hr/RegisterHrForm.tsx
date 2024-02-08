@@ -61,7 +61,8 @@ const RegisterHrForm = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="mb-[32px] flex flex-col">
+            className="mb-[32px] flex flex-col"
+          >
             <div className="flex">
               <Controller
                 name="first_name"
@@ -139,6 +140,7 @@ const RegisterHrForm = () => {
                   <SelectInput
                     title="Країна"
                     {...field}
+                    errorText={errors.country?.message}
                     options={countries}
                     placeholder="Країна"
                   />
@@ -155,6 +157,7 @@ const RegisterHrForm = () => {
                     <SelectInput
                       title="Шукаю"
                       {...field}
+                      errorText={errors.speciality?.message}
                       options={stack}
                       placeholder="Спеціальність"
                       isRequired={true}
@@ -186,7 +189,8 @@ const RegisterHrForm = () => {
                 className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
                 disabled={
                   errors && !!Object.keys(errors).length
-                }>
+                }
+              >
                 {isProcessing
                   ? 'Обробка запиту...'
                   : 'Відправити'}

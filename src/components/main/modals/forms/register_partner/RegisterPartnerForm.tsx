@@ -1,6 +1,7 @@
 'use client';
 
 import * as z from 'zod';
+
 import React, { useState } from 'react';
 import {
   Controller,
@@ -48,7 +49,7 @@ const RegisterPartnerForm = () => {
   };
 
   const handleClose = () => {
-    setIsSubmitted(false); // Скидаємо стан після закриття форми
+    setIsSubmitted(false);
   };
 
   return (
@@ -154,6 +155,7 @@ const RegisterPartnerForm = () => {
                 defaultValue=""
                 render={({ field }) => (
                   <SelectInput
+                    errorText={errors.speciality?.message}
                     title="Шукаю"
                     {...field}
                     options={stack}
