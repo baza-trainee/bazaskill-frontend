@@ -7,7 +7,7 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { stack, countries } from './data';
+import { stack } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
@@ -18,7 +18,7 @@ import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 
-const RegisterHrForm = () => {
+const RegisterPartnerForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -56,7 +56,7 @@ const RegisterHrForm = () => {
       {!isSubmitted ? (
         <div className="mb-[64px] flex w-full flex-col items-center justify-center">
           <h1 className="mb-[48px] mt-[60px] text-3xl font-bold">
-            Стати нашим HRom
+            Стати нашим Партнером
           </h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -65,27 +65,27 @@ const RegisterHrForm = () => {
           >
             <div className="flex">
               <Controller
-                name="first_name"
+                name="name"
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Імʼя"
+                    title="Назва компанії"
                     {...field}
-                    errorText={errors.first_name?.message}
-                    placeholder="Імʼя"
+                    errorText={errors.name?.message}
+                    placeholder="Назва"
                     isRequired={true}
                   />
                 )}
               />
               <Controller
-                name="last_name"
+                name="link"
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Прізвище"
+                    title="Сайт компанії"
                     {...field}
-                    errorText={errors.last_name?.message}
-                    placeholder="Прізвище"
+                    errorText={errors.link?.message}
+                    placeholder="Сайт"
                     isRequired={true}
                   />
                 )}
@@ -121,51 +121,65 @@ const RegisterHrForm = () => {
             </div>
             <div className="flex">
               <Controller
-                name="company"
+                name="first_name"
                 control={control}
-                defaultValue=""
                 render={({ field }) => (
                   <TextInput
-                    title="Компанія"
+                    title="Імʼя"
                     {...field}
-                    placeholder="Компанія"
+                    errorText={errors.first_name?.message}
+                    placeholder="Імʼя"
+                    isRequired={true}
                   />
                 )}
               />
               <Controller
-                name="country"
+                name="last_name"
                 control={control}
-                defaultValue=""
                 render={({ field }) => (
-                  <SelectInput
-                    title="Країна"
+                  <TextInput
+                    title="Прізвище"
                     {...field}
-                    options={countries}
-                    placeholder="Країна"
+                    errorText={errors.last_name?.message}
+                    placeholder="Прізвище"
+                    isRequired={true}
                   />
                 )}
               />
             </div>
             <div className="flex">
-              <div>
-                <Controller
-                  name="specialist"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <SelectInput
-                      title="Шукаю"
-                      {...field}
-                      options={stack}
-                      placeholder="Спеціальність"
-                      isRequired={true}
-                    />
-                  )}
-                />
-                <div className="mt-[32px] flex-col">
-                  <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
-                  <CustomCheckbox title="Даю згоду на обробку персональних даних" />
-                </div>
+              <Controller
+                name="speciality"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <SelectInput
+                    title="Шукаю"
+                    {...field}
+                    options={stack}
+                    placeholder="Спеціальність"
+                    isRequired={true}
+                  />
+                )}
+              />
+              <Controller
+                name="position"
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    title="Посада представника"
+                    {...field}
+                    errorText={errors.position?.message}
+                    placeholder="Імʼя"
+                    isRequired={true}
+                  />
+                )}
+              />
+            </div>
+            <div className="flex">
+              <div className="mt-[32px] flex-col">
+                <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
+                <CustomCheckbox title="Даю згоду на обробку персональних даних" />
               </div>
               <Controller
                 name="message"
@@ -184,7 +198,7 @@ const RegisterHrForm = () => {
             <div className="">
               <button
                 type="submit"
-                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
+                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-yellow"
                 disabled={
                   errors && !!Object.keys(errors).length
                 }
@@ -206,4 +220,4 @@ const RegisterHrForm = () => {
   );
 };
 
-export default RegisterHrForm;
+export default RegisterPartnerForm;
