@@ -51,11 +51,78 @@ export const selectStyles: StylesConfig = {
     backgroundColor: '#F5F5F5',
     zIndex: 9999,
   }),
-  menuList: (provided) => ({
-    ...provided,
-    padding: '0px',
-    maxHeight: '120px',
-    zIndex: 9999,
-    overflowY: 'auto',
-  }),
+menuList: (provided) => ({
+  ...provided,
+  padding: '0px',
+  maxHeight: '120px',
+  zIndex: 9999,
+  overflowY: 'scroll', // Устанавливаем значение overflowY в 'scroll'
+  "&::-webkit-scrollbar": {
+    width: "16px",
+     height: "25px"
+  },
+  "&::-webkit-scrollbar-track": {
+    background: "#FAFAFA",
+    borderRadius: '2px',
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "#787878",
+    border: "4px solid #FAFAFA",
+    borderRadius: "8px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#555",
+  },
+  "&::-webkit-scrollbar-thumb:horizontal": {
+    maxWidth: '8px',
+  },
+  "&::-webkit-scrollbar-thumb:vertical": {
+    height: '25px',
+  },
+  "& scrollbar": {
+    width: "16px",
+  },
+  "& scrollbar-track": {
+    background: "#FAFAFA",
+    borderRadius: '2px',
+  },
+  "& scrollbar-thumb": {
+    background: "#787878",
+    border: "4px solid #FAFAFA",
+    borderRadius: "8px",
+    height:'25px',
+  },
+  "& scrollbar-thumb:hover": {
+    background: "#555",
+  },
+  "& scrollbar-thumb:horizontal": {
+    maxWidth: '8px',
+  },
+  "& scrollbar-thumb:vertical": {
+    height: '25px',
+  },
+  "&::-ms-scrollbar": {
+    width: "16px",
+  },
+  "&::-ms-scrollbar-track": {
+    background: "#FAFAFA",
+    borderRadius: '2px',
+  },
+  "&::-ms-scrollbar-thumb": {
+    background: "#787878",
+    border: "4px solid #FAFAFA",
+    borderRadius: "8px",
+    height:'25px',
+  },
+  "&::-ms-scrollbar-thumb:hover": {
+    background: "#555",
+  },
+  "&::-ms-scrollbar-thumb:horizontal": {
+    maxWidth: '8px',
+  },
+  "&::-ms-scrollbar-thumb:vertical": {
+    height: '25px',
+  },
+})
+
 };
