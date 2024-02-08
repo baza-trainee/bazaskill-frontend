@@ -5,7 +5,6 @@ import {
   InputHTMLAttributes,
   forwardRef,
 } from 'react';
-import { IMaskMixin } from 'react-imask';
 
 interface PhoneInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -14,16 +13,6 @@ interface PhoneInputProps
   isRequired?: boolean;
 }
 
-interface MaskedStyledInputProps
-  extends InputHTMLAttributes<HTMLInputElement> {
-  inputRef?: ForwardedRef<HTMLInputElement>;
-}
-
-const MaskedStyledInput = IMaskMixin(
-  ({ inputRef, ...props }: MaskedStyledInputProps) => (
-    <input {...props} ref={inputRef} />
-  )
-);
 
 const PhoneInput = forwardRef(function PhoneInput(
   {
@@ -45,11 +34,7 @@ const PhoneInput = forwardRef(function PhoneInput(
           )}
         </label>
       )}
-      <MaskedStyledInput
-        mask="+00(000)000-00-00"
-        radix="."
-        inputRef={_ref}
-        overwrite
+      <input
         {...rest}
         id={title}
         value={value}
