@@ -22,8 +22,8 @@ const Slider: React.FC<SliderProps> = ({ partners }) => {
         slidesPerView={3}
         spaceBetween={50}
         navigation={{
-          prevEl: '.swiper-button-prev',
-          nextEl: '.swiper-button-next',
+          prevEl: '.prev-partners',
+          nextEl: '.next-partners',
         }}
         pagination={{
           clickable: true,
@@ -45,8 +45,8 @@ const Slider: React.FC<SliderProps> = ({ partners }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-prev transform: translateY(30%) absolute h-[30px] w-[30px] text-white"></div>
-      <div className="swiper-button-next transform: translateY(30%) absolute h-[30px] w-[30px] text-white"></div>
+      <div className="prev-partners swiper-button-prev transform: translateY(30%) absolute left-0 h-[30px] w-[30px] text-white"></div>
+      <div className="next-partners swiper-button-next transform: translateY(30%) absolute right-0 h-[30px] w-[30px] text-white"></div>
     </div>
   );
 };

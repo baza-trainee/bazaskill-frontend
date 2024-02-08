@@ -6,7 +6,7 @@ import partnersData from './partnersData';
 
 const Partners: React.FC = () => {
   return (
-    <div className="mx-auto my-[60px] w-screen">
+    <div className="container mx-auto my-[60px] w-full">
       <div
         className="mb-[43px]
           text-center
