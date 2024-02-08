@@ -20,6 +20,7 @@ interface SelectInputProps {
   options: Option[];
   title?: string;
   placeholder: string;
+  isRequired?: boolean;
   onChange: (value: string) => void;
 }
 const SelectInput = forwardRef(function SelectInput(
@@ -29,6 +30,7 @@ const SelectInput = forwardRef(function SelectInput(
     title,
     value,
     placeholder,
+    isRequired,
   }: SelectInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -44,7 +46,12 @@ const SelectInput = forwardRef(function SelectInput(
 
   return (
     <div className="relative m-2 w-[358px]">
-      <p className="mb-[8px]">{title}</p>
+      <p className="mb-[8px]">
+        {title}
+        {isRequired && (
+          <span className="text-error">*</span>
+        )}
+      </p>
 
       <Select
         styles={selectStyles}

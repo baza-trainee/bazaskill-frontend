@@ -7,16 +7,30 @@ import {
 interface TextInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
+  isRequired?: boolean;
   errorText?: string;
 }
 
 const TextInput = forwardRef(function TextInput(
-  { title, errorText, value = '', ...rest }: TextInputProps,
+  {
+    title,
+    errorText,
+    isRequired,
+    value = '',
+    ...rest
+  }: TextInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
     <div className="relative m-2 w-[358px]">
-      {!!title && <label htmlFor={title}>{title}</label>}
+      {!!title && (
+        <label htmlFor={title}>
+          {title}
+          {isRequired && (
+            <span className="text-error">*</span>
+          )}
+        </label>
+      )}
       <input
         {...rest}
         id={title}

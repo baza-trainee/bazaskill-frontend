@@ -5,30 +5,20 @@ import {
   InputHTMLAttributes,
   forwardRef,
 } from 'react';
-import { IMaskMixin } from 'react-imask';
 
 interface PhoneInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
-  isWhite?: boolean;
   errorText?: string;
+  isRequired?: boolean;
 }
 
-interface MaskedStyledInputProps
-  extends InputHTMLAttributes<HTMLInputElement> {
-  inputRef?: ForwardedRef<HTMLInputElement>;
-}
-
-const MaskedStyledInput = IMaskMixin(
-  ({ inputRef, ...props }: MaskedStyledInputProps) => (
-    <input {...props} ref={inputRef} />
-  )
-);
 
 const PhoneInput = forwardRef(function PhoneInput(
   {
     title,
     errorText,
+    isRequired,
     value = '',
     ...rest
   }: PhoneInputProps,
@@ -39,13 +29,12 @@ const PhoneInput = forwardRef(function PhoneInput(
       {!!title && (
         <label htmlFor={title} className="">
           {title}
+          {isRequired && (
+            <span className="text-error">*</span>
+          )}
         </label>
       )}
-      <MaskedStyledInput
-        mask="+00(000)000-00-00"
-        radix="."
-        inputRef={_ref}
-        overwrite
+      <input
         {...rest}
         id={title}
         value={value}

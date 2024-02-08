@@ -1,9 +1,10 @@
+import { useTranslations } from 'next-intl';
+
 import TextInput from '../ui/TextInput';
 import DesktopIcon from '@/components/icons/DesktopIcon';
-
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
-import { useTranslations } from 'next-intl';
+
 import HeroTitle from './HeroTitle';
 
 interface HeroProps {}
@@ -33,7 +34,7 @@ const Hero: React.FC<HeroProps> = () => {
               'Backend Developer',
               'Fullstack Developer',
               'Design',
-              'QA MAnual',
+              'QA Manual',
             ]}
           />
           <DesktopIcon className="text-gray-500 absolute left-3" />
@@ -45,7 +46,7 @@ const Hero: React.FC<HeroProps> = () => {
             errorText=""
             category=""
             placeholder="Країна"
-            options={['Україна', 'Польша', 'Німеччина']}
+            options={['Україна', 'Польща', 'Німеччина']}
           />
           <Pointer className="text-gray-500 absolute left-3" />
         </div>

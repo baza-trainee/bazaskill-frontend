@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const registerScheme = z.object({
-  first_name: z
+  name: z
     .string()
     .nonempty('Це поле обовʼязкове')
     .refine(
@@ -12,7 +12,7 @@ export const registerScheme = z.object({
       }
     ),
 
-  last_name: z
+  link: z
     .string()
     .nonempty('Це поле обовʼязкове')
     .refine(
@@ -39,11 +39,44 @@ export const registerScheme = z.object({
     message: 'Неправильний формат Email',
   }),
 
+  first_name: z
+    .string()
+    .nonempty('Це поле обовʼязкове')
+    .refine(
+      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      {
+        message:
+          'Тільки букви (без пробілів та спеціальних символів)',
+      }
+    ),
+
+  last_name: z
+    .string()
+    .nonempty('Це поле обовʼязкове')
+    .refine(
+      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      {
+        message:
+          'Тільки букви (без пробілів та спеціальних символів)',
+      }
+    ),
+
+  position: z
+    .string()
+    .nonempty('Це поле обовʼязкове')
+    .refine(
+      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      {
+        message:
+          'Тільки букви (без пробілів та спеціальних символів)',
+      }
+    ),
+
   company: z.string(),
 
   country: z.string(),
 
-  specialist: z.string(),
+  speciality: z.string(),
 
   message: z.string(),
 });

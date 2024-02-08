@@ -3,6 +3,7 @@ import { useModal } from '@/stores/useModal';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
+import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
 
 type FooterLinkProps = {
   href: string;
@@ -105,6 +106,11 @@ const Footer = () => {
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>
           <RegisterHrForm />
+        </RegisterModal>
+      )}
+      {isModalOpen && modalType === 'partner' && (
+        <RegisterModal handleClose={closeModal}>
+          <RegisterPartnerForm />
         </RegisterModal>
       )}
     </div>
