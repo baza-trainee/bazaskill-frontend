@@ -1,9 +1,10 @@
+import { useTranslations } from 'next-intl';
+
 import TextInput from '../ui/TextInput';
 import DesktopIcon from '@/components/icons/DesktopIcon';
-
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
-import { useTranslations } from 'next-intl';
+
 import HeroTitle from './HeroTitle';
 
 interface HeroProps {}
