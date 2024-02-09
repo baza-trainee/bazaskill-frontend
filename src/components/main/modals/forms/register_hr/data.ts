@@ -10,8 +10,9 @@ export const countries: Option[] = [
 ];
 
 export const stack: Option[] = [
-  { value: 'fulstack', label: 'Full-stack' },
-  { value: 'frontend', label: 'Front-end' },
-  { value: 'backend', label: 'Back-end' },
-  { value: 'design', label: 'Design' },
+  { value: 'fullstack', label: 'Full stack' },
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'PM', label: 'PM' },
+  { value: 'QA Manual', label: 'QA Manual' },
 ];

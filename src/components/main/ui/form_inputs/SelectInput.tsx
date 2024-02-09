@@ -48,15 +48,11 @@ const SelectInput = forwardRef(function SelectInput(
 
   return (
     <div className="relative m-2 w-[358px]">
-      {!!title && (
-        <label htmlFor={title}>
-          {title}
-          {isRequired && (
-            <span className="text-error">*</span>
-          )}
-        </label>
-      )}
+       {title && <label className="mb-[8px]" htmlFor={placeholder}>{title}{isRequired && (
+          <span className="text-error ">*</span>
+        )}</label>}
       <Select
+        id={placeholder}
         styles={selectStyles}
         options={options}
         value={options.find((c) => c.value === value)}
@@ -69,6 +65,7 @@ const SelectInput = forwardRef(function SelectInput(
             <DropdownIndicator isOpen={isOpen} {...props} />
           ),
         }}
+        
       />
       {isRequired && errorText && (
         <span className="text-xs text-error">

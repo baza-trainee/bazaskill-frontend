@@ -157,7 +157,7 @@ const RegisterHrForm = () => {
                     <SelectInput
                       title="Шукаю"
                       {...field}
-                      errorText={errors.speciality?.message}
+                      errorText={errors.specialist?.message}
                       options={stack}
                       placeholder="Спеціальність"
                       isRequired={true}
