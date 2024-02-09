@@ -11,55 +11,13 @@ html {
 
 @layer components {
   .container {
-    @apply mx-auto w-full;
+    @apply w-full mx-auto px-[20px] max-w-[1920px] 5xl:px-[120px] 3xl:px-[80px] xl:px-[64px];
   }
   .main-gradient {
     @apply bg-gradient-to-r from-green to-yellow;
   }
 }
 
-@layer utilities {
-  @screen xs {
-    .container {
-      @apply max-w-[280px];
-    }
-  }
-  @screen sm {
-    .container {
-      @apply max-w-[380px];
-    }
-  }
-  @screen md {
-    .container {
-      @apply max-w-[688px];
-    }
-  }
-  @screen xl {
-    .container {
-      @apply max-w-[1152px];
-    }
-  }
-  @screen 2xl {
-    .container {
-      @apply max-w-[1240px];
-    }
-  }
-  @screen 3xl {
-    .container {
-      @apply max-w-[1280px];
-    }
-  }
-  @screen 4xl {
-    .container {
-      @apply max-w-[1376px];
-    }
-  }
-  @screen 5xl {
-    .container {
-      @apply max-w-[1680px];
-    }
-  }
-}
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
   border-radius: 6px;
