@@ -83,15 +83,17 @@ const Testimonials = () => {
         }}
         ref={sliderRef}
         navigation={{
-          prevEl: '.prev',
-          nextEl: '.next',
+          prevEl: '.prev-testimonials',
+          nextEl: '.next-testimonials',
         }}
         modules={[Pagination, Navigation]}
-        className="testimonials">
+        className="testimonials"
+      >
         {testimonials.map((item: Testimonials) => (
           <SwiperSlide
             className="testimonials_slide"
-            key={item.id}>
+            key={item.id}
+          >
             <div className="flex w-[86%] items-center justify-between">
               <div className="flex items-center gap-[36px]">
                 <Image
@@ -119,7 +121,7 @@ const Testimonials = () => {
             </div>
           </SwiperSlide>
         ))}
-        <button
+        {/* <button
           type="button"
           className="prev absolute left-0 top-[20%] z-20 translate-y-[-20%] cursor-pointer"
           onClick={handlePrev}>
@@ -130,7 +132,9 @@ const Testimonials = () => {
           className="next absolute right-0 top-[20%] z-20 translate-y-[-20%] cursor-pointer"
           onClick={handleNext}>
           <ButtonRight className="fill-white" />
-        </button>
+        </button> */}
+        <div className="prev-testimonials swiper-button-prev transform: translateY(30%) absolute left-0 h-[30px] w-[30px] text-white"></div>
+        <div className="next-testimonials swiper-button-next transform: translateY(30%) absolute right-0 h-[30px] w-[30px] text-white"></div>
       </Swiper>
     </section>
   );

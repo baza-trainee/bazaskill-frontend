@@ -34,17 +34,6 @@
   margin-right: 16px !important;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  color: #fff;
-  top: 30%;
-}
-
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  font-size: 30px;
-}
-
 .testimonials .swiper-pagination-bullet-active {
   background-color: #ffff00;
 }
