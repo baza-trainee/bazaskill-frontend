@@ -10,12 +10,12 @@ import { data } from './data';
 const Header = () => {
   return (
     <div className="container relative z-50 flex h-[100px] w-full items-center gap-[4px] border-b border-[#4E4E4E] bg-graphite 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
-      <div className="w-full xl:h-[40px] xl:w-[160px]">
+      <div className="w-full xl:h-[40px] xl:w-[169px]">
         <Link
           className="flex w-full justify-center "
           href="/"
         >
-          <Logo />
+          <Logo className="transition duration-500 hover:scale-110" />
         </Link>
       </div>
 
