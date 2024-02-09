@@ -14,15 +14,17 @@ const Hero: React.FC<HeroProps> = () => {
 
   return (
     <div className="container my-[124px] w-full">
-      <div className="relative mx-auto flex max-w-[837px]">
-        <span className="mb-10 w-[50%] text-center text-6xl font-bold text-white">
-          Знайди свого{' '}
+      <div className="relative mx-auto mb-[64px] flex max-w-[910px] flex-col items-center md:flex-row ">
+        <span className="mr-3 block text-center text-6xl text-[40px]  font-bold text-white xl:text-[64px]">
+          <div className="flex flex-col items-center">
+            Знайди свого{' '}
+          </div>
         </span>
-        <div className="main-gradient absolute right-0 top-0 w-1/2 flex-1 bg-clip-text text-6xl text-transparent">
+        <div className="main-gradient flex-1 bg-clip-text text-center text-[40px] text-transparent md:text-start">
           <HeroTitle />
         </div>
       </div>
-      <form className="flex">
+      <form className="flex flex-col xs:gap-3 md:flex-row md:gap-0">
         <div className="relative flex w-full items-center">
           <TextInput
             title=""
@@ -51,7 +53,7 @@ const Hero: React.FC<HeroProps> = () => {
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
 
-        <button className="main-gradient	 relative min-w-[272px] items-center text-xl font-medium hover:bg-green hover:from-transparent ">
+        <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium hover:bg-green hover:from-transparent xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-none">
           <SearchIcon className="text-gray-500 absolute left-3 top-5" />
           {t('hero_section.search')}
         </button>

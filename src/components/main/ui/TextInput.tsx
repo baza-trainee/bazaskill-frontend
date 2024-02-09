@@ -94,7 +94,7 @@ const TextInput: FC<TextInputProps> = ({
           value={inputValue}
           id={id}
           data-category={category}
-          className={`h-[64px] w-full p-2 pl-12 placeholder:text-xl focus:outline-none ${
+          className={`h-[64px] w-full rounded-md p-2 pl-12 placeholder:text-xl focus:outline-none md:rounded-none ${
             errorText
               ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
               : 'border-gray-500 focus:outline-gray-700'
