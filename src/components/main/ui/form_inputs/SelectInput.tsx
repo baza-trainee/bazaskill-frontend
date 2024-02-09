@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-
+'use client';
 import React, {
   ForwardedRef,
   forwardRef,
   useState,
 } from 'react';
 
-import Select from 'react-select';
+import Select, { ActionMeta } from 'react-select';
 import { selectStyles } from './selectStyles';
 import DropdownIndicator from '@/components/icons/DropdownIndicator';
 
@@ -46,26 +46,54 @@ const SelectInput = forwardRef(function SelectInput(
     setIsOpen(false);
   };
 
+  const handleChange = (
+    newValue: unknown,
+    _actionMeta: ActionMeta<unknown>
+  ) => {
+    if (
+      typeof newValue === 'object' &&
+      newValue !== null &&
+      'value' in newValue
+    ) {
+      onChange((newValue as Option).value);
+    } else {
+      onChange('');
+    }
+  };
+
+  const isValueSelected = !!value;
+
   return (
     <div className="relative m-2 w-[358px]">
-       {title && <label className="mb-[8px]" htmlFor={placeholder}>{title}{isRequired && (
-          <span className="text-error ">*</span>
-        )}</label>}
+      {title && (
+        <label className="mb-[8px]" htmlFor={placeholder}>
+          {title}
+          {isRequired && (
+            <span className="text-error ">*</span>
+          )}
+        </label>
+      )}
       <Select
+        isClearable
+        defaultValue={''}
         id={placeholder}
         styles={selectStyles}
         options={options}
         value={options.find((c) => c.value === value)}
-        onChange={(val) => onChange((val as Option).value)}
+        onChange={handleChange}
         placeholder={placeholder}
         onMenuOpen={handleMenuOpen}
         onMenuClose={handleMenuClose}
         components={{
-          DropdownIndicator: (props) => (
-            <DropdownIndicator isOpen={isOpen} {...props} />
-          ),
+          DropdownIndicator: isValueSelected
+            ? null
+            : (props) => (
+                <DropdownIndicator
+                  isOpen={isOpen}
+                  {...props}
+                />
+              ),
         }}
-        
       />
       {isRequired && errorText && (
         <span className="text-xs text-error">
