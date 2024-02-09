@@ -29,6 +29,16 @@ const config: Config = {
         lightGreen: '#EEFFF1',
         lightGray: '#FEFFFE',
       },
+      screens: {
+        xs: '320px',
+        sm: '420px',
+        md: '768px',
+        xl: '1280px',
+        '2xl': '1368px',
+        '3xl': '1440px',
+        '4xl': '1536px',
+        '5xl': '1920px',
+      },
       backgroundImage: {
         'gradient-radial':
           'radial-gradient(var(--tw-gradient-stops))',
@@ -39,8 +49,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-  ],
+  plugins: [require('tailwind-scrollbar')],
 };
 export default config;
