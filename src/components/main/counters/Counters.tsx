@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
 
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './styles.css';
@@ -55,7 +55,7 @@ const Counters = () => {
 
   return (
     <div>
-      <div className="relative mx-auto hidden justify-center md:flex xl:hidden">
+      <div className="relative mx-auto hidden justify-center py-[48px] md:flex xl:hidden">
         <Swiper
           modules={[Navigation]}
           slidesPerView={3}
@@ -109,7 +109,7 @@ const Counters = () => {
         offset={{ bottom: 100 }}
       >
         {() => (
-          <ul className="row container flex grow flex-col justify-between gap-1 py-[48px] text-center font-bold text-white md:hidden xl:flex xl:flex-row ">
+          <ul className="row container flex grow flex-col justify-between gap-1 py-[48px] text-center font-bold text-white md:hidden xl:flex xl:flex-row 3xl:gap-[10px] 4xl:gap-[44px] 5xl:gap-[110px] ">
             {counters.map((item, index) => (
               <li className="p-6" key={index}>
                 <h3 className="text-[40px] font-bold">

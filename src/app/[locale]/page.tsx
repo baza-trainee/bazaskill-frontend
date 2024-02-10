@@ -26,9 +26,9 @@ const Home = async () => {
       <Counters />
       {/* <Help />
       <Posts />
-      <ContentCards /> */}
-      {/* <Partners /> */}
-      {/* <HydrationBoundary state={dehydrate(queryClient)}>
+      <ContentCards />
+      <Partners />
+      <HydrationBoundary state={dehydrate(queryClient)}>
         <Testimonials />
       </HydrationBoundary>
       <Contacts /> */}

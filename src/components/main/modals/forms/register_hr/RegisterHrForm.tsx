@@ -166,7 +166,20 @@ const RegisterHrForm = () => {
                 />
                 <div className="mt-[32px] flex-col">
                   <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
-                  <CustomCheckbox title="Даю згоду на обробку персональних даних" />
+                  <Controller
+                    name="agreement"
+                    control={control}
+                    render={({ field }) => (
+                      <CustomCheckbox
+                        {...field}
+                        title="Даю згоду на обробку персональних даних"
+                        isRequired={true}
+                        errorText={
+                          errors.agreement?.message
+                        }
+                      />
+                    )}
+                  />
                 </div>
               </div>
               <Controller
