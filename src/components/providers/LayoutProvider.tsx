@@ -22,7 +22,11 @@ const LayoutProvider = ({
         </header>
       )}
       <main>{children}</main>
-      {!isAdminPage && <footer>{/* <Footer /> */}</footer>}
+      {!isAdminPage && (
+        <footer>
+          <Footer />
+        </footer>
+      )}
     </Providers>
   );
 };
