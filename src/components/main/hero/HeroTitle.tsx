@@ -25,7 +25,6 @@ const HeroTitle = () => {
       wrapper="span"
       speed={25}
       style={{
-        fontSize: '64px',
         display: 'inline',
         fontWeight: 'bold',
       }}

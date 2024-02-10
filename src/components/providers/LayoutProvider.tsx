@@ -18,15 +18,11 @@ const LayoutProvider = ({
     <Providers>
       {!isAdminPage && (
         <header className="bg-graphite">
-          <Header />
+          {/* <Header /> */}
         </header>
       )}
       <main>{children}</main>
-      {!isAdminPage && (
-        <footer>
-          <Footer />
-        </footer>
-      )}
+      {!isAdminPage && <footer>{/* <Footer /> */}</footer>}
     </Providers>
   );
 };

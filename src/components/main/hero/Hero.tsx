@@ -13,14 +13,14 @@ const Hero: React.FC<HeroProps> = () => {
   const t = useTranslations('Main');
 
   return (
-    <div className="container my-[124px] w-full">
-      <div className="relative mx-auto mb-[64px] flex max-w-[910px] flex-col items-center md:flex-row ">
-        <span className="mr-3 block text-center text-6xl text-[40px]  font-bold text-white xl:text-[64px]">
-          <div className="flex flex-col items-center">
+    <div className="container mb-[48px] mt-[124px] w-full ">
+      <div className="relative mx-auto mb-[64px] flex max-w-[910px] flex-col items-center text-center sm:flex md:flex-row">
+        <span className="mr-3 text-6xl text-[40px] font-bold text-white xl:text-[64px]">
+          <div className="flex max-w-[230px] flex-col items-center md:max-w-[300px] xl:max-w-[470px]">
             Знайди свого{' '}
           </div>
         </span>
-        <div className="main-gradient flex-1 bg-clip-text text-center text-[40px] text-transparent md:text-start">
+        <div className="main-gradient flex-1 bg-clip-text text-transparent xs:text-[40px] md:text-start xl:text-[64px]">
           <HeroTitle />
         </div>
       </div>
