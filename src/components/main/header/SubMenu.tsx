@@ -33,7 +33,7 @@ const SubMenu = ({
     console.log(data);
   return (
     <form
-      className="absolute left-0 top-[100%] flex w-[250px] flex-col rounded-[4px] rounded-tl-none border-[2px] border-[#4E4E4E] bg-[#202020]"
+      className="absolute left-0 top-[100%] flex w-[250px] flex-col rounded-[4px] rounded-tl-none border-[2px] border-[#4E4E4E] bg-[#202020] xl:group-last/item:w-[230px] 3xl:group-last/item:w-[250px] "
       onSubmit={handleSubmit(onSubmit)}
       ref={reference}
     >

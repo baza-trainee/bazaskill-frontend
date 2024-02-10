@@ -45,10 +45,10 @@ const MenuItem = ({
 
   return (
     <div
-      className={`relative flex h-[50px] grow cursor-pointer items-center justify-center rounded-t-[8px] transition-all hover:bg-[#525252] lg:box-content lg:w-max xl:w-max ${isOpen && 'bg-[#525252]'} `}
+      className={`group/item relative flex h-[50px] grow cursor-pointer items-center justify-center rounded-t-[8px] transition-all hover:bg-[#525252] lg:box-content ${isOpen && 'bg-[#525252]'} `}
     >
       <div
-        className="flex h-full w-full items-center justify-between pl-[16px] pr-[20px] text-white"
+        className="box-border flex h-full w-full items-center justify-between pl-[16px] pr-[22px] text-white"
         onClick={openDropDownHandler}
         ref={menuRef}
       >
