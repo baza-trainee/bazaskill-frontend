@@ -5,6 +5,6 @@ export const defaultValues = {
   email: '',
   company: '',
   country: '',
-  speciality: '',
+  specialist: '',
   message: '',
 };
