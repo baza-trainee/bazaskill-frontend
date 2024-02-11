@@ -7,10 +7,8 @@ interface HelpListProps {
 
 const HelpList: React.FC<HelpListProps> = ({ photos }) => {
   return (
-    <div className="w-[592px] ">
-      <ul
-        className=" flex  flex-wrap justify-center "
-        style={{ gap: '32px' }}>
+    <div className="w-[592px] 5xl:w-[708px]  ">
+      <ul className=" flex  flex-wrap justify-center gap-[32px] 4xl:gap-[40px] 5xl:gap-[50px]">
         {photos.map((photo) => (
           <li
             key={photo}
@@ -20,6 +18,7 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
               width={117}
               height={117}
               alt="specialist"
+              className="5xl:h-[132px] 5xl:w-[132px]"
             />
           </li>
         ))}
