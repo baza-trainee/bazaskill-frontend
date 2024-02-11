@@ -1,11 +1,11 @@
 {
   "Main": {
-      "hero_section": {
-          "search": "Search candidate"
-      }
+    "hero_section": {
+      "search": "Search candidate"
+    }
   },
   "Error": {
-    "title": "We are appologise but page deleted or replaced",
+    "title": "We are appologise but the page you are looking for was deleted or replaced",
     "button": "Home"
   }
 }

@@ -4,11 +4,11 @@ import Link from 'next/link';
 const Page404 = () => {
   const t = useTranslations();
   return (
-    <div className="flex  w-full flex-col items-center justify-center  bg-graphite pb-[100px] pt-[50px] text-white">
+    <div className="container flex w-full flex-col items-center justify-center bg-graphite py-[60px] text-white xl:py-[120px]">
       <span className="font-regular font-mont text-[180px]">
         404
       </span>
-      <p className="mb-[64px] font-tahoma text-[24px] font-semibold">
+      <p className="mb-[48px] text-center font-tahoma text-[20px] font-semibold md:mb-[64px] xl:text-[24px]">
         {t('Error.title')}
       </p>
       <Link href="/">
