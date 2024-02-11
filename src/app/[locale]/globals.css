@@ -11,7 +11,7 @@ html {
 
 @layer components {
   .container {
-    @apply w-full mx-auto px-[20px] max-w-[1920px] 5xl:px-[120px] 3xl:px-[80px] xl:px-[64px];
+    @apply mx-auto w-full max-w-[1920px] px-[20px] xl:px-[64px] 3xl:px-[80px] 5xl:px-[120px];
   }
   .main-gradient {
     @apply bg-gradient-to-r from-green to-yellow;
@@ -21,4 +21,7 @@ html {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
   border-radius: 6px;
+}
+.first-input {
+  border-radius: 4px 0 0 4px;
 }

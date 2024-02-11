@@ -14,6 +14,7 @@ interface TextInputProps {
   category: string;
   options: string[];
   placeholder: string;
+  isFirstInput?: boolean;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -21,6 +22,7 @@ const TextInput: FC<TextInputProps> = ({
   errorText,
   category,
   options = [],
+  isFirstInput = false,
 
   ...rest
 }) => {
@@ -99,15 +101,21 @@ const TextInput: FC<TextInputProps> = ({
             ${
               isOpen
                 ? 'border-t-gray-500 rounded-t-md md:rounded-none'
-                : 'border-gray-500 rounded-md md:rounded-none'
+                : isFirstInput
+                  ? 'rounded-md md:rounded-none md:rounded-l-md'
+                  : 'rounded-md md:rounded-none'
             }
             ${
               errorText
                 ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
                 : 'border-gray-500 focus:outline-gray-700'
             }
-            
-          `}
+            ${
+              isOpen && isFirstInput
+                ? 'md:rounded-tl-md'
+                : ''
+            }
+               `}
           onChange={handleInputChange}
           onFocus={() => setIsOpen(true)}
         />
