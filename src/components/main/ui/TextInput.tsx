@@ -6,7 +6,6 @@ import React, {
   FC,
   ChangeEvent,
 } from 'react';
-
 import ArrowIcon from '@/components/icons/ArrowIcon';
 
 interface TextInputProps {
@@ -22,6 +21,7 @@ const TextInput: FC<TextInputProps> = ({
   errorText,
   category,
   options = [],
+
   ...rest
 }) => {
   const id = `${title}${Math.random()}`;
@@ -94,20 +94,29 @@ const TextInput: FC<TextInputProps> = ({
           value={inputValue}
           id={id}
           data-category={category}
-          className={`h-[64px] w-full rounded-md p-2 pl-12 placeholder:text-xl focus:outline-none md:rounded-none ${
-            errorText
-              ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
-              : 'border-gray-500 focus:outline-gray-700'
-          }`}
+          className={`h-[64px] 
+            w-full p-2 pl-12 placeholder:text-xl focus:outline-none 
+            ${
+              isOpen
+                ? 'border-t-gray-500 rounded-t-md md:rounded-none'
+                : 'border-gray-500 rounded-md md:rounded-none'
+            }
+            ${
+              errorText
+                ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
+                : 'border-gray-500 focus:outline-gray-700'
+            }
+            
+          `}
           onChange={handleInputChange}
           onFocus={() => setIsOpen(true)}
         />
 
         {isOpen && (
           <div
-            className="custom-scrollbar
-            absolute
-            left-0 top-full max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg [&::-webkit-scrollbar]:[width:10px]"
+            className="custom-scrollbar absolute
+            left-0
+            top-full z-10 max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg [&::-webkit-scrollbar]:[width:10px]"
           >
             {filteredOptions.map((option) => (
               <div
