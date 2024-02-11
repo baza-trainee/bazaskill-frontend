@@ -1,11 +1,11 @@
 {
-    "Main": {
-        "hero_section": {
-            "search": "Знайти кандидата"
-        }
-    },
-    "Error": {
-        "title": "Вибачте, сторінка, яку ви шукаєте, переміщена або видалена",
-        "button": "Home"
-      }
+  "Main": {
+    "hero_section": {
+      "search": "Знайти кандидата"
+    }
+  },
+  "Error": {
+    "title": "Przepraszamy, strona, której szukasz, została przeniesiona lub usunięta",
+    "button": "Home"
+  }
 }
