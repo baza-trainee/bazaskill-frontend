@@ -21,11 +21,10 @@ const TextInput = forwardRef(function TextInput(
   }: TextInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
-  const inputId = `${title}${Math.random()}`;
   return (
     <div className="relative m-2 w-[358px]">
       {!!title && (
-        <label htmlFor={inputId}>
+        <label htmlFor={title}>
           {title}
           {isRequired && (
             <span className="text-error">*</span>
@@ -34,7 +33,7 @@ const TextInput = forwardRef(function TextInput(
       )}
       <input
         {...rest}
-        id={inputId}
+        id={title}
         value={value}
         className="mt-[10px] w-full rounded-sm bg-inputBgGray p-2"
       />
