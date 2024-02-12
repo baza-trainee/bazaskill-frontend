@@ -36,10 +36,10 @@ const ContentCards = () => {
                   className="justify-content pb-6 text-center"
                 />
                 <span className="flex-col pb-2 text-lg font-bold text-white">
-                  {cards[0].name}
+                  {card.name}
                 </span>
                 <span className="flex-col text-lg text-white">
-                  {cards[0].stack}
+                  {card.stack}
                 </span>
               </div>
             </SwiperSlide>
