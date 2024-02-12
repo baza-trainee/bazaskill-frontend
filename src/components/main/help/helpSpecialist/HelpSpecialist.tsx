@@ -2,11 +2,11 @@ import React from 'react';
 
 const HelpSpecialist = () => {
   return (
-    <div className=" w-[590px]  pt-[45px]  text-white ">
-      <h2 className="mb-[48px]  font-tahoma text-[40px] font-bold leading-[1.5] tracking-[1.2px]  ">
+    <div className="text-white xs:w-[280px]  sm:w-[380px] md:w-[354px] xl:w-[510px] xl:pt-[0px] 2xl:w-[562px] 2xl:pt-[33px]  3xl:w-[590px] 3xl:pt-[45px]  4xl:w-[671px] 4xl:pt-[70px] 5xl:w-[830px] 5xl:pt-[100px]">
+      <h2 className=" font-tahoma font-bold tracking-[1.2px]  xs:mb-[36px] xs:text-center xs:text-[24px] xs:leading-[1.5] md:text-left  xl:mb-[48px] xl:text-[40px] 4xl:w-[602px] 5xl:w-[830px] ">
         Допоможемо знайти гідного спеціаліста
       </h2>
-      <div className="font-open-sans text-[20px] font-normal leading-[1.3] tracking-[.4px]  text-white ">
+      <div className="font-open-sans font-normal tracking-[.4px] text-white xs:pb-[16px]  xs:text-[16px] xs:leading-[1.5]  md:pb-[0px] xl:text-[20px] xl:leading-[1.4] ">
         <p>
           Платформа Baza Skill допоможе вам підібрати
           досвідченого спеціаліста в сфері IT, оскільки
@@ -18,7 +18,7 @@ const HelpSpecialist = () => {
           Кожен представлений тут фахівець заґартовний в
           командній роботі, має досвід в розробці проєкту зі
           зняття вимог, знайомий з труднощами і успіхом на{' '}
-          всіх життєвих стадіях проєкту.
+          всих життєвих стадіях проєкту.
         </p>
         <br />
         <p>
