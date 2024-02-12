@@ -38,8 +38,8 @@ export const cards: Cards[] = [
   },
   {
     id: 5,
-    image: '/contentCards/pic2.png',
-    name: 'Viktor',
+    image: '/contentCards/pic5.png',
+    name: 'Valentyna',
     stack: 'Full Stack',
   },
 ];

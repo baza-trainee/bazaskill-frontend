@@ -3,7 +3,6 @@ import React, {
   InputHTMLAttributes,
   forwardRef,
 } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 interface CustomCheckboxProps
   extends Omit<
@@ -26,7 +25,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
   }: CustomCheckboxProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
-  const checkboxId = uuidv4();
+  const checkboxId = `${title}${Math.random()}`;
   return (
     <>
       <div className="relative ml-2 flex h-[50px] w-[359px] items-center">

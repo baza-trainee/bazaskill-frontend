@@ -15,6 +15,7 @@ const ContentCards = () => {
           slidesPerView={5}
           spaceBetween={45}
           autoplay={{
+            delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
@@ -24,8 +25,8 @@ const ContentCards = () => {
           {cards.map((card) => (
             <SwiperSlide
               key={card.id}
-              className="flex min-h-[242px] max-w-[218px] rounded-md border border-[#7EFE92] 
-              bg-[#2C2C2C] p-6 odd:mt-[46px] even:mb-[46px]"
+              className={`flex min-h-[242px] max-w-[218px] rounded-md border border-[#7EFE92] 
+              bg-[#2C2C2C] p-6  text-white ${card.id % 2 == 0 ? 'mt-[46px]' : 'mb-[46px]'}`}
             >
               <div className="flex flex-col items-center text-center">
                 <Image
@@ -35,10 +36,10 @@ const ContentCards = () => {
                   height={117}
                   className="justify-content pb-6 text-center"
                 />
-                <span className="flex-col pb-2 text-lg font-bold text-white">
+                <span className="flex-col pb-2 text-lg font-bold ">
                   {card.name}
                 </span>
-                <span className="flex-col text-lg text-white">
+                <span className="flex-col text-lg">
                   {card.stack}
                 </span>
               </div>
