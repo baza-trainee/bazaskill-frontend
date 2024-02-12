@@ -42,4 +42,16 @@ export const cards: Cards[] = [
     name: 'Valentyna',
     stack: 'Full Stack',
   },
+  {
+    id: 6,
+    image: '/contentCards/pic9.png',
+    name: 'Sofia',
+    stack: 'Back-end',
+  },
+  {
+    id: 7,
+    image: '/contentCards/pic2.png',
+    name: 'Viktor',
+    stack: 'Full Stack',
+  },
 ];
