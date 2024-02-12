@@ -15,7 +15,6 @@ const ContentCards = () => {
           slidesPerView={5}
           spaceBetween={45}
           autoplay={{
-            delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
