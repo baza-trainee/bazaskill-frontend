@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { photosArray } from '@/data/specialists';
 import HelpList from './helpList/HelpList';
 import HelpSpecialist from './helpSpecialist/HelpSpecialist';
@@ -25,12 +25,19 @@ const Help = () => {
   } else if (isSmallScreen) {
     numPhotos = 6;
   }
-  const photosToShow = photosArray.slice(0, numPhotos);
-
+  const [photos, setPhotos] = useState(photosArray);
+  useEffect(() => {
+    setPhotos(photosArray.slice(0, numPhotos));
+  }, [
+    isExtraLargeScreen,
+    isLargeScreen,
+    isMediumScreen,
+    isSmallScreen,
+  ]);
   return (
     <section className="container xs:py-[48px] xl:py-[60px]">
       <div className="flex xs:flex-col-reverse xs:flex-wrap xs:gap-[24px] md:flex-row md:flex-nowrap md:justify-center md:gap-[40px] xl:gap-[80px] 2xl:gap-[64px] 3xl:gap-[100px]  5xl:gap-[140px]">
-        <HelpList photos={photosToShow} />
+        <HelpList photos={photos} />
         <HelpSpecialist />
       </div>
     </section>
