@@ -27,6 +27,7 @@ const Hero: React.FC<HeroProps> = () => {
       <form className="flex flex-col xs:gap-3 md:flex-row md:gap-0">
         <div className="relative flex w-full items-center">
           <TextInput
+            isFirstInput={true}
             title=""
             errorText=""
             category=""
