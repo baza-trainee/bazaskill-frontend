@@ -38,10 +38,8 @@ const RegisterHrForm = () => {
     try {
       setIsProcessing(true);
       console.log(values);
-      setTimeout(() => {
-        setIsProcessing(false);
-        setIsSubmitted(true);
-      }, 2000);
+      setIsProcessing(false);
+      setIsSubmitted(true);
     } catch (error: unknown) {
       console.log(error);
     }

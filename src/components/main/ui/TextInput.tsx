@@ -26,7 +26,6 @@ const TextInput: FC<TextInputProps> = ({
 
   ...rest
 }) => {
-  const id = `${title}${Math.random()}`;
   const [inputValue, setInputValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] =
@@ -80,7 +79,10 @@ const TextInput: FC<TextInputProps> = ({
       className={`w-full ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {title && (
-        <label htmlFor={id} className="text-sm font-medium">
+        <label
+          htmlFor={title}
+          className="text-sm font-medium"
+        >
           {title}
         </label>
       )}
@@ -94,7 +96,7 @@ const TextInput: FC<TextInputProps> = ({
         <input
           {...rest}
           value={inputValue}
-          id={id}
+          id={title}
           data-category={category}
           className={`h-[64px] 
             w-full p-2 pl-12 placeholder:text-xl focus:outline-none 
