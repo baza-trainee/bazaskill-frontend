@@ -54,6 +54,7 @@ const testimonials: Testimonials[] = [
     image: img.src,
   },
 ];
+
 const Testimonials = () => {
   const sliderRef: RefObject<SwiperRef> = useRef(null);
 
@@ -70,72 +71,71 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="relaive container py-[60px]">
-      <h3 className="mb-[50px] text-center font-tahoma text-4xl font-bold tracking-[1.08px] text-white">
+    <section className="container relative py-[60px]">
+      <h3 className="mb-[50px] text-center font-tahoma text-[24px] font-bold tracking-[1.08px] text-white md:text-4xl">
         Відгуки
       </h3>
-      <Swiper
-        key={'testimonials'}
-        slidesPerView={1}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        ref={sliderRef}
-        navigation={{
-          prevEl: '.prev-testimonials',
-          nextEl: '.next-testimonials',
-        }}
-        modules={[Pagination, Navigation]}
-        className="testimonials"
-      >
-        {testimonials.map((item: Testimonials) => (
-          <SwiperSlide
-            className="testimonials_slide"
-            key={item.id}
-          >
-            <div className="flex w-[86%] items-center justify-between">
-              <div className="flex items-center gap-[36px]">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={122}
-                  height={122}
-                  className="rounded-[8px]"
-                />
-                <div className="text-start">
-                  <h4 className="mb-[24px] font-tahoma text-2xl font-bold tracking-[.72px] text-white">
-                    {item.name}
-                  </h4>
-                  <p className="font-open-sans text-xl font-normal tracking-[.4px] text-white">
-                    {item.position}
-                  </p>
-                  <p className="font-open-sans text-sm font-normal text-white">
-                    {item.data}
-                  </p>
+      <div className="relative xl:mx-auto xl:max-w-[1280px]  5xl:max-w-[1681px]">
+        <Swiper
+          key={'testimonials'}
+          slidesPerView={'auto'}
+          spaceBetween={34}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          ref={sliderRef}
+          navigation={{
+            prevEl: '.prev-testimonials',
+            nextEl: '.next-testimonials',
+          }}
+          modules={[Pagination, Navigation]}
+          className="testimonials max-w-[88%] 5xl:max-w-[1524px]">
+          {testimonials.map((item: Testimonials) => (
+            <SwiperSlide
+              className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
+              key={item.id}>
+              <div className="flex w-[100%] flex-col items-center justify-between gap-[10px] md:flex-row 5xl:justify-end 5xl:gap-[24px]">
+                <div className="flex items-center gap-[12px] xl:gap-[36px]  5xl:flex-col">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={122}
+                    height={122}
+                    className="h-[90px] w-[90px] rounded-[8px] xl:h-[122px] xl:w-[122px]"
+                  />
+                  <div className="text-start">
+                    <h4 className="font-tahoma font-bold tracking-[.72px] text-white md:mb-[15px] md:text-[20px]  xl:text-[24px] xl:leading-[1.5]">
+                      {item.name}
+                    </h4>
+                    <p className="font-open-sans text-[13px] font-normal tracking-[.4px] text-white md:mb-[5px] md:text-[calc(10px+(20-10)*((100vw-768px)/(1440-768)))] 5xl:text-[20px]">
+                      {item.position}
+                    </p>
+                    <p className="font-open-sans text-[calc(10px+(14-10)*((100vw-768px)/(1440-768)))] font-normal text-white">
+                      {item.data}
+                    </p>
+                  </div>
                 </div>
+                <p className="max-w-[calc(400px+(716-400)*((100vw-768px)/(1536-768)))] text-start font-open-sans text-[calc(12px+(24-12)*((100vw-320px)/(1920-320)))] font-normal  tracking-[.4px] text-white xl:text-xl 3xl:max-w-[716px] 5xl:max-w-[562px]">
+                  {'“' + item.review + '”'}
+                </p>
               </div>
-              <p className="w-[652px] text-start font-open-sans text-xl font-normal tracking-[.4px] text-white">
-                {'“' + item.review + '”'}
-              </p>
-            </div>
-          </SwiperSlide>
-        ))}
-        {/* <button
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <button
           type="button"
-          className="prev absolute left-0 top-[20%] z-20 translate-y-[-20%] cursor-pointer"
+          className="prev absolute left-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer md:block"
           onClick={handlePrev}>
           <ButtonLeft className="fill-white" />
         </button>
         <button
           type="button"
-          className="next absolute right-0 top-[20%] z-20 translate-y-[-20%] cursor-pointer"
+          className="next absolute right-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer md:block"
           onClick={handleNext}>
           <ButtonRight className="fill-white" />
-        </button> */}
-        <div className="prev-testimonials swiper-button-prev transform: translateY(30%) absolute left-0 h-[30px] w-[30px] text-white"></div>
-        <div className="next-testimonials swiper-button-next transform: translateY(30%) absolute right-0 h-[30px] w-[30px] text-white"></div>
-      </Swiper>
+        </button>
+      </div>
     </section>
   );
 };

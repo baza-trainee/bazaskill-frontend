@@ -3,11 +3,14 @@
   width: 100%;
 }
 .testimonials {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
-  max-width: 1280px;
-  width: 100%;
-  height: 100%;
-  overflow-y: visible;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  display: block;
 }
 
 .testimonials_slide {
@@ -18,11 +21,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.testimonials {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .testimonials .swiper-pagination-bullet {
@@ -36,6 +34,10 @@
 
 .testimonials .swiper-pagination-bullet-active {
   background-color: #ffff00;
+}
+
+.swiper-wrapper {
+  align-items: center;
 }
 
 .testimonials .swiper-pagination {
