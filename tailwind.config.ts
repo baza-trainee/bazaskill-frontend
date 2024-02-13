@@ -28,6 +28,7 @@ const config: Config = {
         dateBlack: '#333333B2',
         lightGreen: '#EEFFF1',
         lightGray: '#FEFFFE',
+        greenBg: '#4DC760',
       },
       screens: {
         xs: '320px',
@@ -46,6 +47,11 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'contacts-photo':
           "url('/public/img/workprocessdesk@1x.jpg')",
+        'contacts-tablet':
+          "url('/public/img/contactstablet.jpg')"
+      },
+      textDecoration: {
+        'none': 'none',
       },
     },
   },
