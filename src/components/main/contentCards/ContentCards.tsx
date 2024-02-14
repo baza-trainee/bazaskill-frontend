@@ -132,8 +132,8 @@ const ContentCards = () => {
             <SwiperSlide
               key={card.id}
               className={`flex rounded-md border border-[#7EFE92] bg-[#2C2C2C]
-                          p-6 text-white xs:max-w-48 sm:max-w-48 md:max-w-48
-                          xl:max-w-[218px] 2xl:max-w-[218px] 3xl:max-w-[218px] 4xl:max-w-[218px] 5xl:max-w-[218px]
+                          p-6 text-white xs:max-w-48 
+                          xl:max-w-[218px]
                           ${card.id % 2 == 0 ? 'mt-[46px]' : 'mb-[46px]'}`}
             >
               <div className={`flex flex-col items-center`}>

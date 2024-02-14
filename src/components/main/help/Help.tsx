@@ -33,6 +33,7 @@ const Help = () => {
     isLargeScreen,
     isMediumScreen,
     isSmallScreen,
+    numPhotos,
   ]);
   return (
     <section className="container xs:py-[48px] xl:py-[60px]">
