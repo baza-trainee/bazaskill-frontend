@@ -13,7 +13,7 @@ const Hero: React.FC<HeroProps> = () => {
   const t = useTranslations('Main');
 
   return (
-    <div className="container mb-[48px] mt-[124px] w-full ">
+    <section className="container mb-[48px] mt-[124px] w-full ">
       <div className="relative mx-auto mb-[64px] flex max-w-[570px] flex-col items-center text-center sm:flex md:flex-row lg:max-w-[915px]">
         <span className="mr-3 text-6xl text-[40px] font-bold text-white xl:text-[64px]">
           <div className="flex max-w-[230px] flex-col items-center md:max-w-[300px] xl:max-w-[470px]">
@@ -59,7 +59,7 @@ const Hero: React.FC<HeroProps> = () => {
           {t('hero_section.search')}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

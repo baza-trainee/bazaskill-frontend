@@ -55,8 +55,8 @@ const Counters = () => {
   };
 
   return (
-    <div>
-      <div className="relative mx-auto hidden justify-center py-[48px] md:flex xl:hidden">
+    <section className="container py-[48px] lg:py-[91px]">
+      <div className="relative mx-auto hidden justify-center md:flex xl:hidden">
         <Swiper
           modules={[Navigation]}
           slidesPerView={3}
@@ -92,7 +92,7 @@ const Counters = () => {
                       formattingFn={(value) => `${value}+`}
                     />
                   </h3>
-                  <p className="text-2xl text-white">
+                  <p className="custom-line-height   text-2xl text-white md:text-xl">
                     {title}
                   </p>
                 </div>
@@ -110,10 +110,13 @@ const Counters = () => {
         offset={{ bottom: 100 }}
       >
         {() => (
-          <ul className="row container flex grow flex-col justify-between gap-1 py-[48px] text-center font-bold text-white md:hidden xl:flex xl:flex-row 3xl:gap-[10px] 4xl:gap-[44px] 5xl:gap-[110px] ">
+          <ul className="flex grow flex-col justify-between gap-[24px] text-center font-bold text-white md:hidden md:gap-1 xl:flex xl:flex-row 3xl:gap-[10px] 4xl:gap-[44px] 5xl:gap-[110px] ">
             {counters.map((item, index) => (
-              <li className="p-6" key={index}>
-                <h3 className="text-[40px] font-bold">
+              <li
+                className="p-[25px] md:p-[16px] lg:p-[23px]"
+                key={index}
+              >
+                <h3 className="text-[40px] font-bold leading-10 ">
                   {isVisible ? (
                     <CountUp
                       key={item.id}
@@ -126,13 +129,15 @@ const Counters = () => {
                     0
                   )}
                 </h3>
-                <p className="text-2xl">{item.title}</p>
+                <p className="text-xl xl:text-2xl">
+                  {item.title}
+                </p>
               </li>
             ))}
           </ul>
         )}
       </VisibilitySensor>
-    </div>
+    </section>
   );
 };
 
