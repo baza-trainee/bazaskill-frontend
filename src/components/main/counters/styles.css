@@ -5,11 +5,11 @@
 }
 
 .swiper-button-prev {
-  left: -54px;
+  left: -20px;
 }
 
 .swiper-button-next {
-  right: -54px;
+  right: -20px;
 }
 :root {
   --swiper-theme-color: #ffffff;
@@ -23,4 +23,7 @@
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 21px;
+}
+.custom-line-height {
+  line-height: 2.5rem;
 }
