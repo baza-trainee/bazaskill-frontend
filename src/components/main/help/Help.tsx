@@ -5,7 +5,7 @@ import HelpSpecialist from './helpSpecialist/HelpSpecialist';
 
 const Help = () => {
   return (
-    <section className="container py-[60px]">
+    <section id="aboutus" className="container py-[60px]">
       <div className="flex justify-center gap-[100px]">
         <HelpList photos={photosArray} />
         <HelpSpecialist />
