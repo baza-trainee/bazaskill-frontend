@@ -13,11 +13,13 @@ const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const submenuRef = useRef<HTMLDivElement>(null);
+
   const handleCheckLocale = (item: string) => {
     setIsOpen(!isOpen);
     setCurrentLocale(item);
     router.replace(path, { locale: item });
   };
+
   const handleOutsideClick = (event: Event): void => {
     if (
       !submenuRef.current?.contains(

@@ -1,0 +1,29 @@
+.countersSlide {
+  max-width: 660px;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-button-prev {
+  left: -20px;
+}
+
+.swiper-button-next {
+  right: -20px;
+}
+:root {
+  --swiper-theme-color: #ffffff;
+}
+
+.countersSlide.swiper-button-prev,
+.countersSlide.swiper-button-next {
+  top: 35%;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 21px;
+}
+.custom-line-height {
+  line-height: 2.5rem;
+}

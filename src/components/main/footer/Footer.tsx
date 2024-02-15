@@ -15,8 +15,9 @@ const FooterLink: React.FC<FooterLinkProps> = ({
   children,
 }) => (
   <a
-    className="decoration gray-700 all block cursor-pointer py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow hover:underline md:text-base xl:leading-7
-    onClick={() => openModal('partner')}"
+    className="decoration gray-700 all onClick={() => openModal('partner')} block cursor-pointer 
+    py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow
+    hover:underline md:text-base xl:leading-7"
     href={href}
     target="_blank"
     rel="noopener noreferrer"
@@ -33,13 +34,16 @@ const Footer = () => {
   const { openModal, closeModal } = useModal();
 
   return (
-    <div className="relative flex flex-col justify-center bg-darkGraphite px-20 pt-20m xs:px-6 xs:pt-[40px] sm:block sm:px-10 md:pt-12 md:px-8 xl:pt-12 2xl:pt-12 5xl:px-[80px]">
-      <div className="flex justify-start xs:block sm:block md:flex md:mb-[10px]">
-        <div className="w-110 transition-all md:mr-[80px] 5xl:ml-40px">
+    <div
+      className="pt-20m relative flex flex-col justify-center bg-darkGraphite 
+    px-20 xs:px-6 xs:pt-[40px] sm:block sm:px-10 md:px-8 md:pt-12 xl:pt-12 2xl:pt-12 5xl:px-[80px]"
+    >
+      <div className="flex justify-start xs:block sm:block md:mb-[10px] md:flex">
+        <div className="w-110 5xl:ml-40px transition-all md:mr-[80px]">
           <a
             href="/"
             aria-label="logo-icon"
-            className="xs:flex sm:flex justify-center xl:ml-[-10px]"
+            className="justify-center xs:flex sm:flex xl:ml-[-10px]"
           >
             <Logo className="transition duration-500 hover:scale-110" />
           </a>
@@ -47,7 +51,7 @@ const Footer = () => {
             За крок до офферу
           </h3>
         </div>
-        <div className="ml-[292px] mr-[90px] text-white xs:mr-0 xs:ml-0 md:ml-[0] xs:flex flex-col sm:ml-0 sm:mr-0 md:w-[300px] md:items-start md:mr-[50px] xl:ml-[180px] xl:mr-[260px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
+        <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[260px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
           <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline md:text-base xl:leading-7">
             <a href="#aboutus">Про нас</a>
           </button>
@@ -64,7 +68,7 @@ const Footer = () => {
             Стати нашим партнером
           </button>
         </div>
-        <div className="xs:flex items-center sm:flex flex-col sm:items-center md:items-start md:w-[350px] 2xl:w-[400px] 5xl:w-[300px] md:text-base">
+        <div className="flex-col items-center xs:flex sm:flex sm:items-center md:w-[350px] md:items-start md:text-base 2xl:w-[400px] 5xl:w-[300px]">
           <FooterLink href="https://baza-trainee.tech/ua">
             Baza Trainee Ukraine
           </FooterLink>
@@ -77,29 +81,31 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex xs:flex-col-reverse xs:py-[20px] sm:flex-col-reverse md:flex-col-reverse md:leading-3 xl:flex xl:flex-row">
-        <div className="sm:flex flex-col items-center md:flex md:flex-row justify-center xl:ml-[60px] xl:mr-[118px] 2xl:ml-[36px] 2xl:mr-[142px] 4xl:mr-[212px] 5xl:mr-[398px]">
-        <p className="mr-36 font-open-sans text-sm font-normal leading-4 text-white xs:mr-0 xs:text-sm xs:flex justify-center sm:mr-0 md:flex md:justify-center md:mr-[4px] xl:mr-[4px] ">
-          Розробка Baza Trainee Ukraine 2024 &#169; 
-        </p>
-        <p className="text-white xs:text-sm xs:flex justify-center">Усі права захищені</p>
+        <div className="flex-col items-center justify-center sm:flex md:flex md:flex-row xl:ml-[60px] xl:mr-[118px] 2xl:ml-[36px] 2xl:mr-[142px] 4xl:mr-[212px] 5xl:mr-[398px]">
+          <p className="mr-36 justify-center font-open-sans text-sm font-normal leading-4 text-white xs:mr-0 xs:flex xs:text-sm sm:mr-0 md:mr-[4px] md:flex md:justify-center xl:mr-[4px] ">
+            Розробка Baza Trainee Ukraine 2024 &#169;
+          </p>
+          <p className="justify-center text-white xs:flex xs:text-sm">
+            Усі права захищені
+          </p>
         </div>
-        <div className="xs:mb-[25px] md:flex md:justify-center md:mb-[10px] xl:mb-[0px]">
-        <a
-          className="hover:decoration gray-700 mr-72 inline-block cursor-pointer font-open-sans text-sm text-white transition-all hover:text-yellow xs:mr-0 xs:flex xs:mb-[25px] md:leading-8 sm:mr-0 sm:flex justify-center md:mr-[40px] md:mb-[4px] xl:mr-[260px] 2xl:mr-[302px] 3xl:mr-[334px] 4xl:mr-[377px] 5xl:mr-[458px]"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="/document/privacypolicy.pdf"
-        >
-          Політика конфіденційності
-        </a>
-        <a
-          className="hover:decoration gray-700 inline-block cursor-pointer font-open-sans text-sm text-white xs:flex sm:flex justify-center md:leading-8 md:decoration-[0px] md:mb-[4px] transition-all hover:text-yellow"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="/document/siteusagerules.pdf"
-        >
-          Правила користування сайтом
-        </a>
+        <div className="xs:mb-[25px] md:mb-[10px] md:flex md:justify-center xl:mb-[0px]">
+          <a
+            className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-open-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex md:mb-[4px] md:mr-[40px] md:leading-8 xl:mr-[260px] 2xl:mr-[302px] 3xl:mr-[334px] 4xl:mr-[377px] 5xl:mr-[458px]"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/document/privacypolicy.pdf"
+          >
+            Політика конфіденційності
+          </a>
+          <a
+            className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-open-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex md:mb-[4px] md:leading-8 md:decoration-[0px]"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/document/siteusagerules.pdf"
+          >
+            Правила користування сайтом
+          </a>
         </div>
       </div>
       <div className="flex justify-center px-10 py-8 xs:px-0 xs:flex-col items-center sm:flex-col sm:px-0 md:flex md:flex-row md:items-center md:justify-center md:w-[700px] md:px-0 md:pt-[15px] xl:mx-auto">
@@ -107,7 +113,7 @@ const Footer = () => {
           Компанія направляє 10% прибутку на підтримку</p>
           <p className="text-white xs:text-[12px] sm:text-xs md:text-sm md:mr-[4px] xl:text-base">59-тої бригади</p> 
           <p className="text-white xs:text-[12px] sm:text-xs md:text-sm xl:text-base">ім.Якова Гандзюка</p>
-      </div>
+       </div>
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>
           <RegisterHrForm />

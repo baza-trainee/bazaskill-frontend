@@ -6,7 +6,6 @@ import React, {
   FC,
   ChangeEvent,
 } from 'react';
-
 import ArrowIcon from '@/components/icons/ArrowIcon';
 
 interface TextInputProps {
@@ -15,6 +14,7 @@ interface TextInputProps {
   category: string;
   options: string[];
   placeholder: string;
+  isFirstInput?: boolean;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -22,9 +22,10 @@ const TextInput: FC<TextInputProps> = ({
   errorText,
   category,
   options = [],
+  isFirstInput = false,
+
   ...rest
 }) => {
-  const id = `${title}${Math.random()}`;
   const [inputValue, setInputValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] =
@@ -78,7 +79,10 @@ const TextInput: FC<TextInputProps> = ({
       className={`w-full ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {title && (
-        <label htmlFor={id} className="text-sm font-medium">
+        <label
+          htmlFor={title}
+          className="text-sm font-medium"
+        >
           {title}
         </label>
       )}
@@ -92,22 +96,37 @@ const TextInput: FC<TextInputProps> = ({
         <input
           {...rest}
           value={inputValue}
-          id={id}
+          id={title}
           data-category={category}
-          className={`h-[64px] w-full rounded-md p-2 pl-12 placeholder:text-xl focus:outline-none md:rounded-none ${
-            errorText
-              ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
-              : 'border-gray-500 focus:outline-gray-700'
-          }`}
+          className={`h-[64px] 
+            w-full p-2 pl-12 placeholder:text-xl focus:outline-none 
+            ${
+              isOpen
+                ? 'border-t-gray-500 rounded-t-md md:rounded-none'
+                : isFirstInput
+                  ? 'rounded-md md:rounded-none md:rounded-l-md'
+                  : 'rounded-md md:rounded-none'
+            }
+            ${
+              errorText
+                ? 'border-red-500 caret-red-500 outline-red-500 focus:outline-red-500'
+                : 'border-gray-500 focus:outline-gray-700'
+            }
+            ${
+              isOpen && isFirstInput
+                ? 'md:rounded-tl-md'
+                : ''
+            }
+               `}
           onChange={handleInputChange}
           onFocus={() => setIsOpen(true)}
         />
 
         {isOpen && (
           <div
-            className="custom-scrollbar
-            absolute
-            left-0 top-full max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg [&::-webkit-scrollbar]:[width:10px]"
+            className="custom-scrollbar absolute
+            left-0
+            top-full z-10 max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg [&::-webkit-scrollbar]:[width:10px]"
           >
             {filteredOptions.map((option) => (
               <div

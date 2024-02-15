@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -7,7 +8,7 @@ const nextIntlMiddleware = createMiddleware({
 
   // Used when no locale matches
   defaultLocale: 'ua',
-  localeDetection: true,
+  localeDetection: false,
 });
 
 export default function (req: NextRequest): NextResponse {

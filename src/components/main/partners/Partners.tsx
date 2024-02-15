@@ -6,15 +6,17 @@ import partnersData from './partnersData';
 
 const Partners: React.FC = () => {
   return (
-    <div className="container mx-auto my-[60px] w-full">
+    <div className="container">
       <div
         className="mb-[43px]
           text-center
           font-tahoma
-          text-[40px]
+          text-[24px]
           font-bold
           not-italic
-          text-white"
+          text-white
+          sm:text-[35px]
+          md:text-[40px]"
       >
         Наші партнери
       </div>

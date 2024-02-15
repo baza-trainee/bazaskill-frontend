@@ -1,9 +1,15 @@
 'use client';
+
 import { useState } from 'react';
 
 import CountUp from 'react-countup';
-
 import VisibilitySensor from 'react-visibility-sensor';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import './styles.css';
 
 interface Counters {
   id: number;
@@ -41,22 +47,76 @@ const Counters = () => {
       title: 'бібліотек',
     },
   ];
+
   const handleVisibilityChange = (isVisible: boolean) => {
     if (isVisible) {
       setIsVisible(true);
     }
   };
+
   return (
-    <VisibilitySensor
-      partialVisibility
-      onChange={handleVisibilityChange}
-      offset={{ bottom: 100 }}>
-      {() => (
-        <ul className="container flex grow justify-between gap-1 py-[48px] text-center font-bold text-white">
-          {counters.map((item, index) => {
+    <section className="container py-[48px] lg:py-[91px]">
+      <div className="relative mx-auto hidden justify-center md:flex xl:hidden">
+        <Swiper
+          modules={[Navigation]}
+          slidesPerView={3}
+          spaceBetween={10}
+          navigation={{
+            prevEl: '.prev-counters',
+            nextEl: '.next-counters',
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          loop={true}
+          className="countersSlide max-h-full max-w-[1006px]"
+        >
+          {counters.map(({ id }) => {
+            const counter = counters.find(
+              (item) => item.id === id
+            );
+            if (!counter) return null;
+            const title =
+              id === 2
+                ? counter.title.replace('залучених ', '')
+                : counter.title;
             return (
-              <li className="p-6" key={index}>
-                <h3 className="text-[40px] font-bold">
+              <SwiperSlide key={id} className="text-center">
+                <div>
+                  <h3 className="text-[40px] font-bold text-white">
+                    <CountUp
+                      key={id}
+                      end={counter.count || 0}
+                      duration={2}
+                      redraw={true}
+                      formattingFn={(value) => `${value}+`}
+                    />
+                  </h3>
+                  <p className="custom-line-height   text-2xl text-white md:text-xl">
+                    {title}
+                  </p>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+        <div className="prev-counters swiper-button-prev transform: translateY(50%) absolute left-0 h-[21px] w-[12px] text-white"></div>
+        <div className="next-counters swiper-button-next transform: translateY(50%) right- absolute h-[21px] w-[12px] text-white"></div>
+      </div>
+
+      <VisibilitySensor
+        partialVisibility
+        onChange={handleVisibilityChange}
+        offset={{ bottom: 100 }}
+      >
+        {() => (
+          <ul className="flex grow flex-col justify-between gap-[24px] text-center font-bold text-white md:hidden md:gap-1 xl:flex xl:flex-row 3xl:gap-[10px] 4xl:gap-[44px] 5xl:gap-[110px] ">
+            {counters.map((item, index) => (
+              <li
+                className="p-[25px] md:p-[16px] lg:p-[23px]"
+                key={index}
+              >
+                <h3 className="text-[40px] font-bold leading-10 ">
                   {isVisible ? (
                     <CountUp
                       key={item.id}
@@ -69,13 +129,15 @@ const Counters = () => {
                     0
                   )}
                 </h3>
-                <p className="text-2xl">{item.title}</p>
+                <p className="text-xl xl:text-2xl">
+                  {item.title}
+                </p>
               </li>
-            );
-          })}
-        </ul>
-      )}
-    </VisibilitySensor>
+            ))}
+          </ul>
+        )}
+      </VisibilitySensor>
+    </section>
   );
 };
 

@@ -32,8 +32,8 @@ export const registerScheme = z.object({
     .nonempty('Це поле обовʼязкове')
     .min(9, 'Номер телефону має містити мінімум 9 символів')
     .max(
-      10,
-      'Номер телефону має містити максимум 10 символів'
+      13,
+      'Номер телефону має містити максимум 13 символів'
     )
     .refine((value) => /^\+\d{9,10}$/.test(value), {
       message:
@@ -85,6 +85,12 @@ export const registerScheme = z.object({
           'Тільки букви (без пробілів та спеціальних символів)',
       }
     ),
+  terms: z.literal(true, {
+    errorMap: () => ({
+      message:
+        'Надайте згоду на обробку персональних даних',
+    }),
+  }),
 
   company: z.string(),
 

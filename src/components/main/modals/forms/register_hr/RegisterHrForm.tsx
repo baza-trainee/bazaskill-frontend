@@ -38,10 +38,8 @@ const RegisterHrForm = () => {
     try {
       setIsProcessing(true);
       console.log(values);
-      setTimeout(() => {
-        setIsProcessing(false);
-        setIsSubmitted(true);
-      }, 2000);
+      setIsProcessing(false);
+      setIsSubmitted(true);
     } catch (error: unknown) {
       console.log(error);
     }
@@ -166,7 +164,18 @@ const RegisterHrForm = () => {
                 />
                 <div className="mt-[32px] flex-col">
                   <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
-                  <CustomCheckbox title="Даю згоду на обробку персональних даних" />
+                  <Controller
+                    name="terms"
+                    control={control}
+                    render={({ field }) => (
+                      <CustomCheckbox
+                        {...field}
+                        title="Даю згоду на обробку персональних даних"
+                        isRequired={true}
+                        errorText={errors.terms?.message}
+                      />
+                    )}
+                  />
                 </div>
               </div>
               <Controller

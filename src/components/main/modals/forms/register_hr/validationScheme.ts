@@ -57,7 +57,12 @@ export const registerScheme = z.object({
   country: z.string(),
 
   specialist: z.string().nonempty('Це поле обовʼязкове'),
-
+  terms: z.literal(true, {
+    errorMap: () => ({
+      message:
+        'Надайте згоду на обробку персональних даних',
+    }),
+  }),
   message: z
     .string()
     .max(

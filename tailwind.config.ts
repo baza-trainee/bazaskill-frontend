@@ -25,7 +25,7 @@ const config: Config = {
         pink: '#FF58B0',
         rose: '#DD8DB7',
         error: '#FF0000',
-        dateBlack: '#333333B2',
+        dateBlack: '#020202',
         lightGreen: '#EEFFF1',
         lightGray: '#FEFFFE',
         greenBg: '#4DC760',
