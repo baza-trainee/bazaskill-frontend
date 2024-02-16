@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Slider from './Slider';
+import Slider from './Slider/Slider';
 import partnersData from './partnersData';
 
 const Partners: React.FC = () => {
