@@ -7,11 +7,12 @@ import {
 } from 'react-hook-form';
 import CustomInput from './CustomInput';
 import { Ref, RefObject } from 'react';
+import { SpecializationStack } from '@/types/specialization';
 const SubMenu = ({
   inputs,
   reference,
 }: {
-  inputs: string[];
+  inputs: SpecializationStack[];
   reference: RefObject<HTMLFormElement>;
 }) => {
   const schema = z.object({
@@ -38,10 +39,10 @@ const SubMenu = ({
       ref={reference}
     >
       <div>
-        {inputs.map((item: string) => (
+        {inputs.map(({ title, id }) => (
           <CustomInput
-            key={item}
-            title={item}
+            key={id}
+            title={title}
             register={register}
           />
         ))}

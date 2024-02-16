@@ -1,5 +1,6 @@
 import HeaderCaretDown from '@/components/icons/HeaderCaretDown';
 import HeaderSearchIcon from '@/components/icons/HeaderSearchIcon';
+import { SpecializationStack } from '@/types/specialization';
 import { useEffect, useRef, useState } from 'react';
 import SubMenu from './SubMenu';
 
@@ -8,7 +9,7 @@ const MenuItem = ({
   inputs,
 }: {
   title: string;
-  inputs: string[];
+  inputs: SpecializationStack[];
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
