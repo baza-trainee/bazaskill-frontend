@@ -44,7 +44,7 @@ const Slider: React.FC<SliderProps> = ({ partners }) => {
           clickable: true,
         }}
         loop={true}
-        className="xs:max-w-[280] sm:max-w-[380px] md:max-w-[618px] xl:max-w-[986px] 2xl:max-w-[1006px] 3xl:max-w-[1006px] 4xl:max-w-[1139px] 5xl:max-w-[1450px]"
+        className="xs:max-w-[280px] sm:max-w-[380px] md:max-w-[618px] xl:max-w-[986px] 2xl:max-w-[1006px] 3xl:max-w-[1006px] 4xl:max-w-[1139px] 5xl:max-w-[1450px]"
       >
         {partners.map((partner) => (
           <SwiperSlide
