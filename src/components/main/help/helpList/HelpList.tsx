@@ -12,13 +12,13 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
         {photos.map((photo, index) => (
           <li
             key={index}
-            className="  overflow-hidden rounded-[100px] hover:cursor-pointer  ">
+            className="  zoom overflow-hidden rounded-[100px]  hover:scale-105 hover:cursor-pointer">
             <Image
               src={photo}
               width={117}
               height={117}
               alt="specialist"
-              className="zoom hover:scale-105  xs:h-[80px]  xs:w-[80px] xl:h-[112px] xl:w-[112px] 2xl:h-[117px]  2xl:w-[117px] 5xl:h-[132px] 5xl:w-[132px]"
+              className="zoom hover:scale-103  xs:h-[80px]  xs:w-[80px] xl:h-[112px] xl:w-[112px] 2xl:h-[117px]  2xl:w-[117px] 5xl:h-[132px] 5xl:w-[132px]"
             />
           </li>
         ))}

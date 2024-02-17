@@ -1,11 +1,11 @@
-.hover\:scale-105:hover {
-  transform: scale(1.05);
-}
 .zoom {
-  transition-timing-function: cubic-bezier(
-    0.25,
-    0.1,
-    0.25,
-    3
-  );
+  transition: transform 0.9s ease;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.5);
+}
+
+.hover\:scale-103:hover {
+  transform: scale(1.3);
 }
