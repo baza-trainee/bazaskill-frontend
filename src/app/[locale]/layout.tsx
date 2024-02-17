@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
-import LayoutProvider from '@/components/providers/LayoutProvider';
+import { Providers } from './provider';
+import Footer from '@/components/main/footer/Footer';
 const open_sans = Open_Sans({
   weight: '400',
   subsets: ['latin'],
@@ -49,9 +50,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  header,
   params: { locale },
 }: {
   children: React.ReactNode;
+  header: React.ReactNode;
   params: { locale: string };
 }) {
   return (
@@ -59,7 +62,16 @@ export default function RootLayout({
       <body
         className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
       >
-        <LayoutProvider>{children}</LayoutProvider>
+        <Providers>
+          <header className="bg-graphite">{header}</header>
+
+          <main>{children}</main>
+
+          <footer>
+            <Footer />
+          </footer>
+        </Providers>
+        {/* <LayoutProvider>{children}</LayoutProvider> */}
       </body>
     </html>
   );

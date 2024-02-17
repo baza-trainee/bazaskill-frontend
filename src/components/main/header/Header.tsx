@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Logo from '@/components/icons/Logo';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializationsWithStack } from '@/api/specialization';
 import { ISpecializationWithStack } from '@/types/specialization';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const { data, isFetching } = useQuery({
@@ -17,6 +19,9 @@ const Header = () => {
     ],
     queryFn: getSpecializationsWithStack,
   });
+  const pathname = usePathname();
+  const isAdminPage = pathname.split('/').includes('admin');
+  if (isAdminPage) return null;
   return (
     <div className="container relative z-50 flex h-[80px] w-full items-center gap-[4px] border-b border-[#4E4E4E] bg-graphite xl:h-[100px] 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
       <div className="w-full xl:h-[40px] xl:w-[169px]">
@@ -29,7 +34,7 @@ const Header = () => {
       </div>
 
       <div className="hidden grow justify-between gap-[4px] xl:flex 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
-        <div className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
+        <nav className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
           {data?.map(
             ({
               id,
@@ -43,7 +48,7 @@ const Header = () => {
               />
             )
           )}
-        </div>
+        </nav>
 
         <LanguageSwitcher />
       </div>
