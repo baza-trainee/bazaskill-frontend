@@ -35,7 +35,7 @@ export const registerScheme = z.object({
       13,
       'Номер телефону має містити максимум 13 символів'
     )
-    .refine((value) => /^\+\d{9,10}$/.test(value), {
+    .refine((value) => /^\+\d{9,13}$/.test(value), {
       message:
         'Некоректно введений номер телефону, повинен почнатися з +',
     }),
