@@ -60,8 +60,7 @@ const RegisterPartnerForm = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="mb-[32px] flex flex-col"
-          >
+            className="mb-[32px] flex flex-col">
             <div className="flex">
               <Controller
                 name="name"
@@ -148,12 +147,12 @@ const RegisterPartnerForm = () => {
             </div>
             <div className="flex">
               <Controller
-                name="speciality"
+                name="specialist"
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
                   <SelectInput
-                    errorText={errors.speciality?.message}
+                    errorText={errors.specialist?.message}
                     title="Шукаю"
                     {...field}
                     options={stack}
@@ -170,7 +169,7 @@ const RegisterPartnerForm = () => {
                     title="Посада представника"
                     {...field}
                     errorText={errors.position?.message}
-                    placeholder="Імʼя"
+                    placeholder="Посада"
                     isRequired={true}
                   />
                 )}
@@ -178,16 +177,27 @@ const RegisterPartnerForm = () => {
             </div>
             <div className="flex">
               <div className="mt-[32px] flex-col">
-                <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
                 <Controller
                   name="terms"
                   control={control}
                   render={({ field }) => (
                     <CustomCheckbox
                       {...field}
-                      title="Даю згоду на обробку персональних даних"
+                      title="Прошу надіслати договір на ознайомлення"
                       isRequired={true}
                       errorText={errors.terms?.message}
+                    />
+                  )}
+                />
+                <Controller
+                  name="terms_2"
+                  control={control}
+                  render={({ field }) => (
+                    <CustomCheckbox
+                      {...field}
+                      title="Даю згоду на обробку персональних даних"
+                      isRequired={true}
+                      errorText={errors.terms_2?.message}
                     />
                   )}
                 />
@@ -205,15 +215,13 @@ const RegisterPartnerForm = () => {
                 )}
               />
             </div>
-
             <div className="">
               <button
                 type="submit"
-                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-yellow"
+                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
                 disabled={
                   errors && !!Object.keys(errors).length
-                }
-              >
+                }>
                 {isProcessing
                   ? 'Обробка запиту...'
                   : 'Відправити'}
