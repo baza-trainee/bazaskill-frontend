@@ -9,10 +9,11 @@ export const registerScheme = z.object({
     .string()
     .nonempty('Це поле обовʼязкове')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) =>
+        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
       {
         message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+          'Тільки букви та пробіли (без спеціальних символів)',
       }
     ),
 
@@ -79,25 +80,25 @@ export const registerScheme = z.object({
     .string()
     .nonempty('Це поле обовʼязкове')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) =>
+        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
       {
         message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+          'Тільки букви та пробіли (без спеціальних символів)',
       }
     ),
   terms: z.literal(true, {
+    errorMap: () => ({
+      message: '',
+    }),
+  }),
+  terms_2: z.literal(true, {
     errorMap: () => ({
       message:
         'Надайте згоду на обробку персональних даних',
     }),
   }),
-
-  company: z.string(),
-
-  country: z.string(),
-
-  speciality: z.string().nonempty('Це поле обовʼязкове'),
-
+  specialist: z.string().nonempty('Це поле обовʼязкове'),
   message: z
     .string()
     .max(

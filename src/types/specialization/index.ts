@@ -1,4 +1,3 @@
-import { stack } from './../../components/main/modals/forms/register_partner/defaultValues';
 export interface ISpecialization {
   id: number;
   title: string;

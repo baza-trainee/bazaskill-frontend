@@ -46,7 +46,7 @@ const RegisterHrForm = () => {
   };
 
   const handleClose = () => {
-    setIsSubmitted(false); // Скидаємо стан після закриття форми
+    setIsSubmitted(false);
   };
 
   return (
@@ -59,8 +59,7 @@ const RegisterHrForm = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="mb-[32px] flex flex-col"
-          >
+            className="mb-[32px] flex flex-col">
             <div className="flex">
               <Controller
                 name="first_name"
@@ -163,16 +162,27 @@ const RegisterHrForm = () => {
                   )}
                 />
                 <div className="mt-[32px] flex-col">
-                  <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
                   <Controller
                     name="terms"
                     control={control}
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Даю згоду на обробку персональних даних"
+                        title="Прошу надіслати договір на ознайомлення"
                         isRequired={true}
                         errorText={errors.terms?.message}
+                      />
+                    )}
+                  />
+                  <Controller
+                    name="terms_2"
+                    control={control}
+                    render={({ field }) => (
+                      <CustomCheckbox
+                        {...field}
+                        title="Даю згоду на обробку персональних даних"
+                        isRequired={true}
+                        errorText={errors.terms_2?.message}
                       />
                     )}
                   />
@@ -198,8 +208,7 @@ const RegisterHrForm = () => {
                 className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
                 disabled={
                   errors && !!Object.keys(errors).length
-                }
-              >
+                }>
                 {isProcessing
                   ? 'Обробка запиту...'
                   : 'Відправити'}
