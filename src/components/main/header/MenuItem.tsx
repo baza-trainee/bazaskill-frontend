@@ -1,3 +1,4 @@
+'use client';
 import HeaderCaretDown from '@/components/icons/HeaderCaretDown';
 import HeaderSearchIcon from '@/components/icons/HeaderSearchIcon';
 import { SpecializationStack } from '@/types/specialization';
