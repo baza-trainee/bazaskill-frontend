@@ -3,9 +3,9 @@
 }
 
 .hover\:scale-105:hover {
-  transform: scale(1.5);
+  transform: scale(1.05);
 }
 
 .hover\:scale-103:hover {
-  transform: scale(1.3);
+  transform: scale(1.03);
 }
