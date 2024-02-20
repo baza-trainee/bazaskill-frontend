@@ -1,6 +1,6 @@
-import bgA from '../../../../public/images/posts_main/posts-1.jpg';
-import bgB from '../../../../public/images/posts_main/posts-2.jpg';
-import bgC from '../../../../public/images/posts_main/posts-3.jpg';
+import bgA from '/public/images/posts_main/posts-1.jpg';
+import bgB from '/public/images/posts_main/posts-2.jpg';
+import bgC from '/public/images/posts_main/posts-3.jpg';
 
 import PostsCarousel from './PostsSwiper';
 import { Post } from '@/types/posts';
