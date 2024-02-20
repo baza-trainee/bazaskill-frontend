@@ -13,3 +13,8 @@ export interface ISpecializationWithStack
   extends ISpecialization {
   stack: SpecializationStack[];
 }
+
+export type Specialization = {
+  id: number;
+  title: string;
+};

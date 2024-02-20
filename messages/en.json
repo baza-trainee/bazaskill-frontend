@@ -1,7 +1,9 @@
 {
   "Main": {
     "hero_section": {
-      "search": "Search candidate"
+      "search": "Search candidate",
+      "country": "Country",
+      "speciality": "Speciality"
     }
   },
   "Error": {
