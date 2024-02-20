@@ -33,9 +33,10 @@ const Help = () => {
     isLargeScreen,
     isMediumScreen,
     isSmallScreen,
+    numPhotos,
   ]);
   return (
-    <section className="container xs:py-[48px] xl:py-[60px]">
+    <section className="aboutus xs:py-[48px] xl:py-[60px]">
       <div className="flex xs:flex-col-reverse xs:flex-wrap xs:gap-[24px] md:flex-row md:flex-nowrap md:justify-center md:gap-[40px] xl:gap-[80px] 2xl:gap-[64px] 3xl:gap-[100px]  5xl:gap-[140px]">
         <HelpList photos={photos} />
         <HelpSpecialist />

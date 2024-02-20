@@ -1,0 +1,11 @@
+.zoom {
+  transition: transform 0.9s ease;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-103:hover {
+  transform: scale(1.03);
+}
