@@ -6,5 +6,6 @@ export const constants = {
   specialization: {
     FETCH_SPECIALIZATIONS_WITH_STACK:
       'FETCH_SPECIALIZATIONS_WITH_STACK',
+    FETCH_SPECIALIZATIONS: 'FETCH_SPECIALIZATIONS',
   },
 };
