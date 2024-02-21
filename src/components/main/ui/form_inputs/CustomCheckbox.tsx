@@ -29,7 +29,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
   const checkboxId = uuidv4();
   return (
     <>
-      <div className="relative ml-2 flex h-[50px] w-[359px] items-center">
+      <div className="relative ml-2 flex h-[50px] w-[240px] items-center sm:w-[264px] xl:w-[358px]">
         <input
           {...rest}
           checked={checked}
@@ -41,7 +41,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
         />
         <label
           htmlFor={checkboxId}
-          className="ml-2 max-w-[359px] cursor-pointer font-sans text-[15px] after:absolute after:left-1 after:top-1 after:z-[-1] after:h-full  after:cursor-pointer"
+          className="ml-2 max-w-[359px] cursor-pointer font-sans text-xs after:absolute after:left-1 after:top-1 after:z-[-1] after:h-full after:cursor-pointer  sm:text-[15px]"
         >
           {title}
           {isRequired && (
