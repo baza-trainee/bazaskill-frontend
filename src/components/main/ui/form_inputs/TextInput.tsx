@@ -22,7 +22,7 @@ const TextInput = forwardRef(function TextInput(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
-    <div className="relative m-2 w-[240px] sm:w-[264px] xl:w-[358px]">
+    <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
       {!!title && (
         <label htmlFor={title}>
           {title}
