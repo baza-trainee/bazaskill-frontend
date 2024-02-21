@@ -17,6 +17,7 @@ import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
+import Succes from '@/components/icons/Succes';
 
 const RegisterHrForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -53,14 +54,15 @@ const RegisterHrForm = () => {
     <>
       {!isSubmitted ? (
         <div className="mb-[64px] flex w-full flex-col items-center justify-center">
-          <h1 className="mb-[48px] mt-[60px] text-3xl font-bold">
+          <h1 className="mb-[26px] mt-[40px] text-base font-semibold sm:mt-[68px] sm:text-xl md:mt-[40px] md:text-2xl md:font-bold">
             Стати нашим HRom
           </h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="mb-[32px] flex flex-col">
-            <div className="flex">
+            className="mb-[32px] flex flex-col"
+          >
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="first_name"
                 control={control}
@@ -88,7 +90,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="phone"
                 control={control}
@@ -116,7 +118,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="company"
                 control={control}
@@ -144,7 +146,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <div>
                 <Controller
                   name="specialist"
@@ -202,13 +204,14 @@ const RegisterHrForm = () => {
               />
             </div>
 
-            <div className="">
+            <div className="text-center">
               <button
                 type="submit"
                 className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
                 disabled={
                   errors && !!Object.keys(errors).length
-                }>
+                }
+              >
                 {isProcessing
                   ? 'Обробка запиту...'
                   : 'Відправити'}
@@ -217,9 +220,14 @@ const RegisterHrForm = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>Ваш запит був успішно відправлений!</p>
-          <button onClick={handleClose}>Закрити</button>
+        <div className="flex justify-center gap-3 p-10 text-center">
+          <Succes />
+          <div>
+            <p className="text-start">
+              Дякуємо за співпрацю!{' '}
+            </p>
+            <p>Ваші дані успішно збережено.</p>
+          </div>
         </div>
       )}
     </>

@@ -15,7 +15,7 @@ const TextArea = forwardRef(function TextArea(
   _ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   return (
-    <div className="relative m-2 w-[240px] sm:w-[264px] xl:w-[358px]">
+    <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
       {!!title && <label htmlFor={title}>{title}</label>}
       <textarea
         {...rest}

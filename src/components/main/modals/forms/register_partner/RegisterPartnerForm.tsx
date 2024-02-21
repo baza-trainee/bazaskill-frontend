@@ -18,6 +18,7 @@ import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
+import Succes from '@/components/icons/Succes';
 
 const RegisterPartnerForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -232,9 +233,14 @@ const RegisterPartnerForm = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>Ваш запит був успішно відправлений!</p>
-          <button onClick={handleClose}>Закрити</button>
+        <div className="flex justify-center gap-3 p-10 text-center">
+          <Succes />
+          <div>
+            <p className="text-start">
+              Дякуємо за співпрацю!{' '}
+            </p>
+            <p>Ваші дані успішно збережено.</p>
+          </div>
         </div>
       )}
     </>
