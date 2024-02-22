@@ -7,19 +7,11 @@ const emailPattern =
 export const registerScheme = z.object({
   name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
-    .refine(
-      (value) =>
-        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
-      {
-        message:
-          'Тільки букви та пробіли (без спеціальних символів)',
-      }
-    ),
+    .nonempty('Це поле обовʼязкове для заповнення'),
 
   link: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
     .refine(
       (value) => isURL(value, { require_protocol: true }),
       {
@@ -30,7 +22,7 @@ export const registerScheme = z.object({
 
   phone: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
     .min(9, 'Номер телефону має містити мінімум 9 символів')
     .max(
       13,
@@ -43,7 +35,7 @@ export const registerScheme = z.object({
 
   email: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
     .regex(emailPattern, {
       message: 'Введіть дійсний email',
     })
@@ -56,23 +48,31 @@ export const registerScheme = z.object({
 
   first_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
+    .min(2, 'Ім’я має містити мінімум 2 символи')
+    .max(30, 'Ім’я має містити максимум 30 символів')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) =>
+        /^[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.-]+$/.test(
+          value
+        ),
       {
-        message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+        message: 'Введіть коректне ім’я',
       }
     ),
 
   last_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
+    .min(2, 'Прізвище має містити мінімум 2 символи')
+    .max(30, 'Прізвище має містити максимум 30 символів')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) =>
+        /^[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.-]+$/.test(
+          value
+        ),
       {
-        message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+        message: 'Введіть коректне прізвище',
       }
     ),
 

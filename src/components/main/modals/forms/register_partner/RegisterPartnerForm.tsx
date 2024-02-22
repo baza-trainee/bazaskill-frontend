@@ -18,6 +18,7 @@ import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
+import SuccessIcon from '@/components/icons/SuccessIcon';
 
 const RegisterPartnerForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -219,7 +220,7 @@ const RegisterPartnerForm = () => {
             <div className="">
               <button
                 type="submit"
-                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
+                className="disabled:border-graaphite mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={
                   errors && !!Object.keys(errors).length
                 }
@@ -232,9 +233,14 @@ const RegisterPartnerForm = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>Ваш запит був успішно відправлений!</p>
-          <button onClick={handleClose}>Закрити</button>
+        <div className="flex justify-center gap-3 p-10 text-center">
+          <SuccessIcon />
+          <div>
+            <p className="text-start">
+              Дякуємо за співпрацю!{' '}
+            </p>
+            <p>Ваші дані успішно збережено.</p>
+          </div>
         </div>
       )}
     </>
