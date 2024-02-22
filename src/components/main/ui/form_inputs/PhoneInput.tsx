@@ -37,7 +37,10 @@ const PhoneInput = forwardRef(function PhoneInput(
         {...rest}
         id={title}
         value={value}
-        className="mt-[10px] w-full bg-inputBgGray p-2"
+        className={`mt-[10px] w-full rounded-sm bg-inputBgGray p-2 outline-none focus:border focus:border-green 
+        ${errorText && 'border border-error focus:border-error'}
+        ${value && !errorText && 'border border-green'}
+        `}
         autoComplete="off"
       />
       {errorText && (
