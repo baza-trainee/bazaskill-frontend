@@ -1,7 +1,9 @@
 {
     "Main": {
         "hero_section": {
-            "search": "Знайти кандидата"
+            "search": "Знайти кандидата",
+            "country": "Країна",
+            "speciality": "Спеціальність"
         }
     },
     "Error": {

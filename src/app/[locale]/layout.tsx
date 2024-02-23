@@ -2,7 +2,16 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
-import LayoutProvider from '@/components/providers/LayoutProvider';
+import { Providers } from './provider';
+import Footer from '@/components/main/footer/Footer';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getSpecializationsWithStack } from '@/api/specialization';
+import Header from '@/components/main/header/Header';
 const open_sans = Open_Sans({
   weight: '400',
   subsets: ['latin'],
@@ -47,19 +56,43 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: [
+      constants.specialization
+        .FETCH_SPECIALIZATIONS_WITH_STACK,
+    ],
+    queryFn: getSpecializationsWithStack,
+  });
+
   return (
     <html lang={locale}>
       <body
         className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
       >
-        <LayoutProvider>{children}</LayoutProvider>
+        <Providers>
+          <header className="bg-graphite">
+            <HydrationBoundary
+              state={dehydrate(queryClient)}
+            >
+              <Header />
+            </HydrationBoundary>
+          </header>
+
+          <main>{children}</main>
+
+          <footer>
+            <Footer />
+          </footer>
+        </Providers>
+        {/* <LayoutProvider>{children}</LayoutProvider> */}
       </body>
     </html>
   );

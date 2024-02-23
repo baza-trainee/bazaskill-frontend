@@ -17,6 +17,7 @@ import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
+import SuccessIcon from '@/components/icons/SuccessIcon';
 
 const RegisterHrForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -46,14 +47,14 @@ const RegisterHrForm = () => {
   };
 
   const handleClose = () => {
-    setIsSubmitted(false); // Скидаємо стан після закриття форми
+    setIsSubmitted(false);
   };
 
   return (
     <>
       {!isSubmitted ? (
         <div className="mb-[64px] flex w-full flex-col items-center justify-center">
-          <h1 className="mb-[48px] mt-[60px] text-3xl font-bold">
+          <h1 className="mb-[26px] mt-[40px] text-base font-semibold sm:mt-[68px] sm:text-xl md:mt-[40px] md:text-2xl md:font-bold">
             Стати нашим HRom
           </h1>
           <form
@@ -61,7 +62,7 @@ const RegisterHrForm = () => {
             autoComplete="off"
             className="mb-[32px] flex flex-col"
           >
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="first_name"
                 control={control}
@@ -89,7 +90,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="phone"
                 control={control}
@@ -117,7 +118,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="company"
                 control={control}
@@ -145,7 +146,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <div>
                 <Controller
                   name="specialist"
@@ -170,9 +171,21 @@ const RegisterHrForm = () => {
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Даю згоду на обробку персональних даних"
+                        title="Прошу надіслати договір на ознайомлення"
                         isRequired={true}
                         errorText={errors.terms?.message}
+                      />
+                    )}
+                  />
+                  <Controller
+                    name="terms_2"
+                    control={control}
+                    render={({ field }) => (
+                      <CustomCheckbox
+                        {...field}
+                        title="Даю згоду на обробку персональних даних"
+                        isRequired={true}
+                        errorText={errors.terms_2?.message}
                       />
                     )}
                   />
@@ -192,10 +205,10 @@ const RegisterHrForm = () => {
               />
             </div>
 
-            <div className="">
+            <div className="text-center">
               <button
                 type="submit"
-                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
+                className="disabled:border-graaphite mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={
                   errors && !!Object.keys(errors).length
                 }
@@ -208,9 +221,14 @@ const RegisterHrForm = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>Ваш запит був успішно відправлений!</p>
-          <button onClick={handleClose}>Закрити</button>
+        <div className="flex justify-center gap-3 p-10 text-center">
+          <SuccessIcon />
+          <div>
+            <p className="text-start">
+              Дякуємо за співпрацю!{' '}
+            </p>
+            <p>Ваші дані успішно збережено.</p>
+          </div>
         </div>
       )}
     </>

@@ -1,9 +1,11 @@
+'use client';
 import React from 'react';
 import { useModal } from '@/stores/useModal';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
+import { usePathname } from 'next/navigation';
 
 type FooterLinkProps = {
   href: string;
@@ -32,7 +34,9 @@ const Footer = () => {
   );
   const modalType = useModal((state) => state.modalType);
   const { openModal, closeModal } = useModal();
-
+  const pathname = usePathname();
+  const isAdminPage = pathname.split('/').includes('admin');
+  if (isAdminPage) return null;
   return (
     <div
       className="pt-20m relative flex flex-col justify-center bg-darkGraphite 
@@ -47,7 +51,7 @@ const Footer = () => {
           >
             <Logo className="transition duration-500 hover:scale-110" />
           </a>
-          <h3 className="mb-20 mt-12 block font-tahoma text-2xl font-bold text-white transition-all xs:flex xs:mb-[20px] xs:font-medium justify-center md:text-base md:block xl:w-[300px] xl:text-xl xl:flex xl:mb-[18px] 2xl:w-[250px]">
+          <h3 className="mb-20 mt-12 block justify-center font-tahoma text-2xl font-bold text-white transition-all xs:mb-[20px] xs:flex xs:font-medium md:block md:text-base xl:mb-[18px] xl:flex xl:w-[300px] xl:text-xl 2xl:w-[250px]">
             За крок до офферу
           </h3>
         </div>
@@ -108,12 +112,17 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div className="flex justify-center px-10 py-8 xs:px-0 xs:flex-col items-center sm:flex-col sm:px-0 md:flex md:flex-row md:items-center md:justify-center md:w-[700px] md:px-0 md:pt-[15px] xl:mx-auto">
-        <p className="text-base text-white xs:text-[12px] sm:text-xs md:text-sm md:mr-[4px] xl:text-base">
-          Компанія направляє 10% прибутку на підтримку</p>
-          <p className="text-white xs:text-[12px] sm:text-xs md:text-sm md:mr-[4px] xl:text-base">59-тої бригади</p> 
-          <p className="text-white xs:text-[12px] sm:text-xs md:text-sm xl:text-base">ім.Якова Гандзюка</p>
-       </div>
+      <div className="flex items-center justify-center px-10 py-8 xs:flex-col xs:px-0 sm:flex-col sm:px-0 md:flex md:w-[700px] md:flex-row md:items-center md:justify-center md:px-0 md:pt-[15px] xl:mx-auto">
+        <p className="text-base text-white xs:text-[12px] sm:text-xs md:mr-[4px] md:text-sm xl:text-base">
+          Компанія направляє 10% прибутку на підтримку
+        </p>
+        <p className="text-white xs:text-[12px] sm:text-xs md:mr-[4px] md:text-sm xl:text-base">
+          59-тої бригади
+        </p>
+        <p className="text-white xs:text-[12px] sm:text-xs md:text-sm xl:text-base">
+          ім.Якова Гандзюка
+        </p>
+      </div>
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>
           <RegisterHrForm />

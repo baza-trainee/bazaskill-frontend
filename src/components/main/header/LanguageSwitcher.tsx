@@ -1,3 +1,4 @@
+'use client';
 import HeaderCaretDown from '@/components/icons/HeaderCaretDown';
 import { locales } from '@/i18n';
 import { usePathname, useRouter } from '@/navigation';

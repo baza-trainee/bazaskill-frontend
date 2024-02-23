@@ -20,7 +20,7 @@ const RegisterModal = ({
 
   const ModalLayout = () => (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 ">
-      <div className="relative max-h-[95vh] w-[780px] overflow-y-auto rounded-lg bg-white scrollbar-none">
+      <div className="relative max-h-[90vh] w-[88%] overflow-y-auto rounded-lg bg-white scrollbar-none sm:w-[90.5%] md:max-h-[95vh] md:max-w-[632px] xl:max-w-[900px] 5xl:max-w-[964px]">
         <div
           onClick={handleClose}
           className="absolute right-[1rem] top-[1rem] h-[1.5rem] w-[1.5rem] cursor-pointer"

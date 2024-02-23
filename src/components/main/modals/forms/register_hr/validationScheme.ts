@@ -6,23 +6,31 @@ const emailPattern =
 export const registerScheme = z.object({
   first_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
+    .min(2, 'Ім’я має містити мінімум 2 символи')
+    .max(30, 'Ім’я має містити максимум 30 символів')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) =>
+        /^[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.-]+$/.test(
+          value
+        ),
       {
-        message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+        message: 'Введіть коректне ім’я',
       }
     ),
 
   last_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
+    .min(2, 'Прізвище має містити мінімум 2 символи')
+    .max(30, 'Прізвище має містити максимум 30 символів')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
+      (value) =>
+        /^[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.-]+$/.test(
+          value
+        ),
       {
-        message:
-          'Тільки букви (без пробілів та спеціальних символів)',
+        message: 'Введіть коректне прізвище',
       }
     ),
 
@@ -58,6 +66,11 @@ export const registerScheme = z.object({
 
   specialist: z.string().nonempty('Це поле обовʼязкове'),
   terms: z.literal(true, {
+    errorMap: () => ({
+      message: '',
+    }),
+  }),
+  terms_2: z.literal(true, {
     errorMap: () => ({
       message:
         'Надайте згоду на обробку персональних даних',

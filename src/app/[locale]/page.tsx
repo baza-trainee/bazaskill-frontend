@@ -13,6 +13,9 @@ import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
 import Help from '@/components/main/help/Help';
 import ContentCards from '@/components/main/contentCards/ContentCards';
+import { getSpecializations } from '@/api/specialization';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 const Home = async () => {
   const queryClient = new QueryClient();
@@ -20,9 +23,23 @@ const Home = async () => {
     queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
     queryFn: getTestimonials,
   });
+
+  await queryClient.prefetchQuery({
+    queryKey: [
+      constants.specialization.FETCH_SPECIALIZATIONS,
+    ],
+    queryFn: getSpecializations,
+  });
+  const t = await getTranslations('Main');
   return (
     <div className="flex min-h-[100vh] w-full flex-col items-center justify-center gap-2 bg-graphite">
-      <Hero />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <Hero
+          search={t('hero_section.search')}
+          country={t('hero_section.country')}
+          speciality={t('hero_section.speciality')}
+        />
+      </HydrationBoundary>
       <Counters />
       <Help />
       <ContentCards />
