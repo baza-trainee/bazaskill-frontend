@@ -178,7 +178,7 @@ const RegisterPartnerForm = () => {
             </div>
             <div className="flex">
               <div className="mt-[32px] flex-col">
-                <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
+                <CustomCheckbox title="Прошу надіслати договір партнерства на ознайомлення" />
                 <Controller
                   name="terms"
                   control={control}

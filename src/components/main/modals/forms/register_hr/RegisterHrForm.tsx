@@ -163,7 +163,7 @@ const RegisterHrForm = () => {
                   )}
                 />
                 <div className="mt-[32px] flex-col">
-                  <CustomCheckbox title="Прошу надіслати договір на ознайомлення" />
+                  <CustomCheckbox title="Прошу надіслати договір рекрутингу на ознайомлення" />
                   <Controller
                     name="terms"
                     control={control}
