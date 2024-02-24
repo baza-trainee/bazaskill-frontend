@@ -193,6 +193,7 @@ const RegisterPartnerForm = () => {
                   )}
                 />
               </div>
+              </div>
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
 
               <Controller
