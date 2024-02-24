@@ -50,6 +50,13 @@ const config: Config = {
         'contacts-tablet':
           "url('/public/img/contactstablet.jpg')"
       },
+      backgroundPosition: {
+        'pos-0': '100% 0%',
+        'pos-100': '0% 0%',
+      },
+      backgroundSize: {
+        'size-200': '200% 200%',
+      },
       textDecoration: {
         'none': 'none',
       },
