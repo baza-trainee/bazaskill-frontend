@@ -9,5 +9,20 @@
     "Error": {
         "title": "Вибачте, сторінка, яку ви шукаєте, переміщена або видалена",
         "button": "На головну"
-      }
+    },
+    "Candidate": {
+        "about": "Про себе",
+        "stack": "Стек",
+        "education": "Освіта",
+        "courses": "Курси",
+        "baza_experience": "Досвід роботи на базі",
+        "projects": "проєкти",
+        "recomendation_from": "Рекомендації від",
+        "ask_data": "Запросити дані",
+        "candidate_project": {
+            "duration": "Тривалість",
+            "weeks": "тижнів",
+            "role": "Тім-лід"
+        }
+    }
 }

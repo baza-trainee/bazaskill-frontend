@@ -9,5 +9,20 @@
   "Error": {
     "title": "We are appologise but the page you are looking for was deleted or replaced",
     "button": "Home"
+  },
+  "Candidate": {
+    "about": "About myself",
+    "stack": "Stack",
+    "education": "Education",
+    "courses": "Courses",
+    "baza_experience": "Work experience at Baza",
+    "projects": "project(s)",
+    "recomendation_from": "Recommendations from",
+    "ask_data": "Request data",
+    "candidate_project": {
+      "duration": "Duration",
+      "weeks": "weeks",
+      "role": "Team-lead"
+    }
   }
 }

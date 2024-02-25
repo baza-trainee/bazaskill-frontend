@@ -9,5 +9,20 @@
   "Error": {
     "title": "Przepraszamy, strona, której szukasz, została przeniesiona lub usunięta",
     "button": "Home"
+  },
+  "Candidate": {
+    "about": "O mnie",
+    "stack": "Stos",
+    "education": "Edukacja",
+    "courses": "Kursy",
+    "baza_experience": "Doświadczenie zawodowe w Bazie",
+    "projects": "projekt",
+    "recomendation_from": "Rekomendacje od",
+    "ask_data": "Zażądaj danych",
+    "candidate_project": {
+      "duration": "Duration",
+      "weeks": "weeks",
+      "role": "Zespół ołowiu"
+    }
   }
 }

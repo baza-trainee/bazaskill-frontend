@@ -1,4 +1,7 @@
+import { useTranslations } from 'next-intl';
+
 const CandidateHero = () => {
+  const t = useTranslations('Candidate');
   return (
     <div className="container flex justify-between pt-[90px]">
       <div className="flex w-[68%] max-w-[830px] flex-col">
@@ -23,7 +26,7 @@ const CandidateHero = () => {
 
         <div className="mt-[60px] flex flex-col">
           <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">
-            Про себе
+            {t('about')}
           </h3>
           <span className="mt-[32px] font-sans text-[20px] font-[400] leading-[28px] text-white">
             I am a UX/UI designer with experience in
@@ -76,7 +79,7 @@ const CandidateHero = () => {
           </div>
         </div>
         <button className="main-gradient mt-[60px] flex h-[50px] w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]">
-          Запросити дані
+          {t('ask_data')}
         </button>
       </div>
     </div>
