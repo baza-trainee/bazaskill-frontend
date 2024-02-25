@@ -24,10 +24,22 @@ const MainInfo = () => {
         <h3 className="flex border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[24px] font-[700] text-white">
           {t('education')}
         </h3>
-        <div className="mt-[32px] flex flex-col font-sans text-[20px] font-[400] leading-[28px] text-white">
-          <span>GoIT - start your career in IT</span>
-          <span>UI\UX Design</span>
-          <span>травень 2023-грудень 2023</span>
+        <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
+          <div className="flex w-[34%] flex-col">
+            <span>GoIT - start your career in IT</span>
+            <span>UI\UX Design</span>
+            <span>травень 2023-грудень 2023</span>
+          </div>
+          <div className="flex w-[34%] flex-col">
+            <span>GoIT - start your career in IT</span>
+            <span>UI\UX Design</span>
+            <span>травень 2023-грудень 2023</span>
+          </div>
+          <div className="flex w-[34%] flex-col">
+            <span>GoIT - start your career in IT</span>
+            <span>UI\UX Design</span>
+            <span>травень 2023-грудень 2023</span>
+          </div>
         </div>
       </div>
 
@@ -35,10 +47,24 @@ const MainInfo = () => {
         <h3 className="flex border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[24px] font-[700] text-white">
           {t('courses')}
         </h3>
-        <div className="mt-[32px] flex flex-col font-sans text-[20px] font-[400] leading-[28px] text-white">
-          <span>GoIT - start your career in IT</span>
-          <span>UI\UX Design</span>
-          <span>травень 2023-грудень 2023</span>
+        <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
+          <div className="flex w-[34%] flex-col">
+            <span>GoIT - start your career in IT</span>
+            <span>UI\UX Design</span>
+            <span>травень 2023-грудень 2023</span>
+          </div>
+
+          <div className="flex w-[34%] flex-col">
+            <span>GoIT - start your career in IT</span>
+            <span>UI\UX Design</span>
+            <span>травень 2023-грудень 2023</span>
+          </div>
+
+          <div className="flex w-[34%] flex-col">
+            <span>GoIT - start your career in IT</span>
+            <span>UI\UX Design</span>
+            <span>травень 2023-грудень 2023</span>
+          </div>
         </div>
       </div>
 
