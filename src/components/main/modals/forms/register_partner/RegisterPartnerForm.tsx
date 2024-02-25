@@ -193,9 +193,8 @@ const RegisterPartnerForm = () => {
                   )}
                 />
               </div>
-              </div>
+            </div>
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
-
               <Controller
                 name="message"
                 control={control}
@@ -204,7 +203,9 @@ const RegisterPartnerForm = () => {
                     title="Коментар"
                     {...field}
                     errorText={errors.message?.message}
+                    isRequired={true}
                     placeholder="Коментар"
+                    errorTextStyle={{ bottom: '-16px' }}
                   />
                 )}
               />

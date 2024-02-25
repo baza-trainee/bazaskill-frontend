@@ -200,6 +200,8 @@ const RegisterHrForm = () => {
                     {...field}
                     errorText={errors.message?.message}
                     placeholder="Коментар"
+                    isRequired={true}
+                    errorTextStyle={{ bottom: '100px' }}
                   />
                 )}
               />

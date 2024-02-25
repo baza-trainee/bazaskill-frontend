@@ -2,21 +2,32 @@ import {
   ForwardedRef,
   InputHTMLAttributes,
   forwardRef,
+  CSSProperties,
 } from 'react';
 
 interface TextAreaProps
   extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
+  isRequired?: boolean;
+  errorTextStyle?: CSSProperties;
 }
 
 const TextArea = forwardRef(function TextArea(
-  { title, errorText, value = '', ...rest }: TextAreaProps,
+  {
+    title,
+    errorText,
+    isRequired,
+    value = '',
+    errorTextStyle,
+    ...rest
+  }: TextAreaProps,
   _ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   return (
     <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
       {!!title && <label htmlFor={title}>{title}</label>}
+      {isRequired && <span className="text-error">*</span>}
       <textarea
         {...rest}
         id={title}
@@ -28,7 +39,10 @@ const TextArea = forwardRef(function TextArea(
       />
 
       {errorText && (
-        <span className="absolute -bottom-4 left-0 text-xs text-error">
+        <span
+          className="absolute left-0 text-xs text-error "
+          style={errorTextStyle}
+        >
           {errorText}
         </span>
       )}
