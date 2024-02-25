@@ -77,7 +77,7 @@ const MainInfo = () => {
             <svg width={20} height={18}>
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
-            3 {t('projects')}
+            {t('projects', { count: 3, ordinal: true })}
           </div>
         </div>
 

@@ -16,7 +16,7 @@
     "education": "Education",
     "courses": "Courses",
     "baza_experience": "Work experience at Baza",
-    "projects": "project(s)",
+    "projects": "{count, plural, =0 {no projects yet} =1 {# project} other {# projects}}",
     "recomendation_from": "Recommendations from",
     "ask_data": "Request data",
     "candidate_project": {

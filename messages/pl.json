@@ -16,7 +16,7 @@
     "education": "Edukacja",
     "courses": "Kursy",
     "baza_experience": "Doświadczenie zawodowe w Bazie",
-    "projects": "projekt",
+    "projects": "{count, plural, =0 {jeszcze żadnych projektów} =1 {# project} =2 {# projecty} =3 {# projecty} other {# projektów}}",
     "recomendation_from": "Rekomendacje od",
     "ask_data": "Zażądaj danych",
     "candidate_project": {
