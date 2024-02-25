@@ -1,5 +1,5 @@
-import CandidateHero from '@/components/candidate/Hero';
-import MainInfo from '@/components/candidate/MainInfo';
+import CandidateHero from '@/components/candidate/CandidatePage/Hero';
+import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
 import React from 'react';
 
 const Candidate: React.FC = () => {
