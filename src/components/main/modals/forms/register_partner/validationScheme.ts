@@ -87,6 +87,19 @@ export const registerScheme = z.object({
           'Тільки букви та пробіли (без спеціальних символів)',
       }
     ),
+  message: z
+    .string()
+    .nonempty({ message: 'Це поле обовʼязкове' })
+    .max(300, { message: 'Не більше 300 символів' })
+    .refine(
+      (value) =>
+        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
+      {
+        message:
+          'Тільки букви та пробіли (без спеціальних символів)',
+      }
+    ),
+
   terms: z.literal(true, {
     errorMap: () => ({
       message: '',
@@ -99,10 +112,4 @@ export const registerScheme = z.object({
     }),
   }),
   specialist: z.string().nonempty('Це поле обовʼязкове'),
-  message: z
-    .string()
-    .max(
-      300,
-      'Максимальна довжина повідомлення - 300 символів'
-    ),
 });
