@@ -17,7 +17,7 @@ import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
-import SuccessIcon from '@/components/icons/SuccessIcon';
+import SuccessModal from '../SuccesModal';
 
 const RegisterHrForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -201,7 +201,6 @@ const RegisterHrForm = () => {
                     errorText={errors.message?.message}
                     placeholder="Коментар"
                     isRequired={true}
-                    errorTextStyle={{ bottom: '100px' }}
                   />
                 )}
               />
@@ -223,15 +222,7 @@ const RegisterHrForm = () => {
           </form>
         </div>
       ) : (
-        <div className="flex justify-center gap-3 p-10 text-center">
-          <SuccessIcon />
-          <div>
-            <p className="text-start">
-              Дякуємо за співпрацю!{' '}
-            </p>
-            <p>Ваші дані успішно збережено.</p>
-          </div>
-        </div>
+        <SuccessModal onClose={handleClose} />
       )}
     </>
   );

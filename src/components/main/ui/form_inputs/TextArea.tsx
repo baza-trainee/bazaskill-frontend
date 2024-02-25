@@ -40,7 +40,7 @@ const TextArea = forwardRef(function TextArea(
 
       {errorText && (
         <span
-          className="absolute left-0 text-xs text-error "
+          className="relative left-0 text-xs text-error "
           style={errorTextStyle}
         >
           {errorText}
