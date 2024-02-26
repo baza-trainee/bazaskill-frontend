@@ -180,23 +180,7 @@ const RegisterPartnerForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
-              <div className="mt-[32px] flex-col">
-                <CustomCheckbox title="Прошу надіслати договір партнерства на ознайомлення" />
-                <Controller
-                  name="terms"
-                  control={control}
-                  render={({ field }) => (
-                    <CustomCheckbox
-                      {...field}
-                      title="Даю згоду на обробку персональних даних"
-                      isRequired={true}
-                      errorText={errors.terms?.message}
-                    />
-                  )}
-                />
-              </div>
-            </div>
+            <div className="flex"></div>
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="message"
@@ -218,7 +202,7 @@ const RegisterPartnerForm = () => {
                   render={({ field }) => (
                     <CustomCheckbox
                       {...field}
-                      title="Прошу надіслати договір на ознайомлення"
+                      title="Прошу надіслати договір партнерства на ознайомлення"
                       isRequired={true}
                       errorText={errors.terms?.message}
                     />
