@@ -11,6 +11,7 @@ import { stack, countries } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
+import { useModal } from '@/stores/useModal';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -20,6 +21,7 @@ import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
 
 const RegisterHrForm = () => {
+  const { closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -48,6 +50,7 @@ const RegisterHrForm = () => {
 
   const handleClose = () => {
     setIsSubmitted(false);
+    closeModal();
   };
 
   return (
@@ -164,14 +167,13 @@ const RegisterHrForm = () => {
                   )}
                 />
                 <div className="mt-[32px] flex-col">
-                  <CustomCheckbox title="Прошу надіслати договір рекрутингу на ознайомлення" />
                   <Controller
                     name="terms"
                     control={control}
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Прошу надіслати договір на ознайомлення"
+                        title="Прошу надіслати договір рекрутінгу на ознайомлення"
                         isRequired={true}
                         errorText={errors.terms?.message}
                       />
@@ -209,7 +211,7 @@ const RegisterHrForm = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="disabled:border-graaphite mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:bg-inputBgGray disabled:hover:border-graphite"
+                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:border-graphite disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={
                   errors && !!Object.keys(errors).length
                 }

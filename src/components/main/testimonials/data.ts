@@ -13,7 +13,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 2,
     name: 'Юлія',
-    position: 'учасниця, Full Stack Developer',
+    position: 'учасниця, Fullstack Developer',
     review:
       'Я останнім часом думаю про те, що на Базу варто було б прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ',
     data: 'червень, 2023',
