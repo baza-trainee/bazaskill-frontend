@@ -181,7 +181,7 @@ const RegisterPartnerForm = () => {
               />
             </div>
             <div className="flex"></div>
-            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
+            <div className="flex flex-col md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="message"
                 control={control}
@@ -222,7 +222,7 @@ const RegisterPartnerForm = () => {
                 />
               </div>
             </div>
-            <div className="">
+            <div className="text-center ">
               <button
                 type="submit"
                 className="disabled:border-graaphite mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:bg-inputBgGray disabled:hover:border-graphite"
