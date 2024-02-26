@@ -12,6 +12,7 @@ import { stack } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
+import { useModal } from '@/stores/useModal';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -21,6 +22,7 @@ import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
 
 const RegisterPartnerForm = () => {
+  const { closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -49,6 +51,7 @@ const RegisterPartnerForm = () => {
 
   const handleClose = () => {
     setIsSubmitted(false);
+    closeModal();
   };
 
   return (

@@ -7,8 +7,8 @@
     }
   },
   "Error": {
-    "title": "We are appologise but the page you are looking for was deleted or replaced",
-    "button": "Home"
+    "title": "We apologize, but the page you are looking for has been deleted or replaced",
+    "button": "Go to the main page"
   },
   "Candidate": {
     "about": "About myself",
