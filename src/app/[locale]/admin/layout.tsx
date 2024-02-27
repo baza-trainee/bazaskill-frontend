@@ -1,3 +1,4 @@
+import SideBar from '@/components/admin/sidebar/SideBar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,5 +11,12 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return (
+    <div className="grid grid-cols-5 bg-graphite text-white">
+      <div>
+        <SideBar />
+      </div>
+      {children}
+    </div>
+  );
 }
