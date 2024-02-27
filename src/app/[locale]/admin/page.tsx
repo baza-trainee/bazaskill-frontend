@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminPage: React.FunctionComponent = () => {
+const AdminPage: React.FC = () => {
   return <div>page</div>;
 };
 
