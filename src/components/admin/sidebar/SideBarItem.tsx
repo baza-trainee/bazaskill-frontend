@@ -1,7 +1,6 @@
 import ArrowIcon from '@/components/icons/ArrowIcon';
 import Link from 'next/link';
 import React, { useState } from 'react';
-
 interface SideBarItemProps {
   href: string;
   children: React.ReactNode;
