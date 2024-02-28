@@ -30,13 +30,13 @@ const TextInput = forwardRef(function TextInput(
       ${
         errorText
           ? '[border:2px_solid_red] focus:[border:2px_solid_red]'
-          : ' focus:[border:2px_solid_#35DB4F] '
+          : 'border-none focus:outline-none'
       }
     `;
 
   return (
     <div
-      className={` w-full min-w-[100px] max-w-[442px] font-['Open_Sans',_sans-serif] font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={` w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={id}
@@ -55,7 +55,7 @@ const TextInput = forwardRef(function TextInput(
           className={inputClassName}
         />
         {iconComponent && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 transform">
+          <div className=" absolute right-[16px] top-[9px] ">
             {iconComponent}
           </div>
         )}
