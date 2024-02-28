@@ -1,4 +1,4 @@
-import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
+import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import { nanoid } from 'nanoid';
 import {
   ForwardedRef,
@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-interface TextInputProps
+interface PasswordInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
@@ -15,19 +15,19 @@ interface TextInputProps
   isRequired?: boolean;
 }
 
-const TextInput = forwardRef(function TextInput(
+const PasswordInput = forwardRef(function PasswordInput(
   {
     title,
     errorText,
     value = '',
     isRequired,
     ...rest
-  }: TextInputProps,
+  }: PasswordInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(true); // Стан для збереження значення текстової області
-
+  const [isEditing, setIsEditing] = useState(false); // Стан для збереження значення текстової області
+  const inputType = isEditing ? 'text' : 'password';
   const handleEditToggle = () => {
     setIsEditing(!isEditing); // Зміна стану редагування
   };
@@ -64,12 +64,11 @@ const TextInput = forwardRef(function TextInput(
           value={value}
           className={inputClassName}
           onBlur={handleBlur}
-          readOnly={!isEditing}
+          type={inputType}
         />
-
         <div className=" absolute right-[16px] top-[9px] ">
           <button type="button" onClick={handleEditToggle}>
-            <WriteIcon width={'32px'} height={'32px'} />
+            <NotEyeIcon width={'32px'} height={'32px'} />
           </button>
         </div>
       </div>
@@ -81,6 +80,6 @@ const TextInput = forwardRef(function TextInput(
   );
 });
 
-TextInput.displayName = 'TextInput';
+PasswordInput.displayName = 'PasswordInput';
 
-export default TextInput;
+export default PasswordInput;

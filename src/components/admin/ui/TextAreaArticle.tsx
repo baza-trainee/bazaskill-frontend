@@ -1,4 +1,4 @@
-import EyeIcon from '@/components/icons/Admin-icons/EyeIcon';
+import EyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import { nanoid } from 'nanoid';
@@ -9,30 +9,33 @@ import {
   useState,
 } from 'react';
 
-interface TextAreaBigProps
+interface TextAreaArticleProps
   extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
   isRequired?: boolean;
 }
 
-const TextAreaBig = forwardRef(function TextAreaBig(
+const TextAreaArticle = forwardRef(function TextAreaArticle(
   {
     title,
     errorText,
     value = '',
     isRequired,
     ...rest
-  }: TextAreaBigProps,
+  }: TextAreaArticleProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [inputValue, setInputValue] = useState(value);
   const [isEditing, setIsEditing] = useState(true); // Стан для збереження значення текстової області
 
   const handleClear = () => {
-    setInputValue(''); // Очищення значення текстової області
+    rest.onChange &&
+      rest.onChange({
+        target: { value: '' },
+      } as React.ChangeEvent<HTMLTextAreaElement>);
   };
+
   const handleEditToggle = () => {
     setIsEditing(!isEditing); // Зміна стану редагування
   };
@@ -51,7 +54,7 @@ ${
 
   return (
     <div
-      className={`w-[1529px]  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[1529px] font-sans font-normal  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={id}
@@ -66,9 +69,8 @@ ${
         <textarea
           {...rest}
           id={id}
-          value={inputValue}
+          value={value}
           className={inputClassName}
-          onChange={(e) => setInputValue(e.target.value)}
           onBlur={handleBlur}
           readOnly={!isEditing}
         />
@@ -89,6 +91,6 @@ ${
   );
 });
 
-TextAreaBig.displayName = 'TextAreaBig';
+TextAreaArticle.displayName = 'TextAreaArticle';
 
-export default TextAreaBig;
+export default TextAreaArticle;
