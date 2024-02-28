@@ -4,7 +4,6 @@ import Candidates from '@/components/icons/Admin-icons/Candidates';
 import CountersIcon from '@/components/icons/Admin-icons/CountersIcon';
 import PartnersIcon from '@/components/icons/Admin-icons/PartnersIcon';
 import ArticlesIcon from '@/components/icons/Admin-icons/ArticlesIcon';
-import { usePathname } from 'next/navigation';
 import ContactsIcon from '@/components/icons/Admin-icons/ContactsIcon';
 import SettingsIcon from '@/components/icons/Admin-icons/SettingsIcon';
 import PdfIcon from '@/components/icons/Admin-icons/PdfIcon';
