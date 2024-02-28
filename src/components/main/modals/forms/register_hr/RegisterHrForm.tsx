@@ -19,7 +19,6 @@ import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
-import PasswordInput from '@/components/admin/ui/PasswordInput';
 
 const RegisterHrForm = () => {
   const { closeModal } = useModal();
@@ -70,11 +69,12 @@ const RegisterHrForm = () => {
                 name="first_name"
                 control={control}
                 render={({ field }) => (
-                  <PasswordInput
-                    title="Пароль"
+                  <TextInput
+                    title="Імʼя"
                     {...field}
                     errorText={errors.first_name?.message}
-                    placeholder="Пароль"
+                    placeholder="Імʼя"
+                    isRequired={true}
                   />
                 )}
               />

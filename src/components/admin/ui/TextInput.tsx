@@ -13,6 +13,7 @@ interface TextInputProps
   errorText?: string;
   iconComponent?: JSX.Element;
   isRequired?: boolean;
+  isRead?: boolean;
 }
 
 const TextInput = forwardRef(function TextInput(
@@ -21,19 +22,20 @@ const TextInput = forwardRef(function TextInput(
     errorText,
     value = '',
     isRequired,
+    isRead,
     ...rest
   }: TextInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(true); // Стан для збереження значення текстової області
+  const [isEditing, setIsEditing] = useState(true);
 
   const handleEditToggle = () => {
-    setIsEditing(!isEditing); // Зміна стану редагування
+    setIsEditing(!isEditing);
   };
 
   const handleBlur = () => {
-    setIsEditing(false); // Зміна стану редагування на false при втраті фокуса
+    setIsEditing(false);
   };
 
   const inputClassName = `h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
@@ -67,11 +69,15 @@ const TextInput = forwardRef(function TextInput(
           readOnly={!isEditing}
         />
 
-        <div className=" absolute right-[16px] top-[9px] ">
-          <button type="button" onClick={handleEditToggle}>
-            <WriteIcon width={'32px'} height={'32px'} />
-          </button>
-        </div>
+        {isRead && (
+          <div className=" absolute right-[16px] top-[9px] ">
+            <button
+              type="button"
+              onClick={handleEditToggle}>
+              <WriteIcon width={'32px'} height={'32px'} />
+            </button>
+          </div>
+        )}
       </div>
 
       {errorText && (

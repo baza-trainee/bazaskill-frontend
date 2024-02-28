@@ -26,14 +26,14 @@ const TextAreaReviews = forwardRef(function TextAreaReviews(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(true); // Стан для збереження значення текстової області
+  const [isEditing, setIsEditing] = useState(true);
 
   const handleEditToggle = () => {
-    setIsEditing(!isEditing); // Зміна стану редагування
+    setIsEditing(!isEditing);
   };
 
   const handleBlur = () => {
-    setIsEditing(false); // Зміна стану редагування на false при втраті фокуса
+    setIsEditing(false);
   };
 
   const inputClassName = `mt-[8px] w-[442px] h-[200px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 p-[16px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] 

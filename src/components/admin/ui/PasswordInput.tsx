@@ -26,14 +26,14 @@ const PasswordInput = forwardRef(function PasswordInput(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(false); // Стан для збереження значення текстової області
+  const [isEditing, setIsEditing] = useState(false); 
   const inputType = isEditing ? 'text' : 'password';
   const handleEditToggle = () => {
-    setIsEditing(!isEditing); // Зміна стану редагування
+    setIsEditing(!isEditing); 
   };
 
   const handleBlur = () => {
-    setIsEditing(false); // Зміна стану редагування на false при втраті фокуса
+    setIsEditing(false); 
   };
 
   const inputClassName = `h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
