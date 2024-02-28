@@ -1,6 +1,7 @@
 import ArrowIcon from '@/components/icons/ArrowIcon';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface SideBarItemProps {
   href: string;

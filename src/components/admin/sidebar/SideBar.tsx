@@ -4,7 +4,7 @@ import Candidates from '@/components/icons/Admin-icons/Candidates';
 import CountersIcon from '@/components/icons/Admin-icons/CountersIcon';
 import PartnersIcon from '@/components/icons/Admin-icons/PartnersIcon';
 import ArticlesIcon from '@/components/icons/Admin-icons/ArticlesIcon';
-
+import { usePathname } from 'next/navigation';
 import ContactsIcon from '@/components/icons/Admin-icons/ContactsIcon';
 import SettingsIcon from '@/components/icons/Admin-icons/SettingsIcon';
 import PdfIcon from '@/components/icons/Admin-icons/PdfIcon';
@@ -22,28 +22,28 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<Candidates />}
-          href="#"
+          href="/admin/candidates"
         >
           Кандидати
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<CountersIcon />}
-          href="#"
+          href="/admin/counters"
         >
           Каунтер
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<PartnersIcon />}
-          href="#"
+          href="/admin/partners"
         >
           Партнери
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<ArticlesIcon />}
-          href="#"
+          href="/admin/posts"
         >
           Статті та поради
         </SideBarItem>
@@ -57,14 +57,14 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<ContactsIcon />}
-          href="#"
+          href="/admin/contacts"
         >
           Контакти
         </SideBarItem>
         <SideBarItem
           className="border-b"
           icon={<SettingsIcon />}
-          href="#"
+          href="/admin/settings"
         >
           Налаштування
         </SideBarItem>
