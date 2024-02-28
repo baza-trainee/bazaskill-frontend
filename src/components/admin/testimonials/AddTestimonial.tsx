@@ -13,7 +13,7 @@ import { defaultValues } from './defaultValues';
 import { testimonialValidation } from './validationSchema';
 import { TestimonialFormInput } from '@/types/testimonials';
 
-import TextArea from '../ui/TextArea';
+import TextArea from '../ui/TextAreaReviews';
 import TextInput from '../ui/TextInput';
 import {
   useMutation,
@@ -74,8 +74,7 @@ const AddTestimonial = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
-          className="mx-auto flex flex-1 flex-col items-center justify-center gap-4"
-        >
+          className="mx-auto flex flex-1 flex-col items-center justify-center gap-4">
           <div className="mb-5 flex gap-2">
             <section className="flex flex-col gap-4">
               <div className="flex gap-6">
@@ -114,8 +113,7 @@ const AddTestimonial = () => {
               isDirty && isValid
                 ? 'text-black'
                 : 'text-green-700'
-            }`}
-          >
+            }`}>
             Додати новий відгук на сайт?
           </p>
           <div className="flex gap-4">
@@ -124,8 +122,7 @@ const AddTestimonial = () => {
                 isDirty && isValid
                   ? 'bg-green-300 cursor-pointer text-black'
                   : 'cursor-not-allowed bg-slate-100 text-slate-500'
-              }`}
-            >
+              }`}>
               {isProcessing
                 ? 'Обробка запиту...'
                 : 'Додати'}

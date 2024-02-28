@@ -1,4 +1,4 @@
-import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
+import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import { nanoid } from 'nanoid';
 import {
   ForwardedRef,
@@ -7,35 +7,33 @@ import {
   useState,
 } from 'react';
 
-interface TextInputProps
+interface PasswordInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
   iconComponent?: JSX.Element;
   isRequired?: boolean;
-  isRead?: boolean;
 }
 
-const TextInput = forwardRef(function TextInput(
+const PasswordInput = forwardRef(function PasswordInput(
   {
     title,
     errorText,
     value = '',
     isRequired,
-    isRead,
     ...rest
-  }: TextInputProps,
+  }: PasswordInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(true);
-
+  const [isEditing, setIsEditing] = useState(false); 
+  const inputType = isEditing ? 'text' : 'password';
   const handleEditToggle = () => {
-    setIsEditing(!isEditing);
+    setIsEditing(!isEditing); 
   };
 
   const handleBlur = () => {
-    setIsEditing(false);
+    setIsEditing(false); 
   };
 
   const inputClassName = `h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
@@ -66,18 +64,13 @@ const TextInput = forwardRef(function TextInput(
           value={value}
           className={inputClassName}
           onBlur={handleBlur}
-          readOnly={!isEditing}
+          type={inputType}
         />
-
-        {isRead && (
-          <div className=" absolute right-[16px] top-[9px] ">
-            <button
-              type="button"
-              onClick={handleEditToggle}>
-              <WriteIcon width={'32px'} height={'32px'} />
-            </button>
-          </div>
-        )}
+        <div className=" absolute right-[16px] top-[9px] ">
+          <button type="button" onClick={handleEditToggle}>
+            <NotEyeIcon width={'32px'} height={'32px'} />
+          </button>
+        </div>
       </div>
 
       {errorText && (
@@ -87,6 +80,6 @@ const TextInput = forwardRef(function TextInput(
   );
 });
 
-TextInput.displayName = 'TextInput';
+PasswordInput.displayName = 'PasswordInput';
 
-export default TextInput;
+export default PasswordInput;
