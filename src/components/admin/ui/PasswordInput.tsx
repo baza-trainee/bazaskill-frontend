@@ -1,3 +1,4 @@
+'use client';
 import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import { nanoid } from 'nanoid';
 import {
@@ -26,27 +27,28 @@ const PasswordInput = forwardRef(function PasswordInput(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
   const inputType = isEditing ? 'text' : 'password';
   const handleEditToggle = () => {
-    setIsEditing(!isEditing); 
+    setIsEditing(!isEditing);
   };
 
   const handleBlur = () => {
-    setIsEditing(false); 
+    setIsEditing(false);
   };
 
-  const inputClassName = `h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
-      ${
-        errorText
-          ? '[border:2px_solid_red] focus:[border:2px_solid_red]'
-          : 'border-none focus:outline-none'
-      }
+  const inputClassName = `w-[442px] h-[44px] bg-${isEditing ? '[#efefef]' : '[#f8f8f8]'} h-[44px] outline-none [border:1px_solid_transparent]  rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[9px] py-[16px] text-[#020202] text-[16px]
+  hover:bg-[#ebfcee] 
+${
+  errorText
+    ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
+    : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
+}
     `;
 
   return (
     <div
-      className={` w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={id}
@@ -68,7 +70,7 @@ const PasswordInput = forwardRef(function PasswordInput(
         />
         <div className=" absolute right-[16px] top-[9px] ">
           <button type="button" onClick={handleEditToggle}>
-            <NotEyeIcon width={'32px'} height={'32px'} />
+            <NotEyeIcon width={'24px'} height={'24px'} />
           </button>
         </div>
       </div>
