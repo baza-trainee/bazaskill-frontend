@@ -11,7 +11,7 @@ export const registerScheme = z.object({
     .string()
     .nonempty('Введіть ім’я')
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
-    .max(50, 'Ім’я повинно бути не більше 50 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
       (value) => nonRussianLettersPattern.test(value),
       { message: 'Введіть коректне ім’я' }
