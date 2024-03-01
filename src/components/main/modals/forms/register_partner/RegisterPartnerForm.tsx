@@ -154,16 +154,14 @@ const RegisterPartnerForm = () => {
 
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
-                name="specialist"
+                name="position"
                 control={control}
-                defaultValue=""
                 render={({ field }) => (
-                  <SelectInput
-                    errorText={errors.specialist?.message}
-                    title="Шукаю"
+                  <TextInput
+                    title="Посада представника"
                     {...field}
-                    options={stack}
-                    placeholder="Спеціальність"
+                    errorText={errors.position?.message}
+                    placeholder="Посада"
                     isRequired={true}
                   />
                 )}
@@ -184,14 +182,16 @@ const RegisterPartnerForm = () => {
               />
             </div>
             <Controller
-              name="position"
+              name="specialist"
               control={control}
+              defaultValue=""
               render={({ field }) => (
-                <TextInput
-                  title="Посада представника"
+                <SelectInput
+                  errorText={errors.specialist?.message}
+                  title="Шукаю"
                   {...field}
-                  errorText={errors.position?.message}
-                  placeholder="Посада"
+                  options={stack}
+                  placeholder="Спеціальність"
                   isRequired={true}
                 />
               )}
