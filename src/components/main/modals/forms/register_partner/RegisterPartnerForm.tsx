@@ -20,6 +20,7 @@ import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
+import { countries } from '../register_partner/data';
 
 const RegisterPartnerForm = () => {
   const { closeModal } = useModal();
@@ -150,6 +151,7 @@ const RegisterPartnerForm = () => {
                 )}
               />
             </div>
+
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="specialist"
@@ -167,19 +169,33 @@ const RegisterPartnerForm = () => {
                 )}
               />
               <Controller
-                name="position"
+                name="country"
                 control={control}
+                defaultValue=""
                 render={({ field }) => (
-                  <TextInput
-                    title="Посада представника"
+                  <SelectInput
+                    title="Країна"
                     {...field}
-                    errorText={errors.position?.message}
-                    placeholder="Посада"
-                    isRequired={true}
+                    errorText={errors.country?.message}
+                    options={countries}
+                    placeholder="Країна"
                   />
                 )}
               />
             </div>
+            <Controller
+              name="position"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  title="Посада представника"
+                  {...field}
+                  errorText={errors.position?.message}
+                  placeholder="Посада"
+                  isRequired={true}
+                />
+              )}
+            />
             <div className="flex"></div>
             <div className="flex flex-col md:flex-row md:items-stretch md:justify-center">
               <Controller

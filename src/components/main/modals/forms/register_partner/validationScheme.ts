@@ -58,7 +58,7 @@ export const registerScheme = z.object({
         message: 'Введіть коректне ім’я',
       }
     ),
-
+  country: z.string(),
   last_name: z
     .string()
     .nonempty('Введіть прізвище')
