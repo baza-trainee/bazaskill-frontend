@@ -63,7 +63,8 @@ const RegisterHrForm = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="mb-[32px] flex flex-col">
+            className="mb-[32px] flex flex-col"
+          >
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="first_name"
@@ -130,6 +131,7 @@ const RegisterHrForm = () => {
                     title="Компанія"
                     {...field}
                     placeholder="Компанія"
+                    errorText={errors.company?.message}
                   />
                 )}
               />
@@ -213,7 +215,8 @@ const RegisterHrForm = () => {
                 className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:border-graphite disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={
                   errors && !!Object.keys(errors).length
-                }>
+                }
+              >
                 {isProcessing
                   ? 'Обробка запиту...'
                   : 'Відправити'}

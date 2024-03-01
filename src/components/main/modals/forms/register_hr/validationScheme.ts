@@ -2,6 +2,9 @@ import { z } from 'zod';
 
 const emailPattern =
   /^(?!^\.)[a-zA-Z0-9_%+-]*(?:\.[a-zA-Z0-9_%+-]+)?[a-zA-Z0-9_%+-]+@(?!.*\.)[a-zA-Z0-9_%+-]*(?:\.[a-zA-Z0-9_%+-]+)?[a-zA-Z0-9_%+-]+\.[a-zA-Z]{2,}$/;
+const nonRussianLettersPattern =
+  /^(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\s`’-]+$/;
+const messageMaxLength = 300;
 
 export const registerScheme = z.object({
   first_name: z
@@ -10,10 +13,7 @@ export const registerScheme = z.object({
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
     .max(50, 'Ім’я повинно бути не більше 50 знаків”')
     .refine(
-      (value) =>
-        /^(?!^\s+$)[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’-]+$/.test(
-          value
-        ),
+      (value) => nonRussianLettersPattern.test(value),
       {
         message: 'Введіть коректне ім’я',
       }
@@ -25,12 +25,9 @@ export const registerScheme = z.object({
     .min(2, 'Прізвище повинно мати не менше 2 знаків')
     .max(50, 'Прізвище повинно бути не більше 50 знаків”')
     .refine(
-      (value) =>
-        /^(?!^\s+$)[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’-]+$/.test(
-          value
-        ),
+      (value) => nonRussianLettersPattern.test(value),
       {
-        message: 'Введіть коректне прізвище',
+        message: 'Введіть коректне ім’я',
       }
     ),
 
@@ -58,7 +55,14 @@ export const registerScheme = z.object({
       }
     ),
 
-  company: z.string(),
+  company: z
+    .string()
+    .refine(
+      (value) => nonRussianLettersPattern.test(value),
+      {
+        message: 'Введіть коректну назву',
+      }
+    ),
 
   country: z.string(),
 
@@ -80,5 +84,12 @@ export const registerScheme = z.object({
   message: z
     .string()
     .nonempty({ message: 'Це поле обовʼязкове' })
-    .max(300, { message: 'Не більше 300 символів' }),
+    .refine(
+      (value) =>
+        nonRussianLettersPattern.test(value) &&
+        value.length <= messageMaxLength,
+      {
+        message: `Введіть коректний коментар та не більше ${messageMaxLength} символів`,
+      }
+    ),
 });
