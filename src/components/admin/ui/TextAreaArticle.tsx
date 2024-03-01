@@ -1,12 +1,8 @@
-import EyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
-import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import { nanoid } from 'nanoid';
 import {
   ForwardedRef,
   InputHTMLAttributes,
   forwardRef,
-  useState,
 } from 'react';
 
 interface TextAreaArticleProps
@@ -27,34 +23,19 @@ const TextAreaArticle = forwardRef(function TextAreaArticle(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const id = nanoid();
-  const [isEditing, setIsEditing] = useState(true);
 
-  const handleClear = () => {
-    rest.onChange &&
-      rest.onChange({
-        target: { value: '' },
-      } as React.ChangeEvent<HTMLTextAreaElement>);
-  };
-
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleBlur = () => {
-    setIsEditing(false);
-  };
-
-  const inputClassName = ` scroll-auto mt-[8px] w-[1529px] h-[123px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 p-[16px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16]
+  const inputClassName = `bg-[#efefef] mt-[8px] w-[907px] h-[123px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 py-[16px] pl-[16px] pr-[40px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16]
+hover:bg-[#ebfcee] 
 ${
   errorText
-    ? 'border-red-500  outline-red-500 focus:outline-red-500'
-    : 'border-none focus:outline-none'
+    ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
+    : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
 }
 `;
 
   return (
     <div
-      className={`w-[1529px] font-sans font-normal  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[907px] font-sans font-normal  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={id}
@@ -65,24 +46,13 @@ ${
           )}
         </label>
       )}
-      <div className="relative z-0 mt-[8px]  ">
+      <div className="relative  mt-[8px]  ">
         <textarea
           {...rest}
           id={id}
           value={value}
           className={inputClassName}
-          onBlur={handleBlur}
-          readOnly={!isEditing}
         />
-        <div className="absolute  bottom-[8px] right-[21px] z-10  flex gap-[32px] p-[8px]">
-          <EyeIcon width={32} height={32} />
-          <button type="button" onClick={handleEditToggle}>
-            <WriteIcon width={'32px'} height={'32px'} />
-          </button>
-          <button type="submit" onClick={handleClear}>
-            <TrashIcon width={'32px'} height={'32px'} />
-          </button>
-        </div>
       </div>
       {errorText && (
         <span className="ml-2 text-xs">{errorText}</span>

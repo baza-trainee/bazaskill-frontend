@@ -1,3 +1,4 @@
+'use client';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import { nanoid } from 'nanoid';
 import {
@@ -38,12 +39,13 @@ const TextInput = forwardRef(function TextInput(
     setIsEditing(false);
   };
 
-  const inputClassName = `h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
-      ${
-        errorText
-          ? '[border:2px_solid_red] focus:[border:2px_solid_red]'
-          : 'border-none focus:outline-none'
-      }
+  const inputClassName = `bg-${isEditing ? '[#efefef]' : '[#f8f8f8]'} h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
+    hover:bg-[#ebfcee] 
+${
+  errorText
+    ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
+    : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
+}
     `;
 
   return (
@@ -66,7 +68,7 @@ const TextInput = forwardRef(function TextInput(
           value={value}
           className={inputClassName}
           onBlur={handleBlur}
-          readOnly={!isEditing}
+          readOnly={isRead && !isEditing}
         />
 
         {isRead && (
