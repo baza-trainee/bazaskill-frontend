@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const emailPattern =
-  /^(?!^\.)[a-zA-Z0-9_%+-]*(?:\.[a-zA-Z0-9_%+-]+)?[a-zA-Z0-9_%+-]+@(?!.*\.)[a-zA-Z0-9_%+-]*(?:\.[a-zA-Z0-9_%+-]+)?[a-zA-Z0-9_%+-]+\.[a-zA-Z]{2,}$/;
+  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,}$/;
 const nonRussianLettersPattern =
   /^(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\s`’-]+$/;
 const messageMaxLength = 300;
