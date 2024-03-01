@@ -174,7 +174,7 @@ const RegisterHrForm = () => {
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Прошу надіслати договір рекрутінгу на ознайомлення"
+                        title="Прошу надіслати договір рекрутингу на ознайомлення"
                         isRequired={true}
                         errorText={errors.terms?.message}
                       />
