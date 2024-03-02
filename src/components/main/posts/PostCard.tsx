@@ -24,7 +24,7 @@ const PostCard = ({ post }: { post: Post }) => {
         <h4 className="pb-6 text-center text-xl font-semibold text-white md:pb-4 md:text-base xl:pb-6 xl:text-xl">
           {post.heading}
         </h4>
-        <p className="text-sm text-white md:line-clamp-4 xl:line-clamp-4">
+        <p className="text-lg text-white md:line-clamp-4 xl:line-clamp-4">
           {post.text}
         </p>
       </a>
