@@ -1,6 +1,5 @@
 'use client';
 import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
-import { nanoid } from 'nanoid';
 import {
   ForwardedRef,
   InputHTMLAttributes,
@@ -26,7 +25,6 @@ const PasswordInput = forwardRef(function PasswordInput(
   }: PasswordInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
-  const id = nanoid();
   const [isEditing, setIsEditing] = useState(false);
   const inputType = isEditing ? 'text' : 'password';
   const handleEditToggle = () => {
@@ -51,18 +49,18 @@ ${
       className={`w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
-          htmlFor={id}
-          className=" mb-0  text-[20px] leading-[1.4]  text-white">
+          htmlFor={title}
+          className=" mb-[8px]  block text-[20px] leading-[1.4]  text-white">
           {title}
           {isRequired && (
             <span className="text-error">*</span>
           )}
         </label>
       )}
-      <div className="relative mt-[8px] ">
+      <div className="relative ">
         <input
           {...rest}
-          id={id}
+          id={title}
           value={value}
           className={inputClassName}
           onBlur={handleBlur}
@@ -70,7 +68,7 @@ ${
         />
         <div className=" absolute right-[16px] top-[9px] ">
           <button type="button" onClick={handleEditToggle}>
-            <NotEyeIcon width={'24px'} height={'24px'} />
+            <NotEyeIcon />
           </button>
         </div>
       </div>
