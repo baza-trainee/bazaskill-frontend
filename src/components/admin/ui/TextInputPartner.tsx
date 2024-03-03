@@ -1,6 +1,5 @@
 'use client';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
-import { nanoid } from 'nanoid';
 import {
   ForwardedRef,
   InputHTMLAttributes,
@@ -29,7 +28,6 @@ const TextInputPartner = forwardRef(
     }: TextInputPartnerProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) {
-    const id = nanoid();
     const [isEditing, setIsEditing] = useState(true);
 
     const handleEditToggle = () => {
@@ -54,18 +52,18 @@ ${
         className={` w-[597px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
         {!!title && (
           <label
-            htmlFor={id}
-            className=" mb-0  text-[20px] leading-[1.4]  text-white">
+            htmlFor={title}
+            className="mb-[8px]  block text-[20px] leading-[1.4]  text-white">
             {title}
             {isRequired && (
               <span className="text-error">*</span>
             )}
           </label>
         )}
-        <div className="relative mt-[8px] ">
+        <div className="relative">
           <input
             {...rest}
-            id={id}
+            id={title}
             value={value}
             className={inputClassName}
             onBlur={handleBlur}
@@ -77,7 +75,7 @@ ${
               <button
                 type="button"
                 onClick={handleEditToggle}>
-                <WriteIcon width={'32px'} height={'32px'} />
+                <WriteIcon />
               </button>
             </div>
           )}

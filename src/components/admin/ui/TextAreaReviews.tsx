@@ -1,6 +1,5 @@
 'use client';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
-import { nanoid } from 'nanoid';
 import {
   ForwardedRef,
   InputHTMLAttributes,
@@ -26,7 +25,6 @@ const TextAreaReviews = forwardRef(function TextAreaReviews(
   }: TextAreaReviewsProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
-  const id = nanoid();
   const [isEditing, setIsEditing] = useState(true);
 
   const handleEditToggle = () => {
@@ -52,18 +50,18 @@ ${
       className={`w-[442px] font-sans font-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
-          htmlFor={id}
-          className="mb-0  text-[20px] leading-[1.4]  text-white">
+          htmlFor={title}
+          className="mb-[8px]  block text-[20px] leading-[1.4]  text-white">
           {title}
           {isRequired && (
             <span className="text-error">*</span>
           )}
         </label>
       )}
-      <div className="relative mt-[8px] ">
+      <div className="relative ">
         <textarea
           {...rest}
-          id={id}
+          id={title}
           value={value}
           className={inputClassName}
           onBlur={handleBlur}
@@ -72,7 +70,7 @@ ${
 
         <div className="absolute right-[16px] top-[24px]">
           <button type="button" onClick={handleEditToggle}>
-            <WriteIcon width={'24px'} height={'24px'} />
+            <WriteIcon className="h-[24px] w-[24px]" />
           </button>
         </div>
       </div>
