@@ -12,15 +12,18 @@ import { stack } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
+import { useModal } from '@/stores/useModal';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
-import SuccessIcon from '@/components/icons/SuccessIcon';
+import SuccessModal from '../SuccesModal';
+import { countries } from '../register_partner/data';
 
 const RegisterPartnerForm = () => {
+  const { closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -49,6 +52,7 @@ const RegisterPartnerForm = () => {
 
   const handleClose = () => {
     setIsSubmitted(false);
+    closeModal();
   };
 
   return (
@@ -147,22 +151,8 @@ const RegisterPartnerForm = () => {
                 )}
               />
             </div>
+
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
-              <Controller
-                name="specialist"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <SelectInput
-                    errorText={errors.specialist?.message}
-                    title="Шукаю"
-                    {...field}
-                    options={stack}
-                    placeholder="Спеціальність"
-                    isRequired={true}
-                  />
-                )}
-              />
               <Controller
                 name="position"
                 control={control}
@@ -176,8 +166,38 @@ const RegisterPartnerForm = () => {
                   />
                 )}
               />
+              <Controller
+                name="country"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <SelectInput
+                    title="Країна"
+                    {...field}
+                    errorText={errors.country?.message}
+                    options={countries}
+                    placeholder="Країна"
+                  />
+                )}
+              />
             </div>
-            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
+            <Controller
+              name="specialist"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <SelectInput
+                  errorText={errors.specialist?.message}
+                  title="Шукаю"
+                  {...field}
+                  options={stack}
+                  placeholder="Спеціальність"
+                  isRequired={true}
+                />
+              )}
+            />
+            <div className="flex"></div>
+            <div className="flex flex-col md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="message"
                 control={control}
@@ -186,6 +206,7 @@ const RegisterPartnerForm = () => {
                     title="Коментар"
                     {...field}
                     errorText={errors.message?.message}
+                    isRequired={true}
                     placeholder="Коментар"
                   />
                 )}
@@ -197,7 +218,7 @@ const RegisterPartnerForm = () => {
                   render={({ field }) => (
                     <CustomCheckbox
                       {...field}
-                      title="Прошу надіслати договір на ознайомлення"
+                      title="Прошу надіслати договір партнерства на ознайомлення"
                       isRequired={true}
                       errorText={errors.terms?.message}
                     />
@@ -217,7 +238,7 @@ const RegisterPartnerForm = () => {
                 />
               </div>
             </div>
-            <div className="">
+            <div className="text-center ">
               <button
                 type="submit"
                 className="disabled:border-graaphite mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:bg-inputBgGray disabled:hover:border-graphite"
@@ -233,15 +254,7 @@ const RegisterPartnerForm = () => {
           </form>
         </div>
       ) : (
-        <div className="flex justify-center gap-3 p-10 text-center">
-          <SuccessIcon />
-          <div>
-            <p className="text-start">
-              Дякуємо за співпрацю!{' '}
-            </p>
-            <p>Ваші дані успішно збережено.</p>
-          </div>
-        </div>
+        <SuccessModal onClose={handleClose} />
       )}
     </>
   );

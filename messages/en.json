@@ -7,7 +7,22 @@
     }
   },
   "Error": {
-    "title": "We are appologise but the page you are looking for was deleted or replaced",
-    "button": "Home"
+    "title": "We apologize, but the page you are looking for has been deleted or replaced",
+    "button": "Go to the main page"
+  },
+  "Candidate": {
+    "about": "About myself",
+    "stack": "Stack",
+    "education": "Education",
+    "courses": "Courses",
+    "baza_experience": "Work experience at Baza",
+    "projects": "{count, plural, =0 {no projects yet} =1 {# project} other {# projects}}",
+    "recomendation_from": "Recommendations from",
+    "ask_data": "Request data",
+    "candidate_project": {
+      "duration": "Duration",
+      "weeks": "weeks",
+      "role": "Team-lead"
+    }
   }
 }

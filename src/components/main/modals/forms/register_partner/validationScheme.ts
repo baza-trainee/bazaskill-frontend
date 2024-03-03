@@ -2,7 +2,7 @@ import { z } from 'zod';
 import isURL from 'validator/lib/isURL';
 
 const emailPattern =
-  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,}$/;
 
 export const registerScheme = z.object({
   name: z
@@ -22,16 +22,14 @@ export const registerScheme = z.object({
 
   phone: z
     .string()
-    .nonempty('Це поле обовʼязкове для заповнення')
-    .min(9, 'Номер телефону має містити мінімум 9 символів')
-    .max(
-      13,
-      'Номер телефону має містити максимум 13 символів'
-    )
-    .refine((value) => /^\+\d{9,13}$/.test(value), {
-      message:
-        'Некоректно введений номер телефону, повинен почнатися з +',
-    }),
+    .nonempty('Це поле обовʼязкове')
+    .refine(
+      (value) => /^\+(?:[0-9] ?){6,14}[0-9]$/.test(value),
+      {
+        message:
+          'Введіть коректний номер телефону в міжнародному форматі',
+      }
+    ),
 
   email: z
     .string()
@@ -48,27 +46,27 @@ export const registerScheme = z.object({
 
   first_name: z
     .string()
-    .nonempty('Це поле обовʼязкове для заповнення')
-    .min(2, 'Ім’я має містити мінімум 2 символи')
-    .max(30, 'Ім’я має містити максимум 30 символів')
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(50, 'Ім’я повинно бути не більше 50 знаків”')
     .refine(
       (value) =>
-        /^[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.-]+$/.test(
+        /^(?!^\s+$)[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’-]+$/.test(
           value
         ),
       {
         message: 'Введіть коректне ім’я',
       }
     ),
-
+  country: z.string(),
   last_name: z
     .string()
-    .nonempty('Це поле обовʼязкове для заповнення')
-    .min(2, 'Прізвище має містити мінімум 2 символи')
-    .max(30, 'Прізвище має містити максимум 30 символів')
+    .nonempty('Введіть прізвище')
+    .min(2, 'Прізвище повинно мати не менше 2 знаків')
+    .max(50, 'Прізвище повинно бути не більше 50 знаків”')
     .refine(
       (value) =>
-        /^[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s.-]+$/.test(
+        /^(?!^\s+$)[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’-]+$/.test(
           value
         ),
       {
@@ -87,6 +85,11 @@ export const registerScheme = z.object({
           'Тільки букви та пробіли (без спеціальних символів)',
       }
     ),
+  message: z
+    .string()
+    .nonempty({ message: 'Це поле обовʼязкове' })
+    .max(300, { message: 'Не більше 300 символів' }),
+
   terms: z.literal(true, {
     errorMap: () => ({
       message: '',
@@ -99,10 +102,4 @@ export const registerScheme = z.object({
     }),
   }),
   specialist: z.string().nonempty('Це поле обовʼязкове'),
-  message: z
-    .string()
-    .max(
-      300,
-      'Максимальна довжина повідомлення - 300 символів'
-    ),
 });

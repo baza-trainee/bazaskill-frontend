@@ -88,7 +88,7 @@ export default async function RootLayout({
 
           <main>{children}</main>
 
-          <footer>
+          <footer className="bg-graphite">
             <Footer />
           </footer>
         </Providers>

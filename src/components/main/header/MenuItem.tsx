@@ -59,7 +59,9 @@ const MenuItem = ({
             <HeaderSearchIcon />
           </span>
 
-          <h3>{title}</h3>
+          <h3 className="font-sans text-[18px] font-[600]">
+            {title}
+          </h3>
         </div>
 
         <span
