@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 'use client';
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 
 interface FileInputPostProps {
   title?: string;
@@ -23,12 +23,18 @@ const FileInputPost = forwardRef(function FileInputPost(
   }: FileInputPostProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
+  const [selectedFileName, setSelectedFileName] = useState<
+    string | null
+  >(null);
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const files = event.target.files;
     if (files && files.length > 0) {
-      onChange(files[0]);
+      const selectedFile = files[0];
+      setSelectedFileName(selectedFile.name);
+      onChange(selectedFile);
     }
   };
 
@@ -64,7 +70,11 @@ ${
         className={inputClassName}
         onClick={handlePlaceholderClick}>
         <span className="text-[16px] leading-[1.16] text-[#787878]">
-          {placeholder}
+          {(
+            <span className="text-[#020202]">
+              {selectedFileName}
+            </span>
+          ) || placeholder}
         </span>
         <div className=" absolute right-[16px] top-[9px] z-0 ">
           <UploadIcon />
