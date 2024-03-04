@@ -13,11 +13,11 @@ import Logo from '@/components/icons/Logo';
 
 const SideBar: React.FC = () => {
   return (
-    <aside className="min-h-[100vh] w-[287px] border-l border-r border-gray bg-graphite">
+    <aside className="no-scrollbar max-h-[100vh] w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
       <div className="flex h-[104px] items-center justify-center">
         <Logo />
       </div>
-      <ul className="mb-[380px] flex flex-col">
+      <ul className="mb-[80px] flex flex-col">
         <SideBarItem
           className=""
           icon={<Candidates />}

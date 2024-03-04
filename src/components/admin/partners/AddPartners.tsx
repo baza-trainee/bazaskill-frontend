@@ -14,6 +14,7 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
+import PageTitle from '../ui/PageTitle';
 
 const AddPartners = () => {
   const {
@@ -32,13 +33,9 @@ const AddPartners = () => {
     setFile(selectedFile);
   };
   return (
-    <div className="">
-      <div className="mb-9 mt-12">
-        <h1 className="mb-[50px] text-5xl font-bold">
-          Додати партнера
-        </h1>
-      </div>
-      <div className="flex gap-[180px]">
+    <div className="p-[24px]">
+      <PageTitle title="Додати партнера" />
+      <div className="mt-[80px] flex gap-[180px]">
         <form className="flex w-[597px] flex-col gap-[30px]">
           <div>
             <Controller

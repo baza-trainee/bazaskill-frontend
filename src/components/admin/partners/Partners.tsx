@@ -4,13 +4,12 @@ import React from 'react';
 import { partners } from './data';
 import { Partners } from '@/types/partners';
 import PartnersCard from './PartnersCard';
+import PageTitle from '../ui/PageTitle';
 
 const Partners = () => {
   return (
-    <section className="w-[1553px] pl-[40px] pt-[40px]">
-      <h2 className="mb-[50px] font-['Tahoma',_sans-serif] text-[40px] font-bold  leading-[1.5] tracking-[1px] text-[#ffffff]">
-        Партнери
-      </h2>
+    <section className="no-scrollbar max-h-[100vh] w-full overflow-auto p-[24px]">
+      <PageTitle title="Партнери" />
 
       <div className="flex flex-wrap gap-[25px]">
         <Link
