@@ -7,7 +7,7 @@ import TestimonialCard from './TestimonialCard';
 
 const Testimonials = () => {
   return (
-    <section className="w-[1553px] pl-[24px] pl-[40px] pt-[40px]">
+    <section className="pr-0px w-full max-w-[1553px] pl-[24px] pt-[40px]">
       <h2 className="mb-[50px] font-['Tahoma',_sans-serif] text-[40px] font-bold  leading-[1.5] tracking-[1px] text-[#ffffff]">
         Відгуки
       </h2>
@@ -20,12 +20,10 @@ const Testimonials = () => {
         </p>
       </Link>
 
-      <div className="max-h-[728px] overflow-auto">
+      <div className="custom-scrollbar  max-h-[728px] w-full max-w-[1529px] overflow-y-auto">
         <ul>
           {testimonials.map((item: Testimonial) => (
-            <li
-              key={item.id}
-              className="max-w-[100%] py-[30px]   [border-top:1px_solid_#787878]">
+            <li key={item.id}>
               <TestimonialCard item={item} />
             </li>
           ))}
