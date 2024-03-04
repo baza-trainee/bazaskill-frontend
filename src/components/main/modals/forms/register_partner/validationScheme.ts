@@ -2,12 +2,23 @@ import { z } from 'zod';
 import isURL from 'validator/lib/isURL';
 
 const emailPattern =
-  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,}$/;
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const nonRussianLettersPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const messageMaxLength = 300;
 
 export const registerScheme = z.object({
   name: z
     .string()
-    .nonempty('Це поле обовʼязкове для заповнення'),
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .refine(
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
+    ),
 
   link: z
     .string()
@@ -48,30 +59,20 @@ export const registerScheme = z.object({
     .string()
     .nonempty('Введіть ім’я')
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
-    .max(50, 'Ім’я повинно бути не більше 50 знаків”')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) =>
-        /^(?!^\s+$)[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’-]+$/.test(
-          value
-        ),
-      {
-        message: 'Введіть коректне ім’я',
-      }
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
     ),
   country: z.string(),
   last_name: z
     .string()
-    .nonempty('Введіть прізвище')
-    .min(2, 'Прізвище повинно мати не менше 2 знаків')
-    .max(50, 'Прізвище повинно бути не більше 50 знаків”')
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) =>
-        /^(?!^\s+$)[a-zA-Zа-яА-ЯҐґЄєІіЇїąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’-]+$/.test(
-          value
-        ),
-      {
-        message: 'Введіть коректне прізвище',
-      }
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
     ),
 
   position: z
@@ -88,7 +89,14 @@ export const registerScheme = z.object({
   message: z
     .string()
     .nonempty({ message: 'Це поле обовʼязкове' })
-    .max(300, { message: 'Не більше 300 символів' }),
+    .refine(
+      (value) =>
+        nonRussianLettersPattern.test(value) &&
+        value.length <= messageMaxLength,
+      {
+        message: `Введіть коректний коментар та не більше ${messageMaxLength} символів`,
+      }
+    ),
 
   terms: z.literal(true, {
     errorMap: () => ({
