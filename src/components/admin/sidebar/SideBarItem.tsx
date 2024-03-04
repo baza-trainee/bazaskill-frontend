@@ -22,7 +22,10 @@ export const SideBarItem: React.FC<SideBarItemProps> = ({
   const [isHovered, setIsHovered] =
     useState<boolean>(false);
 
-  const isActive = pathname.split('/').includes(href);
+  const hrefArr = href.split('/');
+  const realHref = hrefArr[hrefArr.length - 1];
+
+  const isActive = pathname.split('/').includes(realHref);
 
   return (
     <Link className="flex" href={href}>
