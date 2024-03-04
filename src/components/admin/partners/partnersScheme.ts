@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const validationSchema = z.object({
+export const partnersScheme = z.object({
   name: z
     .string({
       required_error: 'Поле повинно бути заповнене',
@@ -16,4 +16,5 @@ export const validationSchema = z.object({
         message: 'Введіть коректне ім’я',
       }
     ),
+  logo: z.string(),
 });
