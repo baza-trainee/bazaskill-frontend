@@ -9,8 +9,8 @@ import {
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { defaultValues } from './defaultValues';
-import { testimonialValidation } from './validationSchema';
+import { defaultValues } from '../testimonials/defaultValues';
+import { testimonialValidation } from '../testimonials/validationSchema';
 import { TestimonialFormInput } from '@/types/testimonials';
 
 import TextArea from '../ui/TextAreaReviews';

@@ -4,7 +4,6 @@ import {
   ForwardedRef,
   InputHTMLAttributes,
   forwardRef,
-  useState,
 } from 'react';
 
 interface TextInputProps
@@ -13,7 +12,7 @@ interface TextInputProps
   errorText?: string;
   iconComponent?: JSX.Element;
   isRequired?: boolean;
-  isRead?: boolean;
+  isIcon?: boolean;
 }
 
 const TextInput = forwardRef(function TextInput(
@@ -22,22 +21,12 @@ const TextInput = forwardRef(function TextInput(
     errorText,
     value = '',
     isRequired,
-    isRead,
+    isIcon,
     ...rest
   }: TextInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
-  const [isEditing, setIsEditing] = useState(true);
-
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleBlur = () => {
-    setIsEditing(false);
-  };
-
-  const inputClassName = `bg-${isEditing ? '[#efefef]' : '[#f8f8f8]'} h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
+  const inputClassName = `bg-'[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText
@@ -65,17 +54,11 @@ ${
           id={title}
           value={value}
           className={inputClassName}
-          onBlur={handleBlur}
-          readOnly={isRead && !isEditing}
         />
 
-        {isRead && (
+        {isIcon && (
           <div className=" absolute right-[16px] top-[9px] ">
-            <button
-              type="button"
-              onClick={handleEditToggle}>
-              <WriteIcon />
-            </button>
+            <WriteIcon className="h-[24px] w-[24px]" />
           </div>
         )}
       </div>
