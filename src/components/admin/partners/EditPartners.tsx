@@ -6,6 +6,7 @@ import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PartnersCard from './PartnersCard';
 import { partners } from './data';
+import PageTitle from '../ui/PageTitle';
 
 const EditPartners = () => {
   const item = partners[0];
@@ -15,13 +16,9 @@ const EditPartners = () => {
     setFile(selectedFile);
   };
   return (
-    <div className="">
-      <div className="mb-9 mt-12">
-        <h1 className="mb-[50px] text-5xl font-bold">
-          Редагувати партнера
-        </h1>
-      </div>
-      <div className="flex gap-[180px]">
+    <div className="p-[24px]">
+      <PageTitle title="Редагувати партнера" />
+      <div className="mt-[80px] flex gap-[180px]">
         <form className="flex w-[597px] flex-col gap-[30px]">
           <div>
             <TextInputPartner
