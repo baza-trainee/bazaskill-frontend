@@ -21,28 +21,28 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<Candidates />}
-          href="candidates"
+          href="/admin/candidates"
         >
           Кандидати
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<CountersIcon />}
-          href="counters"
+          href="/admin/counters"
         >
           Каунтер
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<PartnersIcon />}
-          href="partners"
+          href="/admin/partners"
         >
           Партнери
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<ArticlesIcon />}
-          href="posts"
+          href="/admin/posts"
         >
           Статті та поради
         </SideBarItem>
@@ -56,21 +56,21 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<PdfIcon />}
-          href="documents"
+          href="/admin/documents"
         >
           PDF документи
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<ContactsIcon />}
-          href="contacts"
+          href="/admin/contacts"
         >
           Контакти
         </SideBarItem>
         <SideBarItem
           className="border-b"
           icon={<SettingsIcon />}
-          href="settings"
+          href="/admin/settings"
         >
           Налаштування
         </SideBarItem>
