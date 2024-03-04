@@ -13,7 +13,7 @@ import Logo from '@/components/icons/Logo';
 
 const SideBar: React.FC = () => {
   return (
-    <aside className="ml-[40px] min-h-[100vh] w-[287px] border-l border-r border-gray bg-graphite">
+    <aside className="min-h-[100vh] w-[287px] border-l border-r border-gray bg-graphite">
       <div className="flex h-[104px] items-center justify-center">
         <Logo />
       </div>
@@ -21,49 +21,49 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<Candidates />}
-          href="/admin/candidates"
+          href="candidates"
         >
           Кандидати
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<CountersIcon />}
-          href="/admin/counters"
+          href="counters"
         >
           Каунтер
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<PartnersIcon />}
-          href="/admin/partners"
+          href="partners"
         >
           Партнери
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<ArticlesIcon />}
-          href="/admin/posts"
+          href="posts"
         >
           Статті та поради
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<PdfIcon />}
-          href="#"
+          href="documents"
         >
           PDF документи
         </SideBarItem>
         <SideBarItem
           className=""
           icon={<ContactsIcon />}
-          href="/admin/contacts"
+          href="contacts"
         >
           Контакти
         </SideBarItem>
         <SideBarItem
           className="border-b"
           icon={<SettingsIcon />}
-          href="/admin/settings"
+          href="settings"
         >
           Налаштування
         </SideBarItem>

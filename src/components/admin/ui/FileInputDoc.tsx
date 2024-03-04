@@ -1,30 +1,57 @@
-/* eslint-disable no-unused-vars */
 'use client';
+
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import { ForwardedRef, forwardRef, useState } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  useState,
+  InputHTMLAttributes,
+} from 'react';
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
-interface FileInputDocProps {
-  title?: string;
-  errorText?: string;
-  isRequired?: boolean;
-  placeholder: string;
-  onChange: (file: File) => void;
-}
+type FileInputDocProps<T extends FieldValues> =
+  InputHTMLAttributes<HTMLInputElement> &
+    UseControllerProps<T> & {
+      title?: string;
+      isRequired: boolean;
+    };
 
-const FileInputDoc = forwardRef(function FileInputDoc(
+const FileInputDoc = forwardRef(function FileInputDoc<
+  T extends FieldValues,
+>(
   {
     title,
-    errorText,
     placeholder,
+    control,
+    name,
+    rules,
     isRequired,
-    onChange,
     ...rest
-  }: FileInputDocProps,
+  }: FileInputDocProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   const [selectedFileName, setSelectedFileName] = useState<
     string | null
   >(null);
+
+  const { field, formState } = useController<T>({
+    name,
+    control,
+    rules,
+  });
+
+  const errorText = (
+    formState.errors[name] as DeepMap<
+      FieldValues,
+      FieldError
+    >
+  )?.message;
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -33,9 +60,13 @@ const FileInputDoc = forwardRef(function FileInputDoc(
     if (files && files.length > 0) {
       const selectedFile = files[0];
       setSelectedFileName(selectedFile.name);
-      onChange(selectedFile);
+      if (files) {
+        field.onChange(files);
+      }
     }
   };
+
+  console.log(placeholder);
 
   const handlePlaceholderClick = () => {
     if (ref && 'current' in ref && ref.current) {
@@ -43,7 +74,7 @@ const FileInputDoc = forwardRef(function FileInputDoc(
     }
   };
 
-  const inputClassName = ` w-[286px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] text-[#020202] text-[16px]
+  const inputClassName = `w-[286px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText
@@ -54,11 +85,13 @@ ${
 
   return (
     <div
-      className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+    >
       {!!title && (
         <label
           htmlFor={title}
-          className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white">
+          className="mb-[8px] block text-[20px]  leading-[1.4] text-white"
+        >
           {title}
           {isRequired && (
             <span className="text-error">*</span>
@@ -67,15 +100,18 @@ ${
       )}
       <div
         className={inputClassName}
-        onClick={handlePlaceholderClick}>
+        onClick={handlePlaceholderClick}
+      >
         <span className="text-[16px] leading-[1.16] text-[#787878]">
-          {(
+          {selectedFileName ? (
             <span className="text-[#020202]">
               {selectedFileName}
             </span>
-          ) || placeholder}
+          ) : (
+            placeholder
+          )}
         </span>
-        <div className=" absolute right-[16px] top-[9px] z-0 ">
+        <div className="absolute right-[16px] top-[9px] z-0">
           <UploadIcon />
         </div>
         <input
@@ -84,7 +120,7 @@ ${
           id={title}
           ref={ref}
           accept=".pdf"
-          className=" absolute  left-0 w-[100%] cursor-pointer opacity-0"
+          className="absolute left-0 w-[100%] cursor-pointer opacity-0"
           onChange={handleChange}
         />
       </div>
