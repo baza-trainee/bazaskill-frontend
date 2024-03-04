@@ -48,6 +48,13 @@ const SideBar: React.FC = () => {
         </SideBarItem>
         <SideBarItem
           className=""
+          icon={<ArticlesIcon />}
+          href="/admin/testimonials"
+        >
+          Відгуки
+        </SideBarItem>
+        <SideBarItem
+          className=""
           icon={<PdfIcon />}
           href="#"
         >

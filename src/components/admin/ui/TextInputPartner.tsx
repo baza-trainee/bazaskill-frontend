@@ -28,6 +28,14 @@ const TextInputPartner = forwardRef(
     }: TextInputPartnerProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) {
+    const [inputValue, setInputValue] = useState(value);
+
+    const handleInputChange = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      setInputValue(event.target.value);
+    };
+
     const inputClassName = `bg-[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
    hover:bg-[#ebfcee] 
 ${
@@ -39,11 +47,13 @@ ${
 
     return (
       <div
-        className={` w-[597px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+        className={` w-[597px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      >
         {!!title && (
           <label
             htmlFor={title}
-            className="mb-[8px]  block text-[20px] leading-[1.4]  text-white">
+            className="mb-[8px]  block text-[20px] leading-[1.4]  text-white"
+          >
             {title}
             {isRequired && (
               <span className="text-error">*</span>
@@ -54,8 +64,9 @@ ${
           <input
             {...rest}
             id={title}
-            value={value}
+            value={inputValue}
             className={inputClassName}
+            onChange={handleInputChange}
           />
 
           {isIcon && (
