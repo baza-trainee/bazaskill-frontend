@@ -8,7 +8,7 @@ import PageTitle from '../ui/PageTitle';
 
 const Partners = () => {
   return (
-    <section className="no-scrollbar max-h-[100vh] w-full overflow-auto p-[24px]">
+    <section className="no-scrollbar h-[100vh] max-h-[100vh] w-full overflow-auto p-[24px]">
       <PageTitle title="Партнери" />
 
       <div className="flex flex-wrap gap-[25px]">
