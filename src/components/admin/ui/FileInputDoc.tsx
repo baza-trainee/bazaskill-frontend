@@ -6,6 +6,7 @@ import {
   forwardRef,
   useState,
   InputHTMLAttributes,
+  useEffect,
 } from 'react';
 import {
   DeepMap,
@@ -45,6 +46,12 @@ const FileInputDoc = forwardRef(function FileInputDoc<
     control,
     rules,
   });
+
+  useEffect(() => {
+    if (!field.value.length) {
+      setSelectedFileName('');
+    }
+  }, [field]);
 
   const errorText = (
     formState.errors[name] as DeepMap<
