@@ -4,7 +4,6 @@ import FileInputPartner from '../ui/FileInputPartner';
 import TextInputPartner from '../ui/TextInputPartner';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import PartnersCard from './PartnersCard';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { partners } from './data';

@@ -1,12 +1,21 @@
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { partners } from './data';
 import { Partners } from '@/types/partners';
 import PartnersCard from './PartnersCard';
 import PageTitle from '../ui/PageTitle';
+import { constants } from '@/constants';
+import { getPartners } from '@/api/partners';
 
 const Partners = () => {
+  const { data } = useQuery({
+    queryKey: [constants.partners.FETCH_PARTNERS],
+    queryFn: getPartners,
+  });
+
+  console.log('data', data);
   return (
     <section className="no-scrollbar h-[100vh] max-h-[100vh] w-full overflow-auto p-[24px]">
       <PageTitle title="Партнери" />

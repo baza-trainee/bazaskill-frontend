@@ -1,12 +1,8 @@
 export interface IPartners {
   id: string;
   name: string;
+  image: string;
 }
-
-export type TestimonialFormInput = Omit<
-  IPartners,
-  'id' | 'createdAt'
->;
 
 export type Partners = {
   id: number;
