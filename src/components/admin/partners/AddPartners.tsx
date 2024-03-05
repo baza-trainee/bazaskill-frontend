@@ -65,7 +65,7 @@ const AddPartners = () => {
             />
           </div>
           <div className="flex w-full justify-between">
-            <PrimaryButton text="Додати" />
+            <PrimaryButton type='submit' text="Додати" />
             <SecondaryButton text="Скасувати" />
           </div>
         </form>
