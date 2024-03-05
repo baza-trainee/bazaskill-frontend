@@ -1,7 +1,7 @@
 import {
   ISpecializationWithStack,
   Specialization,
-} from './../types/specialization/index';
+} from '@/types/specialization/index';
 import axios from '@/config/axios';
 
 export const getSpecializationsWithStack = async () => {
