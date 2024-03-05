@@ -44,7 +44,7 @@ export const SideBarItem: React.FC<SideBarItemProps> = ({
           })}
         {children}
         <div className="ml-auto p-3">
-          {isHovered || isActive ? (
+          {isHovered ? (
             <ArrowIcon className="flex -rotate-90 transform items-center pr-2" />
           ) : null}
         </div>
