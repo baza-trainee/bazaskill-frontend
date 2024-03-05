@@ -1,28 +1,53 @@
 /* eslint-disable no-unused-vars */
 'use client';
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import { ForwardedRef, forwardRef, useState } from 'react';
+import {
+  ForwardedRef,
+  InputHTMLAttributes,
+  forwardRef,
+  useState,
+} from 'react';
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
-interface FileInputPartnerProps {
-  title?: string;
-  errorText?: string;
-  isRequired?: boolean;
-  placeholder: string;
-  onChange: (file: File) => void;
-}
+type FileInputPartnerProps<T extends FieldValues> =
+  InputHTMLAttributes<HTMLInputElement> &
+    UseControllerProps<T> & {
+      title?: string;
+      isRequired?: boolean;
+    };
 
 const FileInputPartner = forwardRef(
-  function FileInputPartner(
+  function FileInputPartner<T extends FieldValues>(
     {
       title,
-      errorText,
+      control,
+      name,
+      rules,
       placeholder,
       isRequired,
-      onChange,
       ...rest
-    }: FileInputPartnerProps,
+    }: FileInputPartnerProps<T>,
     ref: ForwardedRef<HTMLInputElement>
   ) {
+    const { field, formState } = useController<T>({
+      name,
+      control,
+      rules,
+    });
+
+    const errorText = (
+      formState.errors[name] as DeepMap<
+        FieldValues,
+        FieldError
+      >
+    )?.message;
+
     const [selectedFileName, setSelectedFileName] =
       useState<string | null>(null);
 
@@ -33,9 +58,10 @@ const FileInputPartner = forwardRef(
       if (files && files.length > 0) {
         const selectedFile = files[0];
         setSelectedFileName(selectedFile.name);
-        onChange(selectedFile);
+        field.onChange(selectedFile);
       }
     };
+
 
     const handlePlaceholderClick = () => {
       if (ref && 'current' in ref && ref.current) {
@@ -43,7 +69,7 @@ const FileInputPartner = forwardRef(
       }
     };
 
-    const inputClassName = ` w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] text-[#020202] text-[16px]
+    const inputClassName = `w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText
@@ -69,11 +95,13 @@ ${
           className={inputClassName}
           onClick={handlePlaceholderClick}>
           <span className="text-[16px] leading-[1.16] text-[#787878]">
-            {(
+            {selectedFileName ? (
               <span className="text-[#020202]">
                 {selectedFileName}
               </span>
-            ) || placeholder}
+            ) : (
+              placeholder
+            )}
           </span>
           <div className=" absolute right-[16px] top-[9px] z-0 ">
             <UploadIcon />

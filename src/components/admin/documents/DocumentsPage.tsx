@@ -48,8 +48,7 @@ const DocumentsPage = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
-        className="mt-[50px]"
-      >
+        className="mt-[50px]">
         <div className="mb-[50px] flex gap-[50px]">
           <FileInputDoc
             name="document"
