@@ -4,12 +4,12 @@ import isURL from 'validator/lib/isURL';
 const emailPattern =
   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
-
 const nonRussianLettersPattern =
   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
 
 const nonRussianLettersWithSymbolsAndDigitsPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-z0-9А-Яа-яІіЇїЄєҐґ\s`’'\-\!\@\#\$\%\^\&\*\(\)\_\+\=\[\]\{\}\|\:\;\"\'\<\>\,\.\?\/\\\~]+$/;
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~ҐґЄєІіЇїЄєҐґ]+$/;
+
 const messageMaxLength = 300;
 
 export const registerScheme = z.object({
