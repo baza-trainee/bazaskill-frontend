@@ -1,10 +1,13 @@
 import { z } from 'zod';
 
 const emailPattern =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
 const nonRussianLettersPattern =
   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const nonRussianLettersWithSymbolsAndDigitsPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-z0-9А-Яа-яІіЇїЄєҐґ\s`’'\-\!\@\#\$\%\^\&\*\(\)\_\+\=\[\]\{\}\|\:\;\"\'\<\>\,\.\?\/\\\~]+$/;
 
 const messageMaxLength = 300;
 
@@ -57,10 +60,13 @@ export const registerScheme = z.object({
 
   company: z
     .string()
+    .optional()
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
+      (value) =>
+        !value || nonRussianLettersPattern.test(value),
       {
-        message: 'Введіть коректну назву',
+        message:
+          'Введіть коректну назву або залиште поле порожнім',
       }
     ),
 
@@ -70,7 +76,8 @@ export const registerScheme = z.object({
 
   terms: z.literal(true, {
     errorMap: () => ({
-      message: '',
+      message:
+        'Надайте згоду на обробку персональних даних',
     }),
   }),
 
@@ -86,8 +93,9 @@ export const registerScheme = z.object({
     .nonempty({ message: 'Це поле обовʼязкове' })
     .refine(
       (value) =>
-        nonRussianLettersPattern.test(value) &&
-        value.length <= messageMaxLength,
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ) && value.length <= messageMaxLength,
       {
         message: `Введіть коректний коментар та не більше ${messageMaxLength} символів`,
       }
