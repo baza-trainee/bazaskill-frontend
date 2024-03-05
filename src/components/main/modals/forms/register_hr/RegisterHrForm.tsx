@@ -131,6 +131,7 @@ const RegisterHrForm = () => {
                     title="Компанія"
                     {...field}
                     placeholder="Компанія"
+                    isRequired={false}
                     errorText={errors.company?.message}
                   />
                 )}

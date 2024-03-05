@@ -2,10 +2,13 @@ import { z } from 'zod';
 import isURL from 'validator/lib/isURL';
 
 const emailPattern =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
 const nonRussianLettersPattern =
   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const nonRussianLettersWithSymbolsAndDigitsPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~ҐґЄєІіЇїЄєҐґ]+$/;
 
 const messageMaxLength = 300;
 
@@ -69,7 +72,7 @@ export const registerScheme = z.object({
     .string()
     .nonempty('Введіть ім’я')
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
-    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .max(50, 'Ім’я повинно бути не більше 50 знаків')
     .refine(
       (value) => nonRussianLettersPattern.test(value),
       { message: 'Введіть коректне ім’я' }
@@ -91,8 +94,9 @@ export const registerScheme = z.object({
     .nonempty({ message: 'Це поле обовʼязкове' })
     .refine(
       (value) =>
-        nonRussianLettersPattern.test(value) &&
-        value.length <= messageMaxLength,
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ) && value.length <= messageMaxLength,
       {
         message: `Введіть коректний коментар та не більше ${messageMaxLength} символів`,
       }
@@ -100,7 +104,8 @@ export const registerScheme = z.object({
 
   terms: z.literal(true, {
     errorMap: () => ({
-      message: '',
+      message:
+        'Надайте згоду на обробку персональних даних',
     }),
   }),
   terms_2: z.literal(true, {

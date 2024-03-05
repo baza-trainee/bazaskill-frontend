@@ -12,11 +12,9 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-5 bg-graphite text-white">
-      <div>
-        <SideBar />
-      </div>
-      {children}
+    <div className="flex bg-graphite text-white">
+      <SideBar />
+      <div className="flex-1">{children}</div>
     </div>
   );
 }

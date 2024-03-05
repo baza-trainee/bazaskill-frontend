@@ -8,4 +8,10 @@ export const constants = {
       'FETCH_SPECIALIZATIONS_WITH_STACK',
     FETCH_SPECIALIZATIONS: 'FETCH_SPECIALIZATIONS',
   },
+  documents: {
+    FETCH_DOCUMENTS: 'FETCH_DOCUMENTS',
+  },
+  partners: {
+    FETCH_PARTNERS: 'FETCH_PARTNERS',
+  },
 };

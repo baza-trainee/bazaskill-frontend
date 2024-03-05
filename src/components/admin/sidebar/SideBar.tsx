@@ -13,7 +13,7 @@ import Logo from '@/components/icons/Logo';
 
 const SideBar: React.FC = () => {
   return (
-    <aside className="ml-[40px] min-h-[100vh] w-[287px] border-l border-r border-gray bg-graphite">
+    <aside className="no-scrollbar w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
       <div className="flex h-[104px] items-center justify-center">
         <Logo />
       </div>
@@ -56,7 +56,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<PdfIcon />}
-          href="#"
+          href="/admin/documents"
         >
           PDF документи
         </SideBarItem>
