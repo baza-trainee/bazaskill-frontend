@@ -120,6 +120,7 @@ const AddPartners = () => {
                   ? 'Обробка запиту'
                   : 'Зберегти зміни'
               }
+              disabled={!isDirty}
             />
             <SecondaryButton
               onClick={() => router.refresh()}
