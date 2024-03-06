@@ -7,7 +7,7 @@ import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { partners } from './data';
+
 import { defaultValues } from '../partners/defaultValues';
 import { partnersScheme } from './partnersScheme';
 import {
@@ -16,7 +16,6 @@ import {
   useForm,
 } from 'react-hook-form';
 import PageTitle from '../ui/PageTitle';
-import Image from 'next/image';
 
 import { updatePartners } from '@/api/partners';
 import SuccessAlert from '../alerts/SuccessAlert';
@@ -65,7 +64,6 @@ const AddPartners = () => {
     }
   };
 
-  const item = partners[0];
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (selectedFile: File) => {
@@ -122,7 +120,6 @@ const AddPartners = () => {
                   ? 'Обробка запиту'
                   : 'Зберегти зміни'
               }
-              disabled={!isDirty}
             />
             <SecondaryButton
               onClick={() => router.refresh()}
@@ -141,18 +138,18 @@ const AddPartners = () => {
           <div className="relative flex h-[286px] w-[286px] flex-col items-center justify-center rounded-xl border-4">
             <div className="flex gap-[129px]">
               <div className="flex items-center gap-[24px] ">
-                <Image
+                {/* <Image
                   src={item.image}
                   alt={item.name}
                   width={273}
                   height={61}
                   className=" rounded-[8px] "
-                />
+                /> */}
               </div>
             </div>
             <div className="w-[159px] text-start">
               <h4 className="font-tahoma font-bold tracking-[.72px] text-white ">
-                {item.name}
+                {/* {item.name} */}
               </h4>
             </div>
           </div>
