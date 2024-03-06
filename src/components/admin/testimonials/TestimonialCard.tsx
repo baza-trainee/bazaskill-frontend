@@ -40,7 +40,7 @@ const TestimonialCard = ({
         </p>
       </div>
       <div className="flex gap-[32px]">
-        <Link href={'/admin/testimonials/edit'}>
+        <Link href={`/admin/testimonials/edit/${item.id}}`}>
           <WriteIcon className="h-[32px] w-[32px] fill-white" />
         </Link>
         <button

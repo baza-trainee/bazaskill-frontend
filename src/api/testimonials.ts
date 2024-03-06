@@ -12,12 +12,12 @@ export const getTestimonials = async () => {
   return data;
 };
 
-export const createTestimonial = async () => {
-  const { data } =
-    await axios.post<TestimonialFormInput[]>(
-      '/testimonial'
-    );
-  return data;
+export const createTestimonial = async (data: any) => {
+  const response = await axios.post<TestimonialFormInput[]>(
+    '/testimonial',
+    data
+  );
+  return response;
 };
 
 export const updateTestimonial = async (

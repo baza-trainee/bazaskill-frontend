@@ -1,5 +1,5 @@
 export interface ITestimonial {
-  id: number;
+  id: string;
   name_ua: string;
   name_en: string;
   name_pl: string;
@@ -18,7 +18,7 @@ export type TestimonialFormInput = Omit<
 >;
 
 export type Testimonial = {
-  id: number;
+  id: string;
   name_ua: string;
   name_en?: string;
   name_pl?: string;
