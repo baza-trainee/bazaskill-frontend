@@ -2,10 +2,5 @@ export interface IPartners {
   id: string;
   name: string;
   image: string;
+  partner_url: string;
 }
-
-export type Partners = {
-  id: number;
-  name: string;
-  image: string;
-};

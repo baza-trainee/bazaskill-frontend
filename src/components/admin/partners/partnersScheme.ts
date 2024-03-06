@@ -16,5 +16,5 @@ export const partnersScheme = z.object({
         message: 'Введіть коректне ім’я',
       }
     ),
-  logo: z.string(),
+  logo: z.any(),
 });
