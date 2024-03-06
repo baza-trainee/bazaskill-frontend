@@ -10,7 +10,6 @@ interface TextInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
-  iconComponent?: JSX.Element;
   isRequired?: boolean;
   isIcon?: boolean;
 }

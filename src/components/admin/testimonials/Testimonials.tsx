@@ -1,20 +1,30 @@
+'use client';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 import React from 'react';
 import { testimonials } from './data';
 import { Testimonial } from '@/types/testimonials';
 import TestimonialCard from './TestimonialCard';
+import PageTitle from '../ui/PageTitle';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getTestimonials } from '@/api/testimonials';
 
 const Testimonials = () => {
+  const { data } = useQuery({
+    queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
+    queryFn: getTestimonials,
+  });
+
+  console.log(data);
   return (
     <section className=" w-full max-w-[1553px] px-[24px] pt-[40px]">
-      <h2 className="mb-[50px] font-['Tahoma',_sans-serif] text-[40px] font-bold  leading-[1.5] tracking-[1px] text-[#ffffff]">
-        Відгуки
-      </h2>
+      <div className="mb-[50px]">
+        <PageTitle title="Відгуки" />
+      </div>
       <Link
         href="/admin/testimonials/add"
-        className="mb-[50px] flex min-h-[100px] w-[286px]  items-center gap-[16px] rounded-[6px] p-[20px] [border:2px_solid_#fefffe]"
-      >
+        className="mb-[50px]  flex min-h-[100px] w-[286px]  items-center gap-[16px] rounded-[6px] p-[20px] [border:2px_solid_#fefffe]">
         <PlusIcon className="stroke-[#4DC760]" />
         <p className="font-sans text-[20px] leading-[1.3] text-[#4DC760] ">
           Додати відгук
