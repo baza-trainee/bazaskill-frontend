@@ -70,11 +70,13 @@ ${
         className={inputClassName}
         onClick={handlePlaceholderClick}>
         <span className="text-[16px] leading-[1.16] text-[#787878]">
-          {(
+          {selectedFileName ? (
             <span className="text-[#020202]">
               {selectedFileName}
             </span>
-          ) || placeholder}
+          ) : (
+            placeholder
+          )}
         </span>
         <div className=" absolute right-[16px] top-[9px] z-0 ">
           <UploadIcon />
