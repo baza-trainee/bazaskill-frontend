@@ -51,8 +51,7 @@ const AddPartners = () => {
         <form
           onSubmit={handleSubmit(submitForm)}
           autoComplete="off"
-          className="flex w-[597px] flex-col gap-[30px]"
-        >
+          className="flex w-[597px] flex-col gap-[30px]">
           <div>
             <Controller
               name="name"

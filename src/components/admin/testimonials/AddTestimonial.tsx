@@ -17,6 +17,11 @@ import FileInputPost from '../ui/FileInputPost';
 
 const AddTestimonial = () => {
   const [isProcessing, setIsProcessing] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (selectedFile: File) => {
+    setFile(selectedFile);
+  };
 
   const {
     handleSubmit,
@@ -37,6 +42,7 @@ const AddTestimonial = () => {
     try {
       setIsProcessing(true);
       console.log(values);
+
       const formData = new FormData();
       if (values.name_ua)
         formData.append('name_ua', values.name_ua);
@@ -53,9 +59,10 @@ const AddTestimonial = () => {
         formData.append('review_en', values.review_en);
       if (values.review_pl)
         formData.append('review_pl', values.review_pl);
-      /*    if (values.image) {
-        formData.append('image', values.image);
-      } */
+      if (file) {
+        formData.append('file', file);
+      }
+      console.log('file: ', file);
       setIsProcessing(false);
       reset();
     } catch (errors: unknown) {
@@ -142,14 +149,14 @@ const AddTestimonial = () => {
                 )}
               />
               <Controller
-                name="image"
+                name="file"
                 control={control}
                 render={({ field }) => (
                   <FileInputPost
                     {...field}
                     placeholder="Завантажте зображення"
                     title="Фото"
-                    onChange={(v) => console.log(v)}
+                    onChange={handleFileChange}
                   />
                 )}
               />
