@@ -9,7 +9,7 @@ const MainInfo = () => {
         <h3 className="flex border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[24px] font-[700] text-white">
           {t('stack')}
         </h3>
-        <div className="mt-[44px] flex gap-[24px]">
+        <div className="mt-[44px] flex flex-wrap gap-[24px]">
           <StackItem title="UX-дизайн" />
           <StackItem title="UI-дизайн" />
           <StackItem title="HTML" />
@@ -25,17 +25,17 @@ const MainInfo = () => {
           {t('education')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          <div className="flex w-[34%] flex-col">
+          <div className="flex w-full flex-col md:w-[34%]">
             <span>GoIT - start your career in IT</span>
             <span>UI\UX Design</span>
             <span>травень 2023-грудень 2023</span>
           </div>
-          <div className="flex w-[34%] flex-col">
+          <div className="flex w-full flex-col md:w-[34%]">
             <span>GoIT - start your career in IT</span>
             <span>UI\UX Design</span>
             <span>травень 2023-грудень 2023</span>
           </div>
-          <div className="flex w-[34%] flex-col">
+          <div className="flex w-full flex-col md:w-[34%]">
             <span>GoIT - start your career in IT</span>
             <span>UI\UX Design</span>
             <span>травень 2023-грудень 2023</span>
@@ -48,19 +48,19 @@ const MainInfo = () => {
           {t('courses')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          <div className="flex w-[34%] flex-col">
+          <div className="flex w-full flex-col md:w-[34%]">
             <span>GoIT - start your career in IT</span>
             <span>UI\UX Design</span>
             <span>травень 2023-грудень 2023</span>
           </div>
 
-          <div className="flex w-[34%] flex-col">
+          <div className="flex w-full flex-col md:w-[34%]">
             <span>GoIT - start your career in IT</span>
             <span>UI\UX Design</span>
             <span>травень 2023-грудень 2023</span>
           </div>
 
-          <div className="flex w-[34%] flex-col">
+          <div className="flex w-full flex-col md:w-[34%]">
             <span>GoIT - start your career in IT</span>
             <span>UI\UX Design</span>
             <span>травень 2023-грудень 2023</span>
@@ -69,11 +69,11 @@ const MainInfo = () => {
       </div>
 
       <div>
-        <div className="relative box-border flex justify-center border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[24px] font-[700] text-white">
-          <h3 className="absolute left-0">
+        <div className="relative box-border flex flex-col gap-[24px] border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[20px] font-[700] text-white sm:justify-end sm:text-[24px] md:flex-row lg:justify-center">
+          <h3 className="md:absolute md:left-0">
             {t('baza_experience')}
           </h3>
-          <div className="flex items-center gap-[15px]">
+          <div className="flex items-center gap-[15px] sm:mr-[140px]">
             <svg width={20} height={18}>
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
@@ -81,7 +81,7 @@ const MainInfo = () => {
           </div>
         </div>
 
-        <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
+        <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
           <Project />
           <Project />
           <Project />
@@ -105,7 +105,7 @@ const MainInfo = () => {
           porta porttitor in cursus interdum sed mattis at
           morbi. Lorem ipsum dolor sit amet consectetur.
         </span>
-        <button className="main-gradient mt-[60px] flex h-[50px] w-[350px] items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]">
+        <button className="main-gradient mt-[60px] flex h-[50px] w-[350px] max-w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]">
           {t('ask_data')}
         </button>
       </div>

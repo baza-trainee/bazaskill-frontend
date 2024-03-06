@@ -3,8 +3,8 @@ import { useTranslations } from 'next-intl';
 const CandidateHero = () => {
   const t = useTranslations('Candidate');
   return (
-    <div className="container flex justify-between pt-[90px]">
-      <div className="flex w-[68%] max-w-[830px] flex-col">
+    <div className="container flex flex-col gap-[40px] pt-[90px] xl:flex-row xl:justify-between">
+      <div className="flex  w-[100%]  flex-col xl:w-[68%] xl:max-w-[830px]">
         <div className="flex items-center gap-[24px]">
           <svg width={40} height={30}>
             <use href="/Icons/sprite.svg#icon-flag"></use>
@@ -37,7 +37,7 @@ const CandidateHero = () => {
           </span>
         </div>
       </div>
-      <div className="w-[29%] max-w-[350px]">
+      <div className="w-full sm:w-[310px] xl:w-[29%] xl:max-w-[350px]">
         <div className="flex w-full flex-col gap-[16px] rounded-[8px] border-[1px] border-white px-[24px] py-[24px]">
           <h3 className="font-tahoma text-[24px] font-[700] text-white">
             500-600$
