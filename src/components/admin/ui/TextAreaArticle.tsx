@@ -32,7 +32,7 @@ ${
 
   return (
     <div
-      className={`w-[907px] font-sans font-normal  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[907px] font-sans font-normal  ${errorText ? 'text-red-500' : 'text-inherit'} `}>
       {!!title && (
         <label
           htmlFor={title}
