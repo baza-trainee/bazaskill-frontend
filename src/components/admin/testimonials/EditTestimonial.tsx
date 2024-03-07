@@ -79,16 +79,16 @@ const EditTestimonial = () => {
   };
 
   return (
-    <section className="flex min-h-screen w-full flex-col px-[24px] pt-[40px]">
+    <section className="flex min-h-screen w-full flex-col flex-wrap px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full flex-wrap">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto mb-[50px] flex flex-1  flex-col gap-[50px]">
-          <div className=" flex flex-col gap-[50px]">
-            <section className="flex gap-6">
+          className="mx-auto mb-[50px] flex flex-col  flex-wrap gap-[50px]">
+          <div className=" flex flex-col flex-wrap gap-[50px]">
+            <section className="flex flex-wrap  gap-6">
               <Controller
                 name="name_ua"
                 control={control}
@@ -129,7 +129,7 @@ const EditTestimonial = () => {
                 )}
               />
             </section>
-            <section className="flex  gap-6">
+            <section className="flex flex-wrap  gap-6">
               <Controller
                 name="position"
                 control={control}
@@ -169,8 +169,8 @@ const EditTestimonial = () => {
                 )}
               />
             </section>
-            <section className="flex flex-col gap-[50px]">
-              <div className="flex gap-6">
+            <section className="flex flex-wrap gap-[50px]">
+              <div className="flex flex-wrap gap-6">
                 <Controller
                   name="review_ua"
                   control={control}
@@ -210,7 +210,7 @@ const EditTestimonial = () => {
               </div>
             </section>
           </div>
-          <div className="flex gap-6">
+          <div className="flex  gap-6">
             <div className="flex gap-6">
               <PrimaryButton
                 text={
