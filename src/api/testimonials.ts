@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
   ITestimonial,
   TestimonialFormInput,
@@ -10,16 +12,26 @@ export const getTestimonials = async () => {
   return data;
 };
 
-export const createTestimonial = async (
-  values: TestimonialFormInput
-) => {
-  const newTestimonial = {
-    name: values.name,
-    review: values.review,
-  };
-  const data = await axios.post(
-    '/testimonials',
-    newTestimonial
-  );
+export const createTestimonial = async () => {
+  const { data } =
+    await axios.post<TestimonialFormInput[]>(
+      '/testimonial'
+    );
   return data;
+};
+
+export const updateTestimonial = async (
+  id: string,
+  data: any
+) => {
+  const response = await axios.patch(
+    `/testimonial/${id}`,
+    data
+  );
+  return response;
+};
+
+export const deleteTestimonial = async (id: string) => {
+  const response = await axios.delete(`/testimonial/${id}`);
+  return response;
 };

@@ -1,7 +1,14 @@
 export interface ITestimonial {
-  id: string;
-  name: string;
-  review: string;
+  id: number;
+  name_ua: string;
+  name_en: string;
+  name_pl: string;
+  position: string;
+  review_ua: string;
+  review_en: string;
+  review_pl: string;
+  data: string;
+  file: File;
   createdAt: string;
 }
 
@@ -12,9 +19,13 @@ export type TestimonialFormInput = Omit<
 
 export type Testimonial = {
   id: number;
-  name: string;
+  name_ua: string;
+  name_en?: string;
+  name_pl?: string;
   position: string;
-  review: string;
+  review_ua: string;
+  review_en?: string;
+  review_pl?: string;
   data: string;
-  image: string;
+  image_url: string;
 };
