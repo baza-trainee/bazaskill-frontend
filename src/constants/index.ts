@@ -11,4 +11,7 @@ export const constants = {
   documents: {
     FETCH_DOCUMENTS: 'FETCH_DOCUMENTS',
   },
+  partners: {
+    FETCH_PARTNERS: 'FETCH_PARTNERS',
+  },
 };

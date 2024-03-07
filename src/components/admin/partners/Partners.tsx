@@ -1,12 +1,24 @@
+'use client';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { partners } from './data';
-import { Partners } from '@/types/partners';
+import { IPartners } from '@/types/partners';
 import PartnersCard from './PartnersCard';
 import PageTitle from '../ui/PageTitle';
+import { constants } from '@/constants';
+import { getPartners } from '@/api/partners';
 
 const Partners = () => {
+  const { data } = useQuery({
+    queryKey: [constants.partners.FETCH_PARTNERS],
+    queryFn: getPartners,
+  });
+  console.log('data', data);
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
   return (
     <section className="no-scrollbar h-[100vh] max-h-[100vh] w-full overflow-auto p-[24px]">
       <PageTitle title="Партнери" />
@@ -21,7 +33,7 @@ const Partners = () => {
             Додати партнера
           </p>
         </Link>
-        {partners.map((item: Partners) => (
+        {data.map((item: IPartners) => (
           <li key={item.id} className="list-none">
             <PartnersCard item={item} />
           </li>
