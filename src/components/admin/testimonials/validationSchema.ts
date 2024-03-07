@@ -60,5 +60,5 @@ export const testimonialValidation = z.object({
   review_ua: z.string(),
   review_en: z.string(),
   review_pl: z.string(),
-  image: z.any(),
+  file: z.any(),
 });

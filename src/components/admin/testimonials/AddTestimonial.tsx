@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import {
   Controller,
@@ -14,9 +13,21 @@ import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
 import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
+import { createTestimonial } from '@/api/testimonials';
+import SuccessAlert from '../alerts/SuccessAlert';
+import { useRouter } from 'next/navigation';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
 
 const AddTestimonial = () => {
+  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleFileChange = (selectedFile: File) => {
+    setFile(selectedFile);
+  };
 
   const {
     handleSubmit,
@@ -36,42 +47,40 @@ const AddTestimonial = () => {
   ) => {
     try {
       setIsProcessing(true);
-      console.log(values);
       const formData = new FormData();
-      if (values.name_ua)
-        formData.append('name_ua', values.name_ua);
-      if (values.name_en)
-        formData.append('name_en', values.name_en);
-      if (values.name_pl)
-        formData.append('name_pl', values.name_pl);
-      if (values.position)
-        formData.append('position', values.position);
-      if (values.date) formData.append('date', values.date);
-      if (values.review_ua)
-        formData.append('review_ua', values.review_ua);
-      if (values.review_en)
-        formData.append('review_en', values.review_en);
-      if (values.review_pl)
-        formData.append('review_pl', values.review_pl);
-      /*    if (values.image) {
-        formData.append('image', values.image);
-      } */
+      formData.append('name_ua', values.name_ua);
+      formData.append('name_en', values.name_en);
+      formData.append('name_pl', values.name_pl);
+      formData.append('position', values.position);
+      formData.append('date', values.date);
+      formData.append('review_ua', values.review_ua);
+      formData.append('review_en', values.review_en);
+      formData.append('review_pl', values.review_pl);
+      if (file) {
+        formData.append('file', file);
+      }
+      const response = await createTestimonial(formData);
+      if (response.status === 200) {
+        setIsSuccess(true);
+      }
       setIsProcessing(false);
       reset();
     } catch (errors: unknown) {
       console.log(errors);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
   return (
-    <section className="flex min-h-screen w-full flex-col px-[24px] pt-[40px]">
+    <section className="flex min-h-screen w-full max-w-[1550px] flex-col px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Додати Відгук" />
       </div>
       <div className="flex w-full">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto flex flex-1 flex-col  gap-[50px]">
+          className="mx-auto flex flex-1 flex-col   gap-[50px]">
           <div className=" flex flex-col gap-[50px]">
             <section className="flex gap-6">
               <Controller
@@ -142,14 +151,14 @@ const AddTestimonial = () => {
                 )}
               />
               <Controller
-                name="image"
+                name="file"
                 control={control}
                 render={({ field }) => (
                   <FileInputPost
                     {...field}
                     placeholder="Завантажте зображення"
                     title="Фото"
-                    onChange={(v) => console.log(v)}
+                    onChange={handleFileChange}
                   />
                 )}
               />
@@ -196,24 +205,25 @@ const AddTestimonial = () => {
             </section>
           </div>
           <div className="flex gap-6">
-            <button
-              className={`h-[44px] w-[286px] rounded-[6px] bg-[#939393] px-6 py-2 text-[16px] font-medium text-[#fefffe] [border:1px_solid_#fefffe] ${
-                isDirty
-                  ? 'bg-green-300 cursor-pointer text-black'
-                  : 'cursor-not-allowed bg-slate-100 text-slate-500'
-              }`}>
-              {isProcessing
-                ? 'Обробка запиту...'
-                : 'Додати'}
-            </button>
-            <button
-              type="reset"
-              onClick={() => reset(defaultValues)}
-              className={`h-[44px] w-[286px] rounded-[6px] bg-[#212121] px-6 py-2 text-[16px] font-medium text-[#fefffe] [border:1px_solid_#fefffe] `}>
-              Скасувати
-            </button>
+            <PrimaryButtonAdd
+              text={
+                isProcessing ? 'Обробка запиту' : 'Додати'
+              }
+              disabled={!isDirty}
+            />
+            <SecondaryButton
+              text="Скасувати"
+              onClick={() => router.refresh()}
+            />
           </div>
         </form>
+        {isSuccess && (
+          <SuccessAlert
+            title="Новий відгук додано"
+            onClose={() => setIsSuccess(false)}
+            isSuccess={isSuccess}
+          />
+        )}
       </div>
     </section>
   );
