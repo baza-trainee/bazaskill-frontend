@@ -1,7 +1,11 @@
-import React from 'react';
+import Filters from './Filters';
 
 const Candidates = () => {
-  return <div>Candidates</div>;
+  return (
+    <div>
+      <Filters />
+    </div>
+  );
 };
 
 export default Candidates;

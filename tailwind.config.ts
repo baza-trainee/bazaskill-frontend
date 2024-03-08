@@ -17,6 +17,7 @@ const config: Config = {
         white: '#FEFFFE',
         black: '#020202',
         gray: '#8E8D8D',
+        secondaryGray: "#787878",
         inputBgGray: '#EEEEEE',
         darkGraphite: '#191919',
         graphite: '#212121',
