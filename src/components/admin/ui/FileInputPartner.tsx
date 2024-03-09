@@ -1,30 +1,65 @@
 /* eslint-disable no-unused-vars */
 'use client';
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import { ForwardedRef, forwardRef, useState } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  useState,
+  InputHTMLAttributes,
+  useEffect,
+} from 'react';
 
-interface FileInputPartnerProps {
-  title?: string;
-  errorText?: string;
-  isRequired?: boolean;
-  placeholder: string;
-  onChange: (file: File) => void;
-}
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
+
+type FileInputPartnerProps<T extends FieldValues> =
+  InputHTMLAttributes<HTMLInputElement> &
+    UseControllerProps<T> & {
+      title?: string;
+      errorText?: string;
+      isRequired?: boolean;
+      placeholder: string;
+    };
 
 const FileInputPartner = forwardRef(
-  function FileInputPartner(
+  function FileInputPartner<T extends FieldValues>(
     {
       title,
-      errorText,
       placeholder,
+      name,
+      rules,
       isRequired,
-      onChange,
+      control,
       ...rest
-    }: FileInputPartnerProps,
+    }: FileInputPartnerProps<T>,
     ref: ForwardedRef<HTMLInputElement>
   ) {
     const [selectedFileName, setSelectedFileName] =
       useState<string | null>(null);
+
+    const { field, formState } = useController<T>({
+      name,
+      rules,
+      control,
+    });
+
+    useEffect(() => {
+      if (!field.value.length) {
+        setSelectedFileName('');
+      }
+    }, [field]);
+
+    const errorText = (
+      formState.errors[name] as DeepMap<
+        FieldValues,
+        FieldError
+      >
+    )?.message;
 
     const handleChange = (
       event: React.ChangeEvent<HTMLInputElement>
@@ -33,7 +68,9 @@ const FileInputPartner = forwardRef(
       if (files && files.length > 0) {
         const selectedFile = files[0];
         setSelectedFileName(selectedFile.name);
-        onChange(selectedFile);
+        if (files) {
+          field.onChange(files);
+        }
       }
     };
 
@@ -54,11 +91,13 @@ ${
 
     return (
       <div
-        className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+        className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      >
         {!!title && (
           <label
             htmlFor={title}
-            className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white">
+            className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white"
+          >
             {title}
             {isRequired && (
               <span className="text-error">*</span>
@@ -67,7 +106,8 @@ ${
         )}
         <div
           className={inputClassName}
-          onClick={handlePlaceholderClick}>
+          onClick={handlePlaceholderClick}
+        >
           <span className="text-[16px] leading-[1.16] text-[#787878]">
             {selectedFileName ? (
               <span className="text-[#020202]">
