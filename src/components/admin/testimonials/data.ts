@@ -5,9 +5,8 @@ export const testimonials: Testimonial[] = [
     id: '1',
     name_ua: 'Ірина',
     position: 'учасниця, QA',
-    review_ua:
-      'Я останнім часом думаю про те, що на Базу варто було б прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ',
-    data: 'травень, 2023',
+    review_ua: 'Я останнім ча',
+    date: 'травень, 2023',
     image_url: '/img/testimonials_image.jpg',
   },
   {
@@ -16,7 +15,7 @@ export const testimonials: Testimonial[] = [
     position: 'учасниця, Fullstack Developer',
     review_ua:
       'Я останнім часом думаю про те, що на Базу варто було б прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ',
-    data: 'червень, 2023',
+    date: 'червень, 2023',
     image_url: '/img/testimonials_image.jpg',
   },
   {
@@ -25,7 +24,7 @@ export const testimonials: Testimonial[] = [
     position: 'учасниця, UI/UX',
     review_ua:
       'Я останнім часом думаю про те, що на Базу варто було б прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ',
-    data: 'липень, 2023',
+    date: 'липень, 2023',
     image_url: '/img/testimonials_image.jpg',
   },
   {
@@ -34,7 +33,7 @@ export const testimonials: Testimonial[] = [
     position: 'учасниця, UI/UX',
     review_ua:
       'Я останнім часом думаю про те, що на Базу варто було б прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ',
-    data: 'липень, 2023',
+    date: 'липень, 2023',
     image_url: '/img/testimonials_image.jpg',
   },
   {
@@ -43,7 +42,7 @@ export const testimonials: Testimonial[] = [
     position: 'учасниця, UI/UX',
     review_ua:
       'Я останнім часом думаю про те, що на Базу варто було б прийти мінімум для того, щоб усвідомити значущість роботи дизайнера в розробці ПЗ',
-    data: 'липень, 2023',
+    date: 'липень, 2023',
     image_url: '/img/testimonials_image.jpg',
   },
 ];

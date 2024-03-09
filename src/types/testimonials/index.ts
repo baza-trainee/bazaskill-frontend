@@ -7,7 +7,7 @@ export interface ITestimonial {
   review_ua: string;
   review_en: string;
   review_pl: string;
-  data: string;
+  date: string;
   file: File;
   createdAt: string;
 }
@@ -26,6 +26,6 @@ export type Testimonial = {
   review_ua: string;
   review_en?: string;
   review_pl?: string;
-  data: string;
+  date: string;
   image_url: string;
 };

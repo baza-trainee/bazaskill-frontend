@@ -13,11 +13,16 @@ import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
 import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
-import { createTestimonial } from '@/api/testimonials';
+import {
+  createTestimonial,
+  getTestimonials,
+} from '@/api/testimonials';
 import SuccessAlert from '../alerts/SuccessAlert';
 import { useRouter } from 'next/navigation';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
 
 const AddTestimonial = () => {
   const router = useRouter();
@@ -40,6 +45,13 @@ const AddTestimonial = () => {
     defaultValues: defaultValues,
   });
 
+  const { data } = useQuery({
+    queryKey: [constants.testimonials.ADD_TESTIMONIAL],
+    queryFn: getTestimonials,
+  });
+
+  console.log(data);
+
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
   > = async (
@@ -60,7 +72,7 @@ const AddTestimonial = () => {
         formData.append('file', file);
       }
       const response = await createTestimonial(formData);
-      if (response.status === 200) {
+      if (response.status === 201) {
         setIsSuccess(true);
       }
       setIsProcessing(false);

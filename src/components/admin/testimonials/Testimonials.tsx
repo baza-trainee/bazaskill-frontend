@@ -2,13 +2,13 @@
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 import React from 'react';
-import { testimonials } from './data';
 import { Testimonial } from '@/types/testimonials';
 import TestimonialCard from './TestimonialCard';
 import PageTitle from '../ui/PageTitle';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
+import { testimonials } from './data';
 
 const Testimonials = () => {
   const { data } = useQuery({
@@ -33,7 +33,7 @@ const Testimonials = () => {
 
       <div className="custom-scrollbar  max-h-[728px] w-full max-w-[1529px] overflow-y-auto">
         <ul>
-          {testimonials.map((item: Testimonial) => (
+          {data?.map((item: Testimonial) => (
             <li key={item.id}>
               <TestimonialCard item={item} />
             </li>
