@@ -91,7 +91,6 @@ const AddPartners = () => {
               render={({ field }) => (
                 <FileInputPartner
                   {...field}
-                  control={control}
                   placeholder="Завантажте логотип"
                   title="Логотип партнера"
                   isRequired={true}

@@ -1,65 +1,30 @@
 /* eslint-disable no-unused-vars */
 'use client';
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import {
-  ForwardedRef,
-  forwardRef,
-  useState,
-  InputHTMLAttributes,
-  useEffect,
-} from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 
-import {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  useController,
-  UseControllerProps,
-} from 'react-hook-form';
-
-type FileInputPartnerProps<T extends FieldValues> =
-  InputHTMLAttributes<HTMLInputElement> &
-    UseControllerProps<T> & {
-      title?: string;
-      errorText?: string;
-      isRequired?: boolean;
-      placeholder: string;
-    };
+interface FileInputPartnerProps {
+  title?: string;
+  errorText?: string;
+  isRequired?: boolean;
+  placeholder: string;
+  onChange: (file: File) => void;
+}
 
 const FileInputPartner = forwardRef(
-  function FileInputPartner<T extends FieldValues>(
+  function FileInputPartner(
     {
       title,
+      errorText,
       placeholder,
-      name,
-      rules,
       isRequired,
-      control,
+      onChange,
       ...rest
-    }: FileInputPartnerProps<T>,
+    }: FileInputPartnerProps,
     ref: ForwardedRef<HTMLInputElement>
   ) {
     const [selectedFileName, setSelectedFileName] =
       useState<string | null>(null);
-
-    const { field, formState } = useController<T>({
-      name,
-      rules,
-      control,
-    });
-
-    useEffect(() => {
-      if (!field.value.length) {
-        setSelectedFileName('');
-      }
-    }, [field]);
-
-    const errorText = (
-      formState.errors[name] as DeepMap<
-        FieldValues,
-        FieldError
-      >
-    )?.message;
 
     const handleChange = (
       event: React.ChangeEvent<HTMLInputElement>
@@ -68,9 +33,7 @@ const FileInputPartner = forwardRef(
       if (files && files.length > 0) {
         const selectedFile = files[0];
         setSelectedFileName(selectedFile.name);
-        if (files) {
-          field.onChange(files);
-        }
+        onChange(selectedFile);
       }
     };
 
