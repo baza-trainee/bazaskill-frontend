@@ -11,8 +11,8 @@ import FiltersSpecializationMenu from './FiltersSpecializationMenu';
 import CustomCheckbox from './CustomCheckbox';
 const Filters = () => {
   return (
-    <div className="flex w-[440px] flex-col gap-[32px] pl-[24px]">
-      <div className="border-b-[1px] border-[#787878] font-tahoma text-[20px] font-[700] text-white">
+    <div className="box-border flex h-fit w-[440px] flex-col gap-[32px] border-r-[1px] border-secondaryGray pl-[24px] pr-[32px]">
+      <div className="border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
         <h3 className="py-[8px]">Фільтри</h3>
       </div>
       <FiltersSpecializationMenu />
