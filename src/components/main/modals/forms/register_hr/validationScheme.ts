@@ -76,15 +76,13 @@ export const registerScheme = z.object({
 
   terms: z.literal(true, {
     errorMap: () => ({
-      message:
-        'Надайте згоду на обробку персональних даних',
+      message: 'Підтвердіть згоду, будь ласка',
     }),
   }),
 
   terms_2: z.literal(true, {
     errorMap: () => ({
-      message:
-        'Надайте згоду на обробку персональних даних',
+      message: 'Підтвердіть згоду, будь ласка',
     }),
   }),
 

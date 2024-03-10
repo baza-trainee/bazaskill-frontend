@@ -62,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
 
-        <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium hover:bg-green hover:from-transparent xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
+        <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
           <SearchIcon className="text-gray-500 absolute left-3 top-5" />
           {search}
         </button>
