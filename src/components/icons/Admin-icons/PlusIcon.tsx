@@ -8,18 +8,33 @@ const PlusIcon: React.FC<PlusIconProps> = ({
   return (
     <div {...rest}>
       <svg
-        className={`${className}`}
-        width="60"
-        height="60"
-        viewBox="0 0 32 32"
+        width="123"
+        height="123"
+        viewBox="0 0 123 123"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
-          strokeLinejoin="round"
+          d="M61.5 112.75C89.8046 112.75 112.75 89.8046 112.75 61.5C112.75 33.1954 89.8046 10.25 61.5 10.25C33.1954 10.25 10.25 33.1954 10.25 61.5C10.25 89.8046 33.1954 112.75 61.5 112.75Z"
+          stroke="#4DC760"
+          strokeWidth="4"
           strokeLinecap="round"
-          strokeMiterlimit="4"
-          strokeWidth="2.1333"
-          d="M16 29.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333-13.333 5.97-13.333 13.333 5.97 13.333 13.333 13.333zM10.667 16h10.667M16 10.667v10.667"></path>
+          strokeLinejoin="round"
+        />
+        <path
+          d="M41 61.5H82"
+          stroke="#4DC760"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M61.5 41V82"
+          stroke="#4DC760"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </div>
   );
