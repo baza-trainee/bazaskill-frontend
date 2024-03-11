@@ -23,7 +23,7 @@ const Partners = () => {
     <section className="no-scrollbar h-[100vh] max-h-[100vh] w-full overflow-auto p-[24px]">
       <PageTitle title="Партнери" />
 
-      <div className="flex flex-wrap gap-[25px]">
+      <div className="mt-[80px] flex flex-wrap gap-[25px]">
         <Link
           href="/admin/partners/add"
           className="flex h-[286px] w-[286px] flex-col items-center justify-center rounded-[6px] border-4 border-[#fefffe]"
