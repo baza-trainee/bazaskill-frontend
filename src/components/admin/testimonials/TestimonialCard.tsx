@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Testimonial } from '@/types/testimonials';
 import Link from 'next/link';
@@ -7,21 +7,33 @@ import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
 import './testimonial.css';
 import { deleteTestimonial } from '@/api/testimonials';
+import QuestionAlert from '../alerts/QuestionAlert';
+import SuccessAlert from '../alerts/SuccessAlert';
 
 const TestimonialCard = ({
   item,
 }: {
   item: Testimonial;
 }) => {
-  const HandlerDeleteSubmit = async (id: string) => {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const handlerDelete = async (id: string) => {
     try {
       const response = await deleteTestimonial(id);
       if (response.status === 200) {
-        console.log('ok');
+        setIsDelete(true);
+        setIsSuccess(true);
+        console.log('Testimonial deleted successfully');
       }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleDeleteConfirm = () => {
+    setIsDeleting(true);
+    handlerDelete(item.id);
   };
 
   return (
@@ -58,10 +70,25 @@ const TestimonialCard = ({
           <WriteIcon className="h-[32px] w-[32px] fill-white" />
         </Link>
         <button
-          type="button" // Используйте type="button", чтобы избежать предварительной отправки формы
-          onClick={() => HandlerDeleteSubmit(item.id)}>
-          <TrashIcon className="h-[32px] w-[32px] fill-white" />
+          type="button"
+          onClick={() => setIsDeleting(true)}
+          className="cursor-pointer">
+          <TrashIcon className="h-[32px] w-[32px] cursor-pointer fill-white" />
         </button>
+        {isDeleting && (
+          <QuestionAlert
+            title="Ви впевнені, що хочете видалити відгук зі сторінки?"
+            onCancel={() => setIsDeleting(false)}
+            onConfirm={handleDeleteConfirm}
+          />
+        )}
+        {isDelete && (
+          <SuccessAlert
+            title="Відгук видалено"
+            onClose={() => setIsSuccess(false)}
+            isSuccess={isSuccess}
+          />
+        )}
       </div>
     </div>
   );

@@ -72,6 +72,7 @@ const AddTestimonial = () => {
         formData.append('file', file);
       }
       const response = await createTestimonial(formData);
+      console.log('Response status:', response.status);
       if (response.status === 201) {
         setIsSuccess(true);
       }

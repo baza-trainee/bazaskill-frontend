@@ -21,18 +21,20 @@ import {
   getTestimonialsId,
   updateTestimonial,
 } from '@/api/testimonials';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
+import Link from 'next/link';
 
 const EditTestimonial = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<File | null | string>(
+    null
+  );
   const [isSuccess, setIsSuccess] = useState(false);
   const { id } = useParams<{ id: string }>();
 
-  const { data } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: [
       constants.testimonials.FETCH_TESTIMONIALS,
       id,
@@ -48,11 +50,30 @@ const EditTestimonial = () => {
     handleSubmit,
     control,
     formState: { isDirty, errors },
+    setValue,
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
     mode: 'onChange',
-    defaultValues: { ...data },
   });
+
+  useEffect(() => {
+    if (data) {
+      setValue('name_ua', data.name_ua);
+      setValue('name_en', data.name_en);
+      setValue('name_pl', data.name_pl);
+      setValue('position', data.position);
+      setValue('date', data.date);
+      setValue('review_ua', data.review_ua);
+      setValue('review_en', data.review_en);
+      setValue('review_pl', data.review_pl);
+    }
+    if (data) {
+      setValue('file', data.file, {
+        shouldValidate: false,
+        shouldDirty: true,
+      });
+    }
+  }, [data, file, setValue]);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
@@ -80,6 +101,7 @@ const EditTestimonial = () => {
       );
       if (response.status === 200) {
         setIsSuccess(true);
+        refetch();
       }
       setIsProcessing(false);
     } catch (errors: unknown) {
@@ -89,7 +111,7 @@ const EditTestimonial = () => {
     }
   };
 
-  if (!data) {
+  if (!data || data === undefined || isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -235,10 +257,9 @@ const EditTestimonial = () => {
                 }
                 disabled={!isDirty}
               />
-              <SecondaryButton
-                text="Скасувати"
-                onClick={() => router.refresh()}
-              />
+              <Link href="/admin/testimonials">
+                <SecondaryButton text="Скасувати" />
+              </Link>
             </div>
           </div>
         </form>
@@ -250,7 +271,11 @@ const EditTestimonial = () => {
           />
         )}
       </div>
-      <div>{data && <TestimonialCard item={data} />}</div>
+      <div>
+        {data && typeof data !== 'undefined' && (
+          <TestimonialCard item={data} />
+        )}
+      </div>
     </section>
   );
 };
