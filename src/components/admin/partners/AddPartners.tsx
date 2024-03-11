@@ -46,7 +46,6 @@ const AddPartners = () => {
   > = async (values: z.infer<typeof partnersScheme>) => {
     try {
       setIsProcessing(true);
-
       const formData = new FormData();
       if (values.logo.length) {
         formData.append('file', values.logo[0]);
@@ -65,8 +64,7 @@ const AddPartners = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
-          className="flex w-[597px] flex-col gap-[30px]"
-        >
+          className="flex w-[597px] flex-col gap-[30px]">
           <div>
             <Controller
               name="name"
