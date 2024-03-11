@@ -13,7 +13,7 @@ import Logo from '@/components/icons/Logo';
 
 const SideBar: React.FC = () => {
   return (
-    <aside className="no-scrollbar w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
+    <aside className="no-scrollbar h-fit w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
       <div className="flex h-[104px] items-center justify-center">
         <Logo />
       </div>

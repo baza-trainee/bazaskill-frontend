@@ -25,7 +25,7 @@ const TestimonialCard = ({
             {item.position}
           </p>
           <p className="font-open-sans text-[calc(10px+(14-10)*((100vw-768px)/(1440-768)))] font-normal text-white">
-            {item.data}
+            {item.date}
           </p>
         </div>
       </div>

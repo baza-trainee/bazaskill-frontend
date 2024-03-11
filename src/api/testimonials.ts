@@ -1,23 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {
-  ITestimonial,
+  Testimonial,
   TestimonialFormInput,
 } from '@/types/testimonials';
 import axios from '@/config/axios';
 
 export const getTestimonials = async () => {
   const { data } =
-    await axios.get<ITestimonial[]>('/testimonials');
+    await axios.get<Testimonial[]>('/testimonials');
   return data;
 };
 
-export const createTestimonial = async () => {
-  const { data } =
-    await axios.post<TestimonialFormInput[]>(
-      '/testimonial'
-    );
+export const getTestimonialsId = async (id: string) => {
+  const { data } = await axios.get<Testimonial>(
+    `/testimonials/${id}`
+  );
   return data;
+};
+
+export const createTestimonial = async (data: any) => {
+  const response = await axios.post<TestimonialFormInput[]>(
+    '/testimonials',
+    data
+  );
+  return response;
 };
 
 export const updateTestimonial = async (
@@ -25,13 +32,15 @@ export const updateTestimonial = async (
   data: any
 ) => {
   const response = await axios.patch(
-    `/testimonial/${id}`,
+    `/testimonials/${id}`,
     data
   );
   return response;
 };
 
 export const deleteTestimonial = async (id: string) => {
-  const response = await axios.delete(`/testimonial/${id}`);
+  const response = await axios.delete(
+    `/testimonials/${id}`
+  );
   return response;
 };

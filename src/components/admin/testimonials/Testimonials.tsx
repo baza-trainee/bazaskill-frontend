@@ -2,7 +2,6 @@
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 import React from 'react';
-import { testimonials } from './data';
 import { Testimonial } from '@/types/testimonials';
 import TestimonialCard from './TestimonialCard';
 import PageTitle from '../ui/PageTitle';
@@ -16,7 +15,6 @@ const Testimonials = () => {
     queryFn: getTestimonials,
   });
 
-  console.log(data);
   return (
     <section className=" w-full max-w-[1553px] px-[24px] pt-[40px]">
       <div className="mb-[50px]">
@@ -33,7 +31,7 @@ const Testimonials = () => {
 
       <div className="custom-scrollbar  max-h-[728px] w-full max-w-[1529px] overflow-y-auto">
         <ul>
-          {testimonials.map((item: Testimonial) => (
+          {data?.map((item: Testimonial) => (
             <li key={item.id}>
               <TestimonialCard item={item} />
             </li>

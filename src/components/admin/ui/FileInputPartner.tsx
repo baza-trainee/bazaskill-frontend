@@ -43,7 +43,7 @@ const FileInputPartner = forwardRef(
       }
     };
 
-    const inputClassName = ` w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] text-[#020202] text-[16px]
+    const inputClassName = ` w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText
@@ -54,11 +54,13 @@ ${
 
     return (
       <div
-        className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+        className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      >
         {!!title && (
           <label
             htmlFor={title}
-            className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white">
+            className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white"
+          >
             {title}
             {isRequired && (
               <span className="text-error">*</span>
@@ -67,7 +69,8 @@ ${
         )}
         <div
           className={inputClassName}
-          onClick={handlePlaceholderClick}>
+          onClick={handlePlaceholderClick}
+        >
           <span className="text-[16px] leading-[1.16] text-[#787878]">
             {selectedFileName ? (
               <span className="text-[#020202]">

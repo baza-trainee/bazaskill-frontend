@@ -1,13 +1,13 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import FileInputPartner from '../ui/FileInputPartner';
 import TextInputPartner from '../ui/TextInputPartner';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import PartnersCard from './PartnersCard';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { partners } from './data';
+import { constants } from '@/constants';
 import { defaultValues } from '../partners/defaultValues';
 import { partnersScheme } from './partnersScheme';
 import {
@@ -16,32 +16,46 @@ import {
   useForm,
 } from 'react-hook-form';
 import PageTitle from '../ui/PageTitle';
-import Image from 'next/image';
+
+import { getPartners } from '@/api/partners';
+import SuccessAlert from '../alerts/SuccessAlert';
+import { useQuery } from '@tanstack/react-query';
 
 const AddPartners = () => {
+  const router = useRouter();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const { data } = useQuery({
+    queryKey: [constants.partners.FETCH_PARTNERS],
+    queryFn: getPartners,
+  });
+  console.log('data', data);
   const {
     handleSubmit,
-    reset,
     control,
-    formState: { errors },
-  } = useForm({
+    formState: { isDirty },
+  } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
     defaultValues: defaultValues,
   });
 
-  const submitForm: SubmitHandler<
+  const onSubmit: SubmitHandler<
     z.infer<typeof partnersScheme>
-  > = (values) => {
-    console.log('values: ', values);
-    console.log('file: ', file);
-  };
+  > = async (values: z.infer<typeof partnersScheme>) => {
+    try {
+      setIsProcessing(true);
 
-  const item = partners[0];
-  const [file, setFile] = useState<File | null>(null);
-
-  const handleFileChange = (selectedFile: File) => {
-    setFile(selectedFile);
+      const formData = new FormData();
+      if (values.logo.length) {
+        formData.append('file', values.logo[0]);
+      }
+    } catch (error: unknown) {
+      console.log(error);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -49,7 +63,7 @@ const AddPartners = () => {
       <PageTitle title="Додати партнера" />
       <div className="mt-[80px] flex gap-[180px]">
         <form
-          onSubmit={handleSubmit(submitForm)}
+          onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
           className="flex w-[597px] flex-col gap-[30px]"
         >
@@ -57,16 +71,17 @@ const AddPartners = () => {
             <Controller
               name="name"
               control={control}
-              render={({ field }) => (
-                <TextInputPartner
-                  {...field}
-                  isRequired={true}
-                  placeholder="Введіть назву"
-                  title="Назва партнера"
-                  value=""
-                  errorText={errors.name?.message}
-                />
-              )}
+              render={({ field }) => {
+                console.log(field);
+                return (
+                  <TextInputPartner
+                    {...field}
+                    isRequired={true}
+                    placeholder="Введіть назву"
+                    title="Назва партнера"
+                  />
+                );
+              }}
             />
           </div>
           <div>
@@ -78,37 +93,50 @@ const AddPartners = () => {
                   {...field}
                   placeholder="Завантажте логотип"
                   title="Логотип партнера"
-                  onChange={handleFileChange}
                   isRequired={true}
-                  errorText={errors.logo?.message}
                 />
               )}
             />
           </div>
           <div className="flex w-full justify-between">
-            <PrimaryButton type="submit" text="Додати" />
+            <PrimaryButton
+              type="submit"
+              text={
+                isProcessing
+                  ? 'Обробка запиту'
+                  : 'Зберегти зміни'
+              }
+              disabled={!isDirty}
+            />
             <SecondaryButton
-              onClick={() => reset()}
+              onClick={() => router.refresh()}
               text="Скасувати"
             />
           </div>
         </form>
+        {isSuccess && (
+          <SuccessAlert
+            title="Лого успішно додане"
+            onClose={() => setIsSuccess(false)}
+            isSuccess={isSuccess}
+          />
+        )}
         <div>
           <div className="relative flex h-[286px] w-[286px] flex-col items-center justify-center rounded-xl border-4">
             <div className="flex gap-[129px]">
               <div className="flex items-center gap-[24px] ">
-                <Image
+                {/* <Image
                   src={item.image}
                   alt={item.name}
                   width={273}
                   height={61}
                   className=" rounded-[8px] "
-                />
+                /> */}
               </div>
             </div>
             <div className="w-[159px] text-start">
               <h4 className="font-tahoma font-bold tracking-[.72px] text-white ">
-                {item.name}
+                {/* {item.name} */}
               </h4>
             </div>
           </div>
