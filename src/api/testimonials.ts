@@ -12,6 +12,13 @@ export const getTestimonials = async () => {
   return data;
 };
 
+export const getTestimonialsId = async (id: string) => {
+  const { data } = await axios.get<Testimonial>(
+    `/testimonials/${id}`
+  );
+  return data;
+};
+
 export const createTestimonial = async (data: any) => {
   const response = await axios.post<TestimonialFormInput[]>(
     '/testimonials',

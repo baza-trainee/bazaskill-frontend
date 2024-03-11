@@ -35,7 +35,7 @@ const PasswordInput = forwardRef(function PasswordInput(
     setIsEditing(false);
   };
 
-  const inputClassName = `w-[442px] h-[44px] bg-${isEditing ? '[#efefef]' : '[#f8f8f8]'} h-[44px] outline-none [border:1px_solid_transparent]  rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[9px] py-[16px] text-[#020202] text-[16px]
+  const inputClassName = `w-[442px] h-[44px] bg-${isEditing ? '[#efefef]' : '[#f8f8f8]'} h-[44px] outline-none [border:1px_solid_transparent] pr-[40px]  rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[9px] py-[16px] text-[#020202] text-[16px]
   hover:bg-[#ebfcee] 
 ${
   errorText

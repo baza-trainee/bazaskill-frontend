@@ -8,7 +8,6 @@ import PageTitle from '../ui/PageTitle';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
-import { testimonials } from './data';
 
 const Testimonials = () => {
   const { data } = useQuery({
@@ -16,7 +15,6 @@ const Testimonials = () => {
     queryFn: getTestimonials,
   });
 
-  console.log(data);
   return (
     <section className=" w-full max-w-[1553px] px-[24px] pt-[40px]">
       <div className="mb-[50px]">

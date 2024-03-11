@@ -43,7 +43,7 @@ const FileInputPartner = forwardRef(
       }
     };
 
-    const inputClassName = ` w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] text-[#020202] text-[16px]
+    const inputClassName = ` w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText

@@ -1,13 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Controller,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { defaultValues } from '../testimonials/defaultValues';
 import { testimonialValidation } from '../testimonials/validationSchema';
 import TextArea from '../ui/TextAreaReviews';
 import TextInput from '../ui/TextInput';
@@ -15,18 +14,32 @@ import PageTitle from '../ui/PageTitle';
 import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
 import TestimonialCard from './TestimonialCard';
-import { testimonials } from './data';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
-import { updateTestimonial } from '@/api/testimonials';
-import { useRouter } from 'next/navigation';
+import {
+  getTestimonialsId,
+  updateTestimonial,
+} from '@/api/testimonials';
+import { useParams, useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
 
 const EditTestimonial = () => {
   const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { id } = useParams<{ id: string }>();
+
+  const { data } = useQuery({
+    queryKey: [
+      constants.testimonials.FETCH_TESTIMONIALS,
+      id,
+    ],
+    queryFn: () => getTestimonialsId(id),
+  });
+
   const handleFileChange = (selectedFile: File) => {
     setFile(selectedFile);
   };
@@ -34,12 +47,11 @@ const EditTestimonial = () => {
   const {
     handleSubmit,
     control,
-    reset,
     formState: { isDirty, errors },
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues: { ...data },
   });
 
   const onSubmit: SubmitHandler<
@@ -63,14 +75,13 @@ const EditTestimonial = () => {
         formData.append('file', file);
       }
       const response = await updateTestimonial(
-        '1',
+        id,
         formData
       );
       if (response.status === 200) {
         setIsSuccess(true);
       }
       setIsProcessing(false);
-      reset();
     } catch (errors: unknown) {
       console.log(errors);
     } finally {
@@ -78,15 +89,19 @@ const EditTestimonial = () => {
     }
   };
 
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <section className="flex min-h-screen w-full flex-col flex-wrap px-[24px] pt-[40px]">
+    <section className=" flex min-h-screen w-full flex-col flex-wrap px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>
       <div className="flex w-full flex-wrap">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto mb-[50px] flex flex-col  flex-wrap gap-[50px]">
+          className=" mb-[50px] flex flex-col  flex-wrap gap-[50px]">
           <div className=" flex flex-col flex-wrap gap-[50px]">
             <section className="flex flex-wrap  gap-6">
               <Controller
@@ -235,9 +250,7 @@ const EditTestimonial = () => {
           />
         )}
       </div>
-      <div>
-        <TestimonialCard item={testimonials[1]} />
-      </div>
+      <div>{data && <TestimonialCard item={data} />}</div>
     </section>
   );
 };
