@@ -38,18 +38,20 @@ ${
 
     return (
       <div
-        className={` 5x:w-[597px] w-[420px] font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+        className={` 5x:w-[597px] w-[420px] font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      >
         {!!title && (
           <label
             htmlFor={title}
-            className="mb-[8px]  block text-[20px] leading-[1.4]  text-white">
+            className="mb-[8px]  block text-[20px] leading-[1.4]  text-white"
+          >
             {title}
             {isRequired && (
               <span className="text-error">*</span>
             )}
           </label>
         )}
-        <div className="relative">
+        <div className="relative w-full">
           <input
             {...rest}
             id={title}

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FileInputPartner from '../ui/FileInputPartner';
 import TextInputPartner from '../ui/TextInputPartner';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
@@ -21,7 +21,7 @@ import { partnersScheme } from './partnersScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { z } from 'zod';
-import PartnersCard from './PartnersCard';
+
 import SuccessAlert from '../alerts/SuccessAlert';
 
 const EditPartners = () => {
@@ -34,12 +34,11 @@ const EditPartners = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const { data } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: [constants.partners.FETCH_PARTNERS, id],
     queryFn: () => getPartnersId(id),
   });
 
-  console.log(data);
   const {
     handleSubmit,
     control,
@@ -48,7 +47,6 @@ const EditPartners = () => {
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
-    defaultValues: { ...data },
   });
 
   const onSubmit: SubmitHandler<
@@ -66,6 +64,7 @@ const EditPartners = () => {
       const response = await updatePartners(id, formData);
       if (response.status === 200) {
         setIsSuccess(true);
+        refetch();
       }
       setIsProcessing(false);
       reset();
@@ -75,15 +74,13 @@ const EditPartners = () => {
       setIsProcessing(false);
     }
   };
-
-  if (!data) {
+  if (!data || data === undefined || isLoading) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className="p-[24px]">
       <PageTitle title="Редагувати партнера" />
-      <div className="mt-[80px] flex gap-[180px]">
+      <div className="mt-[80px] flex flex-wrap gap-[180px]">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-[597px] flex-col gap-[30px]"
@@ -139,9 +136,7 @@ const EditPartners = () => {
             isSuccess={isSuccess}
           />
         )}
-        <div>
-          <div>{data && <PartnersCard item={data} />}</div>
-        </div>
+        <div></div>
       </div>
     </div>
   );

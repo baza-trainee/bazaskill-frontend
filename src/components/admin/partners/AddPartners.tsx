@@ -25,7 +25,6 @@ import SuccessAlert from '../alerts/SuccessAlert';
 import { useQuery } from '@tanstack/react-query';
 
 const AddPartners = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [file, setFile] = useState<File | null>(null);
@@ -77,12 +76,13 @@ const AddPartners = () => {
   return (
     <div className="p-[24px]">
       <PageTitle title="Додати партнера" />
-      <div className="mt-[80px] flex gap-[180px]">
+      <div className="mt-[80px] flex flex-wrap gap-[180px]">
         <form
           onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
-          className="flex w-[597px] flex-col gap-[30px]">
-          <div>
+          className="flex w-[597px] flex-col gap-[30px]"
+        >
+          <div className="w-full">
             <Controller
               name="name"
               control={control}
