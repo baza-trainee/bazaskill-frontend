@@ -25,8 +25,7 @@ const TextAreaCandidate = forwardRef(
     }: TextAreaCandidateProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) {
-
-    const inputClassName = `bg-[#efefef] mt-[8px] w-[908px] h-[123px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 py-[16px] pl-[16px] pr-[48px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16]
+    const inputClassName = `bg-[#efefef] mt-[8px] w-[520px] 5xl:w-[908px] h-[123px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 py-[16px] pl-[16px] pr-[48px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16]
 hover:bg-[#ebfcee] 
 ${
   errorText
@@ -37,7 +36,7 @@ ${
 
     return (
       <div
-        className={`w-[908px] font-sans font-normal  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+        className={`w-[520px] font-sans font-normal 5xl:w-[908px]  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
         {!!title && (
           <label
             htmlFor={title}
@@ -57,7 +56,7 @@ ${
           />
 
           <div className="absolute right-[16px] top-[24px]">
-              <WriteIcon />
+            <WriteIcon />
           </div>
         </div>
 

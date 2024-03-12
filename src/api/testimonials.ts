@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {
-  Testimonial,
+  TestimonialAdmin,
   TestimonialFormInput,
 } from '@/types/testimonials';
 import axios from '@/config/axios';
 
 export const getTestimonials = async () => {
   const { data } =
-    await axios.get<Testimonial[]>('/testimonials');
+    await axios.get<TestimonialAdmin[]>('/testimonials');
   return data;
 };
 
 export const getTestimonialsId = async (id: string) => {
-  const { data } = await axios.get<Testimonial>(
+  const { data } = await axios.get<TestimonialAdmin>(
     `/testimonials/${id}`
   );
   return data;
