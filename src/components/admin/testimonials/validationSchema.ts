@@ -1,65 +1,53 @@
 import { z } from 'zod';
-import { formatBytes } from '@/helpers/formatBytes';
 
-const MAX_FILE_SIZE = 1024 * 1024;
+const nonRussianLettersPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+const dateFormat =
+  /^(0[1-9]|[12][0-9]|3[01])\s+(січня|лютого|березня|квітня|травня|червня|липня|серпня|вересня|жовтня|листопада|грудня)\s+\d{4}$/i;
 
 export const testimonialValidation = z.object({
-  name_ua: z.string(),
-  name_en: z.string(),
-  name_pl: z.string(),
-  date: z.string() /* .refine(
-    (value) => {
-      const parts = value
-        .split('.')
-        .map((part) => part.trim());
-      if (parts.length !== 3) return false; // Перевірка на наявність трьох частин дати
-      const [day, month, year] = parts;
-      if (
-        !/^\d{1,2}$/.test(day) ||
-        !/^\d{1,2}$/.test(month) ||
-        !/^\d{4}$/.test(year)
-      )
-        return false; // Перевірка формату чисел
-      const numericDay = parseInt(day, 10);
-      const numericMonth = parseInt(month, 10);
-      const numericYear = parseInt(year, 10);
-      if (
-        numericDay < 1 ||
-        numericDay > 31 ||
-        numericMonth < 1 ||
-        numericMonth > 12
-      )
-        return false; // Перевірка коректності числових значень
-      const date = new Date(
-        numericYear,
-        numericMonth - 1,
-        numericDay
-      ); // Місяці у JavaScript починаються з 0
-      if (isNaN(date.getTime())) return false; // Перевірка на існування дати
-      return true;
-    } ,
-    {
+  name_ua: z
+    .string()
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .refine(
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
+    ),
+  name_en: z
+    .string()
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .refine(
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
+    ),
+  name_pl: z
+    .string()
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .refine(
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
+    ),
+  date: z
+    .string()
+    .refine((value) => dateFormat.test(value), {
       message:
-        "Неправильний формат дати. Використовуйте формат 'DD, MM, YYYY'",
-    }
-  ),*/,
+        'Дата має бути у форматі "день місяць рік", наприклад, "12 березня 2024"',
+    }),
   position: z.string(),
-  /*   image: z.any().refine(
-    (value) => {
-      const file = value?.[0];
-      return (
-        file?.size <= MAX_FILE_SIZE &&
-        /\.(jpg|jpeg)$/i.test(file?.name)
-      );
-    },
-
-    {
-      message: `Документ має бути зображенням у форматі JPEG або JPG та не перевищувати розмір ${formatBytes(MAX_FILE_SIZE)}`,
-    }
-  ), */
-  review_ua: z.string(),
-  review_en: z.string(),
-  review_pl: z.string(),
-  image_url: z.string(),
-  file:z.any(),
+  review_ua: z.string().min(10, {
+    message: 'Мінімальна довжина відгуку - 10 символів',
+  }),
+  review_en: z.string().min(10, {
+    message: 'Мінімальна довжина відгуку - 10 символів',
+  }),
+  review_pl: z.string().min(10, {
+    message: 'Мінімальна довжина відгуку - 10 символів',
+  }),
+  file: z.any(),
 });

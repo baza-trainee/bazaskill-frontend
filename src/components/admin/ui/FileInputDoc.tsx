@@ -73,8 +73,6 @@ const FileInputDoc = forwardRef(function FileInputDoc<
     }
   };
 
-  console.log(placeholder);
-
   const handlePlaceholderClick = () => {
     if (ref && 'current' in ref && ref.current) {
       ref.current.click();

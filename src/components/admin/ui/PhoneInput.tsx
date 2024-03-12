@@ -50,7 +50,7 @@ ${
 
   return (
     <div
-      className={` w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[290px] font-sans font-normal  tracking-[0px] 3xl:w-[350px] 5xl:w-[442px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={title}

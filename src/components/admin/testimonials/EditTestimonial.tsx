@@ -21,18 +21,20 @@ import {
   getTestimonialsId,
   updateTestimonial,
 } from '@/api/testimonials';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
+import Link from 'next/link';
 
 const EditTestimonial = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<File | null | string>(
+    null
+  );
   const [isSuccess, setIsSuccess] = useState(false);
   const { id } = useParams<{ id: string }>();
 
-  const { data } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: [
       constants.testimonials.FETCH_TESTIMONIALS,
       id,
@@ -47,12 +49,31 @@ const EditTestimonial = () => {
   const {
     handleSubmit,
     control,
-    formState: { isDirty, errors },
+    formState: { errors },
+    setValue,
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
     mode: 'onChange',
-    defaultValues: { ...data },
   });
+
+  useEffect(() => {
+    if (data) {
+      setValue('name_ua', data.name_ua);
+      setValue('name_en', data.name_en);
+      setValue('name_pl', data.name_pl);
+      setValue('position', data.position);
+      setValue('date', data.date);
+      setValue('review_ua', data.review_ua);
+      setValue('review_en', data.review_en);
+      setValue('review_pl', data.review_pl);
+    }
+    if (data) {
+      setValue('file', data.file, {
+        shouldValidate: false,
+        shouldDirty: true,
+      });
+    }
+  }, [data, file, setValue]);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
@@ -80,6 +101,7 @@ const EditTestimonial = () => {
       );
       if (response.status === 200) {
         setIsSuccess(true);
+        refetch();
       }
       setIsProcessing(false);
     } catch (errors: unknown) {
@@ -89,12 +111,12 @@ const EditTestimonial = () => {
     }
   };
 
-  if (!data) {
+  if (!data || data === undefined || isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <section className=" flex min-h-screen w-full flex-col flex-wrap px-[24px] pt-[40px]">
+    <section className=" flex w-full flex-col flex-wrap px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>
@@ -114,6 +136,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Ім'я"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -127,6 +150,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Name"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -140,6 +164,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Imię"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -155,6 +180,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть спеціалізацію"
                     title="Спеціалізація"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -168,6 +194,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть дату"
                     title="Дата"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -180,6 +207,7 @@ const EditTestimonial = () => {
                     placeholder="Завантажте зображення"
                     title="Фото"
                     onChange={handleFileChange}
+                    isRequired
                   />
                 )}
               />
@@ -195,6 +223,7 @@ const EditTestimonial = () => {
                       errorText={errors.review_ua?.message}
                       placeholder="Введіть текст відгуку"
                       title="Текст"
+                      isRequired
                     />
                   )}
                 />
@@ -207,6 +236,7 @@ const EditTestimonial = () => {
                       errorText={errors.review_en?.message}
                       placeholder="Введіть текст відгуку"
                       title="Text"
+                      isRequired
                     />
                   )}
                 />
@@ -219,6 +249,7 @@ const EditTestimonial = () => {
                       errorText={errors.review_pl?.message}
                       placeholder="Введіть текст відгуку"
                       title="Tekst"
+                      isRequired
                     />
                   )}
                 />
@@ -233,24 +264,29 @@ const EditTestimonial = () => {
                     ? 'Обробка запиту'
                     : 'Зберегти зміни'
                 }
-                disabled={!isDirty}
+                disabled={
+                  errors && !!Object.keys(errors).length
+                }
               />
-              <SecondaryButton
-                text="Скасувати"
-                onClick={() => router.refresh()}
-              />
+              <Link href="/admin/testimonials">
+                <SecondaryButton text="Скасувати" />
+              </Link>
             </div>
           </div>
         </form>
-        {isSuccess && (
-          <SuccessAlert
-            title="Новий відгук додано"
-            onClose={() => setIsSuccess(false)}
-            isSuccess={isSuccess}
-          />
+      </div>
+      <div>
+        {data && typeof data !== 'undefined' && (
+          <TestimonialCard item={data} isEdit={true} />
         )}
       </div>
-      <div>{data && <TestimonialCard item={data} />}</div>
+      {isSuccess && (
+        <SuccessAlert
+          title="Новий відгук додано"
+          onClose={() => setIsSuccess(false)}
+          isSuccess={isSuccess}
+        />
+      )}
     </section>
   );
 };
