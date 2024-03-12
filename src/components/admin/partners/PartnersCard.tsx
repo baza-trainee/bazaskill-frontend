@@ -1,17 +1,29 @@
 'use client';
 import Image from 'next/image';
-import { IPartners } from '@/types/partners';
+import { Partners } from '@/types/partners';
 import Link from 'next/link';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import { deletePartners } from '@/api/partners';
 
-const PartnersCard = ({ item }: { item: IPartners }) => {
+const PartnersCard = ({ item }: { item: Partners }) => {
+  const HandlerDeleteSubmit = async (id: string) => {
+    try {
+      const response = await deletePartners(id);
+      if (response.status === 200) {
+        console.log('ok');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="relative flex h-[286px] w-[286px] flex-col items-center justify-center rounded-xl border-4">
       <div className="flex gap-[129px]">
         <div className="flex items-center gap-[24px] ">
           <Image
-            src={item.image}
+            src={item.image_url}
             alt={item.name}
             width={273}
             height={61}
@@ -28,12 +40,12 @@ const PartnersCard = ({ item }: { item: IPartners }) => {
       </Link>
 
       <div className="absolute bottom-0 right-0 flex gap-[32px] rounded-tl-lg bg-white p-2 ">
-        <Link href={'/admin/partners/edit'}>
+        <Link href={`/admin/partners/edit/${item.id}`}>
           <WriteIcon className="h-[32px] w-[32px] fill-black" />
         </Link>
         <button
           type="button"
-          onClick={() => console.log(item.id)}
+          onClick={() => HandlerDeleteSubmit(item.id)}
         >
           <TrashIcon className="h-[32px] w-[32px] fill-black" />
         </button>
