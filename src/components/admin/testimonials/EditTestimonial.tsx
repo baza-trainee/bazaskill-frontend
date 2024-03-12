@@ -49,7 +49,7 @@ const EditTestimonial = () => {
   const {
     handleSubmit,
     control,
-    formState: { isDirty, errors },
+    formState: { errors },
     setValue,
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
@@ -116,7 +116,7 @@ const EditTestimonial = () => {
   }
 
   return (
-    <section className=" flex min-h-screen w-full flex-col flex-wrap px-[24px] pt-[40px]">
+    <section className=" flex w-full flex-col flex-wrap px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>
@@ -136,6 +136,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Ім'я"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -149,6 +150,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Name"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -162,6 +164,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Imię"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -177,6 +180,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть спеціалізацію"
                     title="Спеціалізація"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -190,6 +194,7 @@ const EditTestimonial = () => {
                     placeholder="Введіть дату"
                     title="Дата"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -202,6 +207,7 @@ const EditTestimonial = () => {
                     placeholder="Завантажте зображення"
                     title="Фото"
                     onChange={handleFileChange}
+                    isRequired
                   />
                 )}
               />
@@ -217,6 +223,7 @@ const EditTestimonial = () => {
                       errorText={errors.review_ua?.message}
                       placeholder="Введіть текст відгуку"
                       title="Текст"
+                      isRequired
                     />
                   )}
                 />
@@ -229,6 +236,7 @@ const EditTestimonial = () => {
                       errorText={errors.review_en?.message}
                       placeholder="Введіть текст відгуку"
                       title="Text"
+                      isRequired
                     />
                   )}
                 />
@@ -241,6 +249,7 @@ const EditTestimonial = () => {
                       errorText={errors.review_pl?.message}
                       placeholder="Введіть текст відгуку"
                       title="Tekst"
+                      isRequired
                     />
                   )}
                 />
@@ -255,7 +264,9 @@ const EditTestimonial = () => {
                     ? 'Обробка запиту'
                     : 'Зберегти зміни'
                 }
-                disabled={!isDirty}
+                disabled={
+                  errors && !!Object.keys(errors).length
+                }
               />
               <Link href="/admin/testimonials">
                 <SecondaryButton text="Скасувати" />
@@ -263,19 +274,19 @@ const EditTestimonial = () => {
             </div>
           </div>
         </form>
-        {isSuccess && (
-          <SuccessAlert
-            title="Новий відгук додано"
-            onClose={() => setIsSuccess(false)}
-            isSuccess={isSuccess}
-          />
-        )}
       </div>
       <div>
         {data && typeof data !== 'undefined' && (
           <TestimonialCard item={data} isEdit={true} />
         )}
       </div>
+      {isSuccess && (
+        <SuccessAlert
+          title="Новий відгук додано"
+          onClose={() => setIsSuccess(false)}
+          isSuccess={isSuccess}
+        />
+      )}
     </section>
   );
 };

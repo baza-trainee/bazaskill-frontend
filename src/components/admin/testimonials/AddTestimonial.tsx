@@ -13,19 +13,14 @@ import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
 import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
-import {
-  createTestimonial,
-  getTestimonials,
-} from '@/api/testimonials';
+import { createTestimonial } from '@/api/testimonials';
 import SuccessAlert from '../alerts/SuccessAlert';
-import { useRouter } from 'next/navigation';
+
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
-import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
+import Link from 'next/link';
 
 const AddTestimonial = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -38,19 +33,12 @@ const AddTestimonial = () => {
     handleSubmit,
     control,
     reset,
-    formState: { isDirty, errors },
+    formState: { errors },
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
     mode: 'onChange',
     defaultValues: defaultValues,
   });
-
-  const { data } = useQuery({
-    queryKey: [constants.testimonials.ADD_TESTIMONIAL],
-    queryFn: getTestimonials,
-  });
-
-  console.log(data);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
@@ -72,7 +60,6 @@ const AddTestimonial = () => {
         formData.append('file', file);
       }
       const response = await createTestimonial(formData);
-      console.log('Response status:', response.status);
       if (response.status === 201) {
         setIsSuccess(true);
       }
@@ -86,13 +73,14 @@ const AddTestimonial = () => {
   };
 
   return (
-    <section className="flex min-h-screen w-full max-w-[1550px] flex-col px-[24px] pt-[40px]">
+    <section className="flex min-h-screen flex-col px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Додати Відгук" />
       </div>
       <div className="flex w-full">
         <form
           onSubmit={handleSubmit(onSubmit)}
+          autoComplete="off"
           className="mx-auto flex flex-1 flex-col   gap-[50px]">
           <div className=" flex flex-col gap-[50px]">
             <section className="flex gap-6">
@@ -106,6 +94,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Ім'я"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -119,6 +108,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Name"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -132,6 +122,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Imię"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -147,6 +138,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть спеціалізацію"
                     title="Спеціалізація"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -160,6 +152,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть дату"
                     title="Дата"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -172,6 +165,7 @@ const AddTestimonial = () => {
                     placeholder="Завантажте зображення"
                     title="Фото"
                     onChange={handleFileChange}
+                    isRequired
                   />
                 )}
               />
@@ -187,6 +181,7 @@ const AddTestimonial = () => {
                       errorText={errors.review_ua?.message}
                       placeholder="Введіть текст відгуку"
                       title="Текст"
+                      isRequired
                     />
                   )}
                 />
@@ -199,6 +194,7 @@ const AddTestimonial = () => {
                       errorText={errors.review_en?.message}
                       placeholder="Введіть текст відгуку"
                       title="Text"
+                      isRequired
                     />
                   )}
                 />
@@ -211,6 +207,7 @@ const AddTestimonial = () => {
                       errorText={errors.review_pl?.message}
                       placeholder="Введіть текст відгуку"
                       title="Tekst"
+                      isRequired
                     />
                   )}
                 />
@@ -222,12 +219,13 @@ const AddTestimonial = () => {
               text={
                 isProcessing ? 'Обробка запиту' : 'Додати'
               }
-              disabled={!isDirty}
+              disabled={
+                errors && !!Object.keys(errors).length
+              }
             />
-            <SecondaryButton
-              text="Скасувати"
-              onClick={() => router.refresh()}
-            />
+            <Link href="/admin/testimonials">
+              <SecondaryButton text="Скасувати" />
+            </Link>
           </div>
         </form>
         {isSuccess && (
