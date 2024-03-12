@@ -23,6 +23,20 @@ export type TestimonialFormInput = Omit<
 export type Testimonial = {
   id: string;
   name_ua: string;
+  name_en?: string;
+  name_pl?: string;
+  position: string;
+  review_ua?: string;
+  review_en?: string;
+  review_pl?: string;
+  date: string;
+  image_url: string;
+  file?: any;
+};
+
+export type TestimonialAdmin = {
+  id: string;
+  name_ua: string;
   name_en: string;
   name_pl: string;
   position: string;
