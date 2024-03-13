@@ -34,14 +34,14 @@ const Contacts = () => {
   };
 
   return (
-    <section className="max-h-[100vh] overflow-auto px-[24px] py-[40px]">
+    <section className="px-[24px] py-[40px]">
       <div className="mb-[70px] text-[40px] font-bold leading-[150%] tracking-[-0.03em] text-[#fff]">
         Контакти
       </div>
       <form
         onSubmit={handleSubmit(submitForm)}
         autoComplete="off"
-        className="grid w-max grid-cols-[42%_minmax(0,_1fr)] gap-x-[24px] gap-y-[50px]  ">
+        className="flex w-[725px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
         <div>
           <Controller
             name="phone"
