@@ -15,4 +15,7 @@ export const constants = {
     ADD_PARTNERS: 'ADD_PARTNERS',
     FETCH_PARTNERS: 'FETCH_PARTNERS',
   },
+  contacts: {
+    FETCH_CONTACTS: 'FETCH_CONTACTS',
+  },
 };
