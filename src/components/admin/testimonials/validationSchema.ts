@@ -33,13 +33,24 @@ export const testimonialValidation = z.object({
       (value) => nonRussianLettersPattern.test(value),
       { message: 'Введіть коректне ім’я' }
     ),
+  position: z
+    .string()
+    .nonempty('Введіть Спеціальність')
+    .min(2, 'Спеціальність повинно мати не менше 2 знаків')
+    .max(
+      30,
+      'Спеціальність повинно бути не більше 30 знаків'
+    )
+    .refine(
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректну спеціальність' }
+    ),
   date: z
     .string()
     .refine((value) => dateFormat.test(value), {
       message:
         'Дата має бути у форматі "день місяць рік", наприклад, "12 березня 2024"',
     }),
-  position: z.string(),
   review_ua: z.string().min(10, {
     message: 'Мінімальна довжина відгуку - 10 символів',
   }),
