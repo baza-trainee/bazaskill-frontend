@@ -10,6 +10,7 @@ export type PartnersFormInput = Omit<IPartners, 'id'>;
 export type Partners = {
   id: string;
   name: string;
+  image_url: string;
   partner_url: string;
-  file?: File;
+  public_cloudinary_id: string;
 };
