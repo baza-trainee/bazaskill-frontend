@@ -43,11 +43,19 @@ const EditPartners = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { isDirty, errors },
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    if (data) {
+      setValue('name', data.name);
+      setValue('partner_url', data.partner_url);
+    }
+  }, [data, setValue]);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof partnersScheme>
@@ -57,6 +65,7 @@ const EditPartners = () => {
 
       const formData = new FormData();
       formData.append('name', values.name);
+      formData.append('partner_url', values.partner_url);
 
       if (file) {
         formData.append('file', file);
@@ -95,6 +104,20 @@ const EditPartners = () => {
                   errorText={errors.name?.message}
                   placeholder="Введіть назву"
                   title="Назва партнера"
+                />
+              )}
+            />
+          </div>
+          <div>
+            <Controller
+              name="partner_url"
+              control={control}
+              render={({ field }) => (
+                <TextInputPartner
+                  {...field}
+                  errorText={errors.partner_url?.message}
+                  placeholder="partner_url"
+                  title="partner_url"
                 />
               )}
             />
