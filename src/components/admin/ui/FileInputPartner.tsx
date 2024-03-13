@@ -88,7 +88,7 @@ ${
             type="file"
             id={title}
             ref={ref}
-            accept=".pdf"
+            accept="image/jpeg, image/jpg, image/png"
             className=" absolute  left-0 w-[100%] cursor-pointer opacity-0"
             onChange={handleChange}
           />

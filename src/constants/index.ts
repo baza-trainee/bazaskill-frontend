@@ -12,6 +12,7 @@ export const constants = {
     FETCH_DOCUMENTS: 'FETCH_DOCUMENTS',
   },
   partners: {
+    ADD_PARTNERS: 'ADD_PARTNERS',
     FETCH_PARTNERS: 'FETCH_PARTNERS',
   },
 };

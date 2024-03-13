@@ -3,7 +3,7 @@ import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { IPartners } from '@/types/partners';
+import { Partners } from '@/types/partners';
 import PartnersCard from './PartnersCard';
 import PageTitle from '../ui/PageTitle';
 import { constants } from '@/constants';
@@ -33,7 +33,7 @@ const Partners = () => {
             Додати партнера
           </p>
         </Link>
-        {data.map((item: IPartners) => (
+        {data?.map((item: Partners) => (
           <li key={item.id} className="list-none">
             <PartnersCard item={item} />
           </li>

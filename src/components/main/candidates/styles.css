@@ -1,0 +1,11 @@
+.custom-list li {
+  padding-left: 16px;
+}
+
+.custom-list li {
+  padding-left: 25px;
+  background-image: url('../../../../public/img/point.png');
+  background-repeat: no-repeat;
+  background-position: -3px 4px;
+  background-size: 20px 20px;
+}
