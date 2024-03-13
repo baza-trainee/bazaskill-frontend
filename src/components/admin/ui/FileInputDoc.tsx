@@ -127,7 +127,9 @@ ${
         />
       </div>
       {errorText && (
-        <span className="text-xs">{errorText}</span>
+        <span className="left top absolute text-xs">
+          {errorText}
+        </span>
       )}
     </div>
   );

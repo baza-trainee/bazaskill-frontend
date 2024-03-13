@@ -61,7 +61,9 @@ ${
         </div>
 
         {errorText && (
-          <span className="ml-2 text-xs">{errorText}</span>
+          <span className="left top absolute ml-2 text-xs">
+            {errorText}
+          </span>
         )}
       </div>
     );
