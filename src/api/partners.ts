@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from '@/config/axios';
-import {
-  Partners,
-  PartnersFormInput,
-} from '@/types/partners';
+import { IPartners, Partners } from '@/types/partners';
 
 export const getPartners = async () => {
   const { data } = await axios.get<Partners[]>('/partners');
@@ -29,7 +26,7 @@ export const getPartnersId = async (id: string) => {
 };
 
 export const createPartners = async (data: any) => {
-  const response = await axios.post<PartnersFormInput[]>(
+  const response = await axios.post<IPartners[]>(
     '/partners',
     data
   );

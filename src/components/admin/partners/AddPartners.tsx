@@ -1,5 +1,5 @@
 'use client';
-import { useRouter } from 'next/navigation';
+
 import React, { useState } from 'react';
 import FileInputPartner from '../ui/FileInputPartner';
 import TextInputPartner from '../ui/TextInputPartner';
@@ -56,6 +56,7 @@ const AddPartners = () => {
       setIsProcessing(true);
       const formData = new FormData();
       formData.append('name', values.name);
+      formData.append('partner_url', values.partner_url);
 
       if (file) {
         formData.append('file', file);
@@ -97,6 +98,20 @@ const AddPartners = () => {
                   />
                 );
               }}
+            />
+          </div>
+          <div>
+            <Controller
+              name="partner_url"
+              control={control}
+              render={({ field }) => (
+                <TextInputPartner
+                  {...field}
+                  errorText={errors.partner_url?.message}
+                  placeholder="partner_url"
+                  title="partner_url"
+                />
+              )}
             />
           </div>
           <div>
