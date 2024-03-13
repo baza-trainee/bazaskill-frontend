@@ -1,16 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import Image from 'next/image';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
 import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
+import { defaultValues } from './editSettingsDefaultValues';
+import { settingsScheme } from './editSettingsScheme';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const EditSettings = () => {
-  const { handleSubmit, control, reset } = useForm();
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm<z.infer<typeof settingsScheme>>({
+    resolver: zodResolver(settingsScheme),
+    mode: 'onChange',
+    defaultValues: defaultValues,
+  });
   const handleCancel = () => {
     reset();
   };
@@ -29,13 +40,14 @@ const EditSettings = () => {
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
-                name="old-password"
+                name="oldPassword"
                 control={control}
                 render={({ field }) => (
                   <PasswordInput
                     {...field}
                     title="Старий пароль"
                     placeholder="Введіть старий пароль"
+                    errorText={errors.oldPassword?.message}
                     iconComponent={<NotEyeIcon />}
                   />
                 )}
@@ -43,13 +55,14 @@ const EditSettings = () => {
             </div>
             <div>
               <Controller
-                name="new-password"
+                name="newPassword"
                 control={control}
                 render={({ field }) => (
                   <PasswordInput
                     {...field}
                     title="Новий пароль"
                     placeholder="Введіть новий пароль"
+                    errorText={errors.newPassword?.message}
                     iconComponent={<NotEyeIcon />}
                   />
                 )}
@@ -57,13 +70,16 @@ const EditSettings = () => {
             </div>
             <div>
               <Controller
-                name="repeat-password"
+                name="repeatPassword"
                 control={control}
                 render={({ field }) => (
                   <PasswordInput
                     {...field}
                     title="Повторіть новий пароль"
                     placeholder="Повторіть новий пароль"
+                    errorText={
+                      errors.repeatPassword?.message
+                    }
                     iconComponent={<NotEyeIcon />}
                   />
                 )}
@@ -71,7 +87,7 @@ const EditSettings = () => {
             </div>
           </div>
           <div className="flex w-full justify-between">
-            <PrimaryButton text="Зберігти зміни" />
+            <PrimaryButton text="Зберегти зміни" />
             <SecondaryButton
               text="Скасувати"
               type="reset"
