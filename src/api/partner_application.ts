@@ -11,6 +11,15 @@ export const getPartnerApplications = async () => {
   return data;
 };
 
+export const getPartnerApplicationsById = async (
+  id: string
+) => {
+  const { data } = await axios.get<IPartnerResponse>(
+    `/partner-application/${id}`
+  );
+  return data;
+};
+
 export const createApplication = async (
   values: IPartner
 ) => {

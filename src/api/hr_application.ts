@@ -8,6 +8,13 @@ export const getHrApplications = async () => {
   return data;
 };
 
+export const getHrApplicationById = async (id: string) => {
+  const { data } = await axios.get<IHrResponse>(
+    `/hr-application/${id}`
+  );
+  return data;
+};
+
 export const createApplication = async (values: IHr) => {
   const newApplication = {
     first_name: values.first_name,

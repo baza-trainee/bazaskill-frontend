@@ -15,6 +15,7 @@ import {
 } from '@/api/hr_application';
 import PageTitle from '../ui/PageTitle';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import Loader from '../ui/Loader';
 
 const HrApplications = () => {
   const queryClient = useQueryClient();
@@ -39,7 +40,6 @@ const HrApplications = () => {
     }
   };
 
-  if (isFetching) return <p>Loading...</p>;
   if (isError) return <p>{`Error: ${error.message}`}</p>;
 
   return (
@@ -52,7 +52,7 @@ const HrApplications = () => {
               key={item.id}
               className={`flex h-16 items-center gap-[150px] border-b px-4 ${dateChecker(item.created_at) ? 'border-green' : 'border-gray'}`}
             >
-              <div className="flex w-[50%] justify-between">
+              <div className="flex w-[40%] justify-between">
                 <Link
                   href={`/admin/hr-applications/${item.id}`}
                 >
@@ -71,7 +71,7 @@ const HrApplications = () => {
                   onClick={() => handleRemove(item.id)}
                   className=" mb-[0.5rem] self-end"
                 >
-                  <TrashIcon className="h-[32px] w-[32px] fill-white" />
+                  <TrashIcon className="h-[32px] w-[32px] fill-white hover:fill-error" />
                 </button>
               </div>
             </li>
@@ -80,6 +80,7 @@ const HrApplications = () => {
           <p className="mt-5">Наразі немає заявок...</p>
         )}
       </ul>
+      {isFetching && <Loader />}
     </div>
   );
 };

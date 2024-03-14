@@ -2,24 +2,26 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import { getPartnerApplications } from '@/api/partner_application';
+import { getPartnerApplicationsById } from '@/api/partner_application';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';
+import Loader from '../ui/Loader';
 
 const PartnerApplication = ({ id }: { id: string }) => {
-  const { data, isFetching } = useQuery({
+  const {
+    data: partner,
+    isFetching,
+    isError,
+    error,
+  } = useQuery({
     queryKey: [
       constants.partner_applications
-        .FETCH_PARTNER_APPLICATIONS,
+        .FETCH_PARTNER_APPLICATIONS_BY_ID,
     ],
-    queryFn: getPartnerApplications,
+    queryFn: () => getPartnerApplicationsById(id),
   });
 
-  const partner = data?.find(
-    (partner) => partner.id === +id
-  );
-
-  if (isFetching) return <p>Loading...</p>;
+  if (isError) return <p>{`Error: ${error.message}`}</p>;
 
   return (
     <div className="flex min-h-[100vh] items-center justify-center p-[24px]">
@@ -65,6 +67,7 @@ const PartnerApplication = ({ id }: { id: string }) => {
         </h3>
         <span className="text-xl">{partner?.message}</span>
       </div>
+      {isFetching && <Loader />}
     </div>
   );
 };
