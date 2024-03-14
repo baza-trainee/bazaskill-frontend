@@ -9,9 +9,23 @@ import TextInput from '../ui/TextInput';
 import Link from 'next/link';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
+import { defaultValues } from './defaultValues';
+import { settingsScheme } from './settingsScheme';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const Settings = () => {
-  const { handleSubmit, control, reset } = useForm();
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm<z.infer<typeof settingsScheme>>({
+    resolver: zodResolver(settingsScheme),
+    mode: 'onChange',
+    defaultValues: defaultValues,
+  });
+
   const handleCancel = () => {
     reset();
   };
@@ -30,27 +44,29 @@ const Settings = () => {
           <div className="flex flex-col gap-[50px]">
             <div>
               <Controller
-                name="E-mail"
+                name="email"
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    title="E-mail"
-                    placeholder="E-mail"
-                    isIcon
+                    type="email"
+                    isIcon={true}
+                    errorText={errors.email?.message}
+                    title="Email"
                   />
                 )}
               />
             </div>
             <div className="mb-[50px] flex items-end gap-[20px]">
               <Controller
-                name="Password"
+                name="password"
                 control={control}
                 render={({ field }) => (
                   <PasswordInput
                     {...field}
                     title="Пароль"
                     placeholder="Пароль"
+                    errorText={errors.password?.message}
                     iconComponent={<NotEyeIcon />}
                   />
                 )}
@@ -63,7 +79,7 @@ const Settings = () => {
             </div>
           </div>
           <div className="flex w-full justify-between">
-            <PrimaryButton text="Зберігти зміни" />
+            <PrimaryButton text="Зберегти зміни" />
             <SecondaryButton
               text="Скасувати"
               type="reset"

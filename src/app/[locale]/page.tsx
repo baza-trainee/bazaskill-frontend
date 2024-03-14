@@ -17,6 +17,7 @@ import { getSpecializations } from '@/api/specialization';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import CookiesModal from '@/components/main/modals/cookies/CookiesModal';
+import Candidates from '@/components/main/candidates/Candidates';
 
 const Home = async () => {
   const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const Home = async () => {
       <Counters />
       <Help />
       <ContentCards />
+      <Candidates />
       <Partners />
       <Posts />
       <HydrationBoundary state={dehydrate(queryClient)}>

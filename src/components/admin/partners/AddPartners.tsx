@@ -1,5 +1,5 @@
 'use client';
-import { useRouter } from 'next/navigation';
+
 import React, { useState } from 'react';
 import FileInputPartner from '../ui/FileInputPartner';
 import TextInputPartner from '../ui/TextInputPartner';
@@ -17,24 +17,32 @@ import {
 } from 'react-hook-form';
 import PageTitle from '../ui/PageTitle';
 
-import { getPartners } from '@/api/partners';
+import {
+  createPartners,
+  getPartners,
+} from '@/api/partners';
 import SuccessAlert from '../alerts/SuccessAlert';
 import { useQuery } from '@tanstack/react-query';
 
 const AddPartners = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (selectedFile: File) => {
+    setFile(selectedFile);
+  };
 
   const { data } = useQuery({
-    queryKey: [constants.partners.FETCH_PARTNERS],
+    queryKey: [constants.partners.ADD_PARTNERS],
     queryFn: getPartners,
   });
-  console.log('data', data);
+  console.log(data);
   const {
     handleSubmit,
     control,
-    formState: { isDirty },
+    reset,
+    formState: { isDirty, errors },
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
@@ -46,13 +54,21 @@ const AddPartners = () => {
   > = async (values: z.infer<typeof partnersScheme>) => {
     try {
       setIsProcessing(true);
-
       const formData = new FormData();
-      if (values.logo.length) {
-        formData.append('file', values.logo[0]);
+      formData.append('name', values.name);
+      formData.append('partner_url', values.partner_url);
+
+      if (file) {
+        formData.append('file', file);
       }
-    } catch (error: unknown) {
-      console.log(error);
+      const response = await createPartners(formData);
+      if (response.status === 201) {
+        setIsSuccess(true);
+      }
+      setIsProcessing(false);
+      reset();
+    } catch (errors: unknown) {
+      console.log(errors);
     } finally {
       setIsProcessing(false);
     }
@@ -61,27 +77,41 @@ const AddPartners = () => {
   return (
     <div className="p-[24px]">
       <PageTitle title="Додати партнера" />
-      <div className="mt-[80px] flex gap-[180px]">
+      <div className="mt-[80px] flex flex-wrap gap-[180px]">
         <form
           onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
           className="flex w-[597px] flex-col gap-[30px]"
         >
-          <div>
+          <div className="w-full">
             <Controller
               name="name"
               control={control}
               render={({ field }) => {
-                console.log(field);
                 return (
                   <TextInputPartner
                     {...field}
+                    errorText={errors.name?.message}
                     isRequired={true}
                     placeholder="Введіть назву"
                     title="Назва партнера"
                   />
                 );
               }}
+            />
+          </div>
+          <div>
+            <Controller
+              name="partner_url"
+              control={control}
+              render={({ field }) => (
+                <TextInputPartner
+                  {...field}
+                  errorText={errors.partner_url?.message}
+                  placeholder="partner_url"
+                  title="partner_url"
+                />
+              )}
             />
           </div>
           <div>
@@ -94,13 +124,13 @@ const AddPartners = () => {
                   placeholder="Завантажте логотип"
                   title="Логотип партнера"
                   isRequired={true}
+                  onChange={handleFileChange}
                 />
               )}
             />
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              type="submit"
               text={
                 isProcessing
                   ? 'Обробка запиту'
@@ -109,7 +139,7 @@ const AddPartners = () => {
               disabled={!isDirty}
             />
             <SecondaryButton
-              onClick={() => router.refresh()}
+              onClick={() => reset()}
               text="Скасувати"
             />
           </div>
@@ -124,20 +154,10 @@ const AddPartners = () => {
         <div>
           <div className="relative flex h-[286px] w-[286px] flex-col items-center justify-center rounded-xl border-4">
             <div className="flex gap-[129px]">
-              <div className="flex items-center gap-[24px] ">
-                {/* <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={273}
-                  height={61}
-                  className=" rounded-[8px] "
-                /> */}
-              </div>
+              <div className="flex items-center gap-[24px] "></div>
             </div>
             <div className="w-[159px] text-start">
-              <h4 className="font-tahoma font-bold tracking-[.72px] text-white ">
-                {/* {item.name} */}
-              </h4>
+              <h4 className="font-tahoma font-bold tracking-[.72px] text-white "></h4>
             </div>
           </div>
         </div>

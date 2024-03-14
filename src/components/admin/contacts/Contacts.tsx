@@ -1,21 +1,34 @@
 'use client';
 
-import React from 'react';
+import { useEffect, useState } from 'react';
 import {
   useForm,
   Controller,
   SubmitHandler,
 } from 'react-hook-form';
 import TextInput from '../ui/TextInput';
-import { defaultValues } from './defaultValues';
 import { contactsScheme } from './contactsScheme';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PhoneInput from '../ui/PhoneInput';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getContact, updateContact } from '@/api/contacts';
+import { defaultValues } from './defaultValues';
+import { IContacts } from '@/types/contacts';
 
 const Contacts = () => {
+  const [id, setId] = useState<number>(0);
+  const { data, refetch, isFetching, error } = useQuery<
+    IContacts[],
+    Error
+  >({
+    queryKey: [constants.contacts.FETCH_CONTACTS],
+    queryFn: getContact,
+  });
+
   const {
     handleSubmit,
     control,
@@ -27,21 +40,63 @@ const Contacts = () => {
     defaultValues: defaultValues,
   });
 
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const value: IContacts = data[0];
+      setId(data[0].id);
+      reset({
+        phone: value.phone_1,
+        secondPhone: value.phone_2,
+        email: value.email,
+        telegram: value.telegram,
+        linkedin: value.linkedin,
+        facebook: value.facebook,
+        discord: value.discord,
+        instagram: value.instagram,
+      });
+    }
+  }, [data, reset]);
+
   const submitForm: SubmitHandler<
     z.infer<typeof contactsScheme>
-  > = (values) => {
-    console.log('values: ', values);
+  > = async (values: z.infer<typeof contactsScheme>) => {
+    try {
+      await updateContact({
+        id,
+        updateData: {
+          phone_1: values.phone,
+          phone_2: values.secondPhone,
+          email: values.email,
+          telegram: values.telegram,
+          linkedin: values.linkedin,
+          facebook: values.facebook,
+          discord: values.discord,
+          instagram: values.instagram,
+        },
+      });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  if (isFetching) {
+    return <p>Loading....</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
   return (
-    <section className="max-h-[100vh] overflow-auto px-[24px] py-[40px]">
+    <section className="px-[24px] py-[40px]">
       <div className="mb-[70px] text-[40px] font-bold leading-[150%] tracking-[-0.03em] text-[#fff]">
         Контакти
       </div>
       <form
         onSubmit={handleSubmit(submitForm)}
         autoComplete="off"
-        className="grid w-max grid-cols-[42%_minmax(0,_1fr)] gap-x-[24px] gap-y-[50px]  ">
+        className="flex w-[725px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
         <div>
           <Controller
             name="phone"
@@ -50,7 +105,7 @@ const Contacts = () => {
               <PhoneInput
                 {...field}
                 isIcon={true}
-                type="tel"
+                type="text"
                 title="Телефон"
                 errorText={errors.phone?.message}
               />
@@ -94,7 +149,7 @@ const Contacts = () => {
             render={({ field }) => (
               <TextInput
                 {...field}
-                type="url"
+                type="text"
                 isIcon={true}
                 errorText={errors.telegram?.message}
                 title="Telegram"

@@ -1,4 +1,5 @@
 export const defaultValues = {
   name: '',
-  logo: [],
+  logo: '',
+  partner_url: '',
 };

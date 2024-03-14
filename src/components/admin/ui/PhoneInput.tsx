@@ -50,7 +50,7 @@ ${
 
   return (
     <div
-      className={` w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[290px] font-sans font-normal  tracking-[0px] 3xl:w-[350px] 5xl:w-[442px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={title}
@@ -63,7 +63,7 @@ ${
       )}
       <div className="relative ">
         <MaskedStyledInput
-          mask="+38(#*1)111-11-11"
+          mask="+38(#*0)000-00-00"
           definitions={{
             '#': /[0]/,
             '*': /[6,7,8,9,5]/,
@@ -85,7 +85,9 @@ ${
       </div>
 
       {errorText && (
-        <span className="text-xs">{errorText}</span>
+        <span className="left top absolute text-xs">
+          {errorText}
+        </span>
       )}
     </div>
   );

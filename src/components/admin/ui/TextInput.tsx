@@ -25,7 +25,7 @@ const TextInput = forwardRef(function TextInput(
   }: TextInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
-  const inputClassName = `bg-'[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
+  const inputClassName = `bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee]
     ${isIcon && 'pr-[40px]'}
 ${
@@ -37,7 +37,7 @@ ${
 
   return (
     <div
-      className={` w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={` w-[290px] font-sans font-normal tracking-[0px] 3xl:w-[350px] 5xl:w-[442px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={title}
@@ -62,9 +62,10 @@ ${
           </div>
         )}
       </div>
-
       {errorText && (
-        <span className="text-xs">{errorText}</span>
+        <span className="left top absolute text-xs">
+          {errorText}
+        </span>
       )}
     </div>
   );

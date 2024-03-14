@@ -4,7 +4,6 @@ import {
   ForwardedRef,
   InputHTMLAttributes,
   forwardRef,
-  useState,
 } from 'react';
 
 interface TextInputPartnerProps
@@ -28,14 +27,6 @@ const TextInputPartner = forwardRef(
     }: TextInputPartnerProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) {
-    const [inputValue, setInputValue] = useState(value);
-
-    const handleInputChange = (
-      event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-      setInputValue(event.target.value);
-    };
-
     const inputClassName = `bg-[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
    hover:bg-[#ebfcee] 
 ${
@@ -47,7 +38,7 @@ ${
 
     return (
       <div
-        className={` w-[597px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+        className={` 5x:w-[597px] w-[420px] font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
       >
         {!!title && (
           <label
@@ -60,13 +51,12 @@ ${
             )}
           </label>
         )}
-        <div className="relative">
+        <div className="relative w-full">
           <input
             {...rest}
             id={title}
-            value={inputValue}
+            value={value}
             className={inputClassName}
-            onChange={handleInputChange}
           />
 
           {isIcon && (
@@ -77,7 +67,9 @@ ${
         </div>
 
         {errorText && (
-          <span className="text-xs">{errorText}</span>
+          <span className="left top absolute text-xs">
+            {errorText}
+          </span>
         )}
       </div>
     );

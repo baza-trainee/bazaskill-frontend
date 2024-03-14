@@ -1,4 +1,4 @@
-import { Testimonial } from '@/types/testimonials';
+/* import { Testimonial } from '@/types/testimonials';
 
 export const testimonials: Testimonial[] = [
   {
@@ -46,3 +46,4 @@ export const testimonials: Testimonial[] = [
     image_url: '/img/testimonials_image.jpg',
   },
 ];
+ */
