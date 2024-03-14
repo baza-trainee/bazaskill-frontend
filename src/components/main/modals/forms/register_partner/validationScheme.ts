@@ -13,7 +13,7 @@ const nonRussianLettersWithSymbolsAndDigitsPattern =
 const messageMaxLength = 300;
 
 export const registerScheme = z.object({
-  name: z
+  company_name: z
     .string()
     .nonempty('Введіть ім’я')
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
@@ -23,7 +23,7 @@ export const registerScheme = z.object({
       { message: 'Введіть коректне ім’я' }
     ),
 
-  link: z
+  company_url: z
     .string()
     .nonempty('Це поле обовʼязкове для заповнення')
     .refine(

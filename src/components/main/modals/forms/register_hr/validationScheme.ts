@@ -72,7 +72,9 @@ export const registerScheme = z.object({
 
   country: z.string(),
 
-  specialist: z.string().nonempty('Це поле обовʼязкове'),
+  specialization: z
+    .string()
+    .nonempty('Це поле обовʼязкове'),
 
   terms: z.literal(true, {
     errorMap: () => ({

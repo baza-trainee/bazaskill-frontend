@@ -40,7 +40,7 @@ export const SideBarItem: React.FC<SideBarItemProps> = ({
       >
         {icon &&
           React.cloneElement(icon as React.ReactElement, {
-            className: `${iconClassName} ${isHovered ? 'hover:text-black' : ''}`,
+            className: `${iconClassName} ${isHovered ? 'text-black' : ''}`,
           })}
         {children}
         <div className="ml-auto p-3">
