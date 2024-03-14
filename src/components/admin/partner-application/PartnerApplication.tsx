@@ -9,7 +9,8 @@ import { translateCountry } from '@/helpers/translateCountry';
 const PartnerApplication = ({ id }: { id: string }) => {
   const { data, isFetching } = useQuery({
     queryKey: [
-      constants.partner_applications.FETCH_PARTNERS,
+      constants.partner_applications
+        .FETCH_PARTNER_APPLICATIONS,
     ],
     queryFn: getPartnerApplications,
   });

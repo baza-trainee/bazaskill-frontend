@@ -21,7 +21,8 @@ const PartnerApplications = () => {
 
   const { data, isFetching, isError, error } = useQuery({
     queryKey: [
-      constants.partner_applications.FETCH_PARTNERS,
+      constants.partner_applications
+        .FETCH_PARTNER_APPLICATIONS,
     ],
     queryFn: getPartnerApplications,
   });
@@ -31,7 +32,8 @@ const PartnerApplications = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [
-          constants.partner_applications.FETCH_PARTNERS,
+          constants.partner_applications
+            .FETCH_PARTNER_APPLICATIONS,
         ],
       });
     },

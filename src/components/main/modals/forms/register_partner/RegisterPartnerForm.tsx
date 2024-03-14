@@ -50,7 +50,8 @@ const RegisterPartnerForm = () => {
       setIsSubmitted(true);
       queryClient.invalidateQueries({
         queryKey: [
-          constants.partner_applications.FETCH_PARTNERS,
+          constants.partner_applications
+            .FETCH_PARTNER_APPLICATIONS,
         ],
       });
     },
