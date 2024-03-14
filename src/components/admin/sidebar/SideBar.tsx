@@ -10,6 +10,8 @@ import PdfIcon from '@/components/icons/Admin-icons/PdfIcon';
 import Button from './Button';
 import ExitIcon from '@/components/icons/Admin-icons/ExitIcon';
 import Logo from '@/components/icons/Logo';
+import { FaUser } from 'react-icons/fa6';
+import { FaHandshake } from 'react-icons/fa';
 
 const SideBar: React.FC = () => {
   return (
@@ -66,6 +68,22 @@ const SideBar: React.FC = () => {
           href="/admin/contacts"
         >
           Контакти
+        </SideBarItem>
+        <SideBarItem
+          className="border-b"
+          icon={<FaUser />}
+          iconClassName="w-[20px] h-[20px]"
+          href="/admin/hr-applications"
+        >
+          Заявки HR`ів
+        </SideBarItem>
+        <SideBarItem
+          className="border-b"
+          icon={<FaHandshake />}
+          iconClassName="w-[20px] h-[20px]"
+          href="/admin/partner-applications"
+        >
+          Заявки партнерів
         </SideBarItem>
         <SideBarItem
           className="border-b"

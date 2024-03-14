@@ -7,11 +7,13 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
+import { constants } from '@/constants';
 import { stack, countries } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import { useModal } from '@/stores/useModal';
+import { createApplication } from '@/api/hr_application';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -19,9 +21,14 @@ import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 const RegisterHrForm = () => {
   const { closeModal } = useModal();
+  const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -35,14 +42,23 @@ const RegisterHrForm = () => {
     defaultValues: defaultValues,
   });
 
+  const createApplicationMutation = useMutation({
+    mutationFn: createApplication,
+    onSuccess: () => {
+      setIsSubmitted(true);
+      queryClient.invalidateQueries({
+        queryKey: [constants.hr_applications.FETCH_HRS],
+      });
+    },
+  });
+
   const onSubmit: SubmitHandler<
     z.infer<typeof registerScheme>
   > = async (values: z.infer<typeof registerScheme>) => {
     try {
       setIsProcessing(true);
-      console.log(values);
+      createApplicationMutation.mutate(values);
       setIsProcessing(false);
-      setIsSubmitted(true);
     } catch (error: unknown) {
       console.log(error);
     }
@@ -154,14 +170,16 @@ const RegisterHrForm = () => {
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <div>
                 <Controller
-                  name="specialist"
+                  name="specialization"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <SelectInput
                       title="Шукаю"
                       {...field}
-                      errorText={errors.specialist?.message}
+                      errorText={
+                        errors.specialization?.message
+                      }
                       options={stack}
                       placeholder="Спеціальність"
                       isRequired={true}

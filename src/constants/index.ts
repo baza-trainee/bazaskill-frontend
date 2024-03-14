@@ -14,4 +14,10 @@ export const constants = {
   partners: {
     FETCH_PARTNERS: 'FETCH_PARTNERS',
   },
+  hr_applications: {
+    FETCH_HRS: 'FETCH_HRS',
+  },
+  partner_applications: {
+    FETCH_PARTNERS: 'FETCH_PARTNERS',
+  },
 };

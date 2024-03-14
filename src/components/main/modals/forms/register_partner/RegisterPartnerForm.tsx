@@ -13,6 +13,7 @@ import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import { useModal } from '@/stores/useModal';
+import { createApplication } from '@/api/partner_application';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -21,9 +22,15 @@ import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
 import { countries } from '../register_partner/data';
+import { constants } from '@/constants';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 const RegisterPartnerForm = () => {
   const { closeModal } = useModal();
+  const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -37,14 +44,25 @@ const RegisterPartnerForm = () => {
     defaultValues: defaultValues,
   });
 
+  const createApplicationMutation = useMutation({
+    mutationFn: createApplication,
+    onSuccess: () => {
+      setIsSubmitted(true);
+      queryClient.invalidateQueries({
+        queryKey: [
+          constants.partner_applications.FETCH_PARTNERS,
+        ],
+      });
+    },
+  });
+
   const onSubmit: SubmitHandler<
     z.infer<typeof registerScheme>
   > = async (values: z.infer<typeof registerScheme>) => {
     try {
       setIsProcessing(true);
-      console.log(values);
+      createApplicationMutation.mutate(values);
       setIsProcessing(false);
-      setIsSubmitted(true);
     } catch (error: unknown) {
       console.log(error);
     }
@@ -69,26 +87,26 @@ const RegisterPartnerForm = () => {
           >
             <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
-                name="name"
+                name="company_name"
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     title="Назва компанії"
                     {...field}
-                    errorText={errors.name?.message}
+                    errorText={errors.company_name?.message}
                     placeholder="Назва"
                     isRequired={true}
                   />
                 )}
               />
               <Controller
-                name="link"
+                name="company_url"
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     title="Сайт компанії"
                     {...field}
-                    errorText={errors.link?.message}
+                    errorText={errors.company_url?.message}
                     placeholder="Сайт"
                     isRequired={true}
                   />
