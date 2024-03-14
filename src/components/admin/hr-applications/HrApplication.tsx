@@ -2,19 +2,23 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import { getHrApplications } from '@/api/hr_application';
+import { getHrApplicationById } from '@/api/hr_application';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';
+import Loader from '../ui/Loader';
 
 const HrApplication = ({ id }: { id: string }) => {
-  const { data, isFetching } = useQuery({
-    queryKey: [constants.hr_applications.FETCH_HRS],
-    queryFn: getHrApplications,
+  const {
+    data: hr,
+    isFetching,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: [constants.hr_applications.FETCH_HR_BY_ID],
+    queryFn: () => getHrApplicationById(id),
   });
 
-  const hr = data?.find((hr) => hr.id === +id);
-
-  if (isFetching) return <p>Loading...</p>;
+  if (isError) return <p>{`Error: ${error.message}`}</p>;
 
   return (
     <div className="flex min-h-[100vh] items-center justify-center p-[24px]">
@@ -48,6 +52,7 @@ const HrApplication = ({ id }: { id: string }) => {
         </h3>
         <span className="text-xl">{hr?.message}</span>
       </div>
+      {isFetching && <Loader />}
     </div>
   );
 };

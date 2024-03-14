@@ -18,10 +18,13 @@ export const constants = {
 
   hr_applications: {
     FETCH_HRS: 'FETCH_HRS',
+    FETCH_HR_BY_ID: 'FETCH_HR_BY_ID',
   },
   partner_applications: {
     FETCH_PARTNER_APPLICATIONS:
       'FETCH_PARTNER_APPLICATIONS',
+    FETCH_PARTNER_APPLICATIONS_BY_ID:
+      'FETCH_PARTNER_APPLICATIONS_BY_ID',
   },
   contacts: {
     FETCH_CONTACTS: 'FETCH_CONTACTS',

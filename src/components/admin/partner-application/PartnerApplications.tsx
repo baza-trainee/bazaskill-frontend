@@ -11,6 +11,7 @@ import {
 } from '@/api/partner_application';
 import PageTitle from '../ui/PageTitle';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import Loader from '../ui/Loader';
 import {
   useMutation,
   useQueryClient,
@@ -44,8 +45,6 @@ const PartnerApplications = () => {
       deleteApplicationMutation.mutate(id);
     }
   };
-
-  if (isFetching) return <p>Loading...</p>;
   if (isError) return <p>{`Error: ${error.message}`}</p>;
 
   return (
@@ -58,13 +57,12 @@ const PartnerApplications = () => {
               key={item.id}
               className={`flex h-16 items-center gap-[150px] border-b px-4 ${dateChecker(item.created_at) ? 'border-green' : 'border-gray'}`}
             >
-              <div className="flex w-[50%] justify-between">
+              <div className="flex w-[40%] justify-between">
                 <Link
                   href={`/admin/partner-applications/${item.id}`}
                 >
                   <div className="flex cursor-pointer gap-[5px] hover:text-green">
-                    <span>{item.first_name}</span>
-                    <span>{item.last_name}</span>
+                    <span>{item.company_name}</span>
                   </div>
                 </Link>
                 <span className="text-right">
@@ -77,7 +75,7 @@ const PartnerApplications = () => {
                   onClick={() => handleRemove(item.id)}
                   className=" mb-[0.5rem] self-end"
                 >
-                  <TrashIcon className="h-[32px] w-[32px] fill-white" />
+                  <TrashIcon className="h-[32px] w-[32px] fill-white hover:fill-error" />
                 </button>
               </div>
             </li>
@@ -86,6 +84,7 @@ const PartnerApplications = () => {
           <p className="mt-5">Наразі немає заявок...</p>
         )}
       </ul>
+      {isFetching && <Loader />}
     </div>
   );
 };

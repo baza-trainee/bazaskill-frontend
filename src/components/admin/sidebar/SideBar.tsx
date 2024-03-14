@@ -80,7 +80,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className="border-b"
           icon={<FaHandshake />}
-          iconClassName="w-[20px] h-[20px]"
+          iconClassName="w-[25px] h-[25px]"
           href="/admin/partner-applications"
         >
           Заявки партнерів
