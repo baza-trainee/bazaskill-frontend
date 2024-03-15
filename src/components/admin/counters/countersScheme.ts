@@ -8,7 +8,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри або знак "+"',
+        message: 'Введіть тільки цифри і знак "+"',
       }
     ),
   participants: z
@@ -16,7 +16,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри або знак "+"',
+        message: 'Введіть тільки цифри і знак "+"',
       }
     ),
   employed: z
@@ -24,7 +24,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри або знак "+"',
+        message: 'Введіть тільки цифри і знак "+"',
       }
     ),
   technologies: z
@@ -32,7 +32,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри або знак "+"',
+        message: 'Введіть тільки цифри і знак "+"',
       }
     ),
   libraries: z
@@ -40,7 +40,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри або знак "+"',
+        message: 'Введіть тільки цифри і знак "+"',
       }
     ),
 });
