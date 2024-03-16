@@ -5,7 +5,10 @@ import CandidateCard from './CandidateCard';
 const CandidatesList = () => {
   return (
     <div className=" box-content pr-[24px] 5xl:pr-[196px]">
-      <div className="flex h-fit max-w-[950px] grow flex-wrap items-start justify-start gap-[24px] pl-[24px]">
+      <div className="pl-[24px] font-tahoma text-[24px]">
+        386 кандидата
+      </div>
+      <div className="mt-[40px] flex h-fit max-w-[950px] grow flex-wrap items-start justify-start gap-[24px] pl-[24px]">
         <div className="relative box-border flex h-[486px] w-[442px] items-center justify-center rounded-[10px] border-[2px] border-green bg-transparent">
           <Link
             href="/admin/candidates/add"
