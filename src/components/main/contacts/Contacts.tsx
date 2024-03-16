@@ -37,16 +37,16 @@ const socialLinks = [
 const Contacts = () => {
   return (
     <div className="container py-14">
-      <h2 className="mb-12 flex w-full justify-center text-5xl font-bold text-white xs:text-3xl 2xl:text-4xl">
+      <h2 className="mb-12 flex w-full justify-center text-2xl font-bold text-white md:text-2xl lg:text-[40px]">
         Контакти
       </h2>
-      <div className="priority={true} alt={employees are sitting at the table} w-full sm:bg-graphite md:bg-[url('/img/contactstablet.jpg')] xl:bg-[url('/img/contacts1280.jpg')] 2xl:bg-[url('/img/contacts1368.jpg')] 3xl:bg-[url('/img/contacts1440.jpg')] 4xl:bg-[url('/img/contacts1536.jpg')] 5xl:bg-[url('/img/contacts1920.jpg')] height-[445px] bg-cover">
-        <div className="width={270} height={288} flex flex-col pl-48 pt-20 xs:pl-0 xs:bg-gradient-to-r from-greenBg to-yellow rounded xs:py-5 md:bg-none">
+      <div className="priority={true} alt={employees are sitting at the table} height-[445px] w-full bg-cover sm:bg-graphite md:bg-[url('/img/contactstablet.jpg')] xl:bg-[url('/img/contacts1280.jpg')] 2xl:bg-[url('/img/contacts1368.jpg')] 3xl:bg-[url('/img/contacts1440.jpg')] 4xl:bg-[url('/img/contacts1536.jpg')] 5xl:bg-[url('/img/contacts1920.jpg')]">
+        <div className="width={270} height={288} flex flex-col rounded from-greenBg to-yellow pl-48 pt-20 xs:bg-gradient-to-r xs:py-5 xs:pl-0 md:bg-none">
           <ul className="mr-auto xs:mb-[20px] sm:ml-[50px] xl:mt-[40px] 2xl:mb-[30px]">
             {contactData.map((contact, index) => (
               <li key={index} className="p-1">
                 <a
-                  className="mb-1.5 flex p-1.5 text-lg leading-6 xs:font-bold md:font-semibold md:pointer-events-none"
+                  className="mb-1.5 flex p-1.5 text-lg leading-6 xs:font-bold md:pointer-events-none md:font-semibold"
                   href={contact.link}
                   target="_blank"
                   rel="noopener noreferrer"

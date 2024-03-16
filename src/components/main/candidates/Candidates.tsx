@@ -4,7 +4,7 @@ import './styles.css';
 const Candidates = () => {
   return (
     <section className="container relative py-[48px] xl:py-[60px]">
-      <h3 className=" mb-[31px] text-center font-tahoma text-[24px] font-bold tracking-[1.08px] text-white md:text-2xl md:leading-6 lg:mb-[48px] lg:text-4xl xl:mb-[40px] xl:leading-7 2xl:leading-8">
+      <h3 className=" mb-[31px] text-center font-tahoma text-[24px] font-bold tracking-[1.08px] text-white md:text-2xl md:leading-6 lg:mb-[48px] lg:text-[40px] xl:mb-[40px] xl:leading-7 2xl:leading-8">
         Наші кандидати
       </h3>
       <ul className="custom-list grid justify-center gap-5 text-white md:grid-cols-2 md:gap-[24px] md:text-base md:leading-7 xl:gap-[21px] xl:text-xl 2xl:gap-[27px]  2xl:leading-7 3xl:gap-[29px] 3xl:leading-6 4xl:gap-[21px]	5xl:gap-[21px]">

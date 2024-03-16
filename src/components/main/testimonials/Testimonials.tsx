@@ -35,7 +35,7 @@ const Testimonials = () => {
 
   return (
     <section className="container relative py-[60px]">
-      <h3 className="mb-[50px] text-center font-tahoma text-[24px] font-bold tracking-[1.08px] text-white md:text-4xl">
+      <h3 className="mb-[50px] text-center font-tahoma text-[24px] font-bold tracking-[1.08px] text-white md:text-2xl lg:text-[40px]">
         Відгуки
       </h3>
       <div className="relative xl:mx-auto xl:max-w-[1280px]  5xl:max-w-[1681px]">
