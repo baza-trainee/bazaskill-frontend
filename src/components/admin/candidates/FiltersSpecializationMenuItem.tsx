@@ -4,10 +4,22 @@ import {
 } from '@/types/specialization';
 import { useState } from 'react';
 import CustomCheckbox from './CustomCheckbox';
-
+import {
+  FieldValues,
+  UseFormRegister,
+} from 'react-hook-form';
+interface IFiltersSpecializationMenuItemProps
+  extends ISpecializationWithStack {
+  register: UseFormRegister<FieldValues>;
+}
 const FiltersSpecializationMenuItem: React.FC<
-  ISpecializationWithStack
-> = ({ id, title, stack }: ISpecializationWithStack) => {
+  IFiltersSpecializationMenuItemProps
+> = ({
+  id,
+  title,
+  stack,
+  register,
+}: IFiltersSpecializationMenuItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col gap-[20px]">
@@ -35,7 +47,13 @@ const FiltersSpecializationMenuItem: React.FC<
               specialization_stack_id,
             }: SpecializationStack) => {
               return (
-                <CustomCheckbox key={id} title={title} />
+                <CustomCheckbox
+                  register={register}
+                  registerFor="stack"
+                  value={id}
+                  key={id}
+                  title={title}
+                />
               );
             }
           )}

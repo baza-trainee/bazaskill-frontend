@@ -1,10 +1,27 @@
-const CustomCheckbox = ({ title }: { title: string }) => {
+import { SpecializationStack } from '@/types/specialization';
+import {
+  FieldValues,
+  UseFormRegister,
+} from 'react-hook-form';
+type CustomCheckboxProps = {
+  title: string;
+  register: UseFormRegister<FieldValues>;
+  registerFor: string;
+  value?: string | number;
+};
+const CustomCheckbox = ({
+  title,
+  register,
+  registerFor,
+  value,
+}: CustomCheckboxProps) => {
   return (
     <div className="relative flex items-center gap-[12px]">
       {/* className="peer z-[1] h-[20px] w-[20px] shrink-0 cursor-pointer appearance-none bg-white rounded-[4px] border-[1px] border-white" */}
       <input
-        value={title}
-        name="stack"
+        {...register(registerFor)}
+        value={value}
+        name={registerFor}
         type="checkbox"
         id={title}
         className="peer z-[1] h-[20px] w-[20px] shrink-0 cursor-pointer appearance-none rounded-[4px] border-[1px] border-secondaryGray bg-white"

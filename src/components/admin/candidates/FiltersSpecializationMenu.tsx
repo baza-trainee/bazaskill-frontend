@@ -2,9 +2,17 @@ import { getSpecializationsWithStack } from '@/api/specialization';
 import { constants } from '@/constants';
 import { ISpecializationWithStack } from '@/types/specialization';
 import { useQuery } from '@tanstack/react-query';
+import {
+  FieldValues,
+  UseFormRegister,
+} from 'react-hook-form';
 import FiltersSpecializationMenuItem from './FiltersSpecializationMenuItem';
 
-const FiltersSpecializationMenu = () => {
+const FiltersSpecializationMenu = ({
+  register,
+}: {
+  register: UseFormRegister<FieldValues>;
+}) => {
   const { data, isFetching } = useQuery({
     queryKey: [
       constants.specialization
@@ -25,6 +33,7 @@ const FiltersSpecializationMenu = () => {
             }: ISpecializationWithStack) => {
               return (
                 <FiltersSpecializationMenuItem
+                  register={register}
                   key={id}
                   id={id}
                   title={title}
