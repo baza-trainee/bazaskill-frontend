@@ -27,7 +27,7 @@ const Counters: React.FC = () => {
     handleSubmit,
     control,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<CounterFormValues>({
     resolver: zodResolver(countersScheme),
     mode: 'onChange',
@@ -147,8 +147,11 @@ const Counters: React.FC = () => {
           <div className="flex w-full justify-between">
             <PrimaryButton
               text="Зберeгти зміни"
-              type="button"
+              type="submit"
               onClick={handleSubmit(onSubmit)}
+              disabled={
+                !Object.keys(errors).length && !isDirty
+              }
             />
             <SecondaryButton
               text="Скасувати"
