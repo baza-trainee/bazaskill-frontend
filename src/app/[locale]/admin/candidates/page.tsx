@@ -1,4 +1,4 @@
-import Candidates from '@/components/admin/candidates/Candidates';
+import Candidates from '@/components/admin/candidates/CandidateFilters/Candidates';
 import React from 'react';
 
 const CandidatesPage = () => {
