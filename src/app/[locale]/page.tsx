@@ -14,7 +14,6 @@ import { getTestimonials } from '@/api/testimonials';
 import Help from '@/components/main/help/Help';
 import ContentCards from '@/components/main/contentCards/ContentCards';
 import { getSpecializations } from '@/api/specialization';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import CookiesModal from '@/components/main/modals/cookies/CookiesModal';
 import Candidates from '@/components/main/candidates/Candidates';

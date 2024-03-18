@@ -12,12 +12,15 @@ import ExitIcon from '@/components/icons/Admin-icons/ExitIcon';
 import Logo from '@/components/icons/Logo';
 import { FaUser } from 'react-icons/fa6';
 import { FaHandshake } from 'react-icons/fa';
+import Link from 'next/link';
 
 const SideBar: React.FC = () => {
   return (
     <aside className="no-scrollbar h-fit w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
       <div className="flex h-[104px] items-center justify-center">
-        <Logo />
+        <Link href={`/`}>
+          <Logo />
+        </Link>
       </div>
       <ul className="mb-[380px] flex flex-col">
         <SideBarItem
