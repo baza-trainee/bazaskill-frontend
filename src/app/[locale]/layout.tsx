@@ -75,13 +75,11 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
-      >
+        className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}>
         <Providers>
           <header className="bg-graphite">
             <HydrationBoundary
-              state={dehydrate(queryClient)}
-            >
+              state={dehydrate(queryClient)}>
               <Header />
             </HydrationBoundary>
           </header>

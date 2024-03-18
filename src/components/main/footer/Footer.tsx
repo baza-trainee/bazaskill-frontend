@@ -1,11 +1,14 @@
 'use client';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { useModal } from '@/stores/useModal';
+import { useQuery } from '@tanstack/react-query';
+import { getDocuments } from '@/api/documents';
+import { constants } from '@/constants';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
-import { usePathname } from 'next/navigation';
 
 type FooterLinkProps = {
   href: string;
@@ -36,6 +39,20 @@ const Footer = () => {
   const { openModal, closeModal } = useModal();
   const pathname = usePathname();
   const isAdminPage = pathname.split('/').includes('admin');
+
+  const { data } = useQuery({
+    queryKey: [constants.documents.FETCH_DOCUMENTS],
+    queryFn: getDocuments,
+  });
+
+  const termsOfUse = data?.find(
+    (item) => item.title === 'terms_of_use'
+  );
+
+  const privacyPolicy = data?.find(
+    (item) => item.title === 'privacy_policy'
+  );
+
   if (isAdminPage) return null;
   return (
     <div
@@ -98,7 +115,7 @@ const Footer = () => {
             className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
             target="_blank"
             rel="noopener noreferrer"
-            href="/document/privacypolicy.pdf"
+            href={privacyPolicy?.document_url}
           >
             Політика конфіденційності
           </a>
@@ -106,7 +123,7 @@ const Footer = () => {
             className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]"
             target="_blank"
             rel="noopener noreferrer"
-            href="/document/siteusagerules.pdf"
+            href={termsOfUse?.document_url}
           >
             Правила користування сайтом
           </a>
