@@ -1,6 +1,4 @@
 export const defaultValues = {
-  reporting: [],
-  regulations: [],
-  rules_of_use: [],
+  terms_of_use: [],
   privacy_policy: [],
 };
