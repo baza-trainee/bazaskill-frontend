@@ -29,4 +29,7 @@ export const constants = {
   contacts: {
     FETCH_CONTACTS: 'FETCH_CONTACTS',
   },
+  counters: {
+    FETCH_COUNTERS: 'FETCH_COUNTERS',
+  },
 };

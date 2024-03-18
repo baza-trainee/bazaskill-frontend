@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import * as z from 'zod';
 import {
   useForm,
   Controller,
@@ -13,34 +14,76 @@ import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { defaultValues } from './defaultValues';
 import { countersScheme } from './countersScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getCounters, updateCounter } from '@/api/counters';
+import SuccessAlert from '../alerts/SuccessAlert';
 
-interface CounterFormValues {
-  live_projects: string;
-  participants: string;
-  employed: string;
-  technologies: string;
-  libraries: string;
-}
+// interface CounterFormValues {
+//   live_projects: string;
+//   participants: string;
+//   employed: string;
+//   technologies: string;
+//   libraries: string;
+// }
 
-const Counters: React.FC = () => {
+const Counters = () => {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const { data } = useQuery({
+    queryKey: [constants.counters.FETCH_COUNTERS],
+    queryFn: getCounters,
+  });
+
   const {
     handleSubmit,
     control,
     reset,
     formState: { errors, isDirty },
-  } = useForm<CounterFormValues>({
+  } = useForm<z.infer<typeof countersScheme>>({
     resolver: zodResolver(countersScheme),
     mode: 'onChange',
     defaultValues: defaultValues,
   });
+
   const [showModal, setShowModal] = useState(false);
 
-  const onSubmit: SubmitHandler<CounterFormValues> = (
-    data
-  ) => {
-    console.log(data);
-    setShowModal(true);
-    reset();
+  const onSubmit: SubmitHandler<
+    z.infer<typeof countersScheme>
+  > = async (values: z.infer<typeof countersScheme>) => {
+    try {
+      setIsProcessing(true);
+      let currentId;
+      const formData = new FormData();
+      if (values.live_projects.length) {
+        const currentItem = data?.find(
+          (item) => item.title === 'live_projects'
+        );
+        currentId = currentItem?.id;
+        formData.append('file', values.live_projects[0]);
+      }
+      if (values.participants.length) {
+        const currentItem = data?.find(
+          (item) => item.title === 'participants'
+        );
+        currentId = currentItem?.id;
+        formData.append('file', values.participants[0]);
+      }
+      const response = await updateCounter(
+        currentId as string,
+        formData
+      );
+      if (response.status === 200) {
+        setIsSuccess(true);
+      }
+      setIsProcessing(false);
+      reset();
+    } catch (error: unknown) {
+      console.log(error);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleKeyPress: React.KeyboardEventHandler<
@@ -146,9 +189,13 @@ const Counters: React.FC = () => {
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text="Зберeгти зміни"
+              text={
+                isProcessing
+                  ? 'Обробка запиту'
+                  : 'Зберігти зміни'
+              }
               type="submit"
-              onClick={handleSubmit(onSubmit)}
+              // onClick={handleSubmit(onSubmit)}
               disabled={
                 !Object.keys(errors).length && !isDirty
               }
@@ -159,20 +206,12 @@ const Counters: React.FC = () => {
               onClick={handleCloseAndReset}
             />
           </div>
-          {showModal && (
-            <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
-              <div className="h-[223px] w-[600px] rounded-[10px] bg-white text-black">
-                <button
-                  onClick={handleCloseAndReset}
-                  className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray"
-                >
-                  X
-                </button>
-                <p className="mt-[28px] flex items-center justify-center text-[24px] font-bold">
-                  Дані змінено
-                </p>
-              </div>
-            </div>
+          {isSuccess && (
+            <SuccessAlert
+              title="Дані змінено"
+              onClose={() => setIsSuccess(false)}
+              isSuccess={isSuccess}
+            />
           )}
         </form>
       </div>
