@@ -1,7 +1,13 @@
-import React from 'react';
+'use client';
+import { useEffect } from 'react';
+import { redirect } from 'next/navigation';
 
 const AdminPage: React.FC = () => {
-  return <div>page</div>;
+  useEffect(() => {
+    redirect('/admin/candidates');
+  }, []);
+
+  return null;
 };
 
 export default AdminPage;

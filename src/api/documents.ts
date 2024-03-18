@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from '@/config/axios';
 import { IDocument } from '@/types/documents';
 
@@ -8,9 +7,9 @@ export const getDocuments = async () => {
   return data;
 };
 
-export const updateDocument = async (
+export const updateDocument = async <T>(
   id: string,
-  data: any
+  data: T
 ) => {
   const response = await axios.patch(
     `/documents/${id}`,

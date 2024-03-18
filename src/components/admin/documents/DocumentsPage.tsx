@@ -30,8 +30,6 @@ const DocumentsPage = () => {
     queryFn: getDocuments,
   });
 
-  console.log(data);
-
   const {
     handleSubmit,
     control,
@@ -50,26 +48,12 @@ const DocumentsPage = () => {
       setIsProcessing(true);
       let currentId;
       const formData = new FormData();
-      if (values.reporting.length) {
+      if (values.terms_of_use.length) {
         const currentItem = data?.find(
-          (item) => item.title === 'reporting'
+          (item) => item.title === 'terms_of_use'
         );
         currentId = currentItem?.id;
-        formData.append('file', values.reporting[0]);
-      }
-      if (values.regulations.length) {
-        const currentItem = data?.find(
-          (item) => item.title === 'regulations'
-        );
-        currentId = currentItem?.id;
-        formData.append('file', values.regulations[0]);
-      }
-      if (values.rules_of_use.length) {
-        const currentItem = data?.find(
-          (item) => item.title === 'rules_of_use'
-        );
-        currentId = currentItem?.id;
-        formData.append('file', values.rules_of_use[0]);
+        formData.append('file', values.terms_of_use[0]);
       }
       if (values.privacy_policy.length) {
         const currentItem = data?.find(
@@ -102,40 +86,6 @@ const DocumentsPage = () => {
         autoComplete="off"
         className="mt-[50px]"
       >
-        <div className="mb-[50px] flex gap-[80px]">
-          <div className="flex items-end justify-center gap-[24px]">
-            <FileInputDoc
-              name="reporting"
-              control={control}
-              placeholder={'Завантажте документ'}
-              title="Звітність"
-              isRequired={false}
-            />
-            <button
-              type="button"
-              className="mb-[0.5rem]"
-              onClick={() => router.refresh()}
-            >
-              <TrashIcon className="h-[32px] w-[32px] fill-white" />
-            </button>
-          </div>
-          <div className="flex items-end justify-center gap-[24px]">
-            <FileInputDoc
-              name="regulations"
-              control={control}
-              placeholder={'Завантажте документ'}
-              title="Статут"
-              isRequired={false}
-            />
-            <button
-              type="button"
-              className="mb-[0.5rem]"
-              onClick={() => router.refresh()}
-            >
-              <TrashIcon className="h-[32px] w-[32px] fill-white" />
-            </button>
-          </div>
-        </div>
         <div className="mb-[50px] flex gap-[50px]">
           <div className="flex items-end justify-center gap-[24px]">
             <FileInputDoc
@@ -157,7 +107,7 @@ const DocumentsPage = () => {
         <div className="mb-[50px] flex gap-[50px]">
           <div className="flex items-end justify-center gap-[24px]">
             <FileInputDoc
-              name="rules_of_use"
+              name="terms_of_use"
               control={control}
               placeholder={'Завантажте документ'}
               title="Правила користування сайтом"
