@@ -1,17 +1,31 @@
-import { useTranslations } from 'next-intl';
-
+'use client';
 import TextInput from '../ui/TextInput';
 import DesktopIcon from '@/components/icons/DesktopIcon';
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
-
 import HeroTitle from './HeroTitle';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getSpecializations } from '@/api/specialization';
 
-interface HeroProps {}
+interface HeroProps {
+  search: string;
+  country: string;
+  speciality: string;
+}
 
-const Hero: React.FC<HeroProps> = () => {
-  const t = useTranslations('Main');
-
+const Hero: React.FC<HeroProps> = ({
+  search,
+  country,
+  speciality,
+}: HeroProps) => {
+  const { data } = useQuery({
+    queryKey: [
+      constants.specialization.FETCH_SPECIALIZATIONS,
+    ],
+    queryFn: getSpecializations,
+  });
+  const options = data?.map(({ title }) => title);
   return (
     <section className="container mb-[48px] mt-[124px] w-full ">
       <div className="relative mx-auto mb-[64px] flex max-w-[570px] flex-col items-center text-center sm:flex md:flex-row lg:max-w-[915px]">
@@ -31,14 +45,8 @@ const Hero: React.FC<HeroProps> = () => {
             title=""
             errorText=""
             category=""
-            placeholder="Спеціальність"
-            options={[
-              'Frontend Developer',
-              'Backend Developer',
-              'Fullstack Developer',
-              'Design',
-              'QA Manual',
-            ]}
+            placeholder={speciality}
+            options={options}
           />
           <DesktopIcon className="text-gray-500 absolute left-3" />
         </div>
@@ -48,15 +56,15 @@ const Hero: React.FC<HeroProps> = () => {
             title=""
             errorText=""
             category=""
-            placeholder="Країна"
+            placeholder={country}
             options={['Україна', 'Польща', 'Німеччина']}
           />
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
 
-        <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium hover:bg-green hover:from-transparent xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
+        <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
           <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-          {t('hero_section.search')}
+          {search}
         </button>
       </form>
     </section>

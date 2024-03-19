@@ -53,7 +53,7 @@ const LanguageSwitcher = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex h-[50px] w-[60px] items-center justify-between px-[6px] text-white"
       >
-        <span className="text-[18px] font-semibold">
+        <span className="font-sans' text-[18px] font-semibold">
           {currentLocale.toUpperCase()}
         </span>
         <span className={`${!isOpen && 'rotate-[180deg]'}`}>
@@ -68,7 +68,7 @@ const LanguageSwitcher = () => {
           {locales.map((item: string) => (
             <span
               key={item}
-              className="flex h-[50px] cursor-pointer items-center justify-center border-b-[1px] border-b-[#4E4E4E] text-white transition-all last:border-none hover:bg-[#2B2B2B] hover:text-yellow"
+              className="flex h-[50px] cursor-pointer items-center justify-center border-b-[1px] border-b-[#4E4E4E] font-sans text-[18px] font-semibold text-white transition-all last:border-none hover:bg-[#2B2B2B] hover:text-yellow"
               onClick={() => handleCheckLocale(item)}
             >
               {item.toUpperCase()}

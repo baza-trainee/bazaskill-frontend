@@ -1,3 +1,4 @@
+import SideBar from '@/components/admin/sidebar/SideBar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,5 +11,10 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return (
+    <div className="flex bg-graphite text-white">
+      <SideBar />
+      <div className="flex-1">{children}</div>
+    </div>
+  );
 }

@@ -1,11 +1,14 @@
 'use client';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { useModal } from '@/stores/useModal';
+import { useQuery } from '@tanstack/react-query';
+import { getDocuments } from '@/api/documents';
+import { constants } from '@/constants';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
-import { usePathname } from 'next/navigation';
 
 type FooterLinkProps = {
   href: string;
@@ -17,9 +20,9 @@ const FooterLink: React.FC<FooterLinkProps> = ({
   children,
 }) => (
   <a
-    className="decoration gray-700 all onClick={() => openModal('partner')} block cursor-pointer 
+    className="decoration gray-700 all onClick={() => openModal('partner')} block cursor-pointer text-nowrap 
     py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow
-    hover:underline md:text-base xl:leading-7"
+    hover:underline md:text-lg xl:leading-7"
     href={href}
     target="_blank"
     rel="noopener noreferrer"
@@ -36,13 +39,27 @@ const Footer = () => {
   const { openModal, closeModal } = useModal();
   const pathname = usePathname();
   const isAdminPage = pathname.split('/').includes('admin');
+
+  const { data } = useQuery({
+    queryKey: [constants.documents.FETCH_DOCUMENTS],
+    queryFn: getDocuments,
+  });
+
+  const termsOfUse = data?.find(
+    (item) => item.title === 'terms_of_use'
+  );
+
+  const privacyPolicy = data?.find(
+    (item) => item.title === 'privacy_policy'
+  );
+
   if (isAdminPage) return null;
   return (
     <div
-      className="pt-20m relative flex flex-col justify-center bg-darkGraphite 
-    px-20 xs:px-6 xs:pt-[40px] sm:block sm:px-10 md:px-8 md:pt-12 xl:pt-12 2xl:pt-12 5xl:px-[80px]"
+      className="pt-20m container relative flex flex-col justify-center bg-darkGraphite 
+       xs:pt-[40px] sm:block md:pt-12 xl:pt-12 2xl:pt-12"
     >
-      <div className="flex justify-start xs:block sm:block md:mb-[10px] md:flex">
+      <div className="mx-auto flex justify-start xs:block sm:block md:mb-[10px] md:flex">
         <div className="w-110 5xl:ml-40px transition-all md:mr-[80px]">
           <a
             href="/"
@@ -55,18 +72,18 @@ const Footer = () => {
             За крок до офферу
           </h3>
         </div>
-        <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[260px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
-          <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline md:text-base xl:leading-7">
+        <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[100px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
+          <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline md:text-lg xl:leading-7">
             <a href="#aboutus">Про нас</a>
           </button>
           <button
-            className="block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline md:text-base xl:leading-7"
+            className="block cursor-pointer text-nowrap py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline md:text-lg xl:leading-7"
             onClick={() => openModal('hr')}
           >
             Стати нашим HRом
           </button>
           <button
-            className="block cursor-pointer py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline md:text-base xl:leading-7"
+            className="block cursor-pointer text-nowrap py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline md:text-lg xl:leading-7"
             onClick={() => openModal('partner')}
           >
             Стати нашим партнером
@@ -85,28 +102,28 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex xs:flex-col-reverse xs:py-[20px] sm:flex-col-reverse md:flex-col-reverse md:leading-3 xl:flex xl:flex-row">
-        <div className="flex-col items-center justify-center sm:flex md:flex md:flex-row xl:ml-[60px] xl:mr-[118px] 2xl:ml-[36px] 2xl:mr-[142px] 4xl:mr-[212px] 5xl:mr-[398px]">
-          <p className="mr-36 justify-center font-open-sans text-sm font-normal leading-4 text-white xs:mr-0 xs:flex xs:text-sm sm:mr-0 md:mr-[4px] md:flex md:justify-center xl:mr-[4px] ">
+        <div className="flex-col items-center justify-center sm:flex md:flex md:flex-row xl:ml-[60px] xl:mr-[30px] 2xl:ml-[36px] 2xl:mr-[55px] 3xl:mr-[55px] 4xl:mr-[122px] 5xl:mr-[306px]">
+          <p className="mr-36  justify-center font-sans text-sm font-normal leading-4 text-white xs:mr-0 xs:flex xs:text-lg sm:mr-0 md:mr-[4px] md:flex md:justify-center md:text-nowrap xl:mr-[4px] ">
             Розробка Baza Trainee Ukraine 2024 &#169;
           </p>
-          <p className="justify-center text-white xs:flex xs:text-sm">
+          <p className="justify-center text-white xs:flex xs:text-lg md:text-nowrap">
             Усі права захищені
           </p>
         </div>
         <div className="xs:mb-[25px] md:mb-[10px] md:flex md:justify-center xl:mb-[0px]">
           <a
-            className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-open-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex md:mb-[4px] md:mr-[40px] md:leading-8 xl:mr-[260px] 2xl:mr-[302px] 3xl:mr-[334px] 4xl:mr-[377px] 5xl:mr-[458px]"
+            className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
             target="_blank"
             rel="noopener noreferrer"
-            href="/document/privacypolicy.pdf"
+            href={privacyPolicy?.document_url}
           >
             Політика конфіденційності
           </a>
           <a
-            className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-open-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex md:mb-[4px] md:leading-8 md:decoration-[0px]"
+            className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]"
             target="_blank"
             rel="noopener noreferrer"
-            href="/document/siteusagerules.pdf"
+            href={termsOfUse?.document_url}
           >
             Правила користування сайтом
           </a>

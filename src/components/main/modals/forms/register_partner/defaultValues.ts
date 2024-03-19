@@ -1,7 +1,6 @@
-
 export const defaultValues = {
-  name: '',
-  link: '',
+  company_name: '',
+  company_url: '',
   phone: '',
   email: '',
   first_name: '',
@@ -10,5 +9,3 @@ export const defaultValues = {
   position: '',
   message: '',
 };
-
-

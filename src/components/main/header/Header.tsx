@@ -24,12 +24,12 @@ const Header = () => {
   if (isAdminPage) return null;
   return (
     <div className="container relative z-50 flex h-[80px] w-full items-center gap-[4px] border-b border-[#4E4E4E] bg-graphite xl:h-[100px] 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
-      <div className="w-full xl:h-[40px] xl:w-[169px]">
+      <div className="flex w-full items-center xl:h-[40px] xl:w-[169px]">
         <Link
-          className="flex w-full justify-center "
+          className="flex w-full justify-start md:justify-center "
           href="/"
         >
-          <Logo className="transition duration-500 hover:scale-110" />
+          <Logo className="ml-[-20px] scale-75 transition duration-500 md:ml-0 md:scale-100 md:hover:scale-110" />
         </Link>
       </div>
 

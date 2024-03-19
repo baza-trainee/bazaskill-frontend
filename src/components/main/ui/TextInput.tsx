@@ -12,7 +12,7 @@ interface TextInputProps {
   title: string;
   errorText: string;
   category: string;
-  options: string[];
+  options: string[] | undefined;
   placeholder: string;
   isFirstInput?: boolean;
 }

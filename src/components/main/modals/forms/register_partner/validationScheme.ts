@@ -2,24 +2,30 @@ import { z } from 'zod';
 import isURL from 'validator/lib/isURL';
 
 const emailPattern =
-  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+
+const nonRussianLettersPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const nonRussianLettersWithSymbolsAndDigitsPattern =
+  /^(?!.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ]+$/;
+
+const messageMaxLength = 300;
 
 export const registerScheme = z.object({
-  name: z
+  company_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) =>
-        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
-      {
-        message:
-          'Тільки букви та пробіли (без спеціальних символів)',
-      }
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
     ),
 
-  link: z
+  company_url: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
     .refine(
       (value) => isURL(value, { require_protocol: true }),
       {
@@ -31,19 +37,17 @@ export const registerScheme = z.object({
   phone: z
     .string()
     .nonempty('Це поле обовʼязкове')
-    .min(9, 'Номер телефону має містити мінімум 9 символів')
-    .max(
-      13,
-      'Номер телефону має містити максимум 13 символів'
-    )
-    .refine((value) => /^\+\d{9,13}$/.test(value), {
-      message:
-        'Некоректно введений номер телефону, повинен почнатися з +',
-    }),
+    .refine(
+      (value) => /^\+(?:[0-9] ?){6,14}[0-9]$/.test(value),
+      {
+        message:
+          'Введіть коректний номер телефону в міжнародному форматі',
+      }
+    ),
 
   email: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Це поле обовʼязкове для заповнення')
     .regex(emailPattern, {
       message: 'Введіть дійсний email',
     })
@@ -56,24 +60,22 @@ export const registerScheme = z.object({
 
   first_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
-      {
-        message:
-          'Тільки букви (без пробілів та спеціальних символів)',
-      }
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
     ),
-
+  country: z.string(),
   last_name: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Введіть ім’я')
+    .min(2, 'Ім’я повинно мати не менше 2 знаків')
+    .max(50, 'Ім’я повинно бути не більше 50 знаків')
     .refine(
-      (value) => /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ']+$/.test(value),
-      {
-        message:
-          'Тільки букви (без пробілів та спеціальних символів)',
-      }
+      (value) => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' }
     ),
 
   position: z
@@ -87,22 +89,28 @@ export const registerScheme = z.object({
           'Тільки букви та пробіли (без спеціальних символів)',
       }
     ),
+  message: z
+    .string()
+    .nonempty({ message: 'Це поле обовʼязкове' })
+    .refine(
+      (value) =>
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ) && value.length <= messageMaxLength,
+      {
+        message: `Введіть коректний коментар та не більше ${messageMaxLength} символів`,
+      }
+    ),
+
   terms: z.literal(true, {
     errorMap: () => ({
-      message: '',
+      message: 'Підтвердіть згоду, будь ласка',
     }),
   }),
   terms_2: z.literal(true, {
     errorMap: () => ({
-      message:
-        'Надайте згоду на обробку персональних даних',
+      message: 'Підтвердіть згоду, будь ласка',
     }),
   }),
   specialist: z.string().nonempty('Це поле обовʼязкове'),
-  message: z
-    .string()
-    .max(
-      300,
-      'Максимальна довжина повідомлення - 300 символів'
-    ),
 });

@@ -7,18 +7,28 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
+import { constants } from '@/constants';
 import { stack, countries } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
+import { useModal } from '@/stores/useModal';
+import { createApplication } from '@/api/hr_application';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
 import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
+import SuccessModal from '../SuccesModal';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 const RegisterHrForm = () => {
+  const { closeModal } = useModal();
+  const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -32,14 +42,23 @@ const RegisterHrForm = () => {
     defaultValues: defaultValues,
   });
 
+  const createApplicationMutation = useMutation({
+    mutationFn: createApplication,
+    onSuccess: () => {
+      setIsSubmitted(true);
+      queryClient.invalidateQueries({
+        queryKey: [constants.hr_applications.FETCH_HRS],
+      });
+    },
+  });
+
   const onSubmit: SubmitHandler<
     z.infer<typeof registerScheme>
   > = async (values: z.infer<typeof registerScheme>) => {
     try {
       setIsProcessing(true);
-      console.log(values);
+      createApplicationMutation.mutate(values);
       setIsProcessing(false);
-      setIsSubmitted(true);
     } catch (error: unknown) {
       console.log(error);
     }
@@ -47,20 +66,22 @@ const RegisterHrForm = () => {
 
   const handleClose = () => {
     setIsSubmitted(false);
+    closeModal();
   };
 
   return (
     <>
       {!isSubmitted ? (
         <div className="mb-[64px] flex w-full flex-col items-center justify-center">
-          <h1 className="mb-[48px] mt-[60px] text-3xl font-bold">
+          <h1 className="mb-[26px] mt-[40px] text-base font-semibold sm:mt-[68px] sm:text-xl md:mt-[40px] md:text-2xl md:font-bold">
             Стати нашим HRom
           </h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="mb-[32px] flex flex-col">
-            <div className="flex">
+            className="mb-[32px] flex flex-col"
+          >
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="first_name"
                 control={control}
@@ -88,7 +109,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="phone"
                 control={control}
@@ -116,7 +137,7 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <Controller
                 name="company"
                 control={control}
@@ -126,6 +147,8 @@ const RegisterHrForm = () => {
                     title="Компанія"
                     {...field}
                     placeholder="Компанія"
+                    isRequired={false}
+                    errorText={errors.company?.message}
                   />
                 )}
               />
@@ -144,17 +167,19 @@ const RegisterHrForm = () => {
                 )}
               />
             </div>
-            <div className="flex">
+            <div className="flex flex-col items-center md:flex-row md:items-stretch md:justify-center">
               <div>
                 <Controller
-                  name="specialist"
+                  name="specialization"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <SelectInput
                       title="Шукаю"
                       {...field}
-                      errorText={errors.specialist?.message}
+                      errorText={
+                        errors.specialization?.message
+                      }
                       options={stack}
                       placeholder="Спеціальність"
                       isRequired={true}
@@ -168,7 +193,7 @@ const RegisterHrForm = () => {
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Прошу надіслати договір на ознайомлення"
+                        title="Прошу надіслати договір рекрутингу на ознайомлення"
                         isRequired={true}
                         errorText={errors.terms?.message}
                       />
@@ -197,18 +222,20 @@ const RegisterHrForm = () => {
                     {...field}
                     errorText={errors.message?.message}
                     placeholder="Коментар"
+                    isRequired={true}
                   />
                 )}
               />
             </div>
 
-            <div className="">
+            <div className="text-center">
               <button
                 type="submit"
-                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:bg-green"
+                className="mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:border-graphite disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={
                   errors && !!Object.keys(errors).length
-                }>
+                }
+              >
                 {isProcessing
                   ? 'Обробка запиту...'
                   : 'Відправити'}
@@ -217,10 +244,7 @@ const RegisterHrForm = () => {
           </form>
         </div>
       ) : (
-        <div>
-          <p>Ваш запит був успішно відправлений!</p>
-          <button onClick={handleClose}>Закрити</button>
-        </div>
+        <SuccessModal onClose={handleClose} />
       )}
     </>
   );
