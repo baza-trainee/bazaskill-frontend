@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import * as z from 'zod';
-import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { documentsScheme } from './documentsScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,7 +20,6 @@ import {
 import SuccessAlert from '../alerts/SuccessAlert';
 
 const DocumentsPage = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -34,12 +32,19 @@ const DocumentsPage = () => {
     handleSubmit,
     control,
     reset,
+    resetField,
     formState: { isDirty },
   } = useForm<z.infer<typeof documentsScheme>>({
     resolver: zodResolver(documentsScheme),
     mode: 'onChange',
     defaultValues: defaultValues,
   });
+
+  const handleClose = () => {
+    setIsSuccess(false);
+    reset();
+    window.location.reload();
+  };
 
   const onSubmit: SubmitHandler<
     z.infer<typeof documentsScheme>
@@ -48,29 +53,70 @@ const DocumentsPage = () => {
       setIsProcessing(true);
       let currentId;
       const formData = new FormData();
-      if (values.terms_of_use.length) {
+
+      if (
+        values.privacy_policy.length &&
+        values.terms_of_use.length
+      ) {
+        const termsItem = data?.find(
+          (item) => item.title === 'terms_of_use'
+        );
+        currentId = termsItem?.id;
+        formData.append('file', values.terms_of_use[0]);
+        await updateDocument(currentId as string, formData);
+        formData.delete('file');
+        const policyItem = data?.find(
+          (item) => item.title === 'privacy_policy'
+        );
+        currentId = policyItem?.id;
+        formData.append('file', values.privacy_policy[0]);
+        const response = await updateDocument(
+          currentId as string,
+          formData
+        );
+        if (response.status === 200) {
+          setIsSuccess(true);
+        }
+        setIsProcessing(false);
+      }
+
+      if (
+        values.terms_of_use.length &&
+        !values.privacy_policy.length
+      ) {
         const currentItem = data?.find(
           (item) => item.title === 'terms_of_use'
         );
         currentId = currentItem?.id;
         formData.append('file', values.terms_of_use[0]);
+        const response = await updateDocument(
+          currentId as string,
+          formData
+        );
+        if (response.status === 200) {
+          setIsSuccess(true);
+        }
+        setIsProcessing(false);
       }
-      if (values.privacy_policy.length) {
+
+      if (
+        values.privacy_policy.length &&
+        !values.terms_of_use.length
+      ) {
         const currentItem = data?.find(
           (item) => item.title === 'privacy_policy'
         );
         currentId = currentItem?.id;
         formData.append('file', values.privacy_policy[0]);
+        const response = await updateDocument(
+          currentId as string,
+          formData
+        );
+        if (response.status === 200) {
+          setIsSuccess(true);
+        }
+        setIsProcessing(false);
       }
-      const response = await updateDocument(
-        currentId as string,
-        formData
-      );
-      if (response.status === 200) {
-        setIsSuccess(true);
-      }
-      setIsProcessing(false);
-      reset();
     } catch (error: unknown) {
       console.log(error);
     } finally {
@@ -98,7 +144,7 @@ const DocumentsPage = () => {
             <button
               type="button"
               className="mb-[0.5rem]"
-              onClick={() => router.refresh()}
+              onClick={() => resetField('privacy_policy')}
             >
               <TrashIcon className="h-[32px] w-[32px] fill-white" />
             </button>
@@ -116,7 +162,7 @@ const DocumentsPage = () => {
             <button
               type="button"
               className="mb-[0.5rem]"
-              onClick={() => router.refresh()}
+              onClick={() => resetField('terms_of_use')}
             >
               <TrashIcon className="h-[32px] w-[32px] fill-white" />
             </button>
@@ -124,6 +170,7 @@ const DocumentsPage = () => {
         </div>
         <div className="buttons flex gap-[24px] py-[24px]">
           <PrimaryButton
+            type="submit"
             text={
               isProcessing
                 ? 'Обробка запиту'
@@ -131,16 +178,20 @@ const DocumentsPage = () => {
             }
             disabled={!isDirty}
           />
+
           <SecondaryButton
+            type="button"
             text="Скасувати"
-            onClick={() => router.refresh()}
+            onClick={() => {
+              reset(), window.location.reload();
+            }}
           />
         </div>
       </form>
       {isSuccess && (
         <SuccessAlert
           title="PDF документ успішно оновлено"
-          onClose={() => setIsSuccess(false)}
+          onClose={handleClose}
           isSuccess={isSuccess}
         />
       )}
