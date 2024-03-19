@@ -46,7 +46,7 @@ const Counters = () => {
   useEffect(() => {
     if (data && data.length > 0) {
       const value: ICounters = data[0];
-      setId(data[0].id);
+      setId(Number(data[0].id));
       reset({
         live_projects: value.live_projects,
         participants: value.participants,
@@ -64,11 +64,11 @@ const Counters = () => {
       await updateCounter({
         id,
         updateData: {
-          live_projects: values.live_projects,
-          participants: values.participants,
-          employed: values.employed,
-          technologies: values.technologies,
-          libraries: values.libraries,
+          live_projects: Number(values.live_projects),
+          participants: Number(values.participants),
+          employed: Number(values.employed),
+          technologies: Number(values.technologies),
+          libraries: Number(values.libraries),
         },
       });
       refetch();

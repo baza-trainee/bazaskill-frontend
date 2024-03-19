@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from '@/config/axios';
 import { ICounters } from '@/types/counters';
 
 interface IData {
-  live_projects: string;
-  participants: string;
-  employed: string;
-  technologies: string;
-  libraries: string;
+  live_projects: number;
+  participants: number;
+  employed: number;
+  technologies: number;
+  libraries: number;
 }
 
 interface IUpdateData {
@@ -22,7 +22,7 @@ export const getCounters = async () => {
 
 export const getCounterById = async (id: number) => {
   const { data } = await axios.get<ICounters>(
-    `/contscts/${id}`
+    `/counters/${id}`
   );
   return data;
 };
@@ -37,8 +37,4 @@ export const updateCounter = async ({
   );
 
   return data;
-};
-
-export const deleteCounter = async (id: number) => {
-  await axios.delete(`/counters/${id}`);
 };
