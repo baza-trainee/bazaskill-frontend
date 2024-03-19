@@ -35,11 +35,7 @@ const Home = async () => {
   return (
     <div className="flex min-h-[100vh] w-full flex-col items-center justify-center gap-2 bg-graphite">
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <Hero
-          search={t('hero_section.search')}
-          country={t('hero_section.country')}
-          speciality={t('hero_section.speciality')}
-        />
+        <Hero />
       </HydrationBoundary>
       <Counters />
       <Help />
