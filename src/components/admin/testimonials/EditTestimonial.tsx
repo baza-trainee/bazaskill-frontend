@@ -105,8 +105,12 @@ const EditTestimonial = () => {
         refetch();
       }
       setIsProcessing(false);
-    } catch (errors: unknown) {
-      console.log(errors);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
     } finally {
       setIsProcessing(false);
     }

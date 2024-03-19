@@ -25,7 +25,11 @@ const TestimonialCard = ({
         setIsSuccess(true);
       }
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
     }
   };
 
@@ -40,7 +44,7 @@ const TestimonialCard = ({
   };
 
   return (
-    <div className="flex items-center gap-[170px] py-[10px]  pr-[15px] [border-bottom:1px_solid_#787878]  [border-top:1px_solid_#787878] 2xl:gap-[280px]   5xl:gap-[248px] 5xl:py-[30px] 5xl:pr-[35px]">
+    <div className="flex items-center justify-between  py-[10px]  pr-[15px] [border-bottom:1px_solid_#787878]  [border-top:1px_solid_#787878]    5xl:gap-[248px] 5xl:py-[30px] 5xl:pr-[35px]">
       <div className="flex gap-[40px] 5xl:gap-[129px]">
         <div className="flex items-center gap-[24px] ">
           <div className="h-[90px] w-[90px] grayscale filter 5xl:h-[122px] 5xl:w-[122px]">
@@ -53,18 +57,18 @@ const TestimonialCard = ({
             />
           </div>
           <div className="w-[129px] text-start font-['Tahoma',_sans-serif] 4xl:w-[159px]">
-            <h4 className=" w-full w-full font-tahoma text-[18px] font-bold tracking-[.72px] text-white 4xl:text-[24px] ">
+            <h4 className=" w-full w-full font-tahoma text-[18px] font-bold tracking-[.72px] text-white 5xl:text-[24px] ">
               {item.name_ua}
             </h4>
-            <p className="font-open-sans text-[13px] font-normal tracking-[.4px] text-white 4xl:text-[20px]">
+            <p className="font-open-sans text-[16px] font-normal tracking-[.4px] text-white 5xl:text-[20px]">
               {item.position}
             </p>
-            <p className="font-open-sans text-[12px] font-normal text-white 5xl:text-[14px]">
+            <p className="font-open-sans text-[14px] font-normal text-white 5xl:text-[14px]">
               {item.date}
             </p>
           </div>
         </div>
-        <p className="w-[380px] px-[32px] py-[22px] text-start font-['Open_Sans',_sans-serif] text-[14px] font-normal leading-[1.4] tracking-[0px] text-white  xl:w-[450px] 4xl:text-[20px] 5xl:w-[716px]">
+        <p className="w-[380px] px-[32px] py-[22px] text-start  text-[18px] font-normal leading-[1.4] tracking-[0px] text-white  xl:w-[480px] 5xl:w-[716px] 5xl:text-[20px]">
           {'“' + item.review_ua + '”'}
         </p>
       </div>

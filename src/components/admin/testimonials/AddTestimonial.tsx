@@ -15,12 +15,11 @@ import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
 import { createTestimonial } from '@/api/testimonials';
 import SuccessAlert from '../alerts/SuccessAlert';
-import { useRouter } from 'next/navigation';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
+import Link from 'next/link';
 
 const AddTestimonial = () => {
-  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -65,8 +64,12 @@ const AddTestimonial = () => {
       }
       setIsProcessing(false);
       reset();
-    } catch (errors: unknown) {
-      console.log(errors);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
     } finally {
       setIsProcessing(false);
     }
@@ -211,10 +214,9 @@ const AddTestimonial = () => {
               }
               disabled={!isDirty}
             />
-            <SecondaryButton
-              text="Скасувати"
-              onClick={() => router.refresh()}
-            />
+            <Link href="/admin/testimonials">
+              <SecondaryButton text="Скасувати" />
+            </Link>
           </div>
         </form>
         {isSuccess && (

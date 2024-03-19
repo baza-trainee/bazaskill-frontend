@@ -30,7 +30,7 @@ const Testimonials = () => {
         </p>
       </Link>
 
-      <div className="custom-scrollbar  max-h-[728px] w-full max-w-[1529px] overflow-y-auto">
+      <div className="custom-scrollbar  h-[100vh] max-h-[100vh] w-full  overflow-y-auto">
         <ul>
           {data?.map((item: Testimonial) => (
             <li key={item.id}>
