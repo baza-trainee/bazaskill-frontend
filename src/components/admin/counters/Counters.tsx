@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import * as z from 'zod';
+import React, { useEffect, useState } from 'react';
 import {
   useForm,
   Controller,
   SubmitHandler,
 } from 'react-hook-form';
+import { z } from 'zod';
 import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
@@ -17,21 +17,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getCounters, updateCounter } from '@/api/counters';
+import { ICounters } from '@/types/counters';
 import SuccessAlert from '../alerts/SuccessAlert';
 
-// interface CounterFormValues {
-//   live_projects: string;
-//   participants: string;
-//   employed: string;
-//   technologies: string;
-//   libraries: string;
-// }
-
 const Counters = () => {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [id, setId] = useState<number>(0);
+  const [showModal, setShowModal] = useState(false);
 
-  const { data } = useQuery({
+  const { data, refetch, isFetching, error } = useQuery<
+    ICounters[],
+    Error
+  >({
     queryKey: [constants.counters.FETCH_COUNTERS],
     queryFn: getCounters,
   });
@@ -47,44 +43,48 @@ const Counters = () => {
     defaultValues: defaultValues,
   });
 
-  const [showModal, setShowModal] = useState(false);
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const value: ICounters = data[0];
+      setId(Number(data[0].id));
+      reset({
+        live_projects: value.live_projects,
+        participants: value.participants,
+        employed: value.employed,
+        technologies: value.technologies,
+        libraries: value.libraries,
+      });
+    }
+  }, [data, reset]);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof countersScheme>
   > = async (values: z.infer<typeof countersScheme>) => {
     try {
-      setIsProcessing(true);
-      let currentId;
-      const formData = new FormData();
-      if (values.live_projects.length) {
-        const currentItem = data?.find(
-          (item) => item.title === 'live_projects'
-        );
-        currentId = currentItem?.id;
-        formData.append('file', values.live_projects[0]);
-      }
-      if (values.participants.length) {
-        const currentItem = data?.find(
-          (item) => item.title === 'participants'
-        );
-        currentId = currentItem?.id;
-        formData.append('file', values.participants[0]);
-      }
-      const response = await updateCounter(
-        currentId as string,
-        formData
-      );
-      if (response.status === 200) {
-        setIsSuccess(true);
-      }
-      setIsProcessing(false);
-      reset();
-    } catch (error: unknown) {
+      await updateCounter({
+        id,
+        updateData: {
+          live_projects: Number(values.live_projects),
+          participants: Number(values.participants),
+          employed: Number(values.employed),
+          technologies: Number(values.technologies),
+          libraries: Number(values.libraries),
+        },
+      });
+      refetch();
+      setShowModal(true);
+    } catch (error) {
       console.log(error);
-    } finally {
-      setIsProcessing(false);
     }
   };
+
+  if (isFetching) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   const handleKeyPress: React.KeyboardEventHandler<
     HTMLFormElement
@@ -189,13 +189,9 @@ const Counters = () => {
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text={
-                isProcessing
-                  ? 'Обробка запиту'
-                  : 'Зберігти зміни'
-              }
+              text="Зберігти зміни"
               type="submit"
-              // onClick={handleSubmit(onSubmit)}
+              onClick={handleSubmit(onSubmit)}
               disabled={
                 !Object.keys(errors).length && !isDirty
               }
@@ -206,11 +202,11 @@ const Counters = () => {
               onClick={handleCloseAndReset}
             />
           </div>
-          {isSuccess && (
+          {showModal && (
             <SuccessAlert
-              title="Дані змінено"
-              onClose={() => setIsSuccess(false)}
-              isSuccess={isSuccess}
+              title="PDF документ успішно оновлено"
+              onClose={() => setShowModal(false)}
+              isSuccess={true}
             />
           )}
         </form>
