@@ -7,24 +7,17 @@ import HeroTitle from './HeroTitle';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializations } from '@/api/specialization';
+import { useMessages } from 'next-intl';
 
-interface HeroProps {
-  search: string;
-  country: string;
-  speciality: string;
-}
-
-const Hero: React.FC<HeroProps> = ({
-  search,
-  country,
-  speciality,
-}: HeroProps) => {
+const Hero: React.FC = () => {
   const { data } = useQuery({
     queryKey: [
       constants.specialization.FETCH_SPECIALIZATIONS,
     ],
     queryFn: getSpecializations,
   });
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  const messages: any = useMessages();
   const options = data?.map(({ title }) => title);
   return (
     <section className="container mb-[48px] mt-[124px] w-full ">
@@ -45,7 +38,9 @@ const Hero: React.FC<HeroProps> = ({
             title=""
             errorText=""
             category=""
-            placeholder={speciality}
+            placeholder={
+              messages.Main.hero_section.speciality
+            }
             options={options}
           />
           <DesktopIcon className="text-gray-500 absolute left-3" />
@@ -56,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
             title=""
             errorText=""
             category=""
-            placeholder={country}
+            placeholder={messages.Main.hero_section.country}
             options={['Україна', 'Польща', 'Німеччина']}
           />
           <Pointer className="text-gray-500 absolute left-3" />
@@ -64,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({
 
         <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
           <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-          {search}
+          {messages.Main.hero_section.search}
         </button>
       </form>
     </section>
