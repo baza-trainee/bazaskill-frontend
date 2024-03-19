@@ -9,14 +9,7 @@ import { constants } from '@/constants';
 import { getSpecializations } from '@/api/specialization';
 import { useMessages } from 'next-intl';
 
-interface HeroProps {
-  country: string;
-  speciality: string;
-}
-const Hero: React.FC<HeroProps> = ({
-  country,
-  speciality,
-}: HeroProps) => {
+const Hero: React.FC = () => {
   const { data } = useQuery({
     queryKey: [
       constants.specialization.FETCH_SPECIALIZATIONS,
@@ -45,7 +38,9 @@ const Hero: React.FC<HeroProps> = ({
             title=""
             errorText=""
             category=""
-            placeholder={speciality}
+            placeholder={
+              messages.Main.hero_section.speciality
+            }
             options={options}
           />
           <DesktopIcon className="text-gray-500 absolute left-3" />
@@ -56,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
             title=""
             errorText=""
             category=""
-            placeholder={country}
+            placeholder={messages.Main.hero_section.country}
             options={['Україна', 'Польща', 'Німеччина']}
           />
           <Pointer className="text-gray-500 absolute left-3" />
