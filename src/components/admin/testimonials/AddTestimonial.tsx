@@ -76,7 +76,7 @@ const AddTestimonial = () => {
   };
 
   return (
-    <section className="relative flex h-[100vh] max-h-[100vh] flex-col px-[24px] pt-[40px]">
+    <section className="relative flex h-screen max-h-screen flex-col px-6 pt-10">
       <div className="mb-[50px]">
         <PageTitle title="Додати Відгук" />
       </div>
@@ -96,6 +96,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Ім'я"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -109,6 +110,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Name"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -122,6 +124,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть ім'я"
                     title="Imię"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -137,6 +140,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть спеціалізацію"
                     title="Спеціалізація"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -150,6 +154,7 @@ const AddTestimonial = () => {
                     placeholder="Введіть дату"
                     title="Дата"
                     isIcon
+                    isRequired
                   />
                 )}
               />
@@ -162,6 +167,7 @@ const AddTestimonial = () => {
                     placeholder="Завантажте зображення"
                     title="Фото"
                     onChange={handleFileChange}
+                    isRequired
                   />
                 )}
               />
@@ -177,6 +183,7 @@ const AddTestimonial = () => {
                       errorText={errors.review_ua?.message}
                       placeholder="Введіть текст відгуку"
                       title="Текст"
+                      isRequired
                     />
                   )}
                 />
@@ -189,6 +196,7 @@ const AddTestimonial = () => {
                       errorText={errors.review_en?.message}
                       placeholder="Введіть текст відгуку"
                       title="Text"
+                      isRequired
                     />
                   )}
                 />
@@ -201,6 +209,7 @@ const AddTestimonial = () => {
                       errorText={errors.review_pl?.message}
                       placeholder="Введіть текст відгуку"
                       title="Tekst"
+                      isRequired
                     />
                   )}
                 />
