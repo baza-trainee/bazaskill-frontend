@@ -8,15 +8,16 @@ import PageTitle from '../ui/PageTitle';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
+import Loader from '../ui/Loader';
 
 const Testimonials = () => {
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
     queryFn: getTestimonials,
   });
 
   return (
-    <section className=" w-full max-w-[1553px] px-[24px] pt-[40px]">
+    <div className=" relative h-[100vh] max-h-[100vh] px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Відгуки" />
       </div>
@@ -38,7 +39,8 @@ const Testimonials = () => {
           ))}
         </ul>
       </div>
-    </section>
+      {isFetching && <Loader />}
+    </div>
   );
 };
 

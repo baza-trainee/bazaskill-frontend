@@ -9,11 +9,9 @@ import './testimonial.css';
 import { deleteTestimonial } from '@/api/testimonials';
 import QuestionAlert from '../alerts/QuestionAlert';
 import SuccessAlert from '../alerts/SuccessAlert';
-import LanguageSwitcher from '@/components/main/header/LanguageSwitcher';
 
 const TestimonialCard = ({
   item,
-  isEdit,
 }: {
   item: Testimonial;
   isEdit?: boolean;
@@ -42,7 +40,7 @@ const TestimonialCard = ({
   };
 
   return (
-    <div className="flex  items-center gap-[170px] py-[10px]  pr-[15px] [border-bottom:1px_solid_#787878]  [border-top:1px_solid_#787878] 2xl:gap-[280px]   5xl:gap-[248px] 5xl:py-[30px] 5xl:pr-[35px]">
+    <div className="flex items-center gap-[170px] py-[10px]  pr-[15px] [border-bottom:1px_solid_#787878]  [border-top:1px_solid_#787878] 2xl:gap-[280px]   5xl:gap-[248px] 5xl:py-[30px] 5xl:pr-[35px]">
       <div className="flex gap-[40px] 5xl:gap-[129px]">
         <div className="flex items-center gap-[24px] ">
           <div className="h-[90px] w-[90px] 5xl:h-[122px] 5xl:w-[122px]">
@@ -70,36 +68,31 @@ const TestimonialCard = ({
           {'“' + item.review_ua + '”'}
         </p>
       </div>
-      {isEdit ? (
-        <LanguageSwitcher />
-      ) : (
-        <div className="flex gap-[32px]">
-          <Link
-            href={`/admin/testimonials/edit/${item.id}`}>
-            <WriteIcon className="h-[32px] w-[32px] fill-white" />
-          </Link>
-          <button
-            type="button"
-            onClick={() => setIsDeleting(true)}
-            className="cursor-pointer">
-            <TrashIcon className="h-[32px] w-[32px] cursor-pointer fill-white" />
-          </button>
-          {isDeleting && !isSuccess && (
-            <QuestionAlert
-              title="Ви впевнені, що хочете видалити відгук зі сторінки?"
-              onCancel={() => setIsDeleting(false)}
-              onConfirm={handleDeleteConfirm}
-            />
-          )}
-          {isSuccess && (
-            <SuccessAlert
-              title="Відгук видалено"
-              onClose={handleSuccessAlertClose}
-              isSuccess={isSuccess}
-            />
-          )}
-        </div>
-      )}
+      <div className="flex gap-[32px]">
+        <Link href={`/admin/testimonials/edit/${item.id}`}>
+          <WriteIcon className="h-[32px] w-[32px] fill-white" />
+        </Link>
+        <button
+          type="button"
+          onClick={() => setIsDeleting(true)}
+          className="cursor-pointer">
+          <TrashIcon className="h-[32px] w-[32px] cursor-pointer fill-white" />
+        </button>
+        {isDeleting && !isSuccess && (
+          <QuestionAlert
+            title="Ви впевнені, що хочете видалити відгук зі сторінки?"
+            onCancel={() => setIsDeleting(false)}
+            onConfirm={handleDeleteConfirm}
+          />
+        )}
+        {isSuccess && (
+          <SuccessAlert
+            title="Відгук видалено"
+            onClose={handleSuccessAlertClose}
+            isSuccess={isSuccess}
+          />
+        )}
+      </div>
     </div>
   );
 };

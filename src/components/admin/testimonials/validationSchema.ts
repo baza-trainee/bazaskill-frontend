@@ -2,8 +2,7 @@ import { z } from 'zod';
 
 const nonRussianLettersPattern =
   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
-const dateFormat =
-  /^(0[1-9]|[12][0-9]|3[01])\s+(січня|лютого|березня|квітня|травня|червня|липня|серпня|вересня|жовтня|листопада|грудня)\s+\d{4}$/i;
+const dateFormat = /^(0[1-9]|1[0-2])\.\d{4}$/;
 
 export const testimonialValidation = z.object({
   name_ua: z
@@ -49,7 +48,7 @@ export const testimonialValidation = z.object({
     .string()
     .refine((value) => dateFormat.test(value), {
       message:
-        'Дата має бути у форматі "день місяць рік", наприклад, "12 березня 2024"',
+        'Дата має бути у форматі "місяць рік", наприклад, "03.2024"',
     }),
   review_ua: z.string().min(10, {
     message: 'Мінімальна довжина відгуку - 10 символів',

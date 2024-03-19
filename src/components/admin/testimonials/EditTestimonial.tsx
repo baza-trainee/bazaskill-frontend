@@ -25,6 +25,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import Link from 'next/link';
+import Loader from '../ui/Loader';
 
 const EditTestimonial = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -34,7 +35,7 @@ const EditTestimonial = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, refetch, isFetching } = useQuery({
     queryKey: [
       constants.testimonials.FETCH_TESTIMONIALS,
       id,
@@ -111,12 +112,8 @@ const EditTestimonial = () => {
     }
   };
 
-  if (!data || data === undefined || isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <section className=" flex w-full flex-col flex-wrap px-[24px] pt-[40px]">
+    <div className="relative h-[100vh] max-h-[100vh] p-[24px]">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>
@@ -277,7 +274,7 @@ const EditTestimonial = () => {
       </div>
       <div>
         {data && typeof data !== 'undefined' && (
-          <TestimonialCard item={data} isEdit={true} />
+          <TestimonialCard item={data} />
         )}
       </div>
       {isSuccess && (
@@ -287,7 +284,8 @@ const EditTestimonial = () => {
           isSuccess={isSuccess}
         />
       )}
-    </section>
+      {isFetching && <Loader />}
+    </div>
   );
 };
 

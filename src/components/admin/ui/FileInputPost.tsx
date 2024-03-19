@@ -44,7 +44,7 @@ const FileInputPost = forwardRef(function FileInputPost(
     }
   };
 
-  const inputClassName = ` overflow-hidden 3xl:w-[350px] w-[290px] 5xl:w-[442px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
+  const inputClassName = ` overflow-hidden w-[240px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[350px] 5xl:w-[442px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText

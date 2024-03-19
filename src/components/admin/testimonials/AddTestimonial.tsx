@@ -13,16 +13,11 @@ import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
 import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
-import {
-  createTestimonial,
-  getTestimonials,
-} from '@/api/testimonials';
+import { createTestimonial } from '@/api/testimonials';
 import SuccessAlert from '../alerts/SuccessAlert';
 import { useRouter } from 'next/navigation';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
-import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
 
 const AddTestimonial = () => {
   const router = useRouter();
@@ -44,13 +39,6 @@ const AddTestimonial = () => {
     mode: 'onChange',
     defaultValues: defaultValues,
   });
-
-  const { data } = useQuery({
-    queryKey: [constants.testimonials.ADD_TESTIMONIAL],
-    queryFn: getTestimonials,
-  });
-
-  console.log(data);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
@@ -85,15 +73,14 @@ const AddTestimonial = () => {
   };
 
   return (
-    <section className="flex min-h-screen w-full max-w-[1550px] flex-col px-[24px] pt-[40px]">
+    <section className="relative flex h-[100vh] max-h-[100vh] flex-col px-[24px] pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Додати Відгук" />
       </div>
       <div className="flex w-full">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto flex flex-1 flex-col   gap-[50px]"
-        >
+          className="mx-auto flex flex-1 flex-col   gap-[50px]">
           <div className=" flex flex-col gap-[50px]">
             <section className="flex gap-6">
               <Controller
