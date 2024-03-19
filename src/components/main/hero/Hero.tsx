@@ -7,13 +7,15 @@ import HeroTitle from './HeroTitle';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializations } from '@/api/specialization';
+import { useMessages } from 'next-intl';
 
 interface HeroProps {
   search: string;
   country: string;
   speciality: string;
 }
-
+type Messages =
+  typeof import('../../../../messages/en.json');
 const Hero: React.FC<HeroProps> = ({
   search,
   country,
@@ -25,6 +27,7 @@ const Hero: React.FC<HeroProps> = ({
     ],
     queryFn: getSpecializations,
   });
+  const messages = useMessages();
   const options = data?.map(({ title }) => title);
   return (
     <section className="container mb-[48px] mt-[124px] w-full ">
@@ -64,7 +67,7 @@ const Hero: React.FC<HeroProps> = ({
 
         <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
           <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-          {search}
+          {messages.Main.hero_section.search}
         </button>
       </form>
     </section>

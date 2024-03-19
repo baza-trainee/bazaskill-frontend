@@ -12,6 +12,11 @@ import {
 import { constants } from '@/constants';
 import { getSpecializationsWithStack } from '@/api/specialization';
 import Header from '@/components/main/header/Header';
+import {
+  NextIntlClientProvider,
+  useMessages,
+} from 'next-intl';
+import { getMessages } from 'next-intl/server';
 const open_sans = Open_Sans({
   weight: '400',
   subsets: ['latin'],
@@ -71,20 +76,29 @@ export default async function RootLayout({
     ],
     queryFn: getSpecializationsWithStack,
   });
-
+  const messages = await getMessages();
   return (
     <html lang={locale}>
       <body
-        className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}>
-        <Providers>
+        className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
+      >
+        <Providers locale={locale}>
           <header className="bg-graphite">
             <HydrationBoundary
-              state={dehydrate(queryClient)}>
+              state={dehydrate(queryClient)}
+            >
               <Header />
             </HydrationBoundary>
           </header>
 
-          <main>{children}</main>
+          <main>
+            <NextIntlClientProvider
+              locale={locale}
+              messages={messages}
+            >
+              {children}
+            </NextIntlClientProvider>
+          </main>
 
           <footer className="bg-graphite">
             <Footer />
