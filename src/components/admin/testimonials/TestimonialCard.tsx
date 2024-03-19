@@ -43,7 +43,7 @@ const TestimonialCard = ({
     <div className="flex items-center gap-[170px] py-[10px]  pr-[15px] [border-bottom:1px_solid_#787878]  [border-top:1px_solid_#787878] 2xl:gap-[280px]   5xl:gap-[248px] 5xl:py-[30px] 5xl:pr-[35px]">
       <div className="flex gap-[40px] 5xl:gap-[129px]">
         <div className="flex items-center gap-[24px] ">
-          <div className="h-[90px] w-[90px] 5xl:h-[122px] 5xl:w-[122px]">
+          <div className="h-[90px] w-[90px] grayscale filter 5xl:h-[122px] 5xl:w-[122px]">
             <Image
               src={item.image_url}
               alt={item.name_ua}

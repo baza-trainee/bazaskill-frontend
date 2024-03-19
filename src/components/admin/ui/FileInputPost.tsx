@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
 import { ForwardedRef, forwardRef, useState } from 'react';
@@ -9,7 +9,7 @@ interface FileInputPostProps {
   iconComponent?: JSX.Element;
   isRequired?: boolean;
   placeholder: string;
-  onChange: (file: File) => void;
+  onChange: (_file: File) => void;
 }
 
 const FileInputPost = forwardRef(function FileInputPost(
@@ -26,6 +26,10 @@ const FileInputPost = forwardRef(function FileInputPost(
   const [selectedFileName, setSelectedFileName] = useState<
     string | null
   >(null);
+  const [isValid, setIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<
+    string | null
+  >(null);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -33,43 +37,66 @@ const FileInputPost = forwardRef(function FileInputPost(
     const files = event.target.files;
     if (files && files.length > 0) {
       const selectedFile = files[0];
-      setSelectedFileName(selectedFile.name);
-      onChange(selectedFile);
+      if (validateFile(selectedFile)) {
+        setSelectedFileName(selectedFile.name);
+        onChange(selectedFile);
+        setIsValid(true);
+        setErrorMessage(null);
+      } else {
+        setIsValid(false);
+      }
     }
   };
 
-  const handlePlaceholderClick = () => {
-    if (ref && 'current' in ref && ref.current) {
-      ref.current.click();
+  const validateFile = (file: File): boolean => {
+    const validExtensions = [
+      '.jpg',
+      '.webp',
+      '.png',
+      '.svg',
+    ];
+    const extension = file.name
+      .substring(file.name.lastIndexOf('.'))
+      .toLowerCase();
+    if (!validExtensions.includes(extension)) {
+      setErrorMessage('Невалідний формат файлу');
+      return false;
     }
+
+    if (file.size > 2 * 1024 * 1024) {
+      setErrorMessage(
+        'Розмір файлу має бути не більш 2 Mb'
+      );
+      return false;
+    }
+
+    if (file.name.length > 30) {
+      setErrorMessage(
+        "Ім'я файлу не повинно перевищувати 30 символів"
+      );
+      return false;
+    }
+
+    return true;
   };
 
-  const inputClassName = ` overflow-hidden w-[240px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[350px] 5xl:w-[442px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
-    hover:bg-[#ebfcee] 
-${
-  errorText
-    ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
-    : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
-}
-    `;
+  const inputClassName = `overflow-hidden w-[240px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[350px] 5xl:w-[442px] cursor-pointer relative z-1 bg-[#efefef] h-[44px] outline-none ${isValid ? 'border-1px-solid-transparent' : 'border-1px-solid-#f92b2d'} rounded-md px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px] hover:bg-[#ebfcee] focus:outline-none focus:bg-[#efefef]`;
 
   return (
     <div
-      className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={title}
-          className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white">
+          className="mb-[8px] block text-[20px] leading-[1.4] text-white">
           {title}
           {isRequired && (
             <span className="text-error">*</span>
           )}
         </label>
       )}
-      <div
-        className={inputClassName}
-        onClick={handlePlaceholderClick}>
-        <span className=" text-[16px] leading-[1.16] text-[#787878]">
+      <div className={inputClassName}>
+        <span className="text-[16px] leading-[1.16] text-[#787878]">
           {selectedFileName ? (
             <span className="text-[#020202]">
               {selectedFileName}
@@ -78,7 +105,7 @@ ${
             placeholder
           )}
         </span>
-        <div className=" absolute right-[16px] top-[9px] z-0 ">
+        <div className="absolute right-[16px] top-[9px] z-0">
           <UploadIcon />
         </div>
         <input
@@ -86,13 +113,15 @@ ${
           type="file"
           id={title}
           ref={ref}
-          accept="image/jpeg, image/jpg , image/png"
-          className="absolute left-0  w-[100%] cursor-pointer overflow-hidden opacity-0"
+          accept="image/jpg, image/png, image/svg, image/webp"
+          className="absolute left-0 w-[100%] cursor-pointer overflow-hidden opacity-0"
           onChange={handleChange}
         />
       </div>
-      {errorText && (
-        <span className="text-xs">{errorText}</span>
+      {errorMessage && (
+        <span className="left top absolute text-xs text-red-500">
+          {errorMessage}
+        </span>
       )}
     </div>
   );
