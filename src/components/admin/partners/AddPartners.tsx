@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import FileInputPartner from '../ui/FileInputPartner';
 import TextInputPartner from '../ui/TextInputPartner';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
@@ -28,6 +29,7 @@ const AddPartners = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const router = useRouter();
 
   const handleFileChange = (selectedFile: File) => {
     setFile(selectedFile);
@@ -72,6 +74,10 @@ const AddPartners = () => {
     } finally {
       setIsProcessing(false);
     }
+  };
+  const handleCloseSuccessAlert = () => {
+    setIsSuccess(false);
+    router.push('/admin/partners');
   };
 
   return (
@@ -147,20 +153,10 @@ const AddPartners = () => {
         {isSuccess && (
           <SuccessAlert
             title="Лого успішно додане"
-            onClose={() => setIsSuccess(false)}
+            onClose={handleCloseSuccessAlert}
             isSuccess={isSuccess}
           />
         )}
-        <div>
-          <div className="relative flex h-[286px] w-[286px] flex-col items-center justify-center rounded-xl border-4">
-            <div className="flex gap-[129px]">
-              <div className="flex items-center gap-[24px] "></div>
-            </div>
-            <div className="w-[159px] text-start">
-              <h4 className="font-tahoma font-bold tracking-[.72px] text-white "></h4>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

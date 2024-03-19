@@ -27,12 +27,13 @@ const SuccessAlert = ({
   }, [onClose]);
 
   return (
-    <div className="z-1 absolute left-0 right-0 top-0 flex h-[100vh] w-full items-center justify-center bg-black/90">
+    <div className="absolute left-0 right-0 top-0 z-10 flex h-[100vh] w-full items-center justify-center bg-black/90">
       <div className="relative flex h-[300px] w-[600px] items-center justify-center rounded-md bg-white text-2xl font-bold text-black">
         {title}
         <button
           className="absolute  right-[50px] top-[50px]"
-          onClick={onClose}>
+          onClick={onClose}
+        >
           <CloseIcon />
         </button>
       </div>
