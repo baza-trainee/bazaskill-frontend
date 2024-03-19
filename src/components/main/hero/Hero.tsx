@@ -10,14 +10,10 @@ import { getSpecializations } from '@/api/specialization';
 import { useMessages } from 'next-intl';
 
 interface HeroProps {
-  search: string;
   country: string;
   speciality: string;
 }
-type Messages =
-  typeof import('../../../../messages/en.json');
 const Hero: React.FC<HeroProps> = ({
-  search,
   country,
   speciality,
 }: HeroProps) => {
@@ -27,7 +23,8 @@ const Hero: React.FC<HeroProps> = ({
     ],
     queryFn: getSpecializations,
   });
-  const messages = useMessages();
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  const messages: any = useMessages();
   const options = data?.map(({ title }) => title);
   return (
     <section className="container mb-[48px] mt-[124px] w-full ">
