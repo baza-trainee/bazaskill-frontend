@@ -12,10 +12,7 @@ import {
 import { constants } from '@/constants';
 import { getSpecializationsWithStack } from '@/api/specialization';
 import Header from '@/components/main/header/Header';
-import {
-  NextIntlClientProvider,
-  useMessages,
-} from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 const open_sans = Open_Sans({
   weight: '400',
@@ -90,21 +87,17 @@ export default async function RootLayout({
               <Header />
             </HydrationBoundary>
           </header>
+          <NextIntlClientProvider
+            locale={locale}
+            messages={messages}
+          >
+            <main>{children}</main>
 
-          <main>
-            <NextIntlClientProvider
-              locale={locale}
-              messages={messages}
-            >
-              {children}
-            </NextIntlClientProvider>
-          </main>
-
-          <footer className="bg-graphite">
-            <Footer />
-          </footer>
+            <footer className="bg-graphite">
+              <Footer />
+            </footer>
+          </NextIntlClientProvider>
         </Providers>
-        {/* <LayoutProvider>{children}</LayoutProvider> */}
       </body>
     </html>
   );
