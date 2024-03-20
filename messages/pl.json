@@ -1,9 +1,27 @@
 {
   "Main": {
     "hero_section": {
-      "search": "Знайти кандидата",
+      "search": "Znajdz kandydata",
       "country": "Kraj",
-      "speciality": "Specjalność"
+      "speciality": "Zawód",
+      "ukraine": "Ukraina",
+      "poland": "Polska",
+      "germany": "Niemcy",
+      "title": {
+        "main": "Znajdź swojego",
+        "specialist": "ІТ-fachowce",
+        "designer": "projektanta",
+        "developer": "dewelopera",
+        "qa": "testera",
+        "pm": "PMa"
+      }
+    },
+    "counters": {
+      "live_projects": "projektów na żywo",
+      "participants": "zaangażowanych uczestników",
+      "employed": "zatrudnionych",
+      "technologies": "technologii",
+      "libraries": "bibliotek"
     }
   },
   "Error": {
