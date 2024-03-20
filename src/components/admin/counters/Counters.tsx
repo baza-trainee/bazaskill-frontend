@@ -32,6 +32,8 @@ const Counters = () => {
     queryFn: getCounters,
   });
 
+  console.log(data)
+
   const {
     handleSubmit,
     control,
