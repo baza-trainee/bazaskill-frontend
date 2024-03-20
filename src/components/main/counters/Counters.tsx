@@ -1,6 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getCounters } from '@/api/counters';
+import { ICounters } from '@/types/counters';
 
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -18,33 +23,52 @@ interface Counters {
 }
 
 const Counters = () => {
+  const t = useTranslations('Main');
   const [isVisible, setIsVisible] =
     useState<boolean>(false);
+
+  const { data, isFetching } = useQuery<ICounters[], Error>(
+    {
+      queryKey: [constants.counters.FETCH_COUNTERS],
+      queryFn: getCounters,
+    }
+  );
+
   const counters: Counters[] = [
     {
       id: 1,
-      count: 39,
-      title: 'живих проєктів',
+      count: isFetching
+        ? 0
+        : +(data as ICounters[])[0].liveProject,
+      title: t('counters.live_projects'),
     },
     {
       id: 2,
-      count: 350,
-      title: 'залучених учасників',
+      count: isFetching
+        ? 0
+        : +(data as ICounters[])[0].members,
+      title: t('counters.participants'),
     },
     {
       id: 3,
-      count: 82,
-      title: 'працевлаштованих',
+      count: isFetching
+        ? 0
+        : +(data as ICounters[])[0].employed,
+      title: t('counters.employed'),
     },
     {
       id: 4,
-      count: 12,
-      title: 'технологій',
+      count: isFetching
+        ? 0
+        : +(data as ICounters[])[0].technologies,
+      title: t('counters.technologies'),
     },
     {
       id: 5,
-      count: 9,
-      title: 'бібліотек',
+      count: isFetching
+        ? 0
+        : +(data as ICounters[])[0].libraries,
+      title: t('counters.libraries'),
     },
   ];
 
