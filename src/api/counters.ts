@@ -2,8 +2,8 @@ import axios from '@/config/axios';
 import { ICounters } from '@/types/counters';
 
 interface IData {
-  live_projects: number;
-  participants: number;
+  liveProject: number;
+  members: number;
   employed: number;
   technologies: number;
   libraries: number;
