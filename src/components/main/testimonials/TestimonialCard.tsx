@@ -9,7 +9,7 @@ const TestimonialCard = ({
 }) => {
   return (
     <div className="flex w-[100%] flex-col items-center justify-between gap-[10px] md:flex-row 5xl:justify-end 5xl:gap-[24px]">
-      <div className="flex items-center gap-[12px] xl:gap-[36px]  5xl:flex-col">
+      <div className="flex items-center gap-[12px] grayscale  filter xl:gap-[36px] 5xl:flex-col">
         <Image
           src={item.image_url}
           alt={item.name_ua}
