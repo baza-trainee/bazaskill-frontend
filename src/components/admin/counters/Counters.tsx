@@ -50,11 +50,11 @@ const Counters = () => {
       const value: ICounters = data[0];
       setId(Number(data[0].id));
       reset({
-        live_projects: value.liveProject,
-        participants: value.members,
-        employed: value.employed,
-        technologies: value.technologies,
-        libraries: value.libraries,
+        liveProject: value.liveProject.toString(),
+        members: value.members.toString(),
+        employed: value.employed.toString(),
+        technologies: value.technologies.toString(),
+        libraries: value.libraries.toString(),
       });
     }
   }, [data, reset]);
@@ -66,8 +66,8 @@ const Counters = () => {
       await updateCounter({
         id,
         updateData: {
-          live_projects: Number(values.live_projects),
-          participants: Number(values.participants),
+          liveProject: Number(values.liveProject),
+          members: Number(values.members),
           employed: Number(values.employed),
           technologies: Number(values.technologies),
           libraries: Number(values.libraries),
@@ -75,6 +75,7 @@ const Counters = () => {
       });
       refetch();
       setShowModal(true);
+      reset();
     } catch (error) {
       console.log(error);
     }
@@ -112,16 +113,14 @@ const Counters = () => {
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
-                name="live_projects"
+                name="liveProject"
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     {...field}
                     title="Живих проектів"
                     placeholder="Введіть кількість"
-                    errorText={
-                      errors.live_projects?.message
-                    }
+                    errorText={errors.liveProject?.message}
                     isIcon
                   />
                 )}
@@ -129,14 +128,14 @@ const Counters = () => {
             </div>
             <div>
               <Controller
-                name="participants"
+                name="members"
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     {...field}
                     title="Залучених учасників"
                     placeholder="Вкажіть кількість"
-                    errorText={errors.participants?.message}
+                    errorText={errors.members?.message}
                     isIcon
                   />
                 )}
@@ -205,7 +204,7 @@ const Counters = () => {
           </div>
           {showModal && (
             <SuccessAlert
-              title="PDF документ успішно оновлено"
+              title="Дані збережено"
               onClose={() => setShowModal(false)}
               isSuccess={true}
             />

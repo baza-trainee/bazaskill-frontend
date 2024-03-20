@@ -1,22 +1,22 @@
 import { z } from 'zod';
 
-const countersPattern = /^(?:\+|\d){0,10}$/;
+const countersPattern = /^\d{0,10}$/;
 
 export const countersScheme = z.object({
-  live_projects: z
+  liveProject: z
     .string()
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри і знак "+"',
+        message: 'Введіть тільки цифри',
       }
     ),
-  participants: z
+  members: z
     .string()
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри і знак "+"',
+        message: 'Введіть тільки цифри',
       }
     ),
   employed: z
@@ -24,7 +24,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри і знак "+"',
+        message: 'Введіть тільки цифри',
       }
     ),
   technologies: z
@@ -32,7 +32,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри і знак "+"',
+        message: 'Введіть тільки цифри',
       }
     ),
   libraries: z
@@ -40,7 +40,7 @@ export const countersScheme = z.object({
     .refine(
       (value) => !value || countersPattern.test(value),
       {
-        message: 'Введіть тільки цифри і знак "+"',
+        message: 'Введіть тільки цифри"',
       }
     ),
 });
