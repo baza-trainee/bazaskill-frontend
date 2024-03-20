@@ -5,6 +5,7 @@ import { useModal } from '@/stores/useModal';
 import { useQuery } from '@tanstack/react-query';
 import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
+import { useTranslations } from 'next-intl';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
@@ -32,6 +33,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({
 );
 
 const Footer = () => {
+  const t = useTranslations('Main.footer');
   const isModalOpen = useModal(
     (state) => state.isModalOpen
   );
@@ -69,24 +71,24 @@ const Footer = () => {
             <Logo className="transition duration-500 hover:scale-110" />
           </a>
           <h3 className="mb-20 mt-12 block justify-center font-tahoma text-2xl font-bold text-white transition-all xs:mb-[20px] xs:flex xs:font-medium md:block md:text-base xl:mb-[18px] xl:flex xl:w-[300px] xl:text-xl 2xl:w-[250px]">
-            За крок до офферу
+            {t('offer')}
           </h3>
         </div>
         <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[100px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
           <button className="inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4 hover:text-yellow hover:underline md:text-lg xl:leading-7">
-            <a href="#aboutus">Про нас</a>
+            <a href="#aboutus">{t('about_us')}</a>
           </button>
           <button
             className="block cursor-pointer text-nowrap py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline md:text-lg xl:leading-7"
             onClick={() => openModal('hr')}
           >
-            Стати нашим HRом
+            {t('to_become_hr')}
           </button>
           <button
             className="block cursor-pointer text-nowrap py-2 text-xl font-normal decoration-yellow underline-offset-4 transition-all hover:text-yellow hover:underline md:text-lg xl:leading-7"
             onClick={() => openModal('partner')}
           >
-            Стати нашим партнером
+            {t('to_become_partner')}
           </button>
         </div>
         <div className="flex-col items-center xs:flex sm:flex sm:items-center md:w-[350px] md:items-start md:text-base 2xl:w-[400px] 5xl:w-[300px]">
@@ -94,20 +96,19 @@ const Footer = () => {
             Baza Trainee Ukraine
           </FooterLink>
           <FooterLink href="https://baza-educat.com.ua/">
-            Стажування на Baza Educat
+            {t('internship')}
           </FooterLink>
-          <FooterLink href="/">
-            Розробка Baza Poligon
-          </FooterLink>
+          <FooterLink href="/">{t('poligon')}</FooterLink>
         </div>
       </div>
       <div className="flex xs:flex-col-reverse xs:py-[20px] sm:flex-col-reverse md:flex-col-reverse md:leading-3 xl:flex xl:flex-row">
         <div className="flex-col items-center justify-center sm:flex md:flex md:flex-row xl:ml-[60px] xl:mr-[30px] 2xl:ml-[36px] 2xl:mr-[55px] 3xl:mr-[55px] 4xl:mr-[122px] 5xl:mr-[306px]">
           <p className="mr-36  justify-center font-sans text-sm font-normal leading-4 text-white xs:mr-0 xs:flex xs:text-lg sm:mr-0 md:mr-[4px] md:flex md:justify-center md:text-nowrap xl:mr-[4px] ">
-            Розробка Baza Trainee Ukraine 2024 &#169;
+            {t('development')} Baza Trainee Ukraine 2024
+            &#169;
           </p>
           <p className="justify-center text-white xs:flex xs:text-lg md:text-nowrap">
-            Усі права захищені
+            {t('rights')}
           </p>
         </div>
         <div className="xs:mb-[25px] md:mb-[10px] md:flex md:justify-center xl:mb-[0px]">
@@ -117,7 +118,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             href={privacyPolicy?.document_url}
           >
-            Політика конфіденційності
+            {t('privacy_policy')}
           </a>
           <a
             className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]"
@@ -125,19 +126,19 @@ const Footer = () => {
             rel="noopener noreferrer"
             href={termsOfUse?.document_url}
           >
-            Правила користування сайтом
+            {t('terms_of_use')}
           </a>
         </div>
       </div>
       <div className="flex items-center justify-center px-10 py-8 xs:flex-col xs:px-0 sm:flex-col sm:px-0 md:flex md:w-[700px] md:flex-row md:items-center md:justify-center md:px-0 md:pt-[15px] xl:mx-auto">
         <p className="text-base text-white xs:text-[12px] sm:text-xs md:mr-[4px] md:text-sm xl:text-base">
-          Компанія направляє 10% прибутку на підтримку
+          {t('support_1')}
         </p>
         <p className="text-white xs:text-[12px] sm:text-xs md:mr-[4px] md:text-sm xl:text-base">
-          59-тої бригади
+          {t('support_2')}
         </p>
         <p className="text-white xs:text-[12px] sm:text-xs md:text-sm xl:text-base">
-          ім.Якова Гандзюка
+          {t('support_3')}
         </p>
       </div>
       {isModalOpen && modalType === 'hr' && (

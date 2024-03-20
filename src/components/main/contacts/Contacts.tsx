@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const contactData = [
   {
@@ -35,10 +38,11 @@ const socialLinks = [
 ];
 
 const Contacts = () => {
+  const t = useTranslations('Main.contacts');
   return (
     <div className="container py-14">
       <h2 className="mb-12 flex w-full justify-center text-2xl font-bold text-white md:text-2xl lg:text-[40px]">
-        Контакти
+        {t('title')}
       </h2>
       <div className="priority={true} alt={employees are sitting at the table} height-[445px] w-full bg-cover sm:bg-graphite md:bg-[url('/img/contactstablet.jpg')] xl:bg-[url('/img/contacts1280.jpg')] 2xl:bg-[url('/img/contacts1368.jpg')] 3xl:bg-[url('/img/contacts1440.jpg')] 4xl:bg-[url('/img/contacts1536.jpg')] 5xl:bg-[url('/img/contacts1920.jpg')]">
         <div className="width={270} height={288} flex flex-col rounded from-greenBg to-yellow pl-48 pt-20 xs:bg-gradient-to-r xs:py-5 xs:pl-0 md:bg-none">
