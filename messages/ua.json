@@ -1,28 +1,46 @@
 {
-    "Main": {
-        "hero_section": {
-            "search": "Знайти кандидата",
-            "country": "Країна",
-            "speciality": "Спеціальність"
-        }
+  "Main": {
+    "hero_section": {
+      "search": "Знайти кандидата",
+      "country": "Країна",
+      "speciality": "Спеціальність",
+      "ukraine": "Україна",
+      "poland": "Польща",
+      "germany": "Німеччина",
+      "title": {
+        "main": "Знайди свого",
+        "specialist": "ІТ-фахівця",
+        "designer": "дизайнера",
+        "developer": "розробника",
+        "qa": "тестувальника",
+        "pm": "PMa"
+      }
     },
-    "Error": {
-        "title": "Вибачте, сторінка, яку ви шукаєте, переміщена або видалена",
-        "button": "На головну"
-    },
-    "Candidate": {
-        "about": "Про себе",
-        "stack": "Стек",
-        "education": "Освіта",
-        "courses": "Курси",
-        "baza_experience": "Досвід роботи на базі",
-        "projects": "{count, plural, =0 {ще немає проєктів} =1 {# проєкт} =2 {# проєкти} =3 {# проєкти} other {# проєктів}}",
-        "recomendation_from": "Рекомендації від",
-        "ask_data": "Запросити дані",
-        "candidate_project": {
-            "duration": "Тривалість",
-            "weeks": "тижнів",
-            "role": "Тім-лід"
-        }
+    "counters": {
+      "live_projects": "живих проєктів",
+      "participants": "залучених учасників",
+      "employed": "працевлаштованих",
+      "technologies": "технологій",
+      "libraries": "бібліотек"
     }
+  },
+  "Error": {
+    "title": "Вибачте, сторінка, яку ви шукаєте, переміщена або видалена",
+    "button": "На головну"
+  },
+  "Candidate": {
+    "about": "Про себе",
+    "stack": "Стек",
+    "education": "Освіта",
+    "courses": "Курси",
+    "baza_experience": "Досвід роботи на базі",
+    "projects": "{count, plural, =0 {ще немає проєктів} =1 {# проєкт} =2 {# проєкти} =3 {# проєкти} other {# проєктів}}",
+    "recomendation_from": "Рекомендації від",
+    "ask_data": "Запросити дані",
+    "candidate_project": {
+      "duration": "Тривалість",
+      "weeks": "тижнів",
+      "role": "Тім-лід"
+    }
+  }
 }

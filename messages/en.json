@@ -1,9 +1,27 @@
 {
   "Main": {
     "hero_section": {
-      "search": "Search candidate",
+      "search": "Find candidate",
       "country": "Country",
-      "speciality": "Speciality"
+      "speciality": "Speciality",
+      "ukraine": "Ukraine",
+      "poland": "Poland",
+      "germany": "Germany",
+      "title": {
+        "main": "Find your",
+        "specialist": "ІТ-specialist",
+        "designer": "designer",
+        "developer": "developer",
+        "qa": "qa",
+        "pm": "PM"
+      }
+    },
+    "counters": {
+      "live_projects": "live projects",
+      "participants": "involved participants",
+      "employed": "employed",
+      "technologies": "technologies",
+      "libraries": "libraries"
     }
   },
   "Error": {

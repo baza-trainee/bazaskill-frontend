@@ -32,6 +32,8 @@ const Counters = () => {
     queryFn: getCounters,
   });
 
+  console.log(data);
+
   const {
     handleSubmit,
     control,
@@ -107,8 +109,7 @@ const Counters = () => {
         <form
           className="flex w-[597px] flex-col gap-[30px]"
           onSubmit={handleSubmit(onSubmit)}
-          onKeyPress={handleKeyPress}
-        >
+          onKeyPress={handleKeyPress}>
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller

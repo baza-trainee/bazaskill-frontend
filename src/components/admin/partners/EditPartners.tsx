@@ -23,6 +23,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import SuccessAlert from '../alerts/SuccessAlert';
+import PartnersCard from './PartnersCard';
 
 const EditPartners = () => {
   const router = useRouter();
@@ -88,7 +89,7 @@ const EditPartners = () => {
   }
   return (
     <div className="p-[24px]">
-      <PageTitle title="Редагувати партнера" />
+      <PageTitle title="Редагування данних партнерів" />
       <div className="mt-[80px] flex flex-wrap gap-[180px]">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -159,7 +160,9 @@ const EditPartners = () => {
             isSuccess={isSuccess}
           />
         )}
-        <div></div>
+        <div>
+          <PartnersCard isEditing={true} item={data} />
+        </div>
       </div>
     </div>
   );

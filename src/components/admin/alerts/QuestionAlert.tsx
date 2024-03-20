@@ -23,9 +23,16 @@ const QuestionAlert = ({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onCancel]);
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
-    <div className="absolute left-0 right-0 top-0 flex h-screen w-full items-center justify-center bg-black/90">
+    <div className="fixed inset-0 z-[999] flex items-center justify-center overflow-auto bg-black/90">
       <div className="relative flex h-[331px] w-[600px] flex-col items-center justify-center rounded-md bg-white px-[50px] py-[50px] text-2xl font-bold text-black">
         <div className="px-6 py-4 text-center">
           {title}

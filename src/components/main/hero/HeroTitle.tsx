@@ -1,20 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import { useMessages } from 'next-intl';
 import { TypeAnimation } from 'react-type-animation';
 
 const HeroTitle = () => {
+  const messages: any = useMessages();
+
   return (
     <TypeAnimation
       sequence={[
-        'ІТ-фахівця',
+        messages.Main.hero_section.title.specialist,
         2500,
-        'дизайнера',
+        messages.Main.hero_section.title.designer,
         2500,
-        'розробника',
+        messages.Main.hero_section.title.developer,
         2500,
-        'тестувальника',
+        messages.Main.hero_section.title.qa,
         2500,
-        'РМа',
+        messages.Main.hero_section.title.pm,
         2500,
       ]}
       wrapper="span"
