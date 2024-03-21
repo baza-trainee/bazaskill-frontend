@@ -7,6 +7,7 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 import { constants } from '@/constants';
 import { stack, countries } from './data';
 import { defaultValues } from './defaultValues';
@@ -27,6 +28,7 @@ import {
 } from '@tanstack/react-query';
 
 const RegisterHrForm = () => {
+  const t = useTranslations();
   const { closeModal } = useModal();
   const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -52,6 +54,8 @@ const RegisterHrForm = () => {
     },
   });
 
+  console.log(errors);
+
   const onSubmit: SubmitHandler<
     z.infer<typeof registerScheme>
   > = async (values: z.infer<typeof registerScheme>) => {
@@ -74,7 +78,7 @@ const RegisterHrForm = () => {
       {!isSubmitted ? (
         <div className="mb-[64px] flex w-full flex-col items-center justify-center">
           <h1 className="mb-[26px] mt-[40px] text-base font-semibold sm:mt-[68px] sm:text-xl md:mt-[40px] md:text-2xl md:font-bold">
-            Стати нашим HRom
+            {t('Main.forms.to_become_hr')}
           </h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -87,10 +91,12 @@ const RegisterHrForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Імʼя"
+                    title={t('Main.forms.first_name')}
                     {...field}
-                    errorText={errors.first_name?.message}
-                    placeholder="Імʼя"
+                    errorText={t(
+                      errors.first_name?.message
+                    )}
+                    placeholder={t('Main.forms.first_name')}
                     isRequired={true}
                   />
                 )}
@@ -100,10 +106,10 @@ const RegisterHrForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Прізвище"
+                    title={t('Main.forms.last_name')}
                     {...field}
-                    errorText={errors.last_name?.message}
-                    placeholder="Прізвище"
+                    errorText={t(errors.last_name?.message)}
+                    placeholder={t('Main.forms.last_name')}
                     isRequired={true}
                   />
                 )}
@@ -115,10 +121,10 @@ const RegisterHrForm = () => {
                 control={control}
                 render={({ field }) => (
                   <PhoneInput
-                    title="Телефон"
+                    title={t('Main.forms.phone')}
                     {...field}
-                    errorText={errors.phone?.message}
-                    placeholder="Телефон"
+                    errorText={t(errors.phone?.message)}
+                    placeholder={t('Main.forms.phone')}
                     isRequired={true}
                   />
                 )}
@@ -130,7 +136,7 @@ const RegisterHrForm = () => {
                   <TextInput
                     title="Email"
                     {...field}
-                    errorText={errors.email?.message}
+                    errorText={t(errors.email?.message)}
                     placeholder="Email"
                     isRequired={true}
                   />
@@ -144,11 +150,11 @@ const RegisterHrForm = () => {
                 defaultValue=""
                 render={({ field }) => (
                   <TextInput
-                    title="Компанія"
+                    title={t('Main.forms.company')}
                     {...field}
-                    placeholder="Компанія"
+                    placeholder={t('Main.forms.company')}
                     isRequired={false}
-                    errorText={errors.company?.message}
+                    errorText={t(errors.company?.message)}
                   />
                 )}
               />
@@ -158,11 +164,11 @@ const RegisterHrForm = () => {
                 defaultValue=""
                 render={({ field }) => (
                   <SelectInput
-                    title="Країна"
+                    title={t('Main.forms.country')}
                     {...field}
                     errorText={errors.country?.message}
                     options={countries}
-                    placeholder="Країна"
+                    placeholder={t('Main.forms.country')}
                   />
                 )}
               />
@@ -175,13 +181,15 @@ const RegisterHrForm = () => {
                   defaultValue=""
                   render={({ field }) => (
                     <SelectInput
-                      title="Шукаю"
+                      title={t('Main.forms.search')}
                       {...field}
-                      errorText={
+                      errorText={t(
                         errors.specialization?.message
-                      }
+                      )}
                       options={stack}
-                      placeholder="Спеціальність"
+                      placeholder={t(
+                        'Main.forms.speciality'
+                      )}
                       isRequired={true}
                     />
                   )}
@@ -193,9 +201,11 @@ const RegisterHrForm = () => {
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Прошу надіслати договір рекрутингу на ознайомлення"
+                        title={t(
+                          'Main.forms.recruitment_contract'
+                        )}
                         isRequired={true}
-                        errorText={errors.terms?.message}
+                        errorText={t(errors.terms?.message)}
                       />
                     )}
                   />
@@ -205,9 +215,11 @@ const RegisterHrForm = () => {
                     render={({ field }) => (
                       <CustomCheckbox
                         {...field}
-                        title="Даю згоду на обробку персональних даних"
+                        title={t('Main.forms.agreement')}
                         isRequired={true}
-                        errorText={errors.terms_2?.message}
+                        errorText={t(
+                          errors.terms_2?.message
+                        )}
                       />
                     )}
                   />
@@ -218,10 +230,10 @@ const RegisterHrForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextArea
-                    title="Коментар"
+                    title={t('Main.forms.comment')}
                     {...field}
-                    errorText={errors.message?.message}
-                    placeholder="Коментар"
+                    errorText={t(errors.message?.message)}
+                    placeholder={t('Main.forms.comment')}
                     isRequired={true}
                   />
                 )}
@@ -237,8 +249,8 @@ const RegisterHrForm = () => {
                 }
               >
                 {isProcessing
-                  ? 'Обробка запиту...'
-                  : 'Відправити'}
+                  ? t('Main.forms.processing')
+                  : t('Main.forms.send')}
               </button>
             </div>
           </form>

@@ -8,6 +8,7 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 import { stack } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -29,6 +30,7 @@ import {
 } from '@tanstack/react-query';
 
 const RegisterPartnerForm = () => {
+  const t = useTranslations();
   const { closeModal } = useModal();
   const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -79,7 +81,7 @@ const RegisterPartnerForm = () => {
       {!isSubmitted ? (
         <div className="mb-[64px] flex w-full flex-col items-center justify-center">
           <h1 className="mb-[26px] mt-[40px] text-base font-semibold sm:mt-[68px] sm:text-xl md:mt-[40px] md:text-2xl md:font-bold">
-            Стати нашим Партнером
+            {t('Main.forms.to_become_partner')}
           </h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -92,10 +94,12 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Назва компанії"
+                    title={t('Main.forms.company_name')}
                     {...field}
-                    errorText={errors.company_name?.message}
-                    placeholder="Назва"
+                    errorText={t(
+                      errors.company_name?.message
+                    )}
+                    placeholder={t('Main.forms.name')}
                     isRequired={true}
                   />
                 )}
@@ -105,10 +109,12 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Сайт компанії"
+                    title={t('Main.forms.company_website')}
                     {...field}
-                    errorText={errors.company_url?.message}
-                    placeholder="Сайт"
+                    errorText={t(
+                      errors.company_url?.message
+                    )}
+                    placeholder={t('Main.forms.website')}
                     isRequired={true}
                   />
                 )}
@@ -120,10 +126,10 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <PhoneInput
-                    title="Телефон"
+                    title={t('Main.forms.phone')}
                     {...field}
-                    errorText={errors.phone?.message}
-                    placeholder="Телефон"
+                    errorText={t(errors.phone?.message)}
+                    placeholder={t('Main.forms.phone')}
                     isRequired={true}
                   />
                 )}
@@ -135,7 +141,7 @@ const RegisterPartnerForm = () => {
                   <TextInput
                     title="Email"
                     {...field}
-                    errorText={errors.email?.message}
+                    errorText={t(errors.email?.message)}
                     placeholder="Email"
                     isRequired={true}
                   />
@@ -148,10 +154,12 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Імʼя"
+                    title={t('Main.forms.first_name')}
                     {...field}
-                    errorText={errors.first_name?.message}
-                    placeholder="Імʼя"
+                    errorText={t(
+                      errors.first_name?.message
+                    )}
+                    placeholder={t('Main.forms.first_name')}
                     isRequired={true}
                   />
                 )}
@@ -161,10 +169,10 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Прізвище"
+                    title={t('Main.forms.last_name')}
                     {...field}
-                    errorText={errors.last_name?.message}
-                    placeholder="Прізвище"
+                    errorText={t(errors.last_name?.message)}
+                    placeholder={t('Main.forms.last_name')}
                     isRequired={true}
                   />
                 )}
@@ -177,10 +185,10 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    title="Посада представника"
+                    title={t('Main.forms.position_name')}
                     {...field}
-                    errorText={errors.position?.message}
-                    placeholder="Посада"
+                    errorText={t(errors.position?.message)}
+                    placeholder={t('Main.forms.position')}
                     isRequired={true}
                   />
                 )}
@@ -191,11 +199,11 @@ const RegisterPartnerForm = () => {
                 defaultValue=""
                 render={({ field }) => (
                   <SelectInput
-                    title="Країна"
+                    title={t('Main.forms.country')}
                     {...field}
                     errorText={errors.country?.message}
                     options={countries}
-                    placeholder="Країна"
+                    placeholder={t('Main.forms.country')}
                   />
                 )}
               />
@@ -206,11 +214,11 @@ const RegisterPartnerForm = () => {
               defaultValue=""
               render={({ field }) => (
                 <SelectInput
-                  errorText={errors.specialist?.message}
-                  title="Шукаю"
+                  errorText={t(errors.specialist?.message)}
+                  title={t('Main.forms.search')}
                   {...field}
                   options={stack}
-                  placeholder="Спеціальність"
+                  placeholder={t('Main.forms.speciality')}
                   isRequired={true}
                 />
               )}
@@ -222,11 +230,11 @@ const RegisterPartnerForm = () => {
                 control={control}
                 render={({ field }) => (
                   <TextArea
-                    title="Коментар"
+                    title={t('Main.forms.comment')}
                     {...field}
-                    errorText={errors.message?.message}
+                    errorText={t(errors.message?.message)}
+                    placeholder={t('Main.forms.comment')}
                     isRequired={true}
-                    placeholder="Коментар"
                   />
                 )}
               />
@@ -237,9 +245,11 @@ const RegisterPartnerForm = () => {
                   render={({ field }) => (
                     <CustomCheckbox
                       {...field}
-                      title="Прошу надіслати договір партнерства на ознайомлення"
+                      title={t(
+                        'Main.forms.partner_contract'
+                      )}
                       isRequired={true}
-                      errorText={errors.terms?.message}
+                      errorText={t(errors.terms?.message)}
                     />
                   )}
                 />
@@ -249,9 +259,9 @@ const RegisterPartnerForm = () => {
                   render={({ field }) => (
                     <CustomCheckbox
                       {...field}
-                      title="Даю згоду на обробку персональних даних"
+                      title={t('Main.forms.agreement')}
                       isRequired={true}
-                      errorText={errors.terms_2?.message}
+                      errorText={t(errors.terms_2?.message)}
                     />
                   )}
                 />
@@ -266,8 +276,8 @@ const RegisterPartnerForm = () => {
                 }
               >
                 {isProcessing
-                  ? 'Обробка запиту...'
-                  : 'Відправити'}
+                  ? t('Main.forms.processing')
+                  : t('Main.forms.send')}
               </button>
             </div>
           </form>
