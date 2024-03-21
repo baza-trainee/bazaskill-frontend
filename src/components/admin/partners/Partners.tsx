@@ -35,7 +35,11 @@ const Partners = () => {
         </Link>
         {data?.map((item: Partners) => (
           <li key={item.id} className="list-none">
-            <PartnersCard item={item} />
+            <PartnersCard
+              showName={false}
+              isEditing={false}
+              item={item}
+            />
           </li>
         ))}
       </div>

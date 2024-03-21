@@ -1,7 +1,7 @@
 export interface ICounters {
   id: number;
-  live_projects: string;
-  participants: string;
+  liveProject: string;
+  members: string;
   employed: string;
   technologies: string;
   libraries: string;

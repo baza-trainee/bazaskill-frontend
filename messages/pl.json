@@ -1,9 +1,73 @@
 {
   "Main": {
     "hero_section": {
-      "search": "Знайти кандидата",
+      "search": "Znajdz kandydata",
       "country": "Kraj",
-      "speciality": "Specjalność"
+      "speciality": "Zawód",
+      "ukraine": "Ukraina",
+      "poland": "Polska",
+      "germany": "Niemcy",
+      "title": {
+        "main": "Znajdź swojego",
+        "specialist": "ІТ-fachowce",
+        "designer": "projektanta",
+        "developer": "dewelopera",
+        "qa": "testera",
+        "pm": "PMa"
+      }
+    },
+    "counters": {
+      "live_projects": "projektów na żywo",
+      "participants": "zaangażowanych uczestników",
+      "employed": "zatrudnionych",
+      "technologies": "technologii",
+      "libraries": "bibliotek"
+    },
+    "help": {
+      "title": "Pomożemy Ci znaleźć godnego specjalistę",
+      "paragraph_1": "Platforma Baza Skill pomoże Ci znaleźć doświadczonego specjalistę w dziedzinie IT, gdyż każdy z naszych kandydatów ma już za sobą poważną praktykę w Baza Trainee Ukraine.",
+      "paragraph_2": "Każdy przedstawiony tutaj specjalista potrafi pracować zespołowo, ma doświadczenie w realizacji projektów, zna wymagania, zna trudności i sukcesy na wszystkich etapach życia projektu.",
+      "paragraph_3": "Dajemy Ci wykwalifikowanych młodszych specjalistów, którzy kochają to, co robią. Przynajmniej tak mówią."
+    },
+    "candidates": {
+      "title": "Nasze kandydaty",
+      "paragraph_1": "Przestrzegają zasad korzystania z udostępnionych narzędzi",
+      "paragraph_2": "Trzymaj się terminów",
+      "paragraph_3": "Przestrzegaj obowiązku gromadzenia dokumentacji",
+      "paragraph_4": "Zajmują dobrze uargumentowanych stanowisk w sporach i sytuacjach konfliktowych, skuteczność, chęć osiągnięcia wspólnego celu",
+      "paragraph_5": "Gotowy do dzielenia się informacjami",
+      "paragraph_6": "Wyrażają postawę wsparcia dla kolegów w zespole, gotowość do zastąpienia kolegi w przypadku wystąpienia siły wyższej",
+      "paragraph_7": "Interesuje się nowościami",
+      "paragraph_8": "Skłonny do aktywności",
+      "paragraph_9": "Bezwarunkowo przestrzegać przepisów prawa, w szczególności w zakresie praw autorskich, ochrony danych osobowych, RODO, NDA",
+      "paragraph_10": "Bezwarunkowo przestrzegać przepisów prawa"
+    },
+    "partners": {
+      "title": "Nasi partnerzy"
+    },
+    "articles": {
+      "title": "Artykuły i porady"
+    },
+    "testimonials": {
+      "title": "Opinie"
+    },
+    "contacts": {
+      "title": "Kontakty"
+    },
+    "footer": {
+      "offer": "Za krok do oferty",
+      "about_us": "O nas",
+      "to_become_hr": "Zostań naszym HR",
+      "to_become_partner": "Zostań naszym partnerem",
+      "internship": "Staż w Bazie Educat",
+      "poligon": "Rozwój Bazy Poligon",
+      "development": "Dewelopment",
+      "rights": "Wszelkie prawa zastrzeżone",
+      "privacy_policy": "Polityka prywatności",
+      "terms_of_use": "Warunki korzystania z serwisu",
+      "support_1": "Firma przekazuje 10% zysków na wsparcie",
+      "support_2": "59 brygady",
+      "support_3": "im. Jakowa Handziuka"
     }
   },
   "Error": {

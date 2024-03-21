@@ -6,6 +6,7 @@ import {
   SwiperRef,
   SwiperSlide,
 } from 'swiper/react';
+import { useTranslations } from 'next-intl';
 import { Navigation, Pagination } from 'swiper/modules';
 import { testimonials } from './data';
 import { Testimonial } from '@/types/testimonials';
@@ -19,6 +20,7 @@ import 'swiper/css/navigation';
 import './testimonials_styles.css';
 
 const Testimonials = () => {
+  const t = useTranslations('Main.testimonials');
   const sliderRef: RefObject<SwiperRef> = useRef(null);
 
   const handlePrev = useCallback(() => {
@@ -36,7 +38,7 @@ const Testimonials = () => {
   return (
     <section className="container relative py-[60px]">
       <h3 className="mb-[50px] text-center font-tahoma text-[24px] font-bold tracking-[1.08px] text-white md:text-2xl lg:text-[40px]">
-        Відгуки
+        {t('title')}
       </h3>
       <div className="relative xl:mx-auto xl:max-w-[1280px]  5xl:max-w-[1681px]">
         <Swiper

@@ -4,7 +4,6 @@ import { photosArray } from '@/data/specialists';
 import HelpList from './helpList/HelpList';
 import HelpSpecialist from './helpSpecialist/HelpSpecialist';
 import { useMediaQuery } from '@react-hook/media-query';
-import TextAreaReviews from '@/components/admin/ui/TextAreaReviews';
 
 const Help = () => {
   const isExtraLargeScreen = useMediaQuery(
