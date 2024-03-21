@@ -21,6 +21,7 @@ const TextInput = forwardRef(function TextInput(
   }: TextInputProps,
   _ref: ForwardedRef<HTMLInputElement>
 ) {
+  console.log(errorText);
   return (
     <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
       {!!title && (

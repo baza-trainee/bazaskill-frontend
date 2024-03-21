@@ -15,102 +15,110 @@ const messageMaxLength = 300;
 export const registerScheme = z.object({
   company_name: z
     .string()
-    .nonempty('Введіть ім’я')
-    .min(2, 'Ім’я повинно мати не менше 2 знаків')
-    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .nonempty('Main.forms.errors.companyname_empty')
+    .min(2, 'Main.forms.errors.companyname_min')
+    .max(30, 'Main.forms.errors.companyname_max')
     .refine(
       (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      { message: 'Main.forms.errors.incorrect_companyname' }
     ),
 
   company_url: z
     .string()
-    .nonempty('Це поле обовʼязкове для заповнення')
+    .nonempty('Main.forms.errors.required_field')
     .refine(
       (value) => isURL(value, { require_protocol: true }),
       {
-        message:
-          'Будь ласка, введіть дійсний URL сайту компанії',
+        message: 'Main.forms.errors.website',
       }
     ),
 
   phone: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Main.forms.errors.required_field')
     .refine(
       (value) => /^\+(?:[0-9] ?){6,14}[0-9]$/.test(value),
       {
-        message:
-          'Введіть коректний номер телефону в міжнародному форматі',
+        message: 'Main.forms.errors.incorrect_phone',
       }
     ),
 
   email: z
     .string()
-    .nonempty('Це поле обовʼязкове для заповнення')
+    .nonempty('Main.forms.errors.required_field')
     .regex(emailPattern, {
-      message: 'Введіть дійсний email',
+      message: 'Main.forms.errors.incorrect_email',
     })
     .refine(
       (value) => !/(.ru|.by)$/.test(value.split('@')[1]),
       {
-        message: 'Домени .ru і .by не допускаються',
+        message: 'Main.forms.errors.invalid_ru',
       }
     ),
 
   first_name: z
     .string()
-    .nonempty('Введіть ім’я')
-    .min(2, 'Ім’я повинно мати не менше 2 знаків')
-    .max(30, 'Ім’я повинно бути не більше 30 знаків')
+    .nonempty('Main.forms.errors.firstname_empty')
+    .min(2, 'Main.forms.errors.firstname_min')
+    .max(30, 'Main.forms.errors.firstname_max')
     .refine(
       (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      { message: 'Main.forms.errors.incorrect_firstname' }
     ),
-  country: z.string(),
+
   last_name: z
     .string()
-    .nonempty('Введіть ім’я')
-    .min(2, 'Ім’я повинно мати не менше 2 знаків')
-    .max(50, 'Ім’я повинно бути не більше 50 знаків')
+    .nonempty('Main.forms.errors.lastname_empty')
+    .min(2, 'Main.forms.errors.lastname_min')
+    .max(50, 'Main.forms.errors.lastname_max')
     .refine(
       (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      {
+        message: 'Main.forms.errors.incorrect_lastname',
+      }
     ),
+
+  country: z.string(),
 
   position: z
     .string()
-    .nonempty('Це поле обовʼязкове')
+    .nonempty('Main.forms.errors.required_field')
     .refine(
       (value) =>
         /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
       {
-        message:
-          'Тільки букви та пробіли (без спеціальних символів)',
+        message: 'Main.forms.errors.position',
       }
     ),
+
   message: z
     .string()
-    .nonempty({ message: 'Це поле обовʼязкове' })
+    .nonempty({
+      message: 'Main.forms.errors.required_field',
+    })
     .refine(
       (value) =>
         nonRussianLettersWithSymbolsAndDigitsPattern.test(
           value
         ) && value.length <= messageMaxLength,
       {
-        message: `Введіть коректний коментар та не більше ${messageMaxLength} символів`,
+        message: `Main.forms.errors.comment`,
       }
     ),
 
   terms: z.literal(true, {
     errorMap: () => ({
-      message: 'Підтвердіть згоду, будь ласка',
+      message: 'Main.forms.errors.agreement',
     }),
   }),
+
   terms_2: z.literal(true, {
     errorMap: () => ({
-      message: 'Підтвердіть згоду, будь ласка',
+      message: 'Main.forms.errors.agreement',
     }),
   }),
-  specialist: z.string().nonempty('Це поле обовʼязкове'),
+
+  specialist: z
+    .string()
+    .nonempty('Main.forms.errors.required_field'),
 });
