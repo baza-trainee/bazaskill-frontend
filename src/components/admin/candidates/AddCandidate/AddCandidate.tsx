@@ -1,10 +1,63 @@
 'use client';
 import React, { useState } from 'react';
+import Languages from './Languages';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
     Array<{ language: string; level: string }>
   >([{ language: '', level: '' }]);
+  const handleDeleteLanguage = (id: number) => {
+    setLanguages(
+      languages.filter((_, index) => index !== id)
+    );
+  };
+
+  const handleAddLanguage = () => {
+    setLanguages([
+      ...languages,
+      { language: '', level: '' },
+    ]);
+  };
+
+  const handleChoseLanguage = (
+    id: number,
+    value: string
+  ) => {
+    setLanguages(
+      languages.map(
+        (
+          {
+            language,
+            level,
+          }: { language: string; level: string },
+          index
+        ) =>
+          index === id
+            ? { language: value, level }
+            : { language, level }
+      )
+    );
+  };
+  const handleChoseLanguageLevel = (
+    id: number,
+    value: string
+  ) => {
+    setLanguages(
+      languages.map(
+        (
+          {
+            language,
+            level,
+          }: { language: string; level: string },
+          index
+        ) =>
+          index === id
+            ? { language, level: value }
+            : { language, level }
+      )
+    );
+    console.log(languages);
+  };
   return (
     <div className="flex flex-col">
       <h2>Інформація про кандидата</h2>
@@ -162,136 +215,46 @@ const AddCandidate = () => {
             </div>
           </div>
 
-          <div className="flex w-full gap-[24px]">
-            <div className="flex w-full flex-col gap-[32px]">
-              {languages.map(
-                (
-                  {
-                    language,
-                    level,
-                  }: { language: string; level: string },
-                  index
-                ) => (
-                  <div
-                    key={index}
-                    className="flex grow gap-[24px]"
-                  >
-                    <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-                      <label htmlFor="phone">
-                        Рівень володіння мовою{' '}
-                        <span className="text-red-500">
-                          *
-                        </span>
-                      </label>
-                      <select
-                        defaultValue=""
-                        className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-                      >
-                        <option value="">
-                          Please Select
-                        </option>
-                        <option value="A1">A1</option>
-                        <option value="A2">A2</option>
-                        <option value="B1">B1</option>
-                        <option value="B2">B2</option>
-                        <option value="C1">C1</option>
-                        <option value="C2">C2</option>
-                      </select>
-                    </div>
+          <Languages
+            languages={languages}
+            addLanguage={handleAddLanguage}
+            deleteLanguage={handleDeleteLanguage}
+            choseLanguage={handleChoseLanguage}
+            choseLevel={handleChoseLanguageLevel}
+          />
 
-                    <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-                      <label htmlFor="phone">
-                        Іноземна Мова{' '}
-                        <span className="text-red-500">
-                          *
-                        </span>
-                      </label>
-                      <select
-                        defaultValue=""
-                        className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-                      >
-                        <option>Please Select</option>
-                        <option value="English">
-                          English
-                        </option>
-                        <option value="Spanish">
-                          Spanish
-                        </option>
-                        <option value="Polish">
-                          Polish
-                        </option>
-                        <option value="Duchland">
-                          Duchland
-                        </option>
-                        <option value="French">
-                          French
-                        </option>
-                      </select>
-                    </div>
-                    {index !== 0 ? (
-                      <div className="flex w-full max-w-[442px] grow gap-[5px]">
-                        <div
-                          onClick={() =>
-                            setLanguages(
-                              languages.splice(1, index)
-                            )
-                          }
-                          className="flex h-[44px] cursor-pointer items-center self-end"
-                        >
-                          X
-                        </div>
-                        {languages.length - 1 === index && (
-                          <div
-                            onClick={() =>
-                              setLanguages([
-                                ...languages,
-                                { language: '', level: '' },
-                              ])
-                            }
-                            className="flex h-[44px] max-w-[442px] grow cursor-pointer items-center justify-end self-end text-end"
-                          >
-                            <span className="flex justify-end underline">
-                              + Додати ще мову
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="flex h-[44px] max-w-[442px] grow cursor-pointer items-center justify-end self-end text-end">
-                        {languages.length <= 1 && (
-                          <span
-                            onClick={() =>
-                              setLanguages([
-                                ...languages,
-                                { language: '', level: '' },
-                              ])
-                            }
-                            className="flex w-full justify-end underline"
-                          >
-                            + Додати ще мову
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )
-              )}
+          <div className="flex w-full gap-[24px]">
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
+              <label htmlFor="work_format">
+                Формат роботи{' '}
+                <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="work_format"
+                name="work_format"
+                defaultValue=""
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+              >
+                <option value="">Please select</option>
+                <option value="remote">Remote</option>
+                <option value="remote">Office</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
             </div>
-            {/* <div
-              onClick={() =>
-                setLanguages([
-                  ...languages,
-                  { language: '', level: '' },
-                ])
-              }
-              className="flex justify-end items-center text-end h-[44px] cursor-pointer self-end w-full max-w-[442px] grow"
-            >
-              
-              <span className="underline w-full flex justify-end pr-[]">
-              +{' '}
-                Додати ще мову
-              </span>
-            </div> */}
+
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
+              <label htmlFor="email">
+                Email{' '}
+                <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                placeholder="Email"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+              />
+            </div>
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
         </form>
       </div>
