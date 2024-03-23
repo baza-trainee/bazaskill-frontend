@@ -222,7 +222,6 @@ const AddCandidate = () => {
             choseLanguage={handleChoseLanguage}
             choseLevel={handleChoseLanguageLevel}
           />
-
           <div className="flex w-full gap-[24px]">
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="work_format">
@@ -243,16 +242,23 @@ const AddCandidate = () => {
             </div>
 
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="email">
-                Email{' '}
+              <label>
+                Бажана зарплата{' '}
                 <span className="text-red-500">*</span>
               </label>
-              <input
-                id="email"
-                name="email"
-                placeholder="Email"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
+              <div className="box-border flex w-full max-w-full items-center gap-[12px]">
+                <span className="text-[24px]">$</span>
+                <input
+                  name="salary_from"
+                  placeholder="500"
+                  className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                />
+                <input
+                  name="salary_to"
+                  placeholder="700"
+                  className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                />
+              </div>
             </div>
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
