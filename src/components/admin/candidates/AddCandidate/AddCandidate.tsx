@@ -59,12 +59,16 @@ const AddCandidate = () => {
     console.log(languages);
   };
   return (
-    <div className="flex flex-col">
-      <h2>Інформація про кандидата</h2>
+    <div className="flex flex-col gap-[32px] px-[40px]">
+      <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
+        Інформація про кандидата
+      </h2>
       <div>
-        <h3>Персональна інформація</h3>
+        <h3 className="border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <span>Персональна інформація</span>
+        </h3>
 
-        <form className="flex flex-col gap-[32px] font-sans text-[16px]">
+        <form className="mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]">
           <div className="flex w-full gap-[24px]">
             <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="name_ua">
@@ -261,6 +265,22 @@ const AddCandidate = () => {
               </div>
             </div>
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
+          </div>
+
+          <div className="flex w-full gap-[24px]">
+            <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
+              <label htmlFor="about">
+                Про себе{' '}
+                <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                id="about"
+                name="about"
+                placeholder="Коментар"
+                className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+              ></textarea>
+            </div>
+            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
         </form>
       </div>
