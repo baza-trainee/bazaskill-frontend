@@ -11,9 +11,9 @@ const AddCandidate = () => {
       <div>
         <h3>Персональна інформація</h3>
 
-        <form className="flex flex-col">
-          <div className="flex">
-            <div className="flex flex-col">
+        <form className="flex flex-col gap-[32px] font-sans text-[16px]">
+          <div className="flex w-full gap-[24px]">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="name_ua">
                 Ім`я <span className="text-red-500">*</span>
               </label>
@@ -21,11 +21,11 @@ const AddCandidate = () => {
                 id="name_ua"
                 name="name_ua"
                 placeholder="Ім`я"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="surname_ua">
                 Прізвище{' '}
                 <span className="text-red-500">*</span>
@@ -34,11 +34,11 @@ const AddCandidate = () => {
                 id="surname_ua"
                 name="surname_ua"
                 placeholder="Прізвище"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="country">
                 Країна{' '}
                 <span className="text-red-500">*</span>
@@ -47,13 +47,13 @@ const AddCandidate = () => {
                 id="country"
                 name="country"
                 placeholder="Країна"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
           </div>
 
-          <div className="flex">
-            <div className="flex flex-col">
+          <div className="flex w-full gap-[24px]">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="name">
                 Name <span className="text-red-500">*</span>
               </label>
@@ -61,11 +61,11 @@ const AddCandidate = () => {
                 id="name"
                 name="name"
                 placeholder="Name"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="surname">
                 Surname{' '}
                 <span className="text-red-500">*</span>
@@ -74,11 +74,11 @@ const AddCandidate = () => {
                 id="surname"
                 name="surname"
                 placeholder="Surname"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="city">
                 Місто{' '}
                 <span className="text-red-500">*</span>
@@ -87,13 +87,13 @@ const AddCandidate = () => {
                 id="city"
                 name="city"
                 placeholder="Місто"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
           </div>
 
-          <div className="flex">
-            <div className="flex flex-col">
+          <div className="flex w-full gap-[24px]">
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="phone">
                 Телефон{' '}
                 <span className="text-red-500">*</span>
@@ -102,11 +102,11 @@ const AddCandidate = () => {
                 id="phone"
                 name="phone"
                 placeholder="Телефон"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="email">
                 Email{' '}
                 <span className="text-red-500">*</span>
@@ -115,13 +115,14 @@ const AddCandidate = () => {
                 id="email"
                 name="email"
                 placeholder="Email"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <div className="flex">
-            <div className="flex flex-col">
+          <div className="flex w-full gap-[24px]">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="linkedin">
                 Linkedin{' '}
                 <span className="text-red-500">*</span>
@@ -130,11 +131,11 @@ const AddCandidate = () => {
                 id="linkedin"
                 name="linkedin"
                 placeholder="Linkedin"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="discord">
                 Discord{' '}
                 <span className="text-red-500">*</span>
@@ -143,11 +144,11 @@ const AddCandidate = () => {
                 id="discord"
                 name="discord"
                 placeholder="Discord"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="telegram">
                 Telegram{' '}
                 <span className="text-red-500">*</span>
@@ -156,13 +157,13 @@ const AddCandidate = () => {
                 id="telegram"
                 name="telegram"
                 placeholder="Telegram"
-                className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
               />
             </div>
           </div>
 
-          <div className="flex">
-            <div className="flex flex-col">
+          <div className="flex w-full gap-[24px]">
+            <div className="flex w-full flex-col gap-[32px]">
               {languages.map(
                 (
                   {
@@ -171,8 +172,11 @@ const AddCandidate = () => {
                   }: { language: string; level: string },
                   index
                 ) => (
-                  <div key={index} className="flex">
-                    <div className="flex flex-col">
+                  <div
+                    key={index}
+                    className="flex grow gap-[24px]"
+                  >
+                    <div className="flex max-w-[442px] grow flex-col gap-[5px]">
                       <label htmlFor="phone">
                         Рівень володіння мовою{' '}
                         <span className="text-red-500">
@@ -181,7 +185,7 @@ const AddCandidate = () => {
                       </label>
                       <select
                         defaultValue=""
-                        className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                        className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                       >
                         <option value="">
                           Please Select
@@ -195,7 +199,7 @@ const AddCandidate = () => {
                       </select>
                     </div>
 
-                    <div className="flex flex-col">
+                    <div className="flex max-w-[442px] grow flex-col gap-[5px]">
                       <label htmlFor="phone">
                         Іноземна Мова{' '}
                         <span className="text-red-500">
@@ -204,7 +208,7 @@ const AddCandidate = () => {
                       </label>
                       <select
                         defaultValue=""
-                        className="box-border h-[44px] px-[16px] py-[6px] text-black outline-none"
+                        className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                       >
                         <option>Please Select</option>
                         <option value="English">
@@ -224,36 +228,70 @@ const AddCandidate = () => {
                         </option>
                       </select>
                     </div>
-                    {index !== 0 && (
-                      <div
-                        onClick={() =>
-                          setLanguages(
-                            languages.splice(1, index)
-                          )
-                        }
-                        className="flex h-[44px] cursor-pointer items-center self-end px-[20px]"
-                      >
-                        X
+                    {index !== 0 ? (
+                      <div className="flex w-full max-w-[442px] grow gap-[5px]">
+                        <div
+                          onClick={() =>
+                            setLanguages(
+                              languages.splice(1, index)
+                            )
+                          }
+                          className="flex h-[44px] cursor-pointer items-center self-end"
+                        >
+                          X
+                        </div>
+                        {languages.length - 1 === index && (
+                          <div
+                            onClick={() =>
+                              setLanguages([
+                                ...languages,
+                                { language: '', level: '' },
+                              ])
+                            }
+                            className="flex h-[44px] max-w-[442px] grow cursor-pointer items-center justify-end self-end text-end"
+                          >
+                            <span className="flex justify-end underline">
+                              + Додати ще мову
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex h-[44px] max-w-[442px] grow cursor-pointer items-center justify-end self-end text-end">
+                        {languages.length <= 1 && (
+                          <span
+                            onClick={() =>
+                              setLanguages([
+                                ...languages,
+                                { language: '', level: '' },
+                              ])
+                            }
+                            className="flex w-full justify-end underline"
+                          >
+                            + Додати ще мову
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
                 )
               )}
             </div>
-            <div
+            {/* <div
               onClick={() =>
                 setLanguages([
                   ...languages,
                   { language: '', level: '' },
                 ])
               }
-              className="flex h-[44px] cursor-pointer items-center self-end"
+              className="flex justify-end items-center text-end h-[44px] cursor-pointer self-end w-full max-w-[442px] grow"
             >
+              
+              <span className="underline w-full flex justify-end pr-[]">
               +{' '}
-              <span className="underline">
                 Додати ще мову
               </span>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>
