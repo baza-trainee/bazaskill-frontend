@@ -1,6 +1,16 @@
 'use client';
+import { getSpecializations } from '@/api/specialization';
+import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
+import { constants } from '@/constants';
+import { ISpecialization } from '@/types/specialization';
+import {
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import Dropzone from 'react-dropzone';
 import React, { useState } from 'react';
 import Languages from './Languages';
+import Link from 'next/link';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -11,14 +21,12 @@ const AddCandidate = () => {
       languages.filter((_, index) => index !== id)
     );
   };
-
   const handleAddLanguage = () => {
     setLanguages([
       ...languages,
       { language: '', level: '' },
     ]);
   };
-
   const handleChoseLanguage = (
     id: number,
     value: string
@@ -56,8 +64,38 @@ const AddCandidate = () => {
             : { language, level }
       )
     );
-    console.log(languages);
   };
+  const [cv, setCV] = useState<File | null>(null);
+  const [cvError, setCVError] = useState<string>('');
+  const handleUploadCV = async (
+    files: File[] | undefined
+  ) => {
+    if (files && files.length > 0 && files.length === 1) {
+      if (files[0].type === 'application/pdf') {
+        setCV(files[0]);
+        setCVError('');
+      } else {
+        setCV(null);
+        setCVError('Only .pdf format allowed');
+      }
+    } else if (files && files.length > 1) {
+      setCV(null);
+      setCVError('Only one .pdf file allowed');
+    } else {
+      setCV(null);
+      setCVError('An error occured try again');
+    }
+  };
+
+  const specialization: UseQueryResult<
+    ISpecialization[],
+    Error
+  > = useQuery({
+    queryKey: [
+      constants.specialization.FETCH_SPECIALIZATIONS,
+    ],
+    queryFn: getSpecializations,
+  });
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
       <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
@@ -281,6 +319,76 @@ const AddCandidate = () => {
               ></textarea>
             </div>
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
+          </div>
+
+          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+            <h3>Спеціальність</h3>
+          </div>
+
+          <div className="flex w-full gap-[24px]">
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
+              <label htmlFor="specialization">
+                Cпеціальність{' '}
+                <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="specialization"
+                defaultValue=""
+                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+              >
+                <option value="">
+                  Оберіть спеціальність
+                </option>
+                {specialization.data?.map((item) => (
+                  <option key={item.id}>
+                    {item.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]">
+              <label htmlFor="cv">
+                Завантажити CV{' '}
+                <span className="cursor-pointer text-green">
+                  [?]{' '}
+                </span>
+                <span className="text-red-500">*</span>
+              </label>
+              <Dropzone
+                onDrop={(acceptedFiles) =>
+                  handleUploadCV(acceptedFiles)
+                }
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps()}
+                    onClick={(e) => e.stopPropagation()}
+                    className="h-full w-full"
+                  >
+                    <input
+                      {...getInputProps()}
+                      id="cv"
+                      name="cv"
+                      placeholder="CV"
+                      accept=".pdf"
+                      hidden
+                    />
+                    <label
+                      htmlFor="cv"
+                      className="flex h-full w-full cursor-pointer items-center justify-between truncate rounded-[4px] bg-white px-[16px] py-[6px] text-start leading-[26px] text-gray"
+                    >
+                      {cv ? cv.name : 'Завантажте файл'}
+                      <UploadIcon />
+                    </label>
+                  </div>
+                )}
+              </Dropzone>
+              <span className="absolute top-[100%] text-red-500">
+                {cvError ? cvError : ''}
+              </span>
+            </div>
+            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
         </form>
       </div>

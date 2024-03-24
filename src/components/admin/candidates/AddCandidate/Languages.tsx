@@ -31,7 +31,6 @@ const Languages: React.FC<ILanguagesProps> = ({
                 <span className="text-red-500">*</span>
               </label>
               <select
-                defaultValue={language}
                 value={language}
                 className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                 onChange={({
@@ -110,7 +109,6 @@ const Languages: React.FC<ILanguagesProps> = ({
                 <span className="text-red-500">*</span>
               </label>
               <select
-                defaultValue={level}
                 value={level}
                 className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                 onChange={({
