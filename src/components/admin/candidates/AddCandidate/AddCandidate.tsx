@@ -1,16 +1,14 @@
 'use client';
 import { getSpecializations } from '@/api/specialization';
-import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
 import { constants } from '@/constants';
 import { ISpecialization } from '@/types/specialization';
 import {
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
-import Dropzone from 'react-dropzone';
 import React, { useState } from 'react';
 import Languages from './Languages';
-import Link from 'next/link';
+import CvField from './CvField';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -65,27 +63,6 @@ const AddCandidate = () => {
       )
     );
   };
-  const [cv, setCV] = useState<File | null>(null);
-  const [cvError, setCVError] = useState<string>('');
-  const handleUploadCV = async (
-    files: File[] | undefined
-  ) => {
-    if (files && files.length > 0 && files.length === 1) {
-      if (files[0].type === 'application/pdf') {
-        setCV(files[0]);
-        setCVError('');
-      } else {
-        setCV(null);
-        setCVError('Only .pdf format allowed');
-      }
-    } else if (files && files.length > 1) {
-      setCV(null);
-      setCVError('Only one .pdf file allowed');
-    } else {
-      setCV(null);
-      setCVError('An error occured try again');
-    }
-  };
 
   const specialization: UseQueryResult<
     ISpecialization[],
@@ -106,7 +83,7 @@ const AddCandidate = () => {
           <span>Персональна інформація</span>
         </h3>
 
-        <form className="mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]">
+        <form className="mb-[154px] mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]">
           <div className="flex w-full gap-[24px]">
             <div className="flex max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="name_ua">
@@ -346,49 +323,21 @@ const AddCandidate = () => {
                 ))}
               </select>
             </div>
-
-            <div className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="cv">
-                Завантажити CV{' '}
-                <span className="cursor-pointer text-green">
-                  [?]{' '}
-                </span>
-                <span className="text-red-500">*</span>
-              </label>
-              <Dropzone
-                onDrop={(acceptedFiles) =>
-                  handleUploadCV(acceptedFiles)
-                }
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div
-                    {...getRootProps()}
-                    onClick={(e) => e.stopPropagation()}
-                    className="h-full w-full"
-                  >
-                    <input
-                      {...getInputProps()}
-                      id="cv"
-                      name="cv"
-                      placeholder="CV"
-                      accept=".pdf"
-                      hidden
-                    />
-                    <label
-                      htmlFor="cv"
-                      className="flex h-full w-full cursor-pointer items-center justify-between truncate rounded-[4px] bg-white px-[16px] py-[6px] text-start leading-[26px] text-gray"
-                    >
-                      {cv ? cv.name : 'Завантажте файл'}
-                      <UploadIcon />
-                    </label>
-                  </div>
-                )}
-              </Dropzone>
-              <span className="absolute top-[100%] text-red-500">
-                {cvError ? cvError : ''}
-              </span>
-            </div>
+            <CvField />
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
+          </div>
+
+          <div className="flex w-full gap-[24px]">
+            <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
+              <label htmlFor="about">
+                Стек <span className="text-red-500">*</span>
+              </label>
+              <div
+                id="about"
+                className="h-auto min-h-[132px] min-w-full rounded-[4px] bg-white px-[16px] py-[6px] text-black outline-none"
+              ></div>
+            </div>
+            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
         </form>
       </div>
