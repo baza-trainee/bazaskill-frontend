@@ -113,7 +113,7 @@ const FileInputPost = forwardRef(function FileInputPost(
           type="file"
           id={title}
           ref={ref}
-          accept="image/jpg, image/png, image/svg, image/webp"
+          accept="image/jpg, image/png, image/svg+xml, image/webp"
           className="absolute left-0 w-[100%] cursor-pointer overflow-hidden opacity-0"
           onChange={handleChange}
         />
