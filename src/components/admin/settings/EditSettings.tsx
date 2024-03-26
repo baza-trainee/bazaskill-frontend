@@ -8,15 +8,16 @@ import {
 } from 'react-hook-form';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
-import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { defaultValues } from './editSettingsDefaultValues';
 import { settingsScheme } from './editSettingsScheme';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
+import { defaultValuesEdit } from './editSettingsDefaultValues';
+import { defaultValues } from './defaultValues';
 
-interface CounterFormValues {
+interface EditSettingsFormValues {
   oldPassword: string;
   newPassword: string;
   repeatPassword: string;
@@ -31,14 +32,22 @@ const EditSettings = () => {
   } = useForm<z.infer<typeof settingsScheme>>({
     resolver: zodResolver(settingsScheme),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues: defaultValuesEdit,
   });
   const [showModal, setShowModal] = useState(false);
 
-  const onSubmit: SubmitHandler<CounterFormValues> = (
-    data
+  /*   const [oldPasswordVerified, setOldPasswordVerified] =
+    useState(false); // State to track old password verification
+ */
+  const onSubmit: SubmitHandler<EditSettingsFormValues> = (
+    values
   ) => {
-    console.log(data);
+    /*     // If old password is verified, update defaultValues
+    if (oldPasswordVerified) {
+      defaultValues.oldPassword = values.newPassword; // Assuming oldPassword is stored in defaultValues
+    } */
+    defaultValues.password = values.newPassword; // Assuming oldPassword is stored in defaultValues
+    console.log(values);
     setShowModal(true);
     reset();
   };
@@ -54,8 +63,7 @@ const EditSettings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="flex w-[597px] flex-col gap-[30px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -67,7 +75,6 @@ const EditSettings = () => {
                     title="Старий пароль"
                     placeholder="Введіть старий пароль"
                     errorText={errors.oldPassword?.message}
-                    iconComponent={<NotEyeIcon />}
                   />
                 )}
               />
@@ -82,7 +89,6 @@ const EditSettings = () => {
                     title="Новий пароль"
                     placeholder="Введіть новий пароль"
                     errorText={errors.newPassword?.message}
-                    iconComponent={<NotEyeIcon />}
                   />
                 )}
               />
@@ -99,7 +105,6 @@ const EditSettings = () => {
                     errorText={
                       errors.repeatPassword?.message
                     }
-                    iconComponent={<NotEyeIcon />}
                   />
                 )}
               />
@@ -114,21 +119,20 @@ const EditSettings = () => {
                 !Object.keys(errors).length && !isDirty
               }
             />
-            <SecondaryButton
-              text="Скасувати"
-              type="reset"
-              onClick={handleCloseAndReset}
-            />
+            <Link href="/admin/settings">
+              <SecondaryButton text="Скасувати" />
+            </Link>
           </div>
           {showModal && (
             <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
               <div className="h-[223px] w-[600px] rounded-[10px] bg-white text-black">
-                <button
-                  onClick={handleCloseAndReset}
-                  className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray"
-                >
-                  X
-                </button>
+                <Link href="/admin/settings">
+                  <button
+                    onClick={handleCloseAndReset}
+                    className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray">
+                    X
+                  </button>
+                </Link>
                 <p className="mt-[28px] flex items-center justify-center text-[24px] font-bold">
                   Дані змінено
                 </p>

@@ -8,7 +8,6 @@ import {
 } from 'react-hook-form';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
-import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import TextInput from '../ui/TextInput';
 import Link from 'next/link';
@@ -18,11 +17,7 @@ import { defaultValues } from './defaultValues';
 import { settingsScheme } from './settingsScheme';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-interface CounterFormValues {
-  email: string;
-  password: string;
-}
+import { changePassword } from '@/api/setting';
 
 const Settings = () => {
   const {
@@ -37,12 +32,25 @@ const Settings = () => {
   });
   const [showModal, setShowModal] = useState(false);
 
-  const onSubmit: SubmitHandler<CounterFormValues> = (
-    data
-  ) => {
-    console.log(data);
-    setShowModal(true);
-    reset();
+  const onSubmit: SubmitHandler<
+    z.infer<typeof settingsScheme>
+  > = async (values: z.infer<typeof settingsScheme>) => {
+    try {
+      const response = await changePassword({
+        email: values.email,
+        password: values.password,
+      });
+      if (response.status === 201) {
+        console.log(values);
+        setShowModal(true);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
+    }
   };
 
   const handleCloseAndReset = () => {
@@ -56,8 +64,7 @@ const Settings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="w-[597px] flex-col"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -70,6 +77,7 @@ const Settings = () => {
                     isIcon={true}
                     errorText={errors.email?.message}
                     title="Email"
+                    placeholder="Email"
                   />
                 )}
               />
@@ -84,7 +92,6 @@ const Settings = () => {
                     title="Пароль"
                     placeholder="Пароль"
                     errorText={errors.password?.message}
-                    iconComponent={<NotEyeIcon />}
                   />
                 )}
               />
@@ -117,8 +124,7 @@ const Settings = () => {
               <div className="h-[223px] w-[600px] rounded-[10px] bg-white text-black">
                 <button
                   onClick={handleCloseAndReset}
-                  className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray"
-                >
+                  className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray">
                   X
                 </button>
                 <p className="mt-[28px] flex items-center justify-center text-[24px] font-bold">
