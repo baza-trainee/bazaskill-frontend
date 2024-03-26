@@ -11,7 +11,6 @@ interface PasswordInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
-  iconComponent?: JSX.Element;
   isRequired?: boolean;
 }
 
@@ -66,6 +65,7 @@ ${
           onBlur={handleBlur}
           type={inputType}
         />
+
         <div className=" absolute right-[16px] top-[9px] ">
           <button type="button" onClick={handleEditToggle}>
             <NotEyeIcon />

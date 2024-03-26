@@ -1,4 +1,4 @@
-export const defaultValues = {
+export const defaultValuesEdit = {
   oldPassword: '',
   newPassword: '',
   repeatPassword: '',
