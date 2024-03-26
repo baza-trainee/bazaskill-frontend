@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCookies } from '@/stores/useCookies';
+import Cookies from 'js-cookie';
 
 const contactData = [
   {
@@ -29,7 +31,7 @@ const contactData = [
 const socialLinks = [
   {
     icon: 'instagram',
-    link: 'https://www.linkedin.com/company/baza-trainee-ukraine/',
+    link: '/',
   },
   {
     icon: 'lnkedIn',
@@ -37,11 +39,21 @@ const socialLinks = [
   },
   { icon: 'discord', link: '/' },
   { icon: 'telegram', link: '/' },
-  { icon: 'facebook', link: '/' },
+  {
+    icon: 'facebook',
+    link: 'https://www.facebook.com/profile.php?id=61557451883927',
+  },
 ];
 
 const Contacts = () => {
   const t = useTranslations('Main.contacts');
+  const isCookie = useCookies((state) => state.isCookies);
+  const [isCookiesAccepted, setIsCookiesAccepted] =
+    useState(false);
+
+  useEffect(() => {
+    setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
+  }, [isCookie]);
   return (
     <div className="container py-14">
       <h2 className="mb-12 flex w-full justify-center text-2xl font-bold text-white md:text-2xl lg:text-[40px]">
@@ -78,21 +90,35 @@ const Contacts = () => {
             <ul className="flex space-x-4">
               {socialLinks.map((socialLink, index) => (
                 <li key={index} className="p-2">
-                  <a
-                    href={socialLink.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg
-                      className="hover:scale-125"
-                      width={24}
-                      height={24}
+                  {isCookiesAccepted ? (
+                    <a
+                      href={socialLink.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <use
-                        href={`/Icons/sprite.svg#icon-${socialLink.icon}`}
-                      ></use>
-                    </svg>
-                  </a>
+                      <svg
+                        className="hover:scale-125"
+                        width={24}
+                        height={24}
+                      >
+                        <use
+                          href={`/Icons/sprite.svg#icon-${socialLink.icon}`}
+                        ></use>
+                      </svg>
+                    </a>
+                  ) : (
+                    <span>
+                      <svg
+                        className="hover:scale-125"
+                        width={24}
+                        height={24}
+                      >
+                        <use
+                          href={`/Icons/sprite.svg#icon-${socialLink.icon}`}
+                        ></use>
+                      </svg>
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

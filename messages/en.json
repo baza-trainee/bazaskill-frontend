@@ -112,6 +112,7 @@
         "incorrect_companyname": "Enter the correct company name",
         "required_field": "This field is required",
         "incorrect_phone": "Enter a valid phone number in international format",
+        "phone_max": "The phone number cannot contain more than 13 digits",
         "incorrect_email": "Enter a valid email",
         "invalid_ru": ".ru and .by domains are not allowed",
         "company": "Enter a valid name or leave the field blank",

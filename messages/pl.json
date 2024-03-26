@@ -112,6 +112,7 @@
         "incorrect_companyname": "Wpisz poprawną nazwę firmy",
         "required_field": "To pole jest wymagane",
         "incorrect_phone": "Wprowadź prawidłowy numer telefonu w formacie międzynarodowym",
+        "phone_max": "Numer telefonu nie może zawierać więcej niż 13 cyfr",
         "incorrect_email": "Wpisz poprawny email",
         "invalid_ru": "Domeny .ru i .by są niedozwolone",
         "company": "Wpisz prawidłową nazwę lub pozostaw pole puste",

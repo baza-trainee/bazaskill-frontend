@@ -7,7 +7,7 @@ const nonRussianLettersPattern =
   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
 
 const nonRussianLettersWithSymbolsAndDigitsPattern =
-  /^(?!.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ]+$/;
+  /^(?!.*(?:\.{4,}|.*[ЁёЫыЭэЪъ]))[\w\s`’'!"#$№%&()*+,\-./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ.]+$/;
 
 const messageMaxLength = 300;
 
@@ -37,8 +37,9 @@ export const registerScheme = z.object({
   phone: z
     .string()
     .nonempty('Main.forms.errors.required_field')
+    .max(13, 'Main.forms.errors.phone_max')
     .refine(
-      (value) => /^\+(?:[0-9] ?){6,14}[0-9]$/.test(value),
+      (value) => /^\+(?:[0-9] ?){10,}[0-9]$/.test(value),
       {
         message: 'Main.forms.errors.incorrect_phone',
       }
