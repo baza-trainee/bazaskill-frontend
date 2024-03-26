@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { defaultValues } from './defaultValues';
+import Loader from '../ui/Loader';
 import PageTitle from '../ui/PageTitle';
 import FileInputDoc from '../ui/FileInputDoc';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
@@ -23,7 +24,7 @@ const DocumentsPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: [constants.documents.FETCH_DOCUMENTS],
     queryFn: getDocuments,
   });
@@ -195,6 +196,7 @@ const DocumentsPage = () => {
           isSuccess={isSuccess}
         />
       )}
+      {isFetching && <Loader />}
     </div>
   );
 };

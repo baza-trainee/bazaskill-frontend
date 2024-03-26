@@ -59,14 +59,16 @@ export const registerScheme = z.object({
 
   company: z
     .string()
-    .optional()
+    .min(2, 'Main.forms.errors.company_min')
+    .max(50, 'Main.forms.errors.company_max')
     .refine(
-      (value) =>
+      (value: string) =>
         !value || nonRussianLettersPattern.test(value),
       {
         message: 'Main.forms.errors.company',
       }
-    ),
+    )
+    .optional(),
 
   country: z.string(),
 

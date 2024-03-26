@@ -1,11 +1,13 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useModal } from '@/stores/useModal';
 import { useQuery } from '@tanstack/react-query';
 import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
 import { useTranslations } from 'next-intl';
+import { useCookies } from '@/stores/useCookies';
+import Cookies from 'js-cookie';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
@@ -19,18 +21,38 @@ type FooterLinkProps = {
 const FooterLink: React.FC<FooterLinkProps> = ({
   href,
   children,
-}) => (
-  <a
-    className="decoration gray-700 all onClick={() => openModal('partner')} block cursor-pointer text-nowrap 
-    py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow
-    hover:underline md:text-lg xl:leading-7"
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    {children}
-  </a>
-);
+}) => {
+  const isCookie = useCookies((state) => state.isCookies);
+  const [isCookiesAccepted, setIsCookiesAccepted] =
+    useState(false);
+
+  useEffect(() => {
+    setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
+  }, [isCookie]);
+
+  return (
+    <>
+      {isCookiesAccepted ? (
+        <a
+          className={`decoration gray-700 all block cursor-pointer 
+    text-nowrap py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow hover:underline  md:text-lg xl:leading-7`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ) : (
+        <span
+          className={`decoration gray-700 all block text-nowrap 
+    py-2 text-xl font-normal text-white underline-offset-2 transition  md:text-lg xl:leading-7`}
+        >
+          {children}
+        </span>
+      )}
+    </>
+  );
+};
 
 const Footer = () => {
   const t = useTranslations('Main.footer');
