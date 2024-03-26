@@ -9,12 +9,14 @@ import {
 } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
 import { constants } from '@/constants';
-import { stack, countries } from './data';
+import { stack } from './data';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import { useModal } from '@/stores/useModal';
+import { useLocale } from 'next-intl';
 import { createApplication } from '@/api/hr_application';
+import { localizeCountry } from '@/helpers/localizeCountry';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -29,6 +31,7 @@ import {
 
 const RegisterHrForm = () => {
   const t = useTranslations();
+  const locale = useLocale();
   const { closeModal } = useModal();
   const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -53,8 +56,6 @@ const RegisterHrForm = () => {
       });
     },
   });
-
-  console.log(errors);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof registerScheme>
@@ -167,7 +168,7 @@ const RegisterHrForm = () => {
                     title={t('Main.forms.country')}
                     {...field}
                     errorText={errors.country?.message}
-                    options={countries}
+                    options={localizeCountry(locale)}
                     placeholder={t('Main.forms.country')}
                   />
                 )}

@@ -1,12 +1,12 @@
 import { Option } from '@/components/main/ui/form_inputs/SelectInput';
 
 export const countries: Option[] = [
-  { value: 'ukraine', label: 'Ukraine' },
-  { value: 'poland', label: 'Poland' },
-  { value: 'czech', label: 'Czech' },
-  { value: 'germany', label: 'Germany' },
-  { value: 'france', label: 'France' },
-  { value: 'spain', label: 'Spain' },
+  { value: 'ukraine', label: 'ukraine' },
+  { value: 'poland', label: 'poland' },
+  { value: 'czech', label: 'czech' },
+  { value: 'germany', label: 'germany' },
+  { value: 'france', label: 'france' },
+  { value: 'spain', label: 'spain' },
 ];
 
 export const stack: Option[] = [

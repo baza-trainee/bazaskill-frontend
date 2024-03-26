@@ -115,11 +115,19 @@
         "incorrect_email": "Wpisz poprawny email",
         "invalid_ru": "Domeny .ru i .by są niedozwolone",
         "company": "Wpisz prawidłową nazwę lub pozostaw pole puste",
+        "company_min": "Nazwa musi mieć co najmniej 2 znaki",
+        "company_max": "Nazwa nie może mieć więcej niż 300 znaków",
         "agreement": "Proszę potwierdzić swoją zgodę",
         "comment": "Wpisz prawidłowy komentarz o długości nie większej niż 300 znaków",
         "website": "Wprowadź prawidłowy adres URL witryny firmy",
-        "position": "Tylko litery i spacje (bez znaków specjalnych)"
+        "position": "Tylko litery i spacje (bez znaków specjalnych)",
+        "position_min": "Nazwa musi mieć co najmniej 2 znaki",
+        "position_max": "Nazwa nie może mieć więcej niż 300 znaków"
       }
+    },
+    "cookies": {
+      "text": "Ta strona korzysta z plików cookies w celu prawidłowego działania i doskonalenia usług. Jeżeli wyrażasz zgodę na ich używanie kliknij OK. Więcej informacji w",
+      "privacy_policy": "Polityka prywatności"
     }
   },
   "Error": {

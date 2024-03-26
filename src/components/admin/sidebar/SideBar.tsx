@@ -78,7 +78,7 @@ const SideBar: React.FC = () => {
           iconClassName="w-[20px] h-[20px]"
           href="/admin/hr-applications"
         >
-          Заявки HR`ів
+          Заявки HRів
         </SideBarItem>
         <SideBarItem
           className="border-b"

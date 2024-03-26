@@ -15,6 +15,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registerScheme } from './validationScheme';
 import { useModal } from '@/stores/useModal';
 import { createApplication } from '@/api/partner_application';
+import { useLocale } from 'next-intl';
+import { localizeCountry } from '@/helpers/localizeCountry';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -22,7 +24,6 @@ import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
-import { countries } from '../register_partner/data';
 import { constants } from '@/constants';
 import {
   useMutation,
@@ -31,6 +32,7 @@ import {
 
 const RegisterPartnerForm = () => {
   const t = useTranslations();
+  const locale = useLocale();
   const { closeModal } = useModal();
   const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -202,7 +204,7 @@ const RegisterPartnerForm = () => {
                     title={t('Main.forms.country')}
                     {...field}
                     errorText={errors.country?.message}
-                    options={countries}
+                    options={localizeCountry(locale)}
                     placeholder={t('Main.forms.country')}
                   />
                 )}

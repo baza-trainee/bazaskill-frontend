@@ -82,6 +82,8 @@ export const registerScheme = z.object({
 
   position: z
     .string()
+    .min(2, 'Main.forms.errors.position_min')
+    .max(300, 'Main.forms.errors.position_max')
     .nonempty('Main.forms.errors.required_field')
     .refine(
       (value) =>

@@ -9,6 +9,7 @@ import {
 import { z } from 'zod';
 import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
+import Loader from '../ui/Loader';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { defaultValues } from './defaultValues';
@@ -81,10 +82,6 @@ const Counters = () => {
     }
   };
 
-  if (isFetching) {
-    return <p>Loading...</p>;
-  }
-
   if (error) {
     return <p>Error: {error.message}</p>;
   }
@@ -103,13 +100,14 @@ const Counters = () => {
   };
 
   return (
-    <div className="p-[24px]">
+    <div className="relative p-[24px]">
       <PageTitle title="Каунтер"></PageTitle>
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="flex w-[597px] flex-col gap-[30px]"
           onSubmit={handleSubmit(onSubmit)}
-          onKeyPress={handleKeyPress}>
+          onKeyPress={handleKeyPress}
+        >
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -211,6 +209,7 @@ const Counters = () => {
           )}
         </form>
       </div>
+      {isFetching && <Loader />}
     </div>
   );
 };
