@@ -108,11 +108,7 @@ const Contacts = () => {
                     </a>
                   ) : (
                     <span>
-                      <svg
-                        className="hover:scale-125"
-                        width={24}
-                        height={24}
-                      >
+                      <svg width={24} height={24}>
                         <use
                           href={`/Icons/sprite.svg#icon-${socialLink.icon}`}
                         ></use>
