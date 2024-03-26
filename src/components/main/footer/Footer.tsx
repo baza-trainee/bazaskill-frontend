@@ -102,6 +102,8 @@ const Footer = () => {
         <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[100px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}>
+ 
+          >
             {isCookiesAccepted ? (
               <a href="#aboutus">{t('about_us')}</a>
             ) : (
@@ -111,13 +113,15 @@ const Footer = () => {
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
             onClick={() => openModal('hr')}
-            disabled={!isCookiesAccepted}>
+            disabled={!isCookiesAccepted}
+          >
             {t('to_become_hr')}
           </button>
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
             onClick={() => openModal('partner')}
             disabled={!isCookiesAccepted}>
+
             {t('to_become_partner')}
           </button>
         </div>
