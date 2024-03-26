@@ -9,6 +9,7 @@ import {
 import React, { useState } from 'react';
 import Languages from './Languages';
 import CvField from './CvField';
+import Stack from './Stack';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -327,18 +328,7 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <div className="flex w-full gap-[24px]">
-            <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
-              <label htmlFor="about">
-                Стек <span className="text-red-500">*</span>
-              </label>
-              <div
-                id="about"
-                className="h-auto min-h-[132px] min-w-full rounded-[4px] bg-white px-[16px] py-[6px] text-black outline-none"
-              ></div>
-            </div>
-            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
-          </div>
+          <Stack />
         </form>
       </div>
     </div>
