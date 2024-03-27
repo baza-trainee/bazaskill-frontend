@@ -4,11 +4,16 @@ import {
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
 } from 'react';
+import Dropzone, { useDropzone } from 'react-dropzone';
 interface FileInputProps {
   title: string;
   error: string;
   isRequired: boolean;
+  file: string | null;
   onChange: (file: File) => void;
 }
 const FileInput = forwardRef(function FileInput(
@@ -16,21 +21,38 @@ const FileInput = forwardRef(function FileInput(
     error,
     isRequired,
     title,
+    file,
     onChange,
     ...rest
   }: FileInputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
-  const handleChangeFile = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    console.log(e.target.files);
-    if (e.target.files) {
-      onChange(e.target.files[0]);
+  const [fileName, setFileName] = useState<string | null>(
+    file
+  );
+  const handleProccesFileName = (files: File[]) => {
+    if (files) {
+      setFileName(files[0].name);
+      onChange(files[0]);
     }
   };
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      handleProccesFileName(acceptedFiles);
+    },
+    [file]
+  );
+  useEffect(() => {
+    setFileName(file);
+  }, [file]);
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+  });
   return (
-    <div className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]">
+    <div
+      {...getRootProps()}
+      className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]"
+    >
       <label htmlFor={title}>
         Завантажити CV{' '}
         <span className="cursor-pointer text-green">
@@ -38,26 +60,26 @@ const FileInput = forwardRef(function FileInput(
         </span>
         <span className="text-red-500">*</span>
       </label>
+
       <div
         onClick={(e) => e.stopPropagation()}
         className="h-full w-full"
       >
         <input
-          id={title}
           {...rest}
+          {...getInputProps()}
+          id={title}
           ref={ref}
           value=""
           accept=".pdf"
           type="file"
-          onChange={handleChangeFile}
           className=" absolute  left-0 w-[100%] cursor-pointer opacity-0"
         />
         <label
           htmlFor={title}
           className="flex h-full w-full cursor-pointer items-center justify-between truncate rounded-[4px] bg-white px-[16px] py-[6px] text-start leading-[26px] text-gray"
         >
-          Завантажте файл
-          {/* {cv ? cv.name : 'Завантажте файл'} */}
+          {fileName || 'Завантажте'}
           <UploadIcon />
         </label>
       </div>

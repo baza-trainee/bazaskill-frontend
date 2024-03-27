@@ -19,6 +19,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import schema from './schema';
 import TextInput from './TextInput';
+import FileInput from './FileInput';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -86,17 +87,26 @@ const AddCandidate = () => {
 
   const {
     register,
+    reset,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name_ua: '' },
+    defaultValues: {
+      name_ua: '',
+      surname_ua: '',
+      country: '',
+      cv: null,
+    },
     mode: 'onChange',
   });
-  const handleChangeName = () => {};
+  const [cv, setCV] = useState<File | null>(null);
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    console.log(data, cv);
+    setCV(null);
+    reset();
   };
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
@@ -357,7 +367,20 @@ const AddCandidate = () => {
                 ))}
               </select>
             </div>
-            <CvField />
+            <Controller
+              name="cv"
+              control={control}
+              render={({ field }) => (
+                <FileInput
+                  {...field}
+                  error={errors.cv?.message as string}
+                  isRequired={true}
+                  title="Завантажити CV"
+                  file={cv ? cv.name : null}
+                  onChange={(file) => setCV(file)}
+                />
+              )}
+            />
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
