@@ -10,6 +10,15 @@ import React, { useState } from 'react';
 import Languages from './Languages';
 import CvField from './CvField';
 import Stack from './Stack';
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import schema from './schema';
+import TextInput from './TextInput';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -74,6 +83,21 @@ const AddCandidate = () => {
     ],
     queryFn: getSpecializations,
   });
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { name_ua: '' },
+    mode: 'onChange',
+  });
+  const handleChangeName = () => {};
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+  };
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
       <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
@@ -84,45 +108,54 @@ const AddCandidate = () => {
           <span>Персональна інформація</span>
         </h3>
 
-        <form className="mb-[154px] mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mb-[154px] mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]"
+        >
           <div className="flex w-full gap-[24px]">
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="name_ua">
-                Ім`я <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="name_ua"
-                name="name_ua"
-                placeholder="Ім`я"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="name_ua"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.name_ua?.message as string}
+                  isRequired={true}
+                  placeholder="Ім`я"
+                  title="Ім`я"
+                />
+              )}
+            />
 
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="surname_ua">
-                Прізвище{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="surname_ua"
-                name="surname_ua"
-                placeholder="Прізвище"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="surname_ua"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={
+                    errors.surname_ua?.message as string
+                  }
+                  isRequired={true}
+                  placeholder="Прізвище"
+                  title="Прізвище"
+                />
+              )}
+            />
 
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="country">
-                Країна{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="country"
-                name="country"
-                placeholder="Країна"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="country"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.country?.message as string}
+                  isRequired={true}
+                  placeholder="Країна"
+                  title="Країна"
+                />
+              )}
+            />
           </div>
 
           <div className="flex w-full gap-[24px]">
@@ -329,6 +362,10 @@ const AddCandidate = () => {
           </div>
 
           <Stack />
+
+          <div className="py-[80px]">
+            <button type="submit">Save</button>
+          </div>
         </form>
       </div>
     </div>
