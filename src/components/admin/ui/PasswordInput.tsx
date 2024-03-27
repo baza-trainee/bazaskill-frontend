@@ -1,4 +1,5 @@
 'use client';
+import EyeIcon from '@/components/icons/Admin-icons/EyeIcon';
 import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import {
   ForwardedRef,
@@ -25,7 +26,9 @@ const PasswordInput = forwardRef(function PasswordInput(
   _ref: ForwardedRef<HTMLInputElement>
 ) {
   const [isEditing, setIsEditing] = useState(false);
+
   const inputType = isEditing ? 'text' : 'password';
+
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
@@ -45,11 +48,13 @@ ${
 
   return (
     <div
-      className={`w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[442px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+    >
       {!!title && (
         <label
           htmlFor={title}
-          className=" mb-[8px]  block text-[20px] leading-[1.4]  text-white">
+          className=" mb-[8px]  block text-[20px] leading-[1.4]  text-white"
+        >
           {title}
           {isRequired && (
             <span className="text-error">*</span>
@@ -68,7 +73,7 @@ ${
 
         <div className=" absolute right-[16px] top-[9px] ">
           <button type="button" onClick={handleEditToggle}>
-            <NotEyeIcon />
+            {isEditing ? <EyeIcon /> : <NotEyeIcon />}
           </button>
         </div>
       </div>

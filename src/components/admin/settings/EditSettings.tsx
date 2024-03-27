@@ -6,22 +6,19 @@ import {
   Controller,
   SubmitHandler,
 } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { settingsScheme } from './editSettingsScheme';
+import { defaultValuesEdit } from './editSettingsDefaultValues';
+import { changePassword } from '@/api/settings';
+import { AxiosError } from 'axios';
+// import { defaultValues } from './defaultValues';
+import Link from 'next/link';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { settingsScheme } from './editSettingsScheme';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
-import { defaultValuesEdit } from './editSettingsDefaultValues';
-import { defaultValues } from './defaultValues';
-
-interface EditSettingsFormValues {
-  oldPassword: string;
-  newPassword: string;
-  repeatPassword: string;
-}
+import SuccessAlert from '../alerts/SuccessAlert';
 
 const EditSettings = () => {
   const {
@@ -35,20 +32,40 @@ const EditSettings = () => {
     defaultValues: defaultValuesEdit,
   });
   const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState('');
 
-  /*   const [oldPasswordVerified, setOldPasswordVerified] =
-    useState(false); // State to track old password verification
- */
-  const onSubmit: SubmitHandler<EditSettingsFormValues> = (
-    values
-  ) => {
-    /*     // If old password is verified, update defaultValues
-    if (oldPasswordVerified) {
-      defaultValues.oldPassword = values.newPassword; // Assuming oldPassword is stored in defaultValues
-    } */
-    defaultValues.password = values.newPassword; // Assuming oldPassword is stored in defaultValues
-    console.log(values);
-    setShowModal(true);
+  const onSubmit: SubmitHandler<
+    z.infer<typeof settingsScheme>
+  > = async (values: z.infer<typeof settingsScheme>) => {
+    try {
+      const response = await changePassword({
+        data: {
+          email: 'test@mail.ua',
+          oldPassword: values.oldPassword,
+          newPassword: values.newPassword,
+        },
+      });
+      if (response.status == 200) {
+        setShowModal(true);
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          setError('Некоректно введений попередній пароль');
+          setTimeout(() => {
+            setError('');
+          }, 3000);
+        } else {
+          console.log(error);
+          setError('Помилка сервера');
+          setTimeout(() => {
+            setError('');
+          }, 3000);
+        }
+      }
+    } finally {
+      setError('');
+    }
     reset();
   };
 
@@ -63,7 +80,8 @@ const EditSettings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="flex w-[597px] flex-col gap-[30px]"
-          onSubmit={handleSubmit(onSubmit)}>
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -75,6 +93,7 @@ const EditSettings = () => {
                     title="Старий пароль"
                     placeholder="Введіть старий пароль"
                     errorText={errors.oldPassword?.message}
+                    isRequired={true}
                   />
                 )}
               />
@@ -89,6 +108,7 @@ const EditSettings = () => {
                     title="Новий пароль"
                     placeholder="Введіть новий пароль"
                     errorText={errors.newPassword?.message}
+                    isRequired={true}
                   />
                 )}
               />
@@ -105,11 +125,18 @@ const EditSettings = () => {
                     errorText={
                       errors.repeatPassword?.message
                     }
+                    isRequired={true}
                   />
                 )}
               />
             </div>
+            {error.length ? (
+              <p className="text-[1.2rem] text-error">
+                {error}
+              </p>
+            ) : null}
           </div>
+
           <div className="flex w-full justify-between">
             <PrimaryButton
               text="Зберегти зміни"
@@ -124,20 +151,11 @@ const EditSettings = () => {
             </Link>
           </div>
           {showModal && (
-            <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
-              <div className="h-[223px] w-[600px] rounded-[10px] bg-white text-black">
-                <Link href="/admin/settings">
-                  <button
-                    onClick={handleCloseAndReset}
-                    className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray">
-                    X
-                  </button>
-                </Link>
-                <p className="mt-[28px] flex items-center justify-center text-[24px] font-bold">
-                  Дані змінено
-                </p>
-              </div>
-            </div>
+            <SuccessAlert
+              title="Дані успішно змінено"
+              onClose={handleCloseAndReset}
+              isSuccess={showModal}
+            />
           )}
         </form>
       </div>
