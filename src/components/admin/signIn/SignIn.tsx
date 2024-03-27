@@ -114,7 +114,7 @@ const SignIn = () => {
                 </p>
               </div>
               <Link
-                href={''}
+                href={'/admin/signIn/forgottenPassword'}
                 className="mb-[24px] text-center font-['Open_Sans',_sans-serif] text-[#35db4f] underline 5xl:mb-[36px]">
                 Забули пароль?
               </Link>
