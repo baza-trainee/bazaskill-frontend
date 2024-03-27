@@ -169,113 +169,122 @@ const AddCandidate = () => {
           </div>
 
           <div className="flex w-full gap-[24px]">
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="name">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                placeholder="Name"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.name?.message as string}
+                  isRequired={true}
+                  placeholder="Name"
+                  title="Name"
+                />
+              )}
+            />
 
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="surname">
-                Surname{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="surname"
-                name="surname"
-                placeholder="Surname"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="surname"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.surname?.message as string}
+                  isRequired={true}
+                  placeholder="Surname"
+                  title="Surname"
+                />
+              )}
+            />
 
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="city">
-                Місто{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="city"
-                name="city"
-                placeholder="Місто"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="city"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.city?.message as string}
+                  isRequired={true}
+                  placeholder="Місто"
+                  title="Місто"
+                />
+              )}
+            />
           </div>
 
           <div className="flex w-full gap-[24px]">
-            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="phone">
-                Телефон{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                placeholder="Телефон"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.phone?.message as string}
+                  isRequired={true}
+                  placeholder="Телефон"
+                  title="Телефон"
+                />
+              )}
+            />
 
-            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="email">
-                Email{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                placeholder="Email"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.email?.message as string}
+                  isRequired={true}
+                  placeholder="Email"
+                  title="Email"
+                />
+              )}
+            />
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
           <div className="flex w-full gap-[24px]">
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="linkedin">
-                Linkedin{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="linkedin"
-                name="linkedin"
-                placeholder="Linkedin"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="linkedin"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.linkedin?.message as string}
+                  isRequired={true}
+                  placeholder="Linkedin"
+                  title="Linkedin"
+                />
+              )}
+            />
 
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="discord">
-                Discord{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="discord"
-                name="discord"
-                placeholder="Discord"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="discord"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.discord?.message as string}
+                  isRequired={true}
+                  placeholder="Discord"
+                  title="Discord"
+                />
+              )}
+            />
 
-            <div className="flex max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="telegram">
-                Telegram{' '}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="telegram"
-                name="telegram"
-                placeholder="Telegram"
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              />
-            </div>
+            <Controller
+              name="telegram"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  error={errors.telegram?.message as string}
+                  isRequired={true}
+                  placeholder="Telegram"
+                  title="Telegram"
+                />
+              )}
+            />
           </div>
 
           <Languages
