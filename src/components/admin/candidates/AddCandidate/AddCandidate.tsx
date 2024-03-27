@@ -20,6 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import schema from './schema';
 import TextInput from './TextInput';
 import FileInput from './FileInput';
+import defaultValues from './defaultValues';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -93,12 +94,7 @@ const AddCandidate = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      name_ua: '',
-      surname_ua: '',
-      country: '',
-      cv: null,
-    },
+    defaultValues: defaultValues,
     mode: 'onChange',
   });
   const [cv, setCV] = useState<File | null>(null);
