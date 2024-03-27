@@ -62,7 +62,9 @@ const Footer = () => {
   const modalType = useModal((state) => state.modalType);
   const { openModal, closeModal } = useModal();
   const pathname = usePathname();
-  const isAdminPage = pathname.split('/').includes('admin');
+  const isHidden =
+    pathname.split('/').includes('admin') ||
+    pathname.split('/').includes('login');
   const isCookie = useCookies((state) => state.isCookies);
   const [isCookiesAccepted, setIsCookiesAccepted] =
     useState(false);
@@ -84,7 +86,8 @@ const Footer = () => {
     (item) => item.title === 'privacy_policy'
   );
 
-  if (isAdminPage) return null;
+  if (isHidden) return null;
+
   return (
     <div
       className="pt-20m container relative flex flex-col justify-center bg-darkGraphite 
