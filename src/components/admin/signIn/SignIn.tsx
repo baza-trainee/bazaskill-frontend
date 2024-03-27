@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -13,8 +13,10 @@ import { z } from 'zod';
 import SignInEmail from '../ui/SignInEmail';
 import Link from 'next/link';
 import SignInButton from '../ui/buttons/SignInButton';
+import ErrorAlert from '../alerts/ErrorAlert';
 
 const SignIn = () => {
+  const [isError, setIsError] = useState(false);
   const {
     handleSubmit,
     control,
@@ -50,7 +52,6 @@ const SignIn = () => {
     } else {
       localStorage.removeItem('credentials');
     }
-    console.log(values);
   };
 
   return (
@@ -129,12 +130,20 @@ const SignIn = () => {
           </form>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full w-full bg-[#191919]">
+      <div className="absolute bottom-0 left-0  w-full bg-[#191919] ">
         <p className="mt-0 text-left text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
           Компанія направляє 10% прибутку на підтримку 59-ї
           бригади ім. Якова Гандзюка
         </p>
       </div>
+      {isError && (
+        <ErrorAlert
+          title="Невірні облікові дані"
+          text="Надані облікові дані невірні. Будь ласка, перевірте своє ім’я користувача та пароль і спробуйтеще раз"
+          onClose={() => setIsError(false)}
+          isError={isError}
+        />
+      )}
     </div>
   );
 };
