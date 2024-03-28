@@ -14,6 +14,7 @@ const SuccessAlert = ({
   isSuccess,
 }: AlertProps) => {
   useBodyScrollLock(isSuccess);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && onClose) {
@@ -32,7 +33,8 @@ const SuccessAlert = ({
         {title}
         <button
           className="absolute  right-[50px] top-[50px]"
-          onClick={onClose}>
+          onClick={onClose}
+        >
           <CloseIcon />
         </button>
       </div>

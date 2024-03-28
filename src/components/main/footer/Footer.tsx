@@ -38,13 +38,15 @@ const FooterLink: React.FC<FooterLinkProps> = ({
     text-nowrap py-2 text-xl font-normal text-white underline-offset-2 transition hover:text-yellow hover:underline  md:text-lg xl:leading-7`}
           href={href}
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           {children}
         </a>
       ) : (
         <span
           className={`decoration gray-700 all block text-nowrap 
-    py-2 text-xl font-normal text-white underline-offset-2 transition  md:text-lg xl:leading-7`}>
+    py-2 text-xl font-normal text-white underline-offset-2 transition  md:text-lg xl:leading-7`}
+        >
           {children}
         </span>
       )}
@@ -60,7 +62,9 @@ const Footer = () => {
   const modalType = useModal((state) => state.modalType);
   const { openModal, closeModal } = useModal();
   const pathname = usePathname();
-  const isAdminPage = pathname.split('/').includes('admin');
+  const isHidden =
+    pathname.split('/').includes('admin') ||
+    pathname.split('/').includes('login');
   const isCookie = useCookies((state) => state.isCookies);
   const [isCookiesAccepted, setIsCookiesAccepted] =
     useState(false);
@@ -82,17 +86,20 @@ const Footer = () => {
     (item) => item.title === 'privacy_policy'
   );
 
-  if (isAdminPage) return null;
+  if (isHidden) return null;
+
   return (
     <div
       className="pt-20m container relative flex flex-col justify-center bg-darkGraphite 
-       xs:pt-[40px] sm:block md:pt-12 xl:pt-12 2xl:pt-12">
+       xs:pt-[40px] sm:block md:pt-12 xl:pt-12 2xl:pt-12"
+    >
       <div className="mx-auto flex justify-start xs:block sm:block md:mb-[10px] md:flex">
         <div className="w-110 5xl:ml-40px transition-all md:mr-[80px]">
           <a
             href="/"
             aria-label="logo-icon"
-            className="justify-center xs:flex sm:flex xl:ml-[-10px]">
+            className="justify-center xs:flex sm:flex xl:ml-[-10px]"
+          >
             <Logo className="transition duration-500 hover:scale-110" />
           </a>
           <h3 className="mb-20 mt-12 block justify-center font-tahoma text-2xl font-bold text-white transition-all xs:mb-[20px] xs:flex xs:font-medium md:block md:text-base xl:mb-[18px] xl:flex xl:w-[300px] xl:text-xl 2xl:w-[250px]">
@@ -101,7 +108,8 @@ const Footer = () => {
         </div>
         <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[100px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
           <button
-            className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}>
+            className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
+          >
             {isCookiesAccepted ? (
               <a href="#aboutus">{t('about_us')}</a>
             ) : (
@@ -111,13 +119,15 @@ const Footer = () => {
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
             onClick={() => openModal('hr')}
-            disabled={!isCookiesAccepted}>
+            disabled={!isCookiesAccepted}
+          >
             {t('to_become_hr')}
           </button>
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
             onClick={() => openModal('partner')}
-            disabled={!isCookiesAccepted}>
+            disabled={!isCookiesAccepted}
+          >
             {t('to_become_partner')}
           </button>
         </div>
@@ -142,19 +152,27 @@ const Footer = () => {
           </p>
         </div>
         <div className="xs:mb-[25px] md:mb-[10px] md:flex md:justify-center xl:mb-[0px]">
-          <a
-            className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={privacyPolicy?.document_url}>
-            {t('privacy_policy')}
-          </a>
+          {isCookiesAccepted ? (
+            <a
+              className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={privacyPolicy?.document_url}
+            >
+              {t('privacy_policy')}
+            </a>
+          ) : (
+            <span className="gray-700 inline-block justify-center font-sans text-sm text-white transition-all  xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]">
+              {t('privacy_policy')}
+            </span>
+          )}
           {isCookiesAccepted ? (
             <a
               className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]"
               target="_blank"
               rel="noopener noreferrer"
-              href={termsOfUse?.document_url}>
+              href={termsOfUse?.document_url}
+            >
               {t('terms_of_use')}
             </a>
           ) : (

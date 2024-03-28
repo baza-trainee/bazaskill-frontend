@@ -1,11 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   useForm,
   Controller,
   SubmitHandler,
 } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { changeEmail } from '@/api/settings';
+import { defaultValues } from './defaultValues';
+import { settingsScheme } from './settingsScheme';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
@@ -13,11 +18,7 @@ import TextInput from '../ui/TextInput';
 import Link from 'next/link';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { defaultValues } from './defaultValues';
-import { settingsScheme } from './settingsScheme';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { changePassword } from '@/api/setting';
+import SuccessAlert from '../alerts/SuccessAlert';
 
 const Settings = () => {
   const {
@@ -30,26 +31,38 @@ const Settings = () => {
     mode: 'onChange',
     defaultValues: defaultValues,
   });
+
   const [showModal, setShowModal] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    reset({
+      email: 'test@mail.ua',
+    });
+  }, [reset]);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof settingsScheme>
   > = async (values: z.infer<typeof settingsScheme>) => {
     try {
-      const response = await changePassword({
+      setIsProcessing(true);
+      const response = await changeEmail({
+        id: '11',
         email: values.email,
-        password: values.password,
       });
-      if (response.status === 201) {
+      if (response.status === 200) {
         console.log(values);
         setShowModal(true);
       }
+      setIsProcessing(false);
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       } else {
         console.error('Неочікувана помилка', error);
       }
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -64,7 +77,8 @@ const Settings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="w-[597px] flex-col"
-          onSubmit={handleSubmit(onSubmit)}>
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -106,11 +120,15 @@ const Settings = () => {
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text="Зберегти зміни"
+              text={
+                isProcessing
+                  ? 'Обробка запиту...'
+                  : 'Зберегти зміни'
+              }
               type="submit"
               onClick={handleSubmit(onSubmit)}
               disabled={
-                !Object.keys(errors).length && !isDirty
+                !!Object.keys(errors).length || !isDirty
               }
             />
             <SecondaryButton
@@ -120,18 +138,11 @@ const Settings = () => {
             />
           </div>
           {showModal && (
-            <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
-              <div className="h-[223px] w-[600px] rounded-[10px] bg-white text-black">
-                <button
-                  onClick={handleCloseAndReset}
-                  className="ml-[530px] mr-[40px] mt-[45px] text-[20px] text-gray">
-                  X
-                </button>
-                <p className="mt-[28px] flex items-center justify-center text-[24px] font-bold">
-                  Дані змінено
-                </p>
-              </div>
-            </div>
+            <SuccessAlert
+              title="Дані успішно змінено"
+              onClose={handleCloseAndReset}
+              isSuccess={showModal}
+            />
           )}
         </form>
       </div>

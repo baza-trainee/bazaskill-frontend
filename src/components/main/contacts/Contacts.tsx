@@ -38,7 +38,10 @@ const socialLinks = [
     link: 'https://www.linkedin.com/company/baza-trainee-ukraine/',
   },
   { icon: 'discord', link: '/' },
-  { icon: 'telegram', link: '/' },
+  {
+    icon: 'telegram',
+    link: 'https://t.me/+CybxMJRp3PdkYjFi',
+  },
   {
     icon: 'facebook',
     link: 'https://www.facebook.com/profile.php?id=61557451883927',

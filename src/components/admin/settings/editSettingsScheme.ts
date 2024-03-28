@@ -2,30 +2,38 @@ import { z } from 'zod';
 
 const passwordPattern = /^(.{8,})$/;
 
-export const settingsScheme = z.object({
-  oldPassword: z
-    .string()
-    .refine(
-      (value) => !value || passwordPattern.test(value),
+export const settingsScheme = z
+  .object({
+    oldPassword: z
+      .string()
+      .refine(
+        (value) => !value || passwordPattern.test(value),
+        {
+          message: 'Пароль має бути мінімум 8 символів',
+        }
+      ),
+    newPassword: z.string().refine(
+      (value) => {
+        if (!value) return true;
+        return passwordPattern.test(value);
+      },
       {
         message: 'Пароль має бути мінімум 8 символів',
       }
     ),
-  newPassword: z.string().refine(
-    (value) => {
-      if (!value) return true;
-      return passwordPattern.test(value);
-    },
+    repeatPassword: z
+      .string()
+      .refine(
+        (value) => !value || passwordPattern.test(value),
+        {
+          message: 'Пароль має бути мінімум 8 символів',
+        }
+      ),
+  })
+  .refine(
+    (data) => data.newPassword === data.repeatPassword,
     {
-      message: 'Пароль має бути мінімум 8 символів',
+      message: 'Паролі не співпадають',
+      path: ['repeatPassword'],
     }
-  ),
-  repeatPassword: z
-    .string()
-    .refine(
-      (value) => !value || passwordPattern.test(value),
-      {
-        message: 'Пароль має бути мінімум 8 символів',
-      }
-    ),
-});
+  );

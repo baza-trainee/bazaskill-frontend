@@ -12,7 +12,7 @@ import { ISpecializationWithStack } from '@/types/specialization';
 import { usePathname } from 'next/navigation';
 
 const Header = () => {
-  const { data, isFetching } = useQuery({
+  const { data } = useQuery({
     queryKey: [
       constants.specialization
         .FETCH_SPECIALIZATIONS_WITH_STACK,
@@ -20,8 +20,13 @@ const Header = () => {
     queryFn: getSpecializationsWithStack,
   });
   const pathname = usePathname();
-  const isAdminPage = pathname.split('/').includes('admin');
-  if (isAdminPage) return null;
+
+  const isHidden =
+    pathname.split('/').includes('admin') ||
+    pathname.split('/').includes('login');
+
+  if (isHidden) return null;
+
   return (
     <div className="container relative z-50 flex h-[80px] w-full items-center gap-[4px] border-b border-[#4E4E4E] bg-graphite xl:h-[100px] 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
       <div className="flex w-full items-center xl:h-[40px] xl:w-[169px]">
