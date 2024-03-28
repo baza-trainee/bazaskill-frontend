@@ -1,0 +1,27 @@
+import { z } from 'zod';
+
+const linkValidation =
+  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(#[-a-z\d_]*)?$/i;
+
+export const postScheme = z.object({
+  title: z
+    .string()
+    .min(2, 'Назва статті повинна мати не менше 2 знаків')
+    .max(
+      30,
+      'Назва статті повинна бути не більше 30 знаків'
+    )
+    .refine((value) => typeof value === 'string', {
+      message: 'Введіть коректну назву статті',
+    }),
+  image: z.any(),
+  link: z
+    .string()
+    .min(2, 'Поле не повинно бути пустим')
+    .refine((value) => linkValidation.test(value), {
+      message: 'Введіть дійсний URL',
+    }),
+  text: z.string().min(2, 'Введіть опис статті'),
+});
+
+export type TPostScheme = z.infer<typeof postScheme>;
