@@ -37,7 +37,7 @@ const Settings = () => {
 
   useEffect(() => {
     reset({
-      email: 'test@mail.ua',
+      email: 'admin@mail.ua',
     });
   }, [reset]);
 
@@ -47,7 +47,7 @@ const Settings = () => {
     try {
       setIsProcessing(true);
       const response = await changeEmail({
-        id: '11',
+        id: '12',
         email: values.email,
       });
       if (response.status === 200) {
