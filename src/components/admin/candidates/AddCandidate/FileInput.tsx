@@ -9,9 +9,14 @@ import {
   useState,
 } from 'react';
 import Dropzone, { useDropzone } from 'react-dropzone';
+import {
+  Control,
+  FieldValues,
+  useWatch,
+} from 'react-hook-form';
 interface FileInputProps {
   title: string;
-  error: string;
+  error?: string;
   isRequired: boolean;
   file: string | null;
   onChange: (file: File) => void;
@@ -30,6 +35,7 @@ const FileInput = forwardRef(function FileInput(
   const [fileName, setFileName] = useState<string | null>(
     file
   );
+
   const handleProccesFileName = (files: File[]) => {
     if (files) {
       setFileName(files[0].name);
@@ -54,7 +60,7 @@ const FileInput = forwardRef(function FileInput(
       className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]"
     >
       <label htmlFor={title}>
-        Завантажити CV{' '}
+        {title}{' '}
         <span className="cursor-pointer text-green">
           [?]{' '}
         </span>
@@ -94,7 +100,7 @@ const FileInput = forwardRef(function FileInput(
     </div>
   );
 });
-
+FileInput.displayName = 'FileInput';
 export default FileInput;
 
 {
