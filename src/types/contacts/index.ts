@@ -1,5 +1,5 @@
 export interface IContacts {
-  id: number;
+  id: string;
   phone_1: string;
   phone_2: string;
   email: string;
