@@ -29,3 +29,38 @@ export const signInScheme = z.object({
     ),
   rememberMe: z.any(),
 });
+
+export const emailScheme = z.object({
+  email: z
+    .string()
+    .email({ message: 'Введіть дійсний email' })
+    .refine((value) => !value || emailPattern.test(value), {
+      message: 'Введіть дійсний email',
+    })
+    .refine(
+      (value) =>
+        !value || !/(.ru|.by)$/.test(value.split('@')[1]),
+      {
+        message: 'Домени .ru і .by не допускаються',
+      }
+    ),
+});
+
+export const passwordScheme = z.object({
+  password: z
+    .string()
+    .refine(
+      (value) => !value || passwordPattern.test(value),
+      {
+        message: 'Пароль має бути мінімум 8 символів',
+      }
+    ),
+  passwordAccept: z
+    .string()
+    .refine(
+      (value) => !value || passwordPattern.test(value),
+      {
+        message: 'Пароль має бути мінімум 8 символів',
+      }
+    ),
+});

@@ -3,3 +3,12 @@ export const defaultValues = {
   password: '',
   rememberMe: false,
 };
+
+export const defaultValuesEmail = {
+  email: '',
+};
+
+export const defaultValuesPassword = {
+  password: '',
+  passwordAccept: '',
+};

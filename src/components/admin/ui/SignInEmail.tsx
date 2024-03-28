@@ -32,7 +32,7 @@ ${
 
   return (
     <div
-      className={`w-[240px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[358px]    ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[240px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[326px] 4xl:w-[358px]    ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={title}

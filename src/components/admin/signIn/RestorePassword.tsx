@@ -7,24 +7,24 @@ import {
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import SignInEmail from '../ui/SignInEmail';
-import { emailScheme } from './signInScheme';
-import { defaultValuesEmail } from './defaultValues';
 import Link from 'next/link';
+import { defaultValuesPassword } from './defaultValues';
+import { passwordScheme } from './signInScheme';
+import SignInPassword from '../ui/SignInPassword';
 
-const ForgottenPassword = () => {
+const RestorePassword = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<z.infer<typeof emailScheme>>({
-    resolver: zodResolver(emailScheme),
+  } = useForm<z.infer<typeof passwordScheme>>({
+    resolver: zodResolver(passwordScheme),
     mode: 'onChange',
-    defaultValues: defaultValuesEmail,
+    defaultValues: defaultValuesPassword,
   });
 
   const onSubmit: SubmitHandler<
-    z.infer<typeof emailScheme>
+    z.infer<typeof passwordScheme>
   > = async (values) => {
     console.log(values);
   };
@@ -34,11 +34,10 @@ const ForgottenPassword = () => {
       <div className="relative flex  w-[520px] flex-col items-center justify-center rounded-md bg-white px-[50px] py-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
           <h2 className="mb-[24px] text-[36px] font-bold 5xl:text-[40px]">
-            Забули пароль?
+            Відновити пароль
           </h2>
           <p className="mb-[24px] mt-0 text-center font-['Open_Sans',_sans-serif] text-[16px] font-semibold not-italic text-[#020202] 5xl:mb-[36px] ">
-            Вкажіть Вашу електронну адресу, щоб підтвердити
-            Вашу особу
+            Створіть новий пароль
           </p>
           <form
             className="w-[326px] flex-col"
@@ -46,15 +45,28 @@ const ForgottenPassword = () => {
             <div className="flex flex-col gap-[20px] text-left text-[18px] text-[#020202] 5xl:gap-[24px] 5xl:text-[20px]">
               <div>
                 <Controller
-                  name="email"
+                  name="password"
                   control={control}
                   render={({ field }) => (
-                    <SignInEmail
+                    <SignInPassword
                       {...field}
-                      type="email"
-                      errorText={errors.email?.message}
-                      title="Email"
-                      placeholder="Email"
+                      title="Новий пароль"
+                      placeholder="********"
+                      errorText={errors.password?.message}
+                    />
+                  )}
+                />
+              </div>
+              <div>
+                <Controller
+                  name="passwordAccept"
+                  control={control}
+                  render={({ field }) => (
+                    <SignInPassword
+                      {...field}
+                      title="Підтвердіть пароль"
+                      placeholder="********"
+                      errorText={errors.password?.message}
                     />
                   )}
                 />
@@ -63,10 +75,10 @@ const ForgottenPassword = () => {
                 <button
                   className="flex h-[36px] min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white"
                   onClick={handleSubmit(onSubmit)}>
-                  Підтвердити
+                  Зберегти
                 </button>
                 <Link
-                  href={'/admin/signIn'}
+                  href={'/admin/signIn/forgottenPassword'}
                   className=" flex h-[36px] min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
                   Скасувати
                 </Link>
@@ -85,4 +97,4 @@ const ForgottenPassword = () => {
   );
 };
 
-export default ForgottenPassword;
+export default RestorePassword;
