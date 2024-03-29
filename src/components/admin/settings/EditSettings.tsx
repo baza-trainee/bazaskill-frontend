@@ -40,7 +40,7 @@ const EditSettings = () => {
     try {
       const response = await changePassword({
         data: {
-          email: 'test@mail.ua',
+          email: 'admin@mail.ua',
           oldPassword: values.oldPassword,
           newPassword: values.newPassword,
         },
