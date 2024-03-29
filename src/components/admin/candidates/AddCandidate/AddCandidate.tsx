@@ -24,6 +24,7 @@ import FileInput from './FileInput';
 import defaultValues from './defaultValues';
 import Graduate from './Graduate';
 import Languages from './Languages';
+import Cources from './Сources';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -92,6 +93,7 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     reset();
   };
 
@@ -104,8 +106,14 @@ const AddCandidate = () => {
     ],
     queryFn: getSpecializations,
   });
+
   const graduate = useFieldArray({
     name: 'graduate',
+    control,
+  });
+
+  const cources = useFieldArray({
+    name: 'cources',
     control,
   });
 
@@ -411,11 +419,15 @@ const AddCandidate = () => {
           </div>
 
           <Graduate
-            errors={errors}
-            register={register}
             fieldArray={graduate}
             control={control}
           />
+
+          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+            <h3>Курси</h3>
+          </div>
+
+          <Cources fieldArray={cources} control={control} />
 
           <div className="py-[80px]">
             <button type="submit">Save</button>

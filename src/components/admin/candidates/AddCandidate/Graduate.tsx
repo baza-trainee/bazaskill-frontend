@@ -4,26 +4,21 @@ import {
   Controller,
   DeepMap,
   FieldError,
-  FieldErrors,
   FieldValues,
   UseFieldArrayReturn,
-  UseFormRegister,
 } from 'react-hook-form';
 import FileInput from './FileInput';
 import TextInput from './TextInput';
 interface IGraduateProps {
   control: Control<FieldValues>;
-  errors: FieldErrors<FieldValues>;
   fieldArray: UseFieldArrayReturn<
     FieldValues,
     'graduate',
     'id'
   >;
-  register: UseFormRegister<FieldValues>;
 }
 const Graduate = ({
   control,
-  errors,
   fieldArray: { fields, append, remove },
 }: IGraduateProps) => {
   return (
@@ -38,7 +33,10 @@ const Graduate = ({
               <Controller
                 name={`graduate.${index}.universiry`}
                 control={control}
-                render={({ field }) => (
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
                   <TextInput
                     {...field}
                     error={
@@ -58,7 +56,10 @@ const Graduate = ({
               <Controller
                 name={`graduate.${index}.universiry_specializaton`}
                 control={control}
-                render={({ field }) => (
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
                   <TextInput
                     {...field}
                     error={
@@ -80,7 +81,10 @@ const Graduate = ({
               <Controller
                 name={`graduate.${index}.universiry_grade`}
                 control={control}
-                render={({ field }) => (
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
                   <TextInput
                     {...field}
                     error={
@@ -103,7 +107,10 @@ const Graduate = ({
               <Controller
                 name={`graduate.${index}.graduate_start`}
                 control={control}
-                render={({ field }) => (
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
                   <TextInput
                     {...field}
                     error={
@@ -124,7 +131,10 @@ const Graduate = ({
               <Controller
                 name={`graduate.${index}.graduate_end`}
                 control={control}
-                render={({ field }) => (
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
                   <TextInput
                     {...field}
                     error={
