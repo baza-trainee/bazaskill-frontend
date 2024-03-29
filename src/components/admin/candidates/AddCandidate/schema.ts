@@ -74,6 +74,17 @@ const schema = z.object({
         ),
     })
   ),
+  baza_experience: z.array(
+    z.object({
+      role: z.string().min(1, { message: 'Required' }),
+      project_name: z
+        .string()
+        .min(1, { message: 'Required' }),
+      project_duration: z
+        .string()
+        .min(1, { message: 'Required' }),
+    })
+  ),
 });
 
 export default schema;

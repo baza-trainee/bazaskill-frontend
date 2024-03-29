@@ -30,6 +30,13 @@ const defaultValues = {
       cources_sertificate: null,
     },
   ],
+  baza_experience: [
+    {
+      role: '',
+      project_name: '',
+      project_duration: '',
+    },
+  ],
 };
 
 export default defaultValues;

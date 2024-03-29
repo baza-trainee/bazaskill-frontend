@@ -25,6 +25,7 @@ import defaultValues from './defaultValues';
 import Graduate from './Graduate';
 import Languages from './Languages';
 import Cources from './Сources';
+import BazaExperience from './BazaExperience';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -117,6 +118,10 @@ const AddCandidate = () => {
     control,
   });
 
+  const baza_experience = useFieldArray({
+    name: 'baza_experience',
+    control,
+  });
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
       <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
@@ -428,6 +433,15 @@ const AddCandidate = () => {
           </div>
 
           <Cources fieldArray={cources} control={control} />
+
+          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+            <h3>Досвід роботи на Базі</h3>
+          </div>
+
+          <BazaExperience
+            control={control}
+            fieldArray={baza_experience}
+          />
 
           <div className="py-[80px]">
             <button type="submit">Save</button>
