@@ -21,6 +21,15 @@ const defaultValues = {
       graduate_sertificate: null,
     },
   ],
+  cources: [
+    {
+      cources_name: '1',
+      cources_specializaton: '1',
+      cources_start: '1',
+      cources_end: '1',
+      cources_sertificate: null,
+    },
+  ],
 };
 
 export default defaultValues;

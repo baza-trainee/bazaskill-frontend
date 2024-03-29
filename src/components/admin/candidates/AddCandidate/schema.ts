@@ -49,6 +49,31 @@ const schema = z.object({
         ),
     })
   ),
+  cources: z.array(
+    z.object({
+      cources_name: z
+        .string()
+        .min(1, { message: 'Required' }),
+      cources_specializaton: z
+        .string()
+        .min(1, { message: 'Required' }),
+      cources_start: z
+        .string()
+        .min(1, { message: 'Required' }),
+      cources_end: z
+        .string()
+        .min(1, { message: 'Required' }),
+      cources_sertificate: z
+        .any()
+        .refine((value) => value?.length > 0, {
+          message: 'Required',
+        })
+        .refine(
+          (value) => value?.[0]?.size <= 500000,
+          `Max file size is 5MB.`
+        ),
+    })
+  ),
 });
 
 export default schema;
