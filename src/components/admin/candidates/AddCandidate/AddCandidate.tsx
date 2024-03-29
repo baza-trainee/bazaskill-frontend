@@ -87,6 +87,7 @@ const AddCandidate = () => {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
     defaultValues: defaultValues,
@@ -312,7 +313,7 @@ const AddCandidate = () => {
           <div className="flex w-full gap-[24px]">
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="work_format">
-                Формат роботи{' '}
+                Формат роботи &nbsp;
                 <span className="text-red-500">*</span>
               </label>
               <select
@@ -330,7 +331,7 @@ const AddCandidate = () => {
 
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label>
-                Бажана зарплата{' '}
+                Бажана зарплата &nbsp;
                 <span className="text-red-500">*</span>
               </label>
               <div className="box-border flex w-full max-w-full items-center gap-[12px]">
@@ -353,14 +354,14 @@ const AddCandidate = () => {
           <div className="flex w-full gap-[24px]">
             <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
               <label htmlFor="about">
-                Про себе{' '}
+                Про себе &nbsp;
                 <span className="text-red-500">*</span>
               </label>
               <textarea
                 id="about"
                 name="about"
                 placeholder="Коментар"
-                className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
               ></textarea>
             </div>
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
@@ -373,7 +374,7 @@ const AddCandidate = () => {
           <div className="flex w-full gap-[24px]">
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="specialization">
-                Cпеціальність{' '}
+                Cпеціальність &nbsp;
                 <span className="text-red-500">*</span>
               </label>
               <select
@@ -443,8 +444,37 @@ const AddCandidate = () => {
             fieldArray={baza_experience}
           />
 
-          <div className="py-[80px]">
-            <button type="submit">Save</button>
+          <div className="flex w-full gap-[24px]">
+            <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
+              <label
+                className="font-[700]"
+                htmlFor="baza_recomendation"
+              >
+                Рекомендації від Baza Skill &nbsp;
+                <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                id="baza_recomendation"
+                name="baza_recomendation"
+                placeholder="Рекомендація"
+                className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
+              ></textarea>
+            </div>
+            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
+          </div>
+          <div className="flex justify-start gap-[24px] py-[80px]">
+            <button
+              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"
+              type="submit"
+            >
+              Опублікувати
+            </button>
+            <div
+              onClick={() => console.log(getValues())}
+              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border-[1px] font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
+            >
+              Зберегти в чернетках
+            </div>
           </div>
         </form>
       </div>
