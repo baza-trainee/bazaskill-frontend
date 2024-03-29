@@ -7,13 +7,14 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import Languages from './Languages';
-import CvField from './CvField';
 import Stack from './Stack';
 import {
   Controller,
+  DeepMap,
+  FieldError,
   FieldValues,
   SubmitHandler,
+  useFieldArray,
   useForm,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,6 +22,8 @@ import schema from './schema';
 import TextInput from './TextInput';
 import FileInput from './FileInput';
 import defaultValues from './defaultValues';
+import Graduate from './Graduate';
+import Languages from './Languages';
 
 const AddCandidate = () => {
   const [languages, setLanguages] = useState<
@@ -76,16 +79,6 @@ const AddCandidate = () => {
     );
   };
 
-  const specialization: UseQueryResult<
-    ISpecialization[],
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATIONS,
-    ],
-    queryFn: getSpecializations,
-  });
-
   const {
     register,
     reset,
@@ -97,13 +90,25 @@ const AddCandidate = () => {
     defaultValues: defaultValues,
     mode: 'onChange',
   });
-  const [cv, setCV] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data, cv);
-    setCV(null);
     reset();
   };
+
+  const specialization: UseQueryResult<
+    ISpecialization[],
+    Error
+  > = useQuery({
+    queryKey: [
+      constants.specialization.FETCH_SPECIALIZATIONS,
+    ],
+    queryFn: getSpecializations,
+  });
+  const graduate = useFieldArray({
+    name: 'graduate',
+    control,
+  });
+
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
       <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
@@ -290,6 +295,7 @@ const AddCandidate = () => {
             choseLanguage={handleChoseLanguage}
             choseLevel={handleChoseLanguageLevel}
           />
+
           <div className="flex w-full gap-[24px]">
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label htmlFor="work_format">
@@ -375,21 +381,41 @@ const AddCandidate = () => {
             <Controller
               name="cv"
               control={control}
-              render={({ field }) => (
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
                 <FileInput
-                  {...field}
-                  error={errors.cv?.message as string}
-                  isRequired={true}
+                  onChange={onChange}
+                  value={value}
                   title="Завантажити CV"
-                  file={cv ? cv.name : null}
-                  onChange={(file) => setCV(file)}
+                  errors={
+                    (
+                      errors.cv as DeepMap<
+                        FieldValues,
+                        FieldError
+                      >
+                    )?.message
+                  }
                 />
               )}
             />
+
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
           <Stack />
+
+          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+            <h3>Освіта</h3>
+          </div>
+
+          <Graduate
+            errors={errors}
+            register={register}
+            fieldArray={graduate}
+            control={control}
+          />
 
           <div className="py-[80px]">
             <button type="submit">Save</button>
