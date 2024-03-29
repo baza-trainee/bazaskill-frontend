@@ -11,6 +11,7 @@ import SignInEmail from '../ui/SignInEmail';
 import { emailScheme } from './signInScheme';
 import { defaultValuesEmail } from './defaultValues';
 import Link from 'next/link';
+import { forgotPassword } from '@/api/signIn';
 
 const ForgottenPassword = () => {
   const {
@@ -26,7 +27,12 @@ const ForgottenPassword = () => {
   const onSubmit: SubmitHandler<
     z.infer<typeof emailScheme>
   > = async (values) => {
-    console.log(values);
+    const response = await forgotPassword({
+      email: values.email,
+    });
+    if (response.status === 201) {
+      console.log(values);
+    }
   };
 
   return (
