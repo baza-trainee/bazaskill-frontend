@@ -1,4 +1,7 @@
 export const constants = {
+  profile: {
+    FETCH_PROFILE: 'FETCH_PROFILE',
+  },
   testimonials: {
     ADD_TESTIMONIAL: 'ADD_TESTIMONIAL',
     FETCH_TESTIMONIALS: 'FETCH_TESTIMONIALS',

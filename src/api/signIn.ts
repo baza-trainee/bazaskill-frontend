@@ -6,6 +6,11 @@ import {
   resetPasswordType,
 } from '@/types/singIn';
 
+export const getProfile = async () => {
+  const { data } = await axios.get('/profile');
+  return data;
+};
+
 export const authLogin = async (data: any) => {
   const response = await axios.post<authLoginType>(
     '/auth/login',
