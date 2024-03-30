@@ -8,6 +8,7 @@ import {
   UseFieldArrayReturn,
 } from 'react-hook-form';
 import FileInput from './FileInput';
+import SelectField from './SelectField';
 import TextInput from './TextInput';
 interface IGraduateProps {
   control: Control<FieldValues>;
@@ -82,12 +83,19 @@ const Graduate = ({
                 name={`graduate.${index}.universiry_grade`}
                 control={control}
                 render={({
-                  field,
+                  field: { onChange, value },
                   formState: { errors },
                 }) => (
-                  <TextInput
-                    {...field}
-                    error={
+                  <SelectField
+                    title="Cтупінь освіти"
+                    value={value}
+                    values={[
+                      'Bachelor',
+                      'Master',
+                      'Not complete',
+                    ]}
+                    onChange={onChange}
+                    errors={
                       (
                         errors.graduate as DeepMap<
                           FieldValues,
@@ -95,9 +103,6 @@ const Graduate = ({
                         >
                       )?.[index]?.universiry_grade?.message
                     }
-                    isRequired={true}
-                    placeholder="Введіть назву"
-                    title="Cтупінь освіти"
                   />
                 )}
               />
