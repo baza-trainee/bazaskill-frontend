@@ -8,7 +8,10 @@ type Stack = {
   title: string;
   isExist: boolean;
 };
-const Stack = () => {
+interface IStackProps {
+  handleStack: (stack: Stack[]) => void;
+}
+const Stack: React.FC<IStackProps> = ({ handleStack }) => {
   const [stack, setStack] = useState<Stack[]>([
     { title: 'React', isExist: true },
     { title: 'UI/UX', isExist: true },
@@ -34,6 +37,10 @@ const Stack = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [input]);
+
+  useEffect(() => {
+    handleStack(stack);
+  }, [stack]);
   return (
     <div className="flex w-full gap-[24px]">
       <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">

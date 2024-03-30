@@ -29,6 +29,9 @@ import BazaExperience from './BazaExperience';
 import SelectField from './SelectField';
 
 const AddCandidate = () => {
+  const [stack, setStack] = useState<
+    Array<{ title: string; isExist: boolean }>
+  >([]);
   const {
     register,
     reset,
@@ -43,7 +46,7 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    console.log({ ...data, stack });
     reset();
   };
 
@@ -76,6 +79,7 @@ const AddCandidate = () => {
     name: 'languages',
     control,
   });
+
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
       <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
@@ -457,7 +461,7 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack />
+          <Stack handleStack={setStack} />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
