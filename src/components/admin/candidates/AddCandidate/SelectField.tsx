@@ -1,3 +1,5 @@
+//type declaration for future fetching
+// | Array<Record<"id" | "title", number | string>> | undefined
 interface ISelectFieldProps {
   title: string;
   value: string;
