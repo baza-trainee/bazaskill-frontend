@@ -103,6 +103,7 @@ const Graduate = ({
                         >
                       )?.[index]?.universiry_grade?.message
                     }
+                    placeholder="Оберіть якщо є"
                   />
                 )}
               />

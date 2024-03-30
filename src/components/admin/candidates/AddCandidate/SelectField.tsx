@@ -7,6 +7,7 @@ interface ISelectFieldProps {
   onChange: (value: string) => void;
   disableHandler?: (value: string) => boolean;
   errors: string;
+  placeholder?: string;
 }
 const SelectField: React.FC<ISelectFieldProps> = ({
   title,
@@ -15,6 +16,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   onChange,
   disableHandler,
   errors,
+  placeholder,
 }) => {
   const handleDiasabled = (value: string): boolean => {
     if (disableHandler) {
@@ -34,7 +36,9 @@ const SelectField: React.FC<ISelectFieldProps> = ({
         className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
         onChange={(e) => onChange(e.target.value)}
       >
-        <option value="">Please Select</option>
+        <option value="">
+          {placeholder || 'Please Select'}
+        </option>
         {values.map((el, index) => (
           <option
             disabled={handleDiasabled(el)}

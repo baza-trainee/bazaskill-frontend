@@ -39,9 +39,7 @@ const schema = z.object({
       universiry_specializaton: z
         .string()
         .min(1, { message: 'Required' }),
-      universiry_grade: z
-        .string()
-        .min(1, { message: 'Required' }),
+      universiry_grade: z.string(),
       graduate_start: z
         .string()
         .min(1, { message: 'Required' }),
