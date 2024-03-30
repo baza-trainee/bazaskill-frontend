@@ -35,4 +35,8 @@ export const constants = {
   counters: {
     FETCH_COUNTERS: 'FETCH_COUNTERS',
   },
+  posts: {
+    FETCH_POSTS: 'FETCH_POSTS',
+    ADD_POST: 'ADD_POST',
+  },
 };
