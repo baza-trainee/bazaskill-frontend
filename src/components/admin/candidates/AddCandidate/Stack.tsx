@@ -24,6 +24,7 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
   const [input, setInput] = useState<string>('');
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       setStack([...stack, { title: input, isExist: true }]);
       setInput('');
     }
