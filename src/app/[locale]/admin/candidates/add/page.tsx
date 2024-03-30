@@ -1,4 +1,4 @@
-import AddCandidate from '@/components/admin/candidates/AddCandidate';
+import AddCandidate from '@/components/admin/candidates/AddCandidate/AddCandidate';
 import React from 'react';
 
 const AddCandidatePage = () => {
