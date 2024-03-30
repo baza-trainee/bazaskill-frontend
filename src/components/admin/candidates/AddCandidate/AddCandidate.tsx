@@ -327,26 +327,47 @@ const AddCandidate = () => {
           </div>
 
           <div className="flex w-full gap-[24px]">
-            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="specialization">
-                Cпеціальність &nbsp;
-                <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="specialization"
-                defaultValue=""
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              >
-                <option value="">
-                  Оберіть спеціальність
-                </option>
-                {specialization.data?.map((item) => (
-                  <option key={item.id}>
-                    {item.title}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <Controller
+              name="specialization"
+              control={control}
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
+                <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
+                  <label htmlFor="specialization">
+                    Cпеціальність &nbsp;
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="specialization"
+                    value={value}
+                    onChange={onChange}
+                    className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                  >
+                    <option value="">
+                      Оберіть спеціальність
+                    </option>
+                    {specialization.data?.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.title}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="font-sans text-[12px] text-error">
+                    {
+                      (
+                        errors.specialization as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.message
+                    }
+                  </span>
+                </div>
+              )}
+            />
+
             <Controller
               name="cv"
               control={control}
@@ -369,7 +390,6 @@ const AddCandidate = () => {
                 />
               )}
             />
-
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
