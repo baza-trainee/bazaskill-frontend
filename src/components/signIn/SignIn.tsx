@@ -1,22 +1,27 @@
 'use client';
+
+import { z } from 'zod';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Controller,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import SignInPassword from '../ui/SignInPassword';
+import SignInPassword from '../admin/ui/SignInPassword';
 import { signInScheme } from './signInScheme';
 import { defaultValues } from './defaultValues';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import SignInEmail from '../ui/SignInEmail';
-import SignInButton from '../ui/buttons/SignInButton';
-import ErrorAlert from '../alerts/ErrorAlert';
 import { authLogin } from '@/api/signIn';
 
+import SignInEmail from '../admin/ui/SignInEmail';
+import SignInButton from '../admin/ui/buttons/SignInButton';
+import ErrorAlert from '../admin/alerts/ErrorAlert';
+
 const SignIn = () => {
+  const router = useRouter();
   const [isError, setIsError] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const {
     handleSubmit,
@@ -27,6 +32,13 @@ const SignIn = () => {
     resolver: zodResolver(signInScheme),
     mode: 'onChange',
     defaultValues: defaultValues,
+  });
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      router.replace('/admin/candidates');
+    }
   });
 
   useEffect(() => {
@@ -46,13 +58,17 @@ const SignIn = () => {
     z.infer<typeof signInScheme>
   > = async (values) => {
     try {
+      setIsProcessing(true);
       const response = await authLogin({
         email: values.email,
         password: values.password,
       });
       if (response.status === 201) {
-        console.log(values);
-        window.location.href = '/admin/candidates';
+        localStorage.setItem(
+          'access_token',
+          response.data.access_token
+        );
+        router.replace('/admin/candidates');
       }
 
       if (values.rememberMe) {
@@ -70,7 +86,7 @@ const SignIn = () => {
         console.error('Неочікувана помилка', error);
       }
     } finally {
-      console.log('ok');
+      setIsProcessing(false);
     }
   };
 
@@ -87,7 +103,8 @@ const SignIn = () => {
             </p>
             <form
               className="w-[326px] flex-col"
-              onSubmit={handleSubmit(onSubmit)}>
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <div className="flex flex-col gap-[20px] text-left text-[18px] text-[#020202] 5xl:gap-[24px] 5xl:text-[20px]">
                 <div>
                   <Controller
@@ -135,7 +152,11 @@ const SignIn = () => {
                   </p>
                 </div>
                 <SignInButton
-                  text="Увійти"
+                  text={
+                    isProcessing
+                      ? 'Обробка запиту...'
+                      : 'Увійти'
+                  }
                   type="submit"
                   onClick={handleSubmit(onSubmit)}
                   disabled={

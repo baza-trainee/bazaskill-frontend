@@ -12,13 +12,17 @@ import { settingsScheme } from './editSettingsScheme';
 import { defaultValuesEdit } from './editSettingsDefaultValues';
 import { changePassword } from '@/api/settings';
 import { AxiosError } from 'axios';
-// import { defaultValues } from './defaultValues';
+import { useQuery } from '@tanstack/react-query';
+import { getProfile } from '@/api/signIn';
+import { constants } from '@/constants';
 import Link from 'next/link';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
+import Loader from '../ui/Loader';
+import { IUser } from '@/types/singIn';
 
 const EditSettings = () => {
   const {
@@ -34,13 +38,18 @@ const EditSettings = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState('');
 
+  const { data: user, isFetching } = useQuery<IUser>({
+    queryKey: [constants.profile.FETCH_PROFILE],
+    queryFn: getProfile,
+  });
+
   const onSubmit: SubmitHandler<
     z.infer<typeof settingsScheme>
   > = async (values: z.infer<typeof settingsScheme>) => {
     try {
       const response = await changePassword({
         data: {
-          email: 'admin@mail.ua',
+          email: user?.email as string,
           oldPassword: values.oldPassword,
           newPassword: values.newPassword,
         },
@@ -74,8 +83,10 @@ const EditSettings = () => {
     reset();
   };
 
+  if (isFetching) return <Loader />;
+
   return (
-    <div className="p-[24px]">
+    <div className="relative p-[24px]">
       <PageTitle title="Змінити пароль"></PageTitle>
       <div className="mt-[80px] flex gap-[180px]">
         <form

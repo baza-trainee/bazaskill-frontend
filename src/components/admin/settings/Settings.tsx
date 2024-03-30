@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -11,6 +12,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { changeEmail } from '@/api/settings';
 import { defaultValues } from './defaultValues';
 import { settingsScheme } from './settingsScheme';
+import { useQuery } from '@tanstack/react-query';
+import { getProfile } from '@/api/signIn';
+import { constants } from '@/constants';
 import PageTitle from '../ui/PageTitle';
 import PasswordInput from '../ui/PasswordInput';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
@@ -19,6 +23,8 @@ import Link from 'next/link';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
+import Loader from '../ui/Loader';
+import { IUser } from '@/types/singIn';
 
 const Settings = () => {
   const {
@@ -35,9 +41,15 @@ const Settings = () => {
   const [showModal, setShowModal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const { data: user, isFetching } = useQuery<IUser>({
+    queryKey: [constants.profile.FETCH_PROFILE],
+    queryFn: getProfile,
+  });
+
   useEffect(() => {
+    if (!user) return;
     reset({
-      email: 'admin@mail.ua',
+      email: user?.email,
     });
   }, [reset]);
 
@@ -47,7 +59,7 @@ const Settings = () => {
     try {
       setIsProcessing(true);
       const response = await changeEmail({
-        id: '12',
+        id: user?.id as string,
         email: values.email,
       });
       if (response.status === 200) {
@@ -71,13 +83,16 @@ const Settings = () => {
     reset();
   };
 
+  if (isFetching) return <Loader />;
+
   return (
-    <div className="p-[24px]">
+    <div className="relative p-[24px]">
       <PageTitle title="Налаштування"></PageTitle>
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="w-[597px] flex-col"
-          onSubmit={handleSubmit(onSubmit)}>
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex flex-col gap-[50px]">
             <div>
               <Controller
