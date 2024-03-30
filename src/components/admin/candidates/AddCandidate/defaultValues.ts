@@ -12,8 +12,8 @@ const defaultValues = {
   telegram: 'https://telegram.com',
   languages: [
     {
-      language: '',
-      level: '',
+      language: 'English',
+      level: 'B1',
     },
   ],
   work_format: '',
