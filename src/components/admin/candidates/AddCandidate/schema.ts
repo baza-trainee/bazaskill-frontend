@@ -19,6 +19,9 @@ const schema = z.object({
     })
   ),
   work_format: z.string().min(1, { message: 'Required' }),
+  specialization: z
+    .string()
+    .min(1, { message: 'Required' }),
   cv: z
     .any()
     .refine((value) => value?.length > 0, {
