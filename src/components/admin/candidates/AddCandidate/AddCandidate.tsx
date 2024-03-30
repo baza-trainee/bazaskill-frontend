@@ -26,61 +26,9 @@ import Graduate from './Graduate';
 import Languages from './Languages';
 import Cources from './Сources';
 import BazaExperience from './BazaExperience';
+import SelectField from './SelectField';
 
 const AddCandidate = () => {
-  const [languages, setLanguages] = useState<
-    Array<{ language: string; level: string }>
-  >([{ language: '', level: '' }]);
-  const handleDeleteLanguage = (id: number) => {
-    setLanguages(
-      languages.filter((_, index) => index !== id)
-    );
-  };
-  const handleAddLanguage = () => {
-    setLanguages([
-      ...languages,
-      { language: '', level: '' },
-    ]);
-  };
-  const handleChoseLanguage = (
-    id: number,
-    value: string
-  ) => {
-    setLanguages(
-      languages.map(
-        (
-          {
-            language,
-            level,
-          }: { language: string; level: string },
-          index
-        ) =>
-          index === id
-            ? { language: value, level }
-            : { language, level }
-      )
-    );
-  };
-  const handleChoseLanguageLevel = (
-    id: number,
-    value: string
-  ) => {
-    setLanguages(
-      languages.map(
-        (
-          {
-            language,
-            level,
-          }: { language: string; level: string },
-          index
-        ) =>
-          index === id
-            ? { language, level: value }
-            : { language, level }
-      )
-    );
-  };
-
   const {
     register,
     reset,
@@ -121,6 +69,11 @@ const AddCandidate = () => {
 
   const baza_experience = useFieldArray({
     name: 'baza_experience',
+    control,
+  });
+
+  const lang = useFieldArray({
+    name: 'languages',
     control,
   });
   return (
@@ -301,33 +254,35 @@ const AddCandidate = () => {
               )}
             />
           </div>
-
           <Languages
-            languages={languages}
-            addLanguage={handleAddLanguage}
-            deleteLanguage={handleDeleteLanguage}
-            choseLanguage={handleChoseLanguage}
-            choseLevel={handleChoseLanguageLevel}
+            control={control}
+            fieldArray={lang}
+            getValues={getValues}
           />
-
           <div className="flex w-full gap-[24px]">
-            <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-              <label htmlFor="work_format">
-                Формат роботи &nbsp;
-                <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="work_format"
-                name="work_format"
-                defaultValue=""
-                className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-              >
-                <option value="">Please select</option>
-                <option value="remote">Remote</option>
-                <option value="remote">Office</option>
-                <option value="hybrid">Hybrid</option>
-              </select>
-            </div>
+            <Controller
+              name="work_format"
+              control={control}
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
+                <SelectField
+                  title="Формат роботи"
+                  value={value}
+                  values={['Remote', 'Office', 'Hybrid']}
+                  onChange={onChange}
+                  errors={
+                    (
+                      errors.work_format as DeepMap<
+                        FieldValues,
+                        FieldError
+                      >
+                    )?.message
+                  }
+                />
+              )}
+            />
 
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
               <label>
