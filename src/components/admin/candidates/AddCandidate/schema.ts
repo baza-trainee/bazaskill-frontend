@@ -12,6 +12,13 @@ const schema = z.object({
   linkedin: z.string().min(1, { message: 'Required' }),
   discord: z.string().min(1, { message: 'Required' }),
   telegram: z.string().min(1, { message: 'Required' }),
+  languages: z.array(
+    z.object({
+      language: z.string().min(1, { message: 'Required' }),
+      level: z.string().min(1, { message: 'Required' }),
+    })
+  ),
+  work_format: z.string().min(1, { message: 'Required' }),
   cv: z
     .any()
     .refine((value) => value?.length > 0, {

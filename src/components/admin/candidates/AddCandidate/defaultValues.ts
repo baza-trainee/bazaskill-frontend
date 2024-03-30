@@ -10,6 +10,13 @@ const defaultValues = {
   linkedin: '1',
   discord: '1',
   telegram: '1',
+  languages: [
+    {
+      language: '',
+      level: '',
+    },
+  ],
+  work_format: '',
   cv: null,
   graduate: [
     {
