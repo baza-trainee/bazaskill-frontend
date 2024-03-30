@@ -4,7 +4,10 @@ import { redirect } from 'next/navigation';
 
 const AdminPage: React.FC = () => {
   useEffect(() => {
-    redirect('/admin/candidates');
+    const token = localStorage.getItem('token');
+    if (token) {
+      redirect('/admin/candidates');
+    } else redirect('/login');
   }, []);
 
   return null;

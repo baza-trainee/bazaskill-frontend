@@ -1,5 +1,10 @@
 'use client';
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { SideBarItem } from './SideBarItem';
+import { FaUser } from 'react-icons/fa6';
+import { FaHandshake } from 'react-icons/fa';
 import Candidates from '@/components/icons/Admin-icons/Candidates';
 import CountersIcon from '@/components/icons/Admin-icons/CountersIcon';
 import PartnersIcon from '@/components/icons/Admin-icons/PartnersIcon';
@@ -10,11 +15,15 @@ import PdfIcon from '@/components/icons/Admin-icons/PdfIcon';
 import Button from './Button';
 import ExitIcon from '@/components/icons/Admin-icons/ExitIcon';
 import Logo from '@/components/icons/Logo';
-import { FaUser } from 'react-icons/fa6';
-import { FaHandshake } from 'react-icons/fa';
-import Link from 'next/link';
 
 const SideBar: React.FC = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    router.replace('/');
+  };
+
   return (
     <aside className="no-scrollbar h-fit w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
       <div className="flex h-[104px] items-center justify-center">
@@ -96,7 +105,7 @@ const SideBar: React.FC = () => {
           Налаштування
         </SideBarItem>
       </ul>
-      <Button>
+      <Button onClick={handleLogout}>
         <span className="flex">
           <ExitIcon className="mr-[44px]" />
         </span>
