@@ -1,4 +1,11 @@
+import { getSpecializations } from '@/api/specialization';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import { constants } from '@/constants';
+import { ISpecialization } from '@/types/specialization';
+import {
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import {
   Control,
   Controller,
@@ -22,6 +29,15 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
   control,
   fieldArray: { fields, append, remove },
 }) => {
+  const specialization: UseQueryResult<
+    ISpecialization[],
+    Error
+  > = useQuery({
+    queryKey: [
+      constants.specialization.FETCH_SPECIALIZATIONS,
+    ],
+    queryFn: getSpecializations,
+  });
   return (
     <div className="flex w-full flex-col gap-[30px]">
       {fields.map((field, index) => {
@@ -35,23 +51,45 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
                 name={`baza_experience.${index}.role`}
                 control={control}
                 render={({
-                  field,
+                  field: { onChange, value },
                   formState: { errors },
                 }) => (
-                  <TextInput
-                    {...field}
-                    error={
-                      (
-                        errors.baza_experience as DeepMap<
-                          FieldValues,
-                          FieldError
+                  <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
+                    <label
+                      htmlFor={`baza_experience.${index}.role`}
+                    >
+                      Роль на проекті &nbsp;
+                      <span className="text-red-500">
+                        *
+                      </span>
+                    </label>
+                    <select
+                      id={`baza_experience.${index}.role`}
+                      value={value}
+                      onChange={onChange}
+                      className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                    >
+                      <option value="">Оберіть роль</option>
+                      {specialization.data?.map((item) => (
+                        <option
+                          key={item.id}
+                          value={item.id}
                         >
-                      )?.[index]?.role?.message
-                    }
-                    isRequired={true}
-                    placeholder="Ведіть назву"
-                    title="Роль на проекті"
-                  />
+                          {item.title}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="font-sans text-[12px] text-error">
+                      {
+                        (
+                          errors.baza_experience as DeepMap<
+                            FieldValues,
+                            FieldError
+                          >
+                        )?.[index]?.role?.message
+                      }
+                    </span>
+                  </div>
                 )}
               />
               <Controller
