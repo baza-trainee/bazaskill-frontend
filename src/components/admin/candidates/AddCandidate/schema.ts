@@ -19,9 +19,12 @@ const schema = z.object({
     })
   ),
   work_format: z.string().min(1, { message: 'Required' }),
+  salary_from: z.string().min(1, { message: 'Required' }),
+  salary_to: z.string().min(1, { message: 'Required' }),
   specialization: z
     .string()
     .min(1, { message: 'Required' }),
+  about: z.string().min(1, { message: 'Required' }),
   cv: z
     .any()
     .refine((value) => value?.length > 0, {
@@ -93,6 +96,9 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
     })
   ),
+  baza_recomendation: z
+    .string()
+    .min(1, { message: 'Required' }),
 });
 
 export default schema;

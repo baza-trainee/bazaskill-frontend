@@ -291,16 +291,42 @@ const AddCandidate = () => {
               </label>
               <div className="box-border flex w-full max-w-full items-center gap-[12px]">
                 <span className="text-[24px]">$</span>
-                <input
-                  name="salary_from"
-                  placeholder="500"
-                  className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-                />
-                <input
-                  name="salary_to"
-                  placeholder="700"
-                  className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-                />
+                <div className="relative flex w-[inherit] flex-col gap-[5px]">
+                  <input
+                    {...register('salary_from')}
+                    name="salary_from"
+                    placeholder="500"
+                    className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                  />
+                  <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
+                    {
+                      (
+                        errors.salary_from as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.message
+                    }
+                  </span>
+                </div>
+                <div className="relative flex w-[inherit] flex-col gap-[5px]">
+                  <input
+                    {...register('salary_to')}
+                    name="salary_to"
+                    placeholder="700"
+                    className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
+                  />
+                  <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
+                    {
+                      (
+                        errors.salary_to as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.message
+                    }
+                  </span>
+                </div>
               </div>
             </div>
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
@@ -313,11 +339,22 @@ const AddCandidate = () => {
                 <span className="text-red-500">*</span>
               </label>
               <textarea
+                {...register('about')}
                 id="about"
                 name="about"
                 placeholder="Коментар"
                 className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
               ></textarea>
+              <span className="font-sans text-[12px] text-error">
+                {
+                  (
+                    errors.about as DeepMap<
+                      FieldValues,
+                      FieldError
+                    >
+                  )?.message
+                }
+              </span>
             </div>
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
@@ -429,11 +466,22 @@ const AddCandidate = () => {
                 <span className="text-red-500">*</span>
               </label>
               <textarea
+                {...register('baza_recomendation')}
                 id="baza_recomendation"
                 name="baza_recomendation"
                 placeholder="Рекомендація"
                 className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
               ></textarea>
+              <span className="font-sans text-[12px] text-error">
+                {
+                  (
+                    errors.baza_recomendation as DeepMap<
+                      FieldValues,
+                      FieldError
+                    >
+                  )?.message
+                }
+              </span>
             </div>
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
