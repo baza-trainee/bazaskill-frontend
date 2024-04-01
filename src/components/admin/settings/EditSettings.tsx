@@ -17,12 +17,13 @@ import { getProfile } from '@/api/signIn';
 import { constants } from '@/constants';
 import Link from 'next/link';
 import PageTitle from '../ui/PageTitle';
-import PasswordInput from '../ui/PasswordInput';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
 import Loader from '../ui/Loader';
 import { IUser } from '@/types/singIn';
+import TextInput from '../ui/TextInput';
+import { defaultValues } from './defaultValues';
 
 const EditSettings = () => {
   const {
@@ -55,6 +56,7 @@ const EditSettings = () => {
         },
       });
       if (response.status == 200) {
+        defaultValues.password = values.newPassword;
         setShowModal(true);
       }
     } catch (error) {
@@ -91,20 +93,20 @@ const EditSettings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="flex w-[597px] flex-col gap-[30px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
                 name="oldPassword"
                 control={control}
                 render={({ field }) => (
-                  <PasswordInput
+                  <TextInput
                     {...field}
                     title="Старий пароль"
                     placeholder="Введіть старий пароль"
                     errorText={errors.oldPassword?.message}
                     isRequired={true}
+                    isPassword
                   />
                 )}
               />
@@ -114,12 +116,13 @@ const EditSettings = () => {
                 name="newPassword"
                 control={control}
                 render={({ field }) => (
-                  <PasswordInput
+                  <TextInput
                     {...field}
                     title="Новий пароль"
                     placeholder="Введіть новий пароль"
                     errorText={errors.newPassword?.message}
                     isRequired={true}
+                    isPassword
                   />
                 )}
               />
@@ -129,7 +132,7 @@ const EditSettings = () => {
                 name="repeatPassword"
                 control={control}
                 render={({ field }) => (
-                  <PasswordInput
+                  <TextInput
                     {...field}
                     title="Повторіть новий пароль"
                     placeholder="Повторіть новий пароль"
@@ -137,6 +140,7 @@ const EditSettings = () => {
                       errors.repeatPassword?.message
                     }
                     isRequired={true}
+                    isPassword
                   />
                 )}
               />
@@ -162,11 +166,13 @@ const EditSettings = () => {
             </Link>
           </div>
           {showModal && (
-            <SuccessAlert
-              title="Дані успішно змінено"
-              onClose={handleCloseAndReset}
-              isSuccess={showModal}
-            />
+            <Link href="/admin/settings">
+              <SuccessAlert
+                title="Дані успішно змінено"
+                onClose={handleCloseAndReset}
+                isSuccess={showModal}
+              />
+            </Link>
           )}
         </form>
       </div>

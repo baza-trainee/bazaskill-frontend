@@ -17,7 +17,7 @@ const Testimonials = () => {
   });
 
   return (
-    <div className=" relative h-screen max-h-screen px-6 pt-[40px]">
+    <div className=" relative h-[100vh] max-h-[100vh]  px-6 pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Відгуки" />
       </div>
