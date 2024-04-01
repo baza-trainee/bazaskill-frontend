@@ -16,7 +16,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getProfile } from '@/api/signIn';
 import { constants } from '@/constants';
 import PageTitle from '../ui/PageTitle';
-import PasswordInput from '../ui/PasswordInput';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import TextInput from '../ui/TextInput';
 import Link from 'next/link';
@@ -83,16 +82,13 @@ const Settings = () => {
     reset();
   };
 
-  if (isFetching) return <Loader />;
-
   return (
-    <div className="relative p-[24px]">
+    <div className="relative h-[100vh] max-h-[100vh] p-[24px]">
       <PageTitle title="Налаштування"></PageTitle>
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="w-[597px] flex-col"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+          onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -110,20 +106,26 @@ const Settings = () => {
                 )}
               />
             </div>
-            <div className=" mb-[50px] flex gap-[20px]">
-              <Controller
-                name="password"
-                control={control}
-                render={({ field }) => (
-                  <PasswordInput
-                    {...field}
-                    title="Пароль"
-                    placeholder="Пароль"
-                    errorText={errors.password?.message}
-                  />
-                )}
-              />
-              <div className="pt-[34px]">
+            <div className=" mb-[50px] flex items-end  gap-[20px]">
+              {' '}
+              <div>
+                {' '}
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <TextInput
+                      {...field}
+                      title="Пароль"
+                      placeholder="Пароль"
+                      errorText={errors.password?.message}
+                      isPassword
+                    />
+                  )}
+                />
+              </div>
+              <div className="h-[44px] w-[44px]">
+                {' '}
                 <button type="button">
                   <Link href="settings/edit">
                     <WriteIcon className="h-[44px] w-[44px] bg-white" />
@@ -160,6 +162,7 @@ const Settings = () => {
           )}
         </form>
       </div>
+      {isFetching && <Loader />}
     </div>
   );
 };

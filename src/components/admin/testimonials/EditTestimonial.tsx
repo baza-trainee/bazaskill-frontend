@@ -117,7 +117,7 @@ const EditTestimonial = () => {
   };
 
   return (
-    <div className="relative h-screen max-h-screen p-6">
+    <div className="relative h-[100vh] max-h-[100vh] p-6 ">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>

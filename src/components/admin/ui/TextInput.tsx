@@ -1,9 +1,12 @@
-'use client';
+import EyeIcon from '@/components/icons/Admin-icons/EyeIcon';
+import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
+
 import {
   ForwardedRef,
   InputHTMLAttributes,
   forwardRef,
+  useState,
 } from 'react';
 
 interface TextInputProps
@@ -12,6 +15,7 @@ interface TextInputProps
   errorText?: string;
   isRequired?: boolean;
   isIcon?: boolean;
+  isPassword?: boolean;
 }
 
 const TextInput = forwardRef(function TextInput(
@@ -21,10 +25,17 @@ const TextInput = forwardRef(function TextInput(
     value = '',
     isRequired,
     isIcon,
+    isPassword,
     ...rest
   }: TextInputProps,
-  _ref: ForwardedRef<HTMLInputElement>
+  ref: ForwardedRef<HTMLInputElement>
 ) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
   const inputClassName = `bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee]
     ${isIcon && 'pr-[40px]'}
@@ -37,7 +48,7 @@ ${
 
   return (
     <div
-      className={`w-[240px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[340px] 5xl:w-[358px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[242px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}>
       {!!title && (
         <label
           htmlFor={title}
@@ -53,20 +64,36 @@ ${
           {...rest}
           id={title}
           value={value}
+          type={
+            isPassword
+              ? isEditing
+                ? 'text'
+                : 'password'
+              : 'text'
+          }
+          ref={ref}
           className={inputClassName}
         />
-
-        {isIcon && (
+        {isPassword && (
+          <div className=" absolute right-[16px] top-[9px] ">
+            <button
+              type="button"
+              onClick={handleEditToggle}>
+              {isEditing ? <EyeIcon /> : <NotEyeIcon />}
+            </button>
+          </div>
+        )}
+        {isIcon && !isPassword && (
           <div className=" absolute right-[16px] top-[9px] ">
             <WriteIcon className="h-[24px] w-[24px]" />
           </div>
         )}
+        {errorText && (
+          <span className="absolute bottom-[-20px] left-[0px] text-xs">
+            {errorText}
+          </span>
+        )}
       </div>
-      {errorText && (
-        <span className="left top absolute text-xs">
-          {errorText}
-        </span>
-      )}
     </div>
   );
 });

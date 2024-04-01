@@ -103,8 +103,7 @@ const SignIn = () => {
             </p>
             <form
               className="w-[326px] flex-col"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+              onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-[20px] text-left text-[18px] text-[#020202] 5xl:gap-[24px] 5xl:text-[20px]">
                 <div>
                   <Controller
