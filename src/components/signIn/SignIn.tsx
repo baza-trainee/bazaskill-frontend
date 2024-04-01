@@ -69,6 +69,7 @@ const SignIn = () => {
           response.data.access_token
         );
         router.replace('/admin/candidates');
+        setIsProcessing(false);
       }
 
       if (values.rememberMe) {
@@ -84,9 +85,8 @@ const SignIn = () => {
         console.error(error.message);
       } else {
         console.error('Неочікувана помилка', error);
+        setIsProcessing(false);
       }
-    } finally {
-      setIsProcessing(false);
     }
   };
 
