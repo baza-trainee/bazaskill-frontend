@@ -59,7 +59,7 @@ export const contactsScheme = z.object({
     .refine(
       (value) =>
         !value ||
-        /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9.]{5,}$/.test(
+        /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9./-]{5,}$/.test(
           value
         ),
       {
