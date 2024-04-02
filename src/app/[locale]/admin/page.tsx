@@ -1,10 +1,10 @@
 'use client';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { redirect } from 'next/navigation';
 import Loader from '@/components/admin/ui/Loader';
 
 const AdminPage: React.FC = () => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       redirect('/login');
