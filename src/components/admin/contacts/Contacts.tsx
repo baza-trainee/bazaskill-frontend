@@ -21,7 +21,7 @@ import { IContacts } from '@/types/contacts';
 
 const Contacts = () => {
   const [id, setId] = useState<number>(0);
-  const { data, refetch, isFetching, error } = useQuery<
+  const { data, refetch, isFetching } = useQuery<
     IContacts[],
     Error
   >({
@@ -33,7 +33,7 @@ const Contacts = () => {
     handleSubmit,
     control,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<z.infer<typeof contactsScheme>>({
     resolver: zodResolver(contactsScheme),
     mode: 'onChange',
@@ -79,13 +79,10 @@ const Contacts = () => {
       console.log(error);
     }
   };
+  console.log('error: ', errors);
 
   if (isFetching) {
     return <p>Loading....</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
   }
 
   return (
@@ -96,7 +93,7 @@ const Contacts = () => {
       <form
         onSubmit={handleSubmit(submitForm)}
         autoComplete="off"
-        className="flex w-[725px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
+        className="flex w-[908px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
         <div>
           <Controller
             name="phone"
@@ -107,6 +104,7 @@ const Contacts = () => {
                 isIcon={true}
                 type="text"
                 title="Телефон"
+                placeholder="Телефон"
                 errorText={errors.phone?.message}
               />
             )}
@@ -122,6 +120,7 @@ const Contacts = () => {
                 isIcon={true}
                 type="tel"
                 errorText={errors.secondPhone?.message}
+                placeholder="Телефон"
                 title="Телефон"
               />
             )}
@@ -138,6 +137,7 @@ const Contacts = () => {
                 isIcon={true}
                 errorText={errors.email?.message}
                 title="Email"
+                placeholder="Email"
               />
             )}
           />
@@ -153,6 +153,7 @@ const Contacts = () => {
                 isIcon={true}
                 errorText={errors.telegram?.message}
                 title="Telegram"
+                placeholder="Додайте посилання"
               />
             )}
           />
@@ -168,6 +169,7 @@ const Contacts = () => {
                 isIcon={true}
                 errorText={errors.linkedin?.message}
                 title="Linkedin"
+                placeholder="Додайте посилання"
               />
             )}
           />
@@ -183,6 +185,7 @@ const Contacts = () => {
                 isIcon={true}
                 errorText={errors.discord?.message}
                 title="Discord"
+                placeholder="Додайте посилання"
               />
             )}
           />
@@ -198,6 +201,7 @@ const Contacts = () => {
                 isIcon={true}
                 errorText={errors.facebook?.message}
                 title="Facebook"
+                placeholder="Додайте посилання"
               />
             )}
           />
@@ -213,6 +217,7 @@ const Contacts = () => {
                 isIcon={true}
                 errorText={errors.instagram?.message}
                 title="Instagram"
+                placeholder="Додайте посилання"
               />
             )}
           />
@@ -221,6 +226,7 @@ const Contacts = () => {
           <PrimaryButton
             text="Зберегти зміни"
             type="submit"
+            disabled={!isDirty}
           />
           <SecondaryButton
             text="Скасувати"
