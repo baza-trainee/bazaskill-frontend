@@ -21,6 +21,7 @@ export const signInScheme = z.object({
     ),
   password: z
     .string()
+    .nonempty({ message: 'Введіть пароль' })
     .refine(
       (value) => !value || passwordPattern.test(value),
       {

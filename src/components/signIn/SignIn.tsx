@@ -45,10 +45,6 @@ const SignIn = () => {
       setValue('email', email);
       setValue('password', password);
       setValue('rememberMe', rememberMe);
-    } else {
-      setValue('email', '');
-      setValue('password', '');
-      setValue('rememberMe', false);
     }
   }, [setValue]);
 
@@ -76,7 +72,6 @@ const SignIn = () => {
         router.replace('/admin/candidates');
         setIsProcessing(false);
       }
-
       if (values.rememberMe) {
         localStorage.setItem(
           'credentials',
@@ -87,6 +82,8 @@ const SignIn = () => {
       }
     } catch (error) {
       if (error instanceof Error) {
+        setIsError(true);
+        setIsProcessing(false);
         console.error(error.message);
       } else {
         console.error('Неочікувана помилка', error);
@@ -95,6 +92,8 @@ const SignIn = () => {
     }
   };
 
+  const email = watch('email');
+  const password = watch('password');
   return (
     <>
       <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
@@ -121,7 +120,6 @@ const SignIn = () => {
                         errorText={errors.email?.message}
                         title="Email"
                         placeholder="Email"
-                        required
                       />
                     )}
                   />
@@ -136,7 +134,6 @@ const SignIn = () => {
                         title="Пароль"
                         placeholder="********"
                         errorText={errors.password?.message}
-                        required
                       />
                     )}
                   />
@@ -169,8 +166,8 @@ const SignIn = () => {
                   type="submit"
                   onClick={handleSubmit(onSubmit)}
                   disabled={
-                    !isDirty ||
-                    (!watch('email') && !watch('password'))
+                    (!isDirty && !email && !password) ||
+                    !!Object.keys(errors).length
                   }
                 />
               </div>
