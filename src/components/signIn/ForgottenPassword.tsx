@@ -39,7 +39,7 @@ const ForgottenPassword = () => {
     <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
       <div className="relative flex  w-[520px] flex-col items-center justify-center rounded-md bg-white px-[50px] py-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
-          <h2 className="mb-[24px] text-[36px] font-bold 5xl:text-[40px]">
+          <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">
             Забули пароль?
           </h2>
           <p className="mb-[24px] mt-0 text-center font-['Open_Sans',_sans-serif] text-[16px] font-semibold not-italic text-[#020202] 5xl:mb-[36px] ">
@@ -48,9 +48,8 @@ const ForgottenPassword = () => {
           </p>
           <form
             className="w-[326px] flex-col"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div className="flex flex-col gap-[20px] text-left text-[18px] text-[#020202] 5xl:gap-[24px] 5xl:text-[20px]">
+            onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
               <div>
                 <Controller
                   name="email"
@@ -68,15 +67,13 @@ const ForgottenPassword = () => {
               </div>
               <div className="flex gap-[18px] ">
                 <button
-                  className="flex h-[36px] min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white"
-                  onClick={handleSubmit(onSubmit)}
-                >
+                  className="flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white"
+                  onClick={handleSubmit(onSubmit)}>
                   Підтвердити
                 </button>
                 <Link
                   href={'/admin/signIn'}
-                  className=" flex h-[36px] min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]"
-                >
+                  className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
                   Скасувати
                 </Link>
               </div>
