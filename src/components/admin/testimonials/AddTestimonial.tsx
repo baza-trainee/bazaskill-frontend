@@ -76,16 +76,16 @@ const AddTestimonial = () => {
   };
 
   return (
-    <section className="relative flex h-screen max-h-screen flex-col px-6 pt-10">
+    <section className="relative h-[100vh] max-h-[100vh] p-6 ">
       <div className="mb-[50px]">
         <PageTitle title="Додати Відгук" />
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full flex-wrap">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto flex flex-1 flex-col   gap-[50px]">
-          <div className=" flex flex-col gap-[50px]">
-            <section className="flex gap-6">
+          className="mx-auto flex flex-1 flex-col flex-wrap  gap-[50px]">
+          <div className=" flex flex-col flex-wrap gap-[50px]">
+            <section className="flex flex-wrap gap-6">
               <Controller
                 name="name_ua"
                 control={control}
@@ -129,7 +129,7 @@ const AddTestimonial = () => {
                 )}
               />
             </section>
-            <section className="flex  gap-6">
+            <section className="flex flex-wrap gap-6">
               <Controller
                 name="position"
                 control={control}
@@ -172,7 +172,7 @@ const AddTestimonial = () => {
                 )}
               />
             </section>
-            <section className="flex flex-col gap-[50px]">
+            <section className="flex flex-col flex-wrap gap-[50px]">
               <div className="flex gap-6">
                 <Controller
                   name="review_ua"

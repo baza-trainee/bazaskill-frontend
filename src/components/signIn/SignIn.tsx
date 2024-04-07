@@ -26,19 +26,13 @@ const SignIn = () => {
   const {
     handleSubmit,
     control,
+    watch,
     setValue,
     formState: { errors, isDirty },
   } = useForm<z.infer<typeof signInScheme>>({
     resolver: zodResolver(signInScheme),
     mode: 'onChange',
     defaultValues: defaultValues,
-  });
-
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      router.replace('/admin/candidates');
-    }
   });
 
   useEffect(() => {
@@ -53,6 +47,13 @@ const SignIn = () => {
       setValue('rememberMe', rememberMe);
     }
   }, [setValue]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      router.replace('/admin/candidates');
+    }
+  });
 
   const onSubmit: SubmitHandler<
     z.infer<typeof signInScheme>
@@ -71,7 +72,6 @@ const SignIn = () => {
         router.replace('/admin/candidates');
         setIsProcessing(false);
       }
-
       if (values.rememberMe) {
         localStorage.setItem(
           'credentials',
@@ -82,6 +82,8 @@ const SignIn = () => {
       }
     } catch (error) {
       if (error instanceof Error) {
+        setIsError(true);
+        setIsProcessing(false);
         console.error(error.message);
       } else {
         console.error('Неочікувана помилка', error);
@@ -90,6 +92,8 @@ const SignIn = () => {
     }
   };
 
+  const email = watch('email');
+  const password = watch('password');
   return (
     <>
       <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
@@ -104,7 +108,7 @@ const SignIn = () => {
             <form
               className="w-[326px] flex-col"
               onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-[20px] text-left text-[18px] text-[#020202] 5xl:gap-[24px] 5xl:text-[20px]">
+              <div className="flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
                 <div>
                   <Controller
                     name="email"
@@ -142,13 +146,16 @@ const SignIn = () => {
                       <input
                         {...field}
                         type="checkbox"
+                        id="checkbox"
                         className="h-[18px] w-[18px] rounded-[2px] border  [border:1px_solid_#232323]"
                       />
                     )}
                   />
-                  <p className="font-['Open_Sans',_sans-serif] text-[12px] text-[#353535]">
+                  <label
+                    htmlFor="checkbox"
+                    className="font-['Open_Sans',_sans-serif] text-[12px] text-[#353535]">
                     Запам’ятати пароль
-                  </p>
+                  </label>
                 </div>
                 <SignInButton
                   text={
@@ -159,7 +166,8 @@ const SignIn = () => {
                   type="submit"
                   onClick={handleSubmit(onSubmit)}
                   disabled={
-                    !Object.keys(errors).length && !isDirty
+                    (!isDirty && !email && !password) ||
+                    !!Object.keys(errors).length
                   }
                 />
               </div>
