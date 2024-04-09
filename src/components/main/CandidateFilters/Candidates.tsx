@@ -6,7 +6,7 @@ const Candidates = () => {
   return (
     <div className="md:flex md:flex-col">
       <CandidatesTitle />
-      <div className="md:flex md:justify-start">
+      <div className="md:flex">
         <Filters />
         <CandidatesList />
       </div>

@@ -21,7 +21,7 @@ const FiltersSpecializationMenu = ({
     queryFn: getSpecializationsWithStack,
   });
   return (
-    <div className=" flex flex-col gap-[20px] font-sans text-sm sm:text-base 3xl:text-xl">
+    <div className=" flex flex-col gap-[20px] font-sans text-sm sm:text-base">
       <h3 className="tracking-wide">Стек</h3>
       <div className="grid grid-cols-2 gap-[20px] md:flex md:flex-col">
         {!isFetching ? (

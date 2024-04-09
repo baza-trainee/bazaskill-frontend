@@ -54,7 +54,7 @@ const CandidatesList = () => {
           // status="working"
         />
       </div>
-      <div className="my-[60px] flex w-full items-center justify-center md:mb-[94px] md:mt-[70px]">
+      <div className="my-[60px] flex w-full items-center justify-center pr-[4.25rem] sm:pr-0 md:mb-[94px] md:mt-[70px]">
         <svg
           className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
           width={32}
