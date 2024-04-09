@@ -77,7 +77,6 @@ const EditPartners = () => {
         refetch();
       }
       setIsProcessing(false);
-      reset();
     } catch (errors: unknown) {
       console.log(errors);
     } finally {
@@ -145,7 +144,9 @@ const EditPartners = () => {
                   ? 'Обробка запиту'
                   : 'Зберегти зміни'
               }
-              disabled={!isDirty}
+              disabled={
+                errors && !!Object.keys(errors).length
+              }
             />
             <SecondaryButton
               onClick={() => router.refresh()}
