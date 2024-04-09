@@ -1,3 +1,4 @@
+import { candidates } from './../components/main/candidates/data';
 export const constants = {
   profile: {
     FETCH_PROFILE: 'FETCH_PROFILE',
@@ -38,5 +39,10 @@ export const constants = {
   posts: {
     FETCH_POSTS: 'FETCH_POSTS',
     ADD_POST: 'ADD_POST',
+  },
+
+  candidates: {
+    FETCH_ALL_CANDIDATES: 'FETCH_ALL_CANDIDATES',
+    CREATE_CANDIDATE: 'CREATE_CANDIDATE',
   },
 };

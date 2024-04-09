@@ -3,6 +3,7 @@ import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
 import { ISpecialization } from '@/types/specialization';
 import {
+  useMutation,
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
@@ -27,14 +28,29 @@ import Languages from './Languages';
 import Cources from './Сources';
 import BazaExperience from './BazaExperience';
 import SelectField from './SelectField';
+import { createCandidate } from '@/api/candidates';
+import { CandidateGraduate } from '@/types/candidates';
 
 const AddCandidate = () => {
   const [stack, setStack] = useState<
     Array<{ title: string; isExist: boolean }>
   >([]);
+  const { mutate, data } = useMutation({
+    mutationKey: [constants.candidates.CREATE_CANDIDATE],
+    mutationFn: createCandidate,
+  });
+
+  const specialization: UseQueryResult<
+    ISpecialization[],
+    Error
+  > = useQuery({
+    queryKey: [
+      constants.specialization.FETCH_SPECIALIZATIONS,
+    ],
+    queryFn: getSpecializations,
+  });
+
   const {
-    register,
-    reset,
     control,
     handleSubmit,
     formState: { errors },
@@ -47,18 +63,36 @@ const AddCandidate = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log({ ...data, stack });
-    reset();
+    const formData = new FormData();
+    formData.append('name_ua', data.name_ua);
+    formData.append('surname_ua', data.surname_ua);
+    // formData.append('graduate', JSON.stringify(data.graduate))
+    data.graduate.forEach(
+      (graduate: CandidateGraduate, index: number) => {
+        console.log(graduate);
+        formData.append(
+          'files',
+          graduate.graduate_sertificate[0]
+        );
+        formData.append(
+          `graduate[${index}][university]`,
+          graduate.universiry
+        );
+        formData.append(
+          `graduate[${index}][university_specializaton]`,
+          graduate.universiry_specializaton
+        );
+        formData.append(
+          `graduate[${index}][university_grade]`,
+          graduate.universiry_grade
+        );
+        // formData.append(`graduate[${index}][university]`, graduate.graduate_start )
+        // formData.append(`graduate[${index}][university]`, graduate.graduate_end )
+      }
+    );
+    mutate(formData);
+    // reset();
   };
-
-  const specialization: UseQueryResult<
-    ISpecialization[],
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATIONS,
-    ],
-    queryFn: getSpecializations,
-  });
 
   const graduate = useFieldArray({
     name: 'graduate',
