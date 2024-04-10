@@ -1,7 +1,20 @@
 import { z } from 'zod';
+import { formatBytes } from '@/helpers/formatBytes';
+
+const MAX_IMAGE_SIZE = 1024 * 1024 * 2;
+
+const ACCEPTED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/svg+xml',
+];
 
 const nonRussianLettersPattern =
   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const linkValidation =
+  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(#[-a-z\d_]*)?$/i;
 
 export const partnersScheme = z.object({
   name: z
@@ -13,18 +26,49 @@ export const partnersScheme = z.object({
       (value) => nonRussianLettersPattern.test(value),
       { message: 'Введіть коректне ім’я' }
     ),
-  logo: z.any(),
+  logo: z
+    .any()
+    .refine(
+      (value) => {
+        console.log('Uploaded File:', value);
+        if (!value || !value.length) {
+          return true;
+        }
+
+        const fileSize = value[0]?.size;
+        console.log('File Size:', fileSize);
+
+        const maxSizeInBytes = MAX_IMAGE_SIZE;
+
+        if (fileSize && fileSize <= maxSizeInBytes) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      `Максимальний розмір файлу ${formatBytes(MAX_IMAGE_SIZE)}`
+    )
+    .refine((value) => {
+      if (!value || !value.length) {
+        return true;
+      }
+
+      const fileType = value[0]?.type;
+      console.log('File Type:', fileType);
+
+      if (
+        fileType &&
+        ACCEPTED_IMAGE_TYPES.includes(fileType)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }, 'Невалідний формат зображення'),
   partner_url: z
     .string()
-    .refine(
-      (value) =>
-        !value ||
-        /^(https?:\/\/)?(www\.)?((?!.*\.ru)[\w-]+\.[a-z]{2,})(:\d{1,5})?(\/.*)?$/i.test(
-          value
-        ),
-      {
-        message:
-          'Введіть дійсний URL, який не містить домен .ru',
-      }
-    ),
+    .min(2, 'Поле не повинно бути пустим')
+    .refine((value) => linkValidation.test(value), {
+      message: 'Введіть дійсний URL',
+    }),
 });

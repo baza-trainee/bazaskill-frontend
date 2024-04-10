@@ -114,6 +114,7 @@ const AddPartners = () => {
                 <TextInputPartner
                   {...field}
                   errorText={errors.partner_url?.message}
+                  isRequired={true}
                   placeholder="partner_url"
                   title="partner_url"
                 />
@@ -138,9 +139,7 @@ const AddPartners = () => {
           <div className="flex w-full justify-between">
             <PrimaryButton
               text={
-                isProcessing
-                  ? 'Обробка запиту'
-                  : 'Зберегти зміни'
+                isProcessing ? 'Обробка запиту' : 'Додати'
               }
               disabled={!isDirty}
             />
