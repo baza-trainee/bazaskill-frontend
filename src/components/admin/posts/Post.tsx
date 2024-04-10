@@ -30,9 +30,7 @@ const Post = ({
   const mutation = useMutation({
     mutationFn: deletePosts,
     onSuccess: () => {
-      client.invalidateQueries({
-        queryKey: [constants.posts.FETCH_POSTS],
-      });
+      setIsSuccess(true);
     },
   });
 
@@ -65,7 +63,6 @@ const Post = ({
             className="flex h-[32px] w-[32px] items-center justify-center bg-white"
             onClick={() => {
               mutation.mutate(id);
-              setIsSuccess(true);
             }}
           >
             <svg width={28} height={28}>
@@ -84,7 +81,11 @@ const Post = ({
       {isSuccess && (
         <SuccessAlert
           title="Статтю видалено"
-          onClose={() => setIsSuccess(false)}
+          onClose={() => {
+            client.invalidateQueries({
+              queryKey: [constants.posts.FETCH_POSTS],
+            });
+          }}
           isSuccess={isSuccess}
         />
       )}
