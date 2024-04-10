@@ -31,11 +31,6 @@ const Post = ({
     mutationFn: deletePosts,
     onSuccess: () => {
       setIsSuccess(true);
-      setTimeout(() => {
-        client.invalidateQueries({
-          queryKey: [constants.posts.FETCH_POSTS],
-        });
-      }, 1000);
     },
   });
 
@@ -86,7 +81,12 @@ const Post = ({
       {isSuccess && (
         <SuccessAlert
           title="Статтю видалено"
-          onClose={() => setIsSuccess(false)}
+          onClose={() => {
+            setIsSuccess(false);
+            client.invalidateQueries({
+              queryKey: [constants.posts.FETCH_POSTS],
+            });
+          }}
           isSuccess={isSuccess}
         />
       )}
