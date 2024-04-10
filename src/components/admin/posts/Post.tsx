@@ -82,7 +82,6 @@ const Post = ({
         <SuccessAlert
           title="Статтю видалено"
           onClose={() => {
-            setIsSuccess(false);
             client.invalidateQueries({
               queryKey: [constants.posts.FETCH_POSTS],
             });
