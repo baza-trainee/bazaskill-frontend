@@ -11,10 +11,14 @@ import { getTestimonials } from '@/api/testimonials';
 import Loader from '../ui/Loader';
 
 const Testimonials = () => {
-  const { data, isFetching } = useQuery({
+  const { data, isFetching, refetch } = useQuery({
     queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
     queryFn: getTestimonials,
   });
+
+  const handleCardDelete = () => {
+    refetch();
+  };
 
   return (
     <div className=" relative h-[100vh] max-h-[100vh]  px-6 pt-[40px]">
@@ -34,7 +38,10 @@ const Testimonials = () => {
         <ul>
           {data?.map((item: Testimonial) => (
             <li key={item.id}>
-              <TestimonialCard item={item} />
+              <TestimonialCard
+                item={item}
+                onDelete={handleCardDelete}
+              />
             </li>
           ))}
         </ul>

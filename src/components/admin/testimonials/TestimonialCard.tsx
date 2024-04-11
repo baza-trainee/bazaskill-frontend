@@ -12,9 +12,11 @@ import SuccessAlert from '../alerts/SuccessAlert';
 
 const TestimonialCard = ({
   item,
+  onDelete,
 }: {
   item: Testimonial;
   isEdit?: boolean;
+  onDelete: () => void;
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -41,6 +43,7 @@ const TestimonialCard = ({
   const handleSuccessAlertClose = () => {
     setIsSuccess(false);
     setIsDeleting(false);
+    onDelete();
   };
 
   return (
