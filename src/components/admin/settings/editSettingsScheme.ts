@@ -1,39 +1,38 @@
 import { z } from 'zod';
 
-const passwordPattern = /^(.{8,})$/;
+const passwordPattern =
+  /^(?=.*[a-zA-Z0-9!-_)(.,])[\w!-_)(.,]{8,14}$/;
 
 export const settingsScheme = z
   .object({
-    oldPassword: z
+    oldPassword: z.string(),
+    newPassword: z
       .string()
-      .refine(
-        (value) => !value || passwordPattern.test(value),
-        {
-          message: 'Пароль має бути мінімум 8 символів',
-        }
-      ),
-    newPassword: z.string().refine(
-      (value) => {
-        if (!value) return true;
-        return passwordPattern.test(value);
-      },
-      {
-        message: 'Пароль має бути мінімум 8 символів',
-      }
-    ),
+      .min(8, {
+        message: 'Пароль має містити мінімум 8 символів',
+      })
+      .max(14, {
+        message: 'Пароль має містити максимум 14 символів',
+      })
+      .refine((value) => passwordPattern.test(value), {
+        message: 'Введіть дійсний символ',
+      }),
     repeatPassword: z
       .string()
-      .refine(
-        (value) => !value || passwordPattern.test(value),
-        {
-          message: 'Пароль має бути мінімум 8 символів',
-        }
-      ),
+      .min(8, {
+        message: 'Пароль має містити мінімум 8 символів',
+      })
+      .max(14, {
+        message: 'Пароль має містити максимум 14 символів',
+      })
+      .refine((value) => passwordPattern.test(value), {
+        message: 'Введіть дійсний символ',
+      }),
   })
   .refine(
     (data) => data.newPassword === data.repeatPassword,
     {
-      message: 'Паролі не співпадають',
+      message: 'Новий пароль не співпадає',
       path: ['repeatPassword'],
     }
   );

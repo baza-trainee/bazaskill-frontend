@@ -278,7 +278,10 @@ const EditTestimonial = () => {
       </div>
       <div>
         {data && typeof data !== 'undefined' && (
-          <TestimonialCard item={data} />
+          <TestimonialCard
+            item={data}
+            onDelete={() => {}}
+          />
         )}
       </div>
       {isSuccess && (
