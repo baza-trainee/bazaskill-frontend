@@ -1,7 +1,7 @@
 {
   "Main": {
     "hero_section": {
-      "search": "Znajdz kandydata",
+      "search": "Znajdź kandydata",
       "country": "Kraj",
       "speciality": "Specjalność",
       "ukraine": "Ukraina",
@@ -30,17 +30,17 @@
       "paragraph_3": "Dajemy Ci wykwalifikowanych młodszych specjalistów, którzy kochają to, co robią. Przynajmniej tak mówią."
     },
     "candidates": {
-      "title": "Nasze kandydaty",
+      "title": "Nasi kandydaci",
       "paragraph_1": "Przestrzegają zasad korzystania z udostępnionych narzędzi",
-      "paragraph_2": "Trzymaj się terminów",
-      "paragraph_3": "Przestrzegaj obowiązku gromadzenia dokumentacji",
-      "paragraph_4": "Zajmują dobrze uargumentowanych stanowisk w sporach i sytuacjach konfliktowych, skuteczność, chęć osiągnięcia wspólnego celu",
-      "paragraph_5": "Gotowy do dzielenia się informacjami",
+      "paragraph_2": "Trzymają się terminów",
+      "paragraph_3": "Przestrzegają obowiązku gromadzenia dokumentacji",
+      "paragraph_4": "Zajmują dobrze uargumentowanych stanowiska w sporach i sytuacjach konfliktowych, skuteczność, chęć osiągnięcia wspólnego celu",
+      "paragraph_5": "Gotowi do dzielenia się informacjami",
       "paragraph_6": "Wyrażają postawę wsparcia dla kolegów w zespole, gotowość do zastąpienia kolegi w przypadku wystąpienia siły wyższej",
-      "paragraph_7": "Interesuje się nowościami",
-      "paragraph_8": "Skłonny do aktywności",
-      "paragraph_9": "Bezwarunkowo przestrzegać przepisów prawa, w szczególności w zakresie praw autorskich, ochrony danych osobowych, RODO, NDA",
-      "paragraph_10": "Bezwarunkowo przestrzegać przepisów prawa"
+      "paragraph_7": "Interesują się nowościami",
+      "paragraph_8": "Skłonni do aktywności",
+      "paragraph_9": "Bezwarunkowo przestrzegają przepisów prawa, w szczególności w zakresie praw autorskich, ochrony danych osobowych, RODO, NDA",
+      "paragraph_10": "Bezwarunkowo przestrzegają przepisów prawa"
     },
     "partners": {
       "title": "Nasi partnerzy"
@@ -61,7 +61,7 @@
       "to_become_partner": "Zostań naszym partnerem",
       "internship": "Staż w Bazie Educat",
       "poligon": "Rozwój Bazy Poligon",
-      "development": "Dewelopment",
+      "development": "Development",
       "rights": "Wszelkie prawa zastrzeżone",
       "privacy_policy": "Polityka prywatności",
       "terms_of_use": "Warunki korzystania z serwisu",

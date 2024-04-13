@@ -111,7 +111,7 @@ const Footer = () => {
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
           >
             {isCookiesAccepted ? (
-              <a href="#aboutus">{t('about_us')}</a>
+              <a href="#help">{t('about_us')}</a>
             ) : (
               <span>{t('about_us')}</span>
             )}
