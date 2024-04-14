@@ -115,7 +115,7 @@ const AddCandidate = () => {
           graduate.universiry
         );
         formData.append(
-          `graduate[${index}][university_specializaton]`,
+          `graduate[${index}][university_specialization]`,
           graduate.universiry_specializaton
         );
         formData.append(
