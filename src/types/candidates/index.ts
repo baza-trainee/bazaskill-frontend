@@ -50,3 +50,8 @@ export interface ICandidates {
   baza_experience: IBazaExperience[];
   baza_recomendation: string;
 }
+
+export type Candidates = {
+  id: number;
+  text: string;
+};
