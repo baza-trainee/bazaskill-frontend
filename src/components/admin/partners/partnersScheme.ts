@@ -67,7 +67,7 @@ export const partnersScheme = z.object({
     }, 'Невалідний формат зображення'),
   partner_url: z
     .string()
-    .min(2, 'Поле не повинно бути пустим')
+    .min(2, 'Ви не заповнили всі дані.')
     .refine((value) => linkValidation.test(value), {
       message: 'Введіть дійсний URL',
     }),
