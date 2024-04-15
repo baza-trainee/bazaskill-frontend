@@ -2,7 +2,7 @@
 import axios from '@/config/axios';
 import { IContacts } from '@/types/contacts';
 
-interface IData {
+type Data = {
   phone_1: string;
   phone_2: string;
   email: string;
@@ -11,11 +11,11 @@ interface IData {
   discord: string;
   facebook: string;
   instagram: string;
-}
+};
 
 interface IUpdateData {
   id: number;
-  updateData: IData;
+  updateData: Data;
 }
 
 export const getContact = async () => {
@@ -40,6 +40,14 @@ export const updateContact = async ({
     updateData
   );
 
+  return data;
+};
+
+export const addContact = async (value: Data) => {
+  const { data } = await axios.post<IContacts[]>(
+    `/contacts`,
+    value
+  );
   return data;
 };
 

@@ -15,9 +15,15 @@ import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PhoneInput from '../ui/PhoneInput';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import { getContact, updateContact } from '@/api/contacts';
+import {
+  addContact,
+  getContact,
+  updateContact,
+} from '@/api/contacts';
 import { defaultValues } from './defaultValues';
 import { IContacts } from '@/types/contacts';
+import Loader from '../ui/Loader';
+import PageTitle from '../ui/PageTitle';
 
 const Contacts = () => {
   const [id, setId] = useState<number>(0);
@@ -61,9 +67,22 @@ const Contacts = () => {
     z.infer<typeof contactsScheme>
   > = async (values: z.infer<typeof contactsScheme>) => {
     try {
-      await updateContact({
-        id,
-        updateData: {
+      if (id) {
+        await updateContact({
+          id,
+          updateData: {
+            phone_1: values.phone,
+            phone_2: values.secondPhone,
+            email: values.email,
+            telegram: values.telegram,
+            linkedin: values.linkedin,
+            facebook: values.facebook,
+            discord: values.discord,
+            instagram: values.instagram,
+          },
+        });
+      } else {
+        await addContact({
           phone_1: values.phone,
           phone_2: values.secondPhone,
           email: values.email,
@@ -72,28 +91,22 @@ const Contacts = () => {
           facebook: values.facebook,
           discord: values.discord,
           instagram: values.instagram,
-        },
-      });
+        });
+      }
+
       refetch();
     } catch (error) {
       console.log(error);
     }
   };
-  console.log('error: ', errors);
-
-  if (isFetching) {
-    return <p>Loading....</p>;
-  }
 
   return (
-    <section className="px-[24px] py-[40px]">
-      <div className="mb-[70px] text-[40px] font-bold leading-[150%] tracking-[-0.03em] text-[#fff]">
-        Контакти
-      </div>
+    <section className=" relative px-[24px] py-[40px]">
+      <PageTitle title="Контакти"></PageTitle>
       <form
         onSubmit={handleSubmit(submitForm)}
         autoComplete="off"
-        className="flex w-[908px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
+        className="mt-[50px] flex w-[908px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
         <div>
           <Controller
             name="phone"
@@ -235,6 +248,7 @@ const Contacts = () => {
           />
         </div>
       </form>
+      {isFetching && <Loader />}
     </section>
   );
 };
