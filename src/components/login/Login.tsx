@@ -97,8 +97,8 @@ const Login = () => {
   const password = watch('password');
   return (
     <>
-      <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
-        <div className="relative flex  w-[520px] flex-col items-center justify-center rounded-md bg-white px-[35px] py-[35px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
+      <div className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
+        <div className="relative flex w-[520px]  flex-col items-center justify-center overflow-auto rounded-md bg-white px-[35px] py-[35px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
           <div className="px-6 py-4 text-center">
             <h2 className="mb-[24px] text-[36px] font-bold 5xl:text-[40px]">
               Вхід
