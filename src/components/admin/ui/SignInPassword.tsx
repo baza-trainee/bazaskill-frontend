@@ -51,7 +51,7 @@ ${
       {!!title && (
         <label
           htmlFor={title}
-          className=" mb-[8px]  block text-left text-[20px]  leading-[1.4] text-[#020202]">
+          className=" mb-[8px]  block text-left text-lg leading-[1.4]   text-[#020202]  5xl:text-xl">
           {title}
           {isRequired && (
             <span className="text-error">*</span>

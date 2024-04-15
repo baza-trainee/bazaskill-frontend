@@ -11,8 +11,13 @@ import Link from 'next/link';
 import { defaultValuesPassword } from './defaultValues';
 import { passwordScheme } from './signInScheme';
 import SignInPassword from '../admin/ui/SignInPassword';
+import { useParams, useRouter } from 'next/navigation';
+import { resetPassword } from '@/api/signIn';
 
 const RestorePassword = () => {
+  const { token } = useParams<{ token: string }>();
+  console.log(token);
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -26,7 +31,21 @@ const RestorePassword = () => {
   const onSubmit: SubmitHandler<
     z.infer<typeof passwordScheme>
   > = async (values) => {
-    console.log(values);
+    try {
+      const response = await resetPassword({
+        token: token,
+        password: values.password,
+      });
+      if (response.status === 201) {
+        router.replace('/admin/candidates');
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
+    }
   };
 
   return (

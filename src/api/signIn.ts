@@ -3,7 +3,6 @@ import axios from '@/config/axios';
 import {
   authLoginType,
   forgotPasswordType,
-  resetPasswordType,
 } from '@/types/singIn';
 
 export const getProfile = async () => {
@@ -27,10 +26,16 @@ export const forgotPassword = async (data: any) => {
   return response;
 };
 
-export const resetPassword = async (data: any) => {
-  const response = await axios.post<resetPasswordType>(
-    '/password/reset',
-    data
-  );
+export const resetPassword = async ({
+  token,
+  password,
+}: {
+  token: string;
+  password: string;
+}) => {
+  const response = await axios.post('/password/reset', {
+    token,
+    password,
+  });
   return response;
 };

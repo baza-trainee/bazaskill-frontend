@@ -17,6 +17,7 @@ import { authLogin } from '@/api/signIn';
 import SignInEmail from '../admin/ui/SignInEmail';
 import SignInButton from '../admin/ui/buttons/SignInButton';
 import ErrorAlert from '../admin/alerts/ErrorAlert';
+import Link from 'next/link';
 
 const SignIn = () => {
   const router = useRouter();
@@ -108,7 +109,7 @@ const SignIn = () => {
             <form
               className="w-[326px] flex-col"
               onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
+              <div className="mb-[36px] flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
                 <div>
                   <Controller
                     name="email"
@@ -138,7 +139,7 @@ const SignIn = () => {
                     )}
                   />
                 </div>
-                <div className="flex items-center  gap-[10px]">
+                <div className=" flex  items-center gap-[10px]">
                   <Controller
                     name="rememberMe"
                     control={control}
@@ -157,6 +158,13 @@ const SignIn = () => {
                     Запам’ятати пароль
                   </label>
                 </div>
+              </div>
+              <div className="flex flex-col gap-[36px]">
+                <Link
+                  href={'/admin/signIn/forgottenPassword'}
+                  className=" text-center text-lg text-[#35DB4F] underline  5xl:text-xl">
+                  Забули пароль?
+                </Link>
                 <SignInButton
                   text={
                     isProcessing

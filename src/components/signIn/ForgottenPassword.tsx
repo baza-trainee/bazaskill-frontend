@@ -12,8 +12,10 @@ import { emailScheme } from './signInScheme';
 import { defaultValuesEmail } from './defaultValues';
 import Link from 'next/link';
 import { forgotPassword } from '@/api/signIn';
+import { useRouter } from 'next/navigation';
 
 const ForgottenPassword = () => {
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -31,7 +33,11 @@ const ForgottenPassword = () => {
       email: values.email,
     });
     if (response.status === 201) {
-      console.log(values);
+      const token = response.data.token; // Извлекаем токен из ответа
+      console.log(token); // Печатаем токен в консоль для проверки
+      router.replace(
+        `/admin/signIn/restorePassword?token=${token}`
+      );
     }
   };
 

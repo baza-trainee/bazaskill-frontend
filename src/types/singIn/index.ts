@@ -6,6 +6,7 @@ export type authLoginType = {
 };
 export type forgotPasswordType = {
   email: string;
+  token: string;
 };
 
 export type resetPasswordType = {
