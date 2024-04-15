@@ -19,7 +19,7 @@ import SignInButton from '../admin/ui/buttons/SignInButton';
 import ErrorAlert from '../admin/alerts/ErrorAlert';
 import Link from 'next/link';
 
-const SignIn = () => {
+const Login = () => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -161,7 +161,7 @@ const SignIn = () => {
               </div>
               <div className="flex flex-col gap-[36px]">
                 <Link
-                  href={'/admin/signIn/forgottenPassword'}
+                  href={'/login/forgot-password'}
                   className=" text-center text-lg text-[#35DB4F] underline  5xl:text-xl">
                   Забули пароль?
                 </Link>
@@ -201,4 +201,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

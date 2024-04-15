@@ -1,4 +1,4 @@
-import RestorePassword from '@/components/signIn/RestorePassword';
+import RestorePassword from '@/components/login/RestorePassword';
 import React from 'react';
 
 const RestorePasswordPage = () => {
