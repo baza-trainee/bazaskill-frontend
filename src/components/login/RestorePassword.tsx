@@ -16,6 +16,7 @@ import { resetPassword } from '@/api/signIn';
 
 const RestorePassword = () => {
   const { token } = useParams<{ token: string }>();
+  console.log(token);
   const router = useRouter();
   const {
     handleSubmit,
@@ -36,7 +37,7 @@ const RestorePassword = () => {
         password: values.password,
       });
       if (response.status === 201) {
-        router.replace('/admin/candidates');
+        router.replace('/login');
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -96,7 +97,7 @@ const RestorePassword = () => {
                   Зберегти
                 </button>
                 <Link
-                  href={'/login/forgot'}
+                  href={'/login/forgot-password'}
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
                   Скасувати
                 </Link>

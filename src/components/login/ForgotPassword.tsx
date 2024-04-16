@@ -29,12 +29,27 @@ const ForgotPassword = () => {
   const onSubmit: SubmitHandler<
     z.infer<typeof emailScheme>
   > = async (values) => {
-    const response = await forgotPassword({
-      email: values.email,
-    });
-    if (response.status === 201) {
-      const token = response.data.token;
-      router.replace(`/login/restore-password/${token}`);
+    try {
+      const response = await forgotPassword({
+        email: values.email,
+      });
+      if (response.status === 201) {
+        const token = response.data?.token;
+        console.log(token);
+        if (token) {
+          router.replace(
+            `/login/restore-password?token=${token}`
+          );
+        } else {
+          console.error('Token is not defined');
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
     }
   };
 
