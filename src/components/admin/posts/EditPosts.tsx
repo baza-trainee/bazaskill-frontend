@@ -42,11 +42,17 @@ const EditPosts = () => {
   const {
     handleSubmit,
     control,
-    formState: { isDirty, errors },
+    formState: { errors, touchedFields },
   } = useForm<TPostScheme>({
     mode: 'onChange',
     resolver: zodResolver(postScheme),
     values: data,
+    defaultValues: {
+      title: '',
+      image: '',
+      link: '',
+      text: '',
+    },
   });
 
   const onsubmit: SubmitHandler<TPostScheme> = async (
@@ -162,7 +168,7 @@ const EditPosts = () => {
                   ? 'Обробка запиту'
                   : 'Зберегти зміни'
               }
-              disabled={!isDirty}
+              disabled={!Object.keys(touchedFields).length}
             />
             <SecondaryButton
               text="Скасувати"
