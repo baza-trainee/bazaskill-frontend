@@ -11,8 +11,12 @@ import Link from 'next/link';
 import { defaultValuesPassword } from './defaultValues';
 import { passwordScheme } from './signInScheme';
 import SignInPassword from '../admin/ui/SignInPassword';
+import { useParams, useRouter } from 'next/navigation';
+import { resetPassword } from '@/api/signIn';
 
 const RestorePassword = () => {
+  const { token } = useParams<{ token: string }>();
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -26,12 +30,26 @@ const RestorePassword = () => {
   const onSubmit: SubmitHandler<
     z.infer<typeof passwordScheme>
   > = async (values) => {
-    console.log(values);
+    try {
+      const response = await resetPassword({
+        token: token,
+        password: values.password,
+      });
+      if (response.status === 201) {
+        router.replace('/admin/candidates');
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error('Неочікувана помилка', error);
+      }
+    }
   };
 
   return (
-    <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
-      <div className="relative flex  w-[520px] flex-col items-center justify-center rounded-md bg-white px-[50px] py-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
+    <div className="absolute  inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
+      <div className="relative flex  w-[520px] flex-col items-center justify-center overflow-auto rounded-md bg-white px-[50px] py-[50px]  font-['Tahoma',_sans-serif] text-black 5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
           <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">
             Відновити пароль
@@ -78,7 +96,7 @@ const RestorePassword = () => {
                   Зберегти
                 </button>
                 <Link
-                  href={'/admin/signIn/forgottenPassword'}
+                  href={'/login/forgot'}
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
                   Скасувати
                 </Link>

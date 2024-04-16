@@ -3,7 +3,8 @@ import { z } from 'zod';
 const emailPattern =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const passwordPattern = /^(.{8,})$/;
+const passwordPattern =
+  /^(?!.*[!_\-)\\(.,])[\w\-\\(\\).,]{8,14}$/;
 
 export const settingsScheme = z.object({
   email: z
@@ -21,10 +22,13 @@ export const settingsScheme = z.object({
     ),
   password: z
     .string()
-    .refine(
-      (value) => !value || passwordPattern.test(value),
-      {
-        message: 'Пароль має бути мінімум 8 символів',
-      }
-    ),
+    .min(8, {
+      message: 'Пароль має містити мінімум 8 символів',
+    })
+    .max(14, {
+      message: 'Пароль має містити максимум 14 символів',
+    })
+    .refine((value) => passwordPattern.test(value), {
+      message: 'Введіть дійсний символ',
+    }),
 });

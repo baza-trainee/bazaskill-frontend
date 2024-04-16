@@ -17,8 +17,9 @@ import { authLogin } from '@/api/signIn';
 import SignInEmail from '../admin/ui/SignInEmail';
 import SignInButton from '../admin/ui/buttons/SignInButton';
 import ErrorAlert from '../admin/alerts/ErrorAlert';
+import Link from 'next/link';
 
-const SignIn = () => {
+const Login = () => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -96,8 +97,8 @@ const SignIn = () => {
   const password = watch('password');
   return (
     <>
-      <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
-        <div className="relative flex  w-[520px] flex-col items-center justify-center rounded-md bg-white px-[35px] py-[35px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
+      <div className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
+        <div className="relative flex w-[520px]  flex-col items-center justify-center overflow-auto rounded-md bg-white px-[35px] py-[35px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
           <div className="px-6 py-4 text-center">
             <h2 className="mb-[24px] text-[36px] font-bold 5xl:text-[40px]">
               Вхід
@@ -108,7 +109,7 @@ const SignIn = () => {
             <form
               className="w-[326px] flex-col"
               onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
+              <div className="mb-[36px] flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
                 <div>
                   <Controller
                     name="email"
@@ -138,7 +139,7 @@ const SignIn = () => {
                     )}
                   />
                 </div>
-                <div className="flex items-center  gap-[10px]">
+                <div className=" flex  items-center gap-[10px]">
                   <Controller
                     name="rememberMe"
                     control={control}
@@ -157,6 +158,13 @@ const SignIn = () => {
                     Запам’ятати пароль
                   </label>
                 </div>
+              </div>
+              <div className="flex flex-col gap-[36px]">
+                <Link
+                  href={'/login/forgot-password'}
+                  className=" text-center text-lg text-[#35DB4F] underline  5xl:text-xl">
+                  Забули пароль?
+                </Link>
                 <SignInButton
                   text={
                     isProcessing
@@ -193,4 +201,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

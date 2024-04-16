@@ -12,8 +12,10 @@ import { emailScheme } from './signInScheme';
 import { defaultValuesEmail } from './defaultValues';
 import Link from 'next/link';
 import { forgotPassword } from '@/api/signIn';
+import { useRouter } from 'next/navigation';
 
-const ForgottenPassword = () => {
+const ForgotPassword = () => {
+  const router = useRouter();
   const {
     handleSubmit,
     control,
@@ -31,13 +33,14 @@ const ForgottenPassword = () => {
       email: values.email,
     });
     if (response.status === 201) {
-      console.log(values);
+      const token = response.data.token;
+      router.replace(`/login/restore-password/${token}`);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
-      <div className="relative flex  w-[520px] flex-col items-center justify-center rounded-md bg-white px-[50px] py-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
+    <div className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
+      <div className="relative flex w-[520px]  flex-col items-center justify-center overflow-auto rounded-md bg-white px-[50px] py-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
           <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">
             Забули пароль?
@@ -72,7 +75,7 @@ const ForgottenPassword = () => {
                   Підтвердити
                 </button>
                 <Link
-                  href={'/admin/signIn'}
+                  href={'/login'}
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
                   Скасувати
                 </Link>
@@ -91,4 +94,4 @@ const ForgottenPassword = () => {
   );
 };
 
-export default ForgottenPassword;
+export default ForgotPassword;
