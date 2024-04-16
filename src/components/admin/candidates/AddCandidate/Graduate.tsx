@@ -32,7 +32,7 @@ const Graduate = ({
           >
             <div className="flex w-full gap-[24px]">
               <Controller
-                name={`graduate.${index}.universiry`}
+                name={`graduate.${index}.university`}
                 control={control}
                 render={({
                   field,
@@ -55,7 +55,7 @@ const Graduate = ({
                 )}
               />
               <Controller
-                name={`graduate.${index}.universiry_specializaton`}
+                name={`graduate.${index}.university_specializaton`}
                 control={control}
                 render={({
                   field,
@@ -80,7 +80,7 @@ const Graduate = ({
               />
 
               <Controller
-                name={`graduate.${index}.universiry_grade`}
+                name={`graduate.${index}.university_grade`}
                 control={control}
                 render={({
                   field: { onChange, value },

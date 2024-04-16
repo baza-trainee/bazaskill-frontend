@@ -1,4 +1,5 @@
 'use client';
+
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
 import { ISpecialization } from '@/types/specialization';
@@ -29,19 +30,13 @@ import Cources from './Сources';
 import BazaExperience from './BazaExperience';
 import SelectField from './SelectField';
 import { createCandidate } from '@/api/candidates';
-import {
-  IBazaExperience,
-  ICandidateCources,
-  ICandidateGraduate,
-  ICandidateLanguages,
-  ICandidates,
-} from '@/types/candidates';
-import { z } from 'zod';
+import OutBazaExperience from './OutBazaExperience';
 
 const AddCandidate = () => {
   const [stack, setStack] = useState<
-    Array<{ title: string; isExist: boolean }>
+    Array<{ id: string; title: string; isExist: boolean }>
   >([]);
+
   const { mutate, data } = useMutation({
     mutationKey: [constants.candidates.CREATE_CANDIDATE],
     mutationFn: createCandidate,
@@ -69,133 +64,8 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log({ ...data, stack });
-    const formData = new FormData();
-    formData.append('name_ua', data.name_ua);
-    formData.append('surname_ua', data.surname_ua);
-    formData.append('name', data.name);
-    formData.append('surname', data.surname);
-    formData.append('country', data.country);
-    formData.append('city', data.city);
-    formData.append('phone', data.phone);
-    formData.append('email', data.email);
-    formData.append('linkedin', data.linkedin);
-    formData.append('discord', data.discord);
-    formData.append('telegram', data.telegram);
-    data.languages.forEach(
-      (
-        { language, level }: ICandidateLanguages,
-        index: number
-      ) => {
-        formData.append(
-          `candidate_language[${index}][language]`,
-          language
-        );
-        formData.append(
-          `candidate_language[${index}][level]`,
-          level
-        );
-      }
-    );
-    formData.append('work_format', data.work_format);
-    formData.append('sallary_form', data.salary_from);
-    formData.append('sallary_to', data.salary_to);
-    formData.append('about', data.salary_to);
-    formData.append('specialization', data.specialization);
-    formData.append('cv', data.cv[0]);
-    data.graduate.forEach(
-      (graduate: ICandidateGraduate, index: number) => {
-        // console.log(graduate);
-        formData.append(
-          'graduate',
-          graduate.graduate_sertificate[0]
-        );
-        formData.append(
-          `graduate[${index}][university]`,
-          graduate.universiry
-        );
-        formData.append(
-          `graduate[${index}][university_specialization]`,
-          graduate.universiry_specializaton
-        );
-        formData.append(
-          `graduate[${index}][university_grade]`,
-          graduate.universiry_grade
-        );
-        formData.append(
-          `graduate[${index}][graduate_start]`,
-          graduate.graduate_start
-        );
-        formData.append(
-          `graduate[${index}][graduate_end]`,
-          graduate.graduate_end
-        );
-      }
-    );
-    data.cources.forEach(
-      (
-        {
-          cources_name,
-          cources_specializaton,
-          cources_start,
-          cources_end,
-          cources_sertificate,
-        }: ICandidateCources,
-        index: number
-      ) => {
-        formData.append(`cources`, cources_sertificate[0]);
-
-        formData.append(
-          `cources[${index}][cources_name]`,
-          cources_name
-        );
-        formData.append(
-          `cources[${index}][cources_specializaton]`,
-          cources_specializaton
-        );
-        formData.append(
-          `cources[${index}][cources_start]`,
-          cources_start
-        );
-        formData.append(
-          `cources[${index}][cources_end]`,
-          cources_end
-        );
-      }
-    );
-
-    data.baza_experience.forEach(
-      (
-        {
-          role,
-          project_name,
-          project_duration,
-        }: IBazaExperience,
-        index: number
-      ) => {
-        formData.append(
-          `baza_experience[${index}][role]`,
-          role
-        );
-        formData.append(
-          `baza_experience[${index}][project_name]`,
-          project_name
-        );
-        formData.append(
-          `baza_experience[${index}][project_duration]`,
-          project_duration
-        );
-      }
-    );
-
-    formData.append(
-      `baza_recomendation`,
-      data.baza_recomendation
-    );
-
-    formData.append(`status`, 'searching');
-    formData.append(`isPublished`, 'true');
-    mutate(formData);
+    // console.log(data);
+    mutate({ data, stack });
     // reset();
   };
 
@@ -211,6 +81,11 @@ const AddCandidate = () => {
 
   const baza_experience = useFieldArray({
     name: 'baza_experience',
+    control,
+  });
+
+  const out_baza_experience = useFieldArray({
+    name: 'out_baza_experience',
     control,
   });
 
@@ -624,6 +499,15 @@ const AddCandidate = () => {
           <BazaExperience
             control={control}
             fieldArray={baza_experience}
+          />
+
+          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+            <h3>Досвід роботи поза Базою</h3>
+          </div>
+
+          <OutBazaExperience
+            control={control}
+            fieldArray={out_baza_experience}
           />
 
           <div className="flex w-full gap-[24px]">

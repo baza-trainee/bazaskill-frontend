@@ -25,9 +25,9 @@ const defaultValues = {
   cv: null,
   graduate: [
     {
-      universiry: 'KNURE',
-      universiry_specializaton: 'Program ingenering',
-      universiry_grade: 'Bachelor',
+      university: 'KNURE',
+      university_specializaton: 'Program ingenering',
+      university_grade: 'Bachelor',
       graduate_start: '01.09.2017',
       graduate_end: '21.07.2022',
       graduate_sertificate: null,
@@ -47,6 +47,14 @@ const defaultValues = {
       role: '',
       project_name: 'BazaSkill',
       project_duration: '3',
+    },
+  ],
+  out_baza_experience: [
+    {
+      company_name: 'Google',
+      company_specialization: 'IT',
+      work_start: '16.04.2023',
+      work_end: '16.04.2023',
     },
   ],
   baza_recomendation:

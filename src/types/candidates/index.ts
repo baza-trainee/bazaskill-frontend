@@ -1,7 +1,7 @@
 export interface ICandidateGraduate {
-  universiry: string;
-  universiry_specializaton: string;
-  universiry_grade: string;
+  university: string;
+  university_specializaton: string;
+  university_grade: string;
   graduate_start: string;
   graduate_end: string;
   graduate_sertificate: FileList;
@@ -19,6 +19,13 @@ export interface IBazaExperience {
   role: string;
   project_name: string;
   project_duration: string;
+}
+
+export interface IOutBazaExperience {
+  company_name: string;
+  company_specialization: string;
+  work_start: string;
+  work_end: string;
 }
 
 export interface ICandidateLanguages {
@@ -48,7 +55,9 @@ export interface ICandidates {
   graduate: ICandidateGraduate[];
   cources: ICandidateCources[];
   baza_experience: IBazaExperience[];
+  out_baza_experience: IOutBazaExperience[];
   baza_recomendation: string;
+  status: string;
 }
 
 export type Candidates = {
