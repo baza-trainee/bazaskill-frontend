@@ -1,5 +1,5 @@
 import React from 'react';
-import Candidates from '../../../components/main/CandidateFilters/Candidates';
+import Candidates from '@/components/main/CandidateFilters/Candidates';
 
 const CandidatesPage: React.FC = () => {
   return (

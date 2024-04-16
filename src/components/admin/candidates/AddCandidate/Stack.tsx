@@ -1,31 +1,72 @@
 'use client';
+
+import { IStack } from '@/types/stack';
+import {
+  UseQueryResult,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { addStack, getStack } from '@/api/stack';
 import React, {
   ChangeEvent,
   useEffect,
   useState,
 } from 'react';
+
 type Stack = {
+  id: string;
   title: string;
   isExist: boolean;
 };
+
 interface IStackProps {
   handleStack: (stack: Stack[]) => void;
 }
+
 const Stack: React.FC<IStackProps> = ({ handleStack }) => {
-  const [stack, setStack] = useState<Stack[]>([
-    { title: 'React', isExist: true },
-    { title: 'UI/UX', isExist: true },
-    { title: 'Cannva', isExist: false },
-    { title: 'Adobe Illustrator', isExist: true },
-    { title: 'Photoshop', isExist: true },
-    { title: 'Mobile Web Design', isExist: true },
-    { title: 'Responsive web design', isExist: true },
-  ]);
+  const [stack, setStack] = useState<Stack[]>([]);
+
+  const stackResponse: UseQueryResult<IStack[], Error> =
+    useQuery({
+      queryKey: [constants.stack.GET_STACK],
+      queryFn: getStack,
+    });
+
+  const { mutate, data } = useMutation({
+    mutationKey: [constants.stack.ADD_STACK],
+    mutationFn: addStack,
+  });
+
+  console.log(stackResponse.data);
+
+  const stackNames = stackResponse?.data?.map((item) =>
+    item.title.toLowerCase()
+  );
+
+  const getId = (title: string) => {
+    const foundedItem = stackResponse.data?.find(
+      (item) =>
+        item.title.toLowerCase() ===
+        title.toLocaleLowerCase()
+    );
+    return foundedItem?.id.toString();
+  };
+
   const [input, setInput] = useState<string>('');
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      setStack([...stack, { title: input, isExist: true }]);
+      setStack([
+        ...stack,
+        {
+          id: getId(input) as string,
+          title: input,
+          isExist: stackNames!.includes(
+            input.toLowerCase()
+          ),
+        },
+      ]);
       setInput('');
     }
   };
@@ -42,6 +83,15 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
   useEffect(() => {
     handleStack(stack);
   }, [stack]);
+
+  const addStackItemToDB = () => {
+    const nonExistedStack = stack.find(
+      (item) => item.isExist === false
+    );
+    console.log(nonExistedStack?.title);
+    mutate(nonExistedStack?.title as string);
+  };
+
   return (
     <div className="flex w-full gap-[24px]">
       <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
@@ -65,7 +115,7 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
             id="stack_field"
             type="text"
             name="stack"
-            placeholder="Пищіть тут"
+            placeholder="Пишіть тут"
             value={input}
             onChange={({
               target: { value },
@@ -91,7 +141,10 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
               ))}
           </div>
 
-          <div className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]">
+          <div
+            onClick={addStackItemToDB}
+            className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]"
+          >
             + &nbsp;{' '}
             <span className="underline">
               Створити новий
@@ -103,12 +156,14 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
     </div>
   );
 };
+
 type StackItemProps = {
   index: number;
   title: string;
   isExist: boolean;
   handleDelete: (index: number) => void;
 };
+
 const StackItem: React.FC<StackItemProps> = ({
   index,
   title,

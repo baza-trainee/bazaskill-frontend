@@ -37,13 +37,13 @@ const schema = z.object({
     ),
   graduate: z.array(
     z.object({
-      universiry: z
+      university: z
         .string()
         .min(1, { message: 'Required' }),
-      universiry_specializaton: z
+      university_specializaton: z
         .string()
         .min(1, { message: 'Required' }),
-      universiry_grade: z.string(),
+      university_grade: z.string(),
       graduate_start: z
         .string()
         .min(1, { message: 'Required' }),
@@ -95,6 +95,20 @@ const schema = z.object({
       project_duration: z
         .string()
         .min(1, { message: 'Required' }),
+    })
+  ),
+  out_baza_experience: z.array(
+    z.object({
+      company_name: z
+        .string()
+        .min(1, { message: 'Required' }),
+      company_specialization: z
+        .string()
+        .min(1, { message: 'Required' }),
+      work_start: z
+        .string()
+        .min(1, { message: 'Required' }),
+      work_end: z.string().min(1, { message: 'Required' }),
     })
   ),
   baza_recomendation: z

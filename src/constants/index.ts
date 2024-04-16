@@ -45,4 +45,9 @@ export const constants = {
     FETCH_ALL_CANDIDATES: 'FETCH_ALL_CANDIDATES',
     CREATE_CANDIDATE: 'CREATE_CANDIDATE',
   },
+
+  stack: {
+    GET_STACK: 'GET_STACK',
+    ADD_STACK: 'ADD_STACK',
+  },
 };
