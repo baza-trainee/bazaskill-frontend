@@ -17,7 +17,7 @@ const CandidateHero = () => {
 
         <div className="mt-[60px] flex items-center gap-[40px]">
           <h2 className="font-tahoma text-[40px] font-[700] text-white">
-            Vlad
+            {t('name')}
           </h2>
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             ID 0224456
