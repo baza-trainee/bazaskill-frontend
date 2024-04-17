@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -13,8 +13,10 @@ import { passwordScheme } from './signInScheme';
 import SignInPassword from '../admin/ui/SignInPassword';
 import { useParams, useRouter } from 'next/navigation';
 import { resetPassword } from '@/api/signIn';
+import SuccessButton from '../admin/ui/buttons/SuccessButton';
 
 const RestorePassword = () => {
+  const [isProcessing, setIsProcessing] = useState(false);
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
   const {
@@ -31,17 +33,21 @@ const RestorePassword = () => {
     z.infer<typeof passwordScheme>
   > = async (values) => {
     try {
+      setIsProcessing(true);
       const response = await resetPassword({
         token: token,
         password: values.password,
       });
       if (response.status === 201) {
+        setIsProcessing(false);
         router.replace('/login');
       }
     } catch (error) {
       if (error instanceof Error) {
+        setIsProcessing(false);
         console.error(error.message);
       } else {
+        setIsProcessing(false);
         console.error('Неочікувана помилка', error);
       }
     }
@@ -90,11 +96,15 @@ const RestorePassword = () => {
                 />
               </div>
               <div className="flex gap-[18px] ">
-                <button
-                  className="flex h-[36px] min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white"
-                  onClick={handleSubmit(onSubmit)}>
-                  Зберегти
-                </button>
+                <SuccessButton
+                  className="flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white"
+                  onClick={handleSubmit(onSubmit)}
+                  text={
+                    isProcessing
+                      ? 'Обробка запиту...'
+                      : 'Зберегти'
+                  }
+                />
                 <Link
                   href={'/login'}
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">

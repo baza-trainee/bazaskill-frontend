@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -13,8 +13,10 @@ import { defaultValuesEmail } from './defaultValues';
 import Link from 'next/link';
 import { forgotPassword } from '@/api/signIn';
 import { useRouter } from 'next/navigation';
+import SuccessButton from '../admin/ui/buttons/SuccessButton';
 
 const ForgotPassword = () => {
+  const [isProcessing, setIsProcessing] = useState(false);
   const router = useRouter();
   const {
     handleSubmit,
@@ -30,12 +32,13 @@ const ForgotPassword = () => {
     z.infer<typeof emailScheme>
   > = async (values) => {
     try {
+      setIsProcessing(true);
       const response = await forgotPassword({
         email: values.email,
       });
       if (response.status === 201) {
         const token = response.data?.token;
-        console.log(token);
+        setIsProcessing(false);
         if (token) {
           router.push(
             `/ua/login/restore-password/${token}`
@@ -46,8 +49,10 @@ const ForgotPassword = () => {
       }
     } catch (error) {
       if (error instanceof Error) {
+        setIsProcessing(false);
         console.error(error.message);
       } else {
+        setIsProcessing(false);
         console.error('Неочікувана помилка', error);
       }
     }
@@ -84,11 +89,15 @@ const ForgotPassword = () => {
                 />
               </div>
               <div className="flex gap-[18px] ">
-                <button
+                <SuccessButton
                   className="flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white"
-                  onClick={handleSubmit(onSubmit)}>
-                  Підтвердити
-                </button>
+                  onClick={handleSubmit(onSubmit)}
+                  text={
+                    isProcessing
+                      ? 'Обробка запиту...'
+                      : 'Підтвердити'
+                  }
+                />
                 <Link
                   href={'/login'}
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">

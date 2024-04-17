@@ -50,27 +50,33 @@ export const emailScheme = z.object({
     ),
 });
 
-export const passwordScheme = z.object({
-  password: z
-    .string()
-    .min(8, {
-      message: 'Пароль має містити мінімум 8 символів',
-    })
-    .max(14, {
-      message: 'Пароль має містити максимум 14 символів',
-    })
-    .refine((value) => passwordPattern.test(value), {
-      message: 'Введіть дійсний символ',
-    }),
-  passwordAccept: z
-    .string()
-    .min(8, {
-      message: 'Пароль має містити мінімум 8 символів',
-    })
-    .max(14, {
-      message: 'Пароль має містити максимум 14 символів',
-    })
-    .refine((value) => passwordPattern.test(value), {
-      message: 'Введіть дійсний символ',
-    }),
-});
+export const passwordScheme = z
+  .object({
+    password: z
+      .string()
+      .min(8, {
+        message: 'Пароль має містити мінімум 8 символів',
+      })
+      .max(14, {
+        message: 'Пароль має містити максимум 14 символів',
+      })
+      .refine((value) => passwordPattern.test(value), {
+        message: 'Введіть дійсний символ',
+      }),
+
+    passwordAccept: z
+      .string()
+      .min(8, {
+        message: 'Пароль має містити мінімум 8 символів',
+      })
+      .max(14, {
+        message: 'Пароль має містити максимум 14 символів',
+      })
+      .refine((value) => passwordPattern.test(value), {
+        message: 'Введіть дійсний символ',
+      }),
+  })
+  .refine((data) => data.password === data.passwordAccept, {
+    message: 'Новий пароль не співпадає',
+    path: ['passwordAccept'],
+  });
