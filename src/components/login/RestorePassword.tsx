@@ -16,7 +16,6 @@ import { resetPassword } from '@/api/signIn';
 
 const RestorePassword = () => {
   const { token } = useParams<{ token: string }>();
-  console.log(token);
   const router = useRouter();
   const {
     handleSubmit,
@@ -97,7 +96,7 @@ const RestorePassword = () => {
                   Зберегти
                 </button>
                 <Link
-                  href={'/login/forgot-password'}
+                  href={'/login'}
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
                   Скасувати
                 </Link>

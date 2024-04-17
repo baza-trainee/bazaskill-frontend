@@ -37,8 +37,8 @@ const ForgotPassword = () => {
         const token = response.data?.token;
         console.log(token);
         if (token) {
-          router.replace(
-            `/login/restore-password?token=${token}`
+          router.push(
+            `/ua/login/restore-password/${token}`
           );
         } else {
           console.error('Token is not defined');
