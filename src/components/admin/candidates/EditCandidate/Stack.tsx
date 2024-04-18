@@ -4,16 +4,18 @@
 import { IStack } from '@/types/stack';
 import {
   UseQueryResult,
-  useMutation,
   useQuery,
 } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import { addStack, getStack } from '@/api/stack';
+import { getStack } from '@/api/stack';
 import React, {
   ChangeEvent,
   useEffect,
   useState,
 } from 'react';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { useModal } from '@/stores/useModal';
+import AddStackModal from '../AddStackModal/AddStackModal';
 
 type Stack = {
   id: string;
@@ -32,6 +34,14 @@ const Stack: React.FC<IStackProps> = ({
 }) => {
   const [stack, setStack] = useState<Stack[]>(outerStack);
 
+  const isModalOpen = useModal(
+    (state) => state.isModalOpen
+  );
+  const modalType = useModal((state) => state.modalType);
+  const { openModal } = useModal();
+
+  useBodyScrollLock(isModalOpen);
+
   useEffect(() => {
     if (outerStack !== stack) {
       setStack(outerStack);
@@ -43,11 +53,6 @@ const Stack: React.FC<IStackProps> = ({
       queryKey: [constants.stack.GET_STACK],
       queryFn: getStack,
     });
-
-  const { mutate } = useMutation({
-    mutationKey: [constants.stack.ADD_STACK],
-    mutationFn: addStack,
-  });
 
   const stackNames = stackResponse?.data?.map((item) =>
     item.title.toLowerCase()
@@ -93,24 +98,15 @@ const Stack: React.FC<IStackProps> = ({
     handleStack(stack);
   }, [stack]);
 
-  const addStackItemToDB = () => {
-    const nonExistedStack = stack.find(
-      (item) => item.isExist === false
-    );
-    console.log(nonExistedStack?.title);
-    mutate(nonExistedStack?.title as string);
-  };
-
   return (
-    <div className="flex w-full gap-[24px]">
+    <div className="relative flex w-full gap-[24px]">
       <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
         <label htmlFor="about">
           Стек <span className="text-red-500">*</span>
         </label>
         <div
           id="about"
-          className="flex h-auto min-h-[132px] min-w-full flex-wrap gap-[8px] rounded-[4px] bg-white px-[16px] py-[20px] text-black"
-        >
+          className="flex h-auto min-h-[132px] min-w-full flex-wrap gap-[8px] rounded-[4px] bg-white px-[16px] py-[20px] text-black">
           {stack.map(({ title, isExist }: Stack, index) => (
             <StackItem
               key={index}
@@ -143,17 +139,15 @@ const Stack: React.FC<IStackProps> = ({
               .map(({ title, isExist }: Stack, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center rounded-full border-[1px] border-white px-[16px] py-[5px]"
-                >
+                  className="flex items-center justify-center rounded-full border-[1px] border-white px-[16px] py-[5px]">
                   {title}
                 </div>
               ))}
           </div>
 
           <div
-            onClick={addStackItemToDB}
-            className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]"
-          >
+            onClick={() => openModal('add_stack')}
+            className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]">
             + &nbsp;{' '}
             <span className="underline">
               Створити новий
@@ -162,6 +156,9 @@ const Stack: React.FC<IStackProps> = ({
         </div>
       </div>
       <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
+      {isModalOpen && modalType === 'add_stack' && (
+        <AddStackModal />
+      )}
     </div>
   );
 };
@@ -181,8 +178,7 @@ const StackItem: React.FC<StackItemProps> = ({
 }) => {
   return (
     <div
-      className={`flex h-[36px] w-fit items-center gap-[16px] rounded-full border-[2px] bg-graphite px-[16px] py-[5px] font-sans text-[16px] text-white ${isExist ? 'border-green' : 'border-error'}`}
-    >
+      className={`flex h-[36px] w-fit items-center gap-[16px] rounded-full border-[2px] bg-graphite px-[16px] py-[5px] font-sans text-[16px] text-white ${isExist ? 'border-green' : 'border-error'}`}>
       <span>{title}</span>
       <svg
         width={14}
@@ -191,8 +187,7 @@ const StackItem: React.FC<StackItemProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         onClick={() => handleDelete(index)}
-        className="cursor-pointer fill-[#787878] transition-all hover:fill-lightGray"
-      >
+        className="cursor-pointer fill-[#787878] transition-all hover:fill-lightGray">
         <path
           d="M14.6666 2.50065L13.4999 1.33398L7.99992 6.83398L2.49992 1.33398L1.33325 2.50065L6.83325 8.00065L1.33325 13.5007L2.49992 14.6673L7.99992 9.16732L13.4999 14.6673L14.6666 13.5007L9.16658 8.00065L14.6666 2.50065Z"
           fill="current"
