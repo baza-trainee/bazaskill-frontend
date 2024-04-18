@@ -90,7 +90,9 @@ const RestorePassword = () => {
                       {...field}
                       title="Підтвердіть пароль"
                       placeholder="********"
-                      errorText={errors.password?.message}
+                      errorText={
+                        errors.passwordAccept?.message
+                      }
                     />
                   )}
                 />

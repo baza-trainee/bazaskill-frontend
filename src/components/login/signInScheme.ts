@@ -74,7 +74,6 @@ export const passwordScheme = z
       .refine((value) => passwordPattern.test(value), {
         message: 'Введіть дійсний символ',
       }),
-
     passwordAccept: z
       .string()
       .nonempty({
