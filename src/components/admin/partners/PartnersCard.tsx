@@ -77,7 +77,7 @@ const PartnersCard = ({
               alt={item.name}
               width={273}
               height={61}
-              className=" h-[61px] rounded-[8px] object-cover"
+              className=" object-fit h-[61px] rounded-[8px]"
             />
           </div>
         </div>

@@ -1,5 +1,15 @@
 import { z, ZodType } from 'zod';
 
+const emailPattern =
+  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+
+const nonRussianLettersPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const nonRussianLettersWithSymbolsAndDigitsPattern =
+  /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ.]+$/;
+
+const messageMaxLength = 2500;
 const schema = z.object({
   name_ua: z.string().min(1, { message: 'Required' }),
   surname_ua: z.string().min(1, { message: 'Required' }),
@@ -113,7 +123,18 @@ const schema = z.object({
   ),
   baza_recomendation: z
     .string()
-    .min(1, { message: 'Required' }),
+    .nonempty({
+      message: 'Поле не повинно бути пустим',
+    })
+    .refine(
+      (value) =>
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ) && value.length <= messageMaxLength,
+      {
+        message: `Введіть коректні рекомендації не більше 2500 символів`,
+      }
+    ),
 });
 
 export default schema;
