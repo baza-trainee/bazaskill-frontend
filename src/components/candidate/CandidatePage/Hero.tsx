@@ -1,10 +1,12 @@
 import { useTranslations } from 'next-intl';
+import BackToPrevious from './BackButton';
 
 const CandidateHero = () => {
   const t = useTranslations('Candidate');
   return (
-    <div className="container flex flex-col gap-[40px] pt-[90px] xl:flex-row xl:justify-between">
+    <div className="container flex flex-col gap-[40px] pt-[24px] xl:flex-row xl:justify-between">
       <div className="flex  w-[100%]  flex-col xl:w-[68%] xl:max-w-[830px]">
+        <BackToPrevious />
         <div className="flex items-center gap-[24px]">
           <svg width={40} height={30}>
             <use href="/Icons/sprite.svg#icon-flag"></use>
@@ -17,7 +19,7 @@ const CandidateHero = () => {
 
         <div className="mt-[60px] flex items-center gap-[40px]">
           <h2 className="font-tahoma text-[40px] font-[700] text-white">
-            Vlad
+            {t('name')}
           </h2>
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             ID 0224456
