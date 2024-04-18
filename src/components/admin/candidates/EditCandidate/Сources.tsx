@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
 import {
   Control,
@@ -7,23 +8,29 @@ import {
   FieldValues,
   UseFieldArrayReturn,
 } from 'react-hook-form';
+import FileInput from './FileInput';
 import TextInput from './TextInput';
 
-interface IOutBazaExperienceProps {
+interface ICourcesProps {
+  fieldsLength: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<
     FieldValues,
-    'out_baza_experience',
+    'cources',
     'id'
   >;
 }
-
-const OutBazaExperience: React.FC<
-  IOutBazaExperienceProps
-> = ({
+const Cources: React.FC<ICourcesProps> = ({
+  fieldsLength,
   control,
   fieldArray: { fields, append, remove },
 }) => {
+  useEffect(() => {
+    if (fieldsLength > 1) {
+      for (let i = 1; i < fieldsLength; i++) append;
+    }
+  }, [fieldsLength, append]);
+
   return (
     <div className="flex w-full flex-col gap-[30px]">
       {fields.map((field, index) => {
@@ -34,7 +41,7 @@ const OutBazaExperience: React.FC<
           >
             <div className="flex w-full gap-[24px]">
               <Controller
-                name={`out_baza_experience.${index}.company_name`}
+                name={`cources.${index}.cources_name`}
                 control={control}
                 render={({
                   field,
@@ -44,20 +51,20 @@ const OutBazaExperience: React.FC<
                     {...field}
                     error={
                       (
-                        errors.out_baza_experience as DeepMap<
+                        errors.cources as DeepMap<
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.company_name?.message
+                      )?.[index]?.name?.message
                     }
                     isRequired={true}
-                    placeholder="Введіть назву компанії"
-                    title="Назва компанії"
+                    placeholder="Ведіть назву"
+                    title="Назва курсів"
                   />
                 )}
               />
               <Controller
-                name={`out_baza_experience.${index}.company_specialization`}
+                name={`cources.${index}.cources_specializaton`}
                 control={control}
                 render={({
                   field,
@@ -67,16 +74,40 @@ const OutBazaExperience: React.FC<
                     {...field}
                     error={
                       (
-                        errors.baza_experience as DeepMap<
+                        errors.cources as DeepMap<
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.company_specialization
+                      )?.[index]?.cources_specializaton
                         ?.message
                     }
                     isRequired={true}
-                    placeholder="Введіть спеціалізацію компанії"
-                    title="Спеціалізація компанії"
+                    placeholder="Введіть назву"
+                    title="Cпеціальність"
+                  />
+                )}
+              />
+
+              <Controller
+                name={`cources.${index}.cources_sertificate`}
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  formState: { errors },
+                }) => (
+                  <FileInput
+                    onChange={onChange}
+                    value={value}
+                    title="Завантажити сертифікат"
+                    errors={
+                      (
+                        errors.cources as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.[index]?.cources_sertificate
+                        ?.message
+                    }
                   />
                 )}
               />
@@ -84,7 +115,7 @@ const OutBazaExperience: React.FC<
 
             <div className="flex w-full gap-[24px]">
               <Controller
-                name={`out_baza_experience.${index}.work_start`}
+                name={`cources.${index}.cources_start`}
                 control={control}
                 render={({
                   field,
@@ -94,51 +125,51 @@ const OutBazaExperience: React.FC<
                     {...field}
                     error={
                       (
-                        errors.baza_experience as DeepMap<
+                        errors.cources as DeepMap<
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.work_start?.message
+                      )?.[index]?.cources_start?.message
                     }
                     isRequired={true}
-                    placeholder="Введіть дату початка співпраці"
-                    title="Початок співпраці"
+                    placeholder="dd.mm.yyyy"
+                    title="Початок навчання"
                   />
                 )}
               />
-              <Controller
-                name={`out_baza_experience.${index}.work_end`}
-                control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
-                  <TextInput
-                    {...field}
-                    error={
-                      (
-                        errors.baza_experience as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.work_end?.message
-                    }
-                    isRequired={true}
-                    placeholder="Введіть дату закінчення співпраці"
-                    title="Кінець співпраці"
-                  />
-                )}
-              />
-            </div>
 
-            {index !== 0 ? (
-              <div
-                onClick={() => remove(index)}
-                className="group mx-auto flex h-[44px] w-[120px] cursor-pointer items-center justify-center rounded-[10px] bg-red-600 transition-all duration-300 hover:bg-error"
-              >
-                <TrashIcon className="h-[22px] w-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
-              </div>
-            ) : null}
+              <Controller
+                name={`cources.${index}.cources_end`}
+                control={control}
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
+                  <TextInput
+                    {...field}
+                    error={
+                      (
+                        errors.cources as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.[index]?.cources_end?.message
+                    }
+                    isRequired={true}
+                    placeholder="dd.mm.yyyy"
+                    title="Випуск"
+                  />
+                )}
+              />
+
+              <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
+            </div>
+            <div
+              onClick={() => remove(index)}
+              className="group mx-auto flex h-[44px] w-[120px] cursor-pointer items-center justify-center rounded-[10px] bg-red-600 transition-all duration-300 hover:bg-error"
+            >
+              <TrashIcon className="h-[22px] w-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
+            </div>
           </div>
         );
       })}
@@ -152,4 +183,4 @@ const OutBazaExperience: React.FC<
   );
 };
 
-export default OutBazaExperience;
+export default Cources;
