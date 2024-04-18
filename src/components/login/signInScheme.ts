@@ -8,6 +8,9 @@ const passwordPattern = /^(?!.*[\\])[\w!_\-.(),]{8,14}$/;
 export const signInScheme = z.object({
   email: z
     .string()
+    .nonempty({
+      message: 'Поле email не може бути порожнім',
+    })
     .email({ message: 'Введіть дійсний email' })
     .refine((value) => !value || emailPattern.test(value), {
       message: 'Введіть дійсний email',
@@ -21,6 +24,9 @@ export const signInScheme = z.object({
     ),
   password: z
     .string()
+    .nonempty({
+      message: 'Поле пароль не може бути порожнім',
+    })
     .min(8, {
       message: 'Пароль має містити мінімум 8 символів',
     })
@@ -36,6 +42,9 @@ export const signInScheme = z.object({
 export const emailScheme = z.object({
   email: z
     .string()
+    .nonempty({
+      message: 'Поле email не може бути порожнім',
+    })
     .email({ message: 'Введіть дійсний email' })
     .refine((value) => !value || emailPattern.test(value), {
       message: 'Введіть дійсний email',
@@ -53,6 +62,9 @@ export const passwordScheme = z
   .object({
     password: z
       .string()
+      .nonempty({
+        message: 'Поле новий пароль не може бути порожнім',
+      })
       .min(8, {
         message: 'Пароль має містити мінімум 8 символів',
       })
@@ -65,6 +77,10 @@ export const passwordScheme = z
 
     passwordAccept: z
       .string()
+      .nonempty({
+        message:
+          'Поле підтвердіть пароль не може бути порожнім',
+      })
       .min(8, {
         message: 'Пароль має містити мінімум 8 символів',
       })

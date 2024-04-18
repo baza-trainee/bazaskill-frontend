@@ -53,7 +53,6 @@ const ForgotPassword = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 404) {
-          console.log('Такий емейл не знайдено');
           setError('Такий емейл не знайдено');
           setIsProcessing(false);
         } else {
@@ -65,10 +64,10 @@ const ForgotPassword = () => {
     } finally {
       setTimeout(() => {
         setError('');
-        setIsProcessing(false);
       }, 3000);
+      setIsProcessing(false);
+      reset();
     }
-    reset();
   };
 
   return (
