@@ -21,7 +21,7 @@ const defaultValues = {
   salary_to: '',
   specialization: '',
   about: '',
-  cv: null,
+  cv: '',
   graduate: [
     {
       university: '',
@@ -29,7 +29,7 @@ const defaultValues = {
       university_grade: '',
       graduate_start: '',
       graduate_end: '',
-      graduate_sertificate: null,
+      graduate_sertificate: '',
     },
   ],
   cources: [
@@ -38,7 +38,7 @@ const defaultValues = {
       cources_specializaton: '',
       cources_start: '',
       cources_end: '',
-      cources_sertificate: null,
+      cources_sertificate: '',
     },
   ],
   baza_experience: [

@@ -20,39 +20,83 @@ export const getAllCandidates = async () => {
 };
 
 export const createCandidate = async (values: any) => {
-  console.log(values);
-  const cvFormData = new FormData();
-  cvFormData.append('file', values.data.cv[0]);
-  const cvResponse = await axios.post(
-    'candidates/upload-cv',
-    cvFormData
-  );
+  let cvResponse: any;
+  let courcesResponse: any;
+  let graduateResponse: any;
+
+  if (values.data.cv.length) {
+    const cvFormData = new FormData();
+    cvFormData.append('file', values.data.cv[0]);
+    cvResponse = await axios.post(
+      'candidates/upload-cv',
+      cvFormData
+    );
+  }
 
   const coursesCertificates = values.data.cources.map(
     (cource: ICandidateCources) =>
       cource.cources_sertificate[0]
   );
-  const courcesFormData = new FormData();
-  coursesCertificates.forEach((element: File) => {
-    courcesFormData.append('cources', element);
-  });
-  const courcesResponse = await axios.post(
-    'candidates/upload-cources',
-    courcesFormData
-  );
+
+  if (
+    coursesCertificates.some((item: any) => item.length)
+  ) {
+    const filesToUpload = coursesCertificates.filter(
+      (item: any) => item.length > 0
+    );
+
+    const courcesFormData = new FormData();
+    filesToUpload.forEach((element: File) => {
+      courcesFormData.append('cources', element);
+    });
+    courcesResponse = await axios.post(
+      'candidates/upload-cources',
+      courcesFormData
+    );
+  }
+
+  // const courcesFormData = new FormData();
+  // coursesCertificates.forEach((element: File) => {
+  //   courcesFormData.append('cources', element);
+  // });
+  // const courcesResponse = await axios.post(
+  //   'candidates/upload-cources',
+  //   courcesFormData
+  // );
 
   const graduateCertificates = values.data.graduate.map(
     (item: ICandidateGraduate) =>
       item.graduate_sertificate[0]
   );
-  const graduateFormData = new FormData();
-  graduateCertificates.forEach((element: File) => {
-    graduateFormData.append('graduate', element);
-  });
-  const graduateResponse = await axios.post(
-    'candidates/upload-graduate',
-    graduateFormData
-  );
+
+  if (
+    graduateCertificates.some((item: any) => item.length)
+  ) {
+    const filesToUpload = graduateCertificates.filter(
+      (item: any) => item.length > 0
+    );
+    const graduateFormData = new FormData();
+    filesToUpload.forEach((element: File) => {
+      graduateFormData.append('graduate', element);
+    });
+    graduateResponse = await axios.post(
+      'candidates/upload-graduate',
+      graduateFormData
+    );
+  }
+
+  // const graduateCertificates = values.data.graduate.map(
+  //   (item: ICandidateGraduate) =>
+  //     item.graduate_sertificate[0]
+  // );
+  // const graduateFormData = new FormData();
+  // graduateCertificates.forEach((element: File) => {
+  //   graduateFormData.append('graduate', element);
+  // });
+  // const graduateResponse = await axios.post(
+  //   'candidates/upload-graduate',
+  //   graduateFormData
+  // );
 
   const newCandidate = {
     name_ua: values.data.name_ua,
@@ -77,7 +121,7 @@ export const createCandidate = async (values: any) => {
     sallary_form: values.data.salary_from,
     sallary_to: values.data.salary_to,
     specialization: values.data.specialization,
-    cv: cvResponse.data.url,
+    cv: cvResponse ? cvResponse.data.url : '',
     stack: values.stack.map((item: IStack) => item.id),
     gradaute: values.data.graduate.map(
       (item: ICandidateGraduate, index: number) => ({
@@ -87,15 +131,17 @@ export const createCandidate = async (values: any) => {
         university_grade: item.university_grade,
         graduate_start: item.graduate_start,
         graduate_end: item.graduate_end,
-        graduate_sertificate:
-          graduateResponse.data[index].url,
+        graduate_sertificate: graduateResponse
+          ? graduateResponse.data[index].url
+          : '',
       })
     ),
     cources: values.data.cources.map(
       (cource: ICandidateCources, index: number) => ({
         cources_name: cource.cources_name,
-        cources_sertificate:
-          courcesResponse.data[index].url,
+        cources_sertificate: courcesResponse
+          ? courcesResponse.data[index].url
+          : '',
         cources_specializaton: cource.cources_specializaton,
         cources_start: cource.cources_start,
         cources_end: cource.cources_end,
@@ -147,8 +193,6 @@ export const updateCandidate = async (
       cvFormData
     );
   }
-
-  console.log(cvResponse);
 
   const coursesCertificates = values.data.cources.map(
     (cource: ICandidateCources) =>
