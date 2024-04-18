@@ -5,10 +5,9 @@ export const getStack = async () => {
   return response.data;
 };
 
-export const addStack = async (title: string) => {
-  console.log(title);
-  const newStack = {
-    title,
-  };
-  await axios.post('/stack', newStack);
+export const addStack = async (data: {
+  specialization_id: string;
+  title: string;
+}) => {
+  await axios.post('/stack', data);
 };
