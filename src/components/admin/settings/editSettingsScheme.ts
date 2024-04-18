@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
-const passwordPattern =
-  /^(?!.*[!_\-)\\(.,])[\w\-\\(\\).,]{8,14}$/;
+const passwordPattern = /^(?!.*[\\])[\w!_\-.(),]{8,14}$/;
 
 export const settingsScheme = z
   .object({
