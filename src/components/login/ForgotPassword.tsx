@@ -14,13 +14,16 @@ import Link from 'next/link';
 import { forgotPassword } from '@/api/signIn';
 import { useRouter } from 'next/navigation';
 import SuccessButton from '../admin/ui/buttons/SuccessButton';
+import { AxiosError } from 'axios';
 
 const ForgotPassword = () => {
+  const [error, setError] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const router = useRouter();
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<z.infer<typeof emailScheme>>({
     resolver: zodResolver(emailScheme),
@@ -48,14 +51,24 @@ const ForgotPassword = () => {
         }
       }
     } catch (error) {
-      if (error instanceof Error) {
-        setIsProcessing(false);
-        console.error(error.message);
-      } else {
-        setIsProcessing(false);
-        console.error('Неочікувана помилка', error);
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 404) {
+          console.log('Такий емейл не знайдено');
+          setError('Такий емейл не знайдено');
+          setIsProcessing(false);
+        } else {
+          console.log(error);
+          setError('Помилка сервера');
+          setIsProcessing(false);
+        }
       }
+    } finally {
+      setTimeout(() => {
+        setError('');
+        setIsProcessing(false);
+      }, 3000);
     }
+    reset();
   };
 
   return (
@@ -87,6 +100,11 @@ const ForgotPassword = () => {
                     />
                   )}
                 />
+                {error.length ? (
+                  <p className="left absolute text-xs text-error">
+                    {error}
+                  </p>
+                ) : null}
               </div>
               <div className="flex gap-[18px] ">
                 <SuccessButton
