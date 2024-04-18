@@ -46,6 +46,17 @@ const Filters = () => {
     event?.preventDefault();
     console.log(data);
   };
+  const handleInput = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    const input = e.target as HTMLInputElement;
+    const currentValue = input.value;
+
+    if (currentValue.length >= 5) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -198,12 +209,14 @@ const Filters = () => {
             {...register('sallary.from')}
             placeholder="500"
             type="number"
+            onKeyDown={handleInput}
             className="w-[130px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-white outline-none [appearance:textfield] placeholder:text-secondaryGray [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             {...register('sallary.to')}
             placeholder="700"
             type="number"
+            onKeyDown={handleInput}
             className="w-[130px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-white outline-none [appearance:textfield] placeholder:text-secondaryGray [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
 
