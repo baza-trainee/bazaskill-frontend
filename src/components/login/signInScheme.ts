@@ -3,8 +3,7 @@ import { z } from 'zod';
 const emailPattern =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const passwordPattern =
-  /^(?!.*[!_\-)\\(.,])[\w\-\\(\\).,]{8,14}$/;
+const passwordPattern = /^(?!.*[\\])[\w!_\-.(),]{8,14}$/;
 
 export const signInScheme = z.object({
   email: z
