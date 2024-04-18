@@ -1,5 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
 import { ISpecialization } from '@/types/specialization';
@@ -30,11 +34,17 @@ import Languages from './Languages';
 import Cources from './Сources';
 import BazaExperience from './BazaExperience';
 import SelectField from './SelectField';
-import { createCandidate } from '@/api/candidates';
+import {
+  updateCandidate,
+  getCandidateById,
+} from '@/api/candidates';
 import OutBazaExperience from './OutBazaExperience';
-import { useRouter } from 'next/navigation';
+import {
+  ICandidateLanguages,
+  IOutBazaExperience,
+} from '@/types/candidates';
 
-const AddCandidate = () => {
+const EditCandidate = ({ id }: { id: string }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -45,8 +55,9 @@ const AddCandidate = () => {
   >([]);
 
   const { mutate } = useMutation({
-    mutationKey: [constants.candidates.CREATE_CANDIDATE],
-    mutationFn: createCandidate,
+    mutationKey: [constants.candidates.UPDATE_CANDIDATE],
+    mutationFn: (params: any) =>
+      updateCandidate(params.id, params.data),
     onSuccess: () => {
       setIsProcessing(false);
       queryClient.invalidateQueries({
@@ -58,6 +69,11 @@ const AddCandidate = () => {
     onError: (error) => {
       alert(error);
     },
+  });
+
+  const candidate: UseQueryResult<any, Error> = useQuery({
+    queryKey: [constants.candidates.FETCH_CANDIDATE_BY_ID],
+    queryFn: () => getCandidateById(id),
   });
 
   const specialization: UseQueryResult<
@@ -75,15 +91,109 @@ const AddCandidate = () => {
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
+    setValue,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
     defaultValues: defaultValues,
     mode: 'onChange',
   });
 
+  useEffect(() => {
+    if (candidate.data) {
+      const value: any = candidate.data;
+      reset({
+        name_ua: value.name_ua,
+        surname_ua: value.surname_ua,
+        name: value.name,
+        surname: value.surname,
+        country: value.country,
+        city: value.city,
+        phone: value.phone,
+        email: value.email,
+        linkedin: value.linkedin,
+        discord: value.discord,
+        telegram: value.telegram,
+        languages: value.candidate_language.map(
+          (lang: ICandidateLanguages) => ({
+            language: lang.language,
+            level: lang.level,
+          })
+        ),
+        work_format: value.work_format,
+        salary_from: value.sallary_form,
+        salary_to: value.sallary_to,
+        specialization: value.specialization.id.toString(),
+        about: value.about,
+        graduate: value.gradaute.map((item: any) => ({
+          university: item.university,
+          university_specializaton:
+            item.university_specialization,
+          university_grade: item.university_grade,
+          graduate_start: item.graduate_start,
+          graduate_end: item.graduate_end,
+        })),
+        cources: value.cources.map((cource: any) => ({
+          cources_name: cource.cources_name,
+          cources_specializaton:
+            cource.cources_specializaton,
+          cources_start: cource.cources_start,
+          cources_end: cource.cources_end,
+        })),
+        baza_experience: value.baza_experience.map(
+          (item: any) => ({
+            role: item.specialization.id.toString(),
+            project_name: item.project_name,
+            project_duration: item.project_duration,
+          })
+        ),
+        out_baza_experience: value.out_baza_experience.map(
+          (item: IOutBazaExperience) => ({
+            company_name: item.company_name,
+            company_specialization:
+              item.company_specialization,
+            work_start: item.work_start,
+            work_end: item.work_end,
+          })
+        ),
+        baza_recomendation: value.baza_recomendation,
+      });
+      candidate.data.gradaute.map(
+        (item: any, index: number) => {
+          setValue(
+            `graduate.${index}.graduate_sertificate`,
+            [
+              new File([], item.graduate_sertificate, {
+                type: 'for-url',
+              }),
+            ]
+          );
+        }
+      );
+      candidate.data.cources.map(
+        (item: any, index: number) => {
+          setValue(`cources.${index}.cources_sertificate`, [
+            new File([], item.cources_sertificate, {
+              type: 'for-url',
+            }),
+          ]);
+        }
+      );
+      setValue('cv', [
+        new File([], value.cv, { type: 'for-url' }),
+      ]);
+      setStack(
+        value.stack.map((item: any) => ({
+          ...item.stack,
+          isExist: true,
+        }))
+      );
+    }
+  }, [candidate.data]);
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsProcessing(true);
-    mutate({ data, stack });
+    mutate({ id, data: { data, stack } });
     router.push('/admin/candidates');
   };
 
@@ -115,7 +225,7 @@ const AddCandidate = () => {
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
       <h2 className="pb-[20px] pt-[40px] font-tahoma text-[40px] font-[700]">
-        Інформація про кандидата
+        Редагування кандидата
       </h2>
       <div>
         <h3 className="border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -294,6 +404,9 @@ const AddCandidate = () => {
             control={control}
             fieldArray={lang}
             getValues={getValues}
+            fieldsLength={
+              candidate?.data?.candidate_language.length
+            }
           />
           <div className="flex w-full gap-[24px]">
             <Controller
@@ -493,7 +606,10 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack handleStack={setStack} />
+          <Stack
+            handleStack={setStack}
+            outerStack={stack}
+          />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
@@ -502,13 +618,18 @@ const AddCandidate = () => {
           <Graduate
             fieldArray={graduate}
             control={control}
+            fieldsLength={candidate?.data?.gradaute.length}
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Курси</h3>
           </div>
 
-          <Cources fieldArray={cources} control={control} />
+          <Cources
+            fieldArray={cources}
+            control={control}
+            fieldsLength={candidate?.data?.cources.length}
+          />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи на Базі</h3>
@@ -517,6 +638,9 @@ const AddCandidate = () => {
           <BazaExperience
             control={control}
             fieldArray={baza_experience}
+            fieldsLength={
+              candidate?.data?.baza_experience?.length
+            }
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -526,6 +650,9 @@ const AddCandidate = () => {
           <OutBazaExperience
             control={control}
             fieldArray={out_baza_experience}
+            fieldsLength={
+              candidate?.data?.out_baza_experience?.length
+            }
           />
 
           <div className="flex w-full gap-[24px]">
@@ -573,7 +700,7 @@ const AddCandidate = () => {
             >
               {isProcessing
                 ? 'Обробка запиту...'
-                : 'Опублікувати'}
+                : 'Зберегти зміни'}
             </button>
             <button
               onClick={() =>
@@ -590,4 +717,4 @@ const AddCandidate = () => {
   );
 };
 
-export default AddCandidate;
+export default EditCandidate;

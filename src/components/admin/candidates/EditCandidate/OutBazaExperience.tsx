@@ -1,11 +1,4 @@
-import { getSpecializations } from '@/api/specialization';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
-import { constants } from '@/constants';
-import { ISpecialization } from '@/types/specialization';
-import {
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
 import {
   Control,
   Controller,
@@ -14,30 +7,31 @@ import {
   FieldValues,
   UseFieldArrayReturn,
 } from 'react-hook-form';
-import FileInput from './FileInput';
 import TextInput from './TextInput';
+import { useEffect } from 'react';
 
-interface IBazaExperienceProps {
+interface IOutBazaExperienceProps {
+  fieldsLength: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<
     FieldValues,
-    'baza_experience',
+    'out_baza_experience',
     'id'
   >;
 }
-const BazaExperience: React.FC<IBazaExperienceProps> = ({
+
+const OutBazaExperience: React.FC<
+  IOutBazaExperienceProps
+> = ({
+  fieldsLength,
   control,
   fieldArray: { fields, append, remove },
 }) => {
-  const specialization: UseQueryResult<
-    ISpecialization[],
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATIONS,
-    ],
-    queryFn: getSpecializations,
-  });
+  useEffect(() => {
+    if (fieldsLength > 1) {
+      for (let i = 1; i < fieldsLength; i++) append;
+    }
+  }, [fieldsLength, append]);
 
   return (
     <div className="flex w-full flex-col gap-[30px]">
@@ -49,52 +43,7 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
           >
             <div className="flex w-full gap-[24px]">
               <Controller
-                name={`baza_experience.${index}.role`}
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors },
-                }) => (
-                  <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-                    <label
-                      htmlFor={`baza_experience.${index}.role`}
-                    >
-                      Роль на проекті &nbsp;
-                      <span className="text-red-500">
-                        *
-                      </span>
-                    </label>
-                    <select
-                      id={`baza_experience.${index}.role`}
-                      value={value}
-                      onChange={onChange}
-                      className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-                    >
-                      <option value="">Оберіть роль</option>
-                      {specialization.data?.map((item) => (
-                        <option
-                          key={item.id}
-                          value={item.id}
-                        >
-                          {item.title}
-                        </option>
-                      ))}
-                    </select>
-                    <span className="font-sans text-[12px] text-error">
-                      {
-                        (
-                          errors.baza_experience as DeepMap<
-                            FieldValues,
-                            FieldError
-                          >
-                        )?.[index]?.role?.message
-                      }
-                    </span>
-                  </div>
-                )}
-              />
-              <Controller
-                name={`baza_experience.${index}.project_name`}
+                name={`out_baza_experience.${index}.company_name`}
                 control={control}
                 render={({
                   field,
@@ -104,21 +53,20 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
                     {...field}
                     error={
                       (
-                        errors.baza_experience as DeepMap<
+                        errors.out_baza_experience as DeepMap<
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.project_name?.message
+                      )?.[index]?.company_name?.message
                     }
                     isRequired={true}
-                    placeholder="Введіть назву"
-                    title="Назва проекта"
+                    placeholder="Введіть назву компанії"
+                    title="Назва компанії"
                   />
                 )}
               />
-
               <Controller
-                name={`baza_experience.${index}.project_duration`}
+                name={`out_baza_experience.${index}.company_specialization`}
                 control={control}
                 render={({
                   field,
@@ -132,11 +80,61 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.project_duration?.message
+                      )?.[index]?.company_specialization
+                        ?.message
                     }
                     isRequired={true}
-                    placeholder="Місяців"
-                    title="Тривалість"
+                    placeholder="Введіть спеціалізацію компанії"
+                    title="Спеціалізація компанії"
+                  />
+                )}
+              />
+            </div>
+
+            <div className="flex w-full gap-[24px]">
+              <Controller
+                name={`out_baza_experience.${index}.work_start`}
+                control={control}
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
+                  <TextInput
+                    {...field}
+                    error={
+                      (
+                        errors.baza_experience as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.[index]?.work_start?.message
+                    }
+                    isRequired={true}
+                    placeholder="Введіть дату початка співпраці"
+                    title="Початок співпраці"
+                  />
+                )}
+              />
+              <Controller
+                name={`out_baza_experience.${index}.work_end`}
+                control={control}
+                render={({
+                  field,
+                  formState: { errors },
+                }) => (
+                  <TextInput
+                    {...field}
+                    error={
+                      (
+                        errors.baza_experience as DeepMap<
+                          FieldValues,
+                          FieldError
+                        >
+                      )?.[index]?.work_end?.message
+                    }
+                    isRequired={true}
+                    placeholder="Введіть дату закінчення співпраці"
+                    title="Кінець співпраці"
                   />
                 )}
               />
@@ -163,4 +161,4 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
   );
 };
 
-export default BazaExperience;
+export default OutBazaExperience;

@@ -16,8 +16,10 @@ import {
 } from 'react-hook-form';
 import FileInput from './FileInput';
 import TextInput from './TextInput';
+import { useEffect } from 'react';
 
 interface IBazaExperienceProps {
+  fieldsLength: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<
     FieldValues,
@@ -26,6 +28,7 @@ interface IBazaExperienceProps {
   >;
 }
 const BazaExperience: React.FC<IBazaExperienceProps> = ({
+  fieldsLength,
   control,
   fieldArray: { fields, append, remove },
 }) => {
@@ -38,6 +41,12 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
     ],
     queryFn: getSpecializations,
   });
+
+  useEffect(() => {
+    if (fieldsLength > 1) {
+      for (let i = 1; i < fieldsLength; i++) append;
+    }
+  }, [fieldsLength, append]);
 
   return (
     <div className="flex w-full flex-col gap-[30px]">
