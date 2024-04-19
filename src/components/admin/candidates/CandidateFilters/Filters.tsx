@@ -25,10 +25,22 @@ const Filters = () => {
     language: z.string().array(),
     graduate: z.string().array(),
     status: z.string().array(),
-    sallary: z.object({
-      from: z.string(),
-      to: z.string(),
-    }),
+    sallary: z
+      .object({
+        from: z.string(),
+        to: z.string(),
+      })
+      .refine(
+        (data) => {
+          return (
+            parseFloat(data.from) <= parseFloat(data.to)
+          );
+        },
+        {
+          message:
+            'Значення Від не повинно бути більшим ніж значення До.',
+        }
+      ),
   });
 
   const {
@@ -38,7 +50,9 @@ const Filters = () => {
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
     defaultValues: { stack: [] },
+    mode: 'onChange',
   });
+
   const onSubmit: SubmitHandler<FieldValues> = (
     data,
     event
@@ -46,13 +60,26 @@ const Filters = () => {
     event?.preventDefault();
     console.log(data);
   };
+
+  console.log(errors.project);
+
   const handleInput = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
     const input = e.target as HTMLInputElement;
     const currentValue = input.value;
 
-    if (currentValue.length >= 5) {
+    const numericKeys = /[0-9]/;
+    const specialKeys = ['Backspace'];
+
+    if (currentValue.length >= 5 && e.key !== 'Backspace') {
+      e.preventDefault();
+    }
+
+    if (
+      !numericKeys.test(e.key) &&
+      !specialKeys.includes(e.key)
+    ) {
       e.preventDefault();
     }
   };
