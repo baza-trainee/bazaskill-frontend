@@ -1,4 +1,4 @@
-import { z, ZodType } from 'zod';
+import { z } from 'zod';
 
 const emailPattern =
   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
@@ -135,6 +135,7 @@ const schema = z.object({
         message: `Введіть коректні рекомендації не більше 2500 символів`,
       }
     ),
+  status: z.string().min(1, { message: 'Required' }),
 });
 
 export default schema;

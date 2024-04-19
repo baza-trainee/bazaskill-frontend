@@ -1,4 +1,4 @@
-import { z, ZodType } from 'zod';
+import { z } from 'zod';
 
 const schema = z.object({
   name_ua: z.string().min(1, { message: 'Required' }),
@@ -114,6 +114,7 @@ const schema = z.object({
   baza_recomendation: z
     .string()
     .min(1, { message: 'Required' }),
+  status: z.string().min(1, { message: 'Required' }),
 });
 
 export default schema;

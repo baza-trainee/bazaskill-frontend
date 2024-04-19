@@ -166,7 +166,7 @@ export const createCandidate = async (values: any) => {
         })
       ),
     baza_recomendation: values.data.baza_recomendation,
-    status: 'working',
+    status: values.data.status,
     isPublished: true,
   };
 
@@ -309,7 +309,7 @@ export const updateCandidate = async (
         })
       ),
     baza_recomendation: values.data.baza_recomendation,
-    status: 'working',
+    status: values.data.status,
     isPublished: true,
   };
 
