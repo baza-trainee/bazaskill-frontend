@@ -82,9 +82,10 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsProcessing(true);
-    mutate({ data, stack });
-    router.push('/admin/candidates');
+    console.log(data);
+    // setIsProcessing(true);
+    // mutate({ data, stack });
+    // router.push('/admin/candidates');
   };
 
   const graduate = useFieldArray({
@@ -566,6 +567,38 @@ const AddCandidate = () => {
 
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
+
+          <div className="flex w-full gap-[24px]">
+            <Controller
+              name="status"
+              control={control}
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
+                <SelectField
+                  title="Статус кандидата"
+                  value={value}
+                  values={[
+                    'Working',
+                    'Searching',
+                    'Inactive',
+                  ]}
+                  onChange={onChange}
+                  errors={
+                    (
+                      errors.status as DeepMap<
+                        FieldValues,
+                        FieldError
+                      >
+                    )?.message
+                  }
+                />
+              )}
+            />
+            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
+          </div>
+
           <div className="flex justify-start gap-[24px] py-[80px]">
             <button
               className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"
