@@ -38,7 +38,7 @@ const Filters = () => {
         },
         {
           message:
-            'Значення Від не повинно бути більшим ніж значення До.',
+            'Значення Від не повинно бути більшим ніж значення До',
         }
       ),
   });
@@ -48,9 +48,9 @@ const Filters = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
+    mode: 'onChange',
     resolver: zodResolver(schema),
     defaultValues: { stack: [] },
-    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (
@@ -60,8 +60,6 @@ const Filters = () => {
     event?.preventDefault();
     console.log(data);
   };
-
-  console.log(errors.project);
 
   const handleInput = (
     e: React.KeyboardEvent<HTMLInputElement>
@@ -250,6 +248,11 @@ const Filters = () => {
           <button className="flex items-center justify-center rounded-[4px] border-[1px] border-yellow px-[24px] py-[15px] text-yellow">
             OK
           </button>
+          {errors.sallary?.root && (
+            <span className="absolute bottom-[-20px] left-[0px] text-xs text-red-500">
+              {errors.sallary?.root?.message?.toString()}
+            </span>
+          )}
         </div>
       </div>
 
