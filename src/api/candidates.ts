@@ -19,6 +19,11 @@ export const getAllCandidates = async () => {
   return response.data;
 };
 
+export const deleteCandidate = async (id: string) => {
+  const response = await axios.delete(`/candidates/${id}`);
+  return response;
+};
+
 export const createCandidate = async (values: any) => {
   let cvResponse: any;
   let courcesResponse: any;

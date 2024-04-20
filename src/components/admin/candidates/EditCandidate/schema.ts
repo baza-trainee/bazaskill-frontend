@@ -42,7 +42,7 @@ const schema = z.object({
       message: 'Required',
     })
     .refine(
-      (value) => value?.[0]?.size <= 500000,
+      (value) => !value || value[0]?.size <= 5000000,
       `Max file size is 5MB.`
     ),
   graduate: z.array(
@@ -64,7 +64,7 @@ const schema = z.object({
         .any()
         .nullable()
         .refine(
-          (value) => !value || value[0]?.size <= 500000,
+          (value) => !value || value[0]?.size <= 5000000,
           `Max file size is 5MB.`
         ),
     })
@@ -87,7 +87,7 @@ const schema = z.object({
         .any()
         .nullable()
         .refine(
-          (value) => !value || value[0]?.size <= 500000,
+          (value) => !value || value[0]?.size <= 5000000,
           `Max file size is 5MB.`
         ),
     })
