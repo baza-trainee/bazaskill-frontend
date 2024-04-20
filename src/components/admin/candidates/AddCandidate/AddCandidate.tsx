@@ -479,6 +479,7 @@ const AddCandidate = () => {
                   onChange={onChange}
                   value={value}
                   title="Завантажити CV"
+                  isRequired={true}
                   errors={
                     (
                       errors.cv as DeepMap<

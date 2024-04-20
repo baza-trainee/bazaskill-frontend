@@ -601,6 +601,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                 <FileInput
                   onChange={onChange}
                   value={value}
+                  isRequired={true}
                   title="Завантажити CV"
                   errors={
                     (
