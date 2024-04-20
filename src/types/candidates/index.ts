@@ -5,6 +5,7 @@ export interface ICandidateGraduate {
   graduate_start: string;
   graduate_end: string;
   graduate_sertificate: FileList;
+  graduate_sertificate_id: string;
 }
 
 export interface ICandidateCources {
@@ -13,6 +14,7 @@ export interface ICandidateCources {
   cources_start: string;
   cources_end: string;
   cources_sertificate: FileList;
+  cources_sertificate_id: string;
 }
 
 export interface IBazaExperience {
@@ -52,6 +54,7 @@ export interface ICandidates {
   about: string;
   specialization: string;
   cv: FileList;
+  cv_id: string;
   graduate: ICandidateGraduate[];
   cources: ICandidateCources[];
   baza_experience: IBazaExperience[];

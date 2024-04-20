@@ -65,9 +65,10 @@ const EditCandidate = ({ id }: { id: string }) => {
           constants.candidates.FETCH_ALL_CANDIDATES,
         ],
       });
+      router.push('/admin/candidates');
     },
     onError: (error) => {
-      alert(error);
+      alert(error.message);
     },
   });
 
@@ -93,6 +94,7 @@ const EditCandidate = ({ id }: { id: string }) => {
     getValues,
     reset,
     setValue,
+    watch,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
     defaultValues: defaultValues,
@@ -125,6 +127,7 @@ const EditCandidate = ({ id }: { id: string }) => {
         salary_to: value.sallary_to,
         specialization: value.specialization.id.toString(),
         about: value.about,
+        cv_id: value.cv_id,
         graduate: value.gradaute.map((item: any) => ({
           university: item.university,
           university_specializaton:
@@ -132,6 +135,8 @@ const EditCandidate = ({ id }: { id: string }) => {
           university_grade: item.university_grade,
           graduate_start: item.graduate_start,
           graduate_end: item.graduate_end,
+          graduate_sertificate_id:
+            item.graduate_sertificate_id,
         })),
         cources: value.cources.map((cource: any) => ({
           cources_name: cource.cources_name,
@@ -139,6 +144,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             cource.cources_specializaton,
           cources_start: cource.cources_start,
           cources_end: cource.cources_end,
+          cources_sertificate_id:
+            cource.cources_sertificate_id,
         })),
         baza_experience: value.baza_experience.map(
           (item: any) => ({
@@ -192,12 +199,12 @@ const EditCandidate = ({ id }: { id: string }) => {
     }
   }, [candidate.data]);
 
-  console.log(candidate.data.status);
+  const currentValues = watch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     setIsProcessing(true);
-    mutate({ id, data: { data, stack } });
-    router.push('/admin/candidates');
+    mutate({ id, data: { currentValues, stack } });
   };
 
   const graduate = useFieldArray({
