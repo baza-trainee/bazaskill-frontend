@@ -53,8 +53,8 @@ const Languages = ({
                     values={[
                       'English',
                       'Polish',
-                      'Spanish',
-                      'Duchland',
+                      'German',
+                      'French',
                     ]}
                     onChange={onChange}
                     disableHandler={handleDisable}
