@@ -21,7 +21,13 @@ export const postScheme = z.object({
     .refine((value) => linkValidation.test(value), {
       message: 'Введіть дійсний URL',
     }),
-  text: z.string().min(2, 'Введіть опис статті'),
+  text: z
+    .string()
+    .min(2, 'Введіть опис статті')
+    .max(
+      350,
+      'Опис статті повинен бути не більшим ніж 350 знаків'
+    ),
 });
 
 export type TPostScheme = z.infer<typeof postScheme>;
