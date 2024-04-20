@@ -48,7 +48,10 @@ const mont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'BazaSkill',
+  title: {
+    default: 'BazaSkill',
+    template: '%s - BazaSkill',
+  },
   description: 'BazaSkill official page',
   icons: {
     icon: ['/favicon.ico?v=1'],

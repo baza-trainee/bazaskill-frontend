@@ -62,11 +62,9 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
       graduate_sertificate: z
         .any()
-        .refine((value) => value?.length > 0, {
-          message: 'Required',
-        })
+        .nullable()
         .refine(
-          (value) => value?.[0]?.size <= 500000,
+          (value) => !value || value[0]?.size <= 500000,
           `Max file size is 5MB.`
         ),
     })
@@ -87,11 +85,9 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
       cources_sertificate: z
         .any()
-        .refine((value) => value?.length > 0, {
-          message: 'Required',
-        })
+        .nullable()
         .refine(
-          (value) => value?.[0]?.size <= 500000,
+          (value) => !value || value[0]?.size <= 500000,
           `Max file size is 5MB.`
         ),
     })

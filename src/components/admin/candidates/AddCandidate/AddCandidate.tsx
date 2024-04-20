@@ -54,6 +54,7 @@ const AddCandidate = () => {
           constants.candidates.FETCH_ALL_CANDIDATES,
         ],
       });
+      router.push('/admin/candidates');
     },
     onError: (error) => {
       alert(error);
@@ -82,10 +83,8 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    // setIsProcessing(true);
-    // mutate({ data, stack });
-    // router.push('/admin/candidates');
+    setIsProcessing(true);
+    mutate({ data, stack });
   };
 
   const graduate = useFieldArray({
