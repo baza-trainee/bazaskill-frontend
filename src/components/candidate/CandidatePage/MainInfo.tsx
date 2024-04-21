@@ -1,8 +1,16 @@
 import { useTranslations } from 'next-intl';
 import Project from './CandidateProject';
+import { CandidatesResponse } from '@/types/candidates';
+import OutProject from './OutProject';
 
-const MainInfo = () => {
+type MainInfoProps = {
+  candidate: CandidatesResponse;
+};
+
+const MainInfo = ({ candidate }: MainInfoProps) => {
   const t = useTranslations('Candidate');
+
+  console.log(candidate);
   return (
     <div className="container mt-[40px] flex flex-col gap-[72px] pb-[60px]">
       <div>
@@ -10,13 +18,12 @@ const MainInfo = () => {
           {t('stack')}
         </h3>
         <div className="mt-[44px] flex flex-wrap gap-[24px]">
-          <StackItem title="UX-дизайн" />
-          <StackItem title="UI-дизайн" />
-          <StackItem title="HTML" />
-          <StackItem title="Figma" />
-          <StackItem title="Wireframe" />
-          <StackItem title="Mobile App" />
-          <StackItem title="Prototyping" />
+          {candidate.stack.map((item) => (
+            <StackItem
+              key={item.id}
+              title={item.stack.title}
+            />
+          ))}
         </div>
       </div>
 
@@ -25,21 +32,18 @@ const MainInfo = () => {
           {t('education')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          <div className="flex w-full flex-col md:w-[34%]">
-            <span>GoIT - start your career in IT</span>
-            <span>UI\UX Design</span>
-            <span>травень 2023-грудень 2023</span>
-          </div>
-          <div className="flex w-full flex-col md:w-[34%]">
-            <span>GoIT - start your career in IT</span>
-            <span>UI\UX Design</span>
-            <span>травень 2023-грудень 2023</span>
-          </div>
-          <div className="flex w-full flex-col md:w-[34%]">
-            <span>GoIT - start your career in IT</span>
-            <span>UI\UX Design</span>
-            <span>травень 2023-грудень 2023</span>
-          </div>
+          {candidate.gradaute.map((item) => (
+            <div
+              key={item.id}
+              className="flex w-full flex-col md:w-[34%]"
+            >
+              <span>{item.university}</span>
+              <span>{item.university_specialization}</span>
+              <span>
+                {item.graduate_start}-{item.graduate_end}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -48,23 +52,18 @@ const MainInfo = () => {
           {t('courses')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          <div className="flex w-full flex-col md:w-[34%]">
-            <span>GoIT - start your career in IT</span>
-            <span>UI\UX Design</span>
-            <span>травень 2023-грудень 2023</span>
-          </div>
-
-          <div className="flex w-full flex-col md:w-[34%]">
-            <span>GoIT - start your career in IT</span>
-            <span>UI\UX Design</span>
-            <span>травень 2023-грудень 2023</span>
-          </div>
-
-          <div className="flex w-full flex-col md:w-[34%]">
-            <span>GoIT - start your career in IT</span>
-            <span>UI\UX Design</span>
-            <span>травень 2023-грудень 2023</span>
-          </div>
+          {candidate.cources.map((cource) => (
+            <div
+              key={cource.id}
+              className="flex w-full flex-col md:w-[34%]"
+            >
+              <span>{cource.cources_name}</span>
+              <span>{cource.cources_specializaton}</span>
+              <span>
+                {cource.cources_start}-{cource.cources_end}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -77,14 +76,43 @@ const MainInfo = () => {
             <svg width={20} height={18}>
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
-            {t('projects', { count: 3, ordinal: true })}
+            {t('projects', {
+              count: candidate.baza_experience.length,
+              ordinal: true,
+            })}
           </div>
         </div>
 
         <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
-          <Project />
-          <Project />
-          <Project />
+          {candidate.baza_experience.map((project) => (
+            <Project key={project.id} project={project} />
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="relative box-border flex flex-col gap-[24px] border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[20px] font-[700] text-white sm:justify-end sm:text-[24px] md:flex-row lg:justify-center">
+          <h3 className="md:absolute md:left-0">
+            {t('out_baza_experience')}
+          </h3>
+          <div className="flex items-center gap-[15px] sm:mr-[140px]">
+            <svg width={20} height={18}>
+              <use href="/Icons/sprite.svg#icon-experience"></use>
+            </svg>
+            {t('projects', {
+              count: candidate.baza_experience.length,
+              ordinal: true,
+            })}
+          </div>
+        </div>
+
+        <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
+          {candidate.out_baza_experience.map((project) => (
+            <OutProject
+              key={project.id}
+              project={project}
+            />
+          ))}
         </div>
       </div>
 
@@ -93,17 +121,7 @@ const MainInfo = () => {
           {t('recomendation_from')} Baza Skill
         </h3>
         <span className="mt-[32px] flex font-sans text-[20px] font-[400] leading-[28px] text-white">
-          Lorem ipsum dolor sit amet consectetur. Gravida et
-          amet mi odio curabitur parturient. Vel tempus sit
-          consectetur rutrum ut purus id. Tincidunt ipsum
-          egestas in nibh. Nisl porta porttitor in cursus
-          interdum sed mattis at morbi.Lorem ipsum dolor sit
-          amet consectetur. Lorem ipsum dolor sit amet
-          consectetur. Gravida et amet mi odio curabitur
-          parturient. Vel tempus sit consectetur rutrum ut
-          purus id. Tincidunt ipsum egestas in nibh. Nisl
-          porta porttitor in cursus interdum sed mattis at
-          morbi. Lorem ipsum dolor sit amet consectetur.
+          {candidate.baza_recomendation}
         </span>
         <button className="main-gradient mt-[60px] flex h-[50px] w-[350px] max-w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]">
           {t('ask_data')}
