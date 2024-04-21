@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
@@ -13,7 +13,6 @@ import {
   useQueryClient,
   UseQueryResult,
 } from '@tanstack/react-query';
-import React, { useState } from 'react';
 import Stack from './Stack';
 import {
   Controller,
@@ -40,6 +39,7 @@ import {
 } from '@/api/candidates';
 import OutBazaExperience from './OutBazaExperience';
 import {
+  CandidatesResponse,
   ICandidateLanguages,
   IOutBazaExperience,
 } from '@/types/candidates';
@@ -72,7 +72,10 @@ const EditCandidate = ({ id }: { id: string }) => {
     },
   });
 
-  const candidate: UseQueryResult<any, Error> = useQuery({
+  const candidate: UseQueryResult<
+    CandidatesResponse,
+    Error
+  > = useQuery({
     queryKey: [constants.candidates.FETCH_CANDIDATE_BY_ID],
     queryFn: () => getCandidateById(id),
   });
@@ -244,8 +247,7 @@ const EditCandidate = ({ id }: { id: string }) => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mb-[154px] mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]"
-        >
+          className="mb-[154px] mt-[32px] flex flex-col gap-[32px] font-sans text-[16px]">
           <div className="flex w-full gap-[24px]">
             <Controller
               name="name_ua"
@@ -415,7 +417,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             fieldArray={lang}
             getValues={getValues}
             fieldsLength={
-              candidate?.data?.candidate_language.length
+              candidate?.data?.candidate_language
+                .length as number
             }
           />
           <div className="flex w-full gap-[24px]">
@@ -527,8 +530,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                     value={value}
                     onChange={onChange}
                     placeholder="Коментар"
-                    className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  ></textarea>
+                    className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"></textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -566,8 +568,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                     id="specialization"
                     value={value}
                     onChange={onChange}
-                    className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-                  >
+                    className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none">
                     <option value="">
                       Оберіть спеціальність
                     </option>
@@ -629,7 +630,9 @@ const EditCandidate = ({ id }: { id: string }) => {
           <Graduate
             fieldArray={graduate}
             control={control}
-            fieldsLength={candidate?.data?.gradaute.length}
+            fieldsLength={
+              candidate?.data?.gradaute.length as number
+            }
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -639,7 +642,9 @@ const EditCandidate = ({ id }: { id: string }) => {
           <Cources
             fieldArray={cources}
             control={control}
-            fieldsLength={candidate?.data?.cources.length}
+            fieldsLength={
+              candidate?.data?.cources.length as number
+            }
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -650,7 +655,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             control={control}
             fieldArray={baza_experience}
             fieldsLength={
-              candidate?.data?.baza_experience?.length
+              candidate?.data?.baza_experience
+                ?.length as number
             }
           />
 
@@ -662,7 +668,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             control={control}
             fieldArray={out_baza_experience}
             fieldsLength={
-              candidate?.data?.out_baza_experience?.length
+              candidate?.data?.out_baza_experience
+                ?.length as number
             }
           />
 
@@ -677,8 +684,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
                   <label
                     className="font-[700]"
-                    htmlFor="baza_recomendation"
-                  >
+                    htmlFor="baza_recomendation">
                     Рекомендації від Baza Skill &nbsp;
                     <span className="text-red-500">*</span>
                   </label>
@@ -686,8 +692,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                     value={value}
                     onChange={onChange}
                     placeholder="Рекомендація"
-                    className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  ></textarea>
+                    className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"></textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -739,8 +744,7 @@ const EditCandidate = ({ id }: { id: string }) => {
           <div className="flex justify-start gap-[24px] py-[80px]">
             <button
               className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"
-              type="submit"
-            >
+              type="submit">
               {isProcessing
                 ? 'Обробка запиту...'
                 : 'Зберегти зміни'}
@@ -749,8 +753,7 @@ const EditCandidate = ({ id }: { id: string }) => {
               onClick={() =>
                 router.push('/admin/candidates')
               }
-              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border-[1px] font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
-            >
+              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border-[1px] font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black">
               Скасувати
             </button>
           </div>
