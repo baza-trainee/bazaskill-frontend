@@ -34,6 +34,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
     },
   });
 
+  console.log(candidate.stack);
+
   const handleDelete = (id: string) => {
     if (
       confirm('Ви дійсно бажаєте видалити цього кандидата?')

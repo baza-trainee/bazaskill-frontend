@@ -35,8 +35,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.gradaute.map((item) => (
             <div
               key={item.id}
-              className="flex w-full flex-col md:w-[34%]"
-            >
+              className="flex w-full flex-col md:w-[34%]">
               <span>{item.university}</span>
               <span>{item.university_specialization}</span>
               <span>
@@ -55,8 +54,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.cources.map((cource) => (
             <div
               key={cource.id}
-              className="flex w-full flex-col md:w-[34%]"
-            >
+              className="flex w-full flex-col md:w-[34%]">
               <span>{cource.cources_name}</span>
               <span>{cource.cources_specializaton}</span>
               <span>
