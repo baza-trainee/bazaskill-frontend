@@ -9,7 +9,7 @@ import {
   useQueryClient,
   UseQueryResult,
 } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Stack from './Stack';
 import {
   Controller,
@@ -43,6 +43,7 @@ const AddCandidate = () => {
   const [stack, setStack] = useState<
     Array<{ id: string; title: string; isExist: boolean }>
   >([]);
+  const [stackError, setStackError] = useState('');
 
   const { mutate } = useMutation({
     mutationKey: [constants.candidates.CREATE_CANDIDATE],
@@ -71,6 +72,12 @@ const AddCandidate = () => {
     queryFn: getSpecializations,
   });
 
+  useEffect(() => {
+    if (stack.length) {
+      setStackError('');
+    }
+  }, [stack]);
+
   const {
     control,
     handleSubmit,
@@ -83,6 +90,10 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (!stack.length) {
+      setStackError('Додайте декілька технологій зі стеку');
+      return;
+    }
     setIsProcessing(true);
     mutate({ data, stack });
   };
@@ -494,7 +505,10 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack handleStack={setStack} />
+          <Stack
+            handleStack={setStack}
+            error={stackError}
+          />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
