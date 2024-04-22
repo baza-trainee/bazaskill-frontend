@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
 import Project from './CandidateProject';
 import { CandidatesResponse } from '@/types/candidates';
-import OutProject from './OutProject';
 
 type MainInfoProps = {
   candidate: CandidatesResponse;
@@ -35,7 +34,8 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.gradaute.map((item) => (
             <div
               key={item.id}
-              className="flex w-full flex-col md:w-[34%]">
+              className="flex w-full flex-col md:w-[34%]"
+            >
               <span>{item.university}</span>
               <span>{item.university_specialization}</span>
               <span>
@@ -54,7 +54,8 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.cources.map((cource) => (
             <div
               key={cource.id}
-              className="flex w-full flex-col md:w-[34%]">
+              className="flex w-full flex-col md:w-[34%]"
+            >
               <span>{cource.cources_name}</span>
               <span>{cource.cources_specializaton}</span>
               <span>
@@ -84,32 +85,6 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
         <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
           {candidate.baza_experience.map((project) => (
             <Project key={project.id} project={project} />
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <div className="relative box-border flex flex-col gap-[24px] border-b-[1px] border-[#929292] py-[12px] font-tahoma text-[20px] font-[700] text-white sm:justify-end sm:text-[24px] md:flex-row lg:justify-center">
-          <h3 className="md:absolute md:left-0">
-            {t('out_baza_experience')}
-          </h3>
-          <div className="flex items-center gap-[15px] sm:mr-[140px]">
-            <svg width={20} height={18}>
-              <use href="/Icons/sprite.svg#icon-experience"></use>
-            </svg>
-            {t('projects', {
-              count: candidate.baza_experience.length,
-              ordinal: true,
-            })}
-          </div>
-        </div>
-
-        <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
-          {candidate.out_baza_experience.map((project) => (
-            <OutProject
-              key={project.id}
-              project={project}
-            />
           ))}
         </div>
       </div>

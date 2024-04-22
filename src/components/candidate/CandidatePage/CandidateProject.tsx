@@ -21,7 +21,10 @@ const Project = ({
           {t('duration')}
         </span>
         <span className="opacity-[.8]">
-          {project.project_duration} {t('weeks')}
+          {t('weeks', {
+            count: project.project_duration,
+            ordinal: true,
+          })}
         </span>
       </div>
       <span className="relative box-border flex h-[36px]  w-[135px] cursor-pointer items-center justify-center rounded-[16px] border-[1px] border-white p-[8px] xl:max-w-[45%]">
@@ -32,6 +35,7 @@ const Project = ({
         >
           <use href="/Icons/sprite.svg#icon-done"></use>
         </svg>
+        &nbsp;&nbsp;
         {project.specialization.title}
       </span>
     </div>

@@ -2,16 +2,13 @@ export function generateRandomId(specialization: {
   id: number;
   title: string;
 }) {
-  const firstCharacter = specialization.title
-    .charAt(0)
-    .toLowerCase();
-  const idLength = 4;
+  const idLength = 5;
   let id = '';
 
   for (let i = 0; i < idLength; i++) {
-    const randomIndex = Math.floor(Math.random() * 26);
-    id += String.fromCharCode(97 + randomIndex);
+    const randomDigit = Math.floor(Math.random() * 10); // Generates random digit (0-9)
+    id += randomDigit;
   }
 
-  return `${specialization.id}${firstCharacter.toUpperCase()}${id}`;
+  return `${specialization.id}${id}`;
 }
