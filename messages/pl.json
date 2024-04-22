@@ -148,7 +148,7 @@
     "ask_data": "Zażądaj danych",
     "candidate_project": {
       "duration": "Duration",
-      "weeks": "weeks",
+      "weeks": "{count, plural,  =2 {# tygodnie} =3 {# tygodnie} =4 {# tygodnie} other {# tygodni}}",
       "role": "Zespół ołowiu"
     }
   }

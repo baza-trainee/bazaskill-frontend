@@ -5,7 +5,6 @@ import {
   ICandidateCources,
   ICandidateGraduate,
   ICandidateLanguages,
-  IOutBazaExperience,
 } from '@/types/candidates';
 import { IStack } from '@/types/stack';
 
@@ -146,16 +145,16 @@ export const createCandidate = async (values: any) => {
         project_duration: item.project_duration,
       })
     ),
-    out_baza_experience:
-      values.data.out_baza_experience.map(
-        (item: IOutBazaExperience) => ({
-          company_name: item.company_name,
-          company_specialization:
-            item.company_specialization,
-          work_start: item.work_start,
-          work_end: item.work_end,
-        })
-      ),
+    // out_baza_experience:
+    //   values.data.out_baza_experience.map(
+    //     (item: IOutBazaExperience) => ({
+    //       company_name: item.company_name,
+    //       company_specialization:
+    //         item.company_specialization,
+    //       work_start: item.work_start,
+    //       work_end: item.work_end,
+    //     })
+    //   ),
     baza_recomendation: values.data.baza_recomendation,
     status: values.data.status,
     isPublished: true,
@@ -304,16 +303,16 @@ export const updateCandidate = async (
           project_duration: item.project_duration,
         })
       ),
-    out_baza_experience:
-      values.currentValues.out_baza_experience.map(
-        (item: IOutBazaExperience) => ({
-          company_name: item.company_name,
-          company_specialization:
-            item.company_specialization,
-          work_start: item.work_start,
-          work_end: item.work_end,
-        })
-      ),
+    // out_baza_experience:
+    //   values.currentValues.out_baza_experience.map(
+    //     (item: IOutBazaExperience) => ({
+    //       company_name: item.company_name,
+    //       company_specialization:
+    //         item.company_specialization,
+    //       work_start: item.work_start,
+    //       work_end: item.work_end,
+    //     })
+    //   ),
     baza_recomendation:
       values.currentValues.baza_recomendation,
     status: values.currentValues.status,

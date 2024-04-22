@@ -37,11 +37,10 @@ import {
   updateCandidate,
   getCandidateById,
 } from '@/api/candidates';
-import OutBazaExperience from './OutBazaExperience';
+// import OutBazaExperience from './OutBazaExperience';
 import {
   CandidatesResponse,
   ICandidateLanguages,
-  IOutBazaExperience,
 } from '@/types/candidates';
 
 const EditCandidate = ({ id }: { id: string }) => {
@@ -164,15 +163,15 @@ const EditCandidate = ({ id }: { id: string }) => {
             project_duration: item.project_duration,
           })
         ),
-        out_baza_experience: value.out_baza_experience.map(
-          (item: IOutBazaExperience) => ({
-            company_name: item.company_name,
-            company_specialization:
-              item.company_specialization,
-            work_start: item.work_start,
-            work_end: item.work_end,
-          })
-        ),
+        // out_baza_experience: value.out_baza_experience.map(
+        //   (item: IOutBazaExperience) => ({
+        //     company_name: item.company_name,
+        //     company_specialization:
+        //       item.company_specialization,
+        //     work_start: item.work_start,
+        //     work_end: item.work_end,
+        //   })
+        // ),
         baza_recomendation: value.baza_recomendation,
         status: value.status,
       });
@@ -675,18 +674,18 @@ const EditCandidate = ({ id }: { id: string }) => {
             }
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          {/* <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи поза Базою</h3>
-          </div>
+          </div> */}
 
-          <OutBazaExperience
+          {/* <OutBazaExperience
             control={control}
             fieldArray={out_baza_experience}
             fieldsLength={
               candidate?.data?.out_baza_experience
                 ?.length as number
             }
-          />
+          /> */}
 
           <div className="flex w-full gap-[24px]">
             <Controller

@@ -148,7 +148,7 @@
     "ask_data": "Request data",
     "candidate_project": {
       "duration": "Duration",
-      "weeks": "weeks",
+      "weeks": "{count, plural,  =2 {# weeks} =3 {# weeks} =4 {# weeks} other {# weeks}}",
       "role": "Team-lead"
     }
   }
