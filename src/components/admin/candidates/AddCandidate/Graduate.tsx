@@ -46,7 +46,7 @@ const Graduate = ({
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.universiry?.message
+                      )?.[index]?.university?.message
                     }
                     isRequired={true}
                     placeholder="Назва навчального закладу"
@@ -69,7 +69,7 @@ const Graduate = ({
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.universiry_specializaton
+                      )?.[index]?.university_specializaton
                         ?.message
                     }
                     isRequired={true}
@@ -137,21 +137,11 @@ const Graduate = ({
               <Controller
                 name={`graduate.${index}.graduate_end`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field }) => (
                   <TextInput
                     {...field}
-                    error={
-                      (
-                        errors.graduate as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.graduate_end?.message
-                    }
-                    isRequired={true}
+                    error=""
+                    isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Випуск"
                   />

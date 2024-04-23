@@ -25,10 +25,14 @@ type Stack = {
 };
 
 interface IStackProps {
+  isSubmitted?: boolean;
   handleStack: (stack: Stack[]) => void;
 }
 
-const Stack: React.FC<IStackProps> = ({ handleStack }) => {
+const Stack: React.FC<IStackProps> = ({
+  handleStack,
+  isSubmitted,
+}) => {
   const [stack, setStack] = useState<Stack[]>([]);
 
   const isModalOpen = useModal(
@@ -58,6 +62,7 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
   };
 
   const [input, setInput] = useState<string>('');
+
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -98,7 +103,8 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
         </label>
         <div
           id="about"
-          className="flex h-auto min-h-[132px] min-w-full flex-wrap gap-[8px] rounded-[4px] bg-white px-[16px] py-[20px] text-black">
+          className="flex h-auto min-h-[132px] min-w-full flex-wrap gap-[8px] rounded-[4px] bg-white px-[16px] py-[20px] text-black"
+        >
           {stack.map(({ title, isExist }: Stack, index) => (
             <StackItem
               key={index}
@@ -131,7 +137,8 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
               .map(({ title, isExist }: Stack, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center rounded-full border-[1px] border-white px-[16px] py-[5px]">
+                  className="flex items-center justify-center rounded-full border-[1px] border-white px-[16px] py-[5px]"
+                >
                   {title}
                 </div>
               ))}
@@ -139,7 +146,8 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
 
           <div
             onClick={() => openModal('add_stack')}
-            className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]">
+            className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]"
+          >
             + &nbsp;{' '}
             <span className="underline">
               Створити новий
@@ -151,6 +159,11 @@ const Stack: React.FC<IStackProps> = ({ handleStack }) => {
       {isModalOpen && modalType === 'add_stack' && (
         <AddStackModal />
       )}
+      <span className="absolute top-[calc(100%+5px)] font-sans text-[12px] text-error">
+        {input.length === 0 && isSubmitted
+          ? 'Required'
+          : ''}
+      </span>
     </div>
   );
 };
@@ -170,7 +183,8 @@ const StackItem: React.FC<StackItemProps> = ({
 }) => {
   return (
     <div
-      className={`flex h-[36px] w-fit items-center gap-[16px] rounded-full border-[2px] bg-graphite px-[16px] py-[5px] font-sans text-[16px] text-white ${isExist ? 'border-green' : 'border-error'}`}>
+      className={`flex h-[36px] w-fit items-center gap-[16px] rounded-full border-[2px] bg-graphite px-[16px] py-[5px] font-sans text-[16px] text-white ${isExist ? 'border-green' : 'border-error'}`}
+    >
       <span>{title}</span>
       <svg
         width={14}
@@ -179,7 +193,8 @@ const StackItem: React.FC<StackItemProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         onClick={() => handleDelete(index)}
-        className="cursor-pointer fill-[#787878] transition-all hover:fill-lightGray">
+        className="cursor-pointer fill-[#787878] transition-all hover:fill-lightGray"
+      >
         <path
           d="M14.6666 2.50065L13.4999 1.33398L7.99992 6.83398L2.49992 1.33398L1.33325 2.50065L6.83325 8.00065L1.33325 13.5007L2.49992 14.6673L7.99992 9.16732L13.4999 14.6673L14.6666 13.5007L9.16658 8.00065L14.6666 2.50065Z"
           fill="current"

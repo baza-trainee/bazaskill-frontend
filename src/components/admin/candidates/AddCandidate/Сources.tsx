@@ -46,7 +46,7 @@ const Cources: React.FC<ICourcesProps> = ({
                           FieldValues,
                           FieldError
                         >
-                      )?.[index]?.name?.message
+                      )?.[index]?.cources_name?.message
                     }
                     isRequired={true}
                     placeholder="Ведіть назву"
@@ -132,21 +132,11 @@ const Cources: React.FC<ICourcesProps> = ({
               <Controller
                 name={`cources.${index}.cources_end`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field }) => (
                   <TextInput
                     {...field}
-                    error={
-                      (
-                        errors.cources as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.cources_end?.message
-                    }
-                    isRequired={true}
+                    error=""
+                    isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Випуск"
                   />

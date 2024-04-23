@@ -74,7 +74,7 @@ const AddCandidate = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     getValues,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
@@ -494,7 +494,10 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack handleStack={setStack} />
+          <Stack
+            handleStack={setStack}
+            isSubmitted={isSubmitted}
+          />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>

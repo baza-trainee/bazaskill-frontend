@@ -67,7 +67,7 @@ const OutBazaExperience: React.FC<
                     {...field}
                     error={
                       (
-                        errors.baza_experience as DeepMap<
+                        errors.out_baza_experience as DeepMap<
                           FieldValues,
                           FieldError
                         >
@@ -94,14 +94,14 @@ const OutBazaExperience: React.FC<
                     {...field}
                     error={
                       (
-                        errors.baza_experience as DeepMap<
+                        errors.out_baza_experience as DeepMap<
                           FieldValues,
                           FieldError
                         >
                       )?.[index]?.work_start?.message
                     }
                     isRequired={true}
-                    placeholder="Введіть дату початка співпраці"
+                    placeholder="Введіть дату початку співпраці"
                     title="Початок співпраці"
                   />
                 )}
@@ -109,21 +109,11 @@ const OutBazaExperience: React.FC<
               <Controller
                 name={`out_baza_experience.${index}.work_end`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field }) => (
                   <TextInput
                     {...field}
-                    error={
-                      (
-                        errors.baza_experience as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.work_end?.message
-                    }
-                    isRequired={true}
+                    error=""
+                    isRequired={false}
                     placeholder="Введіть дату закінчення співпраці"
                     title="Кінець співпраці"
                   />
