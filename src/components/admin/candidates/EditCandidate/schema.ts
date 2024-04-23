@@ -103,20 +103,20 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
     })
   ),
-  out_baza_experience: z.array(
-    z.object({
-      company_name: z
-        .string()
-        .min(1, { message: 'Required' }),
-      company_specialization: z
-        .string()
-        .min(1, { message: 'Required' }),
-      work_start: z
-        .string()
-        .min(1, { message: 'Required' }),
-      work_end: z.string().min(1, { message: 'Required' }),
-    })
-  ),
+  // out_baza_experience: z.array(
+  //   z.object({
+  //     company_name: z
+  //       .string()
+  //       .min(1, { message: 'Required' }),
+  //     company_specialization: z
+  //       .string()
+  //       .min(1, { message: 'Required' }),
+  //     work_start: z
+  //       .string()
+  //       .min(1, { message: 'Required' }),
+  //     work_end: z.string().min(1, { message: 'Required' }),
+  //   })
+  // ),
   baza_recomendation: z
     .string()
     .nonempty({

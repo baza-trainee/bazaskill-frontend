@@ -9,7 +9,7 @@ import {
   useQueryClient,
   UseQueryResult,
 } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Stack from './Stack';
 import {
   Controller,
@@ -31,7 +31,7 @@ import Cources from './Сources';
 import BazaExperience from './BazaExperience';
 import SelectField from './SelectField';
 import { createCandidate } from '@/api/candidates';
-import OutBazaExperience from './OutBazaExperience';
+// import OutBazaExperience from './OutBazaExperience';
 import { useRouter } from 'next/navigation';
 
 const AddCandidate = () => {
@@ -43,6 +43,7 @@ const AddCandidate = () => {
   const [stack, setStack] = useState<
     Array<{ id: string; title: string; isExist: boolean }>
   >([]);
+  const [stackError, setStackError] = useState('');
 
   const { mutate } = useMutation({
     mutationKey: [constants.candidates.CREATE_CANDIDATE],
@@ -71,6 +72,12 @@ const AddCandidate = () => {
     queryFn: getSpecializations,
   });
 
+  useEffect(() => {
+    if (stack.length) {
+      setStackError('');
+    }
+  }, [stack]);
+
   const {
     control,
     handleSubmit,
@@ -83,6 +90,10 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (!stack.length) {
+      setStackError('Додайте декілька технологій зі стеку');
+      return;
+    }
     setIsProcessing(true);
     mutate({ data, stack });
   };
@@ -497,6 +508,7 @@ const AddCandidate = () => {
           <Stack
             handleStack={setStack}
             isSubmitted={isSubmitted}
+            error={stackError}
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -523,14 +535,14 @@ const AddCandidate = () => {
             fieldArray={baza_experience}
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          {/* <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи поза Базою</h3>
-          </div>
+          </div> */}
 
-          <OutBazaExperience
+          {/* <OutBazaExperience
             control={control}
             fieldArray={out_baza_experience}
-          />
+          /> */}
 
           <div className="flex w-full gap-[24px]">
             <Controller

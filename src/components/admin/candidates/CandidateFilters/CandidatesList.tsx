@@ -1,12 +1,25 @@
+import declineWord from 'decline-word';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 import CandidateCard from './CandidateCard';
+import { CandidatesResponse } from '@/types/candidates';
 
-const CandidatesList = () => {
+const CandidatesList = ({
+  candidates,
+}: {
+  candidates: CandidatesResponse[];
+}) => {
   return (
     <div className=" box-content pr-[24px] 5xl:pr-[196px]">
       <div className="pl-[24px] font-tahoma text-[24px]">
-        386 кандидата
+        {candidates.length}{' '}
+        {declineWord(
+          candidates.length,
+          'кандидат',
+          '',
+          'и',
+          'ів'
+        )}
       </div>
       <div className="mt-[40px] flex h-fit max-w-[950px] grow flex-wrap items-start justify-start gap-[24px] pl-[24px]">
         <div className="relative box-border flex h-[486px] w-[442px] items-center justify-center rounded-[10px] border-[2px] border-green bg-transparent">
@@ -20,50 +33,12 @@ const CandidatesList = () => {
             </p>
           </Link>
         </div>
-        <CandidateCard
-          specialization="Backend"
-          status="searching"
-        />
-        <CandidateCard
-          specialization="Frontend"
-          status="inactive"
-        />
-        <CandidateCard
-          specialization="Fullstack"
-          status="working"
-        />
-        <CandidateCard
-          specialization="Design"
-          status="working"
-        />
-        <CandidateCard
-          specialization="QA Manual"
-          status="working"
-        />
-        <CandidateCard
-          specialization="PM"
-          status="working"
-        />
-        <CandidateCard
-          specialization="Backend"
-          status="searching"
-        />
-        <CandidateCard
-          specialization="Frontend"
-          status="inactive"
-        />
-        <CandidateCard
-          specialization="Fullstack"
-          status="working"
-        />
-        <CandidateCard
-          specialization="Design"
-          status="working"
-        />
-        <CandidateCard
-          specialization="QA Manual"
-          status="working"
-        />
+        {candidates?.map((candidate) => (
+          <CandidateCard
+            key={candidate.id}
+            candidate={candidate}
+          />
+        ))}
       </div>
       <div className="mb-[94px] mt-[70px] flex w-full items-center justify-center">
         <svg

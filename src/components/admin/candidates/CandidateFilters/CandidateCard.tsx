@@ -1,34 +1,66 @@
+import declineWord from 'decline-word';
+import { CandidatesResponse } from '@/types/candidates';
+import Link from 'next/link';
+import { generateRandomId } from '@/helpers/generateId';
+import { constants } from '@/constants';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { deleteCandidate } from '@/api/candidates';
+import { shortenLangs } from '@/helpers/shortenLangs';
+
 type CandidateCardProps = {
-  status: 'searching' | 'working' | 'inactive';
-  specialization:
-    | 'Frontend'
-    | 'Backend'
-    | 'Fullstack'
-    | 'Design'
-    | 'PM'
-    | 'QA Manual'
-    | string;
+  candidate: CandidatesResponse;
 };
 const CandidateCard: React.FC<CandidateCardProps> = ({
-  status,
-  specialization,
+  candidate,
 }: CandidateCardProps) => {
+  const queryClient = useQueryClient();
+  const specialization = candidate.specialization.title;
+
+  const { mutate } = useMutation({
+    mutationKey: [constants.candidates.CREATE_CANDIDATE],
+    mutationFn: (id: string) => deleteCandidate(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          constants.candidates.FETCH_ALL_CANDIDATES,
+        ],
+      });
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
+  console.log(candidate.stack);
+
+  const handleDelete = (id: string) => {
+    if (
+      confirm('Ви дійсно бажаєте видалити цього кандидата?')
+    ) {
+      mutate(id);
+    }
+  };
+
   return (
     <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
       <div
-        className={`${status === 'searching' || status === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[134px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
+        className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[134px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
         <span
-          className={`${status === 'searching' ? 'bg-green' : status === 'working' ? 'bg-orange' : status === 'inactive' ? 'bg-black' : ''} h-[14px] w-[14px] rounded-[100%]`}
+          className={`${candidate.status.toLowerCase() === 'searching' ? 'bg-green' : candidate.status.toLowerCase() === 'working' ? 'bg-orange' : candidate.status.toLowerCase() === 'inactive' ? 'bg-black' : ''} h-[14px] w-[14px] rounded-[100%]`}
         ></span>
         <span
-          className={`${status === 'searching' ? 'text-green' : status === 'working' ? 'text-orange' : status === 'inactive' ? 'text-black' : ''} rounded-[100%]`}
+          className={`${candidate.status.toLowerCase() === 'searching' ? 'text-green' : candidate.status.toLowerCase() === 'working' ? 'text-orange' : candidate.status.toLowerCase() === 'inactive' ? 'text-black' : ''} rounded-[100%]`}
         >
-          {status === 'searching'
+          {candidate.status.toLowerCase() === 'searching'
             ? 'У пошуку'
-            : status === 'working'
+            : candidate.status.toLowerCase() === 'working'
               ? 'Працює'
-              : status === 'inactive'
+              : candidate.status.toLowerCase() ===
+                  'inactive'
                 ? 'Не активний'
                 : null}
         </span>
@@ -39,22 +71,34 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         {specialization}
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
-        <h3>Tomas</h3>
-        <span>ID 2345</span>
+        <h3>{candidate.name}</h3>
+        <span>
+          ID {generateRandomId(candidate.specialization)}
+        </span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
-          Харків, Україна
+          {candidate.city},&nbsp;{candidate.country}
         </span>
 
         <span className="flex w-[50%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-lang"></use>
           </svg>
-          En/Pl
+          {candidate.candidate_language.map(
+            (lang, index) => (
+              <span key={lang.id}>
+                <span>{shortenLangs(lang.language)}</span>
+                &nbsp;
+                {index !==
+                  candidate.candidate_language.length -
+                    1 && <span>/</span>}
+              </span>
+            )
+          )}
         </span>
       </div>
 
@@ -63,7 +107,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-experience"></use>
           </svg>
-          2 проєкта на базі
+          {candidate.baza_experience.length}{' '}
+          {declineWord(
+            candidate.baza_experience.length,
+            'проект',
+            '',
+            'и',
+            'ів'
+          )}{' '}
+          на базі
         </span>
 
         <span className="flex w-[50%] items-center gap-[8px] ">
@@ -71,49 +123,63 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             <use href="/Icons/sprite.svg#icon-point"></use>
           </svg>
           <span className="truncate">
-            В офісі, гібридна, віддалено
+            {candidate.work_format === 'Remote'
+              ? 'Віддалено'
+              : candidate.work_format === 'Office'
+                ? 'В офісі'
+                : candidate.work_format === 'Hybrid'
+                  ? 'Гібридний формат роботи'
+                  : null}
           </span>
         </span>
       </div>
 
       <div className="flex w-full justify-between gap-[27px]">
-        <div className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]">
-          React.js
-        </div>
-        <div className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]">
-          Next.js
-        </div>
-        <div className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]">
-          Git
-        </div>
+        {candidate.stack.slice(0, 3).map((item) => (
+          <div
+            key={item.id}
+            className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]"
+          >
+            {item.stack.title}
+          </div>
+        ))}
         <span className="flex items-end justify-center">
           ...
         </span>
       </div>
       <div className="py-[10px] font-sans text-[16px] leading-[26px]">
-        I am a UX/UI designer with experience in freelance
-        projects. My expertise lies in conceptualizing and
-        designing attractive software products such as
-        landing pages...
+        {candidate.about}
       </div>
 
       <div className="flex h-[44px] w-full items-center justify-between">
         <span className="font-tahoma text-[20px] font-[700]">
-          від 500 $
+          від {candidate.sallary_form} $
         </span>
         <div className="flex gap-[32px]">
-          <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
-            <svg width={22} height={16}>
-              <use href="/Icons/sprite.svg#icon-eye"></use>
-            </svg>
-          </button>
-          <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
-            <svg width={24} height={24}>
-              <use href="/Icons/sprite.svg#icon-pen"></use>
-            </svg>
-          </button>
+          <Link href={`/candidate/${candidate.id}`}>
+            {' '}
+            <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+              <svg width={22} height={16}>
+                <use href="/Icons/sprite.svg#icon-eye"></use>
+              </svg>
+            </button>
+          </Link>
+          <Link
+            href={`/admin/candidates/edit/${candidate.id}`}
+          >
+            <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+              <svg width={24} height={24}>
+                <use href="/Icons/sprite.svg#icon-pen"></use>
+              </svg>
+            </button>
+          </Link>
 
-          <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+          <button
+            onClick={() =>
+              handleDelete(candidate.id.toString())
+            }
+            className="flex h-[32px] w-[32px] items-center justify-center bg-white"
+          >
             <svg width={26} height={29}>
               <use href="/Icons/sprite.svg#icon-drop"></use>
             </svg>

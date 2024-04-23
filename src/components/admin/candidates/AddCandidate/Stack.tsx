@@ -27,11 +27,13 @@ type Stack = {
 interface IStackProps {
   isSubmitted?: boolean;
   handleStack: (stack: Stack[]) => void;
+  error: string;
 }
 
 const Stack: React.FC<IStackProps> = ({
   handleStack,
   isSubmitted,
+  error,
 }) => {
   const [stack, setStack] = useState<Stack[]>([]);
 
@@ -154,6 +156,7 @@ const Stack: React.FC<IStackProps> = ({
             </span>
           </div>
         </div>
+        <p className="text-xs text-error">{error}</p>
       </div>
       <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
       {isModalOpen && modalType === 'add_stack' && (

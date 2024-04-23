@@ -20,6 +20,7 @@
     "@tanstack/react-query-devtools": "^5.17.21",
     "@tanstack/react-query-next-experimental": "^5.17.19",
     "axios": "^1.6.5",
+    "decline-word": "^1.4.0",
     "js-cookie": "^3.0.5",
     "nanoid": "^5.0.4",
     "next": "^14.1.0",

@@ -142,12 +142,13 @@
     "education": "Edukacja",
     "courses": "Kursy",
     "baza_experience": "Doświadczenie zawodowe w Bazie",
+    "out_baza_experience": "Doświadczenie w pracy poza Bazą",
     "projects": "{count, plural, =0 {jeszcze żadnych projektów} =1 {# project} =2 {# projecty} =3 {# projecty} other {# projektów}}",
     "recomendation_from": "Rekomendacje od",
     "ask_data": "Zażądaj danych",
     "candidate_project": {
       "duration": "Duration",
-      "weeks": "weeks",
+      "weeks": "{count, plural,  =2 {# tygodnie} =3 {# tygodnie} =4 {# tygodnie} other {# tygodni}}",
       "role": "Zespół ołowiu"
     }
   }

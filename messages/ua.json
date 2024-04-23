@@ -143,12 +143,13 @@
     "education": "Освіта",
     "courses": "Курси",
     "baza_experience": "Досвід роботи на базі",
+    "out_baza_experience": "Досвід роботи поза базою",
     "projects": "{count, plural, =0 {ще немає проєктів} =1 {# проєкт} =2 {# проєкти} =3 {# проєкти} other {# проєктів}}",
     "recomendation_from": "Рекомендації від",
     "ask_data": "Запросити дані",
     "candidate_project": {
       "duration": "Тривалість",
-      "weeks": "тижнів",
+      "weeks": "{count, plural, =0 {тижнів} =1 {# тижні} =2 {# тижні} =3 {# тижні} =4 {# тижні} other {# тижнів}}",
       "role": "Тім-лід"
     }
   }
