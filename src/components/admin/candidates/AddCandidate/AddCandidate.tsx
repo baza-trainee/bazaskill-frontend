@@ -81,7 +81,7 @@ const AddCandidate = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     getValues,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
@@ -507,6 +507,7 @@ const AddCandidate = () => {
 
           <Stack
             handleStack={setStack}
+            isSubmitted={isSubmitted}
             error={stackError}
           />
 

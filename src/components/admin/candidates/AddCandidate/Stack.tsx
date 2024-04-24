@@ -25,12 +25,14 @@ type Stack = {
 };
 
 interface IStackProps {
+  isSubmitted?: boolean;
   handleStack: (stack: Stack[]) => void;
   error: string;
 }
 
 const Stack: React.FC<IStackProps> = ({
   handleStack,
+  isSubmitted,
   error,
 }) => {
   const [stack, setStack] = useState<Stack[]>([]);
@@ -62,6 +64,7 @@ const Stack: React.FC<IStackProps> = ({
   };
 
   const [input, setInput] = useState<string>('');
+
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -159,6 +162,11 @@ const Stack: React.FC<IStackProps> = ({
       {isModalOpen && modalType === 'add_stack' && (
         <AddStackModal />
       )}
+      <span className="absolute top-[calc(100%+5px)] font-sans text-[12px] text-error">
+        {input.length === 0 && isSubmitted
+          ? 'Required'
+          : ''}
+      </span>
     </div>
   );
 };
