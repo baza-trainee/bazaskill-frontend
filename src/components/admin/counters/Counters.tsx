@@ -106,8 +106,7 @@ const Counters = () => {
         <form
           className="flex w-[597px] flex-col gap-[30px]"
           onSubmit={handleSubmit(onSubmit)}
-          onKeyPress={handleKeyPress}
-        >
+          onKeyPress={handleKeyPress}>
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -187,7 +186,7 @@ const Counters = () => {
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text="Зберігти зміни"
+              text="Зберегти зміни"
               type="submit"
               onClick={handleSubmit(onSubmit)}
               disabled={
