@@ -8,7 +8,6 @@ import {
 } from 'swiper/react';
 import { useTranslations } from 'next-intl';
 import { Navigation, Pagination } from 'swiper/modules';
-import { testimonials } from './data';
 import { Testimonial } from '@/types/testimonials';
 import TestimonialCard from './TestimonialCard';
 import ButtonRight from '@/components/icons/ButtonRight';
@@ -18,10 +17,18 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './testimonials_styles.css';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getTestimonials } from '@/api/testimonials';
 
 const Testimonials = () => {
   const t = useTranslations('Main.testimonials');
   const sliderRef: RefObject<SwiperRef> = useRef(null);
+
+  const { data } = useQuery({
+    queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
+    queryFn: getTestimonials,
+  });
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -55,13 +62,11 @@ const Testimonials = () => {
             nextEl: '.next-testimonials',
           }}
           modules={[Pagination, Navigation]}
-          className="testimonials max-w-[88%] 5xl:max-w-[1524px]"
-        >
-          {testimonials.map((item: Testimonial) => (
+          className="testimonials max-w-[88%] 5xl:max-w-[1524px]">
+          {data?.map((item: Testimonial) => (
             <SwiperSlide
               className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
-              key={item.id}
-            >
+              key={item.id}>
               <TestimonialCard item={item} />
             </SwiperSlide>
           ))}
@@ -69,15 +74,13 @@ const Testimonials = () => {
         <button
           type="button"
           className="prev absolute left-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer md:block"
-          onClick={handlePrev}
-        >
+          onClick={handlePrev}>
           <ButtonLeft className="fill-white" />
         </button>
         <button
           type="button"
           className="next absolute right-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer md:block"
-          onClick={handleNext}
-        >
+          onClick={handleNext}>
           <ButtonRight className="fill-white" />
         </button>
       </div>
