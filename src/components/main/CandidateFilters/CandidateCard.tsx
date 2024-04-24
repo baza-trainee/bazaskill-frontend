@@ -1,51 +1,84 @@
+import declineWord from 'decline-word';
+import { CandidatesResponse } from '@/types/candidates';
+import { generateRandomId } from '@/helpers/generateId';
+import Link from 'next/link';
+import { shortenLangs } from '@/helpers/shortenLangs';
+
 type CandidateCardProps = {
-  // status: 'searching' | 'working' | 'inactive';
-  specialization:
-    | 'Frontend'
-    | 'Backend'
-    | 'Fullstack'
-    | 'Design'
-    | 'PM'
-    | 'QA Manual'
-    | string;
+  candidate: CandidatesResponse;
 };
 const CandidateCard: React.FC<CandidateCardProps> = ({
-  // status,
-  specialization,
+  candidate,
 }: CandidateCardProps) => {
+  const specialization = candidate.specialization.title;
   return (
-    <div className="box-border flex h-[412px] w-[280px] flex-col gap-[16px] rounded-[10px] border-[2px] border-secondaryGray bg-slate px-2 py-4 text-xs sm:h-[480px] sm:w-[380px] sm:px-4 sm:text-base md:w-[396px] md:text-xl xl:h-[482px] 2xl:h-[492px] 2xl:w-[411px] 4xl:w-[418px] 5xl:w-[402px]">
+    <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
+      <div
+        className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[134px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}>
+        <span
+          className={`${candidate.status.toLowerCase() === 'searching' ? 'bg-green' : candidate.status.toLowerCase() === 'working' ? 'bg-orange' : candidate.status.toLowerCase() === 'inactive' ? 'bg-black' : ''} h-[14px] w-[14px] rounded-[100%]`}></span>
+        <span
+          className={`${candidate.status.toLowerCase() === 'searching' ? 'text-green' : candidate.status.toLowerCase() === 'working' ? 'text-orange' : candidate.status.toLowerCase() === 'inactive' ? 'text-black' : ''} rounded-[100%]`}>
+          {candidate.status.toLowerCase() === 'searching'
+            ? 'У пошуку'
+            : candidate.status.toLowerCase() === 'working'
+              ? 'Працює'
+              : candidate.status.toLowerCase() ===
+                  'inactive'
+                ? 'Не активний'
+                : null}
+        </span>
+      </div>
       <h2
-        className={`flex w-full justify-start font-tahoma text-base font-[700] sm:py-2 sm:text-xl xl:text-2xl ${specialization === 'Backend' ? 'text-purple ' : specialization === 'Frontend' ? 'text-yellow' : specialization === 'QA Manual' ? 'text-secondaryPink' : specialization === 'Fullstack' ? 'text-orange' : specialization === 'Design' ? 'text-secondaryGreen' : specialization === 'PM' ? 'text-blue-500' : ''}`}
-      >
+        className={`flex w-full justify-start font-tahoma text-2xl font-[700] ${specialization === 'Backend' ? 'text-purple ' : specialization === 'Frontend' ? 'text-yellow' : specialization === 'QA Manual' ? 'text-secondaryPink' : specialization === 'Fullstack' ? 'text-orange' : specialization === 'Design' ? 'text-secondaryGreen' : specialization === 'PM' ? 'text-blue-500' : ''}`}>
         {specialization}
       </h2>
-      <div className="flex w-full items-center justify-between pr-5 font-sans font-[700] leading-[28px] text-white">
-        <h3>Tomas</h3>
-        <span>ID 2345</span>
+      <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
+        <h3>{candidate.name}</h3>
+        <span>
+          ID {generateRandomId(candidate.specialization)}
+        </span>
       </div>
-      <div className="flex h-[34px] w-full items-center gap-[15px] font-sans">
+      <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
-          Харків, Україна
+          {candidate.city},&nbsp;{candidate.country}
         </span>
 
         <span className="flex w-[50%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-lang"></use>
           </svg>
-          En/Pl
+          {candidate.candidate_language.map(
+            (lang, index) => (
+              <span key={lang.id}>
+                <span>{shortenLangs(lang.language)}</span>
+                &nbsp;
+                {index !==
+                  candidate.candidate_language.length -
+                    1 && <span>/</span>}
+              </span>
+            )
+          )}
         </span>
       </div>
 
-      <div className="flex h-[34px] w-full items-center gap-[12px] font-sans">
+      <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px] text-nowrap">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-experience"></use>
           </svg>
-          2 проєкта на базі
+          {candidate.baza_experience.length}{' '}
+          {declineWord(
+            candidate.baza_experience.length,
+            'проект',
+            '',
+            'и',
+            'ів'
+          )}{' '}
+          на базі
         </span>
 
         <span className="flex w-[50%] items-center gap-[8px] ">
@@ -53,40 +86,43 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             <use href="/Icons/sprite.svg#icon-point"></use>
           </svg>
           <span className="truncate">
-            В офісі, гібридна, віддалено
+            {candidate.work_format === 'Remote'
+              ? 'Віддалено'
+              : candidate.work_format === 'Office'
+                ? 'В офісі'
+                : candidate.work_format === 'Hybrid'
+                  ? 'Гібридний формат роботи'
+                  : null}
           </span>
         </span>
       </div>
 
-      <div className="flex w-full justify-between gap-1 text-xs sm:text-sm md:gap-[15px]">
-        <div className="box-border flex h-[30px] w-[72px] items-center justify-center rounded-full border-[1px] border-white sm:w-[88px] md:px-[15px] md:py-[10px]">
-          React.js
-        </div>
-        <div className="box-border flex h-[30px] w-[72px] items-center justify-center rounded-full border-[1px] border-white md:px-[15px] md:py-[10px] xl:w-[88px]">
-          Next.js
-        </div>
-        <div className="box-border flex h-[30px] min-w-[72px] items-center justify-center rounded-full border-[1px] border-white sm:min-w-[88px] md:px-[15px] md:py-[10px]">
-          Git
-        </div>
+      <div className="flex w-full justify-between gap-[27px]">
+        {candidate.stack.slice(0, 3).map((item) => (
+          <div
+            key={item.id}
+            className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]">
+            {item.stack.title}
+          </div>
+        ))}
         <span className="flex items-end justify-center">
           ...
         </span>
       </div>
-      <div className="font-sans leading-[26px] md:text-base">
-        I am a UX/UI designer with experience in freelance
-        projects. My expertise lies in conceptualizing and
-        designing attractive software products such as
-        landing pages...
+      <div className="py-[10px] font-sans text-[16px] leading-[26px]">
+        {candidate.about}
       </div>
 
-      <div className="flex h-[44px] w-full flex-row items-center justify-between sm:mt-5">
-        <span className="font-tahoma font-[700]">
-          від 500 $
+      <div className="flex h-[44px] w-full items-center justify-between">
+        <span className="font-tahoma text-[20px] font-[700]">
+          від {candidate.sallary_form} $
         </span>
         <div className="flex">
-          <button className="flex h-[44px] w-[133px] items-center justify-center rounded bg-white p-4 font-semibold text-black sm:w-[180px]">
-            Читати більше
-          </button>
+          <Link href={`/candidate/${candidate.id}`}>
+            <button className="flex h-[44px] w-[133px] items-center justify-center rounded bg-white p-4 font-semibold text-black sm:w-[180px]">
+              Читати більше
+            </button>
+          </Link>
         </div>
       </div>
     </div>

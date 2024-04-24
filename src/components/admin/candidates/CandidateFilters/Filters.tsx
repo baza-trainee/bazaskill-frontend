@@ -25,10 +25,22 @@ const Filters = () => {
     language: z.string().array(),
     graduate: z.string().array(),
     status: z.string().array(),
-    sallary: z.object({
-      from: z.string(),
-      to: z.string(),
-    }),
+    sallary: z
+      .object({
+        from: z.string(),
+        to: z.string(),
+      })
+      .refine(
+        (data) => {
+          return (
+            parseFloat(data.from) <= parseFloat(data.to)
+          );
+        },
+        {
+          message:
+            'Значення Від не повинно бути більшим ніж значення До',
+        }
+      ),
   });
 
   const {
@@ -36,9 +48,11 @@ const Filters = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
+    mode: 'onChange',
     resolver: zodResolver(schema),
     defaultValues: { stack: [] },
   });
+
   const onSubmit: SubmitHandler<FieldValues> = (
     data,
     event
@@ -46,13 +60,24 @@ const Filters = () => {
     event?.preventDefault();
     console.log(data);
   };
+
   const handleInput = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
     const input = e.target as HTMLInputElement;
     const currentValue = input.value;
 
-    if (currentValue.length >= 5) {
+    const numericKeys = /[0-9]/;
+    const specialKeys = ['Backspace'];
+
+    if (currentValue.length >= 5 && e.key !== 'Backspace') {
+      e.preventDefault();
+    }
+
+    if (
+      !numericKeys.test(e.key) &&
+      !specialKeys.includes(e.key)
+    ) {
       e.preventDefault();
     }
   };
@@ -223,6 +248,11 @@ const Filters = () => {
           <button className="flex items-center justify-center rounded-[4px] border-[1px] border-yellow px-[24px] py-[15px] text-yellow">
             OK
           </button>
+          {errors.sallary?.root && (
+            <span className="absolute bottom-[-20px] left-[0px] text-xs text-red-500">
+              {errors.sallary?.root?.message?.toString()}
+            </span>
+          )}
         </div>
       </div>
 

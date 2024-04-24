@@ -1,12 +1,12 @@
-import CandidateHero from '@/components/candidate/CandidatePage/Hero';
-import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
-import React from 'react';
-
-const Candidate: React.FC = () => {
+import CandidatePageComponent from '@/components/candidate/CandidatePage/CandidatePage';
+const Candidate = ({
+  params,
+}: {
+  params: { id: string };
+}) => {
   return (
     <div className="bg-graphite">
-      <CandidateHero />
-      <MainInfo />
+      <CandidatePageComponent id={params.id} />
     </div>
   );
 };

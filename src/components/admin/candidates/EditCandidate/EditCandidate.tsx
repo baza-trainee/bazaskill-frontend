@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
@@ -13,7 +13,6 @@ import {
   useQueryClient,
   UseQueryResult,
 } from '@tanstack/react-query';
-import React, { useState } from 'react';
 import Stack from './Stack';
 import {
   Controller,
@@ -38,10 +37,10 @@ import {
   updateCandidate,
   getCandidateById,
 } from '@/api/candidates';
-import OutBazaExperience from './OutBazaExperience';
+// import OutBazaExperience from './OutBazaExperience';
 import {
+  CandidatesResponse,
   ICandidateLanguages,
-  IOutBazaExperience,
 } from '@/types/candidates';
 
 const EditCandidate = ({ id }: { id: string }) => {
@@ -49,6 +48,7 @@ const EditCandidate = ({ id }: { id: string }) => {
   const queryClient = useQueryClient();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [stackError, setStackError] = useState('');
 
   const [stack, setStack] = useState<
     Array<{ id: string; title: string; isExist: boolean }>
@@ -65,13 +65,17 @@ const EditCandidate = ({ id }: { id: string }) => {
           constants.candidates.FETCH_ALL_CANDIDATES,
         ],
       });
+      router.push('/admin/candidates');
     },
     onError: (error) => {
-      alert(error);
+      alert(error.message);
     },
   });
 
-  const candidate: UseQueryResult<any, Error> = useQuery({
+  const candidate: UseQueryResult<
+    CandidatesResponse,
+    Error
+  > = useQuery({
     queryKey: [constants.candidates.FETCH_CANDIDATE_BY_ID],
     queryFn: () => getCandidateById(id),
   });
@@ -86,6 +90,12 @@ const EditCandidate = ({ id }: { id: string }) => {
     queryFn: getSpecializations,
   });
 
+  useEffect(() => {
+    if (stack.length) {
+      setStackError('');
+    }
+  }, [stack]);
+
   const {
     control,
     handleSubmit,
@@ -93,6 +103,7 @@ const EditCandidate = ({ id }: { id: string }) => {
     getValues,
     reset,
     setValue,
+    watch,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
     defaultValues: defaultValues,
@@ -125,6 +136,7 @@ const EditCandidate = ({ id }: { id: string }) => {
         salary_to: value.sallary_to,
         specialization: value.specialization.id.toString(),
         about: value.about,
+        cv_id: value.cv_id,
         graduate: value.gradaute.map((item: any) => ({
           university: item.university,
           university_specializaton:
@@ -132,6 +144,8 @@ const EditCandidate = ({ id }: { id: string }) => {
           university_grade: item.university_grade,
           graduate_start: item.graduate_start,
           graduate_end: item.graduate_end,
+          graduate_sertificate_id:
+            item.graduate_sertificate_id,
         })),
         cources: value.cources.map((cource: any) => ({
           cources_name: cource.cources_name,
@@ -139,6 +153,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             cource.cources_specializaton,
           cources_start: cource.cources_start,
           cources_end: cource.cources_end,
+          cources_sertificate_id:
+            cource.cources_sertificate_id,
         })),
         baza_experience: value.baza_experience.map(
           (item: any) => ({
@@ -147,16 +163,17 @@ const EditCandidate = ({ id }: { id: string }) => {
             project_duration: item.project_duration,
           })
         ),
-        out_baza_experience: value.out_baza_experience.map(
-          (item: IOutBazaExperience) => ({
-            company_name: item.company_name,
-            company_specialization:
-              item.company_specialization,
-            work_start: item.work_start,
-            work_end: item.work_end,
-          })
-        ),
+        // out_baza_experience: value.out_baza_experience.map(
+        //   (item: IOutBazaExperience) => ({
+        //     company_name: item.company_name,
+        //     company_specialization:
+        //       item.company_specialization,
+        //     work_start: item.work_start,
+        //     work_end: item.work_end,
+        //   })
+        // ),
         baza_recomendation: value.baza_recomendation,
+        status: value.status,
       });
       candidate.data.gradaute.map(
         (item: any, index: number) => {
@@ -191,10 +208,16 @@ const EditCandidate = ({ id }: { id: string }) => {
     }
   }, [candidate.data]);
 
+  const currentValues = watch();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+    if (!stack.length) {
+      setStackError('Додайте декілька технологій зі стеку');
+      return;
+    }
     setIsProcessing(true);
-    mutate({ id, data: { data, stack } });
-    router.push('/admin/candidates');
+    mutate({ id, data: { currentValues, stack } });
   };
 
   const graduate = useFieldArray({
@@ -405,7 +428,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             fieldArray={lang}
             getValues={getValues}
             fieldsLength={
-              candidate?.data?.candidate_language.length
+              candidate?.data?.candidate_language
+                .length as number
             }
           />
           <div className="flex w-full gap-[24px]">
@@ -591,6 +615,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                 <FileInput
                   onChange={onChange}
                   value={value}
+                  isRequired={true}
                   title="Завантажити CV"
                   errors={
                     (
@@ -609,6 +634,7 @@ const EditCandidate = ({ id }: { id: string }) => {
           <Stack
             handleStack={setStack}
             outerStack={stack}
+            error={stackError}
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -618,7 +644,9 @@ const EditCandidate = ({ id }: { id: string }) => {
           <Graduate
             fieldArray={graduate}
             control={control}
-            fieldsLength={candidate?.data?.gradaute.length}
+            fieldsLength={
+              candidate?.data?.gradaute.length as number
+            }
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -628,7 +656,9 @@ const EditCandidate = ({ id }: { id: string }) => {
           <Cources
             fieldArray={cources}
             control={control}
-            fieldsLength={candidate?.data?.cources.length}
+            fieldsLength={
+              candidate?.data?.cources.length as number
+            }
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -639,21 +669,23 @@ const EditCandidate = ({ id }: { id: string }) => {
             control={control}
             fieldArray={baza_experience}
             fieldsLength={
-              candidate?.data?.baza_experience?.length
+              candidate?.data?.baza_experience
+                ?.length as number
             }
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          {/* <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи поза Базою</h3>
-          </div>
+          </div> */}
 
-          <OutBazaExperience
+          {/* <OutBazaExperience
             control={control}
             fieldArray={out_baza_experience}
             fieldsLength={
-              candidate?.data?.out_baza_experience?.length
+              candidate?.data?.out_baza_experience
+                ?.length as number
             }
-          />
+          /> */}
 
           <div className="flex w-full gap-[24px]">
             <Controller
@@ -693,6 +725,38 @@ const EditCandidate = ({ id }: { id: string }) => {
 
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
+
+          <div className="flex w-full gap-[24px]">
+            <Controller
+              name="status"
+              control={control}
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
+                <SelectField
+                  title="Статус кандидата"
+                  value={value}
+                  values={[
+                    'Working',
+                    'Searching',
+                    'Inactive',
+                  ]}
+                  onChange={onChange}
+                  errors={
+                    (
+                      errors.status as DeepMap<
+                        FieldValues,
+                        FieldError
+                      >
+                    )?.message
+                  }
+                />
+              )}
+            />
+            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
+          </div>
+
           <div className="flex justify-start gap-[24px] py-[80px]">
             <button
               className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"

@@ -1,5 +1,15 @@
-import { z, ZodType } from 'zod';
+import { z } from 'zod';
 
+const emailPattern =
+  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+
+const nonRussianLettersPattern =
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+
+const nonRussianLettersWithSymbolsAndDigitsPattern =
+  /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ.]+$/;
+
+const messageMaxLength = 2500;
 const schema = z.object({
   name_ua: z.string().min(1, { message: 'Required' }),
   surname_ua: z.string().min(1, { message: 'Required' }),
@@ -32,7 +42,7 @@ const schema = z.object({
       message: 'Required',
     })
     .refine(
-      (value) => value?.[0]?.size <= 500000,
+      (value) => !value || value[0]?.size <= 5000000,
       `Max file size is 5MB.`
     ),
   graduate: z.array(
@@ -52,11 +62,9 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
       graduate_sertificate: z
         .any()
-        .refine((value) => value?.length > 0, {
-          message: 'Required',
-        })
+        .nullable()
         .refine(
-          (value) => value?.[0]?.size <= 500000,
+          (value) => !value || value[0]?.size <= 5000000,
           `Max file size is 5MB.`
         ),
     })
@@ -77,11 +85,9 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
       cources_sertificate: z
         .any()
-        .refine((value) => value?.length > 0, {
-          message: 'Required',
-        })
+        .nullable()
         .refine(
-          (value) => value?.[0]?.size <= 500000,
+          (value) => !value || value[0]?.size <= 5000000,
           `Max file size is 5MB.`
         ),
     })
@@ -97,23 +103,35 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
     })
   ),
-  out_baza_experience: z.array(
-    z.object({
-      company_name: z
-        .string()
-        .min(1, { message: 'Required' }),
-      company_specialization: z
-        .string()
-        .min(1, { message: 'Required' }),
-      work_start: z
-        .string()
-        .min(1, { message: 'Required' }),
-      work_end: z.string().min(1, { message: 'Required' }),
-    })
-  ),
+  // out_baza_experience: z.array(
+  //   z.object({
+  //     company_name: z
+  //       .string()
+  //       .min(1, { message: 'Required' }),
+  //     company_specialization: z
+  //       .string()
+  //       .min(1, { message: 'Required' }),
+  //     work_start: z
+  //       .string()
+  //       .min(1, { message: 'Required' }),
+  //     work_end: z.string().min(1, { message: 'Required' }),
+  //   })
+  // ),
   baza_recomendation: z
     .string()
-    .min(1, { message: 'Required' }),
+    .nonempty({
+      message: 'Поле не повинно бути пустим',
+    })
+    .refine(
+      (value) =>
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ) && value.length <= messageMaxLength,
+      {
+        message: `Введіть коректні рекомендації не більше 2500 символів`,
+      }
+    ),
+  status: z.string().min(1, { message: 'Required' }),
 });
 
 export default schema;

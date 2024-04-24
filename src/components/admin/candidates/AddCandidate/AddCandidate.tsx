@@ -9,7 +9,7 @@ import {
   useQueryClient,
   UseQueryResult,
 } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Stack from './Stack';
 import {
   Controller,
@@ -31,7 +31,7 @@ import Cources from './Сources';
 import BazaExperience from './BazaExperience';
 import SelectField from './SelectField';
 import { createCandidate } from '@/api/candidates';
-import OutBazaExperience from './OutBazaExperience';
+// import OutBazaExperience from './OutBazaExperience';
 import { useRouter } from 'next/navigation';
 
 const AddCandidate = () => {
@@ -43,6 +43,7 @@ const AddCandidate = () => {
   const [stack, setStack] = useState<
     Array<{ id: string; title: string; isExist: boolean }>
   >([]);
+  const [stackError, setStackError] = useState('');
 
   const { mutate } = useMutation({
     mutationKey: [constants.candidates.CREATE_CANDIDATE],
@@ -54,6 +55,7 @@ const AddCandidate = () => {
           constants.candidates.FETCH_ALL_CANDIDATES,
         ],
       });
+      router.push('/admin/candidates');
     },
     onError: (error) => {
       alert(error);
@@ -70,6 +72,12 @@ const AddCandidate = () => {
     queryFn: getSpecializations,
   });
 
+  useEffect(() => {
+    if (stack.length) {
+      setStackError('');
+    }
+  }, [stack]);
+
   const {
     control,
     handleSubmit,
@@ -82,9 +90,12 @@ const AddCandidate = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (!stack.length) {
+      setStackError('Додайте декілька технологій зі стеку');
+      return;
+    }
     setIsProcessing(true);
     mutate({ data, stack });
-    router.push('/admin/candidates');
   };
 
   const graduate = useFieldArray({
@@ -479,6 +490,7 @@ const AddCandidate = () => {
                   onChange={onChange}
                   value={value}
                   title="Завантажити CV"
+                  isRequired={true}
                   errors={
                     (
                       errors.cv as DeepMap<
@@ -493,7 +505,10 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack handleStack={setStack} />
+          <Stack
+            handleStack={setStack}
+            error={stackError}
+          />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
@@ -519,14 +534,14 @@ const AddCandidate = () => {
             fieldArray={baza_experience}
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          {/* <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи поза Базою</h3>
-          </div>
+          </div> */}
 
-          <OutBazaExperience
+          {/* <OutBazaExperience
             control={control}
             fieldArray={out_baza_experience}
-          />
+          /> */}
 
           <div className="flex w-full gap-[24px]">
             <Controller
@@ -566,6 +581,38 @@ const AddCandidate = () => {
 
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
+
+          <div className="flex w-full gap-[24px]">
+            <Controller
+              name="status"
+              control={control}
+              render={({
+                field: { onChange, value },
+                formState: { errors },
+              }) => (
+                <SelectField
+                  title="Статус кандидата"
+                  value={value}
+                  values={[
+                    'Working',
+                    'Searching',
+                    'Inactive',
+                  ]}
+                  onChange={onChange}
+                  errors={
+                    (
+                      errors.status as DeepMap<
+                        FieldValues,
+                        FieldError
+                      >
+                    )?.message
+                  }
+                />
+              )}
+            />
+            <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
+          </div>
+
           <div className="flex justify-start gap-[24px] py-[80px]">
             <button
               className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"

@@ -11,6 +11,7 @@ interface IFileInputProps {
   value: FileList;
   title: string;
   errors: string;
+  isRequired?: boolean;
 }
 
 const FileInput: React.FC<IFileInputProps> = ({
@@ -18,12 +19,15 @@ const FileInput: React.FC<IFileInputProps> = ({
   value,
   title,
   errors,
+  isRequired,
 }) => {
   return (
     <div className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor={title}>
         {title} &nbsp;
-        <span className="text-red-500">*</span>
+        {isRequired && (
+          <span className="text-red-500">*</span>
+        )}
       </label>
 
       <div
