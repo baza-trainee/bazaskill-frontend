@@ -63,7 +63,7 @@ ${
       )}
       <div className="relative ">
         <MaskedStyledInput
-          mask="+38(#*0)000-00-00"
+          mask="+38# *0 000 0000"
           definitions={{
             '#': /[0]/,
             '*': /[6,7,8,9,5]/,
