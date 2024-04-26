@@ -45,7 +45,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
   };
 
   return (
-    <div className="relative box-border flex min-h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
+    <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
       <div
         className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[134px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
@@ -150,7 +150,9 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
       <div className="py-[10px] font-sans text-[16px] leading-[26px]">
-        {candidate.about}
+        <span className="line-clamp-6">
+          {candidate.about}
+        </span>
       </div>
 
       <div className="flex h-[44px] w-full items-center justify-between">

@@ -20,7 +20,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.stack.map((item) => (
             <StackItem
               key={item.id}
-              title={item.stack.title}
+              title={item.stack?.title}
             />
           ))}
         </div>
