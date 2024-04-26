@@ -22,7 +22,7 @@ const Posts = () => {
       <h3 className="mb-[50px] text-center font-tahoma text-2xl font-bold tracking-[1.08px] text-white lg:text-[40px]">
         {t('title')}
       </h3>
-      <div className="flex justify-between gap-5">
+      <div className="flex flex-wrap justify-between gap-10">
         {data?.reverse().map((post) => {
           return (
             <Post key={post.id} {...post} isAdmin={false} />
