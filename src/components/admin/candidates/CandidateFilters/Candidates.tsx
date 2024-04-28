@@ -24,7 +24,7 @@ const Candidates = () => {
 
   if (candidates.status === 'pending') return <Loader />;
 
-  console.log(candidates.data);
+  // console.log(candidates.data);
 
   return (
     <div className="flex flex-col">

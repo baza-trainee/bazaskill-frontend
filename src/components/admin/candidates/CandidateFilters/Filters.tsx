@@ -7,54 +7,18 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SpecializationStack } from '@/types/specialization';
-// z.object({
-//   stack: z.object({
-//     id: z.number(),
-//     title: z.string(),
-//     specialization_stack_id: z.number()
-//   }).array()
-// })
-const Filters = () => {
-  const schema = z.object({
-    stack: z.string().array(),
-    projects: z.string().array(),
-    occupation: z.string().array(),
-    language: z.string().array(),
-    graduate: z.string().array(),
-    status: z.string().array(),
-    sallary: z
-      .object({
-        from: z.string(),
-        to: z.string(),
-      })
-      .refine(
-        (data) => {
-          if (data.from !== null && data.to !== null) {
-            return (
-              parseFloat(data.from) > parseFloat(data.to)
-            );
-          }
-          return true;
-        },
-        {
-          message:
-            'Значення Від не повинно бути більшим ніж значення До',
-          path: ['sallary'],
-        }
-      ),
-  });
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import schema from './schema';
+import defaultValues from './defaultValues';
+const Filters = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
-    mode: 'onChange',
     resolver: zodResolver(schema),
-    defaultValues: { stack: [] },
+    defaultValues: { ...defaultValues },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (

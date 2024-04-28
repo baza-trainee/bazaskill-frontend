@@ -34,7 +34,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
     },
   });
 
-  console.log(candidate.stack);
+  // console.log(candidate.stack);
 
   const handleDelete = (id: string) => {
     if (
