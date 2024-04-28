@@ -1,7 +1,6 @@
 import declineWord from 'decline-word';
 import { CandidatesResponse } from '@/types/candidates';
 import Link from 'next/link';
-import { generateRandomId } from '@/helpers/generateId';
 import { constants } from '@/constants';
 import {
   useMutation,
@@ -72,9 +71,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
         <h3>{candidate.name}</h3>
-        <span>
-          ID {generateRandomId(candidate.specialization)}
-        </span>
+        <span>ID {candidate.id}</span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px]">
