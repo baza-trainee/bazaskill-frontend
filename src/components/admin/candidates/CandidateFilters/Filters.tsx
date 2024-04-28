@@ -32,13 +32,17 @@ const Filters = () => {
       })
       .refine(
         (data) => {
-          return (
-            parseFloat(data.from) <= parseFloat(data.to)
-          );
+          if (data.from !== null && data.to !== null) {
+            return (
+              parseFloat(data.from) > parseFloat(data.to)
+            );
+          }
+          return true;
         },
         {
           message:
             'Значення Від не повинно бути більшим ніж значення До',
+          path: ['sallary'],
         }
       ),
   });
