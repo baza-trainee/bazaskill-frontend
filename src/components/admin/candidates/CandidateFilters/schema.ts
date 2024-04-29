@@ -9,15 +9,15 @@ const schema = z.object({
   status: z.string().array(),
   sallary: z
     .object({
-      from: z
-        .string()
-        .min(1, { message: 'Required' })
-        .max(5),
-      to: z.string().min(1, { message: 'Required' }).max(5),
+      from: z.string(),
+      to: z.string(),
     })
     .refine(
       ({ from, to }) => {
-        return parseInt(from) < parseInt(to);
+        if (from !== '' && to !== '') {
+          return parseInt(from) < parseInt(to);
+        }
+        return true;
       },
       {
         message:
