@@ -11,7 +11,12 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import schema from './schema';
 import defaultValues from './defaultValues';
-const Filters = () => {
+
+const Filters = ({
+  SubmitHandler,
+}: {
+  SubmitHandler: (data: FieldValues) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -27,6 +32,7 @@ const Filters = () => {
   ) => {
     event?.preventDefault();
     console.log(data);
+    SubmitHandler(data);
   };
 
   const handleInput = (
@@ -53,8 +59,7 @@ const Filters = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="box-border flex h-fit w-[440px] flex-col gap-[32px] border-r-[1px] border-secondaryGray pl-[24px] pr-[32px]"
-    >
+      className="box-border flex h-fit w-[440px] flex-col gap-[32px] border-r-[1px] border-secondaryGray pl-[24px] pr-[32px]">
       <div className="border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
         <h3 className="py-[8px]">Фільтри</h3>
       </div>
@@ -95,25 +100,25 @@ const Filters = () => {
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="occupation"
-            value="remote"
+            value="Remote"
             register={register}
             title="Дистанційний"
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="office"
+            value="Office"
             register={register}
             title="В офісі"
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="hibryd"
+            value="Hybrid"
             register={register}
             title="Гібридний"
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="part"
+            value="Part"
             register={register}
             title="Часткова зайнятість"
           />
@@ -125,19 +130,19 @@ const Filters = () => {
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="language"
-            value="en"
+            value="English"
             register={register}
             title="Англійська"
           />
           <CustomCheckbox
             registerFor="language"
-            value="pl"
+            value="Polish"
             register={register}
             title="Польська"
           />
           <CustomCheckbox
             registerFor="language"
-            value="de"
+            value="German"
             register={register}
             title="Німецька"
           />
