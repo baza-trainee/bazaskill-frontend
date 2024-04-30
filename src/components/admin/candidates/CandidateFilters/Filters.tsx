@@ -11,7 +11,12 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import schema from './schema';
 import defaultValues from './defaultValues';
-const Filters = () => {
+
+type FiltersProps = {
+  func: (data: FieldValues) => void;
+};
+
+const Filters = ({ func }: FiltersProps) => {
   const {
     register,
     handleSubmit,
@@ -27,6 +32,7 @@ const Filters = () => {
   ) => {
     event?.preventDefault();
     console.log(data);
+    func(data);
   };
 
   const handleInput = (
