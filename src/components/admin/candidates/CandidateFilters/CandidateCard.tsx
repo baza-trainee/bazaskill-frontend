@@ -73,13 +73,16 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         <h3>{candidate.name}</h3>
         <span>ID {candidate.id}</span>
       </div>
-      <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
+      <div className="flex w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
           <span className="truncate">
-            {candidate.city},&nbsp;{candidate.country}
+            <p className="truncate">{candidate.city},</p>
+            <span className="truncate">
+              {candidate.country}
+            </span>
           </span>
         </span>
 
@@ -149,45 +152,47 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           ...
         </span>
       </div>
-      <div className="py-[10px] font-sans text-[16px] leading-[26px]">
-        <span className="line-clamp-6">
-          {candidate.about}
-        </span>
-      </div>
+      <div className="flex h-full flex-col justify-between">
+        <div className="font-sans text-[16px] leading-[26px]">
+          <span className="line-clamp-4">
+            {candidate.about}
+          </span>
+        </div>
 
-      <div className="flex h-[44px] w-full items-center justify-between">
-        <span className="font-tahoma text-[20px] font-[700]">
-          від {candidate.sallary_form} $
-        </span>
-        <div className="flex gap-[32px]">
-          <Link href={`/candidate/${candidate.id}`}>
-            {' '}
-            <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
-              <svg width={22} height={16}>
-                <use href="/Icons/sprite.svg#icon-eye"></use>
+        <div className="flex h-[44px] w-full items-center justify-between">
+          <span className="font-tahoma text-[20px] font-[700]">
+            від {candidate.sallary_form} $
+          </span>
+          <div className="flex gap-[32px]">
+            <Link href={`/candidate/${candidate.id}`}>
+              {' '}
+              <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+                <svg width={22} height={16}>
+                  <use href="/Icons/sprite.svg#icon-eye"></use>
+                </svg>
+              </button>
+            </Link>
+            <Link
+              href={`/admin/candidates/edit/${candidate.id}`}
+            >
+              <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+                <svg width={24} height={24}>
+                  <use href="/Icons/sprite.svg#icon-pen"></use>
+                </svg>
+              </button>
+            </Link>
+
+            <button
+              onClick={() =>
+                handleDelete(candidate.id.toString())
+              }
+              className="flex h-[32px] w-[32px] items-center justify-center bg-white"
+            >
+              <svg width={26} height={29}>
+                <use href="/Icons/sprite.svg#icon-drop"></use>
               </svg>
             </button>
-          </Link>
-          <Link
-            href={`/admin/candidates/edit/${candidate.id}`}
-          >
-            <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
-              <svg width={24} height={24}>
-                <use href="/Icons/sprite.svg#icon-pen"></use>
-              </svg>
-            </button>
-          </Link>
-
-          <button
-            onClick={() =>
-              handleDelete(candidate.id.toString())
-            }
-            className="flex h-[32px] w-[32px] items-center justify-center bg-white"
-          >
-            <svg width={26} height={29}>
-              <use href="/Icons/sprite.svg#icon-drop"></use>
-            </svg>
-          </button>
+          </div>
         </div>
       </div>
     </div>
