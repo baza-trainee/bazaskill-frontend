@@ -28,7 +28,7 @@ const Candidates = () => {
     useState<CandidatesResponse[]>([]);
 
   useEffect(() => {
-    if (candidates.data) {
+    if (candidates?.data) {
       setFilteredCandidates(candidates.data);
     }
   }, [candidates.data]);
@@ -41,9 +41,34 @@ const Candidates = () => {
     const selectedWorkFormat: string = data.occupation;
     const selectedLanguage: string = data.language;
     const selectedStack: string[] = data.stack;
-
+    const selectedStatus: string = data.status;
+    const selectExperience: string = data.projects;
+    const selectGraduate: string = data.graduate;
+    const inputSallary: { from: string; to: string } =
+      data.sallary;
+    console.log(inputSallary);
     const filtered = candidates.data?.filter(
       (candidate) => {
+        const candidateGraduate = candidate.gradaute;
+        const hasSelectedGraduate =
+          selectGraduate.includes('gradaute') &&
+          candidateGraduate?.length >= 1;
+
+        const candidateCources = candidate.cources;
+        const hasSelectedCources =
+          selectGraduate.includes('cources') &&
+          candidateCources?.length >= 1;
+
+        console.log(hasSelectedCources);
+
+        const candidateExperience =
+          candidate.baza_experience?.length;
+        const selectedExperienceLevel = parseInt(
+          selectExperience
+        );
+
+        const hasSufficientExperience =
+          candidateExperience >= selectedExperienceLevel;
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -64,19 +89,35 @@ const Candidates = () => {
           hasSelectedStacks.includes(item)
         );
 
+        const candidateStatus = candidate.status;
+        const hasSelectedStatus =
+          selectedStatus.includes(candidateStatus);
+
+        const candidateSallaryFrom = parseInt(
+          candidate.sallary_form
+        );
+        const candidateSallaryTo = parseInt(
+          candidate.sallary_to
+        );
+
+        const inputSallaryFrom = parseInt(
+          inputSallary.from
+        );
+        const inputSallaryTo = parseInt(inputSallary.to);
+
+        const hasSelectedSallary =
+          candidateSallaryFrom >= inputSallaryFrom &&
+          candidateSallaryTo <= inputSallaryTo;
+
         return (
-          (hasSelectedLanguages &&
-            hasSelectedWorkFormat &&
-            anyMatch) ||
-          (hasSelectedLanguages &&
-            !selectedWorkFormat &&
-            !anyMatch) ||
-          (!selectedLanguage &&
-            hasSelectedWorkFormat &&
-            anyMatch) ||
-          (anyMatch &&
-            !selectedLanguage &&
-            !hasSelectedWorkFormat)
+          hasSufficientExperience &&
+          hasSelectedLanguages &&
+          hasSelectedWorkFormat &&
+          anyMatch &&
+          hasSelectedStatus &&
+          hasSelectedCources &&
+          hasSelectedGraduate &&
+          hasSelectedSallary
         );
       }
     );

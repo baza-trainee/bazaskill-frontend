@@ -31,7 +31,6 @@ const Filters = ({
     event
   ) => {
     event?.preventDefault();
-    console.log(data);
     SubmitHandler(data);
   };
 
@@ -160,7 +159,7 @@ const Filters = ({
           />
           <CustomCheckbox
             registerFor="graduate"
-            value="high"
+            value="gradaute"
             register={register}
             title="Вища"
           />
@@ -178,19 +177,19 @@ const Filters = ({
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="status"
-            value="searching"
+            value="Searching"
             register={register}
             title="У пошуку"
           />
           <CustomCheckbox
             registerFor="status"
-            value="working"
+            value="Working"
             register={register}
             title="Працює"
           />
           <CustomCheckbox
             registerFor="status"
-            value="inactive"
+            value="Inactive"
             register={register}
             title="Не активний"
           />
