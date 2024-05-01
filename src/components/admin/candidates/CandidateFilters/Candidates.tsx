@@ -13,9 +13,7 @@ import Filters from './Filters';
 import { CandidatesResponse } from '@/types/candidates';
 import Loader from '../../ui/Loader';
 import { FieldValues } from 'react-hook-form';
-import Graduate from '../AddCandidate/Graduate';
 import { useEffect, useState } from 'react';
-import { stack } from '../../../main/modals/forms/register_partner/data';
 
 const Candidates = () => {
   const candidates: UseQueryResult<
@@ -42,8 +40,7 @@ const Candidates = () => {
   const onSubmit = (data: FieldValues) => {
     const selectedWorkFormat: string = data.occupation;
     const selectedLanguage: string = data.language;
-    /*     const selectedStack: string = data.stack;
-    console.log(selectedStack); */
+    const selectedStack: string[] = data.stack;
 
     const filtered = candidates.data?.filter(
       (candidate) => {
@@ -59,19 +56,27 @@ const Candidates = () => {
         const hasSelectedWorkFormat =
           selectedWorkFormat.includes(candidateWorkFormat);
 
-        /*         const candidateStack = candidate.stack;
-        const hasSelectedStack = candidateStack.some(
-          (stackItem) => {
-            const stackTitle = stackItem.stack?.title || '';
-            return stackTitle.includes(selectedStack);
-          }
+        const candidateStacks = candidate.stack;
+        const hasSelectedStacks = candidateStacks.map(
+          (stackItem) => stackItem.stack?.title
         );
-        console.log(hasSelectedStack);
- */
+        const anyMatch = selectedStack.some((item) =>
+          hasSelectedStacks.includes(item)
+        );
+
         return (
-          (hasSelectedLanguages && hasSelectedWorkFormat) ||
-          (hasSelectedLanguages && !selectedWorkFormat) ||
-          (!selectedLanguage && hasSelectedWorkFormat)
+          (hasSelectedLanguages &&
+            hasSelectedWorkFormat &&
+            anyMatch) ||
+          (hasSelectedLanguages &&
+            !selectedWorkFormat &&
+            !anyMatch) ||
+          (!selectedLanguage &&
+            hasSelectedWorkFormat &&
+            anyMatch) ||
+          (anyMatch &&
+            !selectedLanguage &&
+            !hasSelectedWorkFormat)
         );
       }
     );
