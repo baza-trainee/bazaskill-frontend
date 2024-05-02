@@ -35,8 +35,6 @@ const Candidates = () => {
 
   if (candidates.status === 'pending') return <Loader />;
 
-  console.log(candidates.data);
-
   const onSubmit = (data: FieldValues) => {
     const selectedWorkFormat: string =
       data.occupation || '';
@@ -136,9 +134,24 @@ const Candidates = () => {
     setFilteredCandidates(filtered || []);
   };
 
+  const handlerChangeSearch = (data: string) => {
+    const filtered = candidates.data?.filter(
+      (candidate) => {
+        const specializationTitle =
+          candidate.specialization?.title.toLowerCase();
+        return specializationTitle.includes(
+          data.toLowerCase()
+        );
+      }
+    );
+    setFilteredCandidates(filtered || []);
+  };
+
   return (
     <div className="flex flex-col">
-      <CandidatesSearch />
+      <CandidatesSearch
+        SubmitHandler={handlerChangeSearch}
+      />
       <div className="flex justify-start">
         <Filters SubmitHandler={onSubmit} />
         <CandidatesList candidates={filteredCandidates} />
