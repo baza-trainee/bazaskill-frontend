@@ -58,7 +58,8 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="box-border flex h-fit w-[440px] flex-col gap-[32px] border-r-[1px] border-secondaryGray pl-[24px] pr-[32px]">
+      className="box-border flex h-fit w-[440px] flex-col gap-[32px] border-r-[1px] border-secondaryGray pl-[24px] pr-[32px]"
+    >
       <div className="border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
         <h3 className="py-[8px]">Фільтри</h3>
       </div>

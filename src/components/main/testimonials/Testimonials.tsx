@@ -62,11 +62,13 @@ const Testimonials = () => {
             nextEl: '.next-testimonials',
           }}
           modules={[Pagination, Navigation]}
-          className="testimonials max-w-[88%] 5xl:max-w-[1524px]">
+          className="testimonials max-w-[88%] 5xl:max-w-[1524px]"
+        >
           {data?.map((item: Testimonial) => (
             <SwiperSlide
               className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
-              key={item.id}>
+              key={item.id}
+            >
               <TestimonialCard item={item} />
             </SwiperSlide>
           ))}
@@ -74,13 +76,15 @@ const Testimonials = () => {
         <button
           type="button"
           className="prev absolute left-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer md:block"
-          onClick={handlePrev}>
+          onClick={handlePrev}
+        >
           <ButtonLeft className="fill-white" />
         </button>
         <button
           type="button"
           className="next absolute right-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer md:block"
-          onClick={handleNext}>
+          onClick={handleNext}
+        >
           <ButtonRight className="fill-white" />
         </button>
       </div>

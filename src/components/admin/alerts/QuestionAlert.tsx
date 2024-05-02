@@ -38,7 +38,8 @@ const QuestionAlert = ({
           {title}
           <button
             className="absolute right-[50px] top-[50px]"
-            onClick={onCancel}>
+            onClick={onCancel}
+          >
             <CloseIcon />
           </button>
         </div>
@@ -46,12 +47,14 @@ const QuestionAlert = ({
           <div className="flex gap-[24px] text-[16px] font-semibold">
             <button
               className="h-[36px] w-[238px] rounded-md bg-[#0A871E] text-white"
-              onClick={onConfirm}>
+              onClick={onConfirm}
+            >
               Видалити
             </button>
             <button
               className="h-[36px] w-[238px] rounded-md   bg-white text-[#0A871E] [border:1px_solid_#0a871e]"
-              onClick={onCancel}>
+              onClick={onCancel}
+            >
               Скасувати
             </button>
           </div>

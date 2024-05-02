@@ -38,15 +38,15 @@ const Candidates = () => {
   console.log(candidates.data);
 
   const onSubmit = (data: FieldValues) => {
-    const selectedWorkFormat: string = data.occupation;
-    const selectedLanguage: string = data.language;
-    const selectedStack: string[] = data.stack;
-    const selectedStatus: string = data.status;
-    const selectExperience: string = data.projects;
-    const selectGraduate: string = data.graduate;
+    const selectedWorkFormat: string =
+      data.occupation || '';
+    const selectedLanguage: string = data.language || '';
+    const selectedStack: string[] = data.stack || [];
+    const selectedStatus: string = data.status || '';
+    const selectExperience: string = data.projects || '';
+    const selectGraduate: string = data.graduate || '';
     const inputSallary: { from: string; to: string } =
-      data.sallary;
-    console.log(inputSallary);
+      data.sallary || { from: '', to: '' };
     const filtered = candidates.data?.filter(
       (candidate) => {
         const candidateGraduate = candidate.gradaute;
@@ -58,8 +58,6 @@ const Candidates = () => {
         const hasSelectedCources =
           selectGraduate.includes('cources') &&
           candidateCources?.length >= 1;
-
-        console.log(hasSelectedCources);
 
         const candidateExperience =
           candidate.baza_experience?.length;
@@ -110,19 +108,31 @@ const Candidates = () => {
           candidateSallaryTo <= inputSallaryTo;
 
         return (
-          hasSufficientExperience &&
-          hasSelectedLanguages &&
-          hasSelectedWorkFormat &&
-          anyMatch &&
-          hasSelectedStatus &&
-          hasSelectedCources &&
-          hasSelectedGraduate &&
-          hasSelectedSallary
+          (selectExperience?.length >= 1
+            ? hasSufficientExperience
+            : true) &&
+          (selectedLanguage?.length >= 1
+            ? hasSelectedLanguages
+            : true) &&
+          (selectedWorkFormat?.length >= 1
+            ? hasSelectedWorkFormat
+            : true) &&
+          (selectedStack?.length >= 1 ? anyMatch : true) &&
+          (selectedStatus?.length >= 1
+            ? hasSelectedStatus
+            : true) &&
+          (selectGraduate.includes('cources')
+            ? hasSelectedCources
+            : true) &&
+          (selectGraduate.includes('gradaute')
+            ? hasSelectedGraduate
+            : true) &&
+          (inputSallary.from && inputSallary.to
+            ? hasSelectedSallary
+            : true)
         );
       }
     );
-    console.log(filtered);
-
     setFilteredCandidates(filtered || []);
   };
 

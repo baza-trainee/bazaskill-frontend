@@ -93,7 +93,8 @@ const EditSettings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="flex w-[597px] flex-col gap-[30px]"
-          onSubmit={handleSubmit(onSubmit)}>
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller

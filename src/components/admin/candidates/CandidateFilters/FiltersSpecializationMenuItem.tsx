@@ -26,11 +26,13 @@ const FiltersSpecializationMenuItem: React.FC<
       <div
         key={id}
         className="flex items-center gap-[12px]"
-        onClick={() => setIsOpen(!isOpen)}>
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <svg
           className={`mt-[2px] fill-white transition-all ${isOpen && 'rotate-[180deg]'}`}
           width={20}
-          height={20}>
+          height={20}
+        >
           <use href="/Icons/sprite.svg#icon-dropdown"></use>
         </svg>
         <span>{title}</span>
@@ -39,10 +41,7 @@ const FiltersSpecializationMenuItem: React.FC<
       {isOpen && (
         <div className="flex flex-col gap-[20px] pl-[32px]">
           {stack.map(
-            ({
-              id,
-              title,
-            }: SpecializationStack) => {
+            ({ id, title }: SpecializationStack) => {
               return (
                 <CustomCheckbox
                   register={register}

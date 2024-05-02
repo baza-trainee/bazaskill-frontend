@@ -12,7 +12,8 @@ const PrimaryButtonAdd: React.FC<ButtonProps> = ({
   return (
     <button
       {...props}
-      className="h-[44px] w-[286px] rounded-md border border-white bg-[#939393] font-semibold  hover:bg-[#4B4B4B]  disabled:cursor-not-allowed ">
+      className="h-[44px] w-[286px] rounded-md border border-white bg-[#939393] font-semibold  hover:bg-[#4B4B4B]  disabled:cursor-not-allowed "
+    >
       {text}
     </button>
   );

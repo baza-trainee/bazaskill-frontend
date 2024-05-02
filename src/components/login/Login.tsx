@@ -108,7 +108,8 @@ const Login = () => {
             </p>
             <form
               className="w-[326px] flex-col"
-              onSubmit={handleSubmit(onSubmit)}>
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <div className="mb-[36px] flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
                 <div>
                   <Controller
@@ -154,7 +155,8 @@ const Login = () => {
                   />
                   <label
                     htmlFor="checkbox"
-                    className="font-['Open_Sans',_sans-serif] text-[12px] text-[#353535]">
+                    className="font-['Open_Sans',_sans-serif] text-[12px] text-[#353535]"
+                  >
                     Запам’ятати пароль
                   </label>
                 </div>
@@ -162,7 +164,8 @@ const Login = () => {
               <div className="flex flex-col gap-[36px]">
                 <Link
                   href={'/login/forgot-password'}
-                  className=" text-center text-lg text-[#35DB4F] underline  5xl:text-xl">
+                  className=" text-center text-lg text-[#35DB4F] underline  5xl:text-xl"
+                >
                   Забули пароль?
                 </Link>
                 <SignInButton

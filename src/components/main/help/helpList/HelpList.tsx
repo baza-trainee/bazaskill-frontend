@@ -12,7 +12,8 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
         {photos.map((photo, index) => (
           <li
             key={index}
-            className="  zoom overflow-hidden rounded-[100px]  grayscale filter hover:scale-105 hover:cursor-pointer">
+            className="  zoom overflow-hidden rounded-[100px]  grayscale filter hover:scale-105 hover:cursor-pointer"
+          >
             <Image
               src={photo}
               width={117}

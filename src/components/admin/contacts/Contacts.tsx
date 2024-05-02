@@ -106,7 +106,8 @@ const Contacts = () => {
       <form
         onSubmit={handleSubmit(submitForm)}
         autoComplete="off"
-        className="mt-[50px] flex w-[908px] flex-wrap gap-x-[24px] gap-y-[50px]  ">
+        className="mt-[50px] flex w-[908px] flex-wrap gap-x-[24px] gap-y-[50px]  "
+      >
         <div>
           <Controller
             name="phone"
