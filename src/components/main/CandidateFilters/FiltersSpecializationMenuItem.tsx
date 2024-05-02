@@ -44,7 +44,6 @@ const FiltersSpecializationMenuItem: React.FC<
             ({
               id,
               title,
-              specialization_stack_id,
             }: SpecializationStack) => {
               return (
                 <CustomCheckbox

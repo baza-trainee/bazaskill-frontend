@@ -7,36 +7,50 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-const Filters = () => {
-  const schema = z.object({
-    stack: z.string().array(),
-    projects: z.string().array(),
-    occupation: z.string().array(),
-    language: z.string().array(),
-    graduate: z.string().array(),
-    status: z.string().array(),
-    sallary: z.object({
-      from: z.string(),
-      to: z.string(),
-    }),
-  });
-
+import schema from './schema';
+import defaultValues from './defaultValues';
+const Filters = ({
+  SubmitHandler,
+}: {
+  SubmitHandler: (data: FieldValues) => void;
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: { stack: [] },
+    defaultValues: { ...defaultValues },
   });
+
   const onSubmit: SubmitHandler<FieldValues> = (
     data,
     event
   ) => {
     event?.preventDefault();
-    console.log(data);
+    SubmitHandler(data);
+  };
+
+  const handleInput = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    const input = e.target as HTMLInputElement;
+    const currentValue = input.value;
+
+    const numericKeys = /[0-9]/;
+    const specialKeys = ['Backspace'];
+
+    if (currentValue.length >= 5 && e.key !== 'Backspace') {
+      e.preventDefault();
+    }
+
+    if (
+      !numericKeys.test(e.key) &&
+      !specialKeys.includes(e.key)
+    ) {
+      e.preventDefault();
+    }
   };
   return (
     <form
@@ -85,25 +99,25 @@ const Filters = () => {
           <div className="flex flex-col gap-[20px]">
             <CustomCheckbox
               registerFor="occupation"
-              value="remote"
+              value="Remote"
               register={register}
               title="Дистанційний"
             />
             <CustomCheckbox
               registerFor="occupation"
-              value="office"
+              value="Office"
               register={register}
               title="В офісі"
             />
             <CustomCheckbox
               registerFor="occupation"
-              value="hibryd"
+              value="Hibryd"
               register={register}
               title="Гібридний"
             />
             <CustomCheckbox
               registerFor="occupation"
-              value="part"
+              value="Part"
               register={register}
               title="Часткова зайнятість"
             />
@@ -115,19 +129,19 @@ const Filters = () => {
           <div className="flex flex-col gap-[20px]">
             <CustomCheckbox
               registerFor="language"
-              value="en"
+              value="English"
               register={register}
               title="Англійська"
             />
             <CustomCheckbox
               registerFor="language"
-              value="pl"
+              value="Polish"
               register={register}
               title="Польська"
             />
             <CustomCheckbox
               registerFor="language"
-              value="de"
+              value="German"
               register={register}
               title="Німецька"
             />
@@ -145,7 +159,7 @@ const Filters = () => {
             />
             <CustomCheckbox
               registerFor="graduate"
-              value="high"
+              value="gradaute"
               register={register}
               title="Вища"
             />
@@ -168,18 +182,25 @@ const Filters = () => {
             {...register('sallary.from')}
             placeholder="500"
             type="number"
+            onKeyDown={handleInput}
             className="h-[32px] w-[80px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px] 3xl:text-lg  4xl:min-w-[93px] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             {...register('sallary.to')}
             placeholder="700"
             type="number"
+            onKeyDown={handleInput}
             className="4xl:min-w-[93px][&::-webkit-inner-spin-button]:appearance-none h-[32px] w-[80px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px]  3xl:text-lg [&::-webkit-outer-spin-button]:appearance-none"
           />
 
           <button className="flex h-[32px] w-[68px] items-center justify-center rounded-[4px] border-[1px] border-yellow px-[24px] py-[15px] text-sm text-yellow sm:min-w-[84px] md:min-w-[51px] md:px-0 md:py-0 xl:min-h-[40px] xl:min-w-[72px] xl:text-base">
             OK
           </button>
+          {errors.sallary?.root && (
+            <span className="absolute bottom-[-20px] left-[0px] text-xs text-red-500">
+              {errors.sallary?.root?.message?.toString()}
+            </span>
+          )}
         </div>
       </div>
 
