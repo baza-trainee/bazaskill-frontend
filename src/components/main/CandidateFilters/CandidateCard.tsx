@@ -107,7 +107,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             key={item.id}
             className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]"
           >
-            {item.stack.title}
+            {item.stack?.title}
           </div>
         ))}
         <span className="flex items-end justify-center">

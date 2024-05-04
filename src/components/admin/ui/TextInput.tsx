@@ -48,11 +48,13 @@ ${
 
   return (
     <div
-      className={`w-[242px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`w-[242px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}
+    >
       {!!title && (
         <label
           htmlFor={title}
-          className=" mb-[8px]  block  text-[20px] leading-[1.4]  text-white">
+          className=" mb-[8px]  block  text-[20px] leading-[1.4]  text-white"
+        >
           {title}
           {isRequired && (
             <span className="text-error">*</span>
@@ -78,7 +80,8 @@ ${
           <div className=" absolute right-[16px] top-[9px] ">
             <button
               type="button"
-              onClick={handleEditToggle}>
+              onClick={handleEditToggle}
+            >
               {isEditing ? <EyeIcon /> : <NotEyeIcon />}
             </button>
           </div>

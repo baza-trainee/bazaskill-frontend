@@ -65,7 +65,8 @@ const RestorePassword = () => {
           </p>
           <form
             className="w-[326px] flex-col"
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
               <div>
                 <Controller
@@ -109,7 +110,8 @@ const RestorePassword = () => {
                 />
                 <Link
                   href={'/login'}
-                  className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]">
+                  className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]"
+                >
                   Скасувати
                 </Link>
               </div>

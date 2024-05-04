@@ -11,7 +11,12 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import schema from './schema';
 import defaultValues from './defaultValues';
-const Filters = () => {
+
+const Filters = ({
+  SubmitHandler,
+}: {
+  SubmitHandler: (data: FieldValues) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -26,7 +31,7 @@ const Filters = () => {
     event
   ) => {
     event?.preventDefault();
-    console.log(data);
+    SubmitHandler(data);
   };
 
   const handleInput = (
@@ -95,25 +100,25 @@ const Filters = () => {
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="occupation"
-            value="remote"
+            value="Remote"
             register={register}
             title="Дистанційний"
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="office"
+            value="Office"
             register={register}
             title="В офісі"
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="hibryd"
+            value="Hybrid"
             register={register}
             title="Гібридний"
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="part"
+            value="Part"
             register={register}
             title="Часткова зайнятість"
           />
@@ -125,19 +130,19 @@ const Filters = () => {
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="language"
-            value="en"
+            value="English"
             register={register}
             title="Англійська"
           />
           <CustomCheckbox
             registerFor="language"
-            value="pl"
+            value="Polish"
             register={register}
             title="Польська"
           />
           <CustomCheckbox
             registerFor="language"
-            value="de"
+            value="German"
             register={register}
             title="Німецька"
           />
@@ -155,7 +160,7 @@ const Filters = () => {
           />
           <CustomCheckbox
             registerFor="graduate"
-            value="high"
+            value="gradaute"
             register={register}
             title="Вища"
           />
@@ -173,19 +178,19 @@ const Filters = () => {
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="status"
-            value="searching"
+            value="Searching"
             register={register}
             title="У пошуку"
           />
           <CustomCheckbox
             registerFor="status"
-            value="working"
+            value="Working"
             register={register}
             title="Працює"
           />
           <CustomCheckbox
             registerFor="status"
-            value="inactive"
+            value="Inactive"
             register={register}
             title="Не активний"
           />

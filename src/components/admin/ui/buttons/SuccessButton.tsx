@@ -12,7 +12,8 @@ const SuccessButton: React.FC<ButtonProps> = ({
   return (
     <button
       {...props}
-      className="flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white disabled:cursor-not-allowed ">
+      className="flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-[#0A871E] text-white disabled:cursor-not-allowed "
+    >
       {text}
     </button>
   );

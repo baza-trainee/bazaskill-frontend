@@ -36,11 +36,13 @@ ${
 
     return (
       <div
-        className={`w-[520px] font-sans font-normal 5xl:w-[908px]  ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+        className={`w-[520px] font-sans font-normal 5xl:w-[908px]  ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      >
         {!!title && (
           <label
             htmlFor={title}
-            className="mb-[8px]  block  text-[20px] font-bold  leading-[1.4] text-white">
+            className="mb-[8px]  block  text-[20px] font-bold  leading-[1.4] text-white"
+          >
             {title}
             {isRequired && (
               <span className="text-error">*</span>

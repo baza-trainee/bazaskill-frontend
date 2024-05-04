@@ -82,7 +82,8 @@ const TestimonialCard = ({
         <button
           type="button"
           onClick={() => setIsDeleting(true)}
-          className="cursor-pointer">
+          className="cursor-pointer"
+        >
           <TrashIcon className="h-8 w-8 cursor-pointer fill-white" />
         </button>
         {isDeleting && !isSuccess && (

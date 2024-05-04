@@ -83,7 +83,8 @@ const AddTestimonial = () => {
       <div className="flex w-full flex-wrap">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto flex flex-1 flex-col flex-wrap  gap-[50px]">
+          className="mx-auto flex flex-1 flex-col flex-wrap  gap-[50px]"
+        >
           <div className=" flex flex-col flex-wrap gap-[50px]">
             <section className="flex flex-wrap gap-6">
               <Controller

@@ -88,7 +88,8 @@ const Settings = () => {
       <div className="mt-[80px] flex gap-[180px]">
         <form
           className="w-[597px] flex-col"
-          onSubmit={handleSubmit(onSubmit)}>
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex flex-col gap-[50px]">
             <div>
               <Controller

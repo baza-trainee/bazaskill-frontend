@@ -84,11 +84,13 @@ const FileInputPost = forwardRef(function FileInputPost(
 
   return (
     <div
-      className={`font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}>
+      className={`font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+    >
       {!!title && (
         <label
           htmlFor={title}
-          className="mb-[8px] block text-[20px] leading-[1.4] text-white">
+          className="mb-[8px] block text-[20px] leading-[1.4] text-white"
+        >
           {title}
           {isRequired && (
             <span className="text-error">*</span>

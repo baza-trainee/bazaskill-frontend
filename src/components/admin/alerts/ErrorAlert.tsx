@@ -40,7 +40,8 @@ const ErrorAlert = ({
         </p>
         <button
           className="absolute  right-[50px] top-[50px]"
-          onClick={onClose}>
+          onClick={onClose}
+        >
           <CloseIcon />
         </button>
       </div>

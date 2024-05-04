@@ -41,16 +41,12 @@ const FiltersSpecializationMenuItem: React.FC<
       {isOpen && (
         <div className="flex flex-col gap-[20px] pl-[32px]">
           {stack.map(
-            ({
-              id,
-              title,
-              specialization_stack_id,
-            }: SpecializationStack) => {
+            ({ id, title }: SpecializationStack) => {
               return (
                 <CustomCheckbox
                   register={register}
                   registerFor="stack"
-                  value={id}
+                  value={title}
                   key={id}
                   title={title}
                 />
