@@ -29,6 +29,7 @@ const Candidates = () => {
   const speciality = useFilters(
     (state) => state.speciality
   );
+  console.log(speciality);
   const country = useFilters((state) => state.country);
   const stack = useFilters((state) => state.stack);
 
@@ -36,23 +37,33 @@ const Candidates = () => {
     useState<CandidatesResponse[]>([]);
 
   useEffect(() => {
-    if (country === '' || speciality === '') {
-      if (candidates?.data) {
-        setFilteredCandidates(candidates.data);
-      }
+    if (country === '' && speciality === '') {
+      setFilteredCandidates(candidates?.data || []);
     } else {
-      const filtered = candidates?.data?.filter(
-        (candidate) =>
-          translateCountryName(
-            candidate.country.toLowerCase()
-          ) ===
-            translateCountryName(country.toLowerCase()) &&
-          candidate.specialization.title.toLowerCase() ===
-            speciality.toLowerCase()
+      const filtered = candidates.data?.filter(
+        (candidate) => {
+          const candidateCountry = translateCountryName(
+            candidate.country?.toLowerCase()
+          );
+          const candidateSpecialization =
+            candidate.specialization?.title?.toLowerCase();
+
+          const selectedCountry = translateCountryName(
+            country.toLowerCase()
+          );
+          const selectedSpeciality =
+            speciality.toLowerCase();
+          const matchesCountry =
+            selectedCountry === candidateCountry;
+          const matchesSpeciality =
+            selectedSpeciality === candidateSpecialization;
+          return matchesCountry || matchesSpeciality;
+        }
       );
+
       setFilteredCandidates(filtered || []);
     }
-  }, [candidates.data, speciality, country]);
+  }, [candidates?.data, speciality, country]);
 
   useEffect(() => {
     if (!stack.length) return;
@@ -86,6 +97,7 @@ const Candidates = () => {
       data.sallary || { from: '', to: '' };
     const filtered = candidates.data?.filter(
       (candidate) => {
+        console.log(candidate.specialization);
         const candidateGraduate = candidate.gradaute;
         const hasSelectedGraduate =
           selectGraduate.includes('gradaute') &&
