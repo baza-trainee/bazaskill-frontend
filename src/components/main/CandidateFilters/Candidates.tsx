@@ -78,6 +78,8 @@ const Candidates = () => {
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
     const selectedStack: string[] = data.stack || [];
+    console.log(data);
+    console.log(selectedStack);
     const selectExperience: string = data.projects || '';
     const selectGraduate: string = data.graduate || '';
     const inputSallary: { from: string; to: string } =
@@ -116,7 +118,7 @@ const Candidates = () => {
 
         const candidateStacks = candidate.stack;
         const hasSelectedStacks = candidateStacks.map(
-          (stackItem) => stackItem.stack?.title
+          (stackItem) => stackItem.stack?.id.toString()
         );
         const anyMatch = selectedStack.some((item) =>
           hasSelectedStacks.includes(item)
