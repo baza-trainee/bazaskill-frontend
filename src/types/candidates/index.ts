@@ -61,6 +61,7 @@ export interface ICandidates {
   out_baza_experience: IOutBazaExperience[];
   baza_recomendation: string;
   status: string;
+  uniqueId: string;
 }
 
 export type Candidates = {
@@ -143,5 +144,5 @@ export type CandidatesResponse = {
   gradaute: Graduateresponse[];
   cources: CoursesResponse[];
   baza_experience: BazaExperienceResponse[];
-  out_baza_experience: OutBazaExperienceResponse[];
+  uniqueId: string;
 };

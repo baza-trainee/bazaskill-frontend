@@ -1,7 +1,4 @@
-export function generateRandomId(specialization: {
-  id: number;
-  title: string;
-}) {
+export function generateRandomId(specialization: string) {
   const idLength = 5;
   let id = '';
 
@@ -10,5 +7,5 @@ export function generateRandomId(specialization: {
     id += randomDigit;
   }
 
-  return `${specialization.id}${id}`;
+  return `${specialization}${id}`;
 }

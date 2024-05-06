@@ -7,6 +7,7 @@ import {
   ICandidateLanguages,
 } from '@/types/candidates';
 import { IStack } from '@/types/stack';
+import { generateRandomId } from '@/helpers/generateId';
 
 export const getCandidateById = async (id: string) => {
   const response = await axios.get(`/candidates/${id}`);
@@ -70,7 +71,6 @@ export const createCandidate = async (values: any) => {
       (item: any) => item !== ''
     );
 
-    console.log(filesToUpload);
     const graduateFormData = new FormData();
     filesToUpload.forEach((element: FileList) => {
       graduateFormData.append('graduate', element[0]);
@@ -145,18 +145,9 @@ export const createCandidate = async (values: any) => {
         project_duration: item.project_duration,
       })
     ),
-    // out_baza_experience:
-    //   values.data.out_baza_experience.map(
-    //     (item: IOutBazaExperience) => ({
-    //       company_name: item.company_name,
-    //       company_specialization:
-    //         item.company_specialization,
-    //       work_start: item.work_start,
-    //       work_end: item.work_end,
-    //     })
-    //   ),
     baza_recomendation: values.data.baza_recomendation,
     status: values.data.status,
+    uniqueId: generateRandomId(values.data.specialization),
     isPublished: true,
   };
 
@@ -303,19 +294,10 @@ export const updateCandidate = async (
           project_duration: item.project_duration,
         })
       ),
-    // out_baza_experience:
-    //   values.currentValues.out_baza_experience.map(
-    //     (item: IOutBazaExperience) => ({
-    //       company_name: item.company_name,
-    //       company_specialization:
-    //         item.company_specialization,
-    //       work_start: item.work_start,
-    //       work_end: item.work_end,
-    //     })
-    //   ),
     baza_recomendation:
       values.currentValues.baza_recomendation,
     status: values.currentValues.status,
+    uniqueId: generateRandomId(values.data.specialization),
     isPublished: true,
   };
 

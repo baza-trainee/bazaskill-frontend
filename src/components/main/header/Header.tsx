@@ -4,7 +4,6 @@ import Logo from '@/components/icons/Logo';
 import Link from 'next/link';
 import MenuItem from './MenuItem';
 import LanguageSwitcher from './LanguageSwitcher';
-// import { data } from './data';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializationsWithStack } from '@/api/specialization';

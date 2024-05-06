@@ -74,7 +74,11 @@ const MenuItem = ({
       </div>
 
       {isOpen && (
-        <SubMenu inputs={inputs} reference={submenuRef} />
+        <SubMenu
+          inputs={inputs}
+          reference={submenuRef}
+          setIsOpen={setIsOpen}
+        />
       )}
     </div>
   );
