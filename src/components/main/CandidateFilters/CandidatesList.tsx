@@ -19,7 +19,7 @@ const CandidatesList = ({
   };
 
   return (
-    <div className="box-content">
+    <div className="box-content min-w-[100vh]">
       <div className="pb-[40px] pt-[56px] font-tahoma text-[24px] md:pl-[48px] md:pt-0 2xl:pl-[78px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:pl-[88px]">
         {candidates?.length}{' '}
         {declineWord(
@@ -40,27 +40,29 @@ const CandidatesList = ({
             />
           ))}
       </div>
-      <div className="my-[60px] flex w-full items-center justify-center pr-[4.25rem] sm:pr-0 md:mb-[94px] md:mt-[70px]">
-        {candidates.length <= numberOnPage ? (
-          <svg
-            onClick={decrease}
-            className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
-            width={32}
-            height={32}
-          >
-            <use href="/Icons/sprite.svg#icon-dropdown"></use>
-          </svg>
-        ) : (
-          <svg
-            onClick={increase}
-            className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
-            width={32}
-            height={32}
-          >
-            <use href="/Icons/sprite.svg#icon-dropdown"></use>
-          </svg>
-        )}
-      </div>
+      {candidates.length > 0 && (
+        <div className="my-[60px] flex w-full items-center justify-center pr-[4.25rem] sm:pr-0 md:mb-[94px] md:mt-[70px]">
+          {candidates.length > numberOnPage ? (
+            <svg
+              onClick={decrease}
+              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
+              width={32}
+              height={32}
+            >
+              <use href="/Icons/sprite.svg#icon-dropdown"></use>
+            </svg>
+          ) : (
+            <svg
+              onClick={increase}
+              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
+              width={32}
+              height={32}
+            >
+              <use href="/Icons/sprite.svg#icon-dropdown"></use>
+            </svg>
+          )}
+        </div>
+      )}
     </div>
   );
 };

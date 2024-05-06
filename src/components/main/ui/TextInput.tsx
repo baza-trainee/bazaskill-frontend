@@ -35,8 +35,9 @@ const TextInput: FC<TextInputProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [filteredOptions, setFilteredOptions] =
-    useState<string[]>(options);
+  const [filteredOptions, setFilteredOptions] = useState<
+    string[]
+  >([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { setFilterBySpeciality, setFilterByCountry } =
@@ -64,6 +65,9 @@ const TextInput: FC<TextInputProps> = ({
   };
 
   useEffect(() => {
+    if (options?.length >= 1) {
+      setFilteredOptions(options);
+    }
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener(
@@ -71,7 +75,7 @@ const TextInput: FC<TextInputProps> = ({
         handleClickOutside
       );
     };
-  }, []);
+  }, [options]);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>

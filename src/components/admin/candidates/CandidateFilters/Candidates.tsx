@@ -40,6 +40,8 @@ const Candidates = () => {
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
     const selectedStack: string[] = data.stack || [];
+    console.log(data);
+    console.log(selectedStack);
     const selectedStatus: string = data.status || '';
     const selectExperience: string = data.projects || '';
     const selectGraduate: string = data.graduate || '';
