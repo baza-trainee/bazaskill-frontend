@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializations } from '@/api/specialization';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 const Hero: React.FC = () => {
   const t = useTranslations('Main.hero_section');
@@ -38,7 +39,7 @@ const Hero: React.FC = () => {
             isFirstInput={true}
             title=""
             errorText=""
-            category=""
+            category="speciality"
             placeholder={t('speciality')}
             options={options}
           />
@@ -49,7 +50,7 @@ const Hero: React.FC = () => {
           <TextInput
             title=""
             errorText=""
-            category=""
+            category="country"
             placeholder={t('country')}
             options={[
               t('ukraine'),
@@ -61,8 +62,10 @@ const Hero: React.FC = () => {
         </div>
 
         <button className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md">
-          <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-          {t('search')}
+          <Link href={`/candidates`}>
+            <SearchIcon className="text-gray-500 absolute left-3 top-5" />
+            {t('search')}
+          </Link>
         </button>
       </form>
     </section>

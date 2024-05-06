@@ -71,7 +71,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
         <h3>{candidate.name}</h3>
-        <span>ID {candidate.id}</span>
+        <span>ID {candidate.uniqueId}</span>
       </div>
       <div className="flex w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px]">
@@ -136,7 +136,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
 
-      <div className="flex w-full justify-between gap-[27px]">
+      <div className="flex w-full justify-start gap-[27px]">
         {candidate.stack.slice(0, 3).map(
           (item) =>
             item.stack?.title && (

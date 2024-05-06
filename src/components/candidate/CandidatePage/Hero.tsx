@@ -37,7 +37,7 @@ const CandidateHero = ({
               : candidate.surname}
           </h2>
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
-            ID {generateRandomId(candidate.specialization)}
+            ID {candidate.uniqueId}
           </span>
         </div>
 

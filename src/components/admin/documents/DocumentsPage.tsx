@@ -29,6 +29,8 @@ const DocumentsPage = () => {
     queryFn: getDocuments,
   });
 
+  console.log(data);
+
   const {
     handleSubmit,
     control,

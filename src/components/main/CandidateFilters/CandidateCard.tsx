@@ -1,6 +1,5 @@
 import declineWord from 'decline-word';
 import { CandidatesResponse } from '@/types/candidates';
-import { generateRandomId } from '@/helpers/generateId';
 import Link from 'next/link';
 import { shortenLangs } from '@/helpers/shortenLangs';
 
@@ -12,7 +11,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 }: CandidateCardProps) => {
   const specialization = candidate.specialization.title;
   return (
-    <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
+    <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
       <div
         className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[134px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
@@ -39,9 +38,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
         <h3>{candidate.name}</h3>
-        <span>
-          ID {generateRandomId(candidate.specialization)}
-        </span>
+        <span>ID {candidate.uniqueId}</span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex w-[50%] items-center gap-[8px]">
@@ -101,7 +98,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
 
-      <div className="flex w-full justify-between gap-[27px]">
+      <div className="flex w-full justify-start gap-[27px]">
         {candidate.stack.slice(0, 3).map((item) => (
           <div
             key={item.id}
@@ -114,7 +111,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           ...
         </span>
       </div>
-      <div className="py-[10px] font-sans text-[16px] leading-[26px]">
+      <div className="line-clamp-4 py-[10px] font-sans text-[16px] leading-[26px]">
         {candidate.about}
       </div>
 

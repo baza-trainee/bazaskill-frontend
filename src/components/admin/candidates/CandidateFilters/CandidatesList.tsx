@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import declineWord from 'decline-word';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
@@ -9,6 +10,16 @@ const CandidatesList = ({
 }: {
   candidates: CandidatesResponse[];
 }) => {
+  const [numberOnPage, setNumberOnPage] = useState(4);
+
+  const increase = () => {
+    setNumberOnPage((prev) => prev + 4);
+  };
+
+  const decrease = () => {
+    setNumberOnPage(4);
+  };
+
   return (
     <div className=" box-content pr-[24px] 5xl:pr-[196px]">
       <div className="pl-[24px] font-tahoma text-[24px]">
@@ -33,21 +44,35 @@ const CandidatesList = ({
             </p>
           </Link>
         </div>
-        {candidates?.map((candidate) => (
-          <CandidateCard
-            key={candidate.id}
-            candidate={candidate}
-          />
-        ))}
+        {candidates
+          ?.slice(0, numberOnPage)
+          .map((candidate) => (
+            <CandidateCard
+              key={candidate.id}
+              candidate={candidate}
+            />
+          ))}
       </div>
       <div className="mb-[94px] mt-[70px] flex w-full items-center justify-center">
-        <svg
-          className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
-          width={32}
-          height={32}
-        >
-          <use href="/Icons/sprite.svg#icon-dropdown"></use>
-        </svg>
+        {candidates.length <= numberOnPage ? (
+          <svg
+            onClick={decrease}
+            className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
+            width={32}
+            height={32}
+          >
+            <use href="/Icons/sprite.svg#icon-dropdown"></use>
+          </svg>
+        ) : (
+          <svg
+            onClick={increase}
+            className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
+            width={32}
+            height={32}
+          >
+            <use href="/Icons/sprite.svg#icon-dropdown"></use>
+          </svg>
+        )}
       </div>
     </div>
   );

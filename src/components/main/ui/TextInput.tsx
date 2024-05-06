@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import React, {
   useState,
@@ -7,6 +8,12 @@ import React, {
   ChangeEvent,
 } from 'react';
 import ArrowIcon from '@/components/icons/ArrowIcon';
+
+import { useFilters } from '@/stores/useFilters';
+import {
+  isSpeciality,
+  isCountry,
+} from '@/helpers/categoryChecker';
 
 interface TextInputProps {
   title: string;
@@ -32,9 +39,19 @@ const TextInput: FC<TextInputProps> = ({
     useState<string[]>(options);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const { setFilterBySpeciality, setFilterByCountry } =
+    useFilters();
+
   const handleSelectOption = (option: string) => {
     setInputValue(option);
     setIsOpen(false);
+    console.log(option);
+    if (isSpeciality(option)) {
+      setFilterBySpeciality(option);
+    }
+    if (isCountry(option)) {
+      setFilterByCountry(option);
+    }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -98,6 +115,7 @@ const TextInput: FC<TextInputProps> = ({
           value={inputValue}
           id={title}
           data-category={category}
+          name={category}
           className={`h-[64px] 
             w-full p-2 pl-12 placeholder:text-xl focus:outline-none 
             ${
