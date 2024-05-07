@@ -7,12 +7,14 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 import FiltersSpecializationMenuItem from './FiltersSpecializationMenuItem';
+import { useTranslations } from 'next-intl';
 
 const FiltersSpecializationMenu = ({
   register,
 }: {
   register: UseFormRegister<FieldValues>;
 }) => {
+  const t = useTranslations('Filter');
   const { data, isFetching } = useQuery({
     queryKey: [
       constants.specialization
@@ -22,7 +24,7 @@ const FiltersSpecializationMenu = ({
   });
   return (
     <div className=" flex flex-col gap-[20px] font-sans text-sm sm:text-base">
-      <h3 className="tracking-wide">Стек</h3>
+      <h3 className="tracking-wide">{t('stack')}</h3>
       <div className="grid grid-cols-2 gap-[20px] md:flex md:flex-col">
         {!isFetching ? (
           data?.map(

@@ -2,6 +2,7 @@ import declineWord from 'decline-word';
 import { CandidatesResponse } from '@/types/candidates';
 import Link from 'next/link';
 import { shortenLangs } from '@/helpers/shortenLangs';
+import { useTranslations } from 'next-intl';
 
 type CandidateCardProps = {
   candidate: CandidatesResponse;
@@ -9,11 +10,12 @@ type CandidateCardProps = {
 const CandidateCard: React.FC<CandidateCardProps> = ({
   candidate,
 }: CandidateCardProps) => {
+  const t = useTranslations('Candidate');
   const specialization = candidate.specialization.title;
   return (
     <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
       <div
-        className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[134px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
+        className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[142px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
         <span
           className={`${candidate.status.toLowerCase() === 'searching' ? 'bg-green' : candidate.status.toLowerCase() === 'working' ? 'bg-orange' : candidate.status.toLowerCase() === 'inactive' ? 'bg-black' : ''} h-[14px] w-[14px] rounded-[100%]`}
@@ -22,12 +24,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           className={`${candidate.status.toLowerCase() === 'searching' ? 'text-green' : candidate.status.toLowerCase() === 'working' ? 'text-orange' : candidate.status.toLowerCase() === 'inactive' ? 'text-black' : ''} rounded-[100%]`}
         >
           {candidate.status.toLowerCase() === 'searching'
-            ? 'У пошуку'
+            ? t('status.item_1')
             : candidate.status.toLowerCase() === 'working'
-              ? 'Працює'
+              ? t('status.item_2')
               : candidate.status.toLowerCase() ===
                   'inactive'
-                ? 'Не активний'
+                ? t('status.item_3')
                 : null}
         </span>
       </div>
@@ -74,12 +76,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           {candidate.baza_experience.length}{' '}
           {declineWord(
             candidate.baza_experience.length,
-            'проект',
+            t('project.title'),
             '',
-            'и',
-            'ів'
+            t('project.item_1'),
+            t('project.item_2')
           )}{' '}
-          на базі
+          {t('baza')}
         </span>
 
         <span className="flex w-[50%] items-center gap-[8px] ">
@@ -88,11 +90,11 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           </svg>
           <span className="truncate">
             {candidate.work_format === 'Remote'
-              ? 'Віддалено'
+              ? t('format.item_1')
               : candidate.work_format === 'Office'
-                ? 'В офісі'
+                ? t('format.item_2')
                 : candidate.work_format === 'Hybrid'
-                  ? 'Гібридний формат роботи'
+                  ? t('format.item_3')
                   : null}
           </span>
         </span>
@@ -117,12 +119,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 
       <div className="flex h-[44px] w-full items-center justify-between">
         <span className="font-tahoma text-[20px] font-[700]">
-          від {candidate.sallary_form} $
+          {t('salary')} {candidate.sallary_form} $
         </span>
         <div className="flex">
           <Link href={`/candidate/${candidate.id}`}>
             <button className="flex h-[44px] w-[133px] items-center justify-center rounded bg-white p-4 font-semibold text-black sm:w-[180px]">
-              Читати більше
+              {t('button')}
             </button>
           </Link>
         </div>

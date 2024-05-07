@@ -88,11 +88,11 @@ const CandidateHero = ({
             </svg>
             <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
               {candidate.work_format === 'Remote'
-                ? 'Віддалено'
+                ? t('format.item_1')
                 : candidate.work_format === 'Office'
-                  ? 'В офісі'
+                  ? t('format.item_2')
                   : candidate.work_format === 'Hybrid'
-                    ? 'Гібридний формат роботи'
+                    ? t('format.item_3')
                     : null}
             </span>
           </div>

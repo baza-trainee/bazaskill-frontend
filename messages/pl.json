@@ -150,6 +150,59 @@
       "duration": "Duration",
       "weeks": "{count, plural,  =2 {# tygodnie} =3 {# tygodnie} =4 {# tygodnie} other {# tygodni}}",
       "role": "Zespół ołowiu"
+    },
+    "button": "Czytaj więcej",
+    "project": {
+      "title": "projekt",
+      "item_1": "owanie",
+      "item_2": "owanie"
+    },
+    "baza": "w Bazie",
+    "status": {
+      "item_1": "W poszukiwaniu",
+      "item_2": "Pracujący",
+      "item_3": "Nieaktywny"
+    },
+    "salary": "od",
+    "format": {
+      "item_1": "Zdalnie",
+      "item_2": "W biurze",
+      "item_3": "Hybrydowy format pracy"
     }
+  },
+  "Filter": {
+    "amount": {
+      "candidate": "kandydat",
+      "item_1": "",
+      "item_2": ""
+    },
+    "hero_title": "Wszyscy kandydaci",
+    "title": "Filtry",
+    "stack": "Stos",
+    "projects": {
+      "title": "Zrealizowane projekty",
+      "item": "4 lub więcej"
+    },
+    "format": {
+      "title": "Forma pracy",
+      "item_1": "Zdalny",
+      "item_2": "W biurze",
+      "item_3": "Hybrydowy",
+      "item_4": "Zatrudnienie w niepełnym wymiarze godzin"
+    },
+    "language": {
+      "title": "Język",
+      "item_1": "Język angielski",
+      "item_2": "Polski",
+      "item_3": "Niemiecki"
+    },
+    "education": {
+      "title": "Edukacja",
+      "item_1": "Wykształcenie średnie zawodowe",
+      "item_2": "Wyższy",
+      "item_3": "Kursy"
+    },
+    "salary": "Wynagrodzenie",
+    "button": "Zastosuj filtry"
   }
 }
