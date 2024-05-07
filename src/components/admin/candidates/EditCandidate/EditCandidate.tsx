@@ -37,7 +37,6 @@ import {
   updateCandidate,
   getCandidateById,
 } from '@/api/candidates';
-// import OutBazaExperience from './OutBazaExperience';
 import {
   CandidatesResponse,
   ICandidateLanguages,
@@ -69,6 +68,8 @@ const EditCandidate = ({ id }: { id: string }) => {
     },
     onError: (error) => {
       alert(error.message);
+      setIsProcessing(false);
+      console.log(error);
     },
   });
 
@@ -163,15 +164,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             project_duration: item.project_duration,
           })
         ),
-        // out_baza_experience: value.out_baza_experience.map(
-        //   (item: IOutBazaExperience) => ({
-        //     company_name: item.company_name,
-        //     company_specialization:
-        //       item.company_specialization,
-        //     work_start: item.work_start,
-        //     work_end: item.work_end,
-        //   })
-        // ),
+        uniqueId: value.uniqueId,
         baza_recomendation: value.baza_recomendation,
         status: value.status,
       });
@@ -208,18 +201,6 @@ const EditCandidate = ({ id }: { id: string }) => {
     }
   }, [candidate.data]);
 
-  const currentValues = watch();
-
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    if (!stack.length) {
-      setStackError('Додайте декілька технологій зі стеку');
-      return;
-    }
-    setIsProcessing(true);
-    mutate({ id, data: { currentValues, stack } });
-  };
-
   const graduate = useFieldArray({
     name: 'graduate',
     control,
@@ -235,15 +216,28 @@ const EditCandidate = ({ id }: { id: string }) => {
     control,
   });
 
-  const out_baza_experience = useFieldArray({
-    name: 'out_baza_experience',
-    control,
-  });
-
   const lang = useFieldArray({
     name: 'languages',
     control,
   });
+
+  const currentValues = watch();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    try {
+      console.log(data);
+      if (!stack.length) {
+        setStackError(
+          'Додайте декілька технологій зі стеку'
+        );
+        return;
+      }
+      setIsProcessing(true);
+      mutate({ id, data: { currentValues, stack } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-[32px] px-[40px]">
@@ -644,9 +638,7 @@ const EditCandidate = ({ id }: { id: string }) => {
           <Graduate
             fieldArray={graduate}
             control={control}
-            fieldsLength={
-              candidate?.data?.gradaute.length as number
-            }
+            fieldsLength={currentValues.graduate.length}
           />
 
           <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -657,7 +649,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             fieldArray={cources}
             control={control}
             fieldsLength={
-              candidate?.data?.cources.length as number
+              currentValues.cources.length as number
             }
           />
 
@@ -669,23 +661,10 @@ const EditCandidate = ({ id }: { id: string }) => {
             control={control}
             fieldArray={baza_experience}
             fieldsLength={
-              candidate?.data?.baza_experience
+              currentValues.baza_experience
                 ?.length as number
             }
           />
-
-          {/* <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
-            <h3>Досвід роботи поза Базою</h3>
-          </div> */}
-
-          {/* <OutBazaExperience
-            control={control}
-            fieldArray={out_baza_experience}
-            fieldsLength={
-              candidate?.data?.out_baza_experience
-                ?.length as number
-            }
-          /> */}
 
           <div className="flex w-full gap-[24px]">
             <Controller

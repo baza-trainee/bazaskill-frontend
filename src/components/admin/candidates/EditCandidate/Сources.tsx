@@ -20,6 +20,15 @@ interface ICourcesProps {
     'id'
   >;
 }
+
+const defaultValues = {
+  cources_name: '',
+  cources_specializaton: '',
+  cources_start: '',
+  cources_end: '',
+  cources_sertificate: '',
+};
+
 const Cources: React.FC<ICourcesProps> = ({
   fieldsLength,
   control,
@@ -174,7 +183,7 @@ const Cources: React.FC<ICourcesProps> = ({
         );
       })}
       <div
-        onClick={append}
+        onClick={() => append(defaultValues)}
         className="flex cursor-pointer justify-end"
       >
         + Додати ще

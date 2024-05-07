@@ -97,6 +97,8 @@ const Stack: React.FC<IStackProps> = ({
     handleStack(stack);
   }, [stack]);
 
+  console.log(input);
+
   return (
     <div className="relative flex w-full gap-[24px]">
       <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
@@ -162,11 +164,6 @@ const Stack: React.FC<IStackProps> = ({
       {isModalOpen && modalType === 'add_stack' && (
         <AddStackModal />
       )}
-      <span className="absolute top-[calc(100%+5px)] font-sans text-[12px] text-error">
-        {input.length === 0 && isSubmitted
-          ? 'Required'
-          : ''}
-      </span>
     </div>
   );
 };

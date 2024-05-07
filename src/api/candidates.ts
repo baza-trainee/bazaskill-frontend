@@ -38,10 +38,12 @@ export const createCandidate = async (values: any) => {
     );
   }
 
-  const coursesCertificates = values.data.cources.map(
-    (cource: ICandidateCources) =>
-      cource.cources_sertificate
-  );
+  const coursesCertificates = values.data.cources
+    .map(
+      (cource: ICandidateCources) =>
+        cource.cources_sertificate
+    )
+    .filter((item: File | undefined) => item !== undefined);
 
   if (
     coursesCertificates.some((item: any) => item !== '')
@@ -60,9 +62,12 @@ export const createCandidate = async (values: any) => {
     );
   }
 
-  const graduateCertificates = values.data.graduate.map(
-    (item: ICandidateGraduate) => item.graduate_sertificate
-  );
+  const graduateCertificates = values.data.graduate
+    .map(
+      (item: ICandidateGraduate) =>
+        item.graduate_sertificate
+    )
+    .filter((item: File | undefined) => item !== undefined);
 
   if (
     graduateCertificates.some((item: any) => item !== '')
@@ -115,12 +120,14 @@ export const createCandidate = async (values: any) => {
         university_grade: item.university_grade,
         graduate_start: item.graduate_start,
         graduate_end: item.graduate_end,
-        graduate_sertificate: graduateResponse
-          ? graduateResponse.data[index].url
-          : '',
-        graduate_sertificate_id: graduateResponse
-          ? graduateResponse.data[index].public_id
-          : '',
+        graduate_sertificate:
+          graduateResponse && graduateResponse.data[index]
+            ? graduateResponse.data[index].url
+            : '',
+        graduate_sertificate_id:
+          graduateResponse && graduateResponse.data[index]
+            ? graduateResponse.data[index].public_id
+            : '',
       })
     ),
     cources: values.data.cources.map(
@@ -129,12 +136,14 @@ export const createCandidate = async (values: any) => {
         cources_specializaton: cource.cources_specializaton,
         cources_start: cource.cources_start,
         cources_end: cource.cources_end,
-        cources_sertificate: courcesResponse
-          ? courcesResponse.data[index].url
-          : '',
-        cources_sertificate_id: courcesResponse
-          ? courcesResponse.data[index].public_id
-          : '',
+        cources_sertificate:
+          courcesResponse && courcesResponse.data[index]
+            ? courcesResponse.data[index].url
+            : '',
+        cources_sertificate_id:
+          courcesResponse && courcesResponse.data[index]
+            ? courcesResponse.data[index].public_id
+            : '',
       })
     ),
 
@@ -150,8 +159,6 @@ export const createCandidate = async (values: any) => {
     uniqueId: generateRandomId(values.data.specialization),
     isPublished: true,
   };
-
-  console.log(newCandidate);
 
   const { data } = await axios.post(
     '/candidates',
@@ -177,11 +184,12 @@ export const updateCandidate = async (
     );
   }
 
-  const coursesCertificates =
-    values.currentValues.cources.map(
+  const coursesCertificates = values.currentValues.cources
+    .map(
       (cource: ICandidateCources) =>
         cource.cources_sertificate[0]
-    );
+    )
+    .filter((item: File | undefined) => item !== undefined);
 
   if (
     coursesCertificates.some((item: File) => item.size > 0)
@@ -200,11 +208,12 @@ export const updateCandidate = async (
     );
   }
 
-  const graduateCertificates =
-    values.currentValues.graduate.map(
+  const graduateCertificates = values.currentValues.graduate
+    .map(
       (item: ICandidateGraduate) =>
         item.graduate_sertificate[0]
-    );
+    )
+    .filter((item: File | undefined) => item !== undefined);
 
   if (
     graduateCertificates.some((item: File) => item.size > 0)
@@ -221,6 +230,8 @@ export const updateCandidate = async (
       graduateFormData
     );
   }
+
+  console.log(courcesResponse);
 
   const newCandidate = {
     name_ua: values.currentValues.name_ua,
@@ -263,10 +274,20 @@ export const updateCandidate = async (
         graduate_sertificate:
           graduateResponse && graduateResponse.data[index]
             ? graduateResponse.data[index].url
-            : item.graduate_sertificate[0].name,
-        graduate_sertificate_id: graduateResponse
-          ? graduateResponse.data[index].public_id
-          : item.graduate_sertificate_id,
+            : item.graduate_sertificate[0].size > 0
+              ? graduateResponse.data[0].url
+              : item.graduate_sertificate.length
+                ? item.graduate_sertificate[0].name
+                : '',
+        graduate_sertificate_id:
+          graduateResponse && graduateResponse.data[index]
+            ? graduateResponse.data[index].public_id
+            : item.graduate_sertificate[0].size > 0
+              ? graduateResponse.data[0].public_id
+              : item.graduate_sertificate.length &&
+                  item.graduate_sertificate_id
+                ? item.graduate_sertificate_id
+                : '',
       })
     ),
     cources: values.currentValues.cources.map(
@@ -278,11 +299,20 @@ export const updateCandidate = async (
         cources_sertificate:
           courcesResponse && courcesResponse.data[index]
             ? courcesResponse.data[index].url
-            : cource.cources_sertificate[0].name,
+            : cource.cources_sertificate[0].size > 0
+              ? courcesResponse.data[0].url
+              : cource.cources_sertificate.length
+                ? cource.cources_sertificate[0].name
+                : '',
         cources_sertificate_id:
           courcesResponse && courcesResponse.data[index]
-            ? courcesResponse.data[index].url
-            : cource.cources_sertificate_id,
+            ? courcesResponse.data[index].public_id
+            : cource.cources_sertificate[0].size > 0
+              ? courcesResponse.data[0].public_id
+              : cource.cources_sertificate.length &&
+                  cource.cources_sertificate_id
+                ? cource.cources_sertificate_id
+                : '',
       })
     ),
 
@@ -297,7 +327,7 @@ export const updateCandidate = async (
     baza_recomendation:
       values.currentValues.baza_recomendation,
     status: values.currentValues.status,
-    uniqueId: generateRandomId(values.data.specialization),
+    uniqueId: values.currentValues.uniqueId,
     isPublished: true,
   };
 

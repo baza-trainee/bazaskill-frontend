@@ -74,7 +74,10 @@ const CandidateHero = ({
                 <use href="/Icons/sprite.svg#icon-lang"></use>
               </svg>
               <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
-                {lang.language}
+                {lang.language}:
+              </span>
+              <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
+                {lang.level}
               </span>
             </div>
           ))}

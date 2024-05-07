@@ -53,8 +53,10 @@ const CandidatesList = ({
             />
           ))}
       </div>
-      <div className="mb-[94px] mt-[70px] flex w-full items-center justify-center">
-        {candidates.length <= numberOnPage ? (
+      <div
+        className={`${candidates.length <= numberOnPage && 'hidden'} mb-[94px] mt-[70px] flex w-full items-center justify-center`}
+      >
+        {candidates.length >= numberOnPage ? (
           <svg
             onClick={decrease}
             className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"

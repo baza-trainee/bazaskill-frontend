@@ -58,6 +58,7 @@ const AddCandidate = () => {
     },
     onError: (error) => {
       alert(error);
+      setIsProcessing(false);
     },
   });
 
@@ -88,15 +89,20 @@ const AddCandidate = () => {
     mode: 'onChange',
   });
 
-  console.log(errors);
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (!stack.length) {
-      setStackError('Додайте декілька технологій зі стеку');
-      return;
+    try {
+      console.log(data);
+      if (!stack.length) {
+        setStackError(
+          'Додайте декілька технологій зі стеку'
+        );
+        return;
+      }
+      setIsProcessing(true);
+      mutate({ data, stack });
+    } catch (error) {
+      console.log(error);
     }
-    setIsProcessing(true);
-    mutate({ data, stack });
   };
 
   const graduate = useFieldArray({

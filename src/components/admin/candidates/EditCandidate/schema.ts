@@ -1,4 +1,18 @@
+import { formatBytes } from '@/helpers/formatBytes';
 import { z } from 'zod';
+
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+
+const ACCEPTED_CV_TYPES = ['application/pdf', 'for-url'];
+
+const ACCEPTED_CERTIFICATE_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'application/pdf',
+  'for-url',
+];
 
 const emailPattern =
   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
@@ -41,10 +55,22 @@ const schema = z.object({
     .refine((value) => value?.length > 0, {
       message: 'Required',
     })
+    .refine((value) => {
+      value &&
+        value[0]?.size === 0 &&
+        value[0]?.type === 'for-url';
+      return true;
+    })
     .refine(
-      (value) => !value || value[0]?.size <= 5000000,
-      `Max file size is 5MB.`
+      (value) => value?.[0]?.size <= MAX_FILE_SIZE,
+      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`
+    )
+    .refine(
+      (value) =>
+        ACCEPTED_CV_TYPES.includes(value?.[0]?.type),
+      'Документ має бути в форматі .pdf'
     ),
+
   graduate: z.array(
     z.object({
       university: z
@@ -63,9 +89,24 @@ const schema = z.object({
       graduate_sertificate: z
         .any()
         .nullable()
+        .refine((value) => {
+          value &&
+            value[0]?.size === 0 &&
+            value[0]?.type === 'for-url';
+          return true;
+        })
         .refine(
-          (value) => !value || value[0]?.size <= 5000000,
-          `Max file size is 5MB.`
+          (value) =>
+            !value || value?.[0]?.size <= MAX_FILE_SIZE,
+          `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
+        )
+        .refine(
+          (value) =>
+            !value ||
+            ACCEPTED_CERTIFICATE_TYPES.includes(
+              value?.[0]?.type
+            ),
+          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
         ),
     })
   ),
@@ -86,9 +127,24 @@ const schema = z.object({
       cources_sertificate: z
         .any()
         .nullable()
+        .refine((value) => {
+          value &&
+            value[0]?.size === 0 &&
+            value[0]?.type === 'for-url';
+          return true;
+        })
         .refine(
-          (value) => !value || value[0]?.size <= 5000000,
-          `Max file size is 5MB.`
+          (value) =>
+            !value || value?.[0]?.size <= MAX_FILE_SIZE,
+          `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
+        )
+        .refine(
+          (value) =>
+            !value ||
+            ACCEPTED_CERTIFICATE_TYPES.includes(
+              value?.[0]?.type
+            ),
+          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
         ),
     })
   ),
@@ -103,20 +159,6 @@ const schema = z.object({
         .min(1, { message: 'Required' }),
     })
   ),
-  // out_baza_experience: z.array(
-  //   z.object({
-  //     company_name: z
-  //       .string()
-  //       .min(1, { message: 'Required' }),
-  //     company_specialization: z
-  //       .string()
-  //       .min(1, { message: 'Required' }),
-  //     work_start: z
-  //       .string()
-  //       .min(1, { message: 'Required' }),
-  //     work_end: z.string().min(1, { message: 'Required' }),
-  //   })
-  // ),
   baza_recomendation: z
     .string()
     .nonempty({

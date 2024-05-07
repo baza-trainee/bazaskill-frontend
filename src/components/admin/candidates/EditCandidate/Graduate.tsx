@@ -21,6 +21,16 @@ interface IGraduateProps {
     'id'
   >;
 }
+
+const defaultValues = {
+  university: '',
+  university_specializaton: '',
+  university_grade: '',
+  graduate_start: '',
+  graduate_end: '',
+  graduate_sertificate: '',
+};
+
 const Graduate = ({
   fieldsLength,
   control,
@@ -202,7 +212,7 @@ const Graduate = ({
         );
       })}
       <div
-        onClick={append}
+        onClick={() => append(defaultValues)}
         className="flex cursor-pointer justify-end"
       >
         + Додати ще
