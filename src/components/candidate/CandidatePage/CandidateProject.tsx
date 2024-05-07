@@ -27,7 +27,7 @@ const Project = ({
           })}
         </span>
       </div>
-      <span className="relative box-border flex h-[36px]  w-[135px] cursor-pointer items-center justify-center rounded-[16px] border-[1px] border-white p-[8px] xl:max-w-[45%]">
+      <span className="relative box-border flex h-[36px] cursor-pointer items-center justify-center rounded-[16px] border-[1px] border-white p-[8px] xl:max-w-[45%]">
         <svg
           width={20}
           height={20}

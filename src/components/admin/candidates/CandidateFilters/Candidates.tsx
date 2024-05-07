@@ -6,14 +6,14 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { getAllCandidates } from '@/api/candidates';
+import { FieldValues } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
 import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 import Filters from './Filters';
 import { CandidatesResponse } from '@/types/candidates';
 import Loader from '../../ui/Loader';
-import { FieldValues } from 'react-hook-form';
-import { useEffect, useState } from 'react';
 
 const Candidates = () => {
   const candidates: UseQueryResult<

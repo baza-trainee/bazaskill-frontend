@@ -14,7 +14,6 @@ import {
   FieldValues,
   UseFieldArrayReturn,
 } from 'react-hook-form';
-import FileInput from './FileInput';
 import TextInput from './TextInput';
 import { useEffect } from 'react';
 
@@ -27,6 +26,13 @@ interface IBazaExperienceProps {
     'id'
   >;
 }
+
+const defaultValues = {
+  role: '',
+  project_name: '',
+  project_duration: '',
+};
+
 const BazaExperience: React.FC<IBazaExperienceProps> = ({
   fieldsLength,
   control,
@@ -163,7 +169,7 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
         );
       })}
       <div
-        onClick={append}
+        onClick={() => append(defaultValues)}
         className="flex cursor-pointer justify-end"
       >
         + Додати ще
