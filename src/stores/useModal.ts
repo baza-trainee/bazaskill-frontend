@@ -1,7 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 
-type ModalType = 'hr' | 'partner' | 'add_stack' | '';
+type ModalType =
+  | 'hr'
+  | 'partner'
+  | 'add_stack'
+  | 'contacts'
+  | '';
 
 interface ModalState {
   isModalOpen: boolean;

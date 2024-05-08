@@ -53,29 +53,31 @@ const CandidatesList = ({
             />
           ))}
       </div>
-      <div
-        className={`${candidates.length <= numberOnPage && 'hidden'} mb-[94px] mt-[70px] flex w-full items-center justify-center`}
-      >
-        {candidates.length >= numberOnPage ? (
-          <svg
-            onClick={decrease}
-            className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
-            width={32}
-            height={32}
-          >
-            <use href="/Icons/sprite.svg#icon-dropdown"></use>
-          </svg>
-        ) : (
-          <svg
-            onClick={increase}
-            className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
-            width={32}
-            height={32}
-          >
-            <use href="/Icons/sprite.svg#icon-dropdown"></use>
-          </svg>
-        )}
-      </div>
+      {candidates.length > 4 && (
+        <div
+          className={`mb-[94px] mt-[70px] flex w-full items-center justify-center`}
+        >
+          {candidates.length <= numberOnPage ? (
+            <svg
+              onClick={decrease}
+              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
+              width={32}
+              height={32}
+            >
+              <use href="/Icons/sprite.svg#icon-dropdown"></use>
+            </svg>
+          ) : (
+            <svg
+              onClick={increase}
+              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
+              width={32}
+              height={32}
+            >
+              <use href="/Icons/sprite.svg#icon-dropdown"></use>
+            </svg>
+          )}
+        </div>
+      )}
     </div>
   );
 };
