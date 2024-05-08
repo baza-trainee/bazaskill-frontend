@@ -10,11 +10,13 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import schema from './schema';
 import defaultValues from './defaultValues';
+import { useTranslations } from 'next-intl';
 const Filters = ({
   SubmitHandler,
 }: {
   SubmitHandler: (data: FieldValues) => void;
 }) => {
+  const t = useTranslations('Filter');
   const {
     register,
     handleSubmit,
@@ -59,13 +61,13 @@ const Filters = ({
     >
       <div className="w-[280px] border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
         <h3 className="py-[8px] text-base sm:text-lg 3xl:text-xl">
-          Фільтри
+          {t('title')}
         </h3>
       </div>
       <FiltersSpecializationMenu register={register} />
       <div className="grid grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
         <div className="flex flex-col gap-[20px] font-sans">
-          <h3>Виконані проєкти</h3>
+          <h3> {t('projects.title')}</h3>
           <div className="flex flex-col gap-[20px] sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
             <CustomCheckbox
               registerFor="projects"
@@ -89,91 +91,91 @@ const Filters = ({
               registerFor="projects"
               value="4"
               register={register}
-              title="4 і більше"
+              title={t('projects.item')}
             />
           </div>
         </div>
 
         <div className="flex flex-col gap-[20px] font-sans sm:min-w-[176px] sm:text-base xl:text-lg 2xl:text-xl">
-          <h3>Формат роботи</h3>
+          <h3>{t('format.title')}</h3>
           <div className="flex flex-col gap-[20px]">
             <CustomCheckbox
               registerFor="occupation"
               value="Remote"
               register={register}
-              title="Дистанційний"
+              title={t('format.item_1')}
             />
             <CustomCheckbox
               registerFor="occupation"
               value="Office"
               register={register}
-              title="В офісі"
+              title={t('format.item_2')}
             />
             <CustomCheckbox
               registerFor="occupation"
               value="Hibryd"
               register={register}
-              title="Гібридний"
+              title={t('format.item_3')}
             />
             <CustomCheckbox
               registerFor="occupation"
               value="Part"
               register={register}
-              title="Часткова зайнятість"
+              title={t('format.item_4')}
             />
           </div>
         </div>
 
         <div className="flex flex-col gap-[20px] font-sans sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
-          <h3>Мова</h3>
+          <h3>{t('language.title')}</h3>
           <div className="flex flex-col gap-[20px]">
             <CustomCheckbox
               registerFor="language"
               value="English"
               register={register}
-              title="Англійська"
+              title={t('language.item_1')}
             />
             <CustomCheckbox
               registerFor="language"
               value="Polish"
               register={register}
-              title="Польська"
+              title={t('language.item_2')}
             />
             <CustomCheckbox
               registerFor="language"
               value="German"
               register={register}
-              title="Німецька"
+              title={t('language.item_3')}
             />
           </div>
         </div>
 
         <div className="flex flex-col gap-[20px] font-sans sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
-          <h3>Освіта</h3>
+          <h3>{t('education.title')}</h3>
           <div className="flex flex-col gap-[20px]">
             <CustomCheckbox
               registerFor="graduate"
               value="secondary_proffesional"
               register={register}
-              title="Середня професійна"
+              title={t('education.item_1')}
             />
             <CustomCheckbox
               registerFor="graduate"
               value="gradaute"
               register={register}
-              title="Вища"
+              title={t('education.item_2')}
             />
             <CustomCheckbox
               registerFor="graduate"
               value="cources"
               register={register}
-              title="Курси"
+              title={t('education.item_3')}
             />
           </div>
         </div>
       </div>
       <div className="relative flex max-w-[272px] flex-col gap-[20px] font-sans text-[20px]">
-        <h3 className="leading-[28px]">Зарплата</h3>
+        <h3 className="leading-[28px]">{t('salary')}</h3>
         <div className="relative flex h-[40px] max-w-full gap-[10px]">
           <div className="flex h-full w-[32px] justify-center xl:items-center xl:px-[10px]">
             $
@@ -207,7 +209,7 @@ const Filters = ({
       <div className="main-gradient flex max-w-[280px] items-center justify-center rounded-[6px] sm:min-w-[363px] md:min-w-[219px] xl:min-w-[256px] 3xl:min-w-[306px] 4xl:min-w-[319px]">
         <div className="m-[2px] w-full rounded-[6px] bg-graphite">
           <button className=" main-gradient flex h-[48px] w-full items-center justify-center border-[1px] bg-clip-text font-sans text-[20px] text-base font-[700] leading-[28px] text-transparent md:h-[54px] xl:text-lg">
-            Застосувати фільтри
+            {t('button')}
           </button>
         </div>
       </div>

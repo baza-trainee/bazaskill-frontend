@@ -2,12 +2,14 @@ import { useState } from 'react';
 import declineWord from 'decline-word';
 import CandidateCard from './CandidateCard';
 import { CandidatesResponse } from '@/types/candidates';
+import { useTranslations } from 'next-intl';
 
 const CandidatesList = ({
   candidates,
 }: {
   candidates: CandidatesResponse[];
 }) => {
+  const t = useTranslations('Filter');
   const [numberOnPage, setNumberOnPage] = useState(6);
 
   const increase = () => {
@@ -24,10 +26,10 @@ const CandidatesList = ({
         {candidates?.length}{' '}
         {declineWord(
           candidates.length,
-          'кандидат',
+          t('amount.candidate'),
           '',
-          'и',
-          'ів'
+          t('amount.item_1'),
+          t('amount.item_2')
         )}
       </div>
       <div className="flex flex-col gap-6 md:pl-[48px] xl:grid xl:grid-cols-2 2xl:gap-[30px] 2xl:pl-[78px] 3xl:gap-[32px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:grid-cols-3 5xl:gap-6 5xl:pl-[88px]">
