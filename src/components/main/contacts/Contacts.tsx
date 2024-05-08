@@ -4,59 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useCookies } from '@/stores/useCookies';
 import Cookies from 'js-cookie';
-
-const contactData = [
-  {
-    type: 'tel',
-    value: '+380 63 628 6630',
-    link: 'tel:+380636286630',
-  },
-  {
-    type: 'tel',
-    value: '+380 67 568 1788',
-    link: 'tel:+380675681788',
-  },
-  {
-    type: 'email',
-    value: 'info@baza-skill.com.ua',
-    link: 'mailto:info@baza-skill.com.ua',
-  },
-  {
-    type: 'email',
-    value: 'cv@baza-skill.com.ua',
-    link: 'mailto:cv@baza-skill.com.ua',
-  },
-];
-
-const socialLinks = [
-  {
-    icon: 'instagram',
-    link: '/',
-  },
-  {
-    icon: 'lnkedIn',
-    link: 'https://www.linkedin.com/company/baza-trainee-ukraine/',
-  },
-  { icon: 'discord', link: '/' },
-  {
-    icon: 'telegram',
-    link: 'https://t.me/+CybxMJRp3PdkYjFi',
-  },
-  {
-    icon: 'facebook',
-    link: 'https://www.facebook.com/profile.php?id=61557451883927',
-  },
-];
+import { useContactsData } from './useContactsData';
 
 const Contacts = () => {
   const t = useTranslations('Main.contacts');
   const isCookie = useCookies((state) => state.isCookies);
   const [isCookiesAccepted, setIsCookiesAccepted] =
     useState(false);
+  const { contactData, socialLinks } = useContactsData();
 
   useEffect(() => {
     setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
   }, [isCookie]);
+
   return (
     <div className="container py-14">
       <h2 className="mb-12 flex w-full justify-center text-2xl font-bold text-white md:text-2xl lg:text-[40px]">
