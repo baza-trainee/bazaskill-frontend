@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { SideBarItem } from './SideBarItem';
 import { FaUser } from 'react-icons/fa6';
 import { FaHandshake } from 'react-icons/fa';
+import { FaTools } from 'react-icons/fa';
 import Candidates from '@/components/icons/Admin-icons/Candidates';
 import CountersIcon from '@/components/icons/Admin-icons/CountersIcon';
 import PartnersIcon from '@/components/icons/Admin-icons/PartnersIcon';
@@ -80,6 +81,13 @@ const SideBar: React.FC = () => {
           href="/admin/contacts"
         >
           Контакти
+        </SideBarItem>
+        <SideBarItem
+          className=""
+          icon={<FaTools />}
+          href="/admin/specializations"
+        >
+          Спеціалізації
         </SideBarItem>
         <SideBarItem
           className="border-b"

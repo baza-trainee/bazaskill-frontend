@@ -10,6 +10,14 @@ export const getProfile = async () => {
   return data;
 };
 
+export const registerUser = async (data: any) => {
+  const response = await axios.post<authLoginType>(
+    '/user',
+    data
+  );
+  return response;
+};
+
 export const authLogin = async (data: any) => {
   const response = await axios.post<authLoginType>(
     '/auth/login',
