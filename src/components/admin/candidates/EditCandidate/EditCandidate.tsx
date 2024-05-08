@@ -224,8 +224,8 @@ const EditCandidate = ({ id }: { id: string }) => {
   const currentValues = watch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     try {
-      console.log(data);
       if (!stack.length) {
         setStackError(
           'Додайте декілька технологій зі стеку'
@@ -422,8 +422,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             fieldArray={lang}
             getValues={getValues}
             fieldsLength={
-              candidate?.data?.candidate_language
-                .length as number
+              currentValues.languages.length as number
             }
           />
           <div className="flex w-full gap-[24px]">

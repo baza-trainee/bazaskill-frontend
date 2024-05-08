@@ -21,6 +21,12 @@ interface ILanguagesProps {
   >;
   getValues: UseFormGetValues<FieldValues>;
 }
+
+const defaultValues = {
+  language: '',
+  level: '',
+};
+
 const Languages = ({
   fieldsLength,
   control,
@@ -124,7 +130,7 @@ const Languages = ({
                 {getValues().languages.length - 1 ===
                 index ? (
                   <div
-                    onClick={append}
+                    onClick={() => append(defaultValues)}
                     className="flex h-full cursor-pointer items-center justify-center "
                   >
                     + Додати ще

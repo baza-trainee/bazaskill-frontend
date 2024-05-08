@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Project from './CandidateProject';
 import { CandidatesResponse } from '@/types/candidates';
+import { useModal } from '@/stores/useModal';
 
 type MainInfoProps = {
   candidate: CandidatesResponse;
@@ -8,6 +10,7 @@ type MainInfoProps = {
 
 const MainInfo = ({ candidate }: MainInfoProps) => {
   const t = useTranslations('Candidate');
+  const { openModal } = useModal();
 
   console.log(candidate);
   return (
@@ -34,13 +37,41 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.gradaute.map((item) => (
             <div
               key={item.id}
-              className="flex w-full flex-col md:w-[34%]"
+              className="flex w-full items-center justify-between"
             >
-              <span>{item.university}</span>
-              <span>{item.university_specialization}</span>
-              <span>
-                {item.graduate_start}-{item.graduate_end}
-              </span>
+              <div className="flex w-full flex-col md:w-[34%]">
+                <span>{item.university}</span>
+                <span>
+                  {item.university_specialization}
+                </span>
+                <span>
+                  {item.graduate_start}-{item.graduate_end}
+                </span>
+              </div>
+              <div>
+                <a
+                  href={item.graduate_sertificate}
+                  target="_blank"
+                >
+                  {item.graduate_sertificate.split(
+                    '.'
+                  )[3] === 'pdf' ? (
+                    <Image
+                      src="/images/pdf-placeholder.png"
+                      alt="pdf"
+                      width={80}
+                      height={80}
+                    />
+                  ) : (
+                    <Image
+                      src={item.graduate_sertificate}
+                      alt="pdf"
+                      width={120}
+                      height={60}
+                    />
+                  )}
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -54,13 +85,40 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {candidate.cources.map((cource) => (
             <div
               key={cource.id}
-              className="flex w-full flex-col md:w-[34%]"
+              className="flex w-full items-center justify-between"
             >
-              <span>{cource.cources_name}</span>
-              <span>{cource.cources_specializaton}</span>
-              <span>
-                {cource.cources_start}-{cource.cources_end}
-              </span>
+              <div className="flex w-full flex-col md:w-[34%]">
+                <span>{cource.cources_name}</span>
+                <span>{cource.cources_specializaton}</span>
+                <span>
+                  {cource.cources_start}-
+                  {cource.cources_end}
+                </span>
+              </div>
+              <div>
+                <a
+                  href={cource.cources_sertificate}
+                  target="_blank"
+                >
+                  {cource.cources_sertificate.split(
+                    '.'
+                  )[3] === 'pdf' ? (
+                    <Image
+                      src="/images/pdf-placeholder.png"
+                      alt="pdf"
+                      width={80}
+                      height={80}
+                    />
+                  ) : (
+                    <Image
+                      src={cource.cources_sertificate}
+                      alt="pdf"
+                      width={120}
+                      height={60}
+                    />
+                  )}
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -96,7 +154,10 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
         <span className="mt-[32px] flex font-sans text-[20px] font-[400] leading-[28px] text-white">
           {candidate.baza_recomendation}
         </span>
-        <button className="main-gradient mt-[60px] flex h-[50px] w-[350px] max-w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]">
+        <button
+          onClick={() => openModal('contacts')}
+          className="main-gradient mt-[60px] flex h-[50px] w-[350px] max-w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]"
+        >
           {t('ask_data')}
         </button>
       </div>

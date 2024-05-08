@@ -48,14 +48,6 @@ const defaultValues = {
       project_duration: '',
     },
   ],
-  // out_baza_experience: [
-  //   {
-  //     company_name: '',
-  //     company_specialization: '',
-  //     work_start: '',
-  //     work_end: '',
-  //   },
-  // ],
   baza_recomendation: '',
 };
 

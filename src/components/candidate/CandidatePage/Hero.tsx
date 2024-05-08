@@ -1,7 +1,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import BackToPrevious from './BackButton';
 import { CandidatesResponse } from '@/types/candidates';
-import { generateRandomId } from '@/helpers/generateId';
+import { useModal } from '@/stores/useModal';
 
 type CandidateHeroProps = {
   candidate: CandidatesResponse;
@@ -12,6 +12,7 @@ const CandidateHero = ({
 }: CandidateHeroProps) => {
   const locale = useLocale();
   const t = useTranslations('Candidate');
+  const { openModal } = useModal();
 
   return (
     <div className="container flex flex-col gap-[40px] pt-[24px] xl:flex-row xl:justify-between">
@@ -38,6 +39,11 @@ const CandidateHero = ({
           </h2>
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             ID {candidate.uniqueId}
+          </span>
+          <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
+            <a href={candidate.cv} target="_blank">
+              CV
+            </a>
           </span>
         </div>
 
@@ -97,7 +103,10 @@ const CandidateHero = ({
             </span>
           </div>
         </div>
-        <button className="main-gradient mt-[60px] flex h-[50px] w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]">
+        <button
+          onClick={() => openModal('contacts')}
+          className="main-gradient mt-[60px] flex h-[50px] w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]"
+        >
           {t('ask_data')}
         </button>
       </div>
