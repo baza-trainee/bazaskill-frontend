@@ -92,7 +92,7 @@ ${
           </div>
         )}
         {errorText && (
-          <span className="absolute bottom-[-20px] left-[0px] text-xs">
+          <span className="absolute bottom-[-30px] left-[0px] text-xs">
             {errorText}
           </span>
         )}
