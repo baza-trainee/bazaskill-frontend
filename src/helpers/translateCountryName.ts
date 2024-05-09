@@ -17,4 +17,7 @@ export const translateCountryName = (name: string) => {
     name === 'niemcy'
   )
     return 'німеччина';
+  else {
+    return '';
+  }
 };

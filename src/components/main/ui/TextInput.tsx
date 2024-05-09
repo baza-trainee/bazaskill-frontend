@@ -46,7 +46,6 @@ const TextInput: FC<TextInputProps> = ({
   const handleSelectOption = (option: string) => {
     setInputValue(option);
     setIsOpen(false);
-    console.log(option);
     if (isSpeciality(option)) {
       setFilterBySpeciality(option);
     }
