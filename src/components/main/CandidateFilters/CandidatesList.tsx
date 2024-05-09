@@ -13,10 +13,12 @@ const CandidatesList = ({
   const [numberOnPage, setNumberOnPage] = useState(6);
 
   const increase = () => {
+    console.log('increase', numberOnPage);
     setNumberOnPage((prev) => prev + 6);
   };
 
   const decrease = () => {
+    console.log('decrease', numberOnPage);
     setNumberOnPage(6);
   };
 
@@ -44,10 +46,10 @@ const CandidatesList = ({
       </div>
       {candidates.length > 0 && (
         <div className="my-[60px] flex w-full items-center justify-center pr-[4.25rem] sm:pr-0 md:mb-[94px] md:mt-[70px]">
-          {candidates.length > numberOnPage ? (
+          {candidates.length >= 5 ? (
             <svg
-              onClick={decrease}
-              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
+              onClick={increase}
+              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
               width={32}
               height={32}
             >
@@ -55,8 +57,8 @@ const CandidatesList = ({
             </svg>
           ) : (
             <svg
-              onClick={increase}
-              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
+              onClick={decrease}
+              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
               width={32}
               height={32}
             >
