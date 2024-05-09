@@ -89,15 +89,12 @@ const Candidates = () => {
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
     const selectedStack: string[] = data.stack || [];
-    console.log(data);
-    console.log(selectedStack);
     const selectExperience: string = data.projects || '';
     const selectGraduate: string = data.graduate || '';
     const inputSallary: { from: string; to: string } =
       data.sallary || { from: '', to: '' };
     const filtered = candidates.data?.filter(
       (candidate) => {
-        console.log(candidate.specialization);
         const candidateGraduate = candidate.gradaute;
         const hasSelectedGraduate =
           selectGraduate.includes('gradaute') &&
@@ -107,15 +104,19 @@ const Candidates = () => {
         const hasSelectedCources =
           selectGraduate.includes('cources') &&
           candidateCources?.length >= 1;
-
         const candidateExperience =
           candidate.baza_experience?.length;
         const selectedExperienceLevel = parseInt(
           selectExperience
         );
-
-        const hasSufficientExperience =
-          candidateExperience >= selectedExperienceLevel;
+        let hasExperience;
+        if (candidateExperience <= 4) {
+          hasExperience =
+            candidateExperience === selectedExperienceLevel;
+        } else {
+          hasExperience =
+            candidateExperience >= selectedExperienceLevel;
+        }
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -154,7 +155,7 @@ const Candidates = () => {
 
         return (
           (selectExperience?.length >= 1
-            ? hasSufficientExperience
+            ? hasExperience
             : true) &&
           (selectedLanguage?.length >= 1
             ? hasSelectedLanguages

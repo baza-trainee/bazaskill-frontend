@@ -44,10 +44,10 @@ const CandidatesList = ({
       </div>
       {candidates.length > 6 && (
         <div className="my-[60px] flex w-full items-center justify-center pr-[4.25rem] sm:pr-0 md:mb-[94px] md:mt-[70px]">
-          {candidates.length >= 6 ? (
+          {candidates.length <= numberOnPage ? (
             <svg
-              onClick={increase}
-              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
+              onClick={decrease}
+              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
               width={32}
               height={32}
             >
@@ -55,8 +55,8 @@ const CandidatesList = ({
             </svg>
           ) : (
             <svg
-              onClick={decrease}
-              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
+              onClick={increase}
+              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
               width={32}
               height={32}
             >
