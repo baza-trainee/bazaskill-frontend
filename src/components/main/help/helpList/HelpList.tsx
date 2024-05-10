@@ -1,8 +1,10 @@
+import { IImage } from '@/types/gallery';
 import Image from 'next/image';
 import React from 'react';
 ('./helpList.css');
+
 interface HelpListProps {
-  photos: string[];
+  photos: IImage[];
 }
 
 const HelpList: React.FC<HelpListProps> = ({ photos }) => {
@@ -15,7 +17,7 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
             className="  zoom overflow-hidden rounded-[100px]  grayscale filter hover:scale-105 hover:cursor-pointer"
           >
             <Image
-              src={photo}
+              src={photo.image_url}
               width={117}
               height={117}
               alt="specialist"

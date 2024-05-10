@@ -29,9 +29,11 @@ const Candidates = () => {
   const speciality = useFilters(
     (state) => state.speciality
   );
-  console.log(speciality);
   const country = useFilters((state) => state.country);
   const stack = useFilters((state) => state.stack);
+
+  console.log(speciality);
+  console.log(country);
 
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
@@ -57,7 +59,7 @@ const Candidates = () => {
             selectedCountry === candidateCountry;
           const matchesSpeciality =
             selectedSpeciality === candidateSpecialization;
-          return matchesCountry || matchesSpeciality;
+          return matchesCountry && matchesSpeciality;
         }
       );
 

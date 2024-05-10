@@ -56,4 +56,15 @@ export const constants = {
     GET_STACK: 'GET_STACK',
     ADD_STACK: 'ADD_STACK',
   },
+  gallery: {
+    GET_IMAGES: 'GET_IMAGES',
+    DELETE_IMAGE: 'DELETE_IMAGE',
+    ADD_IMAGE: 'ADD_IMAGE',
+  },
+  cards: {
+    GET_CARDS: 'GET_CARDS',
+    DELETE_CARD: 'DELETE_CARD',
+    ADD_CARD: 'ADD_CARD',
+    GET_CARD_BY_ID: 'GET_CARD_BY_ID',
+  },
 };

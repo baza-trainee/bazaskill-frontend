@@ -21,6 +21,7 @@ type FileInputDocProps<T extends FieldValues> =
     UseControllerProps<T> & {
       title?: string;
       isRequired: boolean;
+      accept?: string;
     };
 
 const FileInputDoc = forwardRef(function FileInputDoc<
@@ -33,6 +34,7 @@ const FileInputDoc = forwardRef(function FileInputDoc<
     name,
     rules,
     isRequired,
+    accept,
     ...rest
   }: FileInputDocProps<T>,
   ref: ForwardedRef<HTMLInputElement>
@@ -124,7 +126,7 @@ ${
           type="file"
           id={title}
           ref={ref}
-          accept=".pdf"
+          accept={accept}
           className="absolute left-0 w-full cursor-pointer opacity-0"
           onChange={handleChange}
         />

@@ -90,6 +90,7 @@ const Graduate = ({
                     title="Cтупінь освіти"
                     value={value}
                     values={[
+                      'College',
                       'Bachelor',
                       'Master',
                       'Not complete',
