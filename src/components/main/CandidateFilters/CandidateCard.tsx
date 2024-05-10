@@ -43,7 +43,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         <span>ID {candidate.uniqueId}</span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex w-[50%] items-center gap-[8px]">
+        <span className="flex w-[70%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
@@ -104,7 +104,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         {candidate.stack.slice(0, 3).map((item) => (
           <div
             key={item.id}
-            className="box-border flex h-[30px] min-w-[88px] items-center justify-center rounded-full border-[1px] border-white px-[15px] py-[10px]"
+            className="box-border flex h-[30px] min-w-[88px] items-center justify-center whitespace-nowrap rounded-full border-[1px] border-white px-[15px] py-[10px]"
           >
             {item.stack?.title}
           </div>
@@ -113,7 +113,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           ...
         </span>
       </div>
-      <div className="line-clamp-4 py-[10px] font-sans text-[16px] leading-[26px]">
+      <div className="line-clamp-4 pt-[10px] font-sans text-[16px] leading-[26px]">
         {candidate.about}
       </div>
 
