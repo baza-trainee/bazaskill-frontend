@@ -15,4 +15,8 @@ export const photosArray = [
   '/images/specialist_main/spec_14.png',
   '/images/specialist_main/spec_15.png',
   '/images/specialist_main/spec_16.png',
+  '/images/specialist_main/spec_13.png',
+  '/images/specialist_main/spec_14.png',
+  '/images/specialist_main/spec_15.png',
+  '/images/specialist_main/spec_16.png',
 ];
