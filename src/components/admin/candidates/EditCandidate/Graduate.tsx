@@ -110,10 +110,10 @@ const Graduate = ({
                     title="Cтупінь освіти"
                     value={value}
                     values={[
-                      'College',
                       'Bachelor',
                       'Master',
                       'Not complete',
+                      'Secondary professional',
                     ]}
                     onChange={onChange}
                     errors={

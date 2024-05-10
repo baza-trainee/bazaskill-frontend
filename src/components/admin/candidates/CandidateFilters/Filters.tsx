@@ -154,7 +154,7 @@ const Filters = ({
         <div className="flex flex-col gap-[20px] text-[16px]">
           <CustomCheckbox
             registerFor="graduate"
-            value="secondary_proffesional"
+            value="secondary_professional"
             register={register}
             title="Середня професійна"
           />

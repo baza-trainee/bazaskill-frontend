@@ -46,9 +46,11 @@ const TextInput: FC<TextInputProps> = ({
   const handleSelectOption = (option: string) => {
     setInputValue(option);
     setIsOpen(false);
+
     if (isSpeciality(option)) {
       setFilterBySpeciality(option);
     }
+
     if (isCountry(option)) {
       setFilterByCountry(option);
     }
@@ -62,6 +64,12 @@ const TextInput: FC<TextInputProps> = ({
       setIsOpen(false);
     }
   };
+
+  useEffect(() => {
+    setInputValue('');
+    setFilterByCountry('');
+    setFilterBySpeciality('');
+  }, []);
 
   useEffect(() => {
     if (options?.length >= 1) {

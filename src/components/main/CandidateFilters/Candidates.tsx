@@ -26,48 +26,91 @@ const Candidates = () => {
     queryFn: getAllCandidates,
   });
 
-  const { setFilterBySpeciality, setFilterByCountry } =
-    useFilters();
+  const {
+    setFilterBySpeciality,
+    setFilterByCountry,
+    setFilterByStack,
+  } = useFilters();
 
   const speciality = useFilters(
     (state) => state.speciality
   );
+
   const country = useFilters((state) =>
     state.country.toLowerCase().trim()
   );
+
   const stack = useFilters((state) => state.stack);
 
-  const inputCounrty = translateCountryName(country);
+  const inputCountry = translateCountryName(country);
 
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
+
   useEffect(() => {
-    if (!candidates.data || !speciality || !inputCounrty) {
-      return;
+    if (
+      candidates.data?.length &&
+      !speciality &&
+      !country
+    ) {
+      setFilteredCandidates(
+        candidates.data as CandidatesResponse[]
+      );
     }
+  }, []);
 
-    const filtered = candidates?.data?.filter(
-      (candidate) => {
-        const candidateCountry = translateCountryName(
-          candidate.country?.toLowerCase()
-        );
+  useEffect(() => {
+    if (!speciality && !inputCountry) {
+      return;
+    } else if (!speciality && inputCountry) {
+      const filtered = candidates?.data?.filter(
+        (candidate) => {
+          const candidateCountry = translateCountryName(
+            candidate.country?.toLowerCase()
+          );
+          const matchesCountry =
+            inputCountry === candidateCountry;
+          return matchesCountry;
+        }
+      );
+      setFilteredCandidates(filtered || []);
+    } else if (speciality && !inputCountry) {
+      const filtered = candidates?.data?.filter(
+        (candidate) => {
+          const candidateSpecialization =
+            candidate.specialization?.title?.toLowerCase();
 
-        const candidateSpecialization =
-          candidate.specialization?.title?.toLowerCase();
+          const selectedSpeciality =
+            speciality.toLowerCase();
+          const matchesSpeciality =
+            selectedSpeciality === candidateSpecialization;
+          return matchesSpeciality;
+        }
+      );
+      setFilteredCandidates(filtered || []);
+    } else {
+      const filtered = candidates?.data?.filter(
+        (candidate) => {
+          const candidateCountry = translateCountryName(
+            candidate.country?.toLowerCase()
+          );
 
-        const selectedSpeciality = speciality.toLowerCase();
-        const matchesCountry =
-          inputCounrty === candidateCountry;
-        const matchesSpeciality =
-          selectedSpeciality === candidateSpecialization;
-        return matchesCountry && matchesSpeciality;
-      }
-    );
-    console.log(filtered);
-    setFilterBySpeciality('');
-    setFilterByCountry('');
-    setFilteredCandidates(filtered || []);
-  }, [speciality, inputCounrty, candidates.data]);
+          const candidateSpecialization =
+            candidate.specialization?.title?.toLowerCase();
+
+          const selectedSpeciality =
+            speciality.toLowerCase();
+          const matchesCountry =
+            inputCountry === candidateCountry;
+          const matchesSpeciality =
+            selectedSpeciality === candidateSpecialization;
+          return matchesCountry && matchesSpeciality;
+        }
+      );
+      console.log(filtered);
+      setFilteredCandidates(filtered || []);
+    }
+  }, [speciality, country, candidates.data]);
 
   useEffect(() => {
     if (!stack.length) return;
@@ -89,10 +132,15 @@ const Candidates = () => {
   }, [candidates.data, stack]);
 
   const onSubmit = (data: FieldValues) => {
+    setFilterByCountry('');
+    setFilterBySpeciality('');
+    setFilterByStack([]);
+
     const selectedWorkFormat: string =
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
     const selectedStack: string[] = data.stack || [];
+    const selectedStatus: string = data.status || '';
     const selectExperience: string = data.projects || '';
     const selectGraduate: string = data.graduate || '';
     const inputSallary: { from: string; to: string } =
@@ -109,14 +157,29 @@ const Candidates = () => {
           selectGraduate.includes('cources') &&
           candidateCources?.length >= 1;
 
+        const hasSecondaryEducation =
+          selectGraduate.includes(
+            'secondary_professional'
+          ) &&
+          candidateGraduate.some(
+            (candidate) =>
+              candidate.university_grade ===
+              'Secondary professional'
+          );
+
         const candidateExperience =
           candidate.baza_experience?.length;
         const selectedExperienceLevel = parseInt(
           selectExperience
         );
-
-        const hasSufficientExperience =
-          candidateExperience >= selectedExperienceLevel;
+        let hasExperience;
+        if (candidateExperience <= 4) {
+          hasExperience =
+            candidateExperience === selectedExperienceLevel;
+        } else {
+          hasExperience =
+            candidateExperience >= selectedExperienceLevel;
+        }
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -131,11 +194,15 @@ const Candidates = () => {
 
         const candidateStacks = candidate.stack;
         const hasSelectedStacks = candidateStacks.map(
-          (stackItem) => stackItem.stack?.title
+          (stackItem) => stackItem.stack?.id.toString()
         );
         const anyMatch = selectedStack.some((item) =>
           hasSelectedStacks.includes(item)
         );
+
+        const candidateStatus = candidate.status;
+        const hasSelectedStatus =
+          selectedStatus.includes(candidateStatus);
 
         const candidateSallaryFrom = parseInt(
           candidate.sallary_form
@@ -155,7 +222,7 @@ const Candidates = () => {
 
         return (
           (selectExperience?.length >= 1
-            ? hasSufficientExperience
+            ? hasExperience
             : true) &&
           (selectedLanguage?.length >= 1
             ? hasSelectedLanguages
@@ -164,11 +231,17 @@ const Candidates = () => {
             ? hasSelectedWorkFormat
             : true) &&
           (selectedStack?.length >= 1 ? anyMatch : true) &&
+          (selectedStatus?.length >= 1
+            ? hasSelectedStatus
+            : true) &&
           (selectGraduate.includes('cources')
             ? hasSelectedCources
             : true) &&
           (selectGraduate.includes('gradaute')
             ? hasSelectedGraduate
+            : true) &&
+          (selectGraduate.includes('secondary_professional')
+            ? hasSecondaryEducation
             : true) &&
           (inputSallary.from && inputSallary.to
             ? hasSelectedSallary
@@ -176,6 +249,7 @@ const Candidates = () => {
         );
       }
     );
+    console.log(filtered);
     setFilteredCandidates(filtered || []);
   };
 

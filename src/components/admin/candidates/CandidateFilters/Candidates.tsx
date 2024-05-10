@@ -57,6 +57,16 @@ const Candidates = () => {
           selectGraduate.includes('cources') &&
           candidateCources?.length >= 1;
 
+        const hasSecondaryEducation =
+          selectGraduate.includes(
+            'secondary_professional'
+          ) &&
+          candidateGraduate.some(
+            (candidate) =>
+              candidate.university_grade ===
+              'Secondary professional'
+          );
+
         const candidateExperience =
           candidate.baza_experience?.length;
         const selectedExperienceLevel = parseInt(
@@ -129,6 +139,9 @@ const Candidates = () => {
             : true) &&
           (selectGraduate.includes('gradaute')
             ? hasSelectedGraduate
+            : true) &&
+          (selectGraduate.includes('secondary_professional')
+            ? hasSecondaryEducation
             : true) &&
           (inputSallary.from && inputSallary.to
             ? hasSelectedSallary
