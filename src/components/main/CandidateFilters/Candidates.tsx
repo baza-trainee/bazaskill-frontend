@@ -26,33 +26,48 @@ const Candidates = () => {
     queryFn: getAllCandidates,
   });
 
+  const { setFilterBySpeciality, setFilterByCountry } =
+    useFilters();
+
   const speciality = useFilters(
     (state) => state.speciality
   );
-  const country = useFilters((state) => state.country);
+  const country = useFilters((state) =>
+    state.country.toLowerCase().trim()
+  );
   const stack = useFilters((state) => state.stack);
+
+  const inputCounrty = translateCountryName(country);
 
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
-
   useEffect(() => {
-    if (country === '' || speciality === '') {
-      if (candidates?.data) {
-        setFilteredCandidates(candidates.data);
-      }
-    } else {
-      const filtered = candidates?.data?.filter(
-        (candidate) =>
-          translateCountryName(
-            candidate.country.toLowerCase()
-          ) ===
-            translateCountryName(country.toLowerCase()) &&
-          candidate.specialization.title.toLowerCase() ===
-            speciality.toLowerCase()
-      );
-      setFilteredCandidates(filtered || []);
+    if (!candidates.data || !speciality || !inputCounrty) {
+      return;
     }
-  }, [candidates.data, speciality, country]);
+
+    const filtered = candidates?.data?.filter(
+      (candidate) => {
+        const candidateCountry = translateCountryName(
+          candidate.country?.toLowerCase()
+        );
+
+        const candidateSpecialization =
+          candidate.specialization?.title?.toLowerCase();
+
+        const selectedSpeciality = speciality.toLowerCase();
+        const matchesCountry =
+          inputCounrty === candidateCountry;
+        const matchesSpeciality =
+          selectedSpeciality === candidateSpecialization;
+        return matchesCountry && matchesSpeciality;
+      }
+    );
+    console.log(filtered);
+    setFilterBySpeciality('');
+    setFilterByCountry('');
+    setFilteredCandidates(filtered || []);
+  }, [speciality, inputCounrty, candidates.data]);
 
   useEffect(() => {
     if (!stack.length) return;
