@@ -25,19 +25,23 @@ const Candidates = () => {
     queryKey: [constants.candidates.FETCH_ALL_CANDIDATES],
     queryFn: getAllCandidates,
   });
+  const { setFilterBySpeciality, setFilterByCountry } =
+    useFilters();
 
   const speciality = useFilters(
     (state) => state.speciality
   );
-  const country = useFilters((state) => state.country);
+  const country = useFilters((state) =>
+    state.country.toLowerCase().trim()
+  );
+
+  const inputCounrty = translateCountryName(country);
+
   const stack = useFilters((state) => state.stack);
-
-  console.log(speciality);
-  console.log(country);
-
+  
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
-
+  
   useEffect(() => {
     if (country === '' && speciality === '') {
       setFilteredCandidates(candidates?.data || []);
@@ -64,12 +68,39 @@ const Candidates = () => {
       );
 
       setFilteredCandidates(filtered || []);
+    if (!candidates.data || !speciality) {
+      return;
     }
-  }, [candidates?.data, speciality, country]);
+
+    const filtered = candidates?.data?.filter(
+      (candidate) => {
+        const candidateCountry = translateCountryName(
+          candidate.country?.toLowerCase()
+        );
+
+        const candidateSpecialization =
+          candidate.specialization?.title?.toLowerCase();
+
+        const selectedSpeciality = speciality.toLowerCase();
+        const matchesCountry =
+          inputCounrty === candidateCountry;
+        const matchesSpeciality =
+          selectedSpeciality === candidateSpecialization;
+        return (
+          (matchesCountry && matchesSpeciality) ||
+          (matchesSpeciality && inputCounrty === '')
+        );
+      }
+    );
+    console.log(filtered);
+    setFilterBySpeciality('');
+    setFilterByCountry('');
+    setFilteredCandidates(filtered || []);
+  }, [speciality, inputCounrty, candidates.data]);
 
   useEffect(() => {
-    if (!stack.length) return;
     const selectedStack: string[] = stack || [];
+    if (!candidates?.data || stack?.length < 1) return;
 
     const filtered = candidates?.data?.filter(
       (candidate) => {
@@ -84,22 +115,19 @@ const Candidates = () => {
       }
     );
     setFilteredCandidates(filtered || []);
-  }, [candidates.data, stack]);
+  }, [stack]);
 
   const onSubmit = (data: FieldValues) => {
     const selectedWorkFormat: string =
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
     const selectedStack: string[] = data.stack || [];
-    console.log(data);
-    console.log(selectedStack);
     const selectExperience: string = data.projects || '';
     const selectGraduate: string = data.graduate || '';
     const inputSallary: { from: string; to: string } =
       data.sallary || { from: '', to: '' };
     const filtered = candidates.data?.filter(
       (candidate) => {
-        console.log(candidate.specialization);
         const candidateGraduate = candidate.gradaute;
         const hasSelectedGraduate =
           selectGraduate.includes('gradaute') &&
@@ -109,15 +137,18 @@ const Candidates = () => {
         const hasSelectedCources =
           selectGraduate.includes('cources') &&
           candidateCources?.length >= 1;
-
         const candidateExperience =
           candidate.baza_experience?.length;
         const selectedExperienceLevel = parseInt(
           selectExperience
         );
-
-        const hasSufficientExperience =
-          candidateExperience >= selectedExperienceLevel;
+        let hasExperience;
+        if (selectedExperienceLevel <= 3) {
+          hasExperience =
+            candidateExperience === selectedExperienceLevel;
+        } else {
+          hasExperience = candidateExperience >= 4;
+        }
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -156,7 +187,7 @@ const Candidates = () => {
 
         return (
           (selectExperience?.length >= 1
-            ? hasSufficientExperience
+            ? hasExperience
             : true) &&
           (selectedLanguage?.length >= 1
             ? hasSelectedLanguages

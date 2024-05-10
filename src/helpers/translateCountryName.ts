@@ -12,9 +12,12 @@ export const translateCountryName = (name: string) => {
   )
     return 'польща';
   if (
-    name === 'германія' ||
+    name === 'німеччина' ||
     name === 'germany' ||
     name === 'niemcy'
   )
-    return 'германія';
+    return 'німеччина';
+  else {
+    return '';
+  }
 };

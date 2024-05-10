@@ -40,8 +40,6 @@ const Candidates = () => {
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
     const selectedStack: string[] = data.stack || [];
-    console.log(data);
-    console.log(selectedStack);
     const selectedStatus: string = data.status || '';
     const selectExperience: string = data.projects || '';
     const selectGraduate: string = data.graduate || '';
@@ -64,9 +62,14 @@ const Candidates = () => {
         const selectedExperienceLevel = parseInt(
           selectExperience
         );
-
-        const hasSufficientExperience =
-          candidateExperience >= selectedExperienceLevel;
+        let hasExperience;
+        if (candidateExperience <= 4) {
+          hasExperience =
+            candidateExperience === selectedExperienceLevel;
+        } else {
+          hasExperience =
+            candidateExperience >= selectedExperienceLevel;
+        }
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -109,7 +112,7 @@ const Candidates = () => {
 
         return (
           (selectExperience?.length >= 1
-            ? hasSufficientExperience
+            ? hasExperience
             : true) &&
           (selectedLanguage?.length >= 1
             ? hasSelectedLanguages
