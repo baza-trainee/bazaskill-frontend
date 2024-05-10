@@ -115,8 +115,15 @@ const Candidates = () => {
           selectExperience
         );
 
-        const hasSufficientExperience =
-          candidateExperience >= selectedExperienceLevel;
+        let hasExperience;
+        if (selectedExperienceLevel <= 3) {
+          hasExperience =
+            candidateExperience === selectedExperienceLevel;
+        }
+        if (selectedExperienceLevel >= 4) {
+          hasExperience = candidateExperience >= 4;
+        }
+
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -155,7 +162,7 @@ const Candidates = () => {
 
         return (
           (selectExperience?.length >= 1
-            ? hasSufficientExperience
+            ? hasExperience
             : true) &&
           (selectedLanguage?.length >= 1
             ? hasSelectedLanguages
