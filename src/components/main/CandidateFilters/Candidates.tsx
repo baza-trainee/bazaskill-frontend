@@ -25,82 +25,38 @@ const Candidates = () => {
     queryKey: [constants.candidates.FETCH_ALL_CANDIDATES],
     queryFn: getAllCandidates,
   });
-  const { setFilterBySpeciality, setFilterByCountry } =
-    useFilters();
 
   const speciality = useFilters(
     (state) => state.speciality
   );
-  const country = useFilters((state) =>
-    state.country.toLowerCase().trim()
-  );
-
-  const inputCounrty = translateCountryName(country);
-
+  const country = useFilters((state) => state.country);
   const stack = useFilters((state) => state.stack);
-  
+
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
-  
+
   useEffect(() => {
-    if (country === '' && speciality === '') {
-      setFilteredCandidates(candidates?.data || []);
-    } else {
-      const filtered = candidates.data?.filter(
-        (candidate) => {
-          const candidateCountry = translateCountryName(
-            candidate.country?.toLowerCase()
-          );
-          const candidateSpecialization =
-            candidate.specialization?.title?.toLowerCase();
-
-          const selectedCountry = translateCountryName(
-            country.toLowerCase()
-          );
-          const selectedSpeciality =
-            speciality.toLowerCase();
-          const matchesCountry =
-            selectedCountry === candidateCountry;
-          const matchesSpeciality =
-            selectedSpeciality === candidateSpecialization;
-          return matchesCountry && matchesSpeciality;
-        }
-      );
-
-      setFilteredCandidates(filtered || []);
-    if (!candidates.data || !speciality) {
-      return;
-    }
-
-    const filtered = candidates?.data?.filter(
-      (candidate) => {
-        const candidateCountry = translateCountryName(
-          candidate.country?.toLowerCase()
-        );
-
-        const candidateSpecialization =
-          candidate.specialization?.title?.toLowerCase();
-
-        const selectedSpeciality = speciality.toLowerCase();
-        const matchesCountry =
-          inputCounrty === candidateCountry;
-        const matchesSpeciality =
-          selectedSpeciality === candidateSpecialization;
-        return (
-          (matchesCountry && matchesSpeciality) ||
-          (matchesSpeciality && inputCounrty === '')
-        );
+    if (country === '' || speciality === '') {
+      if (candidates?.data) {
+        setFilteredCandidates(candidates.data);
       }
-    );
-    console.log(filtered);
-    setFilterBySpeciality('');
-    setFilterByCountry('');
-    setFilteredCandidates(filtered || []);
-  }, [speciality, inputCounrty, candidates.data]);
+    } else {
+      const filtered = candidates?.data?.filter(
+        (candidate) =>
+          translateCountryName(
+            candidate.country.toLowerCase()
+          ) ===
+            translateCountryName(country.toLowerCase()) &&
+          candidate.specialization.title.toLowerCase() ===
+            speciality.toLowerCase()
+      );
+      setFilteredCandidates(filtered || []);
+    }
+  }, [candidates.data, speciality, country]);
 
   useEffect(() => {
+    if (!stack.length) return;
     const selectedStack: string[] = stack || [];
-    if (!candidates?.data || stack?.length < 1) return;
 
     const filtered = candidates?.data?.filter(
       (candidate) => {
@@ -115,7 +71,7 @@ const Candidates = () => {
       }
     );
     setFilteredCandidates(filtered || []);
-  }, [stack]);
+  }, [candidates.data, stack]);
 
   const onSubmit = (data: FieldValues) => {
     const selectedWorkFormat: string =
@@ -137,18 +93,15 @@ const Candidates = () => {
         const hasSelectedCources =
           selectGraduate.includes('cources') &&
           candidateCources?.length >= 1;
+
         const candidateExperience =
           candidate.baza_experience?.length;
         const selectedExperienceLevel = parseInt(
           selectExperience
         );
-        let hasExperience;
-        if (selectedExperienceLevel <= 3) {
-          hasExperience =
-            candidateExperience === selectedExperienceLevel;
-        } else {
-          hasExperience = candidateExperience >= 4;
-        }
+
+        const hasSufficientExperience =
+          candidateExperience >= selectedExperienceLevel;
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
@@ -163,7 +116,7 @@ const Candidates = () => {
 
         const candidateStacks = candidate.stack;
         const hasSelectedStacks = candidateStacks.map(
-          (stackItem) => stackItem.stack?.id.toString()
+          (stackItem) => stackItem.stack?.title
         );
         const anyMatch = selectedStack.some((item) =>
           hasSelectedStacks.includes(item)
@@ -187,7 +140,7 @@ const Candidates = () => {
 
         return (
           (selectExperience?.length >= 1
-            ? hasExperience
+            ? hasSufficientExperience
             : true) &&
           (selectedLanguage?.length >= 1
             ? hasSelectedLanguages
