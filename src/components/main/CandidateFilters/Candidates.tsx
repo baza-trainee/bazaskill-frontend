@@ -31,44 +31,45 @@ const Candidates = () => {
   const speciality = useFilters(
     (state) => state.speciality
   );
-  const country = useFilters((state) => state.country);
-  const selectedCountry = translateCountryName(
-    country.toLowerCase().trim()
+  const country = useFilters((state) =>
+    state.country.toLowerCase().trim()
   );
-  console.log(selectedCountry);
+
+  const inputCounrty = translateCountryName(country);
+
   const stack = useFilters((state) => state.stack);
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
   useEffect(() => {
-    if (
-      !candidates.data ||
-      !selectedCountry ||
-      !speciality
-    ) {
+    if (!candidates.data || !speciality) {
       return;
     }
 
     const filtered = candidates?.data?.filter(
       (candidate) => {
         const candidateCountry = translateCountryName(
-          candidate.country?.toLowerCase().trim()
+          candidate.country?.toLowerCase()
         );
+
         const candidateSpecialization =
           candidate.specialization?.title?.toLowerCase();
 
         const selectedSpeciality = speciality.toLowerCase();
         const matchesCountry =
-          String(selectedCountry) === candidateCountry;
+          inputCounrty === candidateCountry;
         const matchesSpeciality =
           selectedSpeciality === candidateSpecialization;
-        return matchesSpeciality && matchesCountry;
+        return (
+          (matchesCountry && matchesSpeciality) ||
+          (matchesSpeciality && inputCounrty === '')
+        );
       }
     );
-    setFilteredCandidates(filtered || []);
-
+    console.log(filtered);
     setFilterBySpeciality('');
     setFilterByCountry('');
-  }, [speciality, selectedCountry]);
+    setFilteredCandidates(filtered || []);
+  }, [speciality, inputCounrty, candidates.data]);
 
   useEffect(() => {
     const selectedStack: string[] = stack || [];
