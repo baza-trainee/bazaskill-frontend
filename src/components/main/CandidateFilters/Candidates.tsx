@@ -38,9 +38,36 @@ const Candidates = () => {
   const inputCounrty = translateCountryName(country);
 
   const stack = useFilters((state) => state.stack);
+  
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
+  
   useEffect(() => {
+    if (country === '' && speciality === '') {
+      setFilteredCandidates(candidates?.data || []);
+    } else {
+      const filtered = candidates.data?.filter(
+        (candidate) => {
+          const candidateCountry = translateCountryName(
+            candidate.country?.toLowerCase()
+          );
+          const candidateSpecialization =
+            candidate.specialization?.title?.toLowerCase();
+
+          const selectedCountry = translateCountryName(
+            country.toLowerCase()
+          );
+          const selectedSpeciality =
+            speciality.toLowerCase();
+          const matchesCountry =
+            selectedCountry === candidateCountry;
+          const matchesSpeciality =
+            selectedSpeciality === candidateSpecialization;
+          return matchesCountry && matchesSpeciality;
+        }
+      );
+
+      setFilteredCandidates(filtered || []);
     if (!candidates.data || !speciality) {
       return;
     }

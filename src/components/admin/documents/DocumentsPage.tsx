@@ -143,6 +143,7 @@ const DocumentsPage = () => {
               placeholder={'Завантажте документ'}
               title="Політика конфіденційності"
               isRequired={false}
+              accept=".pdf"
             />
             <button
               type="button"
@@ -161,6 +162,7 @@ const DocumentsPage = () => {
               placeholder={'Завантажте документ'}
               title="Правила користування сайтом"
               isRequired={false}
+              accept=".pdf"
             />
             <button
               type="button"

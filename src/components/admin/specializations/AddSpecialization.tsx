@@ -84,12 +84,12 @@ const AddSpecialization = () => {
 
   const handleCloseSuccessAlert = () => {
     setIsSuccess(false);
-    router.push('/admin/posts');
+    router.push('/admin/specializations');
   };
 
   return (
     <div className="pl-[24px] pt-[20px]">
-      <PageTitle title={'Додати статтю'} />
+      <PageTitle title={'Додати спеціалізацію'} />
       <section className="pt-[50px]">
         <form
           className="flex flex-col gap-[50px]"

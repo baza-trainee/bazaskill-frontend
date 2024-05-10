@@ -41,8 +41,6 @@ const EditSpecialization = ({ id }: { id: string }) => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  //   console.log(id);
-
   const {
     handleSubmit,
     control,

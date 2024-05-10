@@ -42,6 +42,7 @@ const CandidatesList = ({
             />
           ))}
       </div>
+
       {candidates.length > 6 && (
         <div className="my-[60px] flex w-full items-center justify-center pr-[4.25rem] sm:pr-0 md:mb-[94px] md:mt-[70px]">
           {candidates.length <= numberOnPage ? (
