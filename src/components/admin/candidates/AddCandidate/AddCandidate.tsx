@@ -73,14 +73,6 @@ const AddCandidate = () => {
     queryFn: getSpecializations,
   });
 
-  useEffect(() => {
-    if (stack.length) {
-      setStackError('');
-    } else {
-      setStackError('Required');
-    }
-  }, [stack]);
-
   const {
     control,
     handleSubmit,
@@ -91,6 +83,15 @@ const AddCandidate = () => {
     defaultValues: defaultValues,
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    if (errors && !stack.length) {
+      setStackError('Required');
+    }
+    if (stack.length) {
+      setStackError('');
+    }
+  }, [stack, errors]);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     try {

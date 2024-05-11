@@ -20,7 +20,7 @@ const ContactsModal = ({ candidate }: ModalProps) => {
 
   const ModalLayout = () => (
     <div className=" fixed left-0 top-0 z-[9999] flex h-full w-full items-center justify-center bg-black/70">
-      <div className="relative flex h-[30rem] w-[35rem] items-center justify-center bg-graphite p-10 text-white">
+      <div className="relative flex h-[30rem] w-[45rem] items-center justify-center bg-graphite p-10 text-white">
         <div
           onClick={closeModal}
           className="absolute right-[0.5rem] top-[0.5rem] h-[1.5rem] w-[1.5rem] cursor-pointer"

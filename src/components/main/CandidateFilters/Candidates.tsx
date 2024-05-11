@@ -40,6 +40,8 @@ const Candidates = () => {
     state.country.toLowerCase().trim()
   );
 
+  console.log(speciality);
+
   const stack = useFilters((state) => state.stack);
 
   const inputCountry = translateCountryName(country);

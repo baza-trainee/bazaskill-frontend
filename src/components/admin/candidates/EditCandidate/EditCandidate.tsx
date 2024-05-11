@@ -91,14 +91,6 @@ const EditCandidate = ({ id }: { id: string }) => {
     queryFn: getSpecializations,
   });
 
-  useEffect(() => {
-    if (stack.length) {
-      setStackError('');
-    } else {
-      setStackError('Required');
-    }
-  }, [stack]);
-
   const {
     control,
     handleSubmit,
@@ -112,6 +104,15 @@ const EditCandidate = ({ id }: { id: string }) => {
     defaultValues: defaultValues,
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    if (errors && !stack.length) {
+      setStackError('Required');
+    }
+    if (stack.length) {
+      setStackError('');
+    }
+  }, [stack, errors]);
 
   useEffect(() => {
     if (candidate.data) {
