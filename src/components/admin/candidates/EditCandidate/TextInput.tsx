@@ -23,7 +23,9 @@ const TextInput = forwardRef(function TextInput(
     <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor={title}>
         {title} &nbsp;
-        <span className="text-red-500">*</span>
+        {isRequired && (
+          <span className="text-red-500">*</span>
+        )}
       </label>
       <input
         {...rest}

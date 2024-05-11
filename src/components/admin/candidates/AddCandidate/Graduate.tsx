@@ -85,28 +85,31 @@ const Graduate = ({
                 render={({
                   field: { onChange, value },
                   formState: { errors },
-                }) => (
-                  <SelectField
-                    title="Cтупінь освіти"
-                    value={value}
-                    values={[
-                      'Bachelor',
-                      'Master',
-                      'Not complete',
-                      'Secondary professional',
-                    ]}
-                    onChange={onChange}
-                    errors={
-                      (
-                        errors.graduate as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.universiry_grade?.message
-                    }
-                    placeholder="Оберіть якщо є"
-                  />
-                )}
+                }) => {
+                  return (
+                    <SelectField
+                      title="Cтупінь освіти"
+                      value={value}
+                      values={[
+                        'Bachelor',
+                        'Master',
+                        'Not complete',
+                        'Secondary professional',
+                      ]}
+                      onChange={onChange}
+                      errors={
+                        (
+                          errors.graduate as DeepMap<
+                            FieldValues,
+                            FieldError
+                          >
+                        )?.[index]?.universiry_grade
+                          ?.message
+                      }
+                      placeholder="Оберіть якщо є"
+                    />
+                  );
+                }}
               />
             </div>
 
@@ -128,7 +131,7 @@ const Graduate = ({
                         >
                       )?.[index]?.graduate_start?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Початок навчання"
                   />

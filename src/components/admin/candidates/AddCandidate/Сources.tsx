@@ -122,7 +122,7 @@ const Cources: React.FC<ICourcesProps> = ({
                         >
                       )?.[index]?.cources_start?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Початок навчання"
                   />

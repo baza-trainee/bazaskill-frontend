@@ -98,6 +98,7 @@ const Stack: React.FC<IStackProps> = ({
   }, [stack]);
 
   console.log(input);
+  console.log(error);
 
   return (
     <div className="relative flex w-full gap-[24px]">

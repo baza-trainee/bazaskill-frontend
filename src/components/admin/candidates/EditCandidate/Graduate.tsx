@@ -148,7 +148,7 @@ const Graduate = ({
                         >
                       )?.[index]?.graduate_start?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Початок навчання"
                   />
@@ -172,7 +172,7 @@ const Graduate = ({
                         >
                       )?.[index]?.graduate_end?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Випуск"
                   />

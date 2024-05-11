@@ -75,6 +75,7 @@ const Languages = ({
                     ]}
                     onChange={onChange}
                     disableHandler={handleDisable}
+                    isRequired={true}
                     errors={
                       (
                         errors.languages as DeepMap<
@@ -105,6 +106,7 @@ const Languages = ({
                       'C2',
                     ]}
                     onChange={onChange}
+                    isRequired={true}
                     errors={
                       (
                         errors.languages as DeepMap<
