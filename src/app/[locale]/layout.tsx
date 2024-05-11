@@ -11,9 +11,10 @@ import {
 } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializationsWithStack } from '@/api/specialization';
-import Header from '@/components/main/header/Header';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import Header from '@/components/main/header/Header';
+
 const open_sans = Open_Sans({
   weight: '400',
   subsets: ['latin'],
@@ -50,9 +51,9 @@ const mont = localFont({
 export const metadata: Metadata = {
   title: {
     default: 'BazaSkill',
-    template: '%s - BazaSkill',
+    template: '%s',
   },
-  description: 'BazaSkill official page',
+  description: 'BazaSkill page',
   icons: {
     icon: ['/favicon.ico?v=1'],
     apple: ['/apple-touch-icon.png?v=4'],
@@ -77,6 +78,7 @@ export default async function RootLayout({
     queryFn: getSpecializationsWithStack,
   });
   const messages = await getMessages();
+
   return (
     <html lang={locale}>
       <body
