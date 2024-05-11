@@ -3,7 +3,11 @@ import { z } from 'zod';
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 
-const ACCEPTED_CV_TYPES = ['application/pdf', 'for-url'];
+const ACCEPTED_CV_TYPES = [
+  'application/pdf',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'for-url',
+];
 
 const ACCEPTED_CERTIFICATE_TYPES = [
   'image/jpeg',
@@ -11,14 +15,15 @@ const ACCEPTED_CERTIFICATE_TYPES = [
   'image/png',
   'image/webp',
   'application/pdf',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   'for-url',
 ];
 
-const emailPattern =
-  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+// const emailPattern =
+//   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
-const nonRussianLettersPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+// const nonRussianLettersPattern =
+//   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
 
 const nonRussianLettersWithSymbolsAndDigitsPattern =
   /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ.]+$/;
@@ -68,7 +73,7 @@ const schema = z.object({
     .refine(
       (value) =>
         ACCEPTED_CV_TYPES.includes(value?.[0]?.type),
-      'Документ має бути в форматі .pdf'
+      'Документ має бути в форматі .pdf або .docx'
     ),
 
   graduate: z.array(
@@ -106,7 +111,7 @@ const schema = z.object({
             ACCEPTED_CERTIFICATE_TYPES.includes(
               value?.[0]?.type
             ),
-          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
+          'Сертифікат має бути в форматі .pdf, .docx, .png, .jpg або .webp'
         ),
     })
   ),
@@ -144,7 +149,7 @@ const schema = z.object({
             ACCEPTED_CERTIFICATE_TYPES.includes(
               value?.[0]?.type
             ),
-          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
+          'Сертифікат має бути в форматі .pdf, .docx, .png, .jpg або .webp'
         ),
     })
   ),
