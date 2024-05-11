@@ -172,14 +172,16 @@ const Candidates = () => {
         const selectedExperienceLevel = parseInt(
           selectExperience
         );
+
         let hasExperience;
-        if (candidateExperience <= 4) {
+        if (selectedExperienceLevel <= 3) {
           hasExperience =
             candidateExperience === selectedExperienceLevel;
-        } else {
-          hasExperience =
-            candidateExperience >= selectedExperienceLevel;
         }
+        if (selectedExperienceLevel >= 4) {
+          hasExperience = candidateExperience >= 4;
+        }
+
         const candidateLanguages =
           candidate.candidate_language;
         const hasSelectedLanguages =
