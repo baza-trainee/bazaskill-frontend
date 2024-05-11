@@ -45,21 +45,19 @@ const Candidates = () => {
   const inputCountry = translateCountryName(country);
 
   const [filteredCandidates, setFilteredCandidates] =
-    useState<CandidatesResponse[]>(
-      candidates.data as CandidatesResponse[]
-    );
+    useState<CandidatesResponse[]>([]);
 
-  // useEffect(() => {
-  //   if (
-  //     candidates.data?.length &&
-  //     !speciality &&
-  //     !country
-  //   ) {
-  //     setFilteredCandidates(
-  //       candidates.data as CandidatesResponse[]
-  //     );
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (
+      candidates.data?.length &&
+      !speciality &&
+      !country
+    ) {
+      setFilteredCandidates(
+        candidates.data as CandidatesResponse[]
+      );
+    }
+  }, []);
 
   useEffect(() => {
     if (!speciality && !inputCountry) {
