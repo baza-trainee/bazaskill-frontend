@@ -8,6 +8,7 @@ interface ISelectFieldProps {
   disableHandler?: (value: string) => boolean;
   errors: string;
   placeholder?: string;
+  isRequired?: boolean;
 }
 const SelectField: React.FC<ISelectFieldProps> = ({
   title,
@@ -17,6 +18,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   disableHandler,
   errors,
   placeholder,
+  isRequired,
 }) => {
   const handleDiasabled = (value: string): boolean => {
     if (disableHandler) {
@@ -29,7 +31,9 @@ const SelectField: React.FC<ISelectFieldProps> = ({
     <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor="phone">
         {title} &nbsp;
-        <span className="text-red-500">*</span>
+        {isRequired && (
+          <span className="text-red-500">*</span>
+        )}
       </label>
       <select
         value={value}

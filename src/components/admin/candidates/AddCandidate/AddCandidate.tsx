@@ -42,6 +42,7 @@ const AddCandidate = () => {
   const [stack, setStack] = useState<
     Array<{ id: string; title: string; isExist: boolean }>
   >([]);
+
   const [stackError, setStackError] = useState('');
 
   const { mutate } = useMutation({
@@ -75,6 +76,8 @@ const AddCandidate = () => {
   useEffect(() => {
     if (stack.length) {
       setStackError('');
+    } else {
+      setStackError('Required');
     }
   }, [stack]);
 
@@ -321,6 +324,7 @@ const AddCandidate = () => {
                   value={value}
                   values={['Remote', 'Office', 'Hybrid']}
                   onChange={onChange}
+                  isRequired={true}
                   errors={
                     (
                       errors.work_format as DeepMap<
@@ -587,6 +591,7 @@ const AddCandidate = () => {
                 <SelectField
                   title="Статус кандидата"
                   value={value}
+                  isRequired={true}
                   values={[
                     'Working',
                     'Searching',

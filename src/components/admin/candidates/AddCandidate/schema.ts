@@ -85,13 +85,9 @@ const schema = z.object({
       university_specializaton: z
         .string()
         .min(1, { message: 'Required' }),
-      university_grade: z.string(),
-      graduate_start: z
-        .string()
-        .min(1, { message: 'Required' }),
-      graduate_end: z
-        .string()
-        .min(1, { message: 'Required' }),
+      university_grade: z.string().optional(),
+      graduate_start: z.string().optional(),
+      graduate_end: z.string().optional(),
       graduate_sertificate: z
         .any()
         .nullable()
@@ -124,12 +120,8 @@ const schema = z.object({
       cources_specializaton: z
         .string()
         .min(1, { message: 'Required' }),
-      cources_start: z
-        .string()
-        .min(1, { message: 'Required' }),
-      cources_end: z
-        .string()
-        .min(1, { message: 'Required' }),
+      cources_start: z.string().optional(),
+      cources_end: z.string().optional(),
       cources_sertificate: z
         .any()
         .nullable()

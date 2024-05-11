@@ -58,6 +58,7 @@ const Languages = ({
                     ]}
                     onChange={onChange}
                     disableHandler={handleDisable}
+                    isRequired={true}
                     errors={
                       (
                         errors.languages as DeepMap<
@@ -79,6 +80,7 @@ const Languages = ({
                   <SelectField
                     title="Іноземна мова"
                     value={value}
+                    isRequired={true}
                     values={[
                       'A1',
                       'A2',

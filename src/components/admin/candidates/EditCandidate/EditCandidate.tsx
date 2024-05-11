@@ -94,6 +94,8 @@ const EditCandidate = ({ id }: { id: string }) => {
   useEffect(() => {
     if (stack.length) {
       setStackError('');
+    } else {
+      setStackError('Required');
     }
   }, [stack]);
 
@@ -438,6 +440,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                   value={value}
                   values={['Remote', 'Office', 'Hybrid']}
                   onChange={onChange}
+                  isRequired={true}
                   errors={
                     (
                       errors.work_format as DeepMap<
@@ -721,6 +724,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                     'Inactive',
                   ]}
                   onChange={onChange}
+                  isRequired={true}
                   errors={
                     (
                       errors.status as DeepMap<
