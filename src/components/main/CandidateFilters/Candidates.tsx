@@ -18,7 +18,6 @@ import Loader from '@/components/admin/ui/Loader';
 import { translateCountryName } from '@/helpers/translateCountryName';
 
 const Candidates = () => {
-  const [loading, setLoading] = useState(false);
   const candidates: UseQueryResult<
     CandidatesResponse[],
     Error
@@ -49,11 +48,6 @@ const Candidates = () => {
     useState<CandidatesResponse[]>([]);
 
   useEffect(() => {
-    if (candidates.status === 'pending') {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
     if (
       candidates.data?.length &&
       !speciality &&
@@ -266,14 +260,10 @@ const Candidates = () => {
   return (
     <div className="relative md:flex md:flex-col">
       <CandidatesTitle />
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="md:flex">
-          <Filters SubmitHandler={onSubmit} />
-          <CandidatesList candidates={filteredCandidates} />
-        </div>
-      )}
+      <div className="md:flex">
+        <Filters SubmitHandler={onSubmit} />
+        <CandidatesList candidates={filteredCandidates} />
+      </div>
     </div>
   );
 };
