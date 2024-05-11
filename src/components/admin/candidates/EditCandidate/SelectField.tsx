@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //type declaration for future fetching
 // | Array<Record<"id" | "title", number | string>> | undefined
 interface ISelectFieldProps {
