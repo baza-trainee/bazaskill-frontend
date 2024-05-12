@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from '@/config/axios';
-import { IPartners, Partners } from '@/types/partners';
+import { IPartners, TPartner } from '@/types/partners';
 
 export const getPartners = async () => {
-  const { data } = await axios.get<Partners[]>('/partners');
+  const { data } = await axios.get<TPartner[]>('/partners');
   return data;
 };
 
@@ -19,7 +19,7 @@ export const updatePartners = async (
 };
 
 export const getPartnersId = async (id: string) => {
-  const { data } = await axios.get<Partners>(
+  const { data } = await axios.get<TPartner>(
     `/partners/${id}`
   );
   return data;

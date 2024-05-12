@@ -23,6 +23,8 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
     queryFn: () => getCandidateById(id),
   });
 
+  console.log(candidate.data);
+
   const isModalOpen = useModal(
     (state) => state.isModalOpen
   );

@@ -119,7 +119,7 @@ const Filters = ({
             />
             <CustomCheckbox
               registerFor="occupation"
-              value="Part"
+              value="Part-time"
               register={register}
               title={t('format.item_4')}
             />

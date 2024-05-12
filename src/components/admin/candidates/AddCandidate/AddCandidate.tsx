@@ -85,9 +85,6 @@ const AddCandidate = () => {
   });
 
   useEffect(() => {
-    if (errors && !stack.length) {
-      setStackError('Required');
-    }
     if (stack.length) {
       setStackError('');
     }
@@ -95,7 +92,6 @@ const AddCandidate = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     try {
-      console.log(data);
       if (!stack.length) {
         setStackError(
           'Додайте декілька технологій зі стеку'
@@ -323,7 +319,12 @@ const AddCandidate = () => {
                 <SelectField
                   title="Формат роботи"
                   value={value}
-                  values={['Remote', 'Office', 'Hybrid']}
+                  values={[
+                    'Remote',
+                    'Office',
+                    'Hybrid',
+                    'Part-time',
+                  ]}
                   onChange={onChange}
                   isRequired={true}
                   errors={

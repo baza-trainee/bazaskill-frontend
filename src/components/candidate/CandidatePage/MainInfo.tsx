@@ -13,6 +13,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
   const { openModal } = useModal();
 
   console.log(candidate);
+
   return (
     <div className="container mt-[40px] flex flex-col gap-[72px] pb-[60px]">
       <div>
@@ -48,30 +49,32 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
                   {item.graduate_start}-{item.graduate_end}
                 </span>
               </div>
-              <div>
-                <a
-                  href={item.graduate_sertificate}
-                  target="_blank"
-                >
-                  {item.graduate_sertificate.split(
-                    '.'
-                  )[3] === 'pdf' ? (
-                    <Image
-                      src="/images/pdf-placeholder.png"
-                      alt="pdf"
-                      width={80}
-                      height={80}
-                    />
-                  ) : (
-                    <Image
-                      src={item.graduate_sertificate}
-                      alt="pdf"
-                      width={120}
-                      height={60}
-                    />
-                  )}
-                </a>
-              </div>
+              {item.graduate_sertificate && (
+                <div>
+                  <a
+                    href={item.graduate_sertificate}
+                    target="_blank"
+                  >
+                    {item.graduate_sertificate.split(
+                      '.'
+                    )[3] === 'pdf' ? (
+                      <Image
+                        src="/images/pdf-placeholder.png"
+                        alt="pdf"
+                        width={80}
+                        height={80}
+                      />
+                    ) : (
+                      <Image
+                        src={item.graduate_sertificate}
+                        alt="pdf"
+                        width={120}
+                        height={60}
+                      />
+                    )}
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -95,30 +98,32 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
                   {cource.cources_end}
                 </span>
               </div>
-              <div>
-                <a
-                  href={cource.cources_sertificate}
-                  target="_blank"
-                >
-                  {cource.cources_sertificate.split(
-                    '.'
-                  )[3] === 'pdf' ? (
-                    <Image
-                      src="/images/pdf-placeholder.png"
-                      alt="pdf"
-                      width={80}
-                      height={80}
-                    />
-                  ) : (
-                    <Image
-                      src={cource.cources_sertificate}
-                      alt="pdf"
-                      width={120}
-                      height={60}
-                    />
-                  )}
-                </a>
-              </div>
+              {cource.cources_sertificate && (
+                <div>
+                  <a
+                    href={cource.cources_sertificate}
+                    target="_blank"
+                  >
+                    {cource.cources_sertificate.split(
+                      '.'
+                    )[3] === 'pdf' ? (
+                      <Image
+                        src="/images/pdf-placeholder.png"
+                        alt="pdf"
+                        width={80}
+                        height={80}
+                      />
+                    ) : (
+                      <Image
+                        src={cource.cources_sertificate}
+                        alt="pdf"
+                        width={120}
+                        height={60}
+                      />
+                    )}
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>

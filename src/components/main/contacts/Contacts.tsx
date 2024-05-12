@@ -17,6 +17,8 @@ const Contacts = () => {
     setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
   }, [isCookie]);
 
+  console.log(contactData);
+
   return (
     <div className="container py-14">
       <h2 className="mb-12 flex w-full justify-center text-2xl font-bold text-white md:text-2xl lg:text-[40px]">

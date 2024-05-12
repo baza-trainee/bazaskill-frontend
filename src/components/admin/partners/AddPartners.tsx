@@ -151,7 +151,7 @@ const AddPartners = () => {
         </form>
         {isSuccess && (
           <SuccessAlert
-            title="Лого успішно додане"
+            title="Партнера успішно додано"
             onClose={handleCloseSuccessAlert}
             isSuccess={isSuccess}
           />

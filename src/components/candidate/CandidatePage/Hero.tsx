@@ -99,7 +99,9 @@ const CandidateHero = ({
                   ? t('format.item_2')
                   : candidate.work_format === 'Hybrid'
                     ? t('format.item_3')
-                    : null}
+                    : candidate.work_format === 'Part-time'
+                      ? t('format.item_4')
+                      : null}
             </span>
           </div>
         </div>

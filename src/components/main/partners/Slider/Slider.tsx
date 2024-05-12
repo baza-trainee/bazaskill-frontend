@@ -9,7 +9,6 @@ import {
 import useSwiperParams from './useSwiperParams';
 import useSliderControls from './useSliderControls';
 import { Navigation, Pagination } from 'swiper/modules';
-import Partner from '../partnerInterface';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -18,12 +17,15 @@ import './styles.css';
 
 import ButtonRight from '@/components/icons/ButtonRight';
 import ButtonLeft from '@/components/icons/ButtonLeft';
+import { TPartner } from '@/types/partners';
 
 interface SliderProps {
-  partners: Partner[];
+  partners: TPartner[];
 }
 
-const Slider: React.FC<SliderProps> = ({ partners }) => {
+const Slider: React.FC<SliderProps> = ({
+  partners,
+}: SliderProps) => {
   const sliderRef: RefObject<SwiperRef> = useRef(null);
   const swiperParams = useSwiperParams();
   const { handlePrev, handleNext } =
@@ -52,10 +54,10 @@ const Slider: React.FC<SliderProps> = ({ partners }) => {
             className="partnerSlide sm:max-w-[280] md:max-w-[190px] xl:max-w-[302px] 4xl:max-w-[324px] 5xl:max-w-[340px]"
           >
             <Image
-              src={partner.image}
+              src={partner.image_url}
               width={swiperParams.imageWidth}
               height={swiperParams.imageHeight}
-              alt={partner.alt}
+              alt={partner.name}
             />
           </SwiperSlide>
         ))}

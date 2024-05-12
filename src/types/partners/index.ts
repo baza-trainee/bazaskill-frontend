@@ -7,7 +7,7 @@ export interface IPartners {
 
 export type PartnersFormInput = Omit<IPartners, 'id'>;
 
-export type Partners = {
+export type TPartner = {
   id: string;
   name: string;
   image_url: string;
