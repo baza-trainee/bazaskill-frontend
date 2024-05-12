@@ -118,7 +118,7 @@ const Filters = ({
           />
           <CustomCheckbox
             registerFor="occupation"
-            value="Part"
+            value="Part-time"
             register={register}
             title="Часткова зайнятість"
           />

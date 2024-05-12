@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Partners } from '@/types/partners';
+import { TPartner } from '@/types/partners';
 import Link from 'next/link';
 import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
@@ -19,7 +19,7 @@ const PartnersCard = ({
   isEditing,
   showName = true,
 }: {
-  item: Partners;
+  item: TPartner;
   isEditing: boolean;
   showName?: boolean;
 }) => {
@@ -77,7 +77,7 @@ const PartnersCard = ({
               alt={item.name}
               width={273}
               height={61}
-              className=" object-fit h-[61px] rounded-[8px]"
+              className="h-[61px] rounded-[8px] object-cover"
             />
           </div>
         </div>

@@ -15,7 +15,6 @@ const ACCEPTED_CERTIFICATE_TYPES = [
   'image/png',
   'image/webp',
   'application/pdf',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   'for-url',
 ];
 
@@ -107,7 +106,7 @@ const schema = z.object({
             ACCEPTED_CERTIFICATE_TYPES.includes(
               value?.[0]?.type
             ),
-          'Сертифікат має бути в форматі .pdf, .docx, .png, .jpg або .webp'
+          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
         ),
     })
   ),
@@ -141,7 +140,7 @@ const schema = z.object({
             ACCEPTED_CERTIFICATE_TYPES.includes(
               value?.[0]?.type
             ),
-          'Сертифікат має бути в форматі .pdf, .docx, .png, .jpg або .webp'
+          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
         ),
     })
   ),

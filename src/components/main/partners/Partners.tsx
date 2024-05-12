@@ -2,11 +2,25 @@
 
 import React from 'react';
 import Slider from './Slider/Slider';
-import partnersData from './partnersData';
 import { useTranslations } from 'next-intl';
+import { TPartner } from '@/types/partners';
+import { constants } from '@/constants';
+import { getPartners } from '@/api/partners';
+import {
+  UseQueryResult,
+  useQuery,
+} from '@tanstack/react-query';
 
 const Partners: React.FC = () => {
   const t = useTranslations('Main.partners');
+
+  const partners: UseQueryResult<TPartner[], Error> =
+    useQuery({
+      queryKey: [constants.partners.FETCH_PARTNERS],
+      queryFn: getPartners,
+    });
+  console.log(partners.data);
+
   return (
     <div className="4lx:max-w-[1536px] container xs:max-w-[320px] sm:max-w-[420px] md:max-w-[768px] xl:max-w-[1280px] 2xl:max-w-[1368px] 3xl:max-w-[1440px] 5xl:max-w-[1920px]">
       <div
@@ -23,7 +37,10 @@ const Partners: React.FC = () => {
         {t('title')}
       </div>
       <div>
-        <Slider partners={partnersData} />
+        {partners.data?.length &&
+          Array.isArray(partners) && (
+            <Slider partners={partners.data} />
+          )}
       </div>
     </div>
   );

@@ -439,7 +439,12 @@ const EditCandidate = ({ id }: { id: string }) => {
                 <SelectField
                   title="Формат роботи"
                   value={value}
-                  values={['Remote', 'Office', 'Hybrid']}
+                  values={[
+                    'Remote',
+                    'Office',
+                    'Hybrid',
+                    'Part-time',
+                  ]}
                   onChange={onChange}
                   isRequired={true}
                   errors={

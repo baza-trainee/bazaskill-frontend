@@ -38,6 +38,15 @@ export const createCandidate = async (values: any) => {
     );
   }
 
+  const transformCvUrl = (url: string) => {
+    const urlArr = url.split('.');
+    if (urlArr[urlArr.length - 1] === 'docx') {
+      const replaced = url.replace('raw', 'image');
+      return `${replaced}.pdf`;
+    }
+    return url;
+  };
+
   const coursesCertificates = values.data.cources
     .map(
       (cource: ICandidateCources) =>
@@ -109,7 +118,9 @@ export const createCandidate = async (values: any) => {
     sallary_form: values.data.salary_from,
     sallary_to: values.data.salary_to,
     specialization: values.data.specialization,
-    cv: cvResponse ? cvResponse.data.url : '',
+    cv: cvResponse
+      ? transformCvUrl(cvResponse.data.url)
+      : '',
     cv_id: cvResponse ? cvResponse.data.public_id : '',
     stack: values.stack.map((item: IStack) => item.id),
     gradaute: values.data.graduate.map(
@@ -184,6 +195,15 @@ export const updateCandidate = async (
     );
   }
 
+  const transformCvUrl = (url: string) => {
+    const urlArr = url.split('.');
+    if (urlArr[urlArr.length - 1] === 'docx') {
+      const replaced = url.replace('raw', 'image');
+      return `${replaced}.pdf`;
+    }
+    return url;
+  };
+
   const coursesCertificates = values.currentValues.cources
     .map(
       (cource: ICandidateCources) =>
@@ -257,7 +277,7 @@ export const updateCandidate = async (
     sallary_to: values.currentValues.salary_to,
     specialization: values.currentValues.specialization,
     cv: cvResponse
-      ? cvResponse.data.url
+      ? transformCvUrl(cvResponse.data.url)
       : values.currentValues.cv[0].name,
     cv_id: cvResponse
       ? cvResponse.data.public_id

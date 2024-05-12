@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
           type="submit" // Встановити тип кнопки як submit
           className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
         >
-          <Link href={`/candidates`}>
+          <Link href={'/candidates'}>
             <SearchIcon className="text-gray-500 absolute left-3 top-5" />
             {t('search')}
           </Link>
