@@ -7,6 +7,11 @@ export const getDocuments = async () => {
   return data;
 };
 
+export const createDocument = async <T>(data: T) => {
+  const response = await axios.post(`/documents`, data);
+  return response;
+};
+
 export const updateDocument = async <T>(
   id: string,
   data: T

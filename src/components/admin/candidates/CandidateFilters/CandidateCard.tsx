@@ -73,7 +73,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           <span>ID {candidate.uniqueId}</span>
         </div>
         <div className="flex w-full items-center gap-[12px] font-sans text-[18px]">
-          <span className="flex w-[50%] items-center gap-[8px]">
+          <span className="flex w-[60%]  items-center gap-[8px]">
             <svg width={20} height={20}>
               <use href="/Icons/sprite.svg#icon-place"></use>
             </svg>

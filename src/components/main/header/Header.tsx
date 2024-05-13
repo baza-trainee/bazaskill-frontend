@@ -39,19 +39,21 @@ const Header = () => {
 
       <div className="hidden grow justify-between gap-[4px] xl:flex 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
         <nav className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
-          {data?.map(
-            ({
-              id,
-              title,
-              stack,
-            }: ISpecializationWithStack) => (
-              <MenuItem
-                key={id}
-                title={title}
-                inputs={stack}
-              />
-            )
-          )}
+          {data &&
+            Array.isArray(data) &&
+            data?.map(
+              ({
+                id,
+                title,
+                stack,
+              }: ISpecializationWithStack) => (
+                <MenuItem
+                  key={id}
+                  title={title}
+                  inputs={stack}
+                />
+              )
+            )}
         </nav>
 
         <LanguageSwitcher />
