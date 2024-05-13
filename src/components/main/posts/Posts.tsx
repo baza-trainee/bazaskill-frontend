@@ -23,8 +23,7 @@ const Posts = () => {
         {t('title')}
       </h3>
       <div className="flex flex-wrap justify-between gap-10">
-        {data &&
-          Array.isArray(data) &&
+        {data?.length &&
           data
             ?.reverse()
             .slice(0, 3)
