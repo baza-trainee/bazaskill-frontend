@@ -37,8 +37,8 @@ const Partners: React.FC = () => {
         {t('title')}
       </div>
       <div>
-        {partners.data && Array.isArray(partners) && (
-          <Slider partners={partners.data} />
+        {partners.data?.length && (
+          <Slider partners={partners.data!} />
         )}
       </div>
     </div>
