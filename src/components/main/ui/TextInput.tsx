@@ -157,17 +157,15 @@ const TextInput: FC<TextInputProps> = ({
             left-0
             top-full z-10 max-h-[120px] w-full overflow-y-auto rounded-b-md bg-white shadow-lg [&::-webkit-scrollbar]:[width:10px]"
           >
-            {filteredOptions &&
-              Array.isArray(filterOptions) &&
-              filteredOptions.map((option) => (
-                <div
-                  key={option}
-                  className="text-red border-gray-300 cursor-pointer border-b p-2 last:border-none hover:bg-lightGreen"
-                  onClick={() => handleSelectOption(option)}
-                >
-                  {option}
-                </div>
-              ))}
+            {filteredOptions.map((option) => (
+              <div
+                key={option}
+                className="text-red border-gray-300 cursor-pointer border-b p-2 last:border-none hover:bg-lightGreen"
+                onClick={() => handleSelectOption(option)}
+              >
+                {option}
+              </div>
+            ))}
           </div>
         )}
       </div>
