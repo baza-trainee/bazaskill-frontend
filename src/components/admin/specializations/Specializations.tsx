@@ -76,38 +76,40 @@ const Specializations = () => {
           </Link>
         </div>
         <div className="flex flex-wrap items-center gap-4">
-          {data?.map((item) => (
-            <div
-              className="relative flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-[2px] border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]"
-              key={item.id}
-            >
-              <p className="font-sans text-[20px] leading-[1.3] text-white">
-                {item.title}
-              </p>
-              <div className="absolute bottom-[12px] right-[12px] z-10 flex gap-[32px]">
-                <button
-                  onClick={() => {
-                    setIsDeleting(true),
-                      setCurrentId(item.id.toString());
-                  }}
-                  className="flex h-[32px] w-[32px] items-center justify-center bg-white"
-                >
-                  <svg width={28} height={28}>
-                    <use href="/Icons/sprite.svg#icon-drop"></use>
-                  </svg>
-                </button>
-                <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
-                  <Link
-                    href={`/admin/specializations/edit/${item.id}`}
+          {data &&
+            Array.isArray(data) &&
+            data?.map((item) => (
+              <div
+                className="relative flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-[2px] border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]"
+                key={item.id}
+              >
+                <p className="font-sans text-[20px] leading-[1.3] text-white">
+                  {item.title}
+                </p>
+                <div className="absolute bottom-[12px] right-[12px] z-10 flex gap-[32px]">
+                  <button
+                    onClick={() => {
+                      setIsDeleting(true),
+                        setCurrentId(item.id.toString());
+                    }}
+                    className="flex h-[32px] w-[32px] items-center justify-center bg-white"
                   >
                     <svg width={28} height={28}>
-                      <use href="/Icons/sprite.svg#icon-pen"></use>
+                      <use href="/Icons/sprite.svg#icon-drop"></use>
                     </svg>
-                  </Link>
-                </button>
+                  </button>
+                  <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+                    <Link
+                      href={`/admin/specializations/edit/${item.id}`}
+                    >
+                      <svg width={28} height={28}>
+                        <use href="/Icons/sprite.svg#icon-pen"></use>
+                      </svg>
+                    </Link>
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </section>
       {(isFetching || isLoading) && <Loader />}

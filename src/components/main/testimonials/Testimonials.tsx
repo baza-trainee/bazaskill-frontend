@@ -9,6 +9,9 @@ import {
 import { useTranslations } from 'next-intl';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Testimonial } from '@/types/testimonials';
+import { useQuery } from '@tanstack/react-query';
+import { constants } from '@/constants';
+import { getTestimonials } from '@/api/testimonials';
 import TestimonialCard from './TestimonialCard';
 import ButtonRight from '@/components/icons/ButtonRight';
 import ButtonLeft from '@/components/icons/ButtonLeft';
@@ -17,9 +20,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './testimonials_styles.css';
-import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
-import { getTestimonials } from '@/api/testimonials';
 
 const Testimonials = () => {
   const t = useTranslations('Main.testimonials');
@@ -64,14 +64,16 @@ const Testimonials = () => {
           modules={[Pagination, Navigation]}
           className="testimonials max-w-[88%] 5xl:max-w-[1524px]"
         >
-          {data?.map((item: Testimonial) => (
-            <SwiperSlide
-              className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
-              key={item.id}
-            >
-              <TestimonialCard item={item} />
-            </SwiperSlide>
-          ))}
+          {data &&
+            Array.isArray(data) &&
+            data?.map((item: Testimonial) => (
+              <SwiperSlide
+                className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
+                key={item.id}
+              >
+                <TestimonialCard item={item} />
+              </SwiperSlide>
+            ))}
         </Swiper>
         <button
           type="button"

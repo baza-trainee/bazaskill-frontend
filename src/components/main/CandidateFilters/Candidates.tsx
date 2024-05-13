@@ -26,6 +26,8 @@ const Candidates = () => {
     queryFn: getAllCandidates,
   });
 
+  console.log(candidates);
+
   const {
     setFilterBySpeciality,
     setFilterByCountry,
@@ -48,11 +50,7 @@ const Candidates = () => {
     useState<CandidatesResponse[]>([]);
 
   useEffect(() => {
-    if (
-      candidates.data?.length &&
-      !speciality &&
-      !country
-    ) {
+    if (!speciality && !country) {
       setFilteredCandidates(
         candidates.data as CandidatesResponse[]
       );
@@ -262,7 +260,12 @@ const Candidates = () => {
       <CandidatesTitle />
       <div className="md:flex">
         <Filters SubmitHandler={onSubmit} />
-        <CandidatesList candidates={filteredCandidates} />
+        {filteredCandidates &&
+          Array.isArray(filteredCandidates) && (
+            <CandidatesList
+              candidates={filteredCandidates}
+            />
+          )}
       </div>
     </div>
   );
