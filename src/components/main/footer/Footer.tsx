@@ -7,7 +7,6 @@ import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
 import { useTranslations } from 'next-intl';
 import { useCookies } from '@/stores/useCookies';
-import { IDocument } from '@/types/documents';
 import Cookies from 'js-cookie';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';

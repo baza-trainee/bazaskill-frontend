@@ -146,6 +146,7 @@
     "projects": "{count, plural, =0 {no projects yet} =1 {# project} other {# projects}}",
     "recomendation_from": "Recommendations from",
     "ask_data": "Request data",
+    "to_become_hr": "Become our HR",
     "candidate_project": {
       "duration": "Duration",
       "weeks": "{count, plural,  =2 {# weeks} =3 {# weeks} =4 {# weeks} other {# weeks}}",

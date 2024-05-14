@@ -84,8 +84,12 @@ const AddCandidate = () => {
     mode: 'onChange',
   });
 
+  const undefinedStack = stack.filter(
+    (item) => item.id === undefined
+  );
+
   useEffect(() => {
-    if (stack.length) {
+    if (stack.length && !undefinedStack.length) {
       setStackError('');
     }
   }, [stack, errors]);
@@ -95,6 +99,12 @@ const AddCandidate = () => {
       if (!stack.length) {
         setStackError(
           'Додайте декілька технологій зі стеку'
+        );
+        return;
+      }
+      if (undefinedStack.length) {
+        setStackError(
+          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
         );
         return;
       }

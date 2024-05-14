@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Project from './CandidateProject';
 import { CandidatesResponse } from '@/types/candidates';
-import { useModal } from '@/stores/useModal';
 
 type MainInfoProps = {
   candidate: CandidatesResponse;
@@ -10,9 +9,6 @@ type MainInfoProps = {
 
 const MainInfo = ({ candidate }: MainInfoProps) => {
   const t = useTranslations('Candidate');
-  const { openModal } = useModal();
-
-  console.log(candidate);
 
   return (
     <div className="container mt-[40px] flex flex-col gap-[72px] pb-[60px]">
@@ -159,12 +155,12 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
         <span className="mt-[32px] flex font-sans text-[20px] font-[400] leading-[28px] text-white">
           {candidate.baza_recomendation}
         </span>
-        <button
+        {/* <button
           onClick={() => openModal('contacts')}
           className="main-gradient mt-[60px] flex h-[50px] w-[350px] max-w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]"
         >
           {t('ask_data')}
-        </button>
+        </button> */}
       </div>
     </div>
   );
