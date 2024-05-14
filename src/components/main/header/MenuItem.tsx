@@ -52,16 +52,14 @@ const MenuItem = ({
       <div
         className="box-border flex h-full w-full items-center justify-between pl-[16px] pr-[22px] text-white"
         ref={menuRef}
+        onClick={openDropDownHandler}
       >
         <div className="flex items-center">
           <span className="relative top-[-3px]">
             <HeaderSearchIcon />
           </span>
 
-          <h3
-            className="font-sans text-[18px] font-[600]"
-            onClick={openDropDownHandler}
-          >
+          <h3 className="font-sans text-[18px] font-[600]">
             {title}
           </h3>
         </div>
