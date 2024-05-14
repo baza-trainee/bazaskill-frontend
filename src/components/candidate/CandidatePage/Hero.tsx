@@ -40,11 +40,11 @@ const CandidateHero = ({
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             ID {candidate.uniqueId}
           </span>
-          <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
+          {/* <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             <a href={candidate.cv} target="_blank">
               CV
             </a>
-          </span>
+          </span> */}
         </div>
 
         <div className="mt-[60px] flex flex-col">
@@ -106,10 +106,10 @@ const CandidateHero = ({
           </div>
         </div>
         <button
-          onClick={() => openModal('contacts')}
+          onClick={() => openModal('hr')}
           className="main-gradient mt-[60px] flex h-[50px] w-full items-center justify-center rounded-[6px] font-sans text-[20px] font-[600]"
         >
-          {t('ask_data')}
+          {t('to_become_hr')}
         </button>
       </div>
     </div>

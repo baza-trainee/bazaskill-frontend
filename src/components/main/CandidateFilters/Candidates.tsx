@@ -26,7 +26,7 @@ const Candidates = () => {
     queryFn: getAllCandidates,
   });
 
-  console.log(candidates);
+  console.log(candidates.data);
 
   const {
     setFilterBySpeciality,

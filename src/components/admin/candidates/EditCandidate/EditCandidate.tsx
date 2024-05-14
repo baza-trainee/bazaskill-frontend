@@ -105,11 +105,12 @@ const EditCandidate = ({ id }: { id: string }) => {
     mode: 'onChange',
   });
 
+  const undefinedStack = stack.filter(
+    (item) => item.id === undefined
+  );
+
   useEffect(() => {
-    if (errors && !stack.length) {
-      setStackError('Required');
-    }
-    if (stack.length) {
+    if (stack.length && !undefinedStack.length) {
       setStackError('');
     }
   }, [stack, errors]);
@@ -232,6 +233,12 @@ const EditCandidate = ({ id }: { id: string }) => {
       if (!stack.length) {
         setStackError(
           'Додайте декілька технологій зі стеку'
+        );
+        return;
+      }
+      if (undefinedStack.length) {
+        setStackError(
+          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
         );
         return;
       }

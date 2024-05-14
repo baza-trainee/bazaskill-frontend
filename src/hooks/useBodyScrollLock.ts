@@ -9,7 +9,10 @@ export const useBodyScrollLock = (shouldLock: boolean) => {
     if (shouldLock) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow =
+        originalOverflow === 'hidden'
+          ? 'auto'
+          : originalOverflow;
       document.body.style.overflowX = 'hidden';
     }
     return () => {

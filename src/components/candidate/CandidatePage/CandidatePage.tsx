@@ -6,13 +6,14 @@ import {
 } from '@tanstack/react-query';
 import { getCandidateById } from '@/api/candidates';
 import { useModal } from '@/stores/useModal';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { CandidatesResponse } from '@/types/candidates';
 
 import CandidateHero from '@/components/candidate/CandidatePage/Hero';
 import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
-import React from 'react';
-import { CandidatesResponse } from '@/types/candidates';
 import Loader from '@/components/admin/ui/Loader';
-import ContactsModal from './ContactsModal';
+import RegisterModal from '@/components/main/modals/RegisterModal';
+import RegisterHrForm from '@/components/main/modals/forms/register_hr/RegisterHrForm';
 
 const CandidatePageComponent = ({ id }: { id: string }) => {
   const candidate: UseQueryResult<
@@ -23,12 +24,17 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
     queryFn: () => getCandidateById(id),
   });
 
-  console.log(candidate.data);
-
   const isModalOpen = useModal(
     (state) => state.isModalOpen
   );
+
+  const { closeModal } = useModal();
+
   const modalType = useModal((state) => state.modalType);
+
+  console.log(isModalOpen);
+
+  useBodyScrollLock(isModalOpen);
 
   if (candidate.status === 'pending') return <Loader />;
 
@@ -36,8 +42,10 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
     <div className="bg-graphite">
       <CandidateHero candidate={candidate.data!} />
       <MainInfo candidate={candidate.data!} />
-      {isModalOpen && modalType === 'contacts' && (
-        <ContactsModal candidate={candidate.data!} />
+      {isModalOpen && modalType === 'hr' && (
+        <RegisterModal handleClose={closeModal}>
+          <RegisterHrForm />
+        </RegisterModal>
       )}
     </div>
   );
