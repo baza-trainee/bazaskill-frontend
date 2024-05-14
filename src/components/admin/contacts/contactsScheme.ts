@@ -35,7 +35,7 @@ export const contactsScheme = z.object({
     .refine(
       (value) =>
         !value ||
-        /^(https?:\/\/)?(www\.)?t\.me\/[a-zA-Z0-9_]{5,32}$/.test(
+        /^(https?:\/\/)?(www\.)?t\.me\/(?:joinchat\/[a-zA-Z0-9_-]+|\+[a-zA-Z0-9_-]+|[a-zA-Z0-9_]{5,32})$/.test(
           value
         ),
       {
@@ -47,7 +47,7 @@ export const contactsScheme = z.object({
     .refine(
       (value) =>
         !value ||
-        /^https:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|pub|company|public-profile\/in|company|public-profile\/pub)\/[a-zA-Z0-9-]{3,100}\/?$/.test(
+        /^https:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|pub|company|public-profile\/in|company|public-profile\/pub)\/[a-zA-Z0-9-]{3,100}(\/)?(\?.*)?\/?$/.test(
           value
         ),
       {
@@ -59,7 +59,7 @@ export const contactsScheme = z.object({
     .refine(
       (value) =>
         !value ||
-        /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9./-]{5,}$/.test(
+        /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9./-]{5,}(\?.*)?$/.test(
           value
         ),
       {
