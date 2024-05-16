@@ -38,6 +38,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<Candidates />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/candidates"
         >
           Кандидати
@@ -45,6 +46,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<CountersIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/counters"
         >
           Каунтер
@@ -52,6 +54,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<PartnersIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/partners"
         >
           Партнери
@@ -59,6 +62,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<ArticlesIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/posts"
         >
           Статті та поради
@@ -66,6 +70,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<ArticlesIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/testimonials"
         >
           Відгуки
@@ -73,6 +78,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<PdfIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/documents"
         >
           PDF документи
@@ -80,6 +86,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<ContactsIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/contacts"
         >
           Контакти
@@ -87,6 +94,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<GrGallery />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/gallery"
         >
           Галерея
@@ -94,6 +102,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<FaTools />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/specializations"
         >
           Спеціалізації
@@ -101,14 +110,15 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className=""
           icon={<FaUsers />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/cards"
         >
-          Топ Учасникі
+          Топ Учасники
         </SideBarItem>
         <SideBarItem
           className="border-b"
           icon={<FaUser />}
-          iconClassName="w-[20px] h-[20px]"
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/hr-applications"
         >
           Заявки HRів
@@ -116,7 +126,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className="border-b"
           icon={<FaHandshake />}
-          iconClassName="w-[25px] h-[25px]"
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/partner-applications"
         >
           Заявки партнерів
@@ -124,6 +134,7 @@ const SideBar: React.FC = () => {
         <SideBarItem
           className="border-b"
           icon={<SettingsIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/settings"
         >
           Налаштування

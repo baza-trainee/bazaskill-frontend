@@ -26,8 +26,6 @@ const Candidates = () => {
     queryFn: getAllCandidates,
   });
 
-  console.log(candidates.data);
-
   const {
     setFilterBySpeciality,
     setFilterByCountry,
@@ -55,7 +53,7 @@ const Candidates = () => {
         candidates.data as CandidatesResponse[]
       );
     }
-  }, []);
+  }, [candidates.data]);
 
   useEffect(() => {
     if (!speciality && !inputCountry) {
@@ -249,7 +247,6 @@ const Candidates = () => {
         );
       }
     );
-    console.log(filtered);
     setFilteredCandidates(filtered || []);
   };
 

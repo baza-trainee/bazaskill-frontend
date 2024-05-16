@@ -113,7 +113,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           ...
         </span>
       </div>
-      <div className="line-clamp-4 pt-[10px] font-sans text-[16px] leading-[26px]">
+      <div className="line-clamp-4 h-[120px] pt-[10px] font-sans text-[16px] leading-[26px]">
         {candidate.about}
       </div>
 
