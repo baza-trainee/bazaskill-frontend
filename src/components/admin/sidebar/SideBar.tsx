@@ -103,7 +103,7 @@ const SideBar: React.FC = () => {
           icon={<FaUsers />}
           href="/admin/cards"
         >
-          Топ Учасникі
+          Топ Учасники
         </SideBarItem>
         <SideBarItem
           className="border-b"

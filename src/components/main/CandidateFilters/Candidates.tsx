@@ -260,10 +260,14 @@ const Candidates = () => {
       <CandidatesTitle />
       <div className="md:flex">
         <Filters SubmitHandler={onSubmit} />
-        {filteredCandidates &&
-          Array.isArray(filteredCandidates) && (
+        {candidates.data &&
+          Array.isArray(candidates.data) && (
             <CandidatesList
-              candidates={filteredCandidates}
+              candidates={
+                filteredCandidates
+                  ? filteredCandidates
+                  : candidates.data
+              }
             />
           )}
       </div>
