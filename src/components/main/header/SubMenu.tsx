@@ -7,9 +7,17 @@ import {
   FieldValues,
 } from 'react-hook-form';
 import CustomInput from './CustomInput';
-import { Dispatch, RefObject, SetStateAction } from 'react';
+import {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { useFilters } from '@/stores/useFilters';
 import { SpecializationStack } from '@/types/specialization';
+import { useCookies } from '@/stores/useCookies';
+import Cookies from 'js-cookie';
 
 const SubMenu = ({
   inputs,
@@ -22,6 +30,14 @@ const SubMenu = ({
 }) => {
   const router = useRouter();
   const { setFilterByStack } = useFilters();
+
+  const isCookie = useCookies((state) => state.isCookies);
+  const [isCookiesAccepted, setIsCookiesAccepted] =
+    useState(false);
+
+  useEffect(() => {
+    setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
+  }, [isCookie]);
 
   const schema = z.object({
     stack: z
@@ -59,7 +75,10 @@ const SubMenu = ({
           />
         ))}
       </div>
-      <button className="relative mx-auto my-[14px] flex h-[36px] w-[72%] items-center justify-center rounded-[6px] border-[2px] border-yellow text-[16px] leading-[36px] text-yellow">
+      <button
+        disabled={!isCookiesAccepted}
+        className="relative mx-auto my-[14px] flex h-[36px] w-[72%] items-center justify-center rounded-[6px] border-[2px] border-yellow text-[16px] leading-[36px] text-yellow"
+      >
         Знайти
       </button>
       <span className="relative mx-auto my-2 text-[16px] text-red-500">
