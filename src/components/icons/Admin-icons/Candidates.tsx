@@ -9,8 +9,8 @@ const Candidates: React.FC<CandidatesProps> = ({
   return (
     <div className={`${className}`} {...rest}>
       <svg
-        width="21"
-        height="21"
+        width="24"
+        height="24"
         viewBox="0 0 21 21"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
