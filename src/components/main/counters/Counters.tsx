@@ -37,37 +37,42 @@ const Counters = () => {
   const counters: Counters[] = [
     {
       id: 1,
-      count: isFetching
-        ? 0
-        : +(data as ICounters[])[0].liveProject,
+      count:
+        isFetching || !data?.length
+          ? 0
+          : +(data as ICounters[])[0].liveProject,
       title: t('counters.live_projects'),
     },
     {
       id: 2,
-      count: isFetching
-        ? 0
-        : +(data as ICounters[])[0].members,
+      count:
+        isFetching || !data?.length
+          ? 0
+          : +(data as ICounters[])[0].members,
       title: t('counters.participants'),
     },
     {
       id: 3,
-      count: isFetching
-        ? 0
-        : +(data as ICounters[])[0].employed,
+      count:
+        isFetching || !data?.length
+          ? 0
+          : +(data as ICounters[])[0].employed,
       title: t('counters.employed'),
     },
     {
       id: 4,
-      count: isFetching
-        ? 0
-        : +(data as ICounters[])[0].technologies,
+      count:
+        isFetching || !data?.length
+          ? 0
+          : +(data as ICounters[])[0].technologies,
       title: t('counters.technologies'),
     },
     {
       id: 5,
-      count: isFetching
-        ? 0
-        : +(data as ICounters[])[0].libraries,
+      count:
+        isFetching || !data?.length
+          ? 0
+          : +(data as ICounters[])[0].libraries,
       title: t('counters.libraries'),
     },
   ];
