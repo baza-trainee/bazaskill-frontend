@@ -5,12 +5,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
-import {
-  NextIntlClientProvider,
-  useMessages,
-} from 'next-intl';
 import * as React from 'react';
 
 export function Providers(props: {
@@ -33,7 +28,6 @@ export function Providers(props: {
       <ReactQueryStreamedHydration>
         {props.children}
       </ReactQueryStreamedHydration>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

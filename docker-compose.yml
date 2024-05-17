@@ -3,6 +3,7 @@ version: '3.8'
 services:
   app:
     image: bazaskill-frontend
+    restart: always
     build:
       context: ./
       target: dev
