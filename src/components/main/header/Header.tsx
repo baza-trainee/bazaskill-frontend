@@ -18,6 +18,7 @@ const Header = () => {
     ],
     queryFn: getSpecializationsWithStack,
   });
+
   const pathname = usePathname();
 
   const isHidden =

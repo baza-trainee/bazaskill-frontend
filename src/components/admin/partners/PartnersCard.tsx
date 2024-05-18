@@ -45,6 +45,7 @@ const PartnersCard = ({
       console.log(error);
     }
   };
+
   const handleSuccessAlertClose = () => {
     setIsSuccess(false);
     setIsDeleting(false);

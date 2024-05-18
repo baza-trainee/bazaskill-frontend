@@ -117,7 +117,10 @@ const AddImage = () => {
               disabled={!isValid}
             />
             <SecondaryButton
-              onClick={() => reset()}
+              onClick={() => {
+                reset();
+                router.push('/admin/gallery');
+              }}
               text="Скасувати"
             />
           </div>
