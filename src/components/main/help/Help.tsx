@@ -41,9 +41,7 @@ const Help = () => {
     >
       <div className="flex xs:flex-col-reverse xs:flex-wrap xs:gap-[24px] md:flex-row md:flex-nowrap md:justify-center md:gap-[40px] xl:gap-[80px] 2xl:gap-[64px] 3xl:gap-[100px]  5xl:gap-[140px]">
         {data && Array.isArray(data) && (
-          <HelpList
-            photos={data!.slice(0, numPhotos).reverse()}
-          />
+          <HelpList photos={data!.slice(0, numPhotos)} />
         )}
         <HelpSpecialist />
       </div>
