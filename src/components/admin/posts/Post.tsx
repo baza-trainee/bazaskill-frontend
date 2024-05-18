@@ -11,6 +11,7 @@ import {
   useQueryClient,
   useMutation,
 } from '@tanstack/react-query';
+import QuestionAlert from '../alerts/QuestionAlert';
 
 const Post = ({
   id,
@@ -22,6 +23,7 @@ const Post = ({
   isAdmin,
 }: IPost) => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const creationDate = formatDate(created_at);
 
@@ -31,8 +33,25 @@ const Post = ({
     mutationFn: deletePosts,
     onSuccess: () => {
       setIsSuccess(true);
+      client.invalidateQueries({
+        queryKey: [constants.posts.FETCH_POSTS],
+      });
     },
   });
+
+  const handleDeleteConfirm = async () => {
+    setIsDeleting(false);
+    try {
+      await mutation.mutateAsync(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSuccessAlertClose = () => {
+    setIsSuccess(false);
+    setIsDeleting(false);
+  };
 
   return (
     <article className="relative hidden h-[336px] w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92] md:flex md:w-[217px] xl:w-[358px] 5xl:h-[336px] 5xl:w-[464px]">
@@ -58,12 +77,10 @@ const Post = ({
         </p>
       </a>
       {isAdmin && (
-        <div className="absolute bottom-[24px] right-[24px] z-10 flex gap-[32px]">
+        <div className="absolute bottom-[5px] right-[12px] z-10 flex gap-[32px]">
           <button
             className="flex h-[32px] w-[32px] items-center justify-center bg-white"
-            onClick={() => {
-              mutation.mutate(id);
-            }}
+            onClick={() => setIsDeleting(true)}
           >
             <svg width={28} height={28}>
               <use href="/Icons/sprite.svg#icon-drop"></use>
@@ -78,14 +95,17 @@ const Post = ({
           </button>
         </div>
       )}
+      {isDeleting && !isSuccess && (
+        <QuestionAlert
+          title="Ви впевнені, що хочете видалити пост зі сторінки?"
+          onCancel={() => setIsDeleting(false)}
+          onConfirm={handleDeleteConfirm}
+        />
+      )}
       {isSuccess && (
         <SuccessAlert
           title="Статтю видалено"
-          onClose={() => {
-            client.invalidateQueries({
-              queryKey: [constants.posts.FETCH_POSTS],
-            });
-          }}
+          onClose={handleSuccessAlertClose}
           isSuccess={isSuccess}
         />
       )}

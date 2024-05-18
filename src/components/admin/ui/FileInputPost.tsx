@@ -70,13 +70,6 @@ const FileInputPost = forwardRef(function FileInputPost(
       return false;
     }
 
-    if (file.name.length > 30) {
-      setErrorMessage(
-        "Ім'я файлу не повинно перевищувати 30 символів"
-      );
-      return false;
-    }
-
     return true;
   };
 
@@ -115,7 +108,7 @@ const FileInputPost = forwardRef(function FileInputPost(
           type="file"
           id={title}
           ref={ref}
-          accept="image/jpg, image/png, image/svg+xml, image/webp"
+          accept="image*"
           className="absolute left-0 w-[100%] cursor-pointer overflow-hidden opacity-0"
           onChange={handleChange}
         />
