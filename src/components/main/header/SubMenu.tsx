@@ -59,7 +59,7 @@ const SubMenu = ({
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setFilterByStack(data.stack);
     setIsOpen(false);
-    router.push(`${locale}/candidates`);
+    router.push(`/${locale}/candidates`);
   };
 
   return (
