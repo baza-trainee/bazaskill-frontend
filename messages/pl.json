@@ -9,7 +9,7 @@
       "germany": "Niemcy",
       "title": {
         "main": "Znajdź swojego",
-        "specialist": "ІТ-fachowce",
+        "specialist": "ІТ-fachowca",
         "designer": "projektanta",
         "developer": "dewelopera",
         "qa": "testera",
@@ -155,8 +155,8 @@
     "button": "Czytaj więcej",
     "project": {
       "title": "projekt",
-      "item_1": "owanie",
-      "item_2": "owanie"
+      "item_1": "y",
+      "item_2": "y"
     },
     "baza": "w Bazie",
     "status": {

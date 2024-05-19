@@ -44,6 +44,7 @@ const FileInputPartner = forwardRef(
           setErrorMessage(null);
         } else {
           setIsValid(false);
+          setSelectedFileName(selectedFile.name);
         }
       }
     };
@@ -69,7 +70,7 @@ const FileInputPartner = forwardRef(
         return false;
       }
 
-      if (file.size > 2 * 1024 * 1024) {
+      if (file.size > 500 * 1024) {
         setErrorMessage(
           'Розмір файлу має бути не більш 2 Mb'
         );
