@@ -23,11 +23,8 @@ const Posts = () => {
         {t('title')}
       </h3>
       <div className="flex flex-wrap justify-between gap-10">
-        {data?.length &&
-          data
-            ?.reverse()
-            .slice(0, 3)
-            .map((post) => {
+        {data?.length
+          ? data?.slice(0, 3).map((post) => {
               return (
                 <Post
                   key={post.id}
@@ -35,7 +32,8 @@ const Posts = () => {
                   isAdmin={false}
                 />
               );
-            })}
+            })
+          : null}
       </div>
       {data && <PostsCarousel data={data} />}
     </section>

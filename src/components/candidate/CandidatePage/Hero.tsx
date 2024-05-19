@@ -32,10 +32,7 @@ const CandidateHero = ({
           <h2 className="font-tahoma text-[40px] font-[700] text-white">
             {locale === 'ua'
               ? candidate.name_ua
-              : candidate.name}{' '}
-            {locale === 'ua'
-              ? candidate.surname_ua
-              : candidate.surname}
+              : candidate.name}
           </h2>
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             ID {candidate.uniqueId}

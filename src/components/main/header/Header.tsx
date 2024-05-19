@@ -21,6 +21,8 @@ const Header = () => {
 
   const pathname = usePathname();
 
+  console.log(data);
+
   const isHidden =
     pathname.split('/').includes('admin') ||
     pathname.split('/').includes('login');

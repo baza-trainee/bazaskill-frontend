@@ -17,6 +17,7 @@ import {
 import { useFilters } from '@/stores/useFilters';
 import { SpecializationStack } from '@/types/specialization';
 import { useCookies } from '@/stores/useCookies';
+import { useLocale } from 'next-intl';
 import Cookies from 'js-cookie';
 
 const SubMenu = ({
@@ -29,6 +30,7 @@ const SubMenu = ({
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
+  const locale = useLocale();
   const { setFilterByStack } = useFilters();
 
   const isCookie = useCookies((state) => state.isCookies);
@@ -57,7 +59,7 @@ const SubMenu = ({
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setFilterByStack(data.stack);
     setIsOpen(false);
-    router.push('/candidates');
+    router.push(`${locale}/candidates`);
   };
 
   return (

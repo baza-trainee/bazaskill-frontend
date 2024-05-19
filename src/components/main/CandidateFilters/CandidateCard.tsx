@@ -2,7 +2,7 @@ import declineWord from 'decline-word';
 import { CandidatesResponse } from '@/types/candidates';
 import Link from 'next/link';
 import { shortenLangs } from '@/helpers/shortenLangs';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 type CandidateCardProps = {
   candidate: CandidatesResponse;
@@ -10,8 +10,13 @@ type CandidateCardProps = {
 const CandidateCard: React.FC<CandidateCardProps> = ({
   candidate,
 }: CandidateCardProps) => {
+  const locale = useLocale();
   const t = useTranslations('Candidate');
   const specialization = candidate.specialization.title;
+
+  const shortenWord = (word: string) => {
+    return `${word.slice(0, 9)}...`;
+  };
   return (
     <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
       <div
@@ -39,11 +44,13 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         {specialization}
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
-        <h3>{candidate.name}</h3>
-        <span>ID {candidate.uniqueId}</span>
+        <h3 className="w-[63%]">{candidate.name}</h3>
+        <span className="w-[37%]">
+          ID {candidate.uniqueId}
+        </span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex w-[70%] items-center gap-[8px]">
+        <span className="flex min-w-[60%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
@@ -69,7 +76,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </div>
 
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex w-[50%] items-center gap-[8px] text-nowrap">
+        <span className="flex min-w-[60%] items-center gap-[8px] text-nowrap">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-experience"></use>
           </svg>
@@ -88,27 +95,35 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-point"></use>
           </svg>
-          <span className="truncate">
+          <span className="">
             {candidate.work_format === 'Remote'
               ? t('format.item_1')
               : candidate.work_format === 'Office'
                 ? t('format.item_2')
                 : candidate.work_format === 'Hybrid'
-                  ? t('format.item_3')
-                  : null}
+                  ? shortenWord(t('format.item_3'))
+                  : candidate.work_format === 'Part-time'
+                    ? shortenWord(t('format.item_4'))
+                    : null}
           </span>
         </span>
       </div>
 
       <div className="flex w-full justify-start gap-[27px]">
-        {candidate.stack.slice(0, 3).map((item) => (
-          <div
-            key={item.id}
-            className="box-border flex h-[30px] min-w-[88px] items-center justify-center whitespace-nowrap rounded-full border-[1px] border-white px-[15px] py-[10px]"
-          >
-            {item.stack?.title}
-          </div>
-        ))}
+        {candidate.stack.slice(0, 3).map((item) => {
+          return (
+            <>
+              {item.stack?.title.length && (
+                <div
+                  key={item.id}
+                  className="box-border flex h-[30px] min-w-[88px] items-center justify-center whitespace-nowrap rounded-full border-[1px] border-white px-[15px] py-[10px]"
+                >
+                  {item.stack?.title}
+                </div>
+              )}
+            </>
+          );
+        })}
         <span className="flex items-end justify-center">
           ...
         </span>
@@ -122,7 +137,9 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           {t('salary')} {candidate.sallary_form} $
         </span>
         <div className="flex">
-          <Link href={`/candidate/${candidate.id}`}>
+          <Link
+            href={`/${locale}/candidate/${candidate.id}`}
+          >
             <button className="flex h-[44px] w-[133px] items-center justify-center rounded bg-white p-4 font-semibold text-black sm:w-[180px]">
               {t('button')}
             </button>

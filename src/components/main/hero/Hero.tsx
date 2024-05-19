@@ -11,10 +11,12 @@ import { constants } from '@/constants';
 import { getSpecializations } from '@/api/specialization';
 import { useTranslations } from 'next-intl';
 import { useCookies } from '@/stores/useCookies';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 
 const Hero: React.FC = () => {
+  const locale = useLocale();
   const t = useTranslations('Main.hero_section');
   const isCookie = useCookies((state) => state.isCookies);
   const [isCookiesAccepted, setIsCookiesAccepted] =
@@ -78,7 +80,7 @@ const Hero: React.FC = () => {
             type="submit" // Встановити тип кнопки як submit
             className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
           >
-            <Link href={'/candidates'}>
+            <Link href={`${locale}/candidates`}>
               <SearchIcon className="text-gray-500 absolute left-3 top-5" />
               {t('search')}
             </Link>

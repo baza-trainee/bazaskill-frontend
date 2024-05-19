@@ -8,7 +8,6 @@ import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { constants } from '@/constants';
 import { defaultValues } from '../partners/defaultValues';
 import { partnersScheme } from './partnersScheme';
 import {
@@ -17,13 +16,8 @@ import {
   useForm,
 } from 'react-hook-form';
 import PageTitle from '../ui/PageTitle';
-
-import {
-  createPartners,
-  getPartners,
-} from '@/api/partners';
+import { createPartners } from '@/api/partners';
 import SuccessAlert from '../alerts/SuccessAlert';
-import { useQuery } from '@tanstack/react-query';
 
 const AddPartners = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -35,11 +29,6 @@ const AddPartners = () => {
     setFile(selectedFile);
   };
 
-  const { data } = useQuery({
-    queryKey: [constants.partners.ADD_PARTNERS],
-    queryFn: getPartners,
-  });
-  console.log(data);
   const {
     handleSubmit,
     control,
