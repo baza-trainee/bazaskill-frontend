@@ -103,7 +103,6 @@ const Candidates = () => {
           return matchesCountry && matchesSpeciality;
         }
       );
-      console.log(filtered);
       setFilteredCandidates(filtered || []);
     }
   }, [speciality, country, candidates.data]);
@@ -132,16 +131,32 @@ const Candidates = () => {
     setFilterBySpeciality('');
     setFilterByStack([]);
 
-    const selectedWorkFormat: string =
-      data.occupation || '';
-    const selectedLanguage: string = data.language || '';
+    const selectedWorkFormat: string[] =
+      data.occupation || [];
+    const selectedLanguage: string[] = data.language || [];
     const selectedStack: string[] = data.stack || [];
-    const selectedStatus: string = data.status || '';
-    const selectExperience: string = data.projects || '';
-    const selectGraduate: string = data.graduate || '';
+    const selectedStatus: string[] = data.status || [];
+    const selectExperience: string[] = data.projects || [];
+    const selectGraduate: string[] = data.graduate || [];
     const inputSallary: { from: string; to: string } =
       data.sallary || { from: '', to: '' };
-    const filtered = candidates.data?.filter(
+
+    const noFiltersApplied =
+      !selectedWorkFormat.length &&
+      !selectedLanguage.length &&
+      !selectedStack.length &&
+      !selectedStatus.length &&
+      !selectExperience.length &&
+      !selectGraduate.length &&
+      !inputSallary.from &&
+      !inputSallary.to;
+
+    if (noFiltersApplied) {
+      setFilteredCandidates(candidates.data || []);
+      return;
+    }
+
+    const filtered = filteredCandidates?.filter(
       (candidate) => {
         const candidateGraduate = candidate.gradaute;
         const hasSelectedGraduate =
@@ -164,28 +179,31 @@ const Candidates = () => {
           );
 
         const candidateExperience =
-          candidate.baza_experience?.length;
-        const selectedExperienceLevel = parseInt(
-          selectExperience
-        );
+          candidate.baza_experience?.length || 0;
+        const selectedExperienceLevel =
+          selectExperience.length > 0
+            ? parseInt(selectExperience[0])
+            : null;
 
-        let hasExperience;
-        if (selectedExperienceLevel <= 3) {
-          hasExperience =
-            candidateExperience === selectedExperienceLevel;
-        }
-        if (selectedExperienceLevel >= 4) {
-          hasExperience = candidateExperience >= 4;
+        let hasExperience = true;
+        if (selectedExperienceLevel !== null) {
+          if (selectedExperienceLevel <= 3) {
+            hasExperience =
+              candidateExperience ===
+              selectedExperienceLevel;
+          } else if (selectedExperienceLevel >= 4) {
+            hasExperience = candidateExperience >= 4;
+          }
         }
 
         const candidateLanguages =
-          candidate.candidate_language;
+          candidate.candidate_language || [];
         const hasSelectedLanguages =
-          candidateLanguages.some((lang) => {
-            const hasSelectedLanguage =
-              lang.language.includes(selectedLanguage);
-            return hasSelectedLanguage;
-          });
+          selectedLanguage.length > 0
+            ? candidateLanguages.some((lang) =>
+                selectedLanguage.includes(lang.language)
+              )
+            : true;
         const candidateWorkFormat = candidate.work_format;
         const hasSelectedWorkFormat =
           selectedWorkFormat.includes(candidateWorkFormat);
