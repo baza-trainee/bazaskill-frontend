@@ -10,7 +10,6 @@ const useSwiperParams = () => {
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      console.log('Window Width:', windowWidth);
       if (windowWidth >= 320 && windowWidth < 420) {
         setSwiperParams({
           spaceBetween: 0,
