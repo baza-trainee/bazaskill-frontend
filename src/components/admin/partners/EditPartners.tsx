@@ -43,9 +43,8 @@ const EditPartners = () => {
   const {
     handleSubmit,
     control,
-    reset,
     setValue,
-    formState: { isDirty, errors },
+    formState: { errors },
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
@@ -157,7 +156,10 @@ const EditPartners = () => {
         {isSuccess && (
           <SuccessAlert
             title="Партнера оновлено"
-            onClose={() => setIsSuccess(false)}
+            onClose={() => {
+              setIsSuccess(false);
+              router.push('/admin/partners');
+            }}
             isSuccess={isSuccess}
           />
         )}
