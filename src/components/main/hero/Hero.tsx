@@ -13,7 +13,6 @@ import TextInput from '../ui/TextInput';
 import DesktopIcon from '@/components/icons/DesktopIcon';
 import Pointer from '@/components/icons/Pointer';
 import SearchIcon from '@/components/icons/SearchIcon';
-// import HeroTitle from './HeroTitle';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 
@@ -81,20 +80,16 @@ const Hero: React.FC = () => {
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
         {isCookiesAccepted ? (
-          <button
-            disabled={!isCookiesAccepted}
-            type="submit" // Встановити тип кнопки як submit
-            className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
+          <Link
+            href={`${locale}/candidates`}
+            className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
           >
-            <Link href={`${locale}/candidates`}>
-              <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-              {t('search')}
-            </Link>
-          </button>
+            <SearchIcon className="text-gray-500 absolute left-3 top-6" />
+            <span>{t('search')}</span>
+          </Link>
         ) : (
           <button
             disabled={!isCookiesAccepted}
-            type="submit" // Встановити тип кнопки як submit
             className="main-gradient relative items-center px-6 py-4 text-xl font-medium  xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
           >
             <SearchIcon className="text-gray-500 absolute left-3 top-5" />
