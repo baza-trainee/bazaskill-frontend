@@ -22,6 +22,7 @@ const FiltersSpecializationMenu = ({
     ],
     queryFn: getSpecializationsWithStack,
   });
+
   return (
     <div className=" flex flex-col gap-[20px] font-sans text-sm sm:text-base">
       <h3 className="tracking-wide">{t('stack')}</h3>

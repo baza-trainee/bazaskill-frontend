@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { RefObject, useCallback, useRef } from 'react';
 import {
   Swiper,
@@ -12,7 +13,6 @@ import { Testimonial } from '@/types/testimonials';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
-import TestimonialCard from './TestimonialCard';
 import ButtonRight from '@/components/icons/ButtonRight';
 import ButtonLeft from '@/components/icons/ButtonLeft';
 import 'swiper/css';
@@ -20,6 +20,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './testimonials_styles.css';
+
+const DynamicCard = dynamic(
+  () => import('./TestimonialCard'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 const Testimonials = () => {
   const t = useTranslations('Main.testimonials');
@@ -71,7 +78,7 @@ const Testimonials = () => {
                 className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
                 key={item.id}
               >
-                <TestimonialCard item={item} />
+                <DynamicCard item={item} />
               </SwiperSlide>
             ))}
         </Swiper>
