@@ -11,7 +11,7 @@ const ACCEPTED_IMAGE_TYPES = [
 ];
 
 const nonRussianLettersPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-@!?#$%&*(){}[\]`’—\-+<>.,?/|0-9]+$/;
 
 const linkValidation =
   /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(#[-a-z\d_]*)?$/i;
@@ -30,7 +30,6 @@ export const partnersScheme = z.object({
     .any()
     .refine(
       (value) => {
-        console.log('Uploaded File:', value);
         if (!value || !value.length) {
           return true;
         }
