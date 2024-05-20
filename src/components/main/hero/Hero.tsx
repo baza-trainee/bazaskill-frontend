@@ -1,19 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import TextInput from '../ui/TextInput';
-import DesktopIcon from '@/components/icons/DesktopIcon';
-import Pointer from '@/components/icons/Pointer';
-import SearchIcon from '@/components/icons/SearchIcon';
-import HeroTitle from './HeroTitle';
+import dynamic from 'next/dynamic';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializations } from '@/api/specialization';
 import { useTranslations } from 'next-intl';
 import { useCookies } from '@/stores/useCookies';
 import { useLocale } from 'next-intl';
+
+import TextInput from '../ui/TextInput';
+import DesktopIcon from '@/components/icons/DesktopIcon';
+import Pointer from '@/components/icons/Pointer';
+import SearchIcon from '@/components/icons/SearchIcon';
+// import HeroTitle from './HeroTitle';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+
+const DynamicHeroTitle = dynamic(
+  () => import('./HeroTitle')
+);
 
 const Hero: React.FC = () => {
   const locale = useLocale();
@@ -44,7 +50,7 @@ const Hero: React.FC = () => {
           </div>
         </span>
         <div className="main-gradient flex-1 bg-clip-text text-transparent xs:text-[40px] md:text-start xl:text-[64px]">
-          <HeroTitle />
+          <DynamicHeroTitle />
         </div>
       </div>
       <form className="flex flex-col xs:gap-3 md:flex-row md:gap-0">

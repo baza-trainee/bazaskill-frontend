@@ -14,6 +14,8 @@ const Help = () => {
     queryFn: getImages,
   });
 
+  console.log(data);
+
   const isExtraLargeScreen = useMediaQuery(
     '(min-width: 1280px)'
   );
