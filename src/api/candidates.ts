@@ -119,7 +119,7 @@ export const createCandidate = async (values: any) => {
     sallary_to: values.data.salary_to,
     specialization: values.data.specialization,
     cv: cvResponse
-      ? transformCvUrl(cvResponse.data.url)
+      ? transformCvUrl(cvResponse.data.secure_url)
       : '',
     cv_id: cvResponse ? cvResponse.data.public_id : '',
     stack: values.stack.map((item: IStack) => item.id),
@@ -133,7 +133,7 @@ export const createCandidate = async (values: any) => {
         graduate_end: item.graduate_end,
         graduate_sertificate:
           graduateResponse && graduateResponse.data[index]
-            ? graduateResponse.data[index].url
+            ? graduateResponse.data[index].secure_url
             : '',
         graduate_sertificate_id:
           graduateResponse && graduateResponse.data[index]
@@ -149,7 +149,7 @@ export const createCandidate = async (values: any) => {
         cources_end: cource.cources_end,
         cources_sertificate:
           courcesResponse && courcesResponse.data[index]
-            ? courcesResponse.data[index].url
+            ? courcesResponse.data[index].secure_url
             : '',
         cources_sertificate_id:
           courcesResponse && courcesResponse.data[index]
@@ -277,7 +277,7 @@ export const updateCandidate = async (
     sallary_to: values.currentValues.salary_to,
     specialization: values.currentValues.specialization,
     cv: cvResponse
-      ? transformCvUrl(cvResponse.data.url)
+      ? transformCvUrl(cvResponse.data.secure_url)
       : values.currentValues.cv[0].name,
     cv_id: cvResponse
       ? cvResponse.data.public_id
@@ -295,7 +295,7 @@ export const updateCandidate = async (
           graduateResponse && graduateResponse.data[index]
             ? graduateResponse.data[index].url
             : item.graduate_sertificate[0].size > 0
-              ? graduateResponse.data[0].url
+              ? graduateResponse.data[0].secure_url
               : item.graduate_sertificate.length
                 ? item.graduate_sertificate[0].name
                 : '',
@@ -320,7 +320,7 @@ export const updateCandidate = async (
           courcesResponse && courcesResponse.data[index]
             ? courcesResponse.data[index].url
             : cource.cources_sertificate[0].size > 0
-              ? courcesResponse.data[0].url
+              ? courcesResponse.data[0].secure_url
               : cource.cources_sertificate.length
                 ? cource.cources_sertificate[0].name
                 : '',
