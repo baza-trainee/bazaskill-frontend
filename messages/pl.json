@@ -187,21 +187,21 @@
     },
     "format": {
       "title": "Forma pracy",
-      "item_1": "Zdalny",
+      "item_1": "Zdalna",
       "item_2": "W biurze",
-      "item_3": "Hybrydowy",
+      "item_3": "Hybrydowa",
       "item_4": "Zatrudnienie w niepełnym wymiarze godzin"
     },
     "language": {
       "title": "Język",
-      "item_1": "Język angielski",
+      "item_1": "Angielski",
       "item_2": "Polski",
       "item_3": "Niemiecki"
     },
     "education": {
       "title": "Edukacja",
       "item_1": "Wykształcenie średnie zawodowe",
-      "item_2": "Wyższy",
+      "item_2": "Wyższa",
       "item_3": "Kursy"
     },
     "salary": "Wynagrodzenie",
