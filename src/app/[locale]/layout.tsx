@@ -1,19 +1,18 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
-import './globals.css';
 import { Providers } from './provider';
-import Footer from '@/components/main/footer/Footer';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-import { constants } from '@/constants';
-import { getSpecializationsWithStack } from '@/api/specialization';
+import dynamic from 'next/dynamic';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import Header from '@/components/main/header/Header';
+import './globals.css';
+
+const DynamicHeader = dynamic(
+  () => import('@/components/main/header/Header')
+);
+const DynamicFooter = dynamic(
+  () => import('@/components/main/footer/Footer')
+);
 
 const open_sans = Open_Sans({
   weight: '400',
@@ -69,14 +68,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
-    queryKey: [
-      constants.specialization
-        .FETCH_SPECIALIZATIONS_WITH_STACK,
-    ],
-    queryFn: getSpecializationsWithStack,
-  });
   const messages = await getMessages();
 
   return (
@@ -86,20 +77,15 @@ export default async function RootLayout({
       >
         <Providers locale={locale}>
           <header className="bg-graphite">
-            <HydrationBoundary
-              state={dehydrate(queryClient)}
-            >
-              <Header />
-            </HydrationBoundary>
+            <DynamicHeader />
           </header>
           <NextIntlClientProvider
             locale={locale}
             messages={messages}
           >
             <main>{children}</main>
-
             <footer className="bg-graphite">
-              <Footer />
+              <DynamicFooter />
             </footer>
           </NextIntlClientProvider>
         </Providers>

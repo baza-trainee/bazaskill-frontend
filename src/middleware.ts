@@ -18,8 +18,8 @@ export default function (req: NextRequest): NextResponse {
 export const config = {
   // Match only internationalized pathnames
   matcher: [
-    '/',
-    '/(ua|en|pl)/:path*',
-    '/((?!_next|_vercel|.*\\..*).*)',
+    '/', // Root path
+    '/(ua|en|pl)/:path*', // Internationalized paths
+    '/((?!_next|_vercel|.*\\..*).*)', // Exclude special paths and files with extensions
   ],
 };

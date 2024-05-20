@@ -1,13 +1,18 @@
 'use client';
 
-import PostsCarousel from './PostsSwiper';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getPosts } from '@/api/posts';
+import PostsCarousel from './PostsSwiper';
 
-import Post from '@/components/admin/posts/Post';
+const DynamicPost = dynamic(
+  () => import('@/components/admin/posts/Post'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 const Posts = () => {
   const t = useTranslations('Main.articles');
@@ -26,7 +31,7 @@ const Posts = () => {
         {data?.length
           ? data?.slice(0, 3).map((post) => {
               return (
-                <Post
+                <DynamicPost
                   key={post.id}
                   {...post}
                   isAdmin={false}
