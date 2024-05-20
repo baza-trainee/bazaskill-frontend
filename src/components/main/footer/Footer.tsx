@@ -90,10 +90,10 @@ const Footer = () => {
 
   return (
     <div
-      className="pt-20m container relative flex flex-col justify-center bg-darkGraphite 
-       xs:pt-[40px] sm:block md:pt-12 xl:pt-12 2xl:pt-12"
+      className="pt-20m container relative flex flex-col justify-center 
+      bg-darkGraphite xs:pt-[40px] sm:block md:pt-12 xl:pt-12 2xl:pt-12"
     >
-      <div className="mx-auto flex justify-start xs:block sm:block md:mb-[10px] md:flex">
+      <div className=" mx-auto flex justify-start xs:block sm:block md:mb-[10px] md:flex">
         <div className="w-110 5xl:ml-40px transition-all md:mr-[80px]">
           <a
             href="/"
@@ -106,6 +106,7 @@ const Footer = () => {
             {t('offer')}
           </h3>
         </div>
+
         <div className="ml-[292px] mr-[90px] flex-col text-white xs:ml-0 xs:mr-0 xs:flex sm:ml-0 sm:mr-0 md:ml-[0] md:mr-[50px] md:w-[300px] md:items-start xl:ml-[180px] xl:mr-[100px] 2xl:ml-[230px] 2xl:mr-[290px] 4xl:ml-[300px] 4xl:mr-[350px] 5xl:ml-[485px] 5xl:mr-[340px] ">
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
@@ -124,13 +125,14 @@ const Footer = () => {
             {t('to_become_hr')}
           </button>
           <button
-            className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
+            className={`inline-block whitespace-nowrap py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
             onClick={() => openModal('partner')}
             disabled={!isCookiesAccepted}
           >
             {t('to_become_partner')}
           </button>
         </div>
+
         <div className="flex-col items-center xs:flex sm:flex sm:items-center md:w-[350px] md:items-start md:text-base 2xl:w-[400px] 5xl:w-[300px]">
           <FooterLink href="https://baza-trainee.tech/ua">
             Baza Trainee Ukraine
@@ -141,7 +143,8 @@ const Footer = () => {
           <FooterLink href="/">{t('poligon')}</FooterLink>
         </div>
       </div>
-      <div className="flex xs:flex-col-reverse xs:py-[20px] sm:flex-col-reverse md:flex-col-reverse md:leading-3 xl:flex xl:flex-row">
+
+      <div className="flex xs:flex-col-reverse xs:py-[20px] sm:flex-col-reverse md:mr-[6px] md:flex-col-reverse md:leading-3 xl:flex xl:flex-row">
         <div className="flex-col items-center justify-center sm:flex md:flex md:flex-row xl:ml-[60px] xl:mr-[30px] 2xl:ml-[36px] 2xl:mr-[55px] 3xl:mr-[55px] 4xl:mr-[122px] 5xl:mr-[306px]">
           <p className="mr-36  justify-center font-sans text-sm font-normal leading-4 text-white xs:mr-0 xs:flex xs:text-lg sm:mr-0 md:mr-[4px] md:flex md:justify-center md:text-nowrap xl:mr-[4px] ">
             {t('development')} Baza Trainee Ukraine 2024
@@ -151,7 +154,8 @@ const Footer = () => {
             {t('rights')}
           </p>
         </div>
-        <div className="xs:mb-[25px] md:mb-[10px] md:flex md:justify-center xl:mb-[0px]">
+
+        <div className="flex-1 xs:mb-[25px] md:mb-[10px] md:flex md:justify-between xl:mb-[0px]">
           {isCookiesAccepted ? (
             <a
               className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
@@ -168,7 +172,7 @@ const Footer = () => {
           )}
           {isCookiesAccepted ? (
             <a
-              className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]"
+              className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:mr-[45px] md:text-nowrap md:leading-8 md:decoration-[0px]"
               target="_blank"
               rel="noopener noreferrer"
               href={termsOfUse?.document_url}
@@ -176,7 +180,7 @@ const Footer = () => {
               {t('terms_of_use')}
             </a>
           ) : (
-            <span className="gray-700 inline-block justify-center font-sans text-sm text-white transition-all  xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]">
+            <span className="gray-700 mr-[40px] inline-block justify-center font-sans text-sm text-white transition-all  xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]">
               {t('terms_of_use')}
             </span>
           )}

@@ -4,7 +4,7 @@ import {
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { getCandidateById } from '@/api/candidates';
+import { getAllCandidates } from '@/api/candidates';
 import { useModal } from '@/stores/useModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { CandidatesResponse } from '@/types/candidates';
@@ -14,18 +14,19 @@ import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
 import Loader from '@/components/admin/ui/Loader';
 import RegisterModal from '@/components/main/modals/RegisterModal';
 import RegisterHrForm from '@/components/main/modals/forms/register_hr/RegisterHrForm';
-import { useEffect, useState } from 'react';
 
 const CandidatePageComponent = ({ id }: { id: string }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const candidate: UseQueryResult<
-    CandidatesResponse,
+  const candidates: UseQueryResult<
+    CandidatesResponse[],
     Error
   > = useQuery({
-    queryKey: [constants.candidates.FETCH_CANDIDATE_BY_ID],
-    queryFn: () => getCandidateById(id),
-    staleTime: 1000,
+    queryKey: [constants.candidates.FETCH_ALL_CANDIDATES],
+    queryFn: getAllCandidates,
   });
+
+  const candidate = candidates.data?.find(
+    (candidate) => candidate.id.toString() === id
+  );
 
   const isModalOpen = useModal(
     (state) => state.isModalOpen
@@ -33,24 +34,20 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
 
   const { closeModal } = useModal();
 
-  useEffect(() => {
-    if (candidate.status === 'success') {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-    }
-  }, [candidate.status]);
-
   const modalType = useModal((state) => state.modalType);
 
   useBodyScrollLock(isModalOpen);
 
-  if (isLoading) return <Loader />;
+  if (candidates.status === 'pending') return <Loader />;
 
   return (
     <div className="bg-graphite">
-      <CandidateHero candidate={candidate.data!} />
-      <MainInfo candidate={candidate.data!} />
+      <CandidateHero
+        candidate={candidate as CandidatesResponse}
+      />
+      <MainInfo
+        candidate={candidate as CandidatesResponse}
+      />
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>
           <RegisterHrForm />
