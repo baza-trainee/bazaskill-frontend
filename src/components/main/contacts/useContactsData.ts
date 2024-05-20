@@ -54,10 +54,10 @@ export const useContactsData = () => {
   ];
 
   const socialLinks: ISocialLinks[] = [
-    {
-      icon: 'instagram',
-      link: contact?.instagram,
-    },
+    // {
+    //   icon: 'instagram',
+    //   link: contact?.instagram,
+    // },
     {
       icon: 'lnkedIn',
       link: contact?.linkedin,

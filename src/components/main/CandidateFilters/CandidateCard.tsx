@@ -50,14 +50,14 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex min-w-[60%] items-center gap-[8px]">
+        <span className="flex min-w-[65%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
           {candidate.city},&nbsp;{candidate.country}
         </span>
 
-        <span className="flex w-[50%] items-center gap-[8px]">
+        <span className="flex w-[45%] items-center gap-[8px]">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-lang"></use>
           </svg>
@@ -76,7 +76,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </div>
 
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex min-w-[60%] items-center gap-[8px] text-nowrap">
+        <span className="flex min-w-[65%] items-center gap-[8px] text-nowrap">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-experience"></use>
           </svg>
@@ -91,7 +91,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           {t('baza')}
         </span>
 
-        <span className="flex w-[50%] items-center gap-[8px] ">
+        <span className="flex min-w-[45%] items-center gap-[8px] ">
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-point"></use>
           </svg>

@@ -14,14 +14,17 @@ import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
 import Loader from '@/components/admin/ui/Loader';
 import RegisterModal from '@/components/main/modals/RegisterModal';
 import RegisterHrForm from '@/components/main/modals/forms/register_hr/RegisterHrForm';
+import { useEffect, useState } from 'react';
 
 const CandidatePageComponent = ({ id }: { id: string }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const candidate: UseQueryResult<
     CandidatesResponse,
     Error
   > = useQuery({
     queryKey: [constants.candidates.FETCH_CANDIDATE_BY_ID],
     queryFn: () => getCandidateById(id),
+    staleTime: 1000,
   });
 
   const isModalOpen = useModal(
@@ -30,13 +33,19 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
 
   const { closeModal } = useModal();
 
-  const modalType = useModal((state) => state.modalType);
+  useEffect(() => {
+    if (candidate.status === 'success') {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+    }
+  }, [candidate.status]);
 
-  console.log(isModalOpen);
+  const modalType = useModal((state) => state.modalType);
 
   useBodyScrollLock(isModalOpen);
 
-  if (candidate.status === 'pending') return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="bg-graphite">
