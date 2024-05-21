@@ -7,7 +7,6 @@ import { documentsScheme } from './documentsScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import { defaultValues } from './defaultValues';
 import Loader from '../ui/Loader';
 import PageTitle from '../ui/PageTitle';
 import FileInputDoc from '../ui/FileInputDoc';
@@ -40,7 +39,10 @@ const DocumentsPage = () => {
   } = useForm<z.infer<typeof documentsScheme>>({
     resolver: zodResolver(documentsScheme),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues: {
+      terms_of_use: [],
+      privacy_policy: [],
+    },
   });
 
   const handleClose = () => {

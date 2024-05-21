@@ -1,4 +1,3 @@
-// selectStyles.ts
 import { StylesConfig } from 'react-select';
 
 export const selectStyles: StylesConfig = {
@@ -30,7 +29,6 @@ export const selectStyles: StylesConfig = {
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused ? '#e3e3e3' : 'white',
-    // padding: '7px 20px',
     rounded: 'md',
     cursor: 'pointer',
     borderBottom: '1px solid #787878',
