@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-// import HelpList from './helpList/HelpList';
 import HelpSpecialist from './helpSpecialist/HelpSpecialist';
 import { useMediaQuery } from '@react-hook/media-query';
 import { getImages } from '@/api/gallery';

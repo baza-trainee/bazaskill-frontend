@@ -1,10 +1,5 @@
+/* eslint-disable no-unused-vars */
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import {
-  DeepMap,
-  FieldError,
-  FieldErrors,
-  FieldValues,
-} from 'react-hook-form';
 
 interface IFileInputProps {
   onChange: (files: FileList) => void;

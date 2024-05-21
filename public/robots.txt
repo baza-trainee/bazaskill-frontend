@@ -1,0 +1,16 @@
+User-Agent: *
+Allow: /
+Allow: /ua
+Allow: /en
+Allow: /pl
+Disallow: /admin
+Disallow: /ua/admin
+Disallow: /en/admin
+Disallow: /pl/admin
+Disallow: /admin
+Disallow: /api
+Disallow: /public/
+Disallow: /login
+
+Sitemap: http://localhost:3000/ua/sitemap.xml
+# Sitemap: https://baza-skill.com.ua/ua/sitemap.xml

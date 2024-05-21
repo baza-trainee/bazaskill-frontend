@@ -14,7 +14,6 @@ import {
   FieldValues,
   UseFieldArrayReturn,
 } from 'react-hook-form';
-import FileInput from './FileInput';
 import TextInput from './TextInput';
 
 interface IBazaExperienceProps {

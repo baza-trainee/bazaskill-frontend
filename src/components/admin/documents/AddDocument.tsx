@@ -5,7 +5,6 @@ import * as z from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { documentsScheme } from './documentsScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { defaultValues } from './defaultValues';
 import PageTitle from '../ui/PageTitle';
 import FileInputDoc from '../ui/FileInputDoc';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
@@ -27,7 +26,10 @@ const AddDocument = () => {
   } = useForm<z.infer<typeof documentsScheme>>({
     resolver: zodResolver(documentsScheme),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues: {
+      terms_of_use: [],
+      privacy_policy: [],
+    },
   });
 
   const handleClose = () => {

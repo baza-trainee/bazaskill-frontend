@@ -18,10 +18,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
       lastModified: new Date(),
+      alternates: {
+        languages: {
+          uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua`,
+          en: `${process.env.NEXT_PUBLIC_BASE_URL}/en`,
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl`,
+        },
+      },
     },
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/candidates`,
       lastModified: new Date(),
+      alternates: {
+        languages: {
+          uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/candidates`,
+          en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/candidates`,
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/candidates`,
+        },
+      },
     },
     ...candidatesEntries,
   ];

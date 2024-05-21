@@ -8,7 +8,6 @@ import {
   DeepMap,
   FieldError,
 } from 'react-hook-form';
-import { defaultValues } from './defaultValues';
 import schema from './schema';
 import { getSpecializations } from '@/api/specialization';
 import { ISpecialization } from '@/types/specialization';
@@ -65,7 +64,10 @@ const AddStackModal = () => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: defaultValues,
+    defaultValues: {
+      specialization_id: '',
+      title: '',
+    },
     mode: 'onChange',
   });
 

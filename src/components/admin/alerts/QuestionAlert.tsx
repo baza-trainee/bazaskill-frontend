@@ -3,7 +3,7 @@ import CloseIcon from './CloseIcon';
 
 type AlertProps = {
   title: string;
-  onCancel?: () => void; // Додайте знак питання, щоб зробити onCancel необов'язковим
+  onCancel?: () => void;
   onConfirm: () => void;
 };
 

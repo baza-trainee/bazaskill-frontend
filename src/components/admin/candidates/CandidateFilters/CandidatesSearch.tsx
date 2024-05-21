@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { ChangeEvent, useState } from 'react';
 
 const CandidatesSearch = ({
