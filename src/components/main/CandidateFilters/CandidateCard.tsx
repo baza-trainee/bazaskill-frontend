@@ -18,7 +18,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
     return `${word.slice(0, 9)}...`;
   };
   return (
-    <div className="relative box-border flex h-[486px] w-full max-w-[342px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px] sm:max-w-[442px] md:w-[442px] md:max-w-[442px]">
+    <div className="relative box-border flex h-[486px] w-full max-w-[342px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-4 py-[32px] sm:max-w-[442px] md:w-[442px] md:max-w-[442px]">
       <div
         className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[142px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
@@ -50,18 +50,26 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex min-w-[65%] items-center gap-[8px]">
-          <svg width={20} height={20}>
+        <span className="flex min-w-[65%] items-center gap-[4px]">
+          <svg
+            width={20}
+            height={20}
+            className="min-w-[20px]"
+          >
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
-          {candidate.city},
+          {candidate.city}
           <span className="hidden sm:block">
-            {candidate.country}
+            {`,${candidate.country}`}
           </span>
         </span>
 
-        <span className="flex w-[45%] items-center gap-[8px]">
-          <svg width={20} height={20}>
+        <span className="flex w-[45%] items-center gap-[4px]">
+          <svg
+            width={20}
+            height={20}
+            className="min-w-[20px]"
+          >
             <use href="/Icons/sprite.svg#icon-lang"></use>
           </svg>
           {candidate.candidate_language.map(
@@ -79,8 +87,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </div>
 
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex min-w-[65%] items-center gap-[8px] text-nowrap">
-          <svg width={20} height={20}>
+        <span className="flex min-w-[65%] items-center gap-[4px] text-nowrap">
+          <svg
+            width={20}
+            height={20}
+            className="min-w-[20px]"
+          >
             <use href="/Icons/sprite.svg#icon-experience"></use>
           </svg>
           {candidate.baza_experience.length}{' '}
@@ -94,8 +106,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           {t('baza')}
         </span>
 
-        <span className="flex min-w-[45%] items-center gap-[8px] ">
-          <svg width={20} height={20}>
+        <span className="flex min-w-[35%] items-center gap-[4px] ">
+          <svg
+            width={20}
+            height={20}
+            className="min-w-[20px]"
+          >
             <use href="/Icons/sprite.svg#icon-point"></use>
           </svg>
           <span className="">
