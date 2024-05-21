@@ -18,7 +18,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
     return `${word.slice(0, 9)}...`;
   };
   return (
-    <div className="relative box-border flex h-[486px] w-[442px] max-w-[442px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px]">
+    <div className="relative box-border flex h-[486px] w-full max-w-[342px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-[40px] py-[32px] sm:max-w-[442px] md:w-[442px] md:max-w-[442px]">
       <div
         className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[142px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
@@ -45,7 +45,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
         <h3 className="w-[63%]">{candidate.name}</h3>
-        <span className="w-[37%]">
+        <span className="w-[37%] whitespace-nowrap">
           ID {candidate.uniqueId}
         </span>
       </div>
@@ -54,7 +54,10 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           <svg width={20} height={20}>
             <use href="/Icons/sprite.svg#icon-place"></use>
           </svg>
-          {candidate.city},&nbsp;{candidate.country}
+          {candidate.city},
+          <span className="hidden sm:block">
+            {candidate.country}
+          </span>
         </span>
 
         <span className="flex w-[45%] items-center gap-[8px]">
@@ -140,7 +143,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           <Link
             href={`/${locale}/candidate/${candidate.id}`}
           >
-            <button className="flex h-[44px] w-[133px] items-center justify-center rounded bg-white p-4 font-semibold text-black sm:w-[180px]">
+            <button className="flex h-[44px] w-[133px] items-center justify-center whitespace-nowrap rounded bg-white p-4 font-semibold text-black sm:w-[180px]">
               {t('button')}
             </button>
           </Link>
