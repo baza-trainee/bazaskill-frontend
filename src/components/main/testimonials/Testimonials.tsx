@@ -24,7 +24,7 @@ import './testimonials_styles.css';
 const DynamicCard = dynamic(
   () => import('./TestimonialCard'),
   {
-    loading: () => <p>Loading...</p>,
+    loading: () => null,
   }
 );
 
