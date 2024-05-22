@@ -51,6 +51,12 @@ const Cards = () => {
     }
   };
 
+  const handleAmount = () => {
+    alert(
+      'Максимальна кількість карток для відображення на головній сторінці це 6'
+    );
+  };
+
   return (
     <div className="relative relative p-[24px]">
       <PageTitle title="Топ учасникі"></PageTitle>
@@ -61,12 +67,21 @@ const Cards = () => {
           <div
             className={`flex w-full flex-col items-center justify-center`}
           >
-            <Link
-              href={'/admin/cards/add'}
-              className="flex flex-col items-center"
-            >
-              <PlusIcon />
-            </Link>
+            {(data?.length as number) < 6 ? (
+              <Link
+                href={'/admin/cards/add'}
+                className="flex flex-col items-center"
+              >
+                <PlusIcon />
+              </Link>
+            ) : (
+              <button
+                onClick={handleAmount}
+                className="flex flex-col items-center"
+              >
+                <PlusIcon />
+              </button>
+            )}
           </div>
         </div>
         {data &&

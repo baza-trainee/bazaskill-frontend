@@ -38,13 +38,13 @@ const ContentCards = () => {
         >
           {data &&
             Array.isArray(data) &&
-            data.map((card) => (
+            data.map((card, index) => (
               <SwiperSlide
                 key={card.id}
                 className={`flex rounded-md border border-[#7EFE92] bg-[#2C2C2C]
                           p-6 text-white xs:max-w-48 
                           xl:max-w-[218px]
-                          ${card.id % 2 == 0 ? 'mt-[46px]' : 'mb-[46px]'}`}
+                          ${index % 2 == 0 ? 'mt-[46px]' : 'mb-[46px]'}`}
               >
                 <div
                   className={`flex flex-col items-center`}

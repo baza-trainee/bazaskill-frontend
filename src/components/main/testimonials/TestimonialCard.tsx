@@ -15,7 +15,7 @@ const TestimonialCard = ({
           alt={item.name_ua}
           width={122}
           height={122}
-          className="h-[90px] w-[90px] rounded-[8px] xl:h-[122px] xl:w-[122px]"
+          className="h-[90px] w-[90px] rounded-[8px] object-cover xl:h-[122px] xl:w-[122px]"
         />
         <div className="text-start">
           <h4 className="font-tahoma font-bold tracking-[.72px] text-white md:mb-[15px] md:text-[20px]  xl:text-[24px] xl:leading-[1.5]">

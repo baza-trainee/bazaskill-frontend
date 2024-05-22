@@ -67,8 +67,6 @@ const EditTestimonial = () => {
       setValue('review_ua', data.review_ua);
       setValue('review_en', data.review_en);
       setValue('review_pl', data.review_pl);
-    }
-    if (data) {
       setValue('file', data.file, {
         shouldValidate: false,
         shouldDirty: true,
