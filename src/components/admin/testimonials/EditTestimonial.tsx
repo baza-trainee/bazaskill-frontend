@@ -58,20 +58,19 @@ const EditTestimonial = () => {
   });
 
   useEffect(() => {
-    if (data) {
-      setValue('name_ua', data.name_ua);
-      setValue('name_en', data.name_en);
-      setValue('name_pl', data.name_pl);
-      setValue('position', data.position);
-      setValue('date', data.date);
-      setValue('review_ua', data.review_ua);
-      setValue('review_en', data.review_en);
-      setValue('review_pl', data.review_pl);
-      setValue('file', data.file, {
-        shouldValidate: false,
-        shouldDirty: true,
-      });
-    }
+    if (!data) return;
+    setValue('name_ua', data.name_ua);
+    setValue('name_en', data.name_en);
+    setValue('name_pl', data.name_pl);
+    setValue('position', data.position);
+    setValue('date', data.date);
+    setValue('review_ua', data.review_ua);
+    setValue('review_en', data.review_en);
+    setValue('review_pl', data.review_pl);
+    setValue('file', data.file, {
+      shouldValidate: false,
+      shouldDirty: true,
+    });
   }, [data, file, setValue]);
 
   const onSubmit: SubmitHandler<
@@ -285,7 +284,7 @@ const EditTestimonial = () => {
       </div>
       {isSuccess && (
         <SuccessAlert
-          title="Новий відгук додано"
+          title="Відгук успішно змінено"
           onClose={() => setIsSuccess(false)}
           isSuccess={isSuccess}
         />

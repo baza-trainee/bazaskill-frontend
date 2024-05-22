@@ -20,20 +20,38 @@ const Testimonials = () => {
     refetch();
   };
 
+  const handleAmount = () => {
+    alert(
+      'Максимальна кількість відгуків для відображення на головній сторінці це 6'
+    );
+  };
+
   return (
     <div className=" relative h-[100vh] max-h-[100vh]  px-6 pt-[40px]">
       <div className="mb-[50px]">
         <PageTitle title="Відгуки" />
       </div>
-      <Link
-        href="/admin/testimonials/add"
-        className="mb-[50px]  flex min-h-[100px] w-[286px]  items-center gap-4 rounded-[6px] p-[20px] [border:2px_solid_#fefffe]"
-      >
-        <PlusIcon className="h-[60px] w-[60px] stroke-[#4DC760]" />
-        <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">
-          Додати відгук
-        </p>
-      </Link>
+      {(data?.length as number) < 6 ? (
+        <Link
+          href="/admin/testimonials/add"
+          className="mb-[50px]  flex min-h-[100px] w-[286px]  items-center gap-4 rounded-[6px] p-[20px] [border:2px_solid_#fefffe]"
+        >
+          <PlusIcon className="h-[60px] w-[60px] stroke-[#4DC760]" />
+          <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">
+            Додати відгук
+          </p>
+        </Link>
+      ) : (
+        <button
+          onClick={handleAmount}
+          className="flex flex-col items-center"
+        >
+          <PlusIcon className="h-[60px] w-[60px] stroke-[#4DC760]" />
+          <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">
+            Додати відгук
+          </p>
+        </button>
+      )}
 
       <div className="custom-scrollbar  h-screen max-h-screen w-full  overflow-y-auto">
         <ul>
