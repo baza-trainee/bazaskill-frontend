@@ -95,8 +95,10 @@ export default async function RootLayout({
             locale={locale}
             messages={messages}
           >
-            <main>{children}</main>
-            <footer className="bg-graphite">
+            <main className="min-h-[100vh] bg-graphite">
+              {children}
+            </main>
+            <footer>
               <DynamicFooter />
             </footer>
           </NextIntlClientProvider>
