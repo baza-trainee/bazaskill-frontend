@@ -56,7 +56,7 @@ const TestimonialCard = ({
               alt={item.name_ua}
               width={122}
               height={122}
-              className="h-[90px] w-[90px] rounded-[8px] 5xl:h-[122px] 5xl:w-[122px]"
+              className="h-[90px] w-[90px] rounded-[8px] object-cover 5xl:h-[122px] 5xl:w-[122px]"
             />
           </div>
           <div className="w-[129px] text-start font-['Tahoma',_sans-serif] 4xl:w-[159px]">

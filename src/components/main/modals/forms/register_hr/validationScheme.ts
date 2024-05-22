@@ -60,7 +60,6 @@ export const registerScheme = z.object({
 
   company: z
     .string()
-    .min(2, 'Main.forms.errors.company_min')
     .max(300, 'Main.forms.errors.company_max')
     .refine(
       (value: string) =>
