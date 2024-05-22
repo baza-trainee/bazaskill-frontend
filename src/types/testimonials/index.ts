@@ -47,3 +47,16 @@ export type TestimonialAdmin = {
   image_url: string;
   file?: any;
 };
+
+export type TestimonialPreview = {
+  name_ua: string;
+  name_en?: string | undefined;
+  name_pl?: string | undefined;
+  position: string;
+  review_ua?: string | undefined;
+  review_en?: string | undefined;
+  review_pl?: string | undefined;
+  date: string;
+  file?: File | string;
+  images_url?: string | undefined;
+};

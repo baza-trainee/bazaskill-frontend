@@ -44,7 +44,7 @@ const Testimonials = () => {
       ) : (
         <button
           onClick={handleAmount}
-          className="flex flex-col items-center"
+          className="mb-[50px]  flex min-h-[100px] w-[286px]  items-center gap-4 rounded-[6px] p-[20px] [border:2px_solid_#fefffe]"
         >
           <PlusIcon className="h-[60px] w-[60px] stroke-[#4DC760]" />
           <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">
@@ -53,7 +53,7 @@ const Testimonials = () => {
         </button>
       )}
 
-      <div className="custom-scrollbar  h-screen max-h-screen w-full  overflow-y-auto">
+      <div className="custom-scrollbar  h-screen max-h-[920px] w-full  overflow-y-auto">
         <ul>
           {data?.map((item: Testimonial) => (
             <li key={item.id}>
