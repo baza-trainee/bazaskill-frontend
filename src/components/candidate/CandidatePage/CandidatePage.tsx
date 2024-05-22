@@ -41,7 +41,7 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
   if (candidates.status === 'pending') return <Loader />;
 
   return (
-    <div className="bg-graphite">
+    <div className="min-h-[100vh] bg-graphite">
       <CandidateHero
         candidate={candidate as CandidatesResponse}
       />

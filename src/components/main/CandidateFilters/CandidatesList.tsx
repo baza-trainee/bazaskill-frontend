@@ -22,7 +22,7 @@ const CandidatesList = ({
 
   return (
     <div className="box-content w-full">
-      <div className="ml-2 pb-[40px] pt-[56px] font-tahoma text-[24px] md:pl-[48px] md:pt-0 2xl:pl-[78px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:pl-[88px]">
+      <div className="ml-2 w-full pb-[40px] pt-[56px] font-tahoma text-[24px] md:pl-[48px] md:pt-0 2xl:pl-[78px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:pl-[88px]">
         {candidates?.length}{' '}
         {declineWord(
           candidates.length,
