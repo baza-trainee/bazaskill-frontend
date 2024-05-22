@@ -14,9 +14,6 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
   const t = useTranslations('Candidate');
   const specialization = candidate.specialization.title;
 
-  const shortenWord = (word: string) => {
-    return `${word.slice(0, 9)}...`;
-  };
   return (
     <div className="relative box-border flex h-[486px] w-full max-w-[342px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-4 py-[32px] sm:max-w-[442px] md:w-[442px] md:max-w-[442px]">
       <div
@@ -50,7 +47,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex min-w-[65%] items-center gap-[4px]">
+        <span className="flex min-w-[60%] items-center gap-[8px]">
           <svg
             width={20}
             height={20}
@@ -64,7 +61,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           </span>
         </span>
 
-        <span className="flex w-[45%] items-center gap-[4px]">
+        <span className="flex w-[40%] items-center gap-[8px]">
           <svg
             width={20}
             height={20}
@@ -86,8 +83,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
 
-      <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
-        <span className="flex min-w-[65%] items-center gap-[4px] text-nowrap">
+      <div className="mb-[1rem] flex h-[24px] w-full items-center gap-[12px] font-sans text-[18px]">
+        <span className="flex min-w-[60%] items-center gap-[8px] text-nowrap">
           <svg
             width={20}
             height={20}
@@ -106,7 +103,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           {t('baza')}
         </span>
 
-        <span className="flex min-w-[35%] items-center gap-[4px] ">
+        <span className="flex min-w-[45%] items-center gap-[8px] ">
           <svg
             width={20}
             height={20}
@@ -114,15 +111,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           >
             <use href="/Icons/sprite.svg#icon-point"></use>
           </svg>
-          <span className="">
+          <span className="flex h-auto  w-[75%] items-end">
             {candidate.work_format === 'Remote'
               ? t('format.item_1')
               : candidate.work_format === 'Office'
                 ? t('format.item_2')
                 : candidate.work_format === 'Hybrid'
-                  ? shortenWord(t('format.item_3'))
+                  ? t('format.item_3')
                   : candidate.work_format === 'Part-time'
-                    ? shortenWord(t('format.item_4'))
+                    ? t('format.item_4')
                     : null}
           </span>
         </span>

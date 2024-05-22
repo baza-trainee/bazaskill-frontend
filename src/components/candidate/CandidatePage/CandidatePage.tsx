@@ -8,7 +8,6 @@ import { getAllCandidates } from '@/api/candidates';
 import { useModal } from '@/stores/useModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { CandidatesResponse } from '@/types/candidates';
-
 import CandidateHero from '@/components/candidate/CandidatePage/Hero';
 import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
 import Loader from '@/components/admin/ui/Loader';
