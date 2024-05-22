@@ -45,6 +45,7 @@ const TestimonialSlider = ({
         pagination={{
           clickable: true,
         }}
+        loop={true}
         ref={sliderRef}
         navigation={{
           prevEl: '.prev-testimonials',
