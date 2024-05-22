@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const CandidatesPage: React.FC = async () => {
   return (
-    <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px] 3xl:px-[80px] 5xl:justify-center 5xl:px-[120px]">
+    <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
       <Candidates />
     </div>
   );
