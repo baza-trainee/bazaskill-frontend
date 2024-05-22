@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useRef } from 'react';
+import { RefObject, useCallback } from 'react';
 import { SwiperRef } from 'swiper/react';
 
 const useSliderControls = (

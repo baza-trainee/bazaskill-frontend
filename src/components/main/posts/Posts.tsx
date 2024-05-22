@@ -10,7 +10,7 @@ import PostsCarousel from './PostsSwiper';
 const DynamicPost = dynamic(
   () => import('@/components/admin/posts/Post'),
   {
-    loading: () => <p>Loading...</p>,
+    loading: () => null,
   }
 );
 

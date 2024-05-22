@@ -7,7 +7,7 @@ import {
   SwiperSlide,
 } from 'swiper/react';
 import useSwiperParams from './useSwiperParams';
-import useSliderControls from './useSliderControls';
+import useSliderControls from '@/hooks/useSliderControls';
 import { Navigation, Pagination } from 'swiper/modules';
 
 import 'swiper/css';
@@ -64,14 +64,14 @@ const Slider: React.FC<SliderProps> = ({
       </Swiper>
       <button
         type="button"
-        className="prev-partners absolute left-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer sm:hidden md:block"
+        className="prev-partners absolute left-0 top-[40%] z-20 hidden translate-y-[-40%] cursor-pointer sm:hidden md:block"
         onClick={handlePrev}
       >
         <ButtonLeft className="fill-white" />
       </button>
       <button
         type="button"
-        className="next-partners absolute right-0 top-[24%] z-20 hidden translate-y-[-24%] cursor-pointer sm:hidden md:block"
+        className="next-partners absolute right-0 top-[40%] z-20 hidden translate-y-[-40%] cursor-pointer sm:hidden md:block"
         onClick={handleNext}
       >
         <ButtonRight className="fill-white" />
