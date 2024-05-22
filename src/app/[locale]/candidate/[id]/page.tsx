@@ -1,5 +1,16 @@
 import { Metadata } from 'next';
-import CandidatePageComponent from '@/components/candidate/CandidatePage/CandidatePage';
+import dynamic from 'next/dynamic';
+import Loader from '@/components/admin/ui/Loader';
+
+const DynamicPage = dynamic(
+  () =>
+    import(
+      '@/components/candidate/CandidatePage/CandidatePage'
+    ),
+  {
+    loading: () => <Loader />,
+  }
+);
 
 interface CandidatePageProps {
   params: {
@@ -22,8 +33,8 @@ export async function generateMetadata({
 
 const Candidate = ({ params }: CandidatePageProps) => {
   return (
-    <div className="bg-graphite">
-      <CandidatePageComponent id={params.id} />
+    <div className="min-h-[100vh] bg-graphite">
+      <DynamicPage id={params.id} />
     </div>
   );
 };
