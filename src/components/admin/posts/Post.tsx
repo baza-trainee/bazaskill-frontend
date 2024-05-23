@@ -58,7 +58,7 @@ const Post = ({
       <div
         className="absolute left-0 top-0 h-full w-full bg-cover bg-center grayscale"
         style={{
-          backgroundImage: `url(${image_url})`,
+          backgroundImage: `url(${!image_url ? '/images/gallery-placeholder.jpg' : image_url})`,
         }}
       ></div>
       <p className="z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">

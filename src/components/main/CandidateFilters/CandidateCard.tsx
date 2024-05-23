@@ -57,7 +57,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           </svg>
           {candidate.city}
           <span className="hidden sm:block">
-            {`,${candidate.country}`}
+            {`${candidate.country}`}
           </span>
         </span>
 
