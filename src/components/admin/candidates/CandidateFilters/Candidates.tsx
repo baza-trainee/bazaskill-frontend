@@ -8,6 +8,7 @@ import {
 import { getAllCandidates } from '@/api/candidates';
 import { FieldValues } from 'react-hook-form';
 import { useEffect, useState } from 'react';
+import { useFilters } from '@/stores/useFilters';
 
 import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
@@ -27,15 +28,27 @@ const Candidates = () => {
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
 
+  const { setFilters } = useFilters();
+
+  const filters = useFilters((state) => state.filters);
+
   useEffect(() => {
-    if (candidates?.data) {
+    if (candidates?.data && !filters.length) {
       setFilteredCandidates(candidates.data);
     }
   }, [candidates.data]);
 
+  useEffect(() => {
+    if (filters.length) {
+      setFilteredCandidates(filters);
+    }
+  }, [filters]);
+
   if (candidates.status === 'pending') return <Loader />;
 
   const onSubmit = (data: FieldValues) => {
+    setFilters([]);
+
     const selectedWorkFormat: string =
       data.occupation || '';
     const selectedLanguage: string = data.language || '';
@@ -151,6 +164,7 @@ const Candidates = () => {
       }
     );
     setFilteredCandidates(filtered || []);
+    setFilters(filtered);
   };
 
   const handlerChangeSearch = (data: string) => {
