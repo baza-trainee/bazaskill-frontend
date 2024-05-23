@@ -5,8 +5,20 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // output: 'standalone',
+  output: 'standalone',
   productionBrowserSourceMaps: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
+  },
   async headers() {
     return [
       {
@@ -32,14 +44,6 @@ const nextConfig = {
         ],
       },
     ];
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-    ],
   },
 };
 
