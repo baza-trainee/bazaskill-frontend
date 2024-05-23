@@ -49,6 +49,7 @@ const Candidates = () => {
 
   const [filteredCandidates, setFilteredCandidates] =
     useState<CandidatesResponse[]>([]);
+  const [isMainFilter, setIsMainFilter] = useState(false);
 
   useEffect(() => {
     if (!speciality && !country && !filters.length) {
@@ -72,7 +73,9 @@ const Candidates = () => {
           return matchesCountry;
         }
       );
+
       setFilteredCandidates(filtered || []);
+      setIsMainFilter(true);
     } else if (speciality && !inputCountry) {
       const filtered = candidates?.data?.filter(
         (candidate) => {
@@ -87,6 +90,7 @@ const Candidates = () => {
         }
       );
       setFilteredCandidates(filtered || []);
+      setIsMainFilter(true);
     } else {
       const filtered = candidates?.data?.filter(
         (candidate) => {
@@ -107,6 +111,7 @@ const Candidates = () => {
         }
       );
       setFilteredCandidates(filtered || []);
+      setIsMainFilter(false);
     }
   }, [speciality, country, candidates.data]);
 
@@ -165,7 +170,11 @@ const Candidates = () => {
       return;
     }
 
-    const filtered = filteredCandidates?.filter(
+    const filterCandidate = isMainFilter
+      ? filteredCandidates
+      : candidates?.data;
+
+    const filtered = filterCandidate?.filter(
       (candidate) => {
         const candidateGraduate = candidate.gradaute;
         const hasSelectedGraduate =
@@ -240,11 +249,9 @@ const Candidates = () => {
           inputSallary.from
         );
         const inputSallaryTo = parseInt(inputSallary.to);
-
         const hasSelectedSallary =
           candidateSallaryFrom >= inputSallaryFrom &&
           candidateSallaryTo <= inputSallaryTo;
-
         return (
           (selectExperience?.length >= 1
             ? hasExperience
@@ -277,6 +284,7 @@ const Candidates = () => {
     console.log(filtered);
     setFilteredCandidates(filtered || []);
     setFilters(filtered);
+    setIsMainFilter(false);
   };
 
   if (candidates.status === 'pending') return <Loader />;
