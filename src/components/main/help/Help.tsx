@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 const DynamicImages = dynamic(
   () => import('./helpList/HelpList'),
   {
-    loading: () => <p>Loading...</p>,
+    loading: () => null,
   }
 );
 
