@@ -13,7 +13,6 @@ import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
 import { z } from 'zod';
 import FileInputPost from '../ui/FileInputPost';
-import TestimonialCard from './TestimonialCard';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
@@ -26,8 +25,13 @@ import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import Link from 'next/link';
 import Loader from '../ui/Loader';
+import EditTestimonialCard from './EditTestimonialsCard';
+import { TestimonialPreview } from '@/types/testimonials';
 
 const EditTestimonial = () => {
+  const [previewCard, setPreviewCard] = useState<
+    TestimonialPreview | undefined
+  >();
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null | string>(
     null
@@ -51,6 +55,7 @@ const EditTestimonial = () => {
     handleSubmit,
     control,
     formState: { errors },
+    watch,
     setValue,
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
@@ -72,6 +77,32 @@ const EditTestimonial = () => {
       shouldDirty: true,
     });
   }, [data, file, setValue]);
+
+  const watchedValues = watch();
+  useEffect(() => {
+    setPreviewCard({
+      name_ua: watchedValues.name_ua,
+      name_en: watchedValues.name_en,
+      name_pl: watchedValues.name_pl,
+      position: watchedValues.position,
+      date: watchedValues.date,
+      review_ua: watchedValues.review_ua,
+      review_en: watchedValues.review_en,
+      review_pl: watchedValues.review_pl,
+      file: file ?? watchedValues.file,
+      images_url: data?.image_url,
+    });
+  }, [
+    watchedValues.name_ua,
+    watchedValues.name_en,
+    watchedValues.name_pl,
+    watchedValues.position,
+    watchedValues.date,
+    watchedValues.review_ua,
+    watchedValues.review_en,
+    watchedValues.review_pl,
+    file,
+  ]);
 
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
@@ -275,12 +306,10 @@ const EditTestimonial = () => {
         </form>
       </div>
       <div>
-        {data && typeof data !== 'undefined' && (
-          <TestimonialCard
-            item={data}
-            onDelete={() => {}}
-          />
-        )}
+        {previewCard &&
+          typeof previewCard !== 'undefined' && (
+            <EditTestimonialCard item={previewCard} />
+          )}
       </div>
       {isSuccess && (
         <SuccessAlert
