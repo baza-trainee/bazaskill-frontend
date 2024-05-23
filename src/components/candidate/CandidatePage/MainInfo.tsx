@@ -17,18 +17,15 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {t('stack')}
         </h3>
         <div className="mt-[44px] flex flex-wrap gap-[24px]">
-          {candidate.stack.map((item) => {
-            return (
-              <>
-                {item.stack?.title.length && (
-                  <StackItem
-                    key={item.id}
-                    title={item.stack?.title}
-                  />
-                )}
-              </>
-            );
-          })}
+          {candidate.stack.map(
+            (item) =>
+              item.stack?.title.length > 0 && (
+                <StackItem
+                  key={item.id}
+                  title={item.stack?.title}
+                />
+              )
+          )}
         </div>
       </div>
 
