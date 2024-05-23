@@ -69,7 +69,7 @@ const Filters = ({
       <div className="grid grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
         <div className="flex flex-col gap-[20px] font-sans">
           <h3> {t('projects.title')}</h3>
-          <div className="flex flex-col gap-[20px] sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
+          <div className="flex flex-col gap-[20px] sm:w-[364px] sm:min-w-[176px] sm:text-base md:w-[219px] xl:w-[256px] xl:text-lg 3xl:text-xl">
             <CustomCheckbox
               registerFor="projects"
               value="1"

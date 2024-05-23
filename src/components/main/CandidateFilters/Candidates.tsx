@@ -30,6 +30,7 @@ const Candidates = () => {
     setFilterBySpeciality,
     setFilterByCountry,
     setFilterByStack,
+    setFilters,
   } = useFilters();
 
   const speciality = useFilters(
@@ -40,6 +41,8 @@ const Candidates = () => {
     state.country.toLowerCase().trim()
   );
 
+  const filters = useFilters((state) => state.filters);
+
   const stack = useFilters((state) => state.stack);
 
   const inputCountry = translateCountryName(country);
@@ -48,7 +51,7 @@ const Candidates = () => {
     useState<CandidatesResponse[]>([]);
 
   useEffect(() => {
-    if (!speciality && !country) {
+    if (!speciality && !country && !filters.length) {
       setFilteredCandidates(
         candidates.data as CandidatesResponse[]
       );
@@ -126,18 +129,24 @@ const Candidates = () => {
     setFilteredCandidates(filtered || []);
   }, [candidates.data, stack]);
 
+  useEffect(() => {
+    if (filters.length) {
+      setFilteredCandidates(filters);
+    }
+  }, [filters]);
+
   const onSubmit = (data: FieldValues) => {
     setFilterByCountry('');
     setFilterBySpeciality('');
     setFilterByStack([]);
+    setFilters([]);
 
-    const selectedWorkFormat: string[] =
-      data.occupation || [];
-    const selectedLanguage: string[] = data.language || [];
-    const selectedStack: string[] = data.stack || [];
-    const selectedStatus: string[] = data.status || [];
-    const selectExperience: string[] = data.projects || [];
-    const selectGraduate: string[] = data.graduate || [];
+    const selectedWorkFormat: string[] = data.occupation;
+    const selectedLanguage: string[] = data.language;
+    const selectedStack: string[] = data.stack;
+    const selectedStatus: string[] = data.status;
+    const selectExperience: string[] = data.projects;
+    const selectGraduate: string[] = data.graduate;
     const inputSallary: { from: string; to: string } =
       data.sallary || { from: '', to: '' };
 
@@ -265,7 +274,9 @@ const Candidates = () => {
         );
       }
     );
+    console.log(filtered);
     setFilteredCandidates(filtered || []);
+    setFilters(filtered);
   };
 
   if (candidates.status === 'pending') return <Loader />;
