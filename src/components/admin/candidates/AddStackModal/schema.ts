@@ -7,8 +7,11 @@ const schema = z.object({
   title: z
     .string()
     .min(1, { message: 'Required' })
-    .refine((value) => /^[a-zA-Z\s\d-]+$/.test(value), {
-      message: 'Введіть коректну назву спеціалізації',
-    }),
+    .refine(
+      (value) => /^[a-zA-Z\s\d-.,\\/|()@&]+$/.test(value),
+      {
+        message: 'Введіть коректну назву спеціалізації',
+      }
+    ),
 });
 export default schema;
