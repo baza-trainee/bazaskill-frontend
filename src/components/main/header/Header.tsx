@@ -19,6 +19,9 @@ const Header = () => {
     queryFn: getSpecializationsWithStack,
   });
 
+  const sortedStack =
+    data && data?.sort((a, b) => b.id - a.id);
+
   const pathname = usePathname();
 
   const isHidden =
@@ -42,7 +45,7 @@ const Header = () => {
         <nav className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
           {data &&
             Array.isArray(data) &&
-            data?.map(
+            sortedStack?.map(
               ({
                 id,
                 title,
