@@ -1,10 +1,20 @@
 import { Metadata } from 'next';
 import Candidates from '@/components/main/CandidateFilters/Candidates';
 
-export const metadata: Metadata = {
-  title: 'BazaSkill Candidates',
-  description: 'BazaSkill candidates page',
-};
+interface CandidatesPageProps {
+  params: {
+    locale: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: CandidatesPageProps): Promise<Metadata> {
+  return {
+    title: `BazaSkill ${params.locale === 'pl' ? 'Kandydaci' : params.locale === 'en' ? 'Candidates' : 'Кандидати'} `,
+    description: `BazaSkill ${params.locale === 'pl' ? 'Strona kandydata na BazaSkill' : params.locale === 'en' ? 'Candidates page on BazaSkill' : 'Сторінка кандидатів на BazaSkill'} `,
+  };
+}
 
 const CandidatesPage: React.FC = async () => {
   return (

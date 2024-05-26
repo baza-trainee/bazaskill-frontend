@@ -55,7 +55,7 @@ const CandidatesList = ({
       </div>
       {candidates.length > 4 && (
         <div
-          className={`mb-[94px] mt-[70px] flex w-full items-center justify-center`}
+          className={`mb-[94px] mt-[70px] flex w-[80%] items-center justify-center`}
         >
           {candidates.length <= numberOnPage ? (
             <svg

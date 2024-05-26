@@ -125,10 +125,10 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </span>
       </div>
 
-      <div className="flex w-full justify-start gap-[27px]">
-        {candidate.stack.slice(0, 3).map((item) => {
-          return (
-            item.stack?.title.length && (
+      <div className="flex w-full flex-wrap justify-start gap-[15px] sm:gap-[27px]">
+        {candidate.stack.slice(0, 3).map(
+          (item) =>
+            item.stack?.title && (
               <div
                 key={item.id}
                 className="box-border flex h-[30px] min-w-[88px] items-center justify-center whitespace-nowrap rounded-full border-[1px] border-white px-[15px] py-[10px]"
@@ -136,9 +136,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
                 {item.stack?.title}
               </div>
             )
-          );
-        })}
-        <span className="flex items-end justify-center">
+        )}
+        <span className="hidden items-end justify-center sm:flex">
           ...
         </span>
       </div>

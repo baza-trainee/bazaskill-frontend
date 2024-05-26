@@ -15,6 +15,7 @@ const DynamicPage = dynamic(
 interface CandidatePageProps {
   params: {
     id: string;
+    locale: string;
   };
 }
 
@@ -26,8 +27,8 @@ export async function generateMetadata({
   );
   const candidate = await response.json();
   return {
-    title: `BazaSkill Candidate - ${candidate.name} ${candidate.surname} ${candidate.specialization.title}`,
-    description: `${candidate.about}`,
+    title: `BazaSkill ${params.locale === 'pl' ? 'kandydat' : params.locale === 'en' ? 'candidate' : 'кандидат'} - ${candidate.name} ${candidate.specialization.title}`,
+    description: `${params.locale === 'pl' ? 'Strona kandydata' : params.locale === 'en' ? 'Candidate`s page' : 'Сторінка кандидата'} ${candidate.name} ${candidate.specialization.title}`,
   };
 }
 

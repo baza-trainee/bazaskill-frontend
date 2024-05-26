@@ -53,12 +53,18 @@ const Slider: React.FC<SliderProps> = ({
             key={partner.id}
             className="partnerSlide sm:max-w-[280] md:max-w-[190px] xl:max-w-[302px] 4xl:max-w-[324px] 5xl:max-w-[340px]"
           >
-            <Image
-              src={partner.image_url}
-              width={swiperParams.imageWidth}
-              height={swiperParams.imageHeight}
-              alt={partner.name}
-            />
+            <a
+              href={partner.partner_url}
+              target="_blank"
+              rel="nofollow"
+            >
+              <Image
+                src={partner.image_url}
+                width={swiperParams.imageWidth}
+                height={swiperParams.imageHeight}
+                alt={partner.name}
+              />
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>
