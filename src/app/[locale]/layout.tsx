@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Providers } from './provider';
-import dynamic from 'next/dynamic';
 import { NextIntlClientProvider } from 'next-intl';
 import {
   getMessages,
@@ -9,13 +8,7 @@ import {
 import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
-
-const DynamicHeader = dynamic(
-  () => import('@/components/main/header/Header')
-);
-const DynamicFooter = dynamic(
-  () => import('@/components/main/footer/Footer')
-);
+import LayoutProvider from './providers/LayoutProvider';
 
 const open_sans = Open_Sans({
   weight: '400',
@@ -50,19 +43,29 @@ const mont = localFont({
   variable: '--font-mont',
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: 'BazaSkill',
-    template: '%s',
-  },
-  description: 'BazaSkill page',
-  icons: {
-    icon: ['/favicon.ico?v=1'],
-    apple: ['/apple-touch-icon.png?v=4'],
-    shortcut: ['/apple-touch-icon.png'],
-  },
-  manifest: '/site.webmanifest',
-};
+interface MainPageProps {
+  params: {
+    locale: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: MainPageProps): Promise<Metadata> {
+  return {
+    title: {
+      default: 'BazaSkill',
+      template: '%s',
+    },
+    description: `BazaSkill ${params.locale === 'ua' ? 'головна сторінка' : params.locale === 'en' ? 'main page' : 'strona główna'}`,
+    icons: {
+      icon: ['/favicon.ico?v=1'],
+      apple: ['/apple-touch-icon.png?v=4'],
+      shortcut: ['/apple-touch-icon.png'],
+    },
+    manifest: '/site.webmanifest',
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -88,19 +91,15 @@ export default async function RootLayout({
         className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
       >
         <Providers locale={locale}>
-          <header className="bg-graphite">
-            <DynamicHeader />
-          </header>
           <NextIntlClientProvider
             locale={locale}
             messages={messages}
           >
-            <main className="min-h-[100vh] bg-graphite">
-              {children}
-            </main>
-            <footer>
-              <DynamicFooter />
-            </footer>
+            <LayoutProvider>
+              <main className="min-h-[100vh] bg-graphite">
+                {children}
+              </main>
+            </LayoutProvider>
           </NextIntlClientProvider>
         </Providers>
       </body>

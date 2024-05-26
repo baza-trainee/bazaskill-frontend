@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { constants } from '@/constants';
@@ -6,8 +7,11 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { getAllCandidates } from '@/api/candidates';
-import { CandidatesResponse } from '@/types/candidates';
-import { useEffect, useState } from 'react';
+import {
+  CandidatesResponse,
+  ICandidates,
+} from '@/types/candidates';
+import { useCallback, useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useFilters } from '@/stores/useFilters';
 

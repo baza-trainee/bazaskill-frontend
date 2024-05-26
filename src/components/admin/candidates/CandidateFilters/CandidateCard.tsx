@@ -135,7 +135,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           </span>
         </div>
 
-        <div className="flex w-full justify-start gap-[27px]">
+        <div className="flex w-full flex-wrap justify-start gap-[15px] sm:gap-[27px]">
           {candidate.stack.slice(0, 3).map(
             (item) =>
               item.stack?.title && (
