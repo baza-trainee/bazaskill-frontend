@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import { useModal } from '@/stores/useModal';
 import { useQuery } from '@tanstack/react-query';
 import { getDocuments } from '@/api/documents';
@@ -61,10 +60,6 @@ const Footer = () => {
   );
   const modalType = useModal((state) => state.modalType);
   const { openModal, closeModal } = useModal();
-  const pathname = usePathname();
-  const isHidden =
-    pathname.split('/').includes('admin') ||
-    pathname.split('/').includes('login');
   const isCookie = useCookies((state) => state.isCookies);
   const [isCookiesAccepted, setIsCookiesAccepted] =
     useState(false);
@@ -85,8 +80,6 @@ const Footer = () => {
   const privacyPolicy = data?.find(
     (item) => item.title === 'privacy_policy'
   );
-
-  if (isHidden) return null;
 
   return (
     <div

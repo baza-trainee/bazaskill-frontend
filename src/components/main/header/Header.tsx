@@ -8,7 +8,6 @@ import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getSpecializationsWithStack } from '@/api/specialization';
 import { ISpecializationWithStack } from '@/types/specialization';
-import { usePathname } from 'next/navigation';
 import AffiliateBanner from './AffiliateBanner';
 
 const Header = () => {
@@ -22,14 +21,6 @@ const Header = () => {
 
   const sortedStack =
     data && data?.sort((a, b) => b.id - a.id);
-
-  const pathname = usePathname();
-
-  const isHidden =
-    pathname.split('/').includes('admin') ||
-    pathname.split('/').includes('login');
-
-  if (isHidden) return null;
 
   return (
     <>
