@@ -18,14 +18,18 @@ const ACCEPTED_CERTIFICATE_TYPES = [
   'for-url',
 ];
 
-// const emailPattern =
-//   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
-
-// const nonRussianLettersPattern =
-//   /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
-
 const nonRussianLettersWithSymbolsAndDigitsPattern =
   /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ.]+$/;
+
+const emailSchema = z.string().refine(
+  (value) => {
+    if (!value) return true; // Allow empty values
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); // Check for valid email format
+  },
+  {
+    message: 'Invalid email',
+  }
+);
 
 const messageMaxLength = 2500;
 const schema = z.object({
@@ -35,11 +39,11 @@ const schema = z.object({
   surname: z.string().min(1, { message: 'Required' }),
   country: z.string().min(1, { message: 'Required' }),
   city: z.string().min(1, { message: 'Required' }),
-  phone: z.string().min(1, { message: 'Required' }),
-  email: z.string().email(),
-  linkedin: z.string().min(1, { message: 'Required' }),
-  discord: z.string().min(1, { message: 'Required' }),
-  telegram: z.string().min(1, { message: 'Required' }),
+  phone: z.string().optional(),
+  email: emailSchema.optional(),
+  linkedin: z.string().optional(),
+  discord: z.string().optional(),
+  telegram: z.string().optional(),
   languages: z.array(
     z.object({
       language: z.string().min(1, { message: 'Required' }),
@@ -50,15 +54,14 @@ const schema = z.object({
   salary_from: z.string().min(1, { message: 'Required' }),
   salary_to: z.string().min(1, { message: 'Required' }),
 
-  about: z.string().min(1, { message: 'Required' }),
+  about: z.string().optional(),
   specialization: z
     .string()
     .min(1, { message: 'Required' }),
+
   cv: z
     .any()
-    .refine((value) => value?.length > 0, {
-      message: 'Required',
-    })
+    .nullable()
     .refine((value) => {
       value &&
         value[0]?.size === 0 &&
@@ -66,23 +69,21 @@ const schema = z.object({
       return true;
     })
     .refine(
-      (value) => value?.[0]?.size <= MAX_FILE_SIZE,
+      (value) =>
+        !value || value?.[0]?.size <= MAX_FILE_SIZE,
       `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`
     )
     .refine(
       (value) =>
+        !value ||
         ACCEPTED_CV_TYPES.includes(value?.[0]?.type),
       'Документ має бути в форматі .pdf або .docx'
     ),
 
   graduate: z.array(
     z.object({
-      university: z
-        .string()
-        .min(1, { message: 'Required' }),
-      university_specializaton: z
-        .string()
-        .min(1, { message: 'Required' }),
+      university: z.string().optional(),
+      university_specializaton: z.string().optional(),
       university_grade: z.string().optional(),
       graduate_start: z.string().optional(),
       graduate_end: z.string().optional(),
@@ -112,12 +113,8 @@ const schema = z.object({
   ),
   cources: z.array(
     z.object({
-      cources_name: z
-        .string()
-        .min(1, { message: 'Required' }),
-      cources_specializaton: z
-        .string()
-        .min(1, { message: 'Required' }),
+      cources_name: z.string().optional(),
+      cources_specializaton: z.string().optional(),
       cources_start: z.string().optional(),
       cources_end: z.string().optional(),
       cources_sertificate: z

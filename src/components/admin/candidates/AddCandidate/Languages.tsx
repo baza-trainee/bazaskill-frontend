@@ -55,7 +55,6 @@ const Languages = ({
                       'Polish',
                       'German',
                       'French',
-                      'Spanish',
                     ]}
                     onChange={onChange}
                     disableHandler={handleDisable}

@@ -247,7 +247,7 @@ const AddCandidate = () => {
                 <TextInput
                   {...field}
                   error={errors.phone?.message as string}
-                  isRequired={true}
+                  isRequired={false}
                   placeholder="Телефон"
                   title="Телефон"
                 />
@@ -261,7 +261,7 @@ const AddCandidate = () => {
                 <TextInput
                   {...field}
                   error={errors.email?.message as string}
-                  isRequired={true}
+                  isRequired={false}
                   placeholder="Email"
                   title="Email"
                 />
@@ -278,7 +278,7 @@ const AddCandidate = () => {
                 <TextInput
                   {...field}
                   error={errors.linkedin?.message as string}
-                  isRequired={true}
+                  isRequired={false}
                   placeholder="Linkedin"
                   title="Linkedin"
                 />
@@ -292,7 +292,7 @@ const AddCandidate = () => {
                 <TextInput
                   {...field}
                   error={errors.discord?.message as string}
-                  isRequired={true}
+                  isRequired={false}
                   placeholder="Discord"
                   title="Discord"
                 />
@@ -306,7 +306,7 @@ const AddCandidate = () => {
                 <TextInput
                   {...field}
                   error={errors.telegram?.message as string}
-                  isRequired={true}
+                  isRequired={false}
                   placeholder="Telegram"
                   title="Telegram"
                 />
@@ -427,7 +427,6 @@ const AddCandidate = () => {
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
                   <label htmlFor="about">
                     Про себе &nbsp;
-                    <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     value={value}
@@ -508,7 +507,7 @@ const AddCandidate = () => {
                   onChange={onChange}
                   value={value}
                   title="Завантажити CV"
-                  isRequired={true}
+                  isRequired={false}
                   errors={
                     (
                       errors.cv as DeepMap<
