@@ -1,14 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
-
-const DynamicHeader = dynamic(
-  () => import('@/components/main/header/Header')
-);
-const DynamicFooter = dynamic(
-  () => import('@/components/main/footer/Footer')
-);
+import Footer from '@/components/main/footer/Footer';
+import Header from '@/components/main/header/Header';
 
 export default function LayoutProvider({
   children,
@@ -16,15 +10,15 @@ export default function LayoutProvider({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isAdminPage = pathname
-    .split('/')
-    .includes('admin' || 'login');
+  const isAdminPage =
+    pathname.split('/').includes('admin') ||
+    pathname.split('/').includes('login');
 
   return (
     <>
-      {!isAdminPage ? <DynamicHeader /> : null}
+      {!isAdminPage ? <Header /> : null}
       {children}
-      {!isAdminPage ? <DynamicFooter /> : null}
+      {!isAdminPage ? <Footer /> : null}
     </>
   );
 }

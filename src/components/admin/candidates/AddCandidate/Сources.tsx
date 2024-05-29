@@ -48,7 +48,7 @@ const Cources: React.FC<ICourcesProps> = ({
                         >
                       )?.[index]?.cources_name?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="Ведіть назву"
                     title="Назва курсів"
                   />
@@ -72,7 +72,7 @@ const Cources: React.FC<ICourcesProps> = ({
                       )?.[index]?.cources_specializaton
                         ?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="Введіть назву"
                     title="Cпеціальність"
                   />

@@ -29,15 +29,6 @@ export const createCandidate = async (values: any) => {
   let courcesResponse: any;
   let graduateResponse: any;
 
-  if (values.data.cv[0]) {
-    const cvFormData = new FormData();
-    cvFormData.append('file', values.data.cv[0]);
-    cvResponse = await axios.post(
-      'candidates/upload-cv',
-      cvFormData
-    );
-  }
-
   const transformCvUrl = (url: string) => {
     const urlArr = url.split('.');
     if (urlArr[urlArr.length - 1] === 'docx') {
@@ -46,6 +37,15 @@ export const createCandidate = async (values: any) => {
     }
     return url;
   };
+
+  if (values.data.cv[0]) {
+    const cvFormData = new FormData();
+    cvFormData.append('file', values.data.cv[0]);
+    cvResponse = await axios.post(
+      'candidates/upload-cv',
+      cvFormData
+    );
+  }
 
   const coursesCertificates = values.data.cources
     .map(

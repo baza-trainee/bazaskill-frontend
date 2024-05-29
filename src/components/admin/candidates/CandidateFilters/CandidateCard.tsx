@@ -78,7 +78,10 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
               <use href="/Icons/sprite.svg#icon-place"></use>
             </svg>
             <span className="truncate">
-              <p className="truncate">{candidate.city},</p>
+              <span className="truncate">
+                {candidate.city},
+              </span>
+              &nbsp;
               <span className="truncate">
                 {candidate.country}
               </span>
@@ -135,7 +138,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           </span>
         </div>
 
-        <div className="flex w-full flex-wrap justify-start gap-[15px] sm:gap-[27px]">
+        <div className="flex w-full flex-wrap justify-start gap-[15px]">
           {candidate.stack.slice(0, 3).map(
             (item) =>
               item.stack?.title && (
@@ -147,12 +150,16 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
                 </div>
               )
           )}
-          <span className="flex items-end justify-center">
+          <span
+            className={`flex items-end justify-center ${candidate.stack.length >= 3 && 'hidden'}`}
+          >
             ...
           </span>
         </div>
         <div className="flex h-full flex-col justify-between">
-          <div className="h-[120px] font-sans text-[16px] leading-[26px]">
+          <div
+            className={`${candidate.about.length ? 'h-[100px]' : 'h-[50px] '} mb-2 font-sans text-[16px] leading-[26px]`}
+          >
             <span className="line-clamp-4">
               {candidate.about}
             </span>

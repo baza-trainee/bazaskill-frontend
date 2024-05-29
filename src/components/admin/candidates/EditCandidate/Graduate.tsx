@@ -68,7 +68,7 @@ const Graduate = ({
                         >
                       )?.[index]?.universiry?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="Назва навчального закладу"
                     title="Назва навчального закладу"
                   />
@@ -92,7 +92,7 @@ const Graduate = ({
                       )?.[index]?.universiry_specializaton
                         ?.message
                     }
-                    isRequired={true}
+                    isRequired={false}
                     placeholder="Введіть назву"
                     title="Cпеціальність"
                   />
