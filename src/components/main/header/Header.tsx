@@ -20,7 +20,9 @@ const Header = () => {
   });
 
   const sortedStack =
-    data && data?.sort((a, b) => b.id - a.id);
+    data && data?.sort((a, b) => a.id - b.id);
+
+  console.log(data);
 
   return (
     <div>
@@ -35,7 +37,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="hidden grow justify-between gap-[4px] xl:flex 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
+        <div className="hidden grow justify-between gap-[4px]  xl:flex 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
           <nav className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
             {data &&
               Array.isArray(data) &&

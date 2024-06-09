@@ -1,14 +1,9 @@
 'use client';
-import Loader from '@/components/admin/ui/Loader';
-import { useRouter } from 'next/navigation';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
+import { redirect } from 'next/navigation';
 
-const AdminPage: React.FC = () => {
-  const router = useRouter();
-  useLayoutEffect(() => {
-    router.push('/admin/candidates');
-  }, [router]);
-  return <Loader />;
-};
-
-export default AdminPage;
+export default function AdminPage() {
+  useEffect(() => {
+    redirect('/admin/candidates');
+  }, []);
+}

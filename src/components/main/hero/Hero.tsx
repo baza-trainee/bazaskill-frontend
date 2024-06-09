@@ -38,7 +38,11 @@ const Hero: React.FC = () => {
     queryFn: getSpecializations,
   });
 
-  const options = data?.map(({ title }) => title);
+  const options =
+    data &&
+    data
+      .sort((a, b) => a.id - b.id)
+      .map(({ title }) => title);
 
   return (
     <section className="container mb-[48px] mt-[124px] w-full ">

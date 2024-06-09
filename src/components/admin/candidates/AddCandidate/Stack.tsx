@@ -97,17 +97,14 @@ const Stack: React.FC<IStackProps> = ({
     handleStack(stack);
   }, [stack]);
 
-  console.log(input);
-  console.log(error);
-
   return (
     <div className="relative flex w-full gap-[24px]">
       <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
-        <label htmlFor="about">
+        <label htmlFor="stack">
           Стек <span className="text-red-500">*</span>
         </label>
         <div
-          id="about"
+          id="stack"
           className="flex h-auto min-h-[132px] min-w-full flex-wrap gap-[8px] rounded-[4px] bg-white px-[16px] py-[20px] text-black"
         >
           {stack.map(({ title, isExist }: Stack, index) => (

@@ -6,7 +6,6 @@ import {
 } from '@tanstack/react-query';
 import { getAllCandidates } from '@/api/candidates';
 import { useModal } from '@/stores/useModal';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { CandidatesResponse } from '@/types/candidates';
 import CandidateHero from '@/components/candidate/CandidatePage/Hero';
 import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
@@ -35,18 +34,20 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
 
   const modalType = useModal((state) => state.modalType);
 
-  useBodyScrollLock(isModalOpen);
-
   if (candidates.status === 'pending') return <Loader />;
 
   return (
     <div className="min-h-[100vh] bg-graphite">
-      <CandidateHero
-        candidate={candidate as CandidatesResponse}
-      />
-      <MainInfo
-        candidate={candidate as CandidatesResponse}
-      />
+      {candidate ? (
+        <>
+          <CandidateHero
+            candidate={candidate as CandidatesResponse}
+          />
+          <MainInfo
+            candidate={candidate as CandidatesResponse}
+          />
+        </>
+      ) : null}
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>
           <RegisterHrForm />

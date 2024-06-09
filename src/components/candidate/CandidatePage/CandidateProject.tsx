@@ -21,7 +21,7 @@ const Project = ({
           {t('duration')}
         </span>
         <span className="opacity-[.8]">
-          {t('weeks', {
+          {t('months', {
             count: project.project_duration,
             ordinal: true,
           })}

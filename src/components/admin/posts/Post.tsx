@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { IPost } from '@/types/posts';
 import { formatDate } from './dateHelper';
@@ -24,6 +25,7 @@ const Post = ({
 }: IPost) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const creationDate = formatDate(created_at);
 
@@ -54,28 +56,34 @@ const Post = ({
   };
 
   return (
-    <article className="relative hidden h-[336px] w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92] md:flex md:w-[217px] xl:w-[358px] 5xl:h-[336px] 5xl:w-[464px]">
-      <div
-        className="absolute left-0 top-0 h-full w-full bg-cover bg-center grayscale"
-        style={{
-          backgroundImage: `url(${!image_url ? '/images/gallery-placeholder.jpg' : image_url})`,
-        }}
-      ></div>
-      <p className="z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
-        {creationDate}
-      </p>
-      <a
-        href={link}
-        target="_blank"
-        className="z-10 h-[69%] bg-black p-6 md:p-3 xl:p-6"
-      >
-        <h4 className="pb-6 text-center text-xl font-semibold text-white md:pb-4 md:text-base xl:pb-6 xl:text-xl">
-          {title}
-        </h4>
+    <article
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative hidden h-[336px] w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92] md:flex  md:w-[340px] 5xl:h-[336px] 5xl:w-[464px]"
+    >
+      <div className="relative">
+        <Image
+          src={image_url}
+          alt={title}
+          width={250}
+          height={150}
+          className={`h-[100px] w-full object-cover grayscale ${isHovered && 'filter-none'} transition-all `}
+        />
+        <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
+          {creationDate}
+        </p>
+      </div>
+
+      <div className="z-10 h-[69%] bg-black p-6 md:p-3 xl:p-6">
+        <a href={link} target="_blank">
+          <h4 className="pb-6 text-left text-xl font-semibold text-white md:pb-4 md:text-base xl:pb-6 xl:text-xl">
+            {title}
+          </h4>
+        </a>
         <p className="text-lg text-white md:line-clamp-4 xl:line-clamp-4">
           {text}
         </p>
-      </a>
+      </div>
       {isAdmin && (
         <div className="absolute bottom-[5px] right-[12px] z-10 flex gap-[32px]">
           <button

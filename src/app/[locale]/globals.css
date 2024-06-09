@@ -21,9 +21,15 @@ html {
   box-sizing: border-box;
 }
 
+body.lock {
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
 @layer components {
   .container {
-    @apply mx-auto w-full max-w-[1920px] px-[20px] md:px-[40px] xl:px-[64px] 3xl:px-[80px] 5xl:px-[120px];
+    @apply mx-auto w-full max-w-[2920px] px-[20px] md:px-[40px] xl:px-[64px] 3xl:px-[80px] 5xl:px-[120px];
   }
   .main-gradient {
     @apply bg-gradient-to-r from-green via-green to-yellow bg-size-200 bg-pos-0  transition-all duration-500 hover:bg-pos-100;
