@@ -179,7 +179,7 @@ const Footer = () => {
           )}
         </div>
       </div>
-      <div className="flex items-center justify-center px-10 py-8 xs:flex-col xs:px-0 sm:flex-col sm:px-0 md:flex md:w-[700px] md:flex-row md:items-center md:justify-center md:px-0 md:pt-[15px] xl:mx-auto">
+      <div className="flex items-center justify-center px-10 py-8 xs:flex-col xs:px-0 sm:flex-col sm:px-0 md:flex md:w-full md:flex-row md:items-center md:justify-center md:px-0 md:pt-[15px] xl:mx-auto">
         <p className="text-base text-white xs:text-[12px] sm:text-xs md:mr-[4px] md:text-sm xl:text-base">
           {t('support_1')}
         </p>

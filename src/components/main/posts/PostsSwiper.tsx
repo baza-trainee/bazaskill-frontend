@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
@@ -28,14 +29,20 @@ function PostsCarousel({ data }: { data: IPost[] }) {
           <SwiperSlide key={post.id}>
             <article
               key={post.id}
-              className="relative h-[320px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92]"
+              className="relative mx-auto h-[320px] max-w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92]"
             >
-              <div
-                className="absolute left-0 top-0 h-full w-full bg-cover bg-center grayscale"
-                style={{
-                  backgroundImage: `url(${post.image_url})`,
-                }}
-              ></div>
+              <div className="relative">
+                <Image
+                  src={post.image_url}
+                  alt={post.title}
+                  width={250}
+                  height={150}
+                  className={`h-[100px] w-full object-cover grayscale`}
+                />
+                <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
+                  {creationDate}
+                </p>
+              </div>
               <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
                 {creationDate}
               </p>

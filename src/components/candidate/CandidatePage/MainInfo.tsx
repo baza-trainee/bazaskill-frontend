@@ -17,7 +17,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {t('stack')}
         </h3>
         <div className="mt-[44px] flex flex-wrap gap-[24px]">
-          {candidate.stack.map(
+          {candidate?.stack.map(
             (item) =>
               item.stack?.title.length > 0 && (
                 <StackItem
@@ -34,7 +34,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {t('education')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          {candidate.gradaute.map((item) => (
+          {candidate?.gradaute.map((item) => (
             <div
               key={item.id}
               className="flex w-full items-center justify-between"
@@ -84,7 +84,7 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
           {t('courses')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          {candidate.cources.map((cource) => (
+          {candidate?.cources.map((cource) => (
             <div
               key={cource.id}
               className="flex w-full items-center justify-between"
@@ -138,14 +138,14 @@ const MainInfo = ({ candidate }: MainInfoProps) => {
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
             {t('projects', {
-              count: candidate.baza_experience.length,
+              count: candidate?.baza_experience.length,
               ordinal: true,
             })}
           </div>
         </div>
 
         <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
-          {candidate.baza_experience.map((project) => (
+          {candidate?.baza_experience.map((project) => (
             <Project key={project.id} project={project} />
           ))}
         </div>
