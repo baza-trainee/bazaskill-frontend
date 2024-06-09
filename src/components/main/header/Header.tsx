@@ -20,7 +20,7 @@ const Header = () => {
   });
 
   const sortedStack =
-    data && data?.sort((a, b) => a.id - b.id);
+    data && data?.sort((a, b) => b.id - a.id);
 
   console.log(data);
 

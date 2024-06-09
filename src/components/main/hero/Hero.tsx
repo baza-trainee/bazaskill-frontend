@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
   const options =
     data &&
     data
-      .sort((a, b) => a.id - b.id)
+      .sort((a, b) => b.id - a.id)
       .map(({ title }) => title);
 
   return (
