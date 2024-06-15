@@ -9,7 +9,7 @@ import { useModal } from '@/stores/useModal';
 import { CandidatesResponse } from '@/types/candidates';
 import CandidateHero from '@/components/candidate/CandidatePage/Hero';
 import MainInfo from '@/components/candidate/CandidatePage/MainInfo';
-import Loader from '@/components/admin/ui/Loader';
+import Loader from '@/components/shared/loader/Loader';
 import RegisterModal from '@/components/main/modals/RegisterModal';
 import RegisterHrForm from '@/components/main/modals/forms/register_hr/RegisterHrForm';
 

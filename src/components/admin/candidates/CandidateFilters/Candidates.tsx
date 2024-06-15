@@ -14,7 +14,7 @@ import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 import Filters from './Filters';
 import { CandidatesResponse } from '@/types/candidates';
-import Loader from '../../ui/Loader';
+import Loader from '../../../shared/loader/Loader';
 
 const Candidates = () => {
   const candidates: UseQueryResult<
@@ -172,8 +172,12 @@ const Candidates = () => {
       (candidate) => {
         const specializationTitle =
           candidate.specialization?.title.toLowerCase();
-        return specializationTitle.includes(
-          data.toLowerCase()
+        const dataLowerCase = data.toLowerCase();
+
+        return (
+          specializationTitle.includes(dataLowerCase) ||
+          candidate.name.toLowerCase() === dataLowerCase ||
+          candidate.surname.toLowerCase() === dataLowerCase
         );
       }
     );

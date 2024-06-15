@@ -10,7 +10,7 @@ import {
 import { constants } from '@/constants';
 import { ICard } from '@/types/cards';
 import { deleteCard, getCards } from '@/api/cards';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
 import { useState } from 'react';
 import QuestionAlert from '../alerts/QuestionAlert';

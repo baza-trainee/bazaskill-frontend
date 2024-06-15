@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { TPartner } from '@/types/partners';
 import { constants } from '@/constants';
@@ -10,13 +8,7 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-
-const DynamicSlider = dynamic(
-  () => import('./Slider/Slider'),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
+import Slider from './Slider/Slider';
 
 const Partners: React.FC = () => {
   const t = useTranslations('Main.partners');
@@ -43,8 +35,8 @@ const Partners: React.FC = () => {
         {t('title')}
       </div>
       <div>
-        {partners.data?.length && (
-          <DynamicSlider partners={partners.data!} />
+        {partners.data && partners.data.length && (
+          <Slider partners={partners.data!} />
         )}
       </div>
     </div>

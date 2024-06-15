@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 'use client';
 
 import { useState, useEffect } from 'react';

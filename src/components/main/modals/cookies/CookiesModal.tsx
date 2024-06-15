@@ -6,6 +6,10 @@ import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
 import { useTranslations } from 'next-intl';
 import { useCookies } from '@/stores/useCookies';
+import {
+  getLocalStorage,
+  setLocalStorage,
+} from '@/lib/storageHelper';
 
 interface CookiesModalProps {}
 
@@ -36,8 +40,26 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
       expires: 1 / 48,
     });
     setCookie();
+    setCookieConsent(true);
     setShowPanel(false);
   };
+  const [cookieConsent, setCookieConsent] = useState(false);
+
+  useEffect(() => {
+    const storedCookieConsent = getLocalStorage(
+      'cookie_consent',
+      null
+    );
+
+    setCookieConsent(storedCookieConsent);
+  }, [setCookieConsent]);
+
+  useEffect(() => {
+    setLocalStorage('cookie_consent', cookieConsent);
+
+    //For Testing
+    console.log('Cookie Consent: ', cookieConsent);
+  }, [cookieConsent]);
 
   return (
     showPanel && (

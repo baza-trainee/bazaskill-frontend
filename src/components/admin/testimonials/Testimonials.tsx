@@ -8,7 +8,7 @@ import PageTitle from '../ui/PageTitle';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import { getTestimonials } from '@/api/testimonials';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 
 const Testimonials = () => {
   const { data, isFetching, refetch } = useQuery({

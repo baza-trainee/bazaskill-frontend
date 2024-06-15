@@ -7,18 +7,15 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { getAllCandidates } from '@/api/candidates';
-import {
-  CandidatesResponse,
-  ICandidates,
-} from '@/types/candidates';
-import { useCallback, useEffect, useState } from 'react';
+import { CandidatesResponse } from '@/types/candidates';
+import { useEffect, useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useFilters } from '@/stores/useFilters';
 
 import CandidatesList from './CandidatesList';
 import CandidatesTitle from './CandidatesTitle';
 import Filters from './Filters';
-import Loader from '@/components/admin/ui/Loader';
+import Loader from '@/components/shared/loader/Loader';
 import { translateCountryName } from '@/helpers/translateCountryName';
 
 const Candidates = () => {

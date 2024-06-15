@@ -7,8 +7,9 @@ import {
 } from 'next-intl/server';
 import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
-import './globals.css';
 import LayoutProvider from './providers/LayoutProvider';
+import { GoogleTagManager } from '@next/third-parties/google';
+import './globals.css';
 
 const open_sans = Open_Sans({
   weight: '400',
@@ -87,9 +88,23 @@ export default async function RootLayout({
         />
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
+      <GoogleTagManager
+        gtmId={process.env.GOOGLE_TAG_MANAGER_ID!}
+      />
       <body
         className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
       >
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.GOOGLE_TAG_MANAGER_ID}`}
+            height="0"
+            width="0"
+            style={{
+              display: 'none',
+              visibility: 'hidden',
+            }}
+          ></iframe>
+        </noscript>
         <Providers locale={locale}>
           <NextIntlClientProvider
             locale={locale}

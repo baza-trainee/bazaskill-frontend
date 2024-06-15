@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import Loader from '@/components/admin/ui/Loader';
+import Loader from '@/components/shared/loader/Loader';
 
 const DynamicPage = dynamic(
   () =>

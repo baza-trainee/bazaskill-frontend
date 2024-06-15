@@ -4,8 +4,15 @@
   transition: transform 0.3s ease;
 }
 
-.partnerSlide:hover {
-  transform: scale(1.1);
+.sliderImage {
+  transition: transform 0.3s ease;
+  max-height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.partnerSlide:hover .sliderImage {
+  transform: scale(1.05);
 }
 
 .swiper-pagination-bullet {

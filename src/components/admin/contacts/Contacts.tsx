@@ -22,7 +22,7 @@ import {
 } from '@/api/contacts';
 import { defaultValues } from './defaultValues';
 import { IContacts } from '@/types/contacts';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
 
 const Contacts = () => {
