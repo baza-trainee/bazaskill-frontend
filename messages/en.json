@@ -28,7 +28,7 @@
       "title": "We will help you find a worthy specialist",
       "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
       "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
-      "paragraph_3": "We give you skilled junior specialists who love what they do. At least that's what they say."
+      "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
     },
     "candidates": {
       "title": "Our candidates",
@@ -41,7 +41,7 @@
       "paragraph_7": "Interested in new things",
       "paragraph_8": "Prone to activity",
       "paragraph_9": "Unconditionally comply with the legislation, in particular in matters of copyright, personal data protection, GDPR, NDA",
-      "paragraph_10": "Unconditionally comply with the legislation"
+      "paragraph_10": "Proven by successful teamwork."
     },
     "partners": {
       "title": "Our partners"
@@ -130,7 +130,9 @@
     "cookies": {
       "text": "This site uses cookies for proper operation and service improvement. If you agree to their use, click OK. More information in",
       "privacy_policy": "Privacy policy"
-    }
+    },
+    "error": "Oops... something went wrong, try again later",
+    "tryagain": "Try again"
   },
   "Error": {
     "title": "We apologize, but the page you are looking for has been deleted or replaced",

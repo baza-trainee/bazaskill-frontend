@@ -9,7 +9,7 @@ import {
 import { z } from 'zod';
 import TextInput from '../ui/TextInput';
 import PageTitle from '../ui/PageTitle';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { defaultValues } from './defaultValues';

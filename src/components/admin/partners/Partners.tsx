@@ -8,7 +8,7 @@ import PartnersCard from './PartnersCard';
 import PageTitle from '../ui/PageTitle';
 import { constants } from '@/constants';
 import { getPartners } from '@/api/partners';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 
 const Partners = () => {
   const { data } = useQuery({

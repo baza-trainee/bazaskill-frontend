@@ -5,7 +5,7 @@ import { constants } from '@/constants';
 import { getHrApplicationById } from '@/api/hr_application';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 
 const HrApplication = ({ id }: { id: string }) => {
   const {

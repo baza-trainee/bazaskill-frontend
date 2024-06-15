@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import PageTitle from '../ui/PageTitle';
 import Post from './Post';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 
 import { constants } from '@/constants';

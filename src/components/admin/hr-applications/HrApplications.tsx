@@ -15,7 +15,7 @@ import {
 } from '@/api/hr_application';
 import PageTitle from '../ui/PageTitle';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 
 const HrApplications = () => {
   const queryClient = useQueryClient();
@@ -69,9 +69,9 @@ const HrApplications = () => {
                 <button
                   type="button"
                   onClick={() => handleRemove(item.id)}
-                  className=" mb-[0.5rem] self-end"
+                  className="self-end"
                 >
-                  <TrashIcon className="h-[32px] w-[32px] fill-white hover:fill-error" />
+                  <TrashIcon className="h-[25px] w-[25px] fill-white hover:fill-error" />
                 </button>
               </div>
             </li>

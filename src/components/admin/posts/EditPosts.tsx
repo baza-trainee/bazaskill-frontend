@@ -24,7 +24,7 @@ import TextAreaArticle from '../ui/TextAreaArticle';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 
 const EditPosts = () => {
   const [file, setFile] = useState<File | null>(null);

@@ -24,7 +24,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
 import Link from 'next/link';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import EditTestimonialCard from './EditTestimonialsCard';
 import { TestimonialPreview } from '@/types/testimonials';
 

@@ -7,7 +7,7 @@ import { documentsScheme } from './documentsScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
 import FileInputDoc from '../ui/FileInputDoc';
 import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';

@@ -77,7 +77,7 @@ const PartnersCard = ({
               src={item.image_url}
               alt={item.name}
               width={273}
-              height={131}
+              height={151}
               className="h-[131px] rounded-[8px] object-cover"
             />
           </div>

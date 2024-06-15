@@ -5,7 +5,7 @@ import { constants } from '@/constants';
 import { getPartnerApplicationsById } from '@/api/partner_application';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 
 const PartnerApplication = ({ id }: { id: string }) => {
   const {

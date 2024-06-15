@@ -28,7 +28,7 @@
       "title": "Pomożemy Ci znaleźć godnego specjalistę",
       "paragraph_1": "Platforma Baza Skill pomoże Ci znaleźć doświadczonego specjalistę w dziedzinie IT, gdyż każdy z naszych kandydatów ma już za sobą poważną praktykę w Baza Trainee Ukraine.",
       "paragraph_2": "Każdy przedstawiony tutaj specjalista potrafi pracować zespołowo, ma doświadczenie w realizacji projektów, zna wymagania, zna trudności i sukcesy na wszystkich etapach życia projektu.",
-      "paragraph_3": "Dajemy Ci wykwalifikowanych młodszych specjalistów, którzy kochają to, co robią. Przynajmniej tak mówią."
+      "paragraph_3": "Oceniamy wiedzę kandydatów, sprawdzamy ich motywację, a każdemu z osobna udzielamy osobistej rekomendacji. Wysyłamy wykwalifikowanych młodszych specjalistów, którzy kochają to, co robią. Przynajmniej tak mówią."
     },
     "candidates": {
       "title": "Nasi kandydaci",
@@ -41,7 +41,7 @@
       "paragraph_7": "Interesują się nowościami",
       "paragraph_8": "Skłonni do aktywności",
       "paragraph_9": "Bezwarunkowo przestrzegają przepisów prawa, w szczególności w zakresie praw autorskich, ochrony danych osobowych, RODO, NDA",
-      "paragraph_10": "Bezwarunkowo przestrzegają przepisów prawa"
+      "paragraph_10": "Potwierdzone udaną pracą zespołową."
     },
     "partners": {
       "title": "Nasi partnerzy"
@@ -130,7 +130,9 @@
     "cookies": {
       "text": "Ta strona korzysta z plików cookies w celu prawidłowego działania i doskonalenia usług. Jeżeli wyrażasz zgodę na ich używanie kliknij OK. Więcej informacji w",
       "privacy_policy": "Polityka prywatności"
-    }
+    },
+    "error": "Ups... coś poszło nie tak, spróbuj ponownie później",
+    "tryagain": "Spróbuj ponownie"
   },
   "Error": {
     "title": "Przepraszamy, strona, której szukasz, została przeniesiona lub usunięta",

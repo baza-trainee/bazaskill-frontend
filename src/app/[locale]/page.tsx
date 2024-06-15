@@ -13,16 +13,13 @@ const Home = async () => {
   return (
     <div className="flex min-h-[100vh] w-full flex-col items-center justify-center gap-2 bg-graphite">
       <Hero />
-
       <Counters />
       <Help />
       <ContentCards />
       <Candidates />
       <Partners />
       <Posts />
-
       <Testimonials />
-
       <Contacts />
       <CookiesModal />
     </div>

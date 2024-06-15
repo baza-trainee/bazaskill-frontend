@@ -10,7 +10,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import Loader from '../ui/Loader';
+import Loader from '../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
 import QuestionAlert from '../alerts/QuestionAlert';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
