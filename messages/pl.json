@@ -209,5 +209,9 @@
     },
     "salary": "Wynagrodzenie",
     "button": "Zastosuj filtry"
+  },
+  "Success_modal": {
+    "title": "Dziękujemy za współpracę!",
+    "message": "My skontaktujemy się z Tobą tak szybko, jak to możliwe."
   }
 }

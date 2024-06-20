@@ -6,6 +6,7 @@ import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
 import { useTranslations } from 'next-intl';
 import { useCookies } from '@/stores/useCookies';
+import { sendGTMEvent } from '@next/third-parties/google';
 import Cookies from 'js-cookie';
 import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
@@ -112,14 +113,27 @@ const Footer = () => {
           </button>
           <button
             className={`inline-block py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
-            onClick={() => openModal('hr')}
+            onClick={() => {
+              openModal('hr'),
+                sendGTMEvent({
+                  event: 'buttonClicked',
+                  value: 'User opened "To become HR" form',
+                });
+            }}
             disabled={!isCookiesAccepted}
           >
             {t('to_become_hr')}
           </button>
           <button
             className={`inline-block whitespace-nowrap py-2 text-xl font-normal decoration-yellow underline-offset-4  md:text-lg xl:leading-7 ${isCookiesAccepted && 'hover:text-yellow hover:underline'}`}
-            onClick={() => openModal('partner')}
+            onClick={() => {
+              openModal('partner'),
+                sendGTMEvent({
+                  event: 'buttonClicked',
+                  value:
+                    'User opened "To become patner" form',
+                });
+            }}
             disabled={!isCookiesAccepted}
           >
             {t('to_become_partner')}

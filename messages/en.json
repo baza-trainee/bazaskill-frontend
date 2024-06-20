@@ -209,5 +209,9 @@
     },
     "salary": "Salary",
     "button": "Apply filters"
+  },
+  "Success_modal": {
+    "title": "Thank you for your cooperation!",
+    "message": "We will contact you as soon as possible."
   }
 }
