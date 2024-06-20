@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-//type declaration for future fetching
-// | Array<Record<"id" | "title", number | string>> | undefined
 interface ISelectFieldProps {
   title: string;
   value: string;
@@ -11,32 +9,26 @@ interface ISelectFieldProps {
   placeholder?: string;
   isRequired?: boolean;
 }
+
 const SelectField: React.FC<ISelectFieldProps> = ({
   title,
   value,
   values,
   onChange,
-  disableHandler,
   errors,
   placeholder,
   isRequired,
 }) => {
-  const handleDiasabled = (value: string): boolean => {
-    if (disableHandler) {
-      return disableHandler(value);
-    }
-    return false;
-  };
-
   return (
     <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
-      <label htmlFor="phone">
+      <label htmlFor="title">
         {title} &nbsp;
         {isRequired && (
           <span className="text-red-500">*</span>
         )}
       </label>
       <select
+        id={title}
         value={value}
         className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
         onChange={(e) => onChange(e.target.value)}
@@ -45,11 +37,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
           {placeholder || 'Please Select'}
         </option>
         {values.map((el, index) => (
-          <option
-            disabled={handleDiasabled(el)}
-            key={index}
-            value={el}
-          >
+          <option key={index} value={el}>
             {el}
           </option>
         ))}

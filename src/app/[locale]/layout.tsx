@@ -13,7 +13,7 @@ import './globals.css';
 
 const open_sans = Open_Sans({
   weight: '400',
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   variable: '--font-open-sans',
 });
 
@@ -55,10 +55,22 @@ export async function generateMetadata({
 }: MainPageProps): Promise<Metadata> {
   return {
     title: {
-      default: 'BazaSkill',
+      default: `Baza Skill - ${
+        params.locale === 'ua'
+          ? 'рекрутинг junior спеціалістів'
+          : params.locale === 'en'
+            ? 'recruiting junior specialists'
+            : 'rekrutacja młodszych specjalistów'
+      }`,
       template: '%s',
     },
-    description: `BazaSkill ${params.locale === 'ua' ? 'головна сторінка' : params.locale === 'en' ? 'main page' : 'strona główna'}`,
+    description: `BazaSkill ${
+      params.locale === 'ua'
+        ? 'Знайдіть нових зірок ★ серед junior-розробників! Ваш надійний провідник у світі ІТ талантів. Перевірені junior для роботи вже сьогодні ☎ +380956621073'
+        : params.locale === 'en'
+          ? 'Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073'
+          : 'Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073'
+    }`,
     icons: {
       icon: ['/favicon.ico?v=1'],
       apple: ['/apple-touch-icon.png?v=4'],

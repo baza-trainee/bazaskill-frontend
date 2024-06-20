@@ -29,6 +29,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 const RegisterPartnerForm = () => {
   const t = useTranslations();
@@ -275,6 +276,12 @@ const RegisterPartnerForm = () => {
                 className="disabled:border-graaphite mt-[2rem] w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={
                   errors && !!Object.keys(errors).length
+                }
+                onClick={() =>
+                  sendGTMEvent({
+                    event: 'buttonClicked',
+                    value: 'User sent "To become HR" form',
+                  })
                 }
               >
                 {isProcessing
