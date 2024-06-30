@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Providers } from './provider';
+import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import {
   getMessages,
@@ -91,7 +92,7 @@ export default async function RootLayout({
   unstable_setRequestLocale(locale);
 
   return (
-    <html lang="ua">
+    <html lang={locale}>
       <head>
         <link
           rel="icon"
@@ -99,6 +100,13 @@ export default async function RootLayout({
           type="image/vnd"
         />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16605851615"
+        ></Script>
+        <Script id="google-analytics">
+          {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16605851615');`}
+        </Script>
       </head>
       <GoogleTagManager
         gtmId={process.env.GOOGLE_TAG_MANAGER_ID!}
