@@ -16,6 +16,7 @@ const open_sans = Open_Sans({
   weight: '400',
   subsets: ['latin', 'cyrillic'],
   variable: '--font-open-sans',
+  display: 'swap',
 });
 
 const tahoma = localFont({
@@ -31,6 +32,7 @@ const tahoma = localFont({
       style: 'normal',
     },
   ],
+  display: 'swap',
   variable: '--font-tahoma',
 });
 
@@ -42,6 +44,7 @@ const mont = localFont({
       style: 'normal',
     },
   ],
+  display: 'swap',
   variable: '--font-mont',
 });
 

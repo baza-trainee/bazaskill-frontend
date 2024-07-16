@@ -5,10 +5,10 @@ const emailPattern =
   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
 const nonRussianLettersPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’"'-]+$/;
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])(?!.*\bscript\b)[A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’"'-]+$/;
 
 const nonRussianLettersWithSymbolsAndDigitsPattern =
-  /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ.]+$/;
+  /^(?!.*[ЁёЫыЭэЪъ])(?!.*\bscript\b)[\w\s`’'!"#$№%&()*+,\-–—./:;=?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ.]+$/;
 
 const messageMaxLength = 300;
 
@@ -88,7 +88,7 @@ export const registerScheme = z.object({
     .nonempty('Main.forms.errors.required_field')
     .refine(
       (value) =>
-        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/u.test(value),
+        /^[a-zA-Zа-яА-Я-їЇ-іІ-ґҐʼ\s']+$/.test(value),
       {
         message: 'Main.forms.errors.position',
       }
