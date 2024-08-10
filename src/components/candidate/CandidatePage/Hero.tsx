@@ -23,9 +23,9 @@ const CandidateHero = ({
             <use href="/Icons/sprite.svg#icon-flag"></use>
           </svg>
 
-          <h2 className="font-tahoma text-[40px] font-[700] text-white">
+          <h1 className="font-tahoma text-[40px] font-[700] text-white">
             {candidate?.specialization?.title}
-          </h2>
+          </h1>
         </div>
 
         <div className="mt-[60px] flex items-center gap-[40px]">

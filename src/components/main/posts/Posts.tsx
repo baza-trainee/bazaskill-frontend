@@ -24,9 +24,9 @@ const Posts = () => {
 
   return (
     <section className="container py-[60px]">
-      <h3 className="mb-[50px] text-center font-tahoma text-2xl font-bold tracking-[1.08px] text-white lg:text-[40px]">
+      <h2 className="mb-[50px] text-center font-tahoma text-2xl font-bold tracking-[1.08px] text-white lg:text-[40px]">
         {t('title')}
-      </h3>
+      </h2>
       <div className="flex flex-wrap justify-center gap-[80px]">
         {data?.length
           ? data?.slice(0, 3).map((post) => {

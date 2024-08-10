@@ -21,7 +21,7 @@ const HeroTitle = () => {
         messages.Main.hero_section.title.pm,
         2500,
       ]}
-      wrapper="span"
+      wrapper="h1"
       speed={25}
       style={{
         display: 'inline',

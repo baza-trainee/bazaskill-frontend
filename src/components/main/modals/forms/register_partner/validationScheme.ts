@@ -5,7 +5,7 @@ const emailPattern =
   /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
 const nonRussianLettersPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])(?!.*\bscript\b)[A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’"'-]+$/;
+  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])(?!.*\bscript\b)[A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s`’"'.,-]+$/;
 
 const nonRussianLettersWithSymbolsAndDigitsPattern =
   /^(?!.*[ЁёЫыЭэЪъ])(?!.*\bscript\b)[\w\s`’'!"#$№%&()*+,\-–—./:;=?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґąćęłńóśźżĄĆĘŁŃÓŚŹŻ.]+$/;
@@ -19,7 +19,10 @@ export const registerScheme = z.object({
     .min(2, 'Main.forms.errors.companyname_min')
     .max(30, 'Main.forms.errors.companyname_max')
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
+      (value) =>
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ),
       { message: 'Main.forms.errors.incorrect_companyname' }
     ),
 

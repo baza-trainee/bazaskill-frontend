@@ -63,7 +63,10 @@ export const registerScheme = z.object({
     .max(300, 'Main.forms.errors.company_max')
     .refine(
       (value: string) =>
-        !value || nonRussianLettersPattern.test(value),
+        !value ||
+        nonRussianLettersWithSymbolsAndDigitsPattern.test(
+          value
+        ),
       {
         message: 'Main.forms.errors.company',
       }
