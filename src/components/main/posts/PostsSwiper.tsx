@@ -37,7 +37,7 @@ function PostsCarousel({ data }: { data: IPost[] }) {
                   alt={post.title}
                   width={250}
                   height={150}
-                  className={`h-[100px] w-full object-cover grayscale`}
+                  className={`h-[150px] w-full object-cover grayscale`}
                 />
                 <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
                   {creationDate}

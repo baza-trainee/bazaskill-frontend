@@ -10,6 +10,7 @@ import localFont from 'next/font/local';
 import { Open_Sans } from 'next/font/google';
 import LayoutProvider from './providers/LayoutProvider';
 import { GoogleTagManager } from '@next/third-parties/google';
+import NextTopLoader from 'nextjs-toploader';
 import './globals.css';
 
 const open_sans = Open_Sans({
@@ -138,6 +139,14 @@ export default async function RootLayout({
                 {children}
               </main>
             </LayoutProvider>
+            <NextTopLoader
+              color="#4DC760"
+              height={2}
+              showSpinner={false}
+              easing="ease"
+              speed={200}
+              shadow="0 0 10px #4DC760,0 0 5px #4DC760"
+            />
           </NextIntlClientProvider>
         </Providers>
       </body>
