@@ -10,6 +10,7 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from '@/lib/storageHelper';
+import Link from 'next/link';
 
 interface CookiesModalProps {}
 
@@ -67,14 +68,12 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
         <div className="flex flex-col justify-between py-6">
           <div className="mb-[25px] max-w-[564px] text-lg">
             {t('text')}{' '}
-            <a
-              className="text-base font-bold underline	"
-              href={privacyPolicy?.document_url}
-              target="_blank"
-              rel="noreferrer noopener"
+            <Link
+              className="text-base font-bold underline"
+              href={`/docs/${privacyPolicy?.title}`}
             >
               {t('privacy_policy')}
-            </a>
+            </Link>
           </div>
 
           <div className="flex max-h-[61px]">

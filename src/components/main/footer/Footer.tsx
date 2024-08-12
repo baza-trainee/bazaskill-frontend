@@ -12,6 +12,7 @@ import Logo from '@/components/icons/Logo';
 import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
+import Link from 'next/link';
 
 type FooterLinkProps = {
   href: string;
@@ -164,28 +165,24 @@ const Footer = () => {
 
         <div className="flex-1 xs:mb-[25px] md:mb-[10px] md:flex md:justify-between xl:mb-[0px]">
           {isCookiesAccepted ? (
-            <a
+            <Link
               className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={privacyPolicy?.document_url}
+              href={`/docs/${privacyPolicy?.title}`}
             >
               {t('privacy_policy')}
-            </a>
+            </Link>
           ) : (
             <span className="gray-700 inline-block justify-center font-sans text-sm text-white transition-all  xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]">
               {t('privacy_policy')}
             </span>
           )}
           {isCookiesAccepted ? (
-            <a
+            <Link
               className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:mr-[45px] md:text-nowrap md:leading-8 md:decoration-[0px]"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={termsOfUse?.document_url}
+              href={`/docs/${termsOfUse?.title}`}
             >
               {t('terms_of_use')}
-            </a>
+            </Link>
           ) : (
             <span className="gray-700 mr-[40px] inline-block justify-center font-sans text-sm text-white transition-all  xs:flex sm:flex sm:text-lg md:mb-[4px] md:text-nowrap md:leading-8 md:decoration-[0px]">
               {t('terms_of_use')}

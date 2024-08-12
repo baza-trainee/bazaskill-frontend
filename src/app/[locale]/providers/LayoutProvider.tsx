@@ -12,7 +12,8 @@ export default function LayoutProvider({
   const pathname = usePathname();
   const isAdminPage =
     pathname.split('/').includes('admin') ||
-    pathname.split('/').includes('login');
+    pathname.split('/').includes('login') ||
+    pathname.split('/').includes('docs');
 
   return (
     <>

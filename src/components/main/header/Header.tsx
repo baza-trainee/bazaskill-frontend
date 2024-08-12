@@ -22,8 +22,6 @@ const Header = () => {
   const sortedStack =
     data && data?.sort((a, b) => b.id - a.id);
 
-  console.log(data);
-
   return (
     <div>
       <AffiliateBanner />
