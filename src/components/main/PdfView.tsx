@@ -12,6 +12,8 @@ import Loader from '../shared/loader/Loader';
 import { getDocuments } from '@/api/documents';
 import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
+import ErrorPage from './ErrorPage';
+import { useRouter } from 'next/navigation';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -20,6 +22,7 @@ export const PDFView = ({
 }: {
   document: string | null;
 }) => {
+  const router = useRouter();
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
   const [documentUrl, setDocumentUrl] = useState('');
@@ -72,8 +75,10 @@ export const PDFView = ({
     };
   }, [pdfWrapperRef]);
 
+  const reset = () => router.replace('/');
+
   return (
-    <div className="pointer-events-none">
+    <div>
       <div
         className="mx-auto flex h-full w-full flex-col items-center justify-center xl:w-2/3"
         ref={pdfWrapperRef}
@@ -82,11 +87,9 @@ export const PDFView = ({
           loading={<Loader />}
           file={documentUrl}
           onLoadSuccess={onDocumentLoadSuccess}
-          error={
-            <div className="text-3xl font-bold">Error</div>
-          }
+          error={<ErrorPage reset={reset} />}
           className={
-            'flex w-full flex-col items-center justify-center p-5 '
+            'flex w-full flex-col items-center justify-center p-5'
           }
         >
           {Array.from(new Array(numPages), (el, index) => (
