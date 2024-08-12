@@ -32,7 +32,9 @@ export const PDFView = ({
   useEffect(() => {
     const found = data?.find((d) => d.title === document);
     if (found) {
-      setDocumentUrl(found.document_url);
+      setDocumentUrl(
+        found.document_url.replace(/^http:\/\//, 'https://')
+      );
     }
   }, [data, document]);
 
@@ -70,9 +72,8 @@ export const PDFView = ({
     };
   }, [pdfWrapperRef]);
 
-
   return (
-    <div className='pointer-events-none'>
+    <div className="pointer-events-none">
       <div
         className="mx-auto flex h-full w-full flex-col items-center justify-center xl:w-2/3"
         ref={pdfWrapperRef}
