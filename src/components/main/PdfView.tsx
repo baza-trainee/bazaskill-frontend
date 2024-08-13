@@ -99,7 +99,6 @@ export const PDFView = ({
               renderAnnotationLayer={false}
               renderTextLayer={false}
               width={width}
-              //scale={3}
             />
           ))}
         </Document>

@@ -22,7 +22,7 @@ const Posts = () => {
     <div className="relative pl-[24px] pt-[20px]">
       <PageTitle title={'Статті та поради'} />
       <section className="flex flex-col flex-wrap gap-[24px] gap-y-12 pt-[50px] md:flex-row">
-        <article className="flex h-[336px] w-[442px] flex-col items-center justify-center rounded-[10px] border-[2px] border-[#7EFE92] md:w-[217px] xl:w-[358px] 5xl:h-[336px] 5xl:w-[464px]">
+        <article className="flex h-[336px] w-[442px] flex-col items-center justify-center rounded-[10px] border-[2px] border-[#7EFE92] md:w-[217px] xl:w-[340px] 5xl:h-[336px] 5xl:w-[464px]">
           <Link
             href={'/admin/posts/add'}
             className="flex flex-col items-center"

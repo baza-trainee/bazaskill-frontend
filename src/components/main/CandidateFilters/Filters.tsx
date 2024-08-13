@@ -58,15 +58,15 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-fit w-[338px] flex-col gap-[32px] pr-[32px] md:box-border md:w-[243px] md:border-r-[1px] md:border-secondaryGray xl:w-full xl:max-w-[288px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
+      className="flex h-fit w-full flex-col items-center justify-center gap-[32px] md:box-border md:w-[243px] md:border-r-[1px] md:border-secondaryGray xl:w-full xl:max-w-[288px] xl:pr-[32px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
     >
-      <div className="w-[280px] border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
+      <div className="w-[280px] border-b-[1px]  border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
         <h3 className="py-[8px] text-base sm:text-lg 3xl:text-xl">
           {t('title')}
         </h3>
       </div>
       <FiltersSpecializationMenu register={register} />
-      <div className="grid grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
+      <div className="grid w-full grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
         <div className="flex flex-col gap-[20px] font-sans">
           <h3> {t('projects.title')}</h3>
           <div className="flex flex-col gap-[20px] sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
@@ -175,7 +175,7 @@ const Filters = ({
           </div>
         </div>
       </div>
-      <div className="relative flex max-w-[272px] flex-col gap-[20px] font-sans text-[20px]">
+      <div className="relative flex w-full flex-col gap-[20px] font-sans text-[20px]">
         <h3 className="leading-[28px]">{t('salary')}</h3>
         <div className="relative flex h-[40px] max-w-full gap-[10px]">
           <div className="flex h-full w-[32px] justify-center xl:items-center xl:px-[10px]">
@@ -209,7 +209,7 @@ const Filters = ({
 
       <div className="main-gradient flex max-w-[280px] items-center justify-center rounded-[6px] sm:min-w-[363px] md:min-w-[219px] xl:min-w-[256px] 3xl:min-w-[306px] 4xl:min-w-[319px]">
         <div className="m-[2px] w-full rounded-[6px] bg-graphite">
-          <button className=" main-gradient flex h-[48px] w-full items-center justify-center border-[1px] bg-clip-text font-sans text-[20px] text-base font-[700] leading-[28px] text-transparent md:h-[54px] xl:text-lg">
+          <button className="main-gradient mx-auto flex h-[48px] w-full items-center justify-center border-[1px] bg-clip-text px-6 font-sans text-[20px] text-base font-[700] leading-[28px] text-transparent md:h-[54px] xl:text-lg">
             {t('button')}
           </button>
         </div>

@@ -7,6 +7,8 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
 import * as React from 'react';
+import { getAllCandidates } from '@/api/candidates';
+import { constants } from '@/constants';
 
 export function Providers(props: {
   children: React.ReactNode;
@@ -22,6 +24,11 @@ export function Providers(props: {
         },
       })
   );
+
+  queryClient.prefetchQuery({
+    queryKey: [constants.candidates.FETCH_ALL_CANDIDATES],
+    queryFn: getAllCandidates,
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
