@@ -48,32 +48,32 @@ const Counters = () => {
       count:
         isFetching || !data?.length
           ? 0
-          : +(data as ICounters[])[0].members,
-      title: t('counters.participants'),
+          : +(data as ICounters[])[0].technologies,
+      title: t('counters.technologies'),
     },
     {
       id: 3,
       count:
         isFetching || !data?.length
           ? 0
-          : +(data as ICounters[])[0].employed,
-      title: t('counters.employed'),
+          : +(data as ICounters[])[0].libraries,
+      title: t('counters.libraries'),
     },
     {
       id: 4,
       count:
         isFetching || !data?.length
           ? 0
-          : +(data as ICounters[])[0].technologies,
-      title: t('counters.technologies'),
+          : +(data as ICounters[])[0].members,
+      title: t('counters.participants'),
     },
     {
       id: 5,
       count:
         isFetching || !data?.length
           ? 0
-          : +(data as ICounters[])[0].libraries,
-      title: t('counters.libraries'),
+          : +(data as ICounters[])[0].employed,
+      title: t('counters.employed'),
     },
   ];
 
@@ -106,12 +106,12 @@ const Counters = () => {
             );
             if (!counter) return null;
             const title =
-              id === 2
+              id === 4
                 ? counter.title.replace('залучених ', '')
                 : counter.title;
             return (
               <SwiperSlide key={id} className="text-center">
-                <div>
+                <div className="">
                   <h3 className="text-[40px] font-bold text-white">
                     <CountUp
                       key={id}
@@ -142,7 +142,7 @@ const Counters = () => {
           <ul className="flex grow flex-col justify-between gap-[24px] text-center font-bold text-white md:hidden md:gap-1 xl:flex xl:flex-row 3xl:gap-[10px] 4xl:gap-[44px] 5xl:gap-[110px] ">
             {counters.map((item, index) => (
               <li
-                className="p-[25px] md:p-[16px] lg:p-[23px]"
+                className="p-[25px] md:p-[16px] lg:p-[23px] "
                 key={index}
               >
                 <h3 className="text-[40px] font-bold leading-10 ">
