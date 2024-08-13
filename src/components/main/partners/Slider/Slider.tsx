@@ -51,7 +51,7 @@ const Slider: React.FC<SliderProps> = ({
         {partners.map((partner) => (
           <SwiperSlide
             key={partner.id}
-            className="partnerSlide z-[999] flex min-h-[250px] items-center justify-center sm:max-w-[280] md:max-w-[190px] xl:max-w-[302px] 4xl:max-w-[324px] 5xl:max-w-[340px]"
+            className="partnerSlide z-[999] flex min-h-[250px] items-center justify-center overflow-hidden sm:max-w-[280] md:max-w-[190px] xl:max-w-[302px] 4xl:max-w-[324px] 5xl:max-w-[340px]"
           >
             <a
               href={partner.partner_url}
