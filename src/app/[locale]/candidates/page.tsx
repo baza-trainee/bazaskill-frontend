@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import Candidates from '@/components/main/CandidateFilters/Candidates';
+import { Suspense } from 'react';
+import LoaderLayout from '@/components/shared/loader/Loader';
 
 interface CandidatesPageProps {
   params: {
@@ -16,11 +18,13 @@ export async function generateMetadata({
   };
 }
 
-const CandidatesPage: React.FC = async () => {
+const CandidatesPage = async () => {
   return (
-    <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
-      <Candidates />
-    </div>
+    <Suspense fallback={<LoaderLayout />}>
+      <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
+        <Candidates />
+      </div>
+    </Suspense>
   );
 };
 

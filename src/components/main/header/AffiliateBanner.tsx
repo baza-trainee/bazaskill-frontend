@@ -5,7 +5,7 @@ import { FaPaw } from 'react-icons/fa';
 const AffiliateBanner = () => {
   const t = useTranslations('Main');
   return (
-    <div className="flex w-full items-center justify-center border-b border-b-[#4E4E4E] bg-graphite p-2 ">
+    <div className="hidden w-full items-center justify-center border-b border-b-[#4E4E4E] bg-graphite p-2 md:flex ">
       <div className="main-gradient flex items-center justify-center bg-clip-text text-transparent transition-all">
         <FaPaw className="text-green" />
         &nbsp; &nbsp;

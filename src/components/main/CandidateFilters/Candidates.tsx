@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { constants } from '@/constants';
@@ -8,7 +7,11 @@ import {
 } from '@tanstack/react-query';
 import { getAllCandidates } from '@/api/candidates';
 import { CandidatesResponse } from '@/types/candidates';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useFilters } from '@/stores/useFilters';
 
@@ -52,8 +55,8 @@ const Candidates = () => {
     useState<CandidatesResponse[]>([]);
   const [isMainFilter, setIsMainFilter] = useState(false);
 
-  useEffect(() => {
-    if (!speciality && !country && !filters.length) {
+  useLayoutEffect(() => {
+    if (!speciality && !country && filters.length === 0) {
       setFilteredCandidates(
         candidates.data as CandidatesResponse[]
       );
