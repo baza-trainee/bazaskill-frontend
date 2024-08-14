@@ -69,7 +69,6 @@ const Hero: React.FC = () => {
           />
           <DesktopIcon className="text-gray-500 absolute left-3" />
         </div>
-        <span className="hidden h-full w-[2px] bg-lightGray md:block"></span>
         <div className="relative flex w-full items-center">
           <TextInput
             title=""

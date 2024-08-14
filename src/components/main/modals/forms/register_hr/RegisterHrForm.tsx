@@ -17,6 +17,10 @@ import { useModal } from '@/stores/useModal';
 import { useLocale } from 'next-intl';
 import { createApplication } from '@/api/hr_application';
 import { localizeCountry } from '@/helpers/localizeCountry';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 import PhoneInput from '@/components/main/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/main/ui/form_inputs/SelectInput';
@@ -24,10 +28,6 @@ import TextInput from '@/components/main/ui/form_inputs/TextInput';
 import TextArea from '@/components/main/ui/form_inputs/TextArea';
 import CustomCheckbox from '@/components/main/ui/form_inputs/CustomCheckbox';
 import SuccessModal from '../SuccesModal';
-import {
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
 
 const RegisterHrForm = () => {
   const t = useTranslations();

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Providers } from './provider';
+import ReactQueryProvider from './providers/ReactQueryProvider';
 import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import {
@@ -129,7 +129,7 @@ export default async function RootLayout({
             }}
           ></iframe>
         </noscript>
-        <Providers locale={locale}>
+        <ReactQueryProvider>
           <NextIntlClientProvider
             locale={locale}
             messages={messages}
@@ -148,7 +148,7 @@ export default async function RootLayout({
               shadow="0 0 10px #4DC760,0 0 5px #4DC760"
             />
           </NextIntlClientProvider>
-        </Providers>
+        </ReactQueryProvider>
       </body>
     </html>
   );
