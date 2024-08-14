@@ -4,7 +4,7 @@ const LoaderLayout = () => {
   return (
     <div
       className="backdrop-brightness-10 fixed left-0 right-0 top-0 z-[9999] flex h-full w-full flex-col 
-    items-center justify-center bg-[rgba(0,0,0,0.85)] backdrop-blur-sm"
+    items-center justify-center bg-[rgba(0,0,0,0.9)] backdrop-blur-sm"
     >
       <div className="loader">
         <span style={{ '--i': 1 }}></span>

@@ -168,6 +168,7 @@ const Footer = () => {
             <Link
               className="hover:decoration gray-700 mr-72 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:mb-[25px] xs:mr-0 xs:flex sm:mr-0 sm:flex sm:text-lg md:mb-[4px] md:mr-[40px] md:text-nowrap md:leading-8 xl:mr-[120px] 2xl:mr-[212px] 3xl:mr-[266px] 4xl:mr-[300px] 5xl:mr-[368px]"
               href={`/docs/${privacyPolicy?.title}`}
+              target="_blank"
             >
               {t('privacy_policy')}
             </Link>
@@ -180,6 +181,7 @@ const Footer = () => {
             <Link
               className="hover:decoration gray-700 inline-block cursor-pointer justify-center font-sans text-sm text-white transition-all hover:text-yellow xs:flex sm:flex sm:text-lg md:mb-[4px] md:mr-[45px] md:text-nowrap md:leading-8 md:decoration-[0px]"
               href={`/docs/${termsOfUse?.title}`}
+              target="_blank"
             >
               {t('terms_of_use')}
             </Link>
