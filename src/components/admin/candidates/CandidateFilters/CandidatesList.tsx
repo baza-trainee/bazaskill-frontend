@@ -2,7 +2,7 @@ import { useState } from 'react';
 import declineWord from 'decline-word';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
-import CandidateCard from './CandidateCard';
+import CandidateCard from '@/components/candidates-shared/CandidateCard';
 import { CandidatesResponse } from '@/types/candidates';
 
 const CandidatesList = ({
@@ -21,7 +21,7 @@ const CandidatesList = ({
   };
 
   return (
-    <div className=" box-content pr-[24px] 5xl:pr-[196px]">
+    <div className="no-scrollbar box-content max-h-[180vh] w-1/2 overflow-y-auto pr-[24px] 5xl:pr-[196px]">
       <div className="pl-[24px] font-tahoma text-[24px]">
         {candidates.length}{' '}
         {declineWord(
@@ -55,7 +55,7 @@ const CandidatesList = ({
       </div>
       {candidates.length > 4 && (
         <div
-          className={`mb-[94px] mt-[70px] flex w-[80%] items-center justify-center`}
+          className={`mx-auto mb-[94px] mt-[70px] flex w-[80%] items-center justify-center`}
         >
           {candidates.length <= numberOnPage ? (
             <svg

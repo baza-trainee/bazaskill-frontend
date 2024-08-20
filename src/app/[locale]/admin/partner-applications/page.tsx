@@ -1,5 +1,4 @@
-import PartnerApplications from '@/components/admin/partner-application/PartnerApplications';
-import React from 'react';
+import PartnerApplications from '@/components/admin/partner-applications/PartnerApplications';
 
 const PartnerApplicationsPage = () => {
   return <PartnerApplications />;
