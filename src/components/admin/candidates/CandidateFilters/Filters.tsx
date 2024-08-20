@@ -1,17 +1,15 @@
 /* eslint-disable no-unused-vars */
 'use client';
-
-import FiltersSpecializationMenu from './FiltersSpecializationMenu';
-import CustomCheckbox from './CustomCheckbox';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
-import schema from './schema';
-import defaultValues from './defaultValues';
+import schema from '@/components/candidates-shared/schema';
+import defaultValues from '@/components/candidates-shared/defaultValues';
+import FiltersSpecializationMenu from '@/components/candidates-shared/FiltersSpecializationMenu';
+import CustomCheckbox from '@/components/candidates-shared/CustomCheckbox';
 
 const Filters = ({
   SubmitHandler,
@@ -59,7 +57,7 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto box-border flex h-fit w-[440px] flex-col gap-[32px] border-r-[1px] border-secondaryGray pl-[24px] pr-[24px]"
+      className="no-scrollbar mx-auto box-border flex h-fit max-h-[180vh] w-1/2 flex-col gap-[32px] overflow-y-auto border-r-[1px] border-secondaryGray pl-[24px] pr-[24px]"
     >
       <div className="border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
         <h3 className="py-[8px]">Фільтри</h3>

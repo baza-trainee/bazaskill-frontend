@@ -34,7 +34,7 @@ const SideBar: React.FC = () => {
           <Logo />
         </Link>
       </div>
-      <ul className="mb-[380px] flex flex-col">
+      <ul className="mb-[180px] flex flex-col">
         <SideBarItem
           className=""
           icon={<Candidates />}

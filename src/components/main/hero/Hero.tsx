@@ -57,7 +57,10 @@ const Hero: React.FC = () => {
           <DynamicHeroTitle />
         </div>
       </div>
-      <form className="flex flex-col xs:gap-3 md:flex-row md:gap-0">
+      <form
+        className="flex flex-col xs:gap-3 md:flex-row md:gap-0"
+        autoComplete="off"
+      >
         <div className="relative flex w-full items-center">
           <TextInput
             isFirstInput={true}

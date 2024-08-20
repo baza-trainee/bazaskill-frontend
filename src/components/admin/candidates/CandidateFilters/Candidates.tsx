@@ -14,7 +14,7 @@ import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 import Filters from './Filters';
 import { CandidatesResponse } from '@/types/candidates';
-import Loader from '../../../shared/loader/Loader';
+import Loader from '@/components/shared/loader/Loader';
 
 const Candidates = () => {
   const candidates: UseQueryResult<

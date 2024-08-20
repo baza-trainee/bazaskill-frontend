@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
-import { ForwardedRef, forwardRef, useState } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useState,
+} from 'react';
 
 interface FileInputPostProps {
   title?: string;
@@ -9,6 +14,7 @@ interface FileInputPostProps {
   iconComponent?: JSX.Element;
   isRequired?: boolean;
   placeholder: string;
+  file?: any;
   onChange: (_file: File) => void;
 }
 
@@ -19,6 +25,7 @@ const FileInputPost = forwardRef(function FileInputPost(
     placeholder,
     isRequired,
     onChange,
+    file,
     ...rest
   }: FileInputPostProps,
   ref: ForwardedRef<HTMLInputElement>
@@ -73,6 +80,11 @@ const FileInputPost = forwardRef(function FileInputPost(
     return true;
   };
 
+  useEffect(() => {
+    if (!file) return;
+    setSelectedFileName(file.name);
+  }, [file]);
+
   const inputClassName = `overflow-hidden w-[242px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px] cursor-pointer relative z-1 bg-[#efefef] h-[44px] outline-none ${isValid ? 'border-1px-solid-transparent' : 'border-1px-solid-#f92b2d'} rounded-md px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px] hover:bg-[#ebfcee] focus:outline-none focus:bg-[#efefef]`;
 
   return (
@@ -92,13 +104,11 @@ const FileInputPost = forwardRef(function FileInputPost(
       )}
       <div className={inputClassName}>
         <span className="text-[16px] leading-[1.16] text-[#787878]">
-          {selectedFileName ? (
-            <span className="text-[#020202]">
-              {selectedFileName}
-            </span>
-          ) : (
-            placeholder
-          )}
+          <span className="absolute top-[50%] z-[0] -translate-y-[50%] truncate text-[#020202]">
+            {selectedFileName
+              ? selectedFileName
+              : placeholder}
+          </span>
         </span>
         <div className="absolute right-[16px] top-[9px] z-0">
           <UploadIcon />

@@ -127,6 +127,7 @@ const TextInput: FC<TextInputProps> = ({
           id={title}
           data-category={category}
           name={category}
+          autoComplete="off"
           className={`h-[64px] 
             w-full p-2 pl-12 placeholder:text-xl focus:outline-none 
             ${

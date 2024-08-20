@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -23,17 +23,20 @@ import TextAreaArticle from '../ui/TextAreaArticle';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import SuccessAlert from '../alerts/SuccessAlert';
+import PostPreview from './PostPreview';
 
 const AddPosts = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [image, setImage] = useState('');
   const router = useRouter();
 
   const {
     handleSubmit,
     control,
     reset,
+    watch,
     formState: { isDirty, errors },
   } = useForm<TPostScheme>({
     mode: 'onChange',
@@ -46,7 +49,19 @@ const AddPosts = () => {
     resolver: zodResolver(postScheme),
   });
 
-  const onsubmit: SubmitHandler<TPostScheme> = async (
+  const currentValues = watch();
+
+  const setImagePreview = (file: File) => {
+    const img = URL.createObjectURL(file);
+    setImage(img);
+  };
+
+  useEffect(() => {
+    if (!file) return;
+    setImagePreview(file);
+  }, [file]);
+
+  const onSubmit: SubmitHandler<TPostScheme> = async (
     data
   ) => {
     try {
@@ -93,51 +108,59 @@ const AddPosts = () => {
       <section className="pt-[50px]">
         <form
           className="flex flex-col gap-[50px]"
-          onSubmit={handleSubmit(onsubmit)}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <Controller
-            name="title"
-            control={control}
-            render={({ field }) => {
-              return (
-                <TextInput
-                  {...field}
-                  errorText={errors.title?.message}
-                  title="Назва статті"
-                  placeholder="Введіть назву статті"
-                />
-              );
-            }}
-          />
-          <Controller
-            name="image"
-            control={control}
-            render={({ field }) => {
-              return (
-                <FileInputPost
-                  {...field}
-                  placeholder="Завантажте зображення"
-                  title="Зображення"
-                  onChange={handleFileChange}
-                />
-              );
-            }}
-          />
-          <Controller
-            name="link"
-            control={control}
-            render={({ field }) => {
-              return (
-                <TextInput
-                  {...field}
-                  errorText={errors.link?.message}
-                  title="Стаття в Linkedin"
-                  placeholder="Додати ссилку"
-                  isIcon={true}
-                />
-              );
-            }}
-          />
+          <div className="flex gap-[200px]">
+            <div className="flex flex-col gap-[50px]">
+              <Controller
+                name="title"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <TextInput
+                      {...field}
+                      errorText={errors.title?.message}
+                      title="Назва статті"
+                      placeholder="Введіть назву статті"
+                    />
+                  );
+                }}
+              />
+              <Controller
+                name="image"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <FileInputPost
+                      {...field}
+                      placeholder="Завантажте зображення"
+                      title="Зображення"
+                      onChange={handleFileChange}
+                    />
+                  );
+                }}
+              />
+              <Controller
+                name="link"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <TextInput
+                      {...field}
+                      errorText={errors.link?.message}
+                      title="Стаття в Linkedin"
+                      placeholder="Додати ссилку"
+                      isIcon={true}
+                    />
+                  );
+                }}
+              />
+            </div>
+            <PostPreview
+              currentValues={currentValues}
+              image={image}
+            />
+          </div>
           <Controller
             name="text"
             control={control}

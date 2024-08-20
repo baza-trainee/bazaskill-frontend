@@ -1,28 +1,25 @@
 'use client';
-
-import { constants } from '@/constants';
-import {
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { getAllCandidates } from '@/api/candidates';
-import { CandidatesResponse } from '@/types/candidates';
 import {
   useEffect,
   useLayoutEffect,
   useState,
 } from 'react';
+import {
+  useQuery,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { FieldValues } from 'react-hook-form';
+import { constants } from '@/constants';
+import { getAllCandidates } from '@/api/candidates';
+import { CandidatesResponse } from '@/types/candidates';
 import { useFilters } from '@/stores/useFilters';
-
-import CandidatesList from './CandidatesList';
-import CandidatesTitle from './CandidatesTitle';
-import Filters from './Filters';
-import Loader from '@/components/shared/loader/Loader';
 import { translateCountryName } from '@/helpers/translateCountryName';
-import { filterCandidatesOnSubmit } from './filters/filterCandidatesOnSubmit';
-import { filterCandidatesByMainFilters } from './filters/filterCandidatesByMainFilters';
-
+import { filterCandidatesOnSubmit } from '@/components/candidates-shared/filters/filterCandidatesOnSubmit';
+import { filterCandidatesByMainFilters } from '@/components/candidates-shared/filters/filterCandidatesByMainFilters';
+import CandidatesList from '@/components/candidates-shared/CandidatesList';
+import CandidatesTitle from '@/components/candidates-shared/CandidatesTitle';
+import Filters from '@/components/candidates-shared/Filters';
+import Loader from '@/components/shared/loader/Loader';
 const Candidates = () => {
   const candidates: UseQueryResult<
     CandidatesResponse[],
