@@ -57,7 +57,7 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="no-scrollbar mx-auto box-border flex h-fit max-h-[180vh] w-1/2 flex-col gap-[32px] overflow-y-auto border-r-[1px] border-secondaryGray pl-[24px] pr-[24px]"
+      className="no-scrollbar mx-auto box-border flex h-fit max-h-[180vh] w-1/2 flex-col gap-[32px] overflow-y-auto border-r-[1px] border-secondaryGray pb-[24px] pl-[24px] pr-[24px]"
     >
       <div className="border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
         <h3 className="py-[8px]">Фільтри</h3>
@@ -228,8 +228,8 @@ const Filters = ({
         </div>
       </div>
 
-      <div className="main-gradient flex items-center justify-center rounded-[6px]">
-        <div className="m-[2px] w-full rounded-[6px] bg-graphite">
+      <div className="main-gradient  mx-auto flex items-center justify-center rounded-[6px] md:max-w-[75%]">
+        <div className="m-[2px] w-full rounded-[6px] bg-graphite px-[1rem]">
           <button className="main-gradient flex h-[54px] w-full items-center justify-center border-[1px] bg-clip-text font-sans text-[20px] font-[700] leading-[28px] text-transparent">
             Застосувати фільтри
           </button>
