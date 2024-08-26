@@ -2,7 +2,7 @@ import { useState } from 'react';
 import declineWord from 'decline-word';
 import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
-import CandidateCard from '@/components/candidates-shared/CandidateCard';
+import CandidateCard from './CandidateCard';
 import { CandidatesResponse } from '@/types/candidates';
 
 const CandidatesList = ({
@@ -11,6 +11,8 @@ const CandidatesList = ({
   candidates: CandidatesResponse[];
 }) => {
   const [numberOnPage, setNumberOnPage] = useState(4);
+
+  console.log(candidates);
 
   const increase = () => {
     setNumberOnPage((prev) => prev + 4);
