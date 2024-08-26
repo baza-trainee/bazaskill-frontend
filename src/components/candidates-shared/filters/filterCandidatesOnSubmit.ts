@@ -10,7 +10,7 @@ interface IFilterCandidatesOnSubmit {
   setFilteredCandidates: Dispatch<
     SetStateAction<CandidatesResponse[]>
   >;
-  isMainFilter: boolean;
+  isMainFilter?: boolean;
 }
 
 export const filterCandidatesOnSubmit = ({
