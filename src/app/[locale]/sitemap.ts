@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const candidatesEntries: MetadataRoute.Sitemap =
     candidates.map(({ id }: { id: number }) => ({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}/candidate/${id}`,
+      lastModified: new Date(),
     }));
 
   return [
