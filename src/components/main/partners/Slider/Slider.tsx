@@ -1,6 +1,5 @@
-import React from 'react';
+/* eslint-disable @next/next/no-img-element */
 import { RefObject, useRef } from 'react';
-import Image from 'next/image';
 import {
   Swiper,
   SwiperRef,
@@ -51,20 +50,18 @@ const Slider: React.FC<SliderProps> = ({
         {partners.map((partner) => (
           <SwiperSlide
             key={partner.id}
-            className="partnerSlide z-[999] flex min-h-[250px] items-center justify-center overflow-hidden sm:max-w-[280] md:max-w-[190px] xl:max-w-[302px] 4xl:max-w-[324px]
-            5xl:max-w-[340px]"
+            className="partnerSlide z-[999] flex min-h-[250px] items-center justify-center overflow-hidden p-2 sm:max-w-[280]
+            md:max-w-[190px] xl:max-w-[302px] 4xl:max-w-[324px] 5xl:max-w-[340px]"
           >
             <a
               href={partner.partner_url}
               target="_blank"
               rel="nofollow"
             >
-              <Image
-                className="sliderImage"
+              <img
                 src={partner.image_url}
-                width={swiperParams.imageWidth}
-                height={swiperParams.imageHeight}
                 alt={partner.name}
+                className={`w-[${swiperParams.imageWidth}] h-[${swiperParams.imageHeight}] sliderImage`}
               />
             </a>
           </SwiperSlide>

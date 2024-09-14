@@ -7,9 +7,8 @@ const DynamicPage = dynamic(
     import(
       '@/components/candidate/CandidatePage/CandidatePage'
     ),
-  {
-    loading: () => <Loader />,
-  }
+
+  { ssr: false, loading: () => <Loader /> }
 );
 
 interface CandidatePageProps {
@@ -32,7 +31,9 @@ export async function generateMetadata({
   };
 }
 
-const Candidate = ({ params }: CandidatePageProps) => {
+const Candidate = async ({
+  params,
+}: CandidatePageProps) => {
   return (
     <div className="min-h-[100vh] bg-graphite">
       <DynamicPage id={params.id} />

@@ -1,13 +1,19 @@
 import { Metadata } from 'next';
-import Candidates from '@/components/main/CandidateFilters/Candidates';
-import { Suspense } from 'react';
-import LoaderLayout from '@/components/shared/loader/Loader';
+import dynamic from 'next/dynamic';
+import Loader from '@/components/shared/loader/Loader';
 
 interface CandidatesPageProps {
   params: {
     locale: string;
   };
 }
+
+const DynamicPage = dynamic(
+  () =>
+    import('@/components/main/CandidateFilters/Candidates'),
+
+  { ssr: false, loading: () => <Loader /> }
+);
 
 export async function generateMetadata({
   params,
@@ -20,11 +26,9 @@ export async function generateMetadata({
 
 const CandidatesPage = async () => {
   return (
-    <Suspense fallback={<LoaderLayout />}>
-      <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
-        <Candidates />
-      </div>
-    </Suspense>
+    <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
+      <DynamicPage />
+    </div>
   );
 };
 
