@@ -39,6 +39,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
   const acceptCookies = (): void => {
     Cookies.set('cookiesAccepted', 'true', {
       expires: 1 / 48,
+      sameSite: 'Lax',
     });
     setCookie();
     setCookieConsent(true);
@@ -57,9 +58,6 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
 
   useEffect(() => {
     setLocalStorage('cookie_consent', cookieConsent);
-
-    //For Testing
-    console.log('Cookie Consent: ', cookieConsent);
   }, [cookieConsent]);
 
   return (

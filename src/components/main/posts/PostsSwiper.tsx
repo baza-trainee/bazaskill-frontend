@@ -1,6 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
-
-import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
@@ -14,7 +13,7 @@ import { formatDate } from '@/components/admin/posts/dateHelper';
 function PostsCarousel({ data }: { data: IPost[] }) {
   return (
     <Swiper
-      slidesPerView={1}
+      slidesPerView={'auto'}
       pagination={{
         clickable: true,
       }}
@@ -32,11 +31,9 @@ function PostsCarousel({ data }: { data: IPost[] }) {
               className="relative mx-auto h-[320px] max-w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92]"
             >
               <div className="relative">
-                <Image
+                <img
                   src={post.image_url}
                   alt={post.title}
-                  width={250}
-                  height={150}
                   className={`h-[150px] w-full object-cover grayscale`}
                 />
                 <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">

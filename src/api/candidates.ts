@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import axios from '@/config/axios';
 import {
   IBazaExperience,
