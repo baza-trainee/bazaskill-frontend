@@ -58,6 +58,7 @@ const FileInputPost = forwardRef(function FileInputPost(
   const validateFile = (file: File): boolean => {
     const validExtensions = [
       '.jpg',
+      '.jpeg',
       '.webp',
       '.png',
       '.svg',
