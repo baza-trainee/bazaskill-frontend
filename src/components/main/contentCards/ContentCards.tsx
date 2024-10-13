@@ -41,7 +41,7 @@ const ContentCards = () => {
             data.map((card, index) => (
               <SwiperSlide
                 key={card.id}
-                className={`flex rounded-md border border-[#7EFE92] bg-[#2C2C2C]
+                className={`flex rounded-md border border-[#7EFE92] bg-[#000000]
                           p-6 text-white xs:max-w-48 
                           xl:max-w-[218px]
                           ${index % 2 == 0 ? 'mt-[46px]' : 'mb-[46px]'}`}
@@ -54,7 +54,7 @@ const ContentCards = () => {
                     alt={card.name}
                     width={cardParams.imageWidth}
                     height={cardParams.imageHeight}
-                    className="mb-6 aspect-square rounded-full object-cover text-center grayscale"
+                    className="mb-6 aspect-square rounded-full object-cover text-center"
                   />
                   <span className=" flex-col pb-2 text-lg font-bold">
                     {card.name}

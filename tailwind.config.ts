@@ -23,7 +23,7 @@ const config: Config = {
         secondaryGray: '#787878',
         inputBgGray: '#EEEEEE',
         darkGraphite: '#191919',
-        graphite: '#212121',
+        graphite: '#000000',
         green: '#4DC760',
         secondaryGreen: '#94C748',
         yellow: '#FFF854',
