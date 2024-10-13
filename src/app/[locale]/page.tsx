@@ -11,7 +11,13 @@ import Candidates from '@/components/main/candidates/Candidates';
 
 const Home = async () => {
   return (
-    <div className="flex min-h-[100vh] w-full flex-col items-center justify-center gap-2 bg-graphite">
+    <div
+      className="flex min-h-[100vh] w-full flex-col items-center justify-center gap-2 "
+      style={{
+        background:
+          'linear-gradient(to right, #093028, #237a57)',
+      }}
+    >
       <Hero />
       <Counters />
       <Help />

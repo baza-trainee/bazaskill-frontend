@@ -54,7 +54,7 @@ const ContentCards = () => {
                     alt={card.name}
                     width={cardParams.imageWidth}
                     height={cardParams.imageHeight}
-                    className="mb-6 aspect-square rounded-full object-cover text-center grayscale"
+                    className="mb-6 aspect-square rounded-full object-cover text-center"
                   />
                   <span className=" flex-col pb-2 text-lg font-bold">
                     {card.name}
