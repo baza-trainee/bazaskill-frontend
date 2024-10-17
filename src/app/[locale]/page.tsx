@@ -1,13 +1,13 @@
-import Hero from '@/components/main/hero/Hero';
-import Counters from '@/components/main/counters/Counters';
-import Testimonials from '@/components/main/testimonials/Testimonials';
-import Posts from '@/components/main/posts/Posts';
-import Partners from '@/components/main/partners/Partners';
-import Contacts from '@/components/main/contacts/Contacts';
-import Help from '@/components/main/help/Help';
-import ContentCards from '@/components/main/contentCards/ContentCards';
-import CookiesModal from '@/components/main/modals/cookies/CookiesModal';
-import Candidates from '@/components/main/candidates/Candidates';
+import Hero from '@/components/user/hero/Hero';
+import Counters from '@/components/user/counters/Counters';
+import Testimonials from '@/components/user/testimonials/Testimonials';
+import Posts from '@/components/user/posts/Posts';
+import Partners from '@/components/user/partners/Partners';
+import Contacts from '@/components/user/contacts/Contacts';
+import Help from '@/components/user/help/Help';
+import ContentCards from '@/components/user/contentCards/ContentCards';
+import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
+import Candidates from '@/components/user/candidates/Candidates';
 
 const Home = async () => {
   return (

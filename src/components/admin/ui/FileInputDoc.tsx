@@ -1,6 +1,6 @@
 'use client';
 
-import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
+import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
 import {
   ForwardedRef,
   forwardRef,
@@ -53,7 +53,10 @@ const FileInputDoc = forwardRef(function FileInputDoc<
     if (!field.value.length) {
       setSelectedFileName('');
     }
+    setSelectedFileName(field?.value[0]?.name);
   }, [field]);
+
+  console.log(field.value);
 
   const errorText = (
     formState.errors[name] as DeepMap<
@@ -81,7 +84,7 @@ const FileInputDoc = forwardRef(function FileInputDoc<
     }
   };
 
-  const inputClassName = `w-[286px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
+  const inputClassName = `w-[286px] cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
   errorText
@@ -109,16 +112,10 @@ ${
         className={inputClassName}
         onClick={handlePlaceholderClick}
       >
-        <span className="text-[16px] leading-[1.16] text-[#787878]">
-          {selectedFileName ? (
-            <span className="text-[#020202]">
-              {selectedFileName}
-            </span>
-          ) : (
-            placeholder
-          )}
+        <span className="w-full truncate text-[16px] leading-[1.16] text-[#787878]">
+          {selectedFileName || placeholder}
         </span>
-        <div className="absolute right-[16px] top-[9px] z-0">
+        <div className="absolute right-0 top-0 z-0 flex h-full w-[13%] items-center justify-center rounded-md bg-white">
           <UploadIcon />
         </div>
         <input

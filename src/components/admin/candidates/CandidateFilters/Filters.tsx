@@ -6,10 +6,10 @@ import {
   useForm,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import schema from '@/components/candidates-shared/schema';
-import defaultValues from '@/components/candidates-shared/defaultValues';
-import FiltersSpecializationMenu from '@/components/candidates-shared/FiltersSpecializationMenu';
-import CustomCheckbox from '@/components/candidates-shared/CustomCheckbox';
+import schema from '@/components/shared/candidates/schema';
+import defaultValues from '@/components/shared/candidates/defaultValues';
+import FiltersSpecializationMenu from '@/components/shared/candidates/FiltersSpecializationMenu';
+import CustomCheckbox from '@/components/shared/candidates/CustomCheckbox';
 
 const Filters = ({
   SubmitHandler,

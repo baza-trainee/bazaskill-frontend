@@ -1,6 +1,6 @@
 'use client';
 
-import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import {
   ForwardedRef,
   InputHTMLAttributes,

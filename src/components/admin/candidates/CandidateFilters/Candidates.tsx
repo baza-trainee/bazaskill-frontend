@@ -10,7 +10,7 @@ import { FieldValues } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { useFilters } from '@/stores/useFilters';
 import { CandidatesResponse } from '@/types/candidates';
-import { filterCandidatesOnSubmit } from '@/components/candidates-shared/filters/filterCandidatesOnSubmit';
+import { filterCandidatesOnSubmit } from '@/components/shared/candidates/helpers/filterCandidatesOnSubmit';
 import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 import Filters from './Filters';

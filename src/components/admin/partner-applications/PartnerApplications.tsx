@@ -10,7 +10,7 @@ import {
   deleteApplication,
 } from '@/api/partner_application';
 import PageTitle from '../ui/PageTitle';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import Loader from '../../shared/loader/Loader';
 import {
   useMutation,

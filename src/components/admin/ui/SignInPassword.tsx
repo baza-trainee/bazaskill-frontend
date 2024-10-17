@@ -1,7 +1,7 @@
 'use client';
 
-import EyeIcon from '@/components/icons/Admin-icons/EyeIcon';
-import NotEyeIcon from '@/components/icons/Admin-icons/NotEyeIcon';
+import EyeIcon from '@/components/shared/icons/Admin-icons/EyeIcon';
+import NotEyeIcon from '@/components/shared/icons/Admin-icons/NotEyeIcon';
 import {
   ForwardedRef,
   InputHTMLAttributes,

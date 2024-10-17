@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
-import ReactQueryProvider from './providers/ReactQueryProvider';
 import Script from 'next/script';
-import { NextIntlClientProvider } from 'next-intl';
+import localFont from 'next/font/local';
+import { Open_Sans } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
+import NextTopLoader from 'nextjs-toploader';
 import {
   getMessages,
   unstable_setRequestLocale,
 } from 'next-intl/server';
-import localFont from 'next/font/local';
-import { Open_Sans } from 'next/font/google';
-import LayoutProvider from './providers/LayoutProvider';
-import { GoogleTagManager } from '@next/third-parties/google';
-import NextTopLoader from 'nextjs-toploader';
+import { NextIntlClientProvider } from 'next-intl';
+import { PageProps } from '@/types';
+import ReactQueryProvider from '@/components/providers/ReactQueryProvider';
+import LayoutProvider from '@/components/providers/LayoutProvider';
 import './globals.css';
 
 const open_sans = Open_Sans({
@@ -49,15 +50,9 @@ const mont = localFont({
   variable: '--font-mont',
 });
 
-interface MainPageProps {
-  params: {
-    locale: string;
-  };
-}
-
 export async function generateMetadata({
   params,
-}: MainPageProps): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   return {
     title: {
       default: `Baza Skill - ${

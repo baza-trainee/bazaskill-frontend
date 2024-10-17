@@ -1,4 +1,4 @@
-import { Option } from '@/components/main/ui/form_inputs/SelectInput';
+import { Option } from '@/components/user/ui/form_inputs/SelectInput';
 
 export const localizeCountry = (locale: string) => {
   let arr: Option[] = [];

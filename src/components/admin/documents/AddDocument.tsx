@@ -7,7 +7,7 @@ import { documentsScheme } from './documentsScheme';
 import { zodResolver } from '@hookform/resolvers/zod';
 import PageTitle from '../ui/PageTitle';
 import FileInputDoc from '../ui/FileInputDoc';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { createDocument } from '@/api/documents';
