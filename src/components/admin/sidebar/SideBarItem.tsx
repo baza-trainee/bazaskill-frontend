@@ -1,4 +1,4 @@
-import ArrowIcon from '@/components/icons/ArrowIcon';
+import ArrowIcon from '@/components/shared/icons/ArrowIcon';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';

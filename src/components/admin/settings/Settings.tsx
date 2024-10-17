@@ -16,7 +16,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getProfile } from '@/api/signIn';
 import { constants } from '@/constants';
 import PageTitle from '../ui/PageTitle';
-import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import TextInput from '../ui/TextInput';
 import Link from 'next/link';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
@@ -30,6 +30,8 @@ const Settings = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
+    watch,
     formState: { errors, isDirty },
   } = useForm<z.infer<typeof settingsScheme>>({
     resolver: zodResolver(settingsScheme),
@@ -45,12 +47,15 @@ const Settings = () => {
     queryFn: getProfile,
   });
 
+  console.log(user);
+
   useEffect(() => {
     if (!user) return;
-    reset({
-      email: user?.email,
-    });
-  }, [reset]);
+    setValue('email', user.email);
+    setValue('password', '......');
+  }, [user]);
+
+  console.log(watch());
 
   const onSubmit: SubmitHandler<
     z.infer<typeof settingsScheme>

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import {
   Control,
   Controller,

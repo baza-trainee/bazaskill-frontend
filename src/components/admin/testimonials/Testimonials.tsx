@@ -1,5 +1,5 @@
 'use client';
-import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
+import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 import React from 'react';
 import { Testimonial } from '@/types/testimonials';

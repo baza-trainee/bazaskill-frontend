@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
+import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
 import {
   ForwardedRef,
   forwardRef,

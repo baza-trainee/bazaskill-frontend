@@ -1,5 +1,5 @@
 import { getSpecializations } from '@/api/specialization';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { constants } from '@/constants';
 import { ISpecialization } from '@/types/specialization';
 import {

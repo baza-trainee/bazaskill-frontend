@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import UploadIcon from '@/components/icons/Admin-icons/UploadIcon';
+import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
 
 interface IFileInputProps {
   onChange: (files: FileList) => void;

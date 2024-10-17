@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 import Loader from '../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
 import QuestionAlert from '../alerts/QuestionAlert';
-import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
+import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
 
 const Gallery = () => {

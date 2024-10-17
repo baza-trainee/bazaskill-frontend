@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as z from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { documentsScheme } from './documentsScheme';
@@ -10,7 +10,6 @@ import { constants } from '@/constants';
 import Loader from '../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
 import FileInputDoc from '../ui/FileInputDoc';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import {
@@ -18,23 +17,24 @@ import {
   updateDocument,
 } from '@/api/documents';
 import SuccessAlert from '../alerts/SuccessAlert';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const DocumentsPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const { data, isFetching } = useQuery({
+  const { data: documents, isFetching } = useQuery({
     queryKey: [constants.documents.FETCH_DOCUMENTS],
     queryFn: getDocuments,
   });
-
-  console.log(data);
 
   const {
     handleSubmit,
     control,
     reset,
-    resetField,
+    setValue,
+    watch,
     formState: { isDirty },
   } = useForm<z.infer<typeof documentsScheme>>({
     resolver: zodResolver(documentsScheme),
@@ -44,6 +44,24 @@ const DocumentsPage = () => {
       privacy_policy: [],
     },
   });
+
+  useEffect(() => {
+    if (!documents) return;
+    setValue('terms_of_use', [
+      new File([], documents[0].document_url, {
+        type: 'for-url',
+      }),
+    ]);
+    setValue('privacy_policy', [
+      new File([], documents[1].document_url, {
+        type: 'for-url',
+      }),
+    ]);
+  }, [documents]);
+
+  const currentValues = watch();
+
+  console.log(currentValues.terms_of_use[0].size);
 
   const handleClose = () => {
     setIsSuccess(false);
@@ -56,21 +74,21 @@ const DocumentsPage = () => {
   > = async (values: z.infer<typeof documentsScheme>) => {
     try {
       setIsProcessing(true);
+
       let currentId;
       const formData = new FormData();
-
       if (
-        values.privacy_policy.length &&
-        values.terms_of_use.length
+        values.privacy_policy[0].size &&
+        values.terms_of_use[0].size
       ) {
-        const termsItem = data?.find(
+        const termsItem = documents?.find(
           (item) => item.title === 'terms_of_use'
         );
         currentId = termsItem?.id;
         formData.append('file', values.terms_of_use[0]);
         await updateDocument(currentId as string, formData);
         formData.delete('file');
-        const policyItem = data?.find(
+        const policyItem = documents?.find(
           (item) => item.title === 'privacy_policy'
         );
         currentId = policyItem?.id;
@@ -86,10 +104,10 @@ const DocumentsPage = () => {
       }
 
       if (
-        values.terms_of_use.length &&
-        !values.privacy_policy.length
+        values.terms_of_use[0].size &&
+        !values.privacy_policy[0].size
       ) {
-        const currentItem = data?.find(
+        const currentItem = documents?.find(
           (item) => item.title === 'terms_of_use'
         );
         currentId = currentItem?.id;
@@ -105,10 +123,10 @@ const DocumentsPage = () => {
       }
 
       if (
-        values.privacy_policy.length &&
-        !values.terms_of_use.length
+        values.privacy_policy[0].size &&
+        !values.terms_of_use[0].size
       ) {
-        const currentItem = data?.find(
+        const currentItem = documents?.find(
           (item) => item.title === 'privacy_policy'
         );
         currentId = currentItem?.id;
@@ -140,25 +158,6 @@ const DocumentsPage = () => {
         <div className="mb-[50px] flex gap-[50px]">
           <div className="flex items-end justify-center gap-[24px]">
             <FileInputDoc
-              name="privacy_policy"
-              control={control}
-              placeholder={'Завантажте документ'}
-              title="Політика конфіденційності"
-              isRequired={false}
-              accept=".pdf"
-            />
-            <button
-              type="button"
-              className="mb-[0.5rem]"
-              onClick={() => resetField('privacy_policy')}
-            >
-              <TrashIcon className="h-[32px] w-[32px] fill-white" />
-            </button>
-          </div>
-        </div>
-        <div className="mb-[50px] flex gap-[50px]">
-          <div className="flex items-end justify-center gap-[24px]">
-            <FileInputDoc
               name="terms_of_use"
               control={control}
               placeholder={'Завантажте документ'}
@@ -166,15 +165,52 @@ const DocumentsPage = () => {
               isRequired={false}
               accept=".pdf"
             />
-            <button
-              type="button"
-              className="mb-[0.5rem]"
-              onClick={() => resetField('terms_of_use')}
-            >
-              <TrashIcon className="h-[32px] w-[32px] fill-white" />
-            </button>
+            {currentValues?.terms_of_use && (
+              <Link
+                href={
+                  currentValues?.terms_of_use[0]?.name || ''
+                }
+                target="_blank"
+              >
+                <Image
+                  src={`/images/pdf-placeholder.png`}
+                  alt="pdf"
+                  width={40}
+                  height={40}
+                />
+              </Link>
+            )}
           </div>
         </div>
+        <div className="mb-[50px] flex gap-[50px]">
+          <div className="flex items-end justify-center gap-[24px]">
+            <FileInputDoc
+              name="privacy_policy"
+              control={control}
+              placeholder={'Завантажте документ'}
+              title="Політика конфіденційності"
+              isRequired={false}
+              accept=".pdf"
+            />
+            {currentValues?.terms_of_use && (
+              <Link
+                href={
+                  currentValues?.privacy_policy[0]?.name ||
+                  ''
+                }
+                target="_blank"
+              >
+                <Image
+                  src={`/images/pdf-placeholder.png`}
+                  alt="pdf"
+                  width={40}
+                  height={40}
+                />
+              </Link>
+            )}
+          </div>
+        </div>
+
         <div className="buttons flex gap-[24px] py-[24px]">
           <PrimaryButton
             type="submit"

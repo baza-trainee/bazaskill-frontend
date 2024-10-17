@@ -1,4 +1,4 @@
-import ErrorIcon from '@/components/icons/Admin-icons/ErrorIcon';
+import ErrorIcon from '@/components/shared/icons/Admin-icons/ErrorIcon';
 import {
   ForwardedRef,
   InputHTMLAttributes,

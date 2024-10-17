@@ -10,7 +10,7 @@ import {
 
 import PageTitle from '../ui/PageTitle';
 import Loader from '../../shared/loader/Loader';
-import PlusIcon from '@/components/icons/Admin-icons/PlusIcon';
+import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 
 import { constants } from '@/constants';
 import {

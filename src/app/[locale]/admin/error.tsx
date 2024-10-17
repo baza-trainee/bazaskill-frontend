@@ -1,6 +1,6 @@
 'use client';
 
-import ErrorPage from '@/components/main/ErrorPage';
+import ErrorPage from '@/components/shared/ErrorPage';
 
 export default function ErrorBoundary({
   error,

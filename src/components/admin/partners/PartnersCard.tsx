@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { TPartner } from '@/types/partners';
 import Link from 'next/link';
-import WriteIcon from '@/components/icons/Admin-icons/WriteIcon';
-import TrashIcon from '@/components/icons/Admin-icons/TrashIcon';
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { deletePartners } from '@/api/partners';
 import QuestionAlert from '../alerts/QuestionAlert';
 import SuccessAlert from '../alerts/SuccessAlert';
@@ -76,9 +76,9 @@ const PartnersCard = ({
             <Image
               src={item.image_url}
               alt={item.name}
-              width={273}
+              width={200}
               height={151}
-              className="h-[131px] rounded-[8px] object-cover"
+              className="rounded-[8px] object-cover"
             />
           </div>
         </div>

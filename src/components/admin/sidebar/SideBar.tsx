@@ -8,16 +8,16 @@ import { FaHandshake } from 'react-icons/fa';
 import { FaTools } from 'react-icons/fa';
 import { GrGallery } from 'react-icons/gr';
 import { FaUsers } from 'react-icons/fa';
-import Candidates from '@/components/icons/Admin-icons/Candidates';
-import CountersIcon from '@/components/icons/Admin-icons/CountersIcon';
-import PartnersIcon from '@/components/icons/Admin-icons/PartnersIcon';
-import ArticlesIcon from '@/components/icons/Admin-icons/ArticlesIcon';
-import ContactsIcon from '@/components/icons/Admin-icons/ContactsIcon';
-import SettingsIcon from '@/components/icons/Admin-icons/SettingsIcon';
-import PdfIcon from '@/components/icons/Admin-icons/PdfIcon';
+import Candidates from '@/components/shared/icons/Admin-icons/Candidates';
+import CountersIcon from '@/components/shared/icons/Admin-icons/CountersIcon';
+import PartnersIcon from '@/components/shared/icons/Admin-icons/PartnersIcon';
+import ArticlesIcon from '@/components/shared/icons/Admin-icons/ArticlesIcon';
+import ContactsIcon from '@/components/shared/icons/Admin-icons/ContactsIcon';
+import SettingsIcon from '@/components/shared/icons/Admin-icons/SettingsIcon';
+import PdfIcon from '@/components/shared/icons/Admin-icons/PdfIcon';
 import Button from './Button';
-import ExitIcon from '@/components/icons/Admin-icons/ExitIcon';
-import Logo from '@/components/icons/Logo';
+import ExitIcon from '@/components/shared/icons/Admin-icons/ExitIcon';
+import Logo from '@/components/shared/icons/Logo';
 
 const SideBar: React.FC = () => {
   const router = useRouter();
