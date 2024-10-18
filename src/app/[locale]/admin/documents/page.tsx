@@ -1,7 +1,7 @@
 import DocumentsPage from '@/components/admin/documents/DocumentsPage';
 
-const Documents = () => {
+function Documents() {
   return <DocumentsPage />;
-};
+}
 
 export default Documents;

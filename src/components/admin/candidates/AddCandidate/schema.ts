@@ -1,5 +1,6 @@
-import { formatBytes } from '@/helpers/formatBytes';
 import { z } from 'zod';
+
+import { formatBytes } from '@/helpers/formatBytes';
 
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 
@@ -18,17 +19,18 @@ const ACCEPTED_CERTIFICATE_TYPES = [
   'for-url',
 ];
 
-const nonRussianLettersWithSymbolsAndDigitsPattern =
-  /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^_`{|}~A-Za-zА-Яа-яІіЇїЄєҐґ.]+$/;
+const nonRussianLettersWithSymbolsAndDigitsPattern
+  = /^(?!.*[ЁёЫыЭэЪъ])[\w\s`’'!"#$№%&()*+,\-–—./:;<=>?@[\\\]^{|}~А-Яа-яІіЇїЄєҐґ]+$/;
 
 const emailSchema = z.string().refine(
   (value) => {
-    if (!value) return true; // Allow empty values
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); // Check for valid email format
+    if (!value)
+      return true; // Allow empty values
+    return /^[^\s@]+@[^\s@][^\s.@]*\.[^\s@]+$/.test(value); // Check for valid email format
   },
   {
     message: 'Invalid email',
-  }
+  },
 );
 
 const messageMaxLength = 2500;
@@ -48,7 +50,7 @@ const schema = z.object({
     z.object({
       language: z.string().min(1, { message: 'Required' }),
       level: z.string().min(1, { message: 'Required' }),
-    })
+    }),
   ),
   work_format: z.string().min(1, { message: 'Required' }),
   salary_from: z.string().min(1, { message: 'Required' }),
@@ -63,21 +65,21 @@ const schema = z.object({
     .any()
     .nullable()
     .refine((value) => {
-      value &&
-        value[0]?.size === 0 &&
-        value[0]?.type === 'for-url';
-      return true;
-    })
+      if (value && value[0]?.size === 0 && value[0]?.type === 'for-url') {
+        return true;
+      }
+      throw new Error('Invalid value');
+    }, 'Value must be an array with a single item of size 0 and type "for-url"')
     .refine(
-      (value) =>
+      value =>
         !value || value?.[0]?.size <= MAX_FILE_SIZE,
-      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`
+      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`,
     )
     .refine(
-      (value) =>
-        !value ||
-        ACCEPTED_CV_TYPES.includes(value?.[0]?.type),
-      'Документ має бути в форматі .pdf або .docx'
+      value =>
+        !value
+        || ACCEPTED_CV_TYPES.includes(value?.[0]?.type),
+      'Документ має бути в форматі .pdf або .docx',
     ),
 
   graduate: z.array(
@@ -91,25 +93,25 @@ const schema = z.object({
         .any()
         .nullable()
         .refine((value) => {
-          value &&
-            value[0]?.size === 0 &&
-            value[0]?.type === 'for-url';
-          return true;
-        })
+          if (value && value[0]?.size === 0 && value[0]?.type === 'for-url') {
+            return true;
+          }
+          throw new Error('Invalid value');
+        }, 'Value must be an array with a single item of size 0 and type "for-url"')
         .refine(
-          (value) =>
+          value =>
             !value || value?.[0]?.size <= MAX_FILE_SIZE,
-          `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
+          `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`,
         )
         .refine(
-          (value) =>
-            !value ||
-            ACCEPTED_CERTIFICATE_TYPES.includes(
-              value?.[0]?.type
+          value =>
+            !value
+            || ACCEPTED_CERTIFICATE_TYPES.includes(
+              value?.[0]?.type,
             ),
-          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
+          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp',
         ),
-    })
+    }),
   ),
   cources: z.array(
     z.object({
@@ -121,25 +123,25 @@ const schema = z.object({
         .any()
         .nullable()
         .refine((value) => {
-          value &&
-            value[0]?.size === 0 &&
-            value[0]?.type === 'for-url';
-          return true;
-        })
+          if (value && value[0]?.size === 0 && value[0]?.type === 'for-url') {
+            return true;
+          }
+          throw new Error('Invalid value');
+        }, 'Value must be an array with a single item of size 0 and type "for-url"')
         .refine(
-          (value) =>
+          value =>
             !value || value?.[0]?.size <= MAX_FILE_SIZE,
-          `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
+          `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`,
         )
         .refine(
-          (value) =>
-            !value ||
-            ACCEPTED_CERTIFICATE_TYPES.includes(
-              value?.[0]?.type
+          value =>
+            !value
+            || ACCEPTED_CERTIFICATE_TYPES.includes(
+              value?.[0]?.type,
             ),
-          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
+          'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp',
         ),
-    })
+    }),
   ),
   baza_experience: z.array(
     z.object({
@@ -150,7 +152,7 @@ const schema = z.object({
       project_duration: z
         .string()
         .min(1, { message: 'Required' }),
-    })
+    }),
   ),
   baza_recomendation: z
     .string()
@@ -158,13 +160,13 @@ const schema = z.object({
       message: 'Поле не повинно бути пустим',
     })
     .refine(
-      (value) =>
+      value =>
         nonRussianLettersWithSymbolsAndDigitsPattern.test(
-          value
+          value,
         ) && value.length <= messageMaxLength,
       {
         message: `Введіть коректні рекомендації не більше 2500 символів`,
-      }
+      },
     ),
   status: z.string().min(1, { message: 'Required' }),
 });

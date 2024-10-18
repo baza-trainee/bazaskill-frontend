@@ -1,13 +1,14 @@
 'use client';
-import React from 'react';
-import { ReactNode, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import type { ReactNode } from 'react';
 
-export const WithAuth = ({
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+
+export function WithAuth({
   children,
 }: {
   children: ReactNode;
-}) => {
+}) {
   const router = useRouter();
   const [isShow, setIsShow] = useState<boolean>();
 
@@ -16,10 +17,13 @@ export const WithAuth = ({
       const token = localStorage.getItem('access_token');
       if (!token) {
         router.push('/login');
-      } else setIsShow(true);
+      }
+      else {
+        setIsShow(true);
+      }
     };
     getUser();
   }, [router]);
 
   return <>{isShow && children}</>;
-};
+}

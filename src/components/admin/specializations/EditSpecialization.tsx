@@ -1,41 +1,47 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-import {
-  Controller,
+import type {
+  UseQueryResult,
+} from '@tanstack/react-query';
+import type {
   SubmitHandler,
-  useForm,
 } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  specializationScheme,
-  TSpecializationScheme,
-} from './scheme';
-
-import PageTitle from '../ui/PageTitle';
-import TextInput from '../ui/TextInput';
-
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
-import SuccessAlert from '../alerts/SuccessAlert';
-import {
-  UseQueryResult,
   useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { constants } from '@/constants';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import {
-  updateSpecialization,
-  getSpecializationById,
-} from '@/api/specialization';
-import { Specialization } from '@/types/specialization';
+  Controller,
+  useForm,
+} from 'react-hook-form';
 
-const EditSpecialization = ({ id }: { id: string }) => {
+import type { Specialization } from '@/types/specialization';
+
+import {
+  getSpecializationById,
+  updateSpecialization,
+} from '@/api/specialization';
+import { constants } from '@/constants';
+
+import type {
+  TSpecializationScheme,
+} from './scheme';
+
+import SuccessAlert from '../alerts/SuccessAlert';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import PageTitle from '../ui/PageTitle';
+import TextInput from '../ui/TextInput';
+import {
+  specializationScheme,
+} from './scheme';
+
+function EditSpecialization({ id }: { id: string }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const router = useRouter();
@@ -95,12 +101,14 @@ const EditSpecialization = ({ id }: { id: string }) => {
   > = async (data) => {
     try {
       setIsProcessing(true);
-      mutate({ id, data: data });
-    } catch (error) {
+      mutate({ id, data });
+    }
+    catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
@@ -112,7 +120,7 @@ const EditSpecialization = ({ id }: { id: string }) => {
 
   return (
     <div className="pl-[24px] pt-[20px]">
-      <PageTitle title={'Редагувати спеціалізацію'} />
+      <PageTitle title="Редагувати спеціалізацію" />
       <section className="pt-[50px]">
         <form
           className="flex flex-col gap-[50px]"
@@ -160,6 +168,6 @@ const EditSpecialization = ({ id }: { id: string }) => {
       </section>
     </div>
   );
-};
+}
 
 export default EditSpecialization;

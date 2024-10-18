@@ -1,19 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-unused-vars */
 import { create } from 'zustand';
-
-interface IFilters {
-  stack: any[];
-  projects: any[];
-  occupation: any[];
-  language: any[];
-  graduate: any[];
-  status: any[];
-  sallary: {
-    from: string;
-    to: string;
-  };
-}
 
 interface FiltersState {
   speciality: string;
@@ -26,7 +11,7 @@ interface FiltersState {
   setFilters: (query: any) => void;
 }
 
-export const useFilters = create<FiltersState>((set) => ({
+export const useFilters = create<FiltersState>(set => ({
   speciality: '',
   country: '',
   stack: [],

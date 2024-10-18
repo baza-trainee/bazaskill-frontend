@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
-import { MdErrorOutline } from 'react-icons/md';
 import Link from 'next/link';
+import { MdErrorOutline } from 'react-icons/md';
 
-const CandidateErrorPage = () => {
+function CandidateErrorPage() {
   const t = useTranslations('Main');
 
   return (
@@ -20,6 +20,6 @@ const CandidateErrorPage = () => {
       </Link>
     </div>
   );
-};
+}
 
 export default CandidateErrorPage;

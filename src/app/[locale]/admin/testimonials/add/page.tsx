@@ -1,7 +1,7 @@
 import AddTestimonial from '@/components/admin/testimonials/AddTestimonial';
 
-const AddTestimonialPage = () => {
+function AddTestimonialPage() {
   return <AddTestimonial />;
-};
+}
 
 export default AddTestimonialPage;

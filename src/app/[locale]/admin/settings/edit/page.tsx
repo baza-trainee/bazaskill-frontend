@@ -1,12 +1,13 @@
-import EditSettings from '@/components/admin/settings/EditSettings';
 import React from 'react';
 
-const EditSettingsPage = () => {
+import EditSettings from '@/components/admin/settings/EditSettings';
+
+function EditSettingsPage() {
   return (
     <div>
       <EditSettings />
     </div>
   );
-};
+}
 
 export default EditSettingsPage;

@@ -1,4 +1,6 @@
-import React, { HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
+
+import React from 'react';
 
 interface PlusIconProps extends HTMLProps<HTMLDivElement> {}
 const PlusIcon: React.FC<PlusIconProps> = ({

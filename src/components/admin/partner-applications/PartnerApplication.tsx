@@ -1,13 +1,15 @@
 'use client';
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
+import React from 'react';
+
 import { getPartnerApplicationsById } from '@/api/partner_application';
+import { constants } from '@/constants';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';
+
 import Loader from '../../shared/loader/Loader';
 
-const PartnerApplication = ({ id }: { id: string }) => {
+function PartnerApplication({ id }: { id: string }) {
   const {
     data: partner,
     isFetching,
@@ -21,48 +23,63 @@ const PartnerApplication = ({ id }: { id: string }) => {
     queryFn: () => getPartnerApplicationsById(id),
   });
 
-  if (isError) return <p>{`Error: ${error.message}`}</p>;
+  if (isError)
+    return <p>{`Error: ${error.message}`}</p>;
 
   return (
-    <div className="flex min-h-[100vh] items-center justify-center p-[24px]">
+    <div className="flex min-h-screen items-center justify-center p-[24px]">
       <div className="mx-auto flex w-2/3 flex-col items-center justify-center gap-[24px] border border-gray p-[30px]">
         <h2 className="mb-[50px] text-3xl font-medium">
           {partner?.company_name}
         </h2>
 
         <span className="flex-1  text-xl">
-          Сторінка компанії: {partner?.company_url}
+          Сторінка компанії:
+          {' '}
+          {partner?.company_url}
         </span>
 
         <span className="flex-1  text-xl">
-          Моє ім’я: {partner?.first_name}{' '}
+          Моє ім’я:
+          {' '}
+          {partner?.first_name}
+          {' '}
           {partner?.last_name}
         </span>
 
         <span className="flex-1  text-xl">
-          Я займаю посаду: {partner?.position}
+          Я займаю посаду:
+          {' '}
+          {partner?.position}
         </span>
 
         <span className="flex-1  text-xl">
-          Телефон: {partner?.phone}
+          Телефон:
+          {' '}
+          {partner?.phone}
         </span>
         <span className="flex-1 text-xl">
-          Email: {partner?.email}
+          Email:
+          {' '}
+          {partner?.email}
         </span>
 
         <span className="flex-1  text-xl">
-          Країна:{' '}
+          Країна:
+          {' '}
           {getEmptyValue(
-            translateCountry(partner?.country)
+            translateCountry(partner?.country),
           )}
         </span>
 
         <div className="flex w-full justify-around gap-[24px]">
           <span className="text-xl">
-            Я шукаю спеціалістів: {partner?.specialist}
+            Я шукаю спеціалістів:
+            {' '}
+            {partner?.specialist}
           </span>
         </div>
-        <h3 className="mb-[24px] mt-[24px] text-2xl underline">
+        <h3 className="my-[24px] text-2xl underline">
           Коментар:
         </h3>
         <span className="text-xl">{partner?.message}</span>
@@ -70,6 +87,6 @@ const PartnerApplication = ({ id }: { id: string }) => {
       {isFetching && <Loader />}
     </div>
   );
-};
+}
 
 export default PartnerApplication;

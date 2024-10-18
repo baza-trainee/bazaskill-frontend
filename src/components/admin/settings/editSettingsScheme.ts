@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const passwordPattern = /^(?!.*[\\])[\w!_\-.(),]{8,14}$/;
+const passwordPattern = /^(?!.*\\)[\w!\-.(),]{8,14}$/;
 
 export const settingsScheme = z
   .object({
@@ -12,7 +12,7 @@ export const settingsScheme = z
       .max(14, {
         message: 'Пароль має містити максимум 14 символів',
       })
-      .refine((value) => passwordPattern.test(value), {
+      .refine(value => passwordPattern.test(value), {
         message: 'Введіть дійсний символ',
       }),
     newPassword: z
@@ -23,7 +23,7 @@ export const settingsScheme = z
       .max(14, {
         message: 'Пароль має містити максимум 14 символів',
       })
-      .refine((value) => passwordPattern.test(value), {
+      .refine(value => passwordPattern.test(value), {
         message: 'Введіть дійсний символ',
       }),
     repeatPassword: z
@@ -34,14 +34,14 @@ export const settingsScheme = z
       .max(14, {
         message: 'Пароль має містити максимум 14 символів',
       })
-      .refine((value) => passwordPattern.test(value), {
+      .refine(value => passwordPattern.test(value), {
         message: 'Введіть дійсний символ',
       }),
   })
   .refine(
-    (data) => data.newPassword === data.repeatPassword,
+    data => data.newPassword === data.repeatPassword,
     {
       message: 'Новий пароль не співпадає',
       path: ['repeatPassword'],
-    }
+    },
   );

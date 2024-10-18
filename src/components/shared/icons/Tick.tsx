@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Tick = () => {
+function Tick() {
   return (
     <svg
       width="15"
@@ -15,6 +15,6 @@ const Tick = () => {
       />
     </svg>
   );
-};
+}
 
 export default Tick;

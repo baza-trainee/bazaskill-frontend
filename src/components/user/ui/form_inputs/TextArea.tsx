@@ -1,8 +1,11 @@
-import {
+import type {
+  CSSProperties,
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
-  CSSProperties,
 } from 'react';
 
 interface TextAreaProps
@@ -13,7 +16,7 @@ interface TextAreaProps
   errorTextStyle?: CSSProperties;
 }
 
-const TextArea = forwardRef(function TextArea(
+const TextArea = forwardRef((
   {
     title,
     errorText,
@@ -22,8 +25,8 @@ const TextArea = forwardRef(function TextArea(
     errorTextStyle,
     ...rest
   }: TextAreaProps,
-  _ref: ForwardedRef<HTMLTextAreaElement>
-) {
+  _ref: ForwardedRef<HTMLTextAreaElement>,
+) => {
   return (
     <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
       {!!title && <label htmlFor={title}>{title}</label>}

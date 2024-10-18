@@ -1,22 +1,28 @@
 'use client';
 
-import { constants } from '@/constants';
-import {
-  useQuery,
+import type {
   UseQueryResult,
 } from '@tanstack/react-query';
-import { getAllCandidates } from '@/api/candidates';
-import { FieldValues } from 'react-hook-form';
+import type { FieldValues } from 'react-hook-form';
+
+import {
+  useQuery,
+} from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useFilters } from '@/stores/useFilters';
-import { CandidatesResponse } from '@/types/candidates';
+
+import type { CandidatesResponse } from '@/types/candidates';
+
+import { getAllCandidates } from '@/api/candidates';
 import { filterCandidatesOnSubmit } from '@/components/shared/candidates/helpers/filterCandidatesOnSubmit';
+import Loader from '@/components/shared/loader/Loader';
+import { constants } from '@/constants';
+import { useFilters } from '@/stores/useFilters';
+
 import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 import Filters from './Filters';
-import Loader from '@/components/shared/loader/Loader';
 
-const Candidates = () => {
+function Candidates() {
   const candidates: UseQueryResult<
     CandidatesResponse[],
     Error
@@ -25,12 +31,12 @@ const Candidates = () => {
     queryFn: getAllCandidates,
   });
 
-  const [filteredCandidates, setFilteredCandidates] =
-    useState<CandidatesResponse[]>([]);
+  const [filteredCandidates, setFilteredCandidates]
+    = useState<CandidatesResponse[]>([]);
 
   const { setFilters } = useFilters();
 
-  const filters = useFilters((state) => state.filters);
+  const filters = useFilters(state => state.filters);
 
   useEffect(() => {
     if (candidates?.data && !filters.length) {
@@ -44,7 +50,8 @@ const Candidates = () => {
     }
   }, [filters]);
 
-  if (candidates.status === 'pending') return <Loader />;
+  if (candidates.status === 'pending')
+    return <Loader />;
 
   const onSubmit = (data: FieldValues) => {
     setFilters([]);
@@ -61,16 +68,16 @@ const Candidates = () => {
   const handlerChangeSearch = (data: string) => {
     const filtered = candidates.data?.filter(
       (candidate) => {
-        const specializationTitle =
-          candidate.specialization?.title.toLowerCase();
+        const specializationTitle
+          = candidate.specialization?.title.toLowerCase();
         const dataLowerCase = data.toLowerCase();
 
         return (
-          specializationTitle.includes(dataLowerCase) ||
-          candidate.name.toLowerCase() === dataLowerCase ||
-          candidate.surname.toLowerCase() === dataLowerCase
+          specializationTitle.includes(dataLowerCase)
+          || candidate.name.toLowerCase() === dataLowerCase
+          || candidate.surname.toLowerCase() === dataLowerCase
         );
-      }
+      },
     );
     setFilteredCandidates(filtered || []);
   };
@@ -86,6 +93,6 @@ const Candidates = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Candidates;

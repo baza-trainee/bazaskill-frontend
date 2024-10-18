@@ -1,13 +1,18 @@
-import { useEffect } from 'react';
-import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
-import {
+import type {
   Control,
-  Controller,
   DeepMap,
   FieldError,
   FieldValues,
   UseFieldArrayReturn,
 } from 'react-hook-form';
+
+import { useEffect } from 'react';
+import {
+  Controller,
+} from 'react-hook-form';
+
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
+
 import FileInput from './FileInput';
 import TextInput from './TextInput';
 
@@ -177,7 +182,7 @@ const Cources: React.FC<ICourcesProps> = ({
               onClick={() => remove(index)}
               className="group mx-auto flex h-[44px] w-[120px] cursor-pointer items-center justify-center rounded-[10px] bg-red-600 transition-all duration-300 hover:bg-error"
             >
-              <TrashIcon className="h-[22px] w-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
+              <TrashIcon className="size-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
             </div>
           </div>
         );

@@ -1,22 +1,26 @@
-/* eslint-disable no-unused-vars */
 'use client';
 
-import FiltersSpecializationMenu from './FiltersSpecializationMenu';
-import CustomCheckbox from './CustomCheckbox';
-import {
+import type {
   FieldValues,
   SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
+import {
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import schema from './schema';
+
+import CustomCheckbox from './CustomCheckbox';
 import defaultValues from './defaultValues';
-import { useTranslations } from 'next-intl';
-const Filters = ({
+import FiltersSpecializationMenu from './FiltersSpecializationMenu';
+import schema from './schema';
+
+function Filters({
   SubmitHandler,
 }: {
   SubmitHandler: (data: FieldValues) => void;
-}) => {
+}) {
   const t = useTranslations('Filter');
   const {
     register,
@@ -29,19 +33,19 @@ const Filters = ({
 
   const onSubmit: SubmitHandler<FieldValues> = (
     data,
-    event
+    event,
   ) => {
     event?.preventDefault();
     SubmitHandler(data);
   };
 
   const handleInput = (
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     const input = e.target as HTMLInputElement;
     const currentValue = input.value;
 
-    const numericKeys = /[0-9]/;
+    const numericKeys = /\d/;
     const specialKeys = ['Backspace'];
 
     if (currentValue.length >= 5 && e.key !== 'Backspace') {
@@ -49,8 +53,8 @@ const Filters = ({
     }
 
     if (
-      !numericKeys.test(e.key) &&
-      !specialKeys.includes(e.key)
+      !numericKeys.test(e.key)
+      && !specialKeys.includes(e.key)
     ) {
       e.preventDefault();
     }
@@ -58,9 +62,9 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-fit w-full flex-col items-center justify-center gap-[32px] md:box-border md:w-[243px] md:border-r-[1px] md:border-secondaryGray xl:w-full xl:max-w-[288px] xl:pr-[32px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
+      className="flex h-fit w-full flex-col items-center justify-center gap-[32px] md:box-border md:w-[243px] md:border-r md:border-secondaryGray xl:w-full xl:max-w-[288px] xl:pr-[32px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
     >
-      <div className="w-[280px] border-b-[1px]  border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
+      <div className="w-[280px] border-b  border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
         <h3 className="py-[8px] text-base sm:text-lg 3xl:text-xl">
           {t('title')}
         </h3>
@@ -68,7 +72,10 @@ const Filters = ({
       <FiltersSpecializationMenu register={register} />
       <div className="grid w-full grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
         <div className="flex flex-col gap-[20px] font-sans">
-          <h3> {t('projects.title')}</h3>
+          <h3>
+            {' '}
+            {t('projects.title')}
+          </h3>
           <div className="flex flex-col gap-[20px] sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
             <CustomCheckbox
               registerFor="projects"
@@ -186,21 +193,21 @@ const Filters = ({
             placeholder="500"
             type="number"
             onKeyDown={handleInput}
-            className="h-[32px] w-[80px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px] 3xl:text-lg  4xl:min-w-[93px] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-[32px] w-[80px] grow rounded-[4px] border border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px] 3xl:text-lg  4xl:min-w-[93px] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             {...register('sallary.to')}
             placeholder="700"
             type="number"
             onKeyDown={handleInput}
-            className="4xl:min-w-[93px][&::-webkit-inner-spin-button]:appearance-none h-[32px] w-[80px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px]  3xl:text-lg [&::-webkit-outer-spin-button]:appearance-none"
+            className="4xl:min-w-[93px][&::-webkit-inner-spin-button]:appearance-none h-[32px] w-[80px] grow rounded-[4px] border border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px]  3xl:text-lg [&::-webkit-outer-spin-button]:appearance-none"
           />
 
-          <button className="flex h-[32px] w-[68px] items-center justify-center rounded-[4px] border-[1px] border-yellow px-[24px] py-[15px] text-sm text-yellow sm:min-w-[84px] md:min-w-[51px] md:px-0 md:py-0 xl:min-h-[40px] xl:min-w-[72px] xl:text-base">
+          <button className="flex h-[32px] w-[68px] items-center justify-center rounded-[4px] border border-yellow px-[24px] py-[15px] text-sm text-yellow sm:min-w-[84px] md:min-w-[51px] md:p-0 xl:min-h-[40px] xl:min-w-[72px] xl:text-base">
             OK
           </button>
           {errors.sallary?.root && (
-            <span className="absolute bottom-[-20px] left-[0px] text-xs text-red-500">
+            <span className="absolute bottom-[-20px] left-0 text-xs text-red-500">
               {errors.sallary?.root?.message?.toString()}
             </span>
           )}
@@ -209,13 +216,13 @@ const Filters = ({
 
       <div className="main-gradient flex max-w-[280px] items-center justify-center rounded-[6px] sm:min-w-[363px] md:min-w-[219px] xl:min-w-[256px] 3xl:min-w-[306px] 4xl:min-w-[319px]">
         <div className="m-[2px] w-full rounded-[6px] bg-graphite">
-          <button className="main-gradient mx-auto flex h-[48px] w-full items-center justify-center border-[1px] bg-clip-text px-6 font-sans text-[20px] text-base font-[700] leading-[28px] text-transparent md:h-[54px] xl:text-lg">
+          <button className="main-gradient mx-auto flex h-[48px] w-full items-center justify-center border bg-clip-text px-6 font-sans text-[20px] text-base font-[700] leading-[28px] text-transparent md:h-[54px] xl:text-lg">
             {t('button')}
           </button>
         </div>
       </div>
     </form>
   );
-};
+}
 
 export default Filters;

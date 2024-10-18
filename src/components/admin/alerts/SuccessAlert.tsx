@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
-import CloseIcon from './CloseIcon';
+
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
-type AlertProps = {
+import CloseIcon from './CloseIcon';
+
+interface AlertProps {
   title: string;
   isSuccess: boolean;
   onClose: () => void;
-};
+}
 
-const SuccessAlert = ({
+function SuccessAlert({
   title,
   onClose,
   isSuccess,
-}: AlertProps) => {
+}: AlertProps) {
   useBodyScrollLock(isSuccess);
 
   useEffect(() => {
@@ -40,6 +42,6 @@ const SuccessAlert = ({
       </div>
     </div>
   );
-};
+}
 
 export default SuccessAlert;

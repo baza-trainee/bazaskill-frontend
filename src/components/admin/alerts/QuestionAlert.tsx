@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
+
 import CloseIcon from './CloseIcon';
 
-type AlertProps = {
+interface AlertProps {
   title: string;
   onCancel?: () => void;
   onConfirm: () => void;
-};
+}
 
-const QuestionAlert = ({
+function QuestionAlert({
   title,
   onCancel,
   onConfirm,
-}: AlertProps) => {
+}: AlertProps) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && onCancel) {
@@ -33,7 +34,7 @@ const QuestionAlert = ({
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center overflow-auto bg-black/90">
-      <div className="relative flex h-[331px] w-[600px] flex-col items-center justify-center rounded-md bg-white px-[50px] py-[50px] text-2xl font-bold text-black">
+      <div className="relative flex h-[331px] w-[600px] flex-col items-center justify-center rounded-md bg-white p-[50px] text-2xl font-bold text-black">
         <div className="px-6 py-4 text-center">
           {title}
           <button
@@ -62,6 +63,6 @@ const QuestionAlert = ({
       </div>
     </div>
   );
-};
+}
 
 export default QuestionAlert;

@@ -1,7 +1,7 @@
 import PartnerApplications from '@/components/admin/partner-applications/PartnerApplications';
 
-const PartnerApplicationsPage = () => {
+function PartnerApplicationsPage() {
   return <PartnerApplications />;
-};
+}
 
 export default PartnerApplicationsPage;

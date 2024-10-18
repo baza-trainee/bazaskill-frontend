@@ -1,12 +1,12 @@
 import React from 'react';
 
-const HeaderSearchIcon = () => {
+function HeaderSearchIcon() {
   return (
     <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="icon"
-        className="relative top-1 mr-2 h-4 w-4 text-white transition-colors duration-300 group-hover:text-yellow"
+        className="relative top-1 mr-2 size-4 text-white transition-colors duration-300 group-hover:text-yellow"
       >
         <path
           fill="currentColor"
@@ -15,6 +15,6 @@ const HeaderSearchIcon = () => {
       </svg>
     </div>
   );
-};
+}
 
 export default HeaderSearchIcon;

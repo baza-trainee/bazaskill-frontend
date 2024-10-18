@@ -1,46 +1,42 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import {
+import type {
   TestimonialAdmin,
   TestimonialFormInput,
 } from '@/types/testimonials';
+
 import axios from '@/config/axios';
 
-export const getTestimonials = async () => {
-  const { data } =
-    await axios.get<TestimonialAdmin[]>('/testimonials');
+export async function getTestimonials() {
+  const { data }
+    = await axios.get<TestimonialAdmin[]>('/testimonials');
   return data;
-};
+}
 
-export const getTestimonialsId = async (id: string) => {
+export async function getTestimonialsId(id: string) {
   const { data } = await axios.get<TestimonialAdmin>(
-    `/testimonials/${id}`
+    `/testimonials/${id}`,
   );
   return data;
-};
+}
 
-export const createTestimonial = async (data: any) => {
+export async function createTestimonial(data: any) {
   const response = await axios.post<TestimonialFormInput[]>(
     '/testimonials',
-    data
+    data,
   );
   return response;
-};
+}
 
-export const updateTestimonial = async (
-  id: string,
-  data: any
-) => {
+export async function updateTestimonial(id: string, data: any) {
   const response = await axios.patch(
     `/testimonials/${id}`,
-    data
+    data,
   );
   return response;
-};
+}
 
-export const deleteTestimonial = async (id: string) => {
+export async function deleteTestimonial(id: string) {
   const response = await axios.delete(
-    `/testimonials/${id}`
+    `/testimonials/${id}`,
   );
   return response;
-};
+}

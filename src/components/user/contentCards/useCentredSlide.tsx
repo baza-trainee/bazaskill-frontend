@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CentredSlidesState {
   centeredSlides: boolean;
 }
 
-const useCentredSlides = (): CentredSlidesState => {
-  const [centeredSlides, setCenteredSlides] =
-    useState(false);
+function useCentredSlides(): CentredSlidesState {
+  const [centeredSlides, setCenteredSlides]
+    = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth >= 320 && windowWidth < 420) {
         setCenteredSlides(true);
-      } else {
+      }
+      else {
         setCenteredSlides(false);
       }
     };
@@ -25,6 +26,6 @@ const useCentredSlides = (): CentredSlidesState => {
   }, []);
 
   return { centeredSlides }; // Corrected property name
-};
+}
 
 export default useCentredSlides;

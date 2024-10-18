@@ -1,11 +1,12 @@
-import { BazaExperienceResponse } from '@/types/candidates';
 import { useTranslations } from 'next-intl';
 
-const Project = ({
+import type { BazaExperienceResponse } from '@/types/candidates';
+
+function Project({
   project,
 }: {
   project: BazaExperienceResponse;
-}) => {
+}) {
   const t = useTranslations('Candidate.candidate_project');
 
   return (
@@ -27,7 +28,7 @@ const Project = ({
           })}
         </span>
       </div>
-      <span className="relative box-border flex h-[36px] cursor-pointer items-center justify-center rounded-[16px] border-[1px] border-white p-[8px] xl:max-w-[45%]">
+      <span className="relative box-border flex h-[36px] cursor-pointer items-center justify-center rounded-[16px] border border-white p-[8px] xl:max-w-[45%]">
         <svg
           width={20}
           height={20}
@@ -40,6 +41,6 @@ const Project = ({
       </span>
     </div>
   );
-};
+}
 
 export default Project;

@@ -1,26 +1,32 @@
 'use client';
+import type {
+  UseQueryResult,
+} from '@tanstack/react-query';
+import type { FieldValues } from 'react-hook-form';
+
+import {
+  useQuery,
+} from '@tanstack/react-query';
 import {
   useEffect,
   useLayoutEffect,
   useState,
 } from 'react';
-import {
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { FieldValues } from 'react-hook-form';
-import { constants } from '@/constants';
+
+import type { CandidatesResponse } from '@/types/candidates';
+
 import { getAllCandidates } from '@/api/candidates';
-import { CandidatesResponse } from '@/types/candidates';
-import { useFilters } from '@/stores/useFilters';
-import { translateCountryName } from '@/helpers/translateCountryName';
-import { filterCandidatesOnSubmit } from '@/components/shared/candidates/helpers/filterCandidatesOnSubmit';
-import { filterCandidatesByMainFilters } from '@/components/shared/candidates/helpers/filterCandidatesByMainFilters';
 import CandidatesList from '@/components/shared/candidates/CandidatesList';
 import CandidatesTitle from '@/components/shared/candidates/CandidatesTitle';
 import Filters from '@/components/shared/candidates/Filters';
+import { filterCandidatesByMainFilters } from '@/components/shared/candidates/helpers/filterCandidatesByMainFilters';
+import { filterCandidatesOnSubmit } from '@/components/shared/candidates/helpers/filterCandidatesOnSubmit';
 import Loader from '@/components/shared/loader/Loader';
-const Candidates = () => {
+import { constants } from '@/constants';
+import { translateCountryName } from '@/helpers/translateCountryName';
+import { useFilters } from '@/stores/useFilters';
+
+function Candidates() {
   const candidates: UseQueryResult<
     CandidatesResponse[],
     Error
@@ -37,27 +43,27 @@ const Candidates = () => {
   } = useFilters();
 
   const speciality = useFilters(
-    (state) => state.speciality
+    state => state.speciality,
   );
 
-  const country = useFilters((state) =>
-    state.country.toLowerCase().trim()
+  const country = useFilters(state =>
+    state.country.toLowerCase().trim(),
   );
 
-  const filters = useFilters((state) => state.filters);
+  const filters = useFilters(state => state.filters);
 
-  const stack = useFilters((state) => state.stack);
+  const stack = useFilters(state => state.stack);
 
   const inputCountry = translateCountryName(country);
 
-  const [filteredCandidates, setFilteredCandidates] =
-    useState<CandidatesResponse[]>([]);
+  const [filteredCandidates, setFilteredCandidates]
+    = useState<CandidatesResponse[]>([]);
   const [isMainFilter, setIsMainFilter] = useState(false);
 
   useLayoutEffect(() => {
     if (!speciality && !country && filters.length === 0) {
       setFilteredCandidates(
-        candidates.data as CandidatesResponse[]
+        candidates.data as CandidatesResponse[],
       );
     }
   }, [candidates.data]);
@@ -74,20 +80,21 @@ const Candidates = () => {
   }, [speciality, country, candidates.data]);
 
   useEffect(() => {
-    if (!stack.length) return;
+    if (!stack.length)
+      return;
     const selectedStack: string[] = stack || [];
 
     const filtered = candidates?.data?.filter(
       (candidate) => {
         const candidateStacks = candidate.stack;
         const hasSelectedStacks = candidateStacks.map(
-          (stackItem) => stackItem.stack?.title
+          stackItem => stackItem.stack?.title,
         );
-        const anyMatch = stack.some((item) =>
-          hasSelectedStacks.includes(item)
+        const anyMatch = stack.some(item =>
+          hasSelectedStacks.includes(item),
         );
         return selectedStack?.length >= 1 ? anyMatch : true;
-      }
+      },
     );
     setFilteredCandidates(filtered || []);
   }, [candidates.data, stack]);
@@ -115,26 +122,25 @@ const Candidates = () => {
     setIsMainFilter(false);
   };
 
-  if (candidates.status === 'pending') return <Loader />;
+  if (candidates.status === 'pending')
+    return <Loader />;
 
   return (
     <div className="relative p-4 md:flex md:flex-col">
       <CandidatesTitle />
       <div className="md:flex">
         <Filters SubmitHandler={onSubmit} />
-        {candidates.data &&
-          Array.isArray(candidates.data) && (
-            <CandidatesList
-              candidates={
-                filteredCandidates
-                  ? filteredCandidates
-                  : candidates.data
-              }
-            />
-          )}
+        {candidates.data
+        && Array.isArray(candidates.data) && (
+          <CandidatesList
+            candidates={
+              filteredCandidates || candidates.data
+            }
+          />
+        )}
       </div>
     </div>
   );
-};
+}
 
 export default Candidates;

@@ -1,46 +1,56 @@
 'use client';
 
-import { RefObject, useCallback, useRef } from 'react';
+import type { RefObject } from 'react';
+import type {
+  SwiperRef,
+} from 'swiper/react';
+
+import { useCallback, useRef } from 'react';
+import { Navigation, Pagination } from 'swiper/modules';
 import {
   Swiper,
-  SwiperRef,
   SwiperSlide,
 } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import { Testimonial } from '@/types/testimonials';
-import ButtonRight from '@/components/shared/icons/ButtonRight';
+
+import type { Testimonial } from '@/types/testimonials';
+
 import ButtonLeft from '@/components/shared/icons/ButtonLeft';
+import ButtonRight from '@/components/shared/icons/ButtonRight';
+
+import TestimonialCard from './TestimonialCard';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './testimonials_styles.css';
-import TestimonialCard from './TestimonialCard';
 
-const TestimonialSlider = ({
+function TestimonialSlider({
   data,
 }: {
   data: Testimonial[];
-}) => {
+}) {
   const sliderRef: RefObject<SwiperRef> = useRef(null);
 
   const handlePrev = useCallback(() => {
-    if (!sliderRef.current) return;
+    if (!sliderRef.current)
+      return;
 
     sliderRef.current.swiper.slidePrev();
   }, [sliderRef]);
 
   const handleNext = useCallback(() => {
-    if (!sliderRef.current) return;
+    if (!sliderRef.current)
+      return;
 
     sliderRef.current.swiper.slideNext();
   }, [sliderRef]);
 
   return (
-    <div className="relative xl:mx-auto xl:max-w-[1280px]  5xl:max-w-[1681px]">
+    <div className="relative xl:mx-auto xl:max-w-screen-xl  5xl:max-w-[1681px]">
       <Swiper
-        key={'testimonials'}
-        slidesPerView={'auto'}
+        key="testimonials"
+        slidesPerView="auto"
         spaceBetween={34}
         pagination={{
           clickable: true,
@@ -56,7 +66,7 @@ const TestimonialSlider = ({
       >
         {data?.map((item: Testimonial) => (
           <SwiperSlide
-            className="testimonials_slide max-w-[100%] 5xl:max-w-[745px]"
+            className="testimonials_slide max-w-full 5xl:max-w-[745px]"
             key={item.id}
           >
             <TestimonialCard item={item} />
@@ -79,6 +89,6 @@ const TestimonialSlider = ({
       </button>
     </div>
   );
-};
+}
 
 export default TestimonialSlider;

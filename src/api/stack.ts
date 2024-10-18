@@ -1,13 +1,13 @@
 import axios from '@/config/axios';
 
-export const getStack = async () => {
+export async function getStack() {
   const response = await axios.get('/stack');
   return response.data;
-};
+}
 
-export const addStack = async (data: {
+export async function addStack(data: {
   specialization_id: string;
   title: string;
-}) => {
+}) {
   await axios.post('/stack', data);
-};
+}

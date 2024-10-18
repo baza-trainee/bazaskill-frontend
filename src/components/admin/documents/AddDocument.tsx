@@ -1,19 +1,24 @@
+/* eslint-disable style/max-statements-per-line */
 'use client';
 
-import React, { useState } from 'react';
-import * as z from 'zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { documentsScheme } from './documentsScheme';
+import type { SubmitHandler } from 'react-hook-form';
+import type * as z from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import PageTitle from '../ui/PageTitle';
-import FileInputDoc from '../ui/FileInputDoc';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { createDocument } from '@/api/documents';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
+
+import SuccessAlert from '../alerts/SuccessAlert';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { createDocument } from '@/api/documents';
-import SuccessAlert from '../alerts/SuccessAlert';
+import FileInputDoc from '../ui/FileInputDoc';
+import PageTitle from '../ui/PageTitle';
+import { documentsScheme } from './documentsScheme';
 
-const AddDocument = () => {
+function AddDocument() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -52,15 +57,17 @@ const AddDocument = () => {
       formData.append('title', 'privacy_policy');
       formData.append('file', values.privacy_policy[0]);
       const response = await createDocument(formData);
-      if (response.status === 201) alert('Документ додано');
+      if (response.status === 201)
+        alert('Документ додано');
       setIsProcessing(false);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="relative h-[100vh] max-h-[100vh] p-[24px]">
+    <div className="relative h-screen max-h-screen p-[24px]">
       <PageTitle title="Додати документ" />
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -72,17 +79,17 @@ const AddDocument = () => {
             <FileInputDoc
               name="privacy_policy"
               control={control}
-              placeholder={'Завантажте документ'}
+              placeholder="Завантажте документ"
               title="Політика конфіденційності"
               isRequired={false}
               accept=".pdf"
             />
             <button
               type="button"
-              className="mb-[0.5rem]"
+              className="mb-2"
               onClick={() => resetField('privacy_policy')}
             >
-              <TrashIcon className="h-[32px] w-[32px] fill-white" />
+              <TrashIcon className="size-[32px] fill-white" />
             </button>
           </div>
         </div>
@@ -91,17 +98,17 @@ const AddDocument = () => {
             <FileInputDoc
               name="terms_of_use"
               control={control}
-              placeholder={'Завантажте документ'}
+              placeholder="Завантажте документ"
               title="Правила користування сайтом"
               isRequired={false}
               accept=".pdf"
             />
             <button
               type="button"
-              className="mb-[0.5rem]"
+              className="mb-2"
               onClick={() => resetField('terms_of_use')}
             >
-              <TrashIcon className="h-[32px] w-[32px] fill-white" />
+              <TrashIcon className="size-[32px] fill-white" />
             </button>
           </div>
         </div>
@@ -120,7 +127,7 @@ const AddDocument = () => {
             type="button"
             text="Скасувати"
             onClick={() => {
-              reset(), window.location.reload();
+              reset(); window.location.reload();
             }}
           />
         </div>
@@ -134,6 +141,6 @@ const AddDocument = () => {
       )}
     </div>
   );
-};
+}
 
 export default AddDocument;

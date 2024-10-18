@@ -6,22 +6,23 @@ interface IPostPreviewProps {
   image: string;
 }
 
-const PostPreview = ({
+function PostPreview({
   currentValues,
   image,
-}: IPostPreviewProps) => {
+}: IPostPreviewProps) {
   const today = new Date();
   const formattedDate = today.toLocaleDateString('uk-UK');
   return (
     <article className="relative hidden h-[336px] w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92] md:flex  md:w-[340px] 5xl:h-[336px] 5xl:w-[464px]">
       <div className="relative">
         <div
-          className={`absolute inset-0 h-[150px] w-full bg-cover bg-center grayscale transition-all`}
+          className="absolute inset-0 h-[150px] w-full bg-cover bg-center grayscale transition-all"
           style={{
-            backgroundImage: `url(${image ? image : '/images/gallery-placeholder.jpg'})`,
+            backgroundImage: `url(${image || '/images/gallery-placeholder.jpg'})`,
           }}
           title={currentValues.title}
-        ></div>
+        >
+        </div>
         <p className="backdrop-brightness-10 absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white backdrop-blur-sm">
           {formattedDate}
         </p>
@@ -38,6 +39,6 @@ const PostPreview = ({
       </div>
     </article>
   );
-};
+}
 
 export default PostPreview;

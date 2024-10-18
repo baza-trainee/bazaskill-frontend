@@ -1,8 +1,9 @@
-import Partners from '@/components/admin/partners/Partners';
 import React from 'react';
 
-const PartnersPage = () => {
+import Partners from '@/components/admin/partners/Partners';
+
+function PartnersPage() {
   return <Partners />;
-};
+}
 
 export default PartnersPage;

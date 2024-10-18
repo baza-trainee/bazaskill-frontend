@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
-import CloseIcon from './CloseIcon';
+
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
-type AlertProps = {
+import CloseIcon from './CloseIcon';
+
+interface AlertProps {
   text: string;
   title: string;
   isError: boolean;
   onClose: () => void;
-};
+}
 
-const ErrorAlert = ({
+function ErrorAlert({
   text,
   title,
   onClose,
   isError,
-}: AlertProps) => {
+}: AlertProps) {
   useBodyScrollLock(isError);
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -29,8 +31,8 @@ const ErrorAlert = ({
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-[999] flex  items-center justify-center overflow-auto bg-[#212121] ">
-      <div className="relative flex h-[300px] w-[600px] flex-col items-center justify-center rounded-md  bg-white px-[50px] py-[50px] text-black ">
+    <div className="fixed inset-0 z-[999] flex  items-center justify-center overflow-auto bg-graphite ">
+      <div className="relative flex h-[300px] w-[600px] flex-col items-center justify-center rounded-md  bg-white p-[50px] text-black ">
         <h2 className="mb-[36px] text-2xl font-bold">
           {' '}
           {title}
@@ -46,14 +48,14 @@ const ErrorAlert = ({
         </button>
       </div>
 
-      <div className="absolute bottom-0 left-0  w-full w-full bg-[#191919] ">
-        <p className="mt-0 text-left text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
+      <div className="absolute bottom-0 left-0  w-full  bg-darkGraphite ">
+        <p className="mt-0 text-left  font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
           Компанія направляє 10% прибутку на підтримку 59-ї
           бригади ім. Якова Гандзюка
         </p>
       </div>
     </div>
   );
-};
+}
 
 export default ErrorAlert;

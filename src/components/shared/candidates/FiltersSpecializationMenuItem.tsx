@@ -1,13 +1,17 @@
-import {
-  ISpecializationWithStack,
-  SpecializationStack,
-} from '@/types/specialization';
-import { useState } from 'react';
-import CustomCheckbox from './CustomCheckbox';
-import {
+import type {
   FieldValues,
   UseFormRegister,
 } from 'react-hook-form';
+
+import { useState } from 'react';
+
+import type {
+  ISpecializationWithStack,
+  SpecializationStack,
+} from '@/types/specialization';
+
+import CustomCheckbox from './CustomCheckbox';
+
 interface IFiltersSpecializationMenuItemProps
   extends ISpecializationWithStack {
   register: UseFormRegister<FieldValues>;
@@ -29,7 +33,7 @@ const FiltersSpecializationMenuItem: React.FC<
         onClick={() => setIsOpen(!isOpen)}
       >
         <svg
-          className={`mt-[2px] fill-white transition-all ${isOpen && 'rotate-[180deg]'}`}
+          className={`mt-[2px] fill-white transition-all ${isOpen && 'rotate-180'}`}
           width={20}
           height={20}
         >
@@ -54,7 +58,7 @@ const FiltersSpecializationMenuItem: React.FC<
                   title={title}
                 />
               );
-            }
+            },
           )}
         </div>
       )}

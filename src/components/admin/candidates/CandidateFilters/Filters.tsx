@@ -1,21 +1,24 @@
-/* eslint-disable no-unused-vars */
 'use client';
-import {
+import type {
   FieldValues,
   SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import schema from '@/components/shared/candidates/schema';
+
+import CustomCheckbox from '@/components/shared/candidates/CustomCheckbox';
 import defaultValues from '@/components/shared/candidates/defaultValues';
 import FiltersSpecializationMenu from '@/components/shared/candidates/FiltersSpecializationMenu';
-import CustomCheckbox from '@/components/shared/candidates/CustomCheckbox';
+import schema from '@/components/shared/candidates/schema';
 
-const Filters = ({
+function Filters({
   SubmitHandler,
 }: {
   SubmitHandler: (data: FieldValues) => void;
-}) => {
+}) {
   const {
     register,
     handleSubmit,
@@ -27,19 +30,19 @@ const Filters = ({
 
   const onSubmit: SubmitHandler<FieldValues> = (
     data,
-    event
+    event,
   ) => {
     event?.preventDefault();
     SubmitHandler(data);
   };
 
   const handleInput = (
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     const input = e.target as HTMLInputElement;
     const currentValue = input.value;
 
-    const numericKeys = /[0-9]/;
+    const numericKeys = /\d/;
     const specialKeys = ['Backspace'];
 
     if (currentValue.length >= 5 && e.key !== 'Backspace') {
@@ -47,8 +50,8 @@ const Filters = ({
     }
 
     if (
-      !numericKeys.test(e.key) &&
-      !specialKeys.includes(e.key)
+      !numericKeys.test(e.key)
+      && !specialKeys.includes(e.key)
     ) {
       e.preventDefault();
     }
@@ -57,9 +60,9 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="no-scrollbar mx-auto box-border flex h-fit max-h-[180vh] w-1/2 flex-col gap-[32px] overflow-y-auto border-r-[1px] border-secondaryGray pb-[24px] pl-[24px] pr-[24px]"
+      className="no-scrollbar mx-auto box-border flex h-fit max-h-[180vh] w-1/2 flex-col gap-[32px] overflow-y-auto border-r border-secondaryGray px-[24px] pb-[24px]"
     >
-      <div className="border-b-[1px] border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
+      <div className="border-b border-secondaryGray font-tahoma text-[20px] font-[700] text-white">
         <h3 className="py-[8px]">Фільтри</h3>
       </div>
       <FiltersSpecializationMenu register={register} />
@@ -207,21 +210,21 @@ const Filters = ({
             placeholder="500"
             type="number"
             onKeyDown={handleInput}
-            className="w-[130px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-white outline-none [appearance:textfield] placeholder:text-secondaryGray [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="w-[130px] grow rounded-[4px] border border-secondaryGray bg-transparent px-[8px] py-[7px] text-white outline-none [appearance:textfield] placeholder:text-secondaryGray [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             {...register('sallary.to')}
             placeholder="700"
             type="number"
             onKeyDown={handleInput}
-            className="w-[130px] grow rounded-[4px] border-[1px] border-secondaryGray bg-transparent px-[8px] py-[7px] text-white outline-none [appearance:textfield] placeholder:text-secondaryGray [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="w-[130px] grow rounded-[4px] border border-secondaryGray bg-transparent px-[8px] py-[7px] text-white outline-none [appearance:textfield] placeholder:text-secondaryGray [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
 
-          <button className="flex items-center justify-center rounded-[4px] border-[1px] border-yellow px-[24px] py-[15px] text-yellow">
+          <button className="flex items-center justify-center rounded-[4px] border border-yellow px-[24px] py-[15px] text-yellow">
             OK
           </button>
           {errors.sallary?.root && (
-            <span className="absolute bottom-[-20px] left-[0px] text-xs text-red-500">
+            <span className="absolute bottom-[-20px] left-0 text-xs text-red-500">
               {errors.sallary?.root?.message?.toString()}
             </span>
           )}
@@ -229,14 +232,14 @@ const Filters = ({
       </div>
 
       <div className="main-gradient  mx-auto flex items-center justify-center rounded-[6px] md:max-w-[75%]">
-        <div className="m-[2px] w-full rounded-[6px] bg-graphite px-[1rem]">
-          <button className="main-gradient flex h-[54px] w-full items-center justify-center border-[1px] bg-clip-text font-sans text-[20px] font-[700] leading-[28px] text-transparent">
+        <div className="m-[2px] w-full rounded-[6px] bg-graphite px-4">
+          <button className="main-gradient flex h-[54px] w-full items-center justify-center border bg-clip-text font-sans text-[20px] font-[700] leading-[28px] text-transparent">
             Застосувати фільтри
           </button>
         </div>
       </div>
     </form>
   );
-};
+}
 
 export default Filters;

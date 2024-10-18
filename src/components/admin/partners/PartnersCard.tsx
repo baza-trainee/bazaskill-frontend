@@ -1,20 +1,23 @@
 'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { TPartner } from '@/types/partners';
-import Link from 'next/link';
-import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
-import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
-import { deletePartners } from '@/api/partners';
-import QuestionAlert from '../alerts/QuestionAlert';
-import SuccessAlert from '../alerts/SuccessAlert';
 import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState } from 'react';
+
+import type { TPartner } from '@/types/partners';
+
+import { deletePartners } from '@/api/partners';
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import { constants } from '@/constants';
 
-const PartnersCard = ({
+import QuestionAlert from '../alerts/QuestionAlert';
+import SuccessAlert from '../alerts/SuccessAlert';
+
+function PartnersCard({
   item,
   isEditing,
   showName = true,
@@ -22,7 +25,7 @@ const PartnersCard = ({
   item: TPartner;
   isEditing: boolean;
   showName?: boolean;
-}) => {
+}) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const queryClient = useQueryClient();
@@ -41,7 +44,8 @@ const PartnersCard = ({
     setIsDeleting(false);
     try {
       await deletePartnersMutation.mutateAsync(item.id);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -67,7 +71,7 @@ const PartnersCard = ({
           isSuccess={isSuccess}
         />
       )}
-      <div className="relative flex h-[286px] w-[286px] flex-col items-center justify-center rounded-xl border-4">
+      <div className="relative flex size-[286px] flex-col items-center justify-center rounded-xl border-4">
         <div className=" flex items-center justify-center gap-[129px]">
           <div
             className="
@@ -96,20 +100,20 @@ const PartnersCard = ({
         {!isEditing && (
           <div className="absolute bottom-0 right-0 flex gap-[32px] rounded-tl-lg bg-white p-2 ">
             <Link href={`/admin/partners/edit/${item.id}`}>
-              <WriteIcon className="h-[32px] w-[32px] fill-black" />
+              <WriteIcon className="size-[32px] fill-black" />
             </Link>
             <button
               type="button"
               onClick={() => setIsDeleting(true)}
               className="cursor-pointer"
             >
-              <TrashIcon className="h-[32px] w-[32px] cursor-pointer " />
+              <TrashIcon className="size-[32px] cursor-pointer " />
             </button>
           </div>
         )}
       </div>
     </>
   );
-};
+}
 
 export default PartnersCard;

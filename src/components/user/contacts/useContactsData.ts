@@ -1,9 +1,11 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
+
+import type { IContacts } from '@/types/contacts';
+
 import { getContact } from '@/api/contacts';
 import { constants } from '@/constants';
-import { IContacts } from '@/types/contacts';
-import { useQuery } from '@tanstack/react-query';
 
 interface IContactData {
   type: string;
@@ -15,7 +17,7 @@ interface ISocialLinks {
   link?: string;
 }
 
-export const useContactsData = () => {
+export function useContactsData() {
   const { data, isLoading, error } = useQuery<
     IContacts[],
     Error
@@ -24,9 +26,9 @@ export const useContactsData = () => {
     queryFn: getContact,
   });
 
-  const contact: IContacts | undefined =
-    data &&
-    [...data].reduce((acc, item) => {
+  const contact: IContacts | undefined
+    = data
+    && [...data].reduce((acc, item) => {
       return { ...acc, ...item };
     }, {} as IContacts);
 
@@ -74,4 +76,4 @@ export const useContactsData = () => {
   ];
 
   return { contactData, socialLinks, isLoading, error };
-};
+}

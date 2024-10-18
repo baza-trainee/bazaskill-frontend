@@ -1,16 +1,19 @@
 'use client';
-import React from 'react';
-import Logo from '@/components/shared/icons/Logo';
-import Link from 'next/link';
-import MenuItem from './MenuItem';
-import LanguageSwitcher from './LanguageSwitcher';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
-import { getSpecializationsWithStack } from '@/api/specialization';
-import { ISpecializationWithStack } from '@/types/specialization';
-import AffiliateBanner from './AffiliateBanner';
+import Link from 'next/link';
+import React from 'react';
 
-const Header = () => {
+import type { ISpecializationWithStack } from '@/types/specialization';
+
+import { getSpecializationsWithStack } from '@/api/specialization';
+import Logo from '@/components/shared/icons/Logo';
+import { constants } from '@/constants';
+
+import AffiliateBanner from './AffiliateBanner';
+import LanguageSwitcher from './LanguageSwitcher';
+import MenuItem from './MenuItem';
+
+function Header() {
   const { data } = useQuery({
     queryKey: [
       constants.specialization
@@ -19,8 +22,8 @@ const Header = () => {
     queryFn: getSpecializationsWithStack,
   });
 
-  const sortedStack =
-    data && data?.sort((a, b) => b.id - a.id);
+  const sortedStack
+    = data && data?.sort((a, b) => b.id - a.id);
 
   return (
     <div>
@@ -37,21 +40,21 @@ const Header = () => {
 
         <div className="hidden grow justify-between gap-[4px]  xl:flex 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
           <nav className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
-            {data &&
-              Array.isArray(data) &&
-              sortedStack?.map(
-                ({
-                  id,
-                  title,
-                  stack,
-                }: ISpecializationWithStack) => (
-                  <MenuItem
-                    key={id}
-                    title={title}
-                    inputs={stack}
-                  />
-                )
-              )}
+            {data
+            && Array.isArray(data)
+            && sortedStack?.map(
+              ({
+                id,
+                title,
+                stack,
+              }: ISpecializationWithStack) => (
+                <MenuItem
+                  key={id}
+                  title={title}
+                  inputs={stack}
+                />
+              ),
+            )}
           </nav>
 
           <LanguageSwitcher />
@@ -62,6 +65,6 @@ const Header = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Header;

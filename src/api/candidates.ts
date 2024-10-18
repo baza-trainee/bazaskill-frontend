@@ -1,31 +1,30 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import axios from '@/config/axios';
-import {
+import type {
   IBazaExperience,
   ICandidateCources,
   ICandidateGraduate,
   ICandidateLanguages,
 } from '@/types/candidates';
-import { IStack } from '@/types/stack';
+import type { IStack } from '@/types/stack';
+
+import axios from '@/config/axios';
 import { generateRandomId } from '@/helpers/generateId';
 
-export const getCandidateById = async (id: string) => {
+export async function getCandidateById(id: string) {
   const response = await axios.get(`/candidates/${id}`);
   return response.data;
-};
+}
 
-export const getAllCandidates = async () => {
+export async function getAllCandidates() {
   const response = await axios.get(`/candidates`);
   return response.data;
-};
+}
 
-export const deleteCandidate = async (id: string) => {
+export async function deleteCandidate(id: string) {
   const response = await axios.delete(`/candidates/${id}`);
   return response;
-};
+}
 
-export const createCandidate = async (values: any) => {
+export async function createCandidate(values: any) {
   let cvResponse: any;
   let courcesResponse: any;
   let graduateResponse: any;
@@ -44,14 +43,14 @@ export const createCandidate = async (values: any) => {
     cvFormData.append('file', values.data.cv[0]);
     cvResponse = await axios.post(
       'candidates/upload-cv',
-      cvFormData
+      cvFormData,
     );
   }
 
   const coursesCertificates = values.data.cources
     .map(
       (cource: ICandidateCources) =>
-        cource.cources_sertificate
+        cource.cources_sertificate,
     )
     .filter((item: File | undefined) => item !== undefined);
 
@@ -59,7 +58,7 @@ export const createCandidate = async (values: any) => {
     coursesCertificates.some((item: any) => item !== '')
   ) {
     const filesToUpload = coursesCertificates.filter(
-      (item: any) => item !== ''
+      (item: any) => item !== '',
     );
 
     const courcesFormData = new FormData();
@@ -68,14 +67,14 @@ export const createCandidate = async (values: any) => {
     });
     courcesResponse = await axios.post(
       'candidates/upload-cources',
-      courcesFormData
+      courcesFormData,
     );
   }
 
   const graduateCertificates = values.data.graduate
     .map(
       (item: ICandidateGraduate) =>
-        item.graduate_sertificate
+        item.graduate_sertificate,
     )
     .filter((item: File | undefined) => item !== undefined);
 
@@ -83,7 +82,7 @@ export const createCandidate = async (values: any) => {
     graduateCertificates.some((item: any) => item !== '')
   ) {
     const filesToUpload = graduateCertificates.filter(
-      (item: any) => item !== ''
+      (item: any) => item !== '',
     );
 
     const graduateFormData = new FormData();
@@ -92,7 +91,7 @@ export const createCandidate = async (values: any) => {
     });
     graduateResponse = await axios.post(
       'candidates/upload-graduate',
-      graduateFormData
+      graduateFormData,
     );
   }
 
@@ -113,7 +112,7 @@ export const createCandidate = async (values: any) => {
       (lang: ICandidateLanguages) => ({
         language: lang.language,
         level: lang.level,
-      })
+      }),
     ),
     work_format: values.data.work_format,
     sallary_form: values.data.salary_from,
@@ -140,7 +139,7 @@ export const createCandidate = async (values: any) => {
           graduateResponse && graduateResponse.data[index]
             ? graduateResponse.data[index].public_id
             : '',
-      })
+      }),
     ),
     cources: values.data.cources.map(
       (cource: ICandidateCources, index: number) => ({
@@ -156,7 +155,7 @@ export const createCandidate = async (values: any) => {
           courcesResponse && courcesResponse.data[index]
             ? courcesResponse.data[index].public_id
             : '',
-      })
+      }),
     ),
 
     baza_experience: values.data.baza_experience.map(
@@ -164,7 +163,7 @@ export const createCandidate = async (values: any) => {
         specialization: item.role,
         project_name: item.project_name,
         project_duration: item.project_duration,
-      })
+      }),
     ),
     baza_recomendation: values.data.baza_recomendation,
     status: values.data.status,
@@ -174,15 +173,12 @@ export const createCandidate = async (values: any) => {
 
   const { data } = await axios.post(
     '/candidates',
-    newCandidate
+    newCandidate,
   );
   return data;
-};
+}
 
-export const updateCandidate = async (
-  id: string,
-  values: any
-) => {
+export async function updateCandidate(id: string, values: any) {
   let cvResponse: any;
   let courcesResponse: any;
   let graduateResponse: any;
@@ -192,7 +188,7 @@ export const updateCandidate = async (
     cvFormData.append('file', values.currentValues.cv[0]);
     cvResponse = await axios.post(
       'candidates/upload-cv',
-      cvFormData
+      cvFormData,
     );
   }
 
@@ -208,7 +204,7 @@ export const updateCandidate = async (
   const coursesCertificates = values.currentValues.cources
     .map(
       (cource: ICandidateCources) =>
-        cource.cources_sertificate[0]
+        cource.cources_sertificate[0],
     )
     .filter((item: File | undefined) => item !== undefined);
 
@@ -216,7 +212,7 @@ export const updateCandidate = async (
     coursesCertificates.some((item: File) => item.size > 0)
   ) {
     const filesToUpload = coursesCertificates.filter(
-      (item: File) => item.size > 0
+      (item: File) => item.size > 0,
     );
 
     const courcesFormData = new FormData();
@@ -225,14 +221,14 @@ export const updateCandidate = async (
     });
     courcesResponse = await axios.post(
       'candidates/upload-cources',
-      courcesFormData
+      courcesFormData,
     );
   }
 
   const graduateCertificates = values.currentValues.graduate
     .map(
       (item: ICandidateGraduate) =>
-        item.graduate_sertificate[0]
+        item.graduate_sertificate[0],
     )
     .filter((item: File | undefined) => item !== undefined);
 
@@ -240,7 +236,7 @@ export const updateCandidate = async (
     graduateCertificates.some((item: File) => item.size > 0)
   ) {
     const filesToUpload = graduateCertificates.filter(
-      (item: File) => item.size > 0
+      (item: File) => item.size > 0,
     );
     const graduateFormData = new FormData();
     filesToUpload.forEach((element: File) => {
@@ -248,11 +244,9 @@ export const updateCandidate = async (
     });
     graduateResponse = await axios.post(
       'candidates/upload-graduate',
-      graduateFormData
+      graduateFormData,
     );
   }
-
-  console.log(courcesResponse);
 
   const newCandidate = {
     name_ua: values.currentValues.name_ua,
@@ -271,7 +265,7 @@ export const updateCandidate = async (
       (lang: ICandidateLanguages) => ({
         language: lang.language,
         level: lang.level,
-      })
+      }),
     ),
     work_format: values.currentValues.work_format,
     sallary_form: values.currentValues.salary_from,
@@ -305,11 +299,11 @@ export const updateCandidate = async (
             ? graduateResponse.data[index].public_id
             : item.graduate_sertificate[0].size > 0
               ? graduateResponse.data[0].public_id
-              : item.graduate_sertificate.length &&
-                  item.graduate_sertificate_id
+              : item.graduate_sertificate.length
+                && item.graduate_sertificate_id
                 ? item.graduate_sertificate_id
                 : '',
-      })
+      }),
     ),
     cources: values.currentValues.cources.map(
       (cource: ICandidateCources, index: number) => ({
@@ -330,11 +324,11 @@ export const updateCandidate = async (
             ? courcesResponse.data[index].public_id
             : cource.cources_sertificate[0].size > 0
               ? courcesResponse.data[0].public_id
-              : cource.cources_sertificate.length &&
-                  cource.cources_sertificate_id
+              : cource.cources_sertificate.length
+                && cource.cources_sertificate_id
                 ? cource.cources_sertificate_id
                 : '',
-      })
+      }),
     ),
 
     baza_experience:
@@ -343,7 +337,7 @@ export const updateCandidate = async (
           specialization: item.role,
           project_name: item.project_name,
           project_duration: item.project_duration,
-        })
+        }),
       ),
     baza_recomendation:
       values.currentValues.baza_recomendation,
@@ -354,7 +348,7 @@ export const updateCandidate = async (
 
   const { data } = await axios.post(
     `/candidates/${id}`,
-    newCandidate
+    newCandidate,
   );
   return data;
-};
+}

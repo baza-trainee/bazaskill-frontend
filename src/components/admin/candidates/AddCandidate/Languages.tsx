@@ -1,14 +1,20 @@
-import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
-import {
+import type {
   Control,
-  Controller,
   DeepMap,
   FieldError,
   FieldValues,
   UseFieldArrayReturn,
   UseFormGetValues,
 } from 'react-hook-form';
+
+import {
+  Controller,
+} from 'react-hook-form';
+
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
+
 import SelectField from './SelectField';
+
 interface ILanguagesProps {
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<
@@ -18,18 +24,16 @@ interface ILanguagesProps {
   >;
   getValues: UseFormGetValues<FieldValues>;
 }
-const Languages = ({
+function Languages({
   control,
   fieldArray: { fields, append, remove },
   getValues,
-}: ILanguagesProps) => {
+}: ILanguagesProps) {
   const handleDisable = (value: string): boolean => {
-    return getValues().languages.find(
+    return !!getValues().languages.find(
       (el: { language: string; level: string }) =>
-        el.language === value
-    )
-      ? true
-      : false;
+        el.language === value,
+    );
   };
   return (
     <div className="flex w-full flex-col gap-[30px]">
@@ -104,23 +108,27 @@ const Languages = ({
               <div
                 className={`flex items-end ${index === 0 ? 'justify-end' : 'justify-between'} mb-[5px] h-[44px] w-full max-w-[442px] grow gap-[5px] self-end`}
               >
-                {index !== 0 ? (
-                  <div
-                    onClick={() => remove(index)}
-                    className="group flex h-[44px] w-[60px] cursor-pointer items-center justify-center rounded-[10px] bg-red-600 transition-all duration-300 hover:bg-error"
-                  >
-                    <TrashIcon className="h-[22px] w-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
-                  </div>
-                ) : null}
-                {getValues().languages.length - 1 ===
-                index ? (
-                  <div
-                    onClick={append}
-                    className="flex h-full cursor-pointer items-center justify-center "
-                  >
-                    + Додати ще
-                  </div>
-                ) : null}
+                {index !== 0
+                  ? (
+                      <div
+                        onClick={() => remove(index)}
+                        className="group flex h-[44px] w-[60px] cursor-pointer items-center justify-center rounded-[10px] bg-red-600 transition-all duration-300 hover:bg-error"
+                      >
+                        <TrashIcon className="size-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
+                      </div>
+                    )
+                  : null}
+                {getValues().languages.length - 1
+                === index
+                  ? (
+                      <div
+                        onClick={append}
+                        className="flex h-full cursor-pointer items-center justify-center "
+                      >
+                        + Додати ще
+                      </div>
+                    )
+                  : null}
               </div>
             </div>
           </div>
@@ -128,6 +136,6 @@ const Languages = ({
       })}
     </div>
   );
-};
+}
 
 export default Languages;

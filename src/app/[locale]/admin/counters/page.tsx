@@ -1,7 +1,7 @@
 import Counters from '@/components/admin/counters/Counters';
 
-const CountersPage = () => {
+function CountersPage() {
   return <Counters />;
-};
+}
 
 export default CountersPage;

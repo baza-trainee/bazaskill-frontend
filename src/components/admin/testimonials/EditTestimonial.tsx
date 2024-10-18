@@ -1,40 +1,45 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+import type { z } from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
   Controller,
-  SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { testimonialValidation } from '../testimonials/validationSchema';
-import TextArea from '../ui/TextAreaReviews';
-import TextInput from '../ui/TextInput';
-import PageTitle from '../ui/PageTitle';
-import { z } from 'zod';
-import FileInputPost from '../ui/FileInputPost';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
-import SuccessAlert from '../alerts/SuccessAlert';
+
+import type { TestimonialPreview } from '@/types/testimonials';
+
 import {
   getTestimonialsId,
   updateTestimonial,
 } from '@/api/testimonials';
-import { useParams } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
-import Link from 'next/link';
-import Loader from '../../shared/loader/Loader';
-import EditTestimonialCard from './EditTestimonialsCard';
-import { TestimonialPreview } from '@/types/testimonials';
 
-const EditTestimonial = () => {
+import Loader from '../../shared/loader/Loader';
+import SuccessAlert from '../alerts/SuccessAlert';
+import { testimonialValidation } from '../testimonials/validationSchema';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import FileInputPost from '../ui/FileInputPost';
+import PageTitle from '../ui/PageTitle';
+import TextArea from '../ui/TextAreaReviews';
+import TextInput from '../ui/TextInput';
+import EditTestimonialCard from './EditTestimonialsCard';
+
+function EditTestimonial() {
   const [previewCard, setPreviewCard] = useState<
     TestimonialPreview | undefined
   >();
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null | string>(
-    null
+    null,
   );
   const [isSuccess, setIsSuccess] = useState(false);
   const { id } = useParams<{ id: string }>();
@@ -63,7 +68,8 @@ const EditTestimonial = () => {
   });
 
   useEffect(() => {
-    if (!data) return;
+    if (!data)
+      return;
     setValue('name_ua', data.name_ua);
     setValue('name_en', data.name_en);
     setValue('name_pl', data.name_pl);
@@ -107,7 +113,7 @@ const EditTestimonial = () => {
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
   > = async (
-    values: z.infer<typeof testimonialValidation>
+    values: z.infer<typeof testimonialValidation>,
   ) => {
     try {
       setIsProcessing(true);
@@ -126,26 +132,29 @@ const EditTestimonial = () => {
       }
       const response = await updateTestimonial(
         id,
-        formData
+        formData,
       );
       if (response.status === 200) {
         setIsSuccess(true);
         refetch();
       }
       setIsProcessing(false);
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
-      } else {
+      }
+      else {
         console.error('Неочікувана помилка', error);
       }
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
 
   return (
-    <div className="relative h-[100vh] max-h-[100vh] p-6 ">
+    <div className="relative h-screen max-h-screen p-6 ">
       <div className="mb-[50px]">
         <PageTitle title="Редагувати Відгук" />
       </div>
@@ -306,10 +315,10 @@ const EditTestimonial = () => {
         </form>
       </div>
       <div>
-        {previewCard &&
-          typeof previewCard !== 'undefined' && (
-            <EditTestimonialCard item={previewCard} />
-          )}
+        {previewCard
+        && typeof previewCard !== 'undefined' && (
+          <EditTestimonialCard item={previewCard} />
+        )}
       </div>
       {isSuccess && (
         <SuccessAlert
@@ -321,6 +330,6 @@ const EditTestimonial = () => {
       {isFetching && <Loader />}
     </div>
   );
-};
+}
 
 export default EditTestimonial;

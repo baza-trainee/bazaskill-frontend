@@ -3,8 +3,8 @@ export interface IStack {
   title: string;
 }
 
-export type TStack = {
+export interface TStack {
   id: string;
   title: string;
   isExist: boolean;
-};
+}

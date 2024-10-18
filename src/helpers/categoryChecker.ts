@@ -19,8 +19,10 @@ const countries = [
   'niemcy',
 ];
 
-export const isSpeciality = (item: string) =>
-  specialities.includes(item.toLowerCase());
+export function isSpeciality(item: string) {
+  return specialities.includes(item.toLowerCase());
+}
 
-export const isCountry = (item: string) =>
-  countries.includes(item.toLowerCase());
+export function isCountry(item: string) {
+  return countries.includes(item.toLowerCase());
+}

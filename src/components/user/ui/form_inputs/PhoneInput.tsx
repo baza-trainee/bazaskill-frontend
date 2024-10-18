@@ -1,8 +1,11 @@
 'use client';
 
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
 } from 'react';
 
@@ -13,7 +16,7 @@ interface PhoneInputProps
   isRequired?: boolean;
 }
 
-const PhoneInput = forwardRef(function PhoneInput(
+const PhoneInput = forwardRef((
   {
     title,
     errorText,
@@ -21,8 +24,8 @@ const PhoneInput = forwardRef(function PhoneInput(
     value = '',
     ...rest
   }: PhoneInputProps,
-  _ref: ForwardedRef<HTMLInputElement>
-) {
+  _ref: ForwardedRef<HTMLInputElement>,
+) => {
   return (
     <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
       {!!title && (

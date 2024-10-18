@@ -1,31 +1,36 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import {
-  useForm,
-  Controller,
+import type {
   SubmitHandler,
 } from 'react-hook-form';
-import { z } from 'zod';
+import type { z } from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { changeEmail } from '@/api/settings';
-import { defaultValues } from './defaultValues';
-import { settingsScheme } from './settingsScheme';
 import { useQuery } from '@tanstack/react-query';
-import { getProfile } from '@/api/signIn';
-import { constants } from '@/constants';
-import PageTitle from '../ui/PageTitle';
-import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
-import TextInput from '../ui/TextInput';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
+
+import type { IUser } from '@/types/singIn';
+
+import { changeEmail } from '@/api/settings';
+import { getProfile } from '@/api/signIn';
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
+import { constants } from '@/constants';
+
+import Loader from '../../shared/loader/Loader';
+import SuccessAlert from '../alerts/SuccessAlert';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import SuccessAlert from '../alerts/SuccessAlert';
-import Loader from '../../shared/loader/Loader';
-import { IUser } from '@/types/singIn';
+import PageTitle from '../ui/PageTitle';
+import TextInput from '../ui/TextInput';
+import { defaultValues } from './defaultValues';
+import { settingsScheme } from './settingsScheme';
 
-const Settings = () => {
+function Settings() {
   const {
     handleSubmit,
     control,
@@ -36,7 +41,7 @@ const Settings = () => {
   } = useForm<z.infer<typeof settingsScheme>>({
     resolver: zodResolver(settingsScheme),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -50,7 +55,8 @@ const Settings = () => {
   console.log(user);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user)
+      return;
     setValue('email', user.email);
     setValue('password', '......');
   }, [user]);
@@ -71,13 +77,16 @@ const Settings = () => {
         setShowModal(true);
       }
       setIsProcessing(false);
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
-      } else {
+      }
+      else {
         console.error('Неочікувана помилка', error);
       }
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
@@ -88,7 +97,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="relative h-[100vh] max-h-[100vh] p-[24px]">
+    <div className="relative h-screen max-h-screen p-[24px]">
       <PageTitle title="Налаштування"></PageTitle>
       <div className="mt-[80px] flex gap-[180px]">
         <form
@@ -130,11 +139,11 @@ const Settings = () => {
                   )}
                 />
               </div>
-              <div className="h-[44px] w-[44px]">
+              <div className="size-[44px]">
                 {' '}
                 <button type="button">
                   <Link href="settings/edit">
-                    <WriteIcon className="h-[44px] w-[44px] bg-white" />
+                    <WriteIcon className="size-[44px] bg-white" />
                   </Link>
                 </button>
               </div>
@@ -171,6 +180,6 @@ const Settings = () => {
       {isFetching && <Loader />}
     </div>
   );
-};
+}
 
 export default Settings;

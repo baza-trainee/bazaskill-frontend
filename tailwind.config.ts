@@ -10,8 +10,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         'open-sans': 'var(--font-open-sans)',
-        tahoma: 'var(--font-tahoma)',
-        mont: 'var(--font-mont)',
+        'tahoma': 'var(--font-tahoma)',
+        'mont': 'var(--font-mont)',
       },
       colors: {
         white: '#FEFFFE',
@@ -37,10 +37,10 @@ const config: Config = {
         greenBg: '#4DC760',
       },
       screens: {
-        xs: '320px',
-        sm: '420px',
-        md: '768px',
-        xl: '1280px',
+        'xs': '320px',
+        'sm': '420px',
+        'md': '768px',
+        'xl': '1280px',
         '2xl': '1368px',
         '3xl': '1440px',
         '4xl': '1536px',
@@ -52,9 +52,9 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'contacts-photo':
-          "url('/public/img/workprocessdesk@1x.jpg')",
+          'url(\'/public/img/workprocessdesk@1x.jpg\')',
         'contacts-tablet':
-          "url('/public/img/contactstablet.jpg')",
+          'url(\'/public/img/contactstablet.jpg\')',
       },
       backgroundPosition: {
         'pos-0': '100% 0%',

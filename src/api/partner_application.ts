@@ -1,28 +1,25 @@
-import axios from '@/config/axios';
-import {
+import type {
   IPartner,
   IPartnerResponse,
 } from '@/types/applications';
 
-export const getPartnerApplications = async () => {
+import axios from '@/config/axios';
+
+export async function getPartnerApplications() {
   const { data } = await axios.get<IPartnerResponse[]>(
-    '/partner-application'
+    '/partner-application',
   );
   return data;
-};
+}
 
-export const getPartnerApplicationsById = async (
-  id: string
-) => {
+export async function getPartnerApplicationsById(id: string) {
   const { data } = await axios.get<IPartnerResponse>(
-    `/partner-application/${id}`
+    `/partner-application/${id}`,
   );
   return data;
-};
+}
 
-export const createApplication = async (
-  values: IPartner
-) => {
+export async function createApplication(values: IPartner) {
   const newApplication = {
     company_name: values.company_name,
     company_url: values.company_url,
@@ -37,14 +34,14 @@ export const createApplication = async (
   };
   const res = await axios.post(
     '/partner-application',
-    newApplication
+    newApplication,
   );
   return res;
-};
+}
 
-export const deleteApplication = async (id: number) => {
+export async function deleteApplication(id: number) {
   const response = await axios.delete(
-    `/partner-application/${id}`
+    `/partner-application/${id}`,
   );
   return response;
-};
+}

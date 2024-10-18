@@ -1,15 +1,15 @@
 'use client';
 import { useEffect } from 'react';
 
-export const useBodyScrollLock = (shouldLock: boolean) => {
+export function useBodyScrollLock(shouldLock: boolean) {
   useEffect(() => {
     if (!shouldLock) {
       return;
     }
 
-    const scrollBarWidth =
-      window.innerWidth -
-      document.documentElement.clientWidth;
+    const scrollBarWidth
+      = window.innerWidth
+      - document.documentElement.clientWidth;
 
     document.body.style.paddingRight = `${scrollBarWidth}px`;
 
@@ -21,4 +21,4 @@ export const useBodyScrollLock = (shouldLock: boolean) => {
       document.body.style.paddingRight = '0px';
     };
   }, [shouldLock]);
-};
+}

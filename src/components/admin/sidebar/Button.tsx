@@ -1,9 +1,11 @@
-/* eslint-disable no-unused-vars */
-import React, {
+import type {
   ButtonHTMLAttributes,
   ReactNode,
 } from 'react';
+
 import { useRouter } from 'next/navigation';
+import React from 'react';
+
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
@@ -13,7 +15,6 @@ interface ButtonProps
 const Button: React.FC<ButtonProps> = ({
   children,
   icon,
-  iconClassName = '',
   ...rest
 }) => {
   const router = useRouter();

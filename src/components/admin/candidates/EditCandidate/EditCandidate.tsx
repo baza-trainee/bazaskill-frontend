@@ -1,48 +1,54 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { getSpecializations } from '@/api/specialization';
-import { constants } from '@/constants';
-import { ISpecialization } from '@/types/specialization';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
+import type {
   UseQueryResult,
 } from '@tanstack/react-query';
-import Stack from './Stack';
-import {
-  Controller,
+import type {
   DeepMap,
   FieldError,
   FieldValues,
   SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import {
+  Controller,
   useFieldArray,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import schema from './schema';
-import TextInput from './TextInput';
-import FileInput from './FileInput';
-import defaultValues from './defaultValues';
-import Graduate from './Graduate';
-import Languages from './Languages';
-import Cources from './Сources';
-import BazaExperience from './BazaExperience';
-import SelectField from './SelectField';
-import {
-  updateCandidate,
-  getCandidateById,
-} from '@/api/candidates';
-import {
+
+import type {
   CandidatesResponse,
   ICandidateLanguages,
 } from '@/types/candidates';
+import type { ISpecialization } from '@/types/specialization';
 
-const EditCandidate = ({ id }: { id: string }) => {
+import {
+  getCandidateById,
+  updateCandidate,
+} from '@/api/candidates';
+import { getSpecializations } from '@/api/specialization';
+import { constants } from '@/constants';
+
+import Stack from '../AddCandidate/Stack';
+import BazaExperience from './BazaExperience';
+import defaultValues from './defaultValues';
+import FileInput from './FileInput';
+import Graduate from './Graduate';
+import Languages from './Languages';
+import schema from './schema';
+import SelectField from './SelectField';
+import TextInput from './TextInput';
+import Cources from './Сources';
+
+function EditCandidate({ id }: { id: string }) {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -101,12 +107,12 @@ const EditCandidate = ({ id }: { id: string }) => {
     watch,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   });
 
   const undefinedStack = stack.filter(
-    (item) => item.id === undefined
+    item => item.id === undefined,
   );
 
   useEffect(() => {
@@ -134,7 +140,7 @@ const EditCandidate = ({ id }: { id: string }) => {
           (lang: ICandidateLanguages) => ({
             language: lang.language,
             level: lang.level,
-          })
+          }),
         ),
         work_format: value.work_format,
         salary_from: value.sallary_form,
@@ -166,7 +172,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             role: item.specialization.id.toString(),
             project_name: item.project_name,
             project_duration: item.project_duration,
-          })
+          }),
         ),
         uniqueId: value.uniqueId,
         baza_recomendation: value.baza_recomendation,
@@ -180,9 +186,9 @@ const EditCandidate = ({ id }: { id: string }) => {
               new File([], item.graduate_sertificate, {
                 type: 'for-url',
               }),
-            ]
+            ],
           );
-        }
+        },
       );
       candidate.data.cources.map(
         (item: any, index: number) => {
@@ -191,7 +197,7 @@ const EditCandidate = ({ id }: { id: string }) => {
               type: 'for-url',
             }),
           ]);
-        }
+        },
       );
       setValue('cv', [
         new File([], value.cv, { type: 'for-url' }),
@@ -200,7 +206,7 @@ const EditCandidate = ({ id }: { id: string }) => {
         value.stack.map((item: any) => ({
           ...item.stack,
           isExist: true,
-        }))
+        })),
       );
     }
   }, [candidate.data]);
@@ -232,19 +238,20 @@ const EditCandidate = ({ id }: { id: string }) => {
     try {
       if (!stack.length) {
         setStackError(
-          'Додайте декілька технологій зі стеку'
+          'Додайте декілька технологій зі стеку',
         );
         return;
       }
       if (undefinedStack.length) {
         setStackError(
-          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
+          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`,
         );
         return;
       }
       setIsProcessing(true);
       mutate({ id, data: { currentValues, stack } });
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -255,7 +262,7 @@ const EditCandidate = ({ id }: { id: string }) => {
         Редагування кандидата
       </h2>
       <div>
-        <h3 className="border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+        <h3 className="border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
           <span>Персональна інформація</span>
         </h3>
 
@@ -550,7 +557,8 @@ const EditCandidate = ({ id }: { id: string }) => {
                     onChange={onChange}
                     placeholder="Коментар"
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  ></textarea>
+                  >
+                  </textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -567,7 +575,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Спеціальність</h3>
           </div>
 
@@ -593,7 +601,7 @@ const EditCandidate = ({ id }: { id: string }) => {
                     <option value="">
                       Оберіть спеціальність
                     </option>
-                    {specialization.data?.map((item) => (
+                    {specialization.data?.map(item => (
                       <option key={item.id} value={item.id}>
                         {item.title}
                       </option>
@@ -641,11 +649,10 @@ const EditCandidate = ({ id }: { id: string }) => {
 
           <Stack
             handleStack={setStack}
-            outerStack={stack}
             error={stackError}
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
           </div>
 
@@ -655,7 +662,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             fieldsLength={currentValues.graduate.length}
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Курси</h3>
           </div>
 
@@ -667,7 +674,7 @@ const EditCandidate = ({ id }: { id: string }) => {
             }
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи на Базі</h3>
           </div>
 
@@ -701,7 +708,8 @@ const EditCandidate = ({ id }: { id: string }) => {
                     onChange={onChange}
                     placeholder="Рекомендація"
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  ></textarea>
+                  >
+                  </textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -753,7 +761,7 @@ const EditCandidate = ({ id }: { id: string }) => {
 
           <div className="flex justify-start gap-[24px] py-[80px]">
             <button
-              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"
+              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border hover:bg-transparent hover:text-white"
               type="submit"
             >
               {isProcessing
@@ -762,9 +770,8 @@ const EditCandidate = ({ id }: { id: string }) => {
             </button>
             <button
               onClick={() =>
-                router.push('/admin/candidates')
-              }
-              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border-[1px] font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
+                router.push('/admin/candidates')}
+              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
             >
               Скасувати
             </button>
@@ -773,6 +780,6 @@ const EditCandidate = ({ id }: { id: string }) => {
       </div>
     </div>
   );
-};
+}
 
 export default EditCandidate;

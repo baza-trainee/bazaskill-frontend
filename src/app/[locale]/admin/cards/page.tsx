@@ -1,8 +1,9 @@
-import Cards from '@/components/admin/cards/Cards';
 import React from 'react';
 
-const CardsPage = () => {
+import Cards from '@/components/admin/cards/Cards';
+
+function CardsPage() {
   return <Cards />;
-};
+}
 
 export default CardsPage;

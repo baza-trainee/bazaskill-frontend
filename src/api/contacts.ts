@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from '@/config/axios';
-import { IContacts } from '@/types/contacts';
+import type { IContacts } from '@/types/contacts';
 
-type Data = {
+import axios from '@/config/axios';
+
+interface Data {
   phone_1: string;
   phone_2: string;
   email: string;
@@ -11,46 +11,46 @@ type Data = {
   discord: string;
   facebook: string;
   instagram: string;
-};
+}
 
 interface IUpdateData {
   id: number;
   updateData: Data;
 }
 
-export const getContact = async () => {
-  const { data } =
-    await axios.get<IContacts[]>('/contacts');
+export async function getContact() {
+  const { data }
+    = await axios.get<IContacts[]>('/contacts');
   return data;
-};
+}
 
-export const getByIdContact = async (id: number) => {
+export async function getByIdContact(id: number) {
   const { data } = await axios.get<IContacts>(
-    `/contacts/${id}`
+    `/contacts/${id}`,
   );
   return data;
-};
+}
 
-export const updateContact = async ({
+export async function updateContact({
   id,
   updateData,
-}: IUpdateData) => {
+}: IUpdateData) {
   const { data } = await axios.patch(
     `/contacts/${id}`,
-    updateData
+    updateData,
   );
 
   return data;
-};
+}
 
-export const addContact = async (value: Data) => {
+export async function addContact(value: Data) {
   const { data } = await axios.post<IContacts[]>(
     `/contacts`,
-    value
+    value,
   );
   return data;
-};
+}
 
-export const deleteContact = async (id: number) => {
+export async function deleteContact(id: number) {
   await axios.delete(`/contacts/${id}`);
-};
+}

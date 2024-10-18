@@ -1,27 +1,33 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import {
-  useForm,
-  Controller,
+import type {
   SubmitHandler,
 } from 'react-hook-form';
-import { z } from 'zod';
-import TextInput from '../ui/TextInput';
-import PageTitle from '../ui/PageTitle';
-import Loader from '../../shared/loader/Loader';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { defaultValues } from './defaultValues';
-import { countersScheme } from './countersScheme';
+import type { z } from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
-import { getCounters, updateCounter } from '@/api/counters';
-import { ICounters } from '@/types/counters';
-import SuccessAlert from '../alerts/SuccessAlert';
+import React, { useEffect, useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
 
-const Counters = () => {
+import type { ICounters } from '@/types/counters';
+
+import { getCounters, updateCounter } from '@/api/counters';
+import { constants } from '@/constants';
+
+import Loader from '../../shared/loader/Loader';
+import SuccessAlert from '../alerts/SuccessAlert';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import PageTitle from '../ui/PageTitle';
+import TextInput from '../ui/TextInput';
+import { countersScheme } from './countersScheme';
+import { defaultValues } from './defaultValues';
+
+function Counters() {
   const [id, setId] = useState<number>(0);
   const [showModal, setShowModal] = useState(false);
 
@@ -43,7 +49,7 @@ const Counters = () => {
   } = useForm<z.infer<typeof countersScheme>>({
     resolver: zodResolver(countersScheme),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
   useEffect(() => {
@@ -77,13 +83,19 @@ const Counters = () => {
       refetch();
       setShowModal(true);
       reset();
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return (
+      <p>
+        Error:
+        {error.message}
+      </p>
+    );
   }
 
   const handleKeyPress: React.KeyboardEventHandler<
@@ -212,6 +224,6 @@ const Counters = () => {
       {isFetching && <Loader />}
     </div>
   );
-};
+}
 
 export default Counters;

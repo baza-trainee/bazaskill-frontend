@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const useSliderParams = () => {
+function useSliderParams() {
   const [swiperParams, setSwiperParams] = useState({
     spaceBetween: 24,
     containerClass: 'container',
@@ -23,7 +23,8 @@ const useSliderParams = () => {
           imageWidth: 80,
           imageHeight: 80,
         });
-      } else if (windowWidth >= 420 && windowWidth < 768) {
+      }
+      else if (windowWidth >= 420 && windowWidth < 768) {
         setSwiperParams({
           spaceBetween: 24,
           containerClass: 'mx-auto',
@@ -32,7 +33,8 @@ const useSliderParams = () => {
           imageWidth: 80,
           imageHeight: 80,
         });
-      } else if (windowWidth >= 768 && windowWidth < 1280) {
+      }
+      else if (windowWidth >= 768 && windowWidth < 1280) {
         setSwiperParams({
           spaceBetween: 46,
           containerClass: 'mx-auto',
@@ -41,9 +43,10 @@ const useSliderParams = () => {
           imageWidth: 80,
           imageHeight: 80,
         });
-      } else if (
-        windowWidth >= 1280 &&
-        windowWidth < 1368
+      }
+      else if (
+        windowWidth >= 1280
+        && windowWidth < 1368
       ) {
         setSwiperParams({
           spaceBetween: 56,
@@ -53,9 +56,10 @@ const useSliderParams = () => {
           imageWidth: 112,
           imageHeight: 112,
         });
-      } else if (
-        windowWidth >= 1368 &&
-        windowWidth < 1440
+      }
+      else if (
+        windowWidth >= 1368
+        && windowWidth < 1440
       ) {
         setSwiperParams({
           spaceBetween: 36,
@@ -65,9 +69,10 @@ const useSliderParams = () => {
           imageWidth: 117,
           imageHeight: 117,
         });
-      } else if (
-        windowWidth >= 1440 &&
-        windowWidth < 1536
+      }
+      else if (
+        windowWidth >= 1440
+        && windowWidth < 1536
       ) {
         setSwiperParams({
           spaceBetween: 46,
@@ -77,9 +82,10 @@ const useSliderParams = () => {
           imageWidth: 117,
           imageHeight: 117,
         });
-      } else if (
-        windowWidth >= 1536 &&
-        windowWidth < 1920
+      }
+      else if (
+        windowWidth >= 1536
+        && windowWidth < 1920
       ) {
         setSwiperParams({
           spaceBetween: 56,
@@ -89,7 +95,8 @@ const useSliderParams = () => {
           imageWidth: 117,
           imageHeight: 117,
         });
-      } else if (windowWidth >= 1920) {
+      }
+      else if (windowWidth >= 1920) {
         setSwiperParams({
           spaceBetween: 60,
           containerClass: 'mx-auto',
@@ -108,6 +115,6 @@ const useSliderParams = () => {
   }, []);
 
   return { swiperParams, cardParams };
-};
+}
 
 export default useSliderParams;

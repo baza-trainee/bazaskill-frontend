@@ -1,8 +1,9 @@
-import AddPosts from '@/components/admin/posts/AddPosts';
 import React from 'react';
 
-const AddPostsPage = () => {
+import AddPosts from '@/components/admin/posts/AddPosts';
+
+function AddPostsPage() {
   return <AddPosts />;
-};
+}
 
 export default AddPostsPage;

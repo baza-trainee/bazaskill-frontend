@@ -1,8 +1,9 @@
-import AddCandidate from '@/components/admin/candidates/AddCandidate/AddCandidate';
 import React from 'react';
 
-const AddCandidatePage = () => {
+import AddCandidate from '@/components/admin/candidates/AddCandidate/AddCandidate';
+
+function AddCandidatePage() {
   return <AddCandidate />;
-};
+}
 
 export default AddCandidatePage;

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 
 type ModalType =
@@ -15,10 +14,10 @@ interface ModalState {
   closeModal: () => void;
 }
 
-export const useModal = create<ModalState>((set) => ({
+export const useModal = create<ModalState>(set => ({
   isModalOpen: false,
   modalType: '',
-  openModal: (type) =>
+  openModal: type =>
     set({ isModalOpen: true, modalType: type }),
   closeModal: () =>
     set({ isModalOpen: false, modalType: '' }),

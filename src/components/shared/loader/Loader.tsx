@@ -1,10 +1,10 @@
 import './loader.css';
 
-const LoaderLayout = () => {
+function LoaderLayout() {
   return (
     <div
-      className="backdrop-brightness-10 fixed left-0 right-0 top-0 z-[9999] flex h-full w-full flex-col 
-    items-center justify-center bg-[rgba(0,0,0,0.9)] backdrop-blur-sm"
+      className="backdrop-brightness-10 fixed inset-x-0 top-0 z-[9999] flex size-full flex-col items-center justify-center
+    bg-[rgba(0,0,0,0.9)] backdrop-blur-sm"
     >
       <div className="loader">
         <span style={{ '--i': 1 }}></span>
@@ -30,6 +30,6 @@ const LoaderLayout = () => {
       </div>
     </div>
   );
-};
+}
 
 export default LoaderLayout;

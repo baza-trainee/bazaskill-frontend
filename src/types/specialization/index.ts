@@ -3,18 +3,18 @@ export interface ISpecialization {
   title: string;
 }
 
-export type SpecializationStack = {
+export interface SpecializationStack {
   id: number;
   title: string;
   specialization_stack_id: number;
-};
+}
 
 export interface ISpecializationWithStack
   extends ISpecialization {
   stack: SpecializationStack[];
 }
 
-export type Specialization = {
+export interface Specialization {
   id: number;
   title: string;
-};
+}

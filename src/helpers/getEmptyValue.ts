@@ -1,10 +1,10 @@
-export const getEmptyValue = (value?: string) => {
+export function getEmptyValue(value?: string) {
   if (
-    value === '' ||
-    value === null ||
-    value === undefined
+    value === ''
+    || value === null
+    || value === undefined
   ) {
     return 'Не зазначено';
   }
   return value;
-};
+}

@@ -1,19 +1,19 @@
 import { z } from 'zod';
 
-const nonRussianLettersPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
+const nonRussianLettersPattern
+  = /^(?!.*\s{2}|.*[.-]{2})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
 
 const dateFormat = /^(0[1-9]|1[0-2])\.\d{4}$/;
 
-const isDateValid = (dateString: string) => {
+function isDateValid(dateString: string) {
   const dateParts = dateString.split('.');
-  const year = parseInt(dateParts[1]);
-  const month = parseInt(dateParts[0]) - 1; // Місяці в JavaScript починаються з 0 (0 - січень, 1 - лютень, і т.д.)
+  const year = Number.parseInt(dateParts[1]);
+  const month = Number.parseInt(dateParts[0]) - 1; // Місяці в JavaScript починаються з 0 (0 - січень, 1 - лютень, і т.д.)
   const currentDate = new Date();
   const inputDate = new Date(year, month);
 
   return inputDate <= currentDate;
-};
+}
 
 export const testimonialValidation = z.object({
   name_ua: z
@@ -22,8 +22,8 @@ export const testimonialValidation = z.object({
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
     .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      value => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' },
     ),
   name_en: z
     .string()
@@ -31,8 +31,8 @@ export const testimonialValidation = z.object({
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
     .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      value => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' },
     ),
   name_pl: z
     .string()
@@ -40,8 +40,8 @@ export const testimonialValidation = z.object({
     .min(2, 'Ім’я повинно мати не менше 2 знаків')
     .max(30, 'Ім’я повинно бути не більше 30 знаків')
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      value => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' },
     ),
   position: z
     .string()
@@ -49,19 +49,19 @@ export const testimonialValidation = z.object({
     .min(2, 'Спеціальність повинно мати не менше 2 знаків')
     .max(
       30,
-      'Спеціальність повинно бути не більше 30 знаків'
+      'Спеціальність повинно бути не більше 30 знаків',
     )
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректну спеціальність' }
+      value => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректну спеціальність' },
     ),
   date: z
     .string()
-    .refine((value) => dateFormat.test(value), {
+    .refine(value => dateFormat.test(value), {
       message:
         'Дата має бути у форматі "місяць рік", наприклад, "03.2024"',
     })
-    .refine((value) => isDateValid(value), {
+    .refine(value => isDateValid(value), {
       message: 'Дата не може бути пізніше сьогоднішньої',
     }),
   review_ua: z

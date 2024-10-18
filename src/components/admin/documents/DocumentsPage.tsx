@@ -1,26 +1,31 @@
+/* eslint-disable style/max-statements-per-line */
 'use client';
 
-import { useEffect, useState } from 'react';
-import * as z from 'zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { documentsScheme } from './documentsScheme';
+import type { SubmitHandler } from 'react-hook-form';
+import type * as z from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
-import Loader from '../../shared/loader/Loader';
-import PageTitle from '../ui/PageTitle';
-import FileInputDoc from '../ui/FileInputDoc';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 import {
   getDocuments,
   updateDocument,
 } from '@/api/documents';
-import SuccessAlert from '../alerts/SuccessAlert';
-import Image from 'next/image';
-import Link from 'next/link';
+import { constants } from '@/constants';
 
-const DocumentsPage = () => {
+import Loader from '../../shared/loader/Loader';
+import SuccessAlert from '../alerts/SuccessAlert';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import FileInputDoc from '../ui/FileInputDoc';
+import PageTitle from '../ui/PageTitle';
+import { documentsScheme } from './documentsScheme';
+
+function DocumentsPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -46,7 +51,8 @@ const DocumentsPage = () => {
   });
 
   useEffect(() => {
-    if (!documents) return;
+    if (!documents)
+      return;
     setValue('terms_of_use', [
       new File([], documents[0].document_url, {
         type: 'for-url',
@@ -78,24 +84,24 @@ const DocumentsPage = () => {
       let currentId;
       const formData = new FormData();
       if (
-        values.privacy_policy[0].size &&
-        values.terms_of_use[0].size
+        values.privacy_policy[0].size
+        && values.terms_of_use[0].size
       ) {
         const termsItem = documents?.find(
-          (item) => item.title === 'terms_of_use'
+          item => item.title === 'terms_of_use',
         );
         currentId = termsItem?.id;
         formData.append('file', values.terms_of_use[0]);
         await updateDocument(currentId as string, formData);
         formData.delete('file');
         const policyItem = documents?.find(
-          (item) => item.title === 'privacy_policy'
+          item => item.title === 'privacy_policy',
         );
         currentId = policyItem?.id;
         formData.append('file', values.privacy_policy[0]);
         const response = await updateDocument(
           currentId as string,
-          formData
+          formData,
         );
         if (response.status === 200) {
           setIsSuccess(true);
@@ -104,17 +110,17 @@ const DocumentsPage = () => {
       }
 
       if (
-        values.terms_of_use[0].size &&
-        !values.privacy_policy[0].size
+        values.terms_of_use[0].size
+        && !values.privacy_policy[0].size
       ) {
         const currentItem = documents?.find(
-          (item) => item.title === 'terms_of_use'
+          item => item.title === 'terms_of_use',
         );
         currentId = currentItem?.id;
         formData.append('file', values.terms_of_use[0]);
         const response = await updateDocument(
           currentId as string,
-          formData
+          formData,
         );
         if (response.status === 200) {
           setIsSuccess(true);
@@ -123,32 +129,34 @@ const DocumentsPage = () => {
       }
 
       if (
-        values.privacy_policy[0].size &&
-        !values.terms_of_use[0].size
+        values.privacy_policy[0].size
+        && !values.terms_of_use[0].size
       ) {
         const currentItem = documents?.find(
-          (item) => item.title === 'privacy_policy'
+          item => item.title === 'privacy_policy',
         );
         currentId = currentItem?.id;
         formData.append('file', values.privacy_policy[0]);
         const response = await updateDocument(
           currentId as string,
-          formData
+          formData,
         );
         if (response.status === 200) {
           setIsSuccess(true);
         }
         setIsProcessing(false);
       }
-    } catch (error: unknown) {
+    }
+    catch (error: unknown) {
       console.log(error);
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
 
   return (
-    <div className="relative h-[100vh] max-h-[100vh] p-[24px]">
+    <div className="relative h-screen max-h-screen p-[24px]">
       <PageTitle title="Документи" />
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -160,7 +168,7 @@ const DocumentsPage = () => {
             <FileInputDoc
               name="terms_of_use"
               control={control}
-              placeholder={'Завантажте документ'}
+              placeholder="Завантажте документ"
               title="Правила користування сайтом"
               isRequired={false}
               accept=".pdf"
@@ -173,7 +181,7 @@ const DocumentsPage = () => {
                 target="_blank"
               >
                 <Image
-                  src={`/images/pdf-placeholder.png`}
+                  src="/images/pdf-placeholder.png"
                   alt="pdf"
                   width={40}
                   height={40}
@@ -187,7 +195,7 @@ const DocumentsPage = () => {
             <FileInputDoc
               name="privacy_policy"
               control={control}
-              placeholder={'Завантажте документ'}
+              placeholder="Завантажте документ"
               title="Політика конфіденційності"
               isRequired={false}
               accept=".pdf"
@@ -195,13 +203,13 @@ const DocumentsPage = () => {
             {currentValues?.terms_of_use && (
               <Link
                 href={
-                  currentValues?.privacy_policy[0]?.name ||
-                  ''
+                  currentValues?.privacy_policy[0]?.name
+                  || ''
                 }
                 target="_blank"
               >
                 <Image
-                  src={`/images/pdf-placeholder.png`}
+                  src="/images/pdf-placeholder.png"
                   alt="pdf"
                   width={40}
                   height={40}
@@ -226,7 +234,7 @@ const DocumentsPage = () => {
             type="button"
             text="Скасувати"
             onClick={() => {
-              reset(), window.location.reload();
+              reset(); window.location.reload();
             }}
           />
         </div>
@@ -241,6 +249,6 @@ const DocumentsPage = () => {
       {isFetching && <Loader />}
     </div>
   );
-};
+}
 
 export default DocumentsPage;

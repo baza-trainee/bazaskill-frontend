@@ -1,8 +1,9 @@
-import Candidates from '@/components/admin/candidates/CandidateFilters/Candidates';
 import React from 'react';
 
-const CandidatesPage = () => {
+import Candidates from '@/components/admin/candidates/CandidateFilters/Candidates';
+
+function CandidatesPage() {
   return <Candidates />;
-};
+}
 
 export default CandidatesPage;

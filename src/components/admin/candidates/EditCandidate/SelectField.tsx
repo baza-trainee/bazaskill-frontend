@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-//type declaration for future fetching
+// type declaration for future fetching
 // | Array<Record<"id" | "title", number | string>> | undefined
 interface ISelectFieldProps {
   title: string;
@@ -31,7 +30,9 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   return (
     <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor="phone">
-        {title} &nbsp;
+        {title}
+        {' '}
+&nbsp;
         {isRequired && (
           <span className="text-red-500">*</span>
         )}
@@ -39,7 +40,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
       <select
         value={value}
         className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       >
         <option value="">
           {placeholder || 'Please Select'}

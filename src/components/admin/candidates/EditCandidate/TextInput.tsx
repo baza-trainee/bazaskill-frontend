@@ -1,15 +1,19 @@
-import {
+import type {
   ForwardedRef,
-  forwardRef,
   InputHTMLAttributes,
 } from 'react';
+
+import {
+  forwardRef,
+} from 'react';
+
 interface TextInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
   error: string;
   isRequired: boolean;
 }
-const TextInput = forwardRef(function TextInput(
+const TextInput = forwardRef((
   {
     error,
     isRequired,
@@ -17,12 +21,14 @@ const TextInput = forwardRef(function TextInput(
     title,
     ...rest
   }: TextInputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
   return (
     <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor={title}>
-        {title} &nbsp;
+        {title}
+        {' '}
+&nbsp;
         {isRequired && (
           <span className="text-red-500">*</span>
         )}

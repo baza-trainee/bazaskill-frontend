@@ -1,19 +1,22 @@
-import { useState } from 'react';
 import declineWord from 'decline-word';
-import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import Link from 'next/link';
-import CandidateCard from './CandidateCard';
-import { CandidatesResponse } from '@/types/candidates';
+import { useState } from 'react';
 
-const CandidatesList = ({
+import type { CandidatesResponse } from '@/types/candidates';
+
+import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
+
+import CandidateCard from './CandidateCard';
+
+function CandidatesList({
   candidates,
 }: {
   candidates: CandidatesResponse[];
-}) => {
+}) {
   const [numberOnPage, setNumberOnPage] = useState(4);
 
   const increase = () => {
-    setNumberOnPage((prev) => prev + 4);
+    setNumberOnPage(prev => prev + 4);
   };
 
   const decrease = () => {
@@ -23,22 +26,23 @@ const CandidatesList = ({
   return (
     <div className="no-scrollbar box-content max-h-[180vh] w-1/2 overflow-y-auto pr-[24px] 5xl:pr-[196px]">
       <div className="pl-[24px] font-tahoma text-[24px]">
-        {candidates.length}{' '}
+        {candidates.length}
+        {' '}
         {declineWord(
           candidates.length,
           'кандидат',
           '',
           'и',
-          'ів'
+          'ів',
         )}
       </div>
       <div className="mt-[40px] flex h-fit max-w-[950px] grow flex-wrap items-start justify-start gap-[24px] pl-[24px]">
-        <div className="relative box-border flex h-[486px] w-[442px] items-center justify-center rounded-[10px] border-[2px] border-green bg-transparent">
+        <div className="relative box-border flex h-[486px] w-[442px] items-center justify-center rounded-[10px] border-2 border-green bg-transparent">
           <Link
             href="/admin/candidates/add"
             className="flex flex-col items-center gap-[16px] font-sans text-[20px]"
           >
-            <PlusIcon className="h-[123px] w-[123px] stroke-[#4DC760]" />
+            <PlusIcon className="size-[123px] stroke-[#4DC760]" />
             <p className="ml-[10px] font-sans text-[20px] leading-[1.3] text-[#4DC760]">
               Додати кандидата
             </p>
@@ -46,7 +50,7 @@ const CandidatesList = ({
         </div>
         {candidates
           ?.slice(0, numberOnPage)
-          .map((candidate) => (
+          .map(candidate => (
             <CandidateCard
               key={candidate.id}
               candidate={candidate}
@@ -55,31 +59,33 @@ const CandidatesList = ({
       </div>
       {candidates.length > 4 && (
         <div
-          className={`mx-auto mb-[94px] mt-[70px] flex w-[80%] items-center justify-center`}
+          className="mx-auto mb-[94px] mt-[70px] flex w-4/5 items-center justify-center"
         >
-          {candidates.length <= numberOnPage ? (
-            <svg
-              onClick={decrease}
-              className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
-              width={32}
-              height={32}
-            >
-              <use href="/Icons/sprite.svg#icon-dropdown"></use>
-            </svg>
-          ) : (
-            <svg
-              onClick={increase}
-              className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
-              width={32}
-              height={32}
-            >
-              <use href="/Icons/sprite.svg#icon-dropdown"></use>
-            </svg>
-          )}
+          {candidates.length <= numberOnPage
+            ? (
+                <svg
+                  onClick={decrease}
+                  className="mt-[2px] rotate-180 cursor-pointer fill-white transition-all hover:scale-125"
+                  width={32}
+                  height={32}
+                >
+                  <use href="/Icons/sprite.svg#icon-dropdown"></use>
+                </svg>
+              )
+            : (
+                <svg
+                  onClick={increase}
+                  className="mt-[2px] cursor-pointer fill-white transition-all hover:scale-125"
+                  width={32}
+                  height={32}
+                >
+                  <use href="/Icons/sprite.svg#icon-dropdown"></use>
+                </svg>
+              )}
         </div>
       )}
     </div>
   );
-};
+}
 
 export default CandidatesList;

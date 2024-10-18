@@ -1,12 +1,14 @@
 import declineWord from 'decline-word';
-import { CandidatesResponse } from '@/types/candidates';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { shortenLangs } from '@/helpers/shortenLangs';
-import { useTranslations, useLocale } from 'next-intl';
 
-type CandidateCardProps = {
+import type { CandidatesResponse } from '@/types/candidates';
+
+import { shortenLangs } from '@/helpers/shortenLangs';
+
+interface CandidateCardProps {
   candidate: CandidatesResponse;
-};
+}
 const CandidateCard: React.FC<CandidateCardProps> = ({
   candidate,
 }: CandidateCardProps) => {
@@ -15,13 +17,14 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
   const specialization = candidate.specialization.title;
 
   return (
-    <div className="relative box-border flex h-[486px] w-full max-w-[342px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-[2px] border-secondaryGray bg-slate px-4 py-[32px] sm:max-w-[442px] md:w-[442px] md:max-w-[442px]">
+    <div className="relative box-border flex h-[486px] w-full max-w-[342px] flex-col gap-[16px] overflow-hidden rounded-[10px] border-2 border-secondaryGray bg-slate px-4 py-[32px] sm:max-w-[442px] md:w-[442px] md:max-w-[442px]">
       <div
         className={`${candidate.status.toLowerCase() === 'searching' || candidate.status.toLowerCase() === 'working' ? 'bg-white' : 'bg-secondaryGray'} absolute right-[-2px] top-[-2px] flex h-[30px] w-[142px] items-center justify-center gap-[8px] rounded-bl-[10px] rounded-tr-[9px]`}
       >
         <span
-          className={`${candidate.status.toLowerCase() === 'searching' ? 'bg-green' : candidate.status.toLowerCase() === 'working' ? 'bg-orange' : candidate.status.toLowerCase() === 'inactive' ? 'bg-black' : ''} h-[14px] w-[14px] rounded-[100%]`}
-        ></span>
+          className={`${candidate.status.toLowerCase() === 'searching' ? 'bg-green' : candidate.status.toLowerCase() === 'working' ? 'bg-orange' : candidate.status.toLowerCase() === 'inactive' ? 'bg-black' : ''} size-[14px] rounded-[100%]`}
+        >
+        </span>
         <span
           className={`${candidate.status.toLowerCase() === 'searching' ? 'text-green' : candidate.status.toLowerCase() === 'working' ? 'text-orange' : candidate.status.toLowerCase() === 'inactive' ? 'text-black' : ''} rounded-[100%]`}
         >
@@ -29,8 +32,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             ? t('status.item_1')
             : candidate.status.toLowerCase() === 'working'
               ? t('status.item_2')
-              : candidate.status.toLowerCase() ===
-                  'inactive'
+              : candidate.status.toLowerCase()
+                === 'inactive'
                 ? t('status.item_3')
                 : null}
         </span>
@@ -43,7 +46,9 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
         <h3 className="w-[63%]">{candidate.name}</h3>
         <span className="w-[37%] whitespace-nowrap">
-          ID {candidate.uniqueId}
+          ID
+          {' '}
+          {candidate.uniqueId}
         </span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
@@ -61,7 +66,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           </span>
         </span>
 
-        <span className="flex w-[40%] items-center gap-[8px]">
+        <span className="flex w-2/5 items-center gap-[8px]">
           <svg
             width={20}
             height={20}
@@ -74,16 +79,16 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
               <span key={lang.id}>
                 <span>{shortenLangs(lang.language)}</span>
                 &nbsp;
-                {index !==
-                  candidate.candidate_language.length -
-                    1 && <span>/</span>}
+                {index
+                !== candidate.candidate_language.length
+                - 1 && <span>/</span>}
               </span>
-            )
+            ),
           )}
         </span>
       </div>
 
-      <div className="mb-[1rem] flex h-[24px] w-full items-center gap-[12px] font-sans text-[18px]">
+      <div className="mb-4 flex h-[24px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex min-w-[60%] items-center gap-[8px] text-nowrap">
           <svg
             width={20}
@@ -92,14 +97,16 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           >
             <use href="/Icons/sprite.svg#icon-experience"></use>
           </svg>
-          {candidate.baza_experience.length}{' '}
+          {candidate.baza_experience.length}
+          {' '}
           {declineWord(
             candidate.baza_experience.length,
             t('project.title'),
             '',
             t('project.item_1'),
-            t('project.item_2')
-          )}{' '}
+            t('project.item_2'),
+          )}
+          {' '}
           {t('baza')}
         </span>
 
@@ -127,15 +134,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 
       <div className="flex w-full flex-wrap justify-start gap-[15px] sm:gap-[27px]">
         {candidate.stack.slice(0, 3).map(
-          (item) =>
+          item =>
             item.stack?.title && (
               <div
                 key={item.id}
-                className="box-border flex h-[30px] min-w-[88px] items-center justify-center whitespace-nowrap rounded-full border-[1px] border-white px-[15px] py-[10px]"
+                className="box-border flex h-[30px] min-w-[88px] items-center justify-center whitespace-nowrap rounded-full border border-white px-[15px] py-[10px]"
               >
                 {item.stack?.title}
               </div>
-            )
+            ),
         )}
         <span className="hidden items-end justify-center sm:flex">
           ...
@@ -147,7 +154,11 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 
       <div className="flex h-[44px] w-full items-center justify-between">
         <span className="font-tahoma text-[20px] font-[700]">
-          {t('salary')} {candidate.sallary_form} $
+          {t('salary')}
+          {' '}
+          {candidate.sallary_form}
+          {' '}
+          $
         </span>
         <div className="flex">
           <Link

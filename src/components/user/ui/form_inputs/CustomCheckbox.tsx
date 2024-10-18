@@ -1,6 +1,9 @@
-import React, {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import React, {
   forwardRef,
 } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -16,7 +19,7 @@ interface CustomCheckboxProps
   errorText?: string;
 }
 
-const CustomCheckbox = forwardRef(function CustomCheckbox(
+const CustomCheckbox = forwardRef((
   {
     title,
     isRequired,
@@ -24,8 +27,8 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
     checked,
     ...rest
   }: CustomCheckboxProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
   const checkboxId = uuidv4();
   return (
     <>
@@ -37,7 +40,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
           type="checkbox"
           id={checkboxId}
           ref={ref}
-          className="peer h-[24px] w-[24px] shrink-0 cursor-pointer appearance-none rounded-[2px] border-[1px] border-gray"
+          className="peer size-[24px] shrink-0 cursor-pointer appearance-none rounded-[2px] border border-gray"
         />
         <label
           htmlFor={checkboxId}
@@ -49,7 +52,7 @@ const CustomCheckbox = forwardRef(function CustomCheckbox(
           )}
         </label>
         <svg
-          className="pointer-events-none absolute hidden h-[24px] w-[24px] text-gray peer-checked:block"
+          className="pointer-events-none absolute hidden size-[24px] text-gray peer-checked:block"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"

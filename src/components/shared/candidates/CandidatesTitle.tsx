@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-const CandidatesTitle = () => {
+function CandidatesTitle() {
   const t = useTranslations('Filter');
   return (
     <div className="flex items-center justify-between pb-[32px] xl:pb-[48px]">
@@ -9,6 +9,6 @@ const CandidatesTitle = () => {
       </h1>
     </div>
   );
-};
+}
 
 export default CandidatesTitle;

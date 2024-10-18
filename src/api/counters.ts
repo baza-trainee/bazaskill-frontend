@@ -1,5 +1,6 @@
+import type { ICounters } from '@/types/counters';
+
 import axios from '@/config/axios';
-import { ICounters } from '@/types/counters';
 
 interface IData {
   liveProject: number;
@@ -14,27 +15,27 @@ interface IUpdateData {
   updateData: IData;
 }
 
-export const getCounters = async () => {
-  const { data } =
-    await axios.get<ICounters[]>(`/counters`);
+export async function getCounters() {
+  const { data }
+    = await axios.get<ICounters[]>(`/counters`);
   return data;
-};
+}
 
-export const getCounterById = async (id: number) => {
+export async function getCounterById(id: number) {
   const { data } = await axios.get<ICounters>(
-    `/counters/${id}`
+    `/counters/${id}`,
   );
   return data;
-};
+}
 
-export const updateCounter = async ({
+export async function updateCounter({
   id,
   updateData,
-}: IUpdateData) => {
+}: IUpdateData) {
   const { data } = await axios.patch(
     `/counters/${id}`,
-    updateData
+    updateData,
   );
 
   return data;
-};
+}

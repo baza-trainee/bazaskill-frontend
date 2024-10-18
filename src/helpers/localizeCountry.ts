@@ -1,6 +1,6 @@
-import { Option } from '@/components/user/ui/form_inputs/SelectInput';
+import type { Option } from '@/components/user/ui/form_inputs/SelectInput';
 
-export const localizeCountry = (locale: string) => {
+export function localizeCountry(locale: string) {
   let arr: Option[] = [];
   if (locale === 'ua') {
     arr = [
@@ -33,4 +33,4 @@ export const localizeCountry = (locale: string) => {
     ];
   }
   return arr;
-};
+}

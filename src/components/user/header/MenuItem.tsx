@@ -1,17 +1,20 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
+
+import type { SpecializationStack } from '@/types/specialization';
+
 import HeaderCaretDown from '@/components/shared/icons/HeaderCaretDown';
 import HeaderSearchIcon from '@/components/shared/icons/HeaderSearchIcon';
-import { SpecializationStack } from '@/types/specialization';
-import { useEffect, useRef, useState } from 'react';
+
 import SubMenu from './SubMenu';
 
-const MenuItem = ({
+function MenuItem({
   title,
   inputs,
 }: {
   title: string;
   inputs: SpecializationStack[];
-}) => {
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const submenuRef = useRef<HTMLFormElement>(null);
@@ -23,12 +26,12 @@ const MenuItem = ({
   const handleOutsideClick = (event: Event): void => {
     if (
       !submenuRef.current?.contains(
-        event.target as HTMLElement
-      ) &&
-      !(
-        event.target === menuRef.current ||
-        menuRef.current?.contains(
-          event.target as HTMLElement
+        event.target as HTMLElement,
+      )
+      && !(
+        event.target === menuRef.current
+        || menuRef.current?.contains(
+          event.target as HTMLElement,
         )
       )
     ) {
@@ -41,7 +44,7 @@ const MenuItem = ({
     return () =>
       window.removeEventListener(
         'click',
-        handleOutsideClick
+        handleOutsideClick,
       );
   }, [isOpen]);
 
@@ -50,7 +53,7 @@ const MenuItem = ({
       className={`group/item relative flex h-[50px] grow cursor-pointer items-center justify-center rounded-t-[8px] transition-all hover:bg-[#525252] lg:box-content ${isOpen && 'bg-[#525252]'} `}
     >
       <div
-        className="box-border flex h-full w-full items-center justify-between pl-[16px] pr-[22px] text-white"
+        className="box-border flex size-full items-center justify-between pl-[16px] pr-[22px] text-white"
         ref={menuRef}
         onClick={openDropDownHandler}
       >
@@ -65,7 +68,7 @@ const MenuItem = ({
         </div>
 
         <span
-          className={`relative flex h-[20px] w-[20px] items-center justify-center ${!isOpen && 'top-[3px]  rotate-[180deg]'}`}
+          className={`relative flex size-[20px] items-center justify-center ${!isOpen && 'top-[3px]  rotate-180'}`}
         >
           <HeaderCaretDown />
         </span>
@@ -80,6 +83,6 @@ const MenuItem = ({
       )}
     </div>
   );
-};
+}
 
 export default MenuItem;

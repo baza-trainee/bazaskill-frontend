@@ -1,31 +1,37 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import {
-  useForm,
-  Controller,
+import type {
   SubmitHandler,
 } from 'react-hook-form';
-import TextInput from '../ui/TextInput';
-import { contactsScheme } from './contactsScheme';
-import { z } from 'zod';
+import type { z } from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
-import PhoneInput from '../ui/PhoneInput';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
+import { useEffect, useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
+
+import type { IContacts } from '@/types/contacts';
+
 import {
   addContact,
   getContact,
   updateContact,
 } from '@/api/contacts';
-import { defaultValues } from './defaultValues';
-import { IContacts } from '@/types/contacts';
-import Loader from '../../shared/loader/Loader';
-import PageTitle from '../ui/PageTitle';
+import { constants } from '@/constants';
 
-const Contacts = () => {
+import Loader from '../../shared/loader/Loader';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import PageTitle from '../ui/PageTitle';
+import PhoneInput from '../ui/PhoneInput';
+import TextInput from '../ui/TextInput';
+import { contactsScheme } from './contactsScheme';
+import { defaultValues } from './defaultValues';
+
+function Contacts() {
   const [id, setId] = useState<number>(0);
   const { data, refetch, isFetching } = useQuery<
     IContacts[],
@@ -43,7 +49,7 @@ const Contacts = () => {
   } = useForm<z.infer<typeof contactsScheme>>({
     resolver: zodResolver(contactsScheme),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
   useEffect(() => {
@@ -81,7 +87,8 @@ const Contacts = () => {
             instagram: values.instagram,
           },
         });
-      } else {
+      }
+      else {
         await addContact({
           phone_1: values.phone,
           phone_2: values.secondPhone,
@@ -95,7 +102,8 @@ const Contacts = () => {
       }
 
       refetch();
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -252,6 +260,6 @@ const Contacts = () => {
       {isFetching && <Loader />}
     </section>
   );
-};
+}
 
 export default Contacts;

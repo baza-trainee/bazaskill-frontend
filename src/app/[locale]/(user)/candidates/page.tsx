@@ -1,13 +1,16 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import dynamic from 'next/dynamic';
+
+import type { PageProps } from '@/types';
+
 import Loader from '@/components/shared/loader/Loader';
-import { PageProps } from '@/types';
 
 const DynamicPage = dynamic(
   () =>
     import('@/components/user/all_candidates/Candidates'),
 
-  { ssr: false, loading: () => <Loader /> }
+  { ssr: false, loading: () => <Loader /> },
 );
 
 export async function generateMetadata({
@@ -19,12 +22,12 @@ export async function generateMetadata({
   };
 }
 
-const CandidatesPage = async () => {
+async function CandidatesPage() {
   return (
     <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
       <DynamicPage />
     </div>
   );
-};
+}
 
 export default CandidatesPage;

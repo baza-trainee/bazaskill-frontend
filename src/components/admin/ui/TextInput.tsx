@@ -1,13 +1,16 @@
-import EyeIcon from '@/components/shared/icons/Admin-icons/EyeIcon';
-import NotEyeIcon from '@/components/shared/icons/Admin-icons/NotEyeIcon';
-import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
-
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
   useState,
 } from 'react';
+
+import EyeIcon from '@/components/shared/icons/Admin-icons/EyeIcon';
+import NotEyeIcon from '@/components/shared/icons/Admin-icons/NotEyeIcon';
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 
 interface TextInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -18,7 +21,7 @@ interface TextInputProps
   isPassword?: boolean;
 }
 
-const TextInput = forwardRef(function TextInput(
+const TextInput = forwardRef((
   {
     title,
     errorText,
@@ -28,8 +31,8 @@ const TextInput = forwardRef(function TextInput(
     isPassword,
     ...rest
   }: TextInputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditToggle = () => {
@@ -48,7 +51,7 @@ ${
 
   return (
     <div
-      className={`w-[242px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      className={`w-[242px] font-sans font-normal tracking-normal 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {!!title && (
         <label
@@ -88,11 +91,11 @@ ${
         )}
         {isIcon && !isPassword && (
           <div className=" absolute right-[16px] top-[9px] ">
-            <WriteIcon className="h-[24px] w-[24px]" />
+            <WriteIcon className="size-[24px]" />
           </div>
         )}
         {errorText && (
-          <span className="absolute bottom-[-30px] left-[0px] text-xs">
+          <span className="absolute bottom-[-30px] left-0 text-xs">
             {errorText}
           </span>
         )}

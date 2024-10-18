@@ -1,13 +1,17 @@
 'use client';
 
-import EyeIcon from '@/components/shared/icons/Admin-icons/EyeIcon';
-import NotEyeIcon from '@/components/shared/icons/Admin-icons/NotEyeIcon';
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
   useState,
 } from 'react';
+
+import EyeIcon from '@/components/shared/icons/Admin-icons/EyeIcon';
+import NotEyeIcon from '@/components/shared/icons/Admin-icons/NotEyeIcon';
 
 interface SignInPasswordProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -16,7 +20,7 @@ interface SignInPasswordProps
   isRequired?: boolean;
 }
 
-const SignInPassword = forwardRef(function SignInPassword(
+const SignInPassword = forwardRef((
   {
     title,
     errorText,
@@ -24,8 +28,8 @@ const SignInPassword = forwardRef(function SignInPassword(
     isRequired,
     ...rest
   }: SignInPasswordProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
   const [isEditing, setIsEditing] = useState(false);
   const inputType = isEditing ? 'text' : 'password';
   const handleEditToggle = () => {
@@ -47,7 +51,7 @@ ${
 
   return (
     <div
-      className={`w-[358px]  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      className={`w-[358px]  font-sans font-normal tracking-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {!!title && (
         <label

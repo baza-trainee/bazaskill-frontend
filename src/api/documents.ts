@@ -1,29 +1,27 @@
+import type { IDocument } from '@/types/documents';
+
 import axios from '@/config/axios';
-import { IDocument } from '@/types/documents';
 
-export const getDocuments = async () => {
-  const { data } =
-    await axios.get<IDocument[]>('/documents');
+export async function getDocuments() {
+  const { data }
+    = await axios.get<IDocument[]>('/documents');
   return data;
-};
+}
 
-export const createDocument = async <T>(data: T) => {
+export async function createDocument<T>(data: T) {
   const response = await axios.post(`/documents`, data);
   return response;
-};
+}
 
-export const updateDocument = async <T>(
-  id: string,
-  data: T
-) => {
+export async function updateDocument<T>(id: string, data: T) {
   const response = await axios.patch(
     `/documents/${id}`,
-    data
+    data,
   );
   return response;
-};
+}
 
-export const deleteDocument = async (id: string) => {
+export async function deleteDocument(id: string) {
   const response = await axios.delete(`/documents/${id}`);
   return response;
-};
+}

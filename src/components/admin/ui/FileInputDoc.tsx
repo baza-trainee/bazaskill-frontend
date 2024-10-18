@@ -1,32 +1,36 @@
 'use client';
 
-import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
-import {
+import type {
   ForwardedRef,
-  forwardRef,
-  useState,
   InputHTMLAttributes,
-  useEffect,
 } from 'react';
-import {
+import type {
   DeepMap,
   FieldError,
   FieldValues,
-  useController,
   UseControllerProps,
 } from 'react-hook-form';
 
+import {
+  forwardRef,
+  useEffect,
+  useState,
+} from 'react';
+import {
+  useController,
+} from 'react-hook-form';
+
+import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
+
 type FileInputDocProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> &
-    UseControllerProps<T> & {
-      title?: string;
-      isRequired: boolean;
-      accept?: string;
-    };
+  UseControllerProps<T> & {
+    title?: string;
+    isRequired: boolean;
+    accept?: string;
+  };
 
-const FileInputDoc = forwardRef(function FileInputDoc<
-  T extends FieldValues,
->(
+const FileInputDoc = forwardRef((
   {
     title,
     placeholder,
@@ -37,8 +41,8 @@ const FileInputDoc = forwardRef(function FileInputDoc<
     accept,
     ...rest
   }: FileInputDocProps<T>,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
   const [selectedFileName, setSelectedFileName] = useState<
     string | null
   >(null);
@@ -66,7 +70,7 @@ const FileInputDoc = forwardRef(function FileInputDoc<
   )?.message;
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const files = event.target.files;
     if (files && files.length > 0) {
@@ -95,7 +99,7 @@ ${
 
   return (
     <div
-      className={`overflow-hidden  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      className={`overflow-hidden  font-sans font-normal tracking-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {!!title && (
         <label
@@ -112,7 +116,7 @@ ${
         className={inputClassName}
         onClick={handlePlaceholderClick}
       >
-        <span className="w-full truncate text-[16px] leading-[1.16] text-[#787878]">
+        <span className="w-full truncate text-[16px] leading-[1.16] text-secondaryGray">
           {selectedFileName || placeholder}
         </span>
         <div className="absolute right-0 top-0 z-0 flex h-full w-[13%] items-center justify-center rounded-md bg-white">

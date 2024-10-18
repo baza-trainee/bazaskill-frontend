@@ -1,21 +1,26 @@
 'use client';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+import type { z } from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import {
   Controller,
-  SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import Link from 'next/link';
+
+import { resetPassword } from '@/api/signIn';
+
+import SuccessButton from '../admin/ui/buttons/SuccessButton';
+import SignInPassword from '../admin/ui/SignInPassword';
 import { defaultValuesPassword } from './defaultValues';
 import { passwordScheme } from './signInScheme';
-import SignInPassword from '../admin/ui/SignInPassword';
-import { useParams, useRouter } from 'next/navigation';
-import { resetPassword } from '@/api/signIn';
-import SuccessButton from '../admin/ui/buttons/SuccessButton';
 
-const RestorePassword = () => {
+function RestorePassword() {
   const [isProcessing, setIsProcessing] = useState(false);
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
@@ -35,18 +40,20 @@ const RestorePassword = () => {
     try {
       setIsProcessing(true);
       const response = await resetPassword({
-        token: token,
+        token,
         password: values.password,
       });
       if (response.status === 201) {
         setIsProcessing(false);
         router.replace('/login');
       }
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof Error) {
         setIsProcessing(false);
         console.error(error.message);
-      } else {
+      }
+      else {
         setIsProcessing(false);
         console.error('Неочікувана помилка', error);
       }
@@ -54,8 +61,8 @@ const RestorePassword = () => {
   };
 
   return (
-    <div className="absolute  inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
-      <div className="relative flex  w-[520px] flex-col items-center justify-center overflow-auto rounded-md bg-white px-[50px] py-[50px]  font-['Tahoma',_sans-serif] text-black 5xl:w-[600px]">
+    <div className="absolute  inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-graphite">
+      <div className="relative flex  w-[520px] flex-col items-center justify-center overflow-auto rounded-md bg-white p-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
           <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">
             Відновити пароль
@@ -109,7 +116,7 @@ const RestorePassword = () => {
                   }
                 />
                 <Link
-                  href={'/login'}
+                  href="/login"
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]"
                 >
                   Скасувати
@@ -119,7 +126,7 @@ const RestorePassword = () => {
           </form>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0  w-full bg-[#191919] ">
+      <div className="absolute bottom-0 left-0  w-full bg-darkGraphite ">
         <p className="mt-0 text-left text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
           Компанія направляє 10% прибутку на підтримку 59-ї
           бригади ім. Якова Гандзюка
@@ -127,6 +134,6 @@ const RestorePassword = () => {
       </div>
     </div>
   );
-};
+}
 
 export default RestorePassword;

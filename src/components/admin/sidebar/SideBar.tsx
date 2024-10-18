@@ -2,22 +2,22 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { SideBarItem } from './SideBarItem';
+import { FaHandshake, FaTools, FaUsers } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa6';
-import { FaHandshake } from 'react-icons/fa';
-import { FaTools } from 'react-icons/fa';
 import { GrGallery } from 'react-icons/gr';
-import { FaUsers } from 'react-icons/fa';
-import Candidates from '@/components/shared/icons/Admin-icons/Candidates';
-import CountersIcon from '@/components/shared/icons/Admin-icons/CountersIcon';
-import PartnersIcon from '@/components/shared/icons/Admin-icons/PartnersIcon';
+
 import ArticlesIcon from '@/components/shared/icons/Admin-icons/ArticlesIcon';
+import Candidates from '@/components/shared/icons/Admin-icons/Candidates';
 import ContactsIcon from '@/components/shared/icons/Admin-icons/ContactsIcon';
-import SettingsIcon from '@/components/shared/icons/Admin-icons/SettingsIcon';
-import PdfIcon from '@/components/shared/icons/Admin-icons/PdfIcon';
-import Button from './Button';
+import CountersIcon from '@/components/shared/icons/Admin-icons/CountersIcon';
 import ExitIcon from '@/components/shared/icons/Admin-icons/ExitIcon';
+import PartnersIcon from '@/components/shared/icons/Admin-icons/PartnersIcon';
+import PdfIcon from '@/components/shared/icons/Admin-icons/PdfIcon';
+import SettingsIcon from '@/components/shared/icons/Admin-icons/SettingsIcon';
 import Logo from '@/components/shared/icons/Logo';
+
+import Button from './Button';
+import { SideBarItem } from './SideBarItem';
 
 const SideBar: React.FC = () => {
   const router = useRouter();
@@ -28,9 +28,9 @@ const SideBar: React.FC = () => {
   };
 
   return (
-    <aside className="no-scrollbar h-fit w-[287px] overflow-auto border-l border-r border-gray bg-graphite pb-[30px]">
+    <aside className="no-scrollbar h-fit w-[287px] overflow-auto border-x border-gray bg-graphite pb-[30px]">
       <div className="flex h-[104px] items-center justify-center">
-        <Link href={`/`}>
+        <Link href="/">
           <Logo />
         </Link>
       </div>

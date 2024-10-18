@@ -1,4 +1,4 @@
-export const formatDate = (str: string) => {
+export function formatDate(str: string) {
   const date = str
     .split('T')[0]
     .split('-')
@@ -6,4 +6,4 @@ export const formatDate = (str: string) => {
     .join('.');
 
   return date;
-};
+}

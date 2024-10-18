@@ -1,12 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
-import {
+import type {
   ForwardedRef,
+} from 'react';
+
+import {
   forwardRef,
   useEffect,
   useState,
 } from 'react';
+
+import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
 
 interface FileInputPostProps {
   title?: string;
@@ -18,7 +21,7 @@ interface FileInputPostProps {
   onChange: (_file: File) => void;
 }
 
-const FileInputPost = forwardRef(function FileInputPost(
+const FileInputPost = forwardRef((
   {
     title,
     errorText,
@@ -28,8 +31,8 @@ const FileInputPost = forwardRef(function FileInputPost(
     file,
     ...rest
   }: FileInputPostProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: ForwardedRef<HTMLInputElement>,
+) => {
   const [selectedFileName, setSelectedFileName] = useState<
     string | null
   >(null);
@@ -37,23 +40,6 @@ const FileInputPost = forwardRef(function FileInputPost(
   const [errorMessage, setErrorMessage] = useState<
     string | null
   >(null);
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      const selectedFile = files[0];
-      if (validateFile(selectedFile)) {
-        setSelectedFileName(selectedFile.name);
-        onChange(selectedFile);
-        setIsValid(true);
-        setErrorMessage(null);
-      } else {
-        setIsValid(false);
-      }
-    }
-  };
 
   const validateFile = (file: File): boolean => {
     const validExtensions = [
@@ -73,7 +59,7 @@ const FileInputPost = forwardRef(function FileInputPost(
 
     if (file.size > 2 * 1024 * 1024) {
       setErrorMessage(
-        'Розмір файлу має бути не більш 2 Mb'
+        'Розмір файлу має бути не більш 2 Mb',
       );
       return false;
     }
@@ -81,8 +67,27 @@ const FileInputPost = forwardRef(function FileInputPost(
     return true;
   };
 
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile = files[0];
+      if (validateFile(selectedFile)) {
+        setSelectedFileName(selectedFile.name);
+        onChange(selectedFile);
+        setIsValid(true);
+        setErrorMessage(null);
+      }
+      else {
+        setIsValid(false);
+      }
+    }
+  };
+
   useEffect(() => {
-    if (!file) return;
+    if (!file)
+      return;
     setSelectedFileName(file.name);
   }, [file]);
 
@@ -90,7 +95,7 @@ const FileInputPost = forwardRef(function FileInputPost(
 
   return (
     <div
-      className={`font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      className={`font-sans font-normal tracking-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {!!title && (
         <label
@@ -104,11 +109,9 @@ const FileInputPost = forwardRef(function FileInputPost(
         </label>
       )}
       <div className={inputClassName}>
-        <span className="text-[16px] leading-[1.16] text-[#787878]">
-          <span className="absolute top-[50%] z-[0] -translate-y-[50%] truncate text-[#020202]">
-            {selectedFileName
-              ? selectedFileName
-              : placeholder}
+        <span className="text-[16px] leading-[1.16] text-secondaryGray">
+          <span className="absolute top-[50%] z-0 translate-y-[-50%] truncate text-[#020202]">
+            {selectedFileName || placeholder}
           </span>
         </span>
         <div className="absolute right-[16px] top-[9px] z-0">
@@ -120,7 +123,7 @@ const FileInputPost = forwardRef(function FileInputPost(
           id={title}
           ref={ref}
           accept="image*"
-          className="absolute left-0 w-[100%] cursor-pointer overflow-hidden opacity-0"
+          className="absolute left-0 w-full cursor-pointer overflow-hidden opacity-0"
           onChange={handleChange}
         />
       </div>

@@ -1,7 +1,9 @@
+import type { UseQueryResult } from '@tanstack/react-query';
+import type { Dispatch, SetStateAction } from 'react';
+
+import type { CandidatesResponse } from '@/types/candidates';
+
 import { translateCountryName } from '@/helpers/translateCountryName';
-import { CandidatesResponse } from '@/types/candidates';
-import { UseQueryResult } from '@tanstack/react-query';
-import { Dispatch, SetStateAction } from 'react';
 
 interface IFilterCandidatesByMainFilters {
   candidates: UseQueryResult<CandidatesResponse[], Error>;
@@ -14,62 +16,62 @@ interface IFilterCandidatesByMainFilters {
   inputCountry: string;
 }
 
-export const filterCandidatesByMainFilters = ({
+export function filterCandidatesByMainFilters({
   candidates,
   setFilteredCandidates,
   speciality,
   inputCountry,
   setIsMainFilter,
-}: IFilterCandidatesByMainFilters) => {
-  if (!speciality && !inputCountry) {
-    return;
-  } else if (!speciality && inputCountry) {
+}: IFilterCandidatesByMainFilters) {
+  if (!speciality && inputCountry) {
     const filtered = candidates?.data?.filter(
       (candidate) => {
         const candidateCountry = translateCountryName(
-          candidate.country?.toLowerCase()
+          candidate.country?.toLowerCase(),
         );
-        const matchesCountry =
-          inputCountry === candidateCountry;
+        const matchesCountry
+          = inputCountry === candidateCountry;
         return matchesCountry;
-      }
+      },
     );
 
     setFilteredCandidates(filtered || []);
     setIsMainFilter(true);
-  } else if (speciality && !inputCountry) {
+  }
+  else if (speciality && !inputCountry) {
     const filtered = candidates?.data?.filter(
       (candidate) => {
-        const candidateSpecialization =
-          candidate.specialization?.title?.toLowerCase();
+        const candidateSpecialization
+          = candidate.specialization?.title?.toLowerCase();
 
         const selectedSpeciality = speciality.toLowerCase();
-        const matchesSpeciality =
-          selectedSpeciality === candidateSpecialization;
+        const matchesSpeciality
+          = selectedSpeciality === candidateSpecialization;
         return matchesSpeciality;
-      }
+      },
     );
     setFilteredCandidates(filtered || []);
     setIsMainFilter(true);
-  } else {
+  }
+  else {
     const filtered = candidates?.data?.filter(
       (candidate) => {
         const candidateCountry = translateCountryName(
-          candidate.country?.toLowerCase()
+          candidate.country?.toLowerCase(),
         );
 
-        const candidateSpecialization =
-          candidate.specialization?.title?.toLowerCase();
+        const candidateSpecialization
+          = candidate.specialization?.title?.toLowerCase();
 
         const selectedSpeciality = speciality.toLowerCase();
-        const matchesCountry =
-          inputCountry === candidateCountry;
-        const matchesSpeciality =
-          selectedSpeciality === candidateSpecialization;
+        const matchesCountry
+          = inputCountry === candidateCountry;
+        const matchesSpeciality
+          = selectedSpeciality === candidateSpecialization;
         return matchesCountry && matchesSpeciality;
-      }
+      },
     );
     setFilteredCandidates(filtered || []);
     setIsMainFilter(false);
   }
-};
+}

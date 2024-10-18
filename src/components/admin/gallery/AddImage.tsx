@@ -1,23 +1,29 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { createImage } from '@/api/gallery';
-import { constants } from '@/constants';
+import type { SubmitHandler } from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { TGalleryScheme, imageValidation } from './scheme';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import Image from 'next/image';
-import PageTitle from '../ui/PageTitle';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { createImage } from '@/api/gallery';
+import { constants } from '@/constants';
+
+import type { TGalleryScheme } from './scheme';
+
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputDoc from '../ui/FileInputDoc';
+import PageTitle from '../ui/PageTitle';
+import { imageValidation } from './scheme';
 
-const AddImage = () => {
+function AddImage() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [image, setImage] = useState('');
@@ -60,20 +66,22 @@ const AddImage = () => {
   };
 
   useEffect(() => {
-    if (!currentValues.image?.length) return;
+    if (!currentValues.image?.length)
+      return;
     const file = currentValues.image[0];
     setImagePreview(file);
   }, [currentValues.image]);
 
   const onSubmit: SubmitHandler<TGalleryScheme> = async (
-    values: TGalleryScheme
+    values: TGalleryScheme,
   ) => {
     setIsProcessing(true);
     try {
       const formData = new FormData();
       formData.append('file', values.image[0]);
       mutate(formData);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -91,7 +99,7 @@ const AddImage = () => {
             <FileInputDoc
               name="image"
               control={control}
-              placeholder={'Завантажте зображення'}
+              placeholder="Завантажте зображення"
               title="Фото"
               isRequired={true}
               accept="image"
@@ -99,14 +107,12 @@ const AddImage = () => {
 
             <Image
               src={
-                image
-                  ? image
-                  : '/images/gallery-placeholder.jpg'
+                image || '/images/gallery-placeholder.jpg'
               }
               width={117}
               height={117}
               alt="specialist"
-              className="rounded-full xs:h-[80px] xs:w-[80px] xl:h-[112px] xl:w-[112px]  2xl:h-[117px] 2xl:w-[117px] 5xl:h-[132px] 5xl:w-[132px]"
+              className="rounded-full xs:size-[80px] xl:size-[112px] 2xl:size-[117px] 5xl:size-[132px]"
             />
           </div>
           <div className="flex w-full justify-between">
@@ -128,6 +134,6 @@ const AddImage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AddImage;

@@ -1,27 +1,31 @@
 'use client';
 
-import {
+import type {
   RefObject,
+} from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import {
   useEffect,
   useRef,
   useState,
 } from 'react';
-
 import { Document, Page, pdfjs } from 'react-pdf';
-import Loader from '../shared/loader/Loader';
+
 import { getDocuments } from '@/api/documents';
-import { useQuery } from '@tanstack/react-query';
 import { constants } from '@/constants';
+
 import ErrorPage from '../shared/ErrorPage';
-import { useRouter } from 'next/navigation';
+import Loader from '../shared/loader/Loader';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-export const PDFView = ({
+export function PDFView({
   document,
 }: {
   document: string | null;
-}) => {
+}) {
   const router = useRouter();
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
@@ -33,10 +37,10 @@ export const PDFView = ({
   });
 
   useEffect(() => {
-    const found = data?.find((d) => d.title === document);
+    const found = data?.find(d => d.title === document);
     if (found) {
       setDocumentUrl(
-        found.document_url.replace(/^http:\/\//, 'https://')
+        found.document_url.replace(/^http:\/\//, 'https://'),
       );
     }
   }, [data, document]);
@@ -50,7 +54,7 @@ export const PDFView = ({
   }
 
   const pdfWrapperRef = useRef<HTMLDivElement | null>(
-    null
+    null,
   ) as RefObject<HTMLDivElement>;
 
   useEffect(() => {
@@ -80,7 +84,7 @@ export const PDFView = ({
   return (
     <div>
       <div
-        className="mx-auto flex h-full w-full flex-col items-center justify-center xl:w-2/3"
+        className="mx-auto flex size-full flex-col items-center justify-center xl:w-2/3"
         ref={pdfWrapperRef}
       >
         <Document
@@ -88,11 +92,9 @@ export const PDFView = ({
           file={documentUrl}
           onLoadSuccess={onDocumentLoadSuccess}
           error={<ErrorPage reset={reset} />}
-          className={
-            'flex w-full flex-col items-center justify-center p-5'
-          }
+          className="flex w-full flex-col items-center justify-center p-5"
         >
-          {Array.from(new Array(numPages), (el, index) => (
+          {Array.from({ length: numPages }, (_, index) => (
             <Page
               key={`page_${index + 1}`}
               pageNumber={index + 1}
@@ -105,4 +107,4 @@ export const PDFView = ({
       </div>
     </div>
   );
-};
+}

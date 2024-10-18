@@ -1,34 +1,42 @@
 'use client';
 
-import React, { useState } from 'react';
-import { constants } from '@/constants';
-import {
+import type {
   UseQueryResult,
+} from '@tanstack/react-query';
+import type {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
   useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { cardValidation } from './scheme';
-import { zodResolver } from '@hookform/resolvers/zod';
+import React, { useState } from 'react';
 import {
   Controller,
-  DeepMap,
-  FieldError,
-  FieldValues,
-  SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import PageTitle from '../ui/PageTitle';
+
+import type { ISpecialization } from '@/types/specialization';
+
+import { createCard } from '@/api/cards';
+import { getSpecializations } from '@/api/specialization';
+import { constants } from '@/constants';
+
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputDoc from '../ui/FileInputDoc';
+import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
-import { getSpecializations } from '@/api/specialization';
-import { ISpecialization } from '@/types/specialization';
-import { createCard } from '@/api/cards';
+import { cardValidation } from './scheme';
 
-const AddCard = () => {
+function AddCard() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -75,13 +83,13 @@ const AddCard = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (
-    values
+    values,
   ) => {
     setIsProcessing(true);
-    const specializationTitle: ISpecialization | undefined =
-      specialization.data?.find(
-        (item) =>
-          item.id.toString() === values.specialization
+    const specializationTitle: ISpecialization | undefined
+      = specialization.data?.find(
+        item =>
+          item.id.toString() === values.specialization,
       );
     try {
       const formData = new FormData();
@@ -89,10 +97,11 @@ const AddCard = () => {
       formData.append('name', values.name);
       formData.append(
         'specialization',
-        specializationTitle?.title as string
+        specializationTitle?.title as string,
       );
       mutate(formData);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -149,7 +158,7 @@ const AddCard = () => {
                   <option value="">
                     Оберіть спеціальність
                   </option>
-                  {specialization.data?.map((item) => (
+                  {specialization.data?.map(item => (
                     <option key={item.id} value={item.id}>
                       {item.title}
                     </option>
@@ -172,7 +181,7 @@ const AddCard = () => {
           <FileInputDoc
             name="image"
             control={control}
-            placeholder={'Завантажте зображення'}
+            placeholder="Завантажте зображення"
             title="Фото"
             isRequired={true}
             accept="image/*"
@@ -194,6 +203,6 @@ const AddCard = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AddCard;

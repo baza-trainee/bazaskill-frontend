@@ -1,8 +1,9 @@
-import Testimonials from '@/components/admin/testimonials/Testimonials';
 import React from 'react';
 
-const TestimonialsPage = () => {
+import Testimonials from '@/components/admin/testimonials/Testimonials';
+
+function TestimonialsPage() {
   return <Testimonials />;
-};
+}
 
 export default TestimonialsPage;

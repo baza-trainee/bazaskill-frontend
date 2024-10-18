@@ -1,39 +1,36 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from '@/config/axios';
-import { IPartners, TPartner } from '@/types/partners';
+import type { IPartners, TPartner } from '@/types/partners';
 
-export const getPartners = async () => {
+import axios from '@/config/axios';
+
+export async function getPartners() {
   const { data } = await axios.get<TPartner[]>('/partners');
   return data;
-};
+}
 
-export const updatePartners = async (
-  id: string,
-  data: any
-) => {
+export async function updatePartners(id: string, data: any) {
   const response = await axios.patch(
     `/partners/${id}`,
-    data
+    data,
   );
   return response;
-};
+}
 
-export const getPartnersId = async (id: string) => {
+export async function getPartnersId(id: string) {
   const { data } = await axios.get<TPartner>(
-    `/partners/${id}`
+    `/partners/${id}`,
   );
   return data;
-};
+}
 
-export const createPartners = async (data: any) => {
+export async function createPartners(data: any) {
   const response = await axios.post<IPartners[]>(
     '/partners',
-    data
+    data,
   );
   return response;
-};
+}
 
-export const deletePartners = async (id: string) => {
+export async function deletePartners(id: string) {
   const response = await axios.delete(`/partners/${id}`);
   return response;
-};
+}
