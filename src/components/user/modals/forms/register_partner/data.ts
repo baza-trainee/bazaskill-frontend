@@ -1,4 +1,4 @@
-import { Option } from '@/components/user/ui/form_inputs/SelectInput';
+import type { Option } from '@/components/user/ui/form_inputs/SelectInput';
 
 export const countries: Option[] = [
   { value: 'ukraine', label: 'Україна' },

@@ -1,12 +1,16 @@
 'use client';
 
-import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
 } from 'react';
 import { IMaskMixin } from 'react-imask';
+
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 
 interface PhoneInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -25,10 +29,10 @@ interface MaskedStyledInputProps
 const MaskedStyledInput = IMaskMixin(
   ({ inputRef, ...props }: MaskedStyledInputProps) => (
     <input {...props} ref={inputRef} />
-  )
+  ),
 );
 
-const PhoneInput = forwardRef(function PhoneInput(
+const PhoneInput = forwardRef((
   {
     title,
     errorText,
@@ -37,8 +41,8 @@ const PhoneInput = forwardRef(function PhoneInput(
     isIcon,
     ...rest
   }: PhoneInputProps,
-  _ref: ForwardedRef<HTMLInputElement>
-) {
+  _ref: ForwardedRef<HTMLInputElement>,
+) => {
   const inputClassName = `bg-'[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
 ${
@@ -50,7 +54,7 @@ ${
 
   return (
     <div
-      className={`w-[242px] font-sans font-normal tracking-[0px] 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}
+      className={`w-[242px] font-sans font-normal tracking-normal 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[442px]   ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {!!title && (
         <label
@@ -67,8 +71,8 @@ ${
         <MaskedStyledInput
           mask="+38# *0 000 0000"
           definitions={{
-            '#': /[0]/,
-            '*': /[6,7,8,9,5]/,
+            '#': /0/,
+            '*': /[5-9,]/,
           }}
           radix="."
           inputRef={_ref}
@@ -81,7 +85,7 @@ ${
 
         {isIcon && (
           <div className=" absolute right-[16px] top-[9px] ">
-            <WriteIcon className="h-[24px] w-[24px]" />
+            <WriteIcon className="size-[24px]" />
           </div>
         )}
       </div>

@@ -1,6 +1,6 @@
-/* eslint-disable import/no-anonymous-default-export */
+import type { NextRequest, NextResponse } from 'next/server';
+
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest, NextResponse } from 'next/server';
 
 const nextIntlMiddleware = createMiddleware({
   // A list of all locales that are supported

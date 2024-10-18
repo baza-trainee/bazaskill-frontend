@@ -1,7 +1,9 @@
-/* eslint-disable no-unused-vars */
 'use client';
+import type { ForwardedRef } from 'react';
+
+import { forwardRef, useState } from 'react';
+
 import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
-import { ForwardedRef, forwardRef, useState } from 'react';
 
 interface FileInputPartnerProps {
   title?: string;
@@ -12,7 +14,7 @@ interface FileInputPartnerProps {
 }
 
 const FileInputPartner = forwardRef(
-  function FileInputPartner(
+  (
     {
       title,
       errorText,
@@ -21,39 +23,16 @@ const FileInputPartner = forwardRef(
       onChange,
       ...rest
     }: FileInputPartnerProps,
-    ref: ForwardedRef<HTMLInputElement>
-  ) {
-    const [selectedFileName, setSelectedFileName] =
-      useState<string | null>(null);
+    ref: ForwardedRef<HTMLInputElement>,
+  ) => {
+    const [selectedFileName, setSelectedFileName]
+      = useState<string | null>(null);
 
     const [errorMessage, setErrorMessage] = useState<
       string | null
     >(null);
 
     const [isValid, setIsValid] = useState(true);
-
-    const handleChange = (
-      event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-      const files = event.target.files;
-      if (files && files.length > 0) {
-        const selectedFile = files[0];
-        if (validateFile(selectedFile)) {
-          setSelectedFileName(selectedFile.name);
-          onChange(selectedFile);
-          setErrorMessage(null);
-        } else {
-          setIsValid(false);
-          setSelectedFileName(selectedFile.name);
-        }
-      }
-    };
-
-    const handlePlaceholderClick = () => {
-      if (ref && 'current' in ref && ref.current) {
-        ref.current.click();
-      }
-    };
 
     const validateFile = (file: File): boolean => {
       const validExtensions = [
@@ -72,19 +51,43 @@ const FileInputPartner = forwardRef(
 
       if (file.size > 1024 * 1024 * 2) {
         setErrorMessage(
-          'Розмір файлу має бути не більш 2 Mb'
+          'Розмір файлу має бути не більш 2 Mb',
         );
         return false;
       }
 
       if (file.name.length > 30) {
         setErrorMessage(
-          "Ім'я файлу не повинно перевищувати 30 символів"
+          'Ім\'я файлу не повинно перевищувати 30 символів',
         );
         return false;
       }
 
       return true;
+    };
+
+    const handleChange = (
+      event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+      const files = event.target.files;
+      if (files && files.length > 0) {
+        const selectedFile = files[0];
+        if (validateFile(selectedFile)) {
+          setSelectedFileName(selectedFile.name);
+          onChange(selectedFile);
+          setErrorMessage(null);
+        }
+        else {
+          setIsValid(false);
+          setSelectedFileName(selectedFile.name);
+        }
+      }
+    };
+
+    const handlePlaceholderClick = () => {
+      if (ref && 'current' in ref && ref.current) {
+        ref.current.click();
+      }
     };
 
     const inputClassName = ` w-[597px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
@@ -98,7 +101,7 @@ ${
 
     return (
       <div
-        className={` font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+        className={` font-sans font-normal tracking-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}
       >
         {!!title && (
           <label
@@ -115,14 +118,16 @@ ${
           className={inputClassName}
           onClick={handlePlaceholderClick}
         >
-          <span className="text-[16px] leading-[1.16] text-[#787878]">
-            {selectedFileName ? (
-              <span className="text-[#020202]">
-                {selectedFileName}
-              </span>
-            ) : (
-              placeholder
-            )}
+          <span className="text-[16px] leading-[1.16] text-secondaryGray">
+            {selectedFileName
+              ? (
+                  <span className="text-[#020202]">
+                    {selectedFileName}
+                  </span>
+                )
+              : (
+                  placeholder
+                )}
           </span>
           <div className=" absolute right-[16px] top-[9px] z-0 ">
             <UploadIcon />
@@ -133,18 +138,18 @@ ${
             id={title}
             ref={ref}
             accept="image/jpeg, image/jpg, image/png,image/svg+xml "
-            className=" absolute  left-0 w-[100%] cursor-pointer opacity-0"
+            className=" absolute  left-0 w-full cursor-pointer opacity-0"
             onChange={handleChange}
           />
         </div>
-        {errorMessage && (
+        {(errorMessage || !isValid) && (
           <span className="left top absolute text-xs text-red-500">
             {errorMessage}
           </span>
         )}
       </div>
     );
-  }
+  },
 );
 
 FileInputPartner.displayName = 'FileInputPartner';

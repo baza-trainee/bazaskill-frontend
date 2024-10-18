@@ -1,4 +1,4 @@
-import Partner from './partnerInterface';
+import type Partner from './partnerInterface';
 
 const partnersData: Partner[] = [
   {

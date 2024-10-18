@@ -1,7 +1,10 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
 import dynamic from 'next/dynamic';
+
+import type { IdPageProps } from '@/types';
+
 import Loader from '@/components/shared/loader/Loader';
-import { IdPageProps } from '@/types';
 
 const DynamicPage = dynamic(
   () =>
@@ -9,14 +12,14 @@ const DynamicPage = dynamic(
       '@/components/user/candidate_page/CandidatePage'
     ),
 
-  { ssr: false, loading: () => <Loader /> }
+  { ssr: false, loading: () => <Loader /> },
 );
 
 export async function generateMetadata({
   params,
 }: IdPageProps): Promise<Metadata> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates/${params.id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates/${params.id}`,
   );
   const candidate = await response.json();
   return {
@@ -25,12 +28,12 @@ export async function generateMetadata({
   };
 }
 
-const Candidate = async ({ params }: IdPageProps) => {
+async function Candidate({ params }: IdPageProps) {
   return (
-    <div className="min-h-[100vh] bg-graphite">
+    <div className="min-h-screen bg-graphite">
       <DynamicPage id={params.id} />
     </div>
   );
-};
+}
 
 export default Candidate;

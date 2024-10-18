@@ -1,19 +1,20 @@
-import {
+import type {
   FieldValues,
   UseFormRegister,
 } from 'react-hook-form';
-type CustomCheckboxProps = {
+
+interface CustomCheckboxProps {
   title: string;
   register: UseFormRegister<FieldValues>;
   registerFor: string;
   value?: string | number;
-};
-const CustomCheckbox = ({
+}
+function CustomCheckbox({
   title,
   register,
   registerFor,
   value,
-}: CustomCheckboxProps) => {
+}: CustomCheckboxProps) {
   return (
     <div className="relative flex items-center gap-[12px] text-sm">
       <input
@@ -22,7 +23,7 @@ const CustomCheckbox = ({
         name={registerFor}
         type="checkbox"
         id={title}
-        className="peer z-[1] h-[20px] w-[20px] shrink-0 cursor-pointer appearance-none rounded-[4px] border-[1px] border-secondaryGray bg-white"
+        className="peer z-[1] size-[20px] shrink-0 cursor-pointer appearance-none rounded-[4px] border border-secondaryGray bg-white"
       />
       <label
         htmlFor={title}
@@ -31,7 +32,7 @@ const CustomCheckbox = ({
         {title}
       </label>
       <svg
-        className="pointer-events-none absolute left-0 z-[1] hidden h-[20px] w-[20px] text-black peer-checked:block"
+        className="pointer-events-none absolute left-0 z-[1] hidden size-[20px] text-black peer-checked:block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
@@ -44,6 +45,6 @@ const CustomCheckbox = ({
       </svg>
     </div>
   );
-};
+}
 
 export default CustomCheckbox;

@@ -1,8 +1,8 @@
-import React from 'react';
 import { useTranslations } from 'next-intl';
+import React from 'react';
 import { FaPaw } from 'react-icons/fa';
 
-const AffiliateBanner = () => {
+function AffiliateBanner() {
   const t = useTranslations('Main');
   return (
     <div className="hidden w-full items-center justify-center border-b border-b-[#4E4E4E] bg-graphite p-2 md:flex ">
@@ -20,6 +20,6 @@ const AffiliateBanner = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AffiliateBanner;

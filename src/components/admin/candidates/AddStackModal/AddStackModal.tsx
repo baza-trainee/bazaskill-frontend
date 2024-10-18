@@ -1,34 +1,42 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useState } from 'react';
-import {
-  useForm,
-  FieldValues,
-  SubmitHandler,
-  Controller,
+import type {
+  UseQueryResult,
+} from '@tanstack/react-query';
+import type {
   DeepMap,
   FieldError,
+  FieldValues,
+  SubmitHandler,
 } from 'react-hook-form';
-import schema from './schema';
-import { getSpecializations } from '@/api/specialization';
-import { ISpecialization } from '@/types/specialization';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  UseQueryResult,
   useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { constants } from '@/constants';
-import TextInput from '../AddCandidate/TextInput';
-import { addStack } from '@/api/stack';
+import React, { useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
+
+import type { ISpecialization } from '@/types/specialization';
+
+import { getSpecializations } from '@/api/specialization';
+import { addStack } from '@/api/stack';
+import { constants } from '@/constants';
 import { useModal } from '@/stores/useModal';
+
+import TextInput from '../AddCandidate/TextInput';
+import schema from './schema';
 
 interface FormData {
   specialization_id: string;
   title: string;
 }
 
-const AddStackModal = () => {
+function AddStackModal() {
   const queryClient = useQueryClient();
   const { closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -73,18 +81,18 @@ const AddStackModal = () => {
 
   const onSubmit: SubmitHandler<FormData> = (
     values,
-    event
+    event,
   ) => {
     event?.preventDefault();
     setIsProcessing(true);
     mutate(values);
   };
   return (
-    <div className="fixed left-0 right-0 top-0 z-10 flex h-screen w-[100vw] items-center justify-center bg-black/70">
+    <div className="fixed inset-x-0 top-0 z-10 flex h-screen w-screen items-center justify-center bg-black/70">
       <div className=" relative  w-[50vw] bg-graphite p-2 text-white">
         <div
           onClick={closeModal}
-          className="absolute right-[1rem] top-[1rem] h-[1.5rem] w-[1.5rem] cursor-pointer text-3xl text-white"
+          className="absolute right-4 top-4 size-6 cursor-pointer text-3xl text-white"
         >
           <IoClose />
         </div>
@@ -127,7 +135,7 @@ const AddStackModal = () => {
                   <option value="">
                     Оберіть спеціальність
                   </option>
-                  {specialization.data?.map((item) => (
+                  {specialization.data?.map(item => (
                     <option key={item.id} value={item.id}>
                       {item.title}
                     </option>
@@ -148,7 +156,7 @@ const AddStackModal = () => {
           />
           <div className="flex justify-start gap-[24px] py-[40px]">
             <button
-              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"
+              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border hover:bg-transparent hover:text-white"
               type="button"
               onClick={() => handleSubmit(onSubmit)()}
             >
@@ -158,7 +166,7 @@ const AddStackModal = () => {
             </button>
             <button
               onClick={closeModal}
-              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border-[1px] font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
+              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
             >
               Скасувати
             </button>
@@ -167,6 +175,6 @@ const AddStackModal = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AddStackModal;

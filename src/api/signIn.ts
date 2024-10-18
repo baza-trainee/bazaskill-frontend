@@ -1,49 +1,49 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from '@/config/axios';
-import {
+import type {
   authLoginType,
   forgotPasswordType,
 } from '@/types/singIn';
 
-export const getProfile = async () => {
+import axios from '@/config/axios';
+
+export async function getProfile() {
   const { data } = await axios.get('/profile');
   return data;
-};
+}
 
-export const registerUser = async (data: any) => {
+export async function registerUser(data: any) {
   const response = await axios.post<authLoginType>(
     '/user',
-    data
+    data,
   );
   return response;
-};
+}
 
-export const authLogin = async (data: any) => {
+export async function authLogin(data: any) {
   const response = await axios.post<authLoginType>(
     '/auth/login',
-    data
+    data,
   );
   return response;
-};
+}
 
-export const forgotPassword = async (data: any) => {
+export async function forgotPassword(data: any) {
   const response = await axios.post<forgotPasswordType>(
     '/password/forgot',
-    data
+    data,
   );
   return response;
-};
+}
 
-export const resetPassword = async ({
+export async function resetPassword({
   token,
   password,
 }: {
   token: string;
   password: string;
-}) => {
+}) {
   const response = await axios.post('/password/reset', {
     token,
     password,
   });
   return response;
-};
+}

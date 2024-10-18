@@ -1,7 +1,7 @@
-import React, { HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
 
-interface ButtonRight extends HTMLProps<HTMLDivElement> {}
-const ButtonRight: React.FC<ButtonRight> = ({
+interface IButtonRight extends HTMLProps<HTMLDivElement> {}
+const ButtonRight: React.FC<IButtonRight> = ({
   className,
   ...rest
 }) => {

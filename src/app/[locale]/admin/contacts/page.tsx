@@ -1,7 +1,7 @@
 import Contacts from '@/components/admin/contacts/Contacts';
 
-const ContactsPage = () => {
+function ContactsPage() {
   return <Contacts />;
-};
+}
 
 export default ContactsPage;

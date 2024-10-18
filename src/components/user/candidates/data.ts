@@ -1,4 +1,4 @@
-import { Candidates } from '@/types/candidates';
+import type { Candidates } from '@/types/candidates';
 
 export const candidates: Candidates[] = [
   {

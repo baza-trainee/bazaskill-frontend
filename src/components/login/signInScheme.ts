@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-const emailPattern =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailPattern
+  = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i;
 
-const passwordPattern =
-  /^(?!.*[\\])[\w!@#$&*()\-.(),]{8,14}$/;
+const passwordPattern
+  = /^(?!.*\\)[\w!@#$&*()\-.,]{8,14}$/;
 
 export const signInScheme = z.object({
   email: z
@@ -13,15 +13,15 @@ export const signInScheme = z.object({
       message: 'Поле email не може бути порожнім',
     })
     .email({ message: 'Введіть дійсний email' })
-    .refine((value) => !value || emailPattern.test(value), {
+    .refine(value => !value || emailPattern.test(value), {
       message: 'Введіть дійсний email',
     })
     .refine(
-      (value) =>
+      value =>
         !value || !/(.ru|.by)$/.test(value.split('@')[1]),
       {
         message: 'Домени .ru і .by не допускаються',
-      }
+      },
     ),
   password: z
     .string()
@@ -34,7 +34,7 @@ export const signInScheme = z.object({
     .max(14, {
       message: 'Пароль має містити максимум 14 символів',
     })
-    .refine((value) => passwordPattern.test(value), {
+    .refine(value => passwordPattern.test(value), {
       message: 'Введіть дійсний символ',
     }),
   rememberMe: z.any(),
@@ -47,15 +47,15 @@ export const emailScheme = z.object({
       message: 'Поле email не може бути порожнім',
     })
     .email({ message: 'Введіть дійсний email' })
-    .refine((value) => !value || emailPattern.test(value), {
+    .refine(value => !value || emailPattern.test(value), {
       message: 'Введіть дійсний email',
     })
     .refine(
-      (value) =>
+      value =>
         !value || !/(.ru|.by)$/.test(value.split('@')[1]),
       {
         message: 'Домени .ru і .by не допускаються',
-      }
+      },
     ),
 });
 
@@ -72,7 +72,7 @@ export const passwordScheme = z
       .max(14, {
         message: 'Пароль має містити максимум 14 символів',
       })
-      .refine((value) => passwordPattern.test(value), {
+      .refine(value => passwordPattern.test(value), {
         message: 'Введіть дійсний символ',
       }),
     passwordAccept: z
@@ -87,11 +87,11 @@ export const passwordScheme = z
       .max(14, {
         message: 'Пароль має містити максимум 14 символів',
       })
-      .refine((value) => passwordPattern.test(value), {
+      .refine(value => passwordPattern.test(value), {
         message: 'Введіть дійсний символ',
       }),
   })
-  .refine((data) => data.password === data.passwordAccept, {
+  .refine(data => data.password === data.passwordAccept, {
     message: 'Новий пароль не співпадає',
     path: ['passwordAccept'],
   });

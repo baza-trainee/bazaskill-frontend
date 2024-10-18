@@ -1,8 +1,9 @@
-import HrApplications from '@/components/admin/hr-applications/HrApplications';
 import React from 'react';
 
-const HrApplicationsPage = () => {
+import HrApplications from '@/components/admin/hr-applications/HrApplications';
+
+function HrApplicationsPage() {
   return <HrApplications />;
-};
+}
 
 export default HrApplicationsPage;

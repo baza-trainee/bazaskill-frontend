@@ -1,4 +1,6 @@
-import React, { HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
+
+import React from 'react';
 
 interface CountersIconProps
   extends HTMLProps<HTMLDivElement> {}

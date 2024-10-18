@@ -1,31 +1,34 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import FileInputPartner from '../ui/FileInputPartner';
-import TextInputPartner from '../ui/TextInputPartner';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
-import PageTitle from '../ui/PageTitle';
-import { useParams, useRouter } from 'next/navigation';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+import type { z } from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
+import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
+
 import {
   getPartnersId,
   updatePartners,
 } from '@/api/partners';
-import {
-  Controller,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
-import { partnersScheme } from './partnersScheme';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-import { z } from 'zod';
+import { constants } from '@/constants';
 
 import SuccessAlert from '../alerts/SuccessAlert';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import FileInputPartner from '../ui/FileInputPartner';
+import PageTitle from '../ui/PageTitle';
+import TextInputPartner from '../ui/TextInputPartner';
 import PartnersCard from './PartnersCard';
+import { partnersScheme } from './partnersScheme';
 
-const EditPartners = () => {
+function EditPartners() {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (selectedFile: File) => {
@@ -76,9 +79,11 @@ const EditPartners = () => {
         refetch();
       }
       setIsProcessing(false);
-    } catch (errors: unknown) {
+    }
+    catch (errors: unknown) {
       console.log(errors);
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
@@ -169,6 +174,6 @@ const EditPartners = () => {
       </div>
     </div>
   );
-};
+}
 
 export default EditPartners;

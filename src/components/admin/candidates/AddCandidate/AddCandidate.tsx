@@ -1,39 +1,47 @@
 'use client';
 
-import { getSpecializations } from '@/api/specialization';
-import { constants } from '@/constants';
-import { ISpecialization } from '@/types/specialization';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
+import type {
   UseQueryResult,
 } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
-import Stack from './Stack';
-import {
-  Controller,
+import type {
   DeepMap,
   FieldError,
   FieldValues,
   SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import {
+  Controller,
   useFieldArray,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import schema from './schema';
-import TextInput from './TextInput';
-import FileInput from './FileInput';
+
+import type { ISpecialization } from '@/types/specialization';
+
+import { createCandidate } from '@/api/candidates';
+import { getSpecializations } from '@/api/specialization';
+import { constants } from '@/constants';
+
+import BazaExperience from './BazaExperience';
 import defaultValues from './defaultValues';
+import FileInput from './FileInput';
 import Graduate from './Graduate';
 import Languages from './Languages';
-import Cources from './Сources';
-import BazaExperience from './BazaExperience';
+import schema from './schema';
 import SelectField from './SelectField';
-import { createCandidate } from '@/api/candidates';
-import { useRouter } from 'next/navigation';
+import Stack from './Stack';
+import TextInput from './TextInput';
+import Cources from './Сources';
 
-const AddCandidate = () => {
+function AddCandidate() {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -80,12 +88,12 @@ const AddCandidate = () => {
     getValues,
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: defaultValues,
+    defaultValues,
     mode: 'onChange',
   });
 
   const undefinedStack = stack.filter(
-    (item) => item.id === undefined
+    item => item.id === undefined,
   );
 
   useEffect(() => {
@@ -98,19 +106,20 @@ const AddCandidate = () => {
     try {
       if (!stack.length) {
         setStackError(
-          'Додайте декілька технологій зі стеку'
+          'Додайте декілька технологій зі стеку',
         );
         return;
       }
       if (undefinedStack.length) {
         setStackError(
-          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
+          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`,
         );
         return;
       }
       setIsProcessing(true);
       mutate({ data, stack });
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -141,7 +150,7 @@ const AddCandidate = () => {
         Інформація про кандидата
       </h2>
       <div>
-        <h3 className="border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+        <h3 className="border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
           <span>Персональна інформація</span>
         </h3>
 
@@ -433,7 +442,8 @@ const AddCandidate = () => {
                     onChange={onChange}
                     placeholder="Коментар"
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  ></textarea>
+                  >
+                  </textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -450,7 +460,7 @@ const AddCandidate = () => {
             <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
           </div>
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Спеціальність</h3>
           </div>
 
@@ -476,7 +486,7 @@ const AddCandidate = () => {
                     <option value="">
                       Оберіть спеціальність
                     </option>
-                    {specialization.data?.map((item) => (
+                    {specialization.data?.map(item => (
                       <option key={item.id} value={item.id}>
                         {item.title}
                       </option>
@@ -528,7 +538,7 @@ const AddCandidate = () => {
             error={stackError}
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
           </div>
 
@@ -537,13 +547,13 @@ const AddCandidate = () => {
             control={control}
           />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Курси</h3>
           </div>
 
           <Cources fieldArray={cources} control={control} />
 
-          <div className="flex w-full gap-[24px] border-b-[1px] border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
+          <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Досвід роботи на Базі</h3>
           </div>
 
@@ -573,7 +583,8 @@ const AddCandidate = () => {
                     onChange={onChange}
                     placeholder="Рекомендація"
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  ></textarea>
+                  >
+                  </textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -625,7 +636,7 @@ const AddCandidate = () => {
 
           <div className="flex justify-start gap-[24px] py-[80px]">
             <button
-              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border-[1px] hover:bg-transparent hover:text-white"
+              className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border hover:bg-transparent hover:text-white"
               type="submit"
             >
               {isProcessing
@@ -634,9 +645,8 @@ const AddCandidate = () => {
             </button>
             <button
               onClick={() =>
-                router.push('/admin/candidates')
-              }
-              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border-[1px] font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
+                router.push('/admin/candidates')}
+              className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
             >
               Скасувати
             </button>
@@ -645,6 +655,6 @@ const AddCandidate = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AddCandidate;

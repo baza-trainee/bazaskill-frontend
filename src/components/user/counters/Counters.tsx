@@ -1,19 +1,21 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
-import { constants } from '@/constants';
-import { getCounters } from '@/api/counters';
-import { ICounters } from '@/types/counters';
-
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import type { ICounters } from '@/types/counters';
+
+import { getCounters } from '@/api/counters';
+import { constants } from '@/constants';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 import './styles.css';
 
 interface Counters {
@@ -22,16 +24,16 @@ interface Counters {
   title: string;
 }
 
-const Counters = () => {
+function CountersComp() {
   const t = useTranslations('Main');
-  const [isVisible, setIsVisible] =
-    useState<boolean>(false);
+  const [isVisible, setIsVisible]
+    = useState<boolean>(false);
 
   const { data, isFetching } = useQuery<ICounters[], Error>(
     {
       queryKey: [constants.counters.FETCH_COUNTERS],
       queryFn: getCounters,
-    }
+    },
   );
 
   const counters: Counters[] = [
@@ -102,11 +104,12 @@ const Counters = () => {
         >
           {counters.map(({ id }) => {
             const counter = counters.find(
-              (item) => item.id === id
+              item => item.id === id,
             );
-            if (!counter) return null;
-            const title =
-              id === 4
+            if (!counter)
+              return null;
+            const title
+              = id === 4
                 ? counter.title.replace('залучених ', '')
                 : counter.title;
             return (
@@ -118,7 +121,7 @@ const Counters = () => {
                       end={counter.count || 0}
                       duration={2}
                       redraw={true}
-                      formattingFn={(value) => `${value}+`}
+                      formattingFn={value => `${value}+`}
                     />
                   </h3>
                   <p className="custom-line-height   text-2xl text-white md:text-xl">
@@ -146,17 +149,19 @@ const Counters = () => {
                 key={index}
               >
                 <h3 className="text-[40px] font-bold leading-10 ">
-                  {isVisible ? (
-                    <CountUp
-                      key={item.id}
-                      end={item.count}
-                      duration={2}
-                      redraw={true}
-                      formattingFn={(value) => `${value}+`}
-                    />
-                  ) : (
-                    0
-                  )}
+                  {isVisible
+                    ? (
+                        <CountUp
+                          key={item.id}
+                          end={item.count}
+                          duration={2}
+                          redraw={true}
+                          formattingFn={value => `${value}+`}
+                        />
+                      )
+                    : (
+                        0
+                      )}
                 </h3>
                 <p className="text-xl xl:text-2xl">
                   {item.title}
@@ -168,6 +173,6 @@ const Counters = () => {
       </VisibilitySensor>
     </section>
   );
-};
+}
 
-export default Counters;
+export default CountersComp;

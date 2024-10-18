@@ -1,15 +1,21 @@
-import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
-import {
+import type {
   Control,
-  Controller,
   DeepMap,
   FieldError,
   FieldValues,
   UseFieldArrayReturn,
 } from 'react-hook-form';
+
+import {
+  Controller,
+} from 'react-hook-form';
+
+import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
+
 import FileInput from './FileInput';
 import SelectField from './SelectField';
 import TextInput from './TextInput';
+
 interface IGraduateProps {
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<
@@ -18,10 +24,10 @@ interface IGraduateProps {
     'id'
   >;
 }
-const Graduate = ({
+function Graduate({
   control,
   fieldArray: { fields, append, remove },
-}: IGraduateProps) => {
+}: IGraduateProps) {
   return (
     <div className="flex w-full flex-col gap-[30px]">
       {fields.map((field, index) => {
@@ -180,7 +186,7 @@ const Graduate = ({
               onClick={() => remove(index)}
               className="group mx-auto flex h-[44px] w-[120px] cursor-pointer items-center justify-center rounded-[10px] bg-red-600 transition-all duration-300 hover:bg-error"
             >
-              <TrashIcon className="h-[22px] w-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
+              <TrashIcon className="size-[22px] fill-graphite transition-all duration-300 group-hover:fill-black" />
             </div>
           </div>
         );
@@ -193,6 +199,6 @@ const Graduate = ({
       </div>
     </div>
   );
-};
+}
 
 export default Graduate;

@@ -1,6 +1,9 @@
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
 } from 'react';
 
@@ -11,7 +14,7 @@ interface TextAreaArticleProps
   isRequired?: boolean;
 }
 
-const TextAreaArticle = forwardRef(function TextAreaArticle(
+const TextAreaArticle = forwardRef((
   {
     title,
     errorText,
@@ -19,8 +22,8 @@ const TextAreaArticle = forwardRef(function TextAreaArticle(
     isRequired,
     ...rest
   }: TextAreaArticleProps,
-  _ref: ForwardedRef<HTMLInputElement>
-) {
+  _ref: ForwardedRef<HTMLInputElement>,
+) => {
   const inputClassName = `bg-[#efefef] mt-[8px] 5xl:w-[907px] w-[520px] h-[123px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 py-[16px] pl-[16px] pr-[40px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16]
 hover:bg-[#ebfcee] 
 ${

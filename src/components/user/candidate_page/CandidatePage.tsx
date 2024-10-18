@@ -1,19 +1,24 @@
 'use client';
-import { constants } from '@/constants';
-import {
-  useQuery,
+import type {
   UseQueryResult,
 } from '@tanstack/react-query';
+
+import {
+  useQuery,
+} from '@tanstack/react-query';
+
+import type { CandidatesResponse } from '@/types/candidates';
+
 import { getAllCandidates } from '@/api/candidates';
-import { useModal } from '@/stores/useModal';
-import { CandidatesResponse } from '@/types/candidates';
+import Loader from '@/components/shared/loader/Loader';
 import CandidateHero from '@/components/user/candidate_page/Hero';
 import MainInfo from '@/components/user/candidate_page/MainInfo';
-import Loader from '@/components/shared/loader/Loader';
-import RegisterModal from '@/components/user/modals/RegisterModal';
 import RegisterHrForm from '@/components/user/modals/forms/register_hr/RegisterHrForm';
+import RegisterModal from '@/components/user/modals/RegisterModal';
+import { constants } from '@/constants';
+import { useModal } from '@/stores/useModal';
 
-const CandidatePageComponent = ({ id }: { id: string }) => {
+function CandidatePageComponent({ id }: { id: string }) {
   const candidates: UseQueryResult<
     CandidatesResponse[],
     Error
@@ -23,31 +28,34 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
   });
 
   const candidate = candidates.data?.find(
-    (candidate) => candidate.id.toString() === id
+    candidate => candidate.id.toString() === id,
   );
 
   const isModalOpen = useModal(
-    (state) => state.isModalOpen
+    state => state.isModalOpen,
   );
 
   const { closeModal } = useModal();
 
-  const modalType = useModal((state) => state.modalType);
+  const modalType = useModal(state => state.modalType);
 
-  if (candidates.status === 'pending') return <Loader />;
+  if (candidates.status === 'pending')
+    return <Loader />;
 
   return (
-    <div className="min-h-[100vh] bg-graphite">
-      {candidate ? (
-        <>
-          <CandidateHero
-            candidate={candidate as CandidatesResponse}
-          />
-          <MainInfo
-            candidate={candidate as CandidatesResponse}
-          />
-        </>
-      ) : null}
+    <div className="min-h-screen bg-graphite">
+      {candidate
+        ? (
+            <>
+              <CandidateHero
+                candidate={candidate as CandidatesResponse}
+              />
+              <MainInfo
+                candidate={candidate as CandidatesResponse}
+              />
+            </>
+          )
+        : null}
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>
           <RegisterHrForm />
@@ -55,6 +63,6 @@ const CandidatePageComponent = ({ id }: { id: string }) => {
       )}
     </div>
   );
-};
+}
 
 export default CandidatePageComponent;

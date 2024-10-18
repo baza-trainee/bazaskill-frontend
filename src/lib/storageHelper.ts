@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import 'client-only';
 
 export function getLocalStorage(
   key: string,
-  defaultValue: any
+  defaultValue: any,
 ) {
   const stickyValue = localStorage.getItem(key);
 

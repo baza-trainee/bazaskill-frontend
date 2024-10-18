@@ -1,22 +1,27 @@
 'use client';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+import type { z } from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import {
   Controller,
-  SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import SignInEmail from '../admin/ui/SignInEmail';
-import { emailScheme } from './signInScheme';
-import { defaultValuesEmail } from './defaultValues';
-import Link from 'next/link';
-import { forgotPassword } from '@/api/signIn';
-import { useRouter } from 'next/navigation';
-import SuccessButton from '../admin/ui/buttons/SuccessButton';
-import { AxiosError } from 'axios';
 
-const ForgotPassword = () => {
+import { forgotPassword } from '@/api/signIn';
+
+import SuccessButton from '../admin/ui/buttons/SuccessButton';
+import SignInEmail from '../admin/ui/SignInEmail';
+import { defaultValuesEmail } from './defaultValues';
+import { emailScheme } from './signInScheme';
+
+function ForgotPassword() {
   const [error, setError] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const router = useRouter();
@@ -44,24 +49,28 @@ const ForgotPassword = () => {
         setIsProcessing(false);
         if (token) {
           router.push(
-            `/ua/login/restore-password/${token}`
+            `/ua/login/restore-password/${token}`,
           );
-        } else {
+        }
+        else {
           console.error('Token is not defined');
         }
       }
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 404) {
           setError('Такий емейл не знайдено');
           setIsProcessing(false);
-        } else {
+        }
+        else {
           console.log(error);
           setError('Помилка сервера');
           setIsProcessing(false);
         }
       }
-    } finally {
+    }
+    finally {
       setTimeout(() => {
         setError('');
       }, 3000);
@@ -71,8 +80,8 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-[#212121]">
-      <div className="relative flex w-[520px]  flex-col items-center justify-center overflow-auto rounded-md bg-white px-[50px] py-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
+    <div className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-graphite">
+      <div className="relative flex w-[520px]  flex-col items-center justify-center overflow-auto rounded-md bg-white p-[50px] font-['Tahoma',_sans-serif] text-black  5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
           <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">
             Забули пароль?
@@ -100,11 +109,13 @@ const ForgotPassword = () => {
                     />
                   )}
                 />
-                {error.length ? (
-                  <p className="left absolute text-xs text-error">
-                    {error}
-                  </p>
-                ) : null}
+                {error.length
+                  ? (
+                      <p className="left absolute text-xs text-error">
+                        {error}
+                      </p>
+                    )
+                  : null}
               </div>
               <div className="flex gap-[18px] ">
                 <SuccessButton
@@ -117,7 +128,7 @@ const ForgotPassword = () => {
                   }
                 />
                 <Link
-                  href={'/login'}
+                  href="/login"
                   className=" flex h-9 min-w-[170px] items-center justify-center  rounded-md bg-white text-[#0A871E] [border:1px_solid_#0a871e]"
                 >
                   Скасувати
@@ -127,7 +138,7 @@ const ForgotPassword = () => {
           </form>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0  w-full bg-[#191919] ">
+      <div className="absolute bottom-0 left-0  w-full bg-darkGraphite ">
         <p className="mt-0 text-left text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
           Компанія направляє 10% прибутку на підтримку 59-ї
           бригади ім. Якова Гандзюка
@@ -135,6 +146,6 @@ const ForgotPassword = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ForgotPassword;

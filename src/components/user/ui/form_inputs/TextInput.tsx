@@ -1,6 +1,9 @@
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
 } from 'react';
 
@@ -11,7 +14,7 @@ interface TextInputProps
   errorText?: string;
 }
 
-const TextInput = forwardRef(function TextInput(
+const TextInput = forwardRef((
   {
     title,
     errorText,
@@ -19,8 +22,8 @@ const TextInput = forwardRef(function TextInput(
     value = '',
     ...rest
   }: TextInputProps,
-  _ref: ForwardedRef<HTMLInputElement>
-) {
+  _ref: ForwardedRef<HTMLInputElement>,
+) => {
   console.log(errorText);
   return (
     <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">

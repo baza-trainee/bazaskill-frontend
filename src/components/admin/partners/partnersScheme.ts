@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { formatBytes } from '@/helpers/formatBytes';
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 2;
@@ -10,11 +11,11 @@ const ACCEPTED_IMAGE_TYPES = [
   'image/svg+xml',
 ];
 
-const nonRussianLettersPattern =
-  /^(?!.*\s{2,}|.*[.-]{2,})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-@!?#$%&*(){}[\]`’—\-+<>.,?/|0-9]+$/;
+const nonRussianLettersPattern
+  = /^(?!.*\s{2}|.*[.-]{2})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-@!#$%&{}[\]—|]+$/;
 
-const linkValidation =
-  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(#[-a-z\d_]*)?$/i;
+const linkValidation
+  = /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-\w%.~+]*)*(\?[;&\w%.~+=-]*)?(#[-\w]*)?$/i;
 
 export const partnersScheme = z.object({
   name: z
@@ -23,8 +24,8 @@ export const partnersScheme = z.object({
     .min(2, 'Назва повинна мати не менше 2 знаків')
     .max(30, 'Назва повинно бути не більше 30 знаків')
     .refine(
-      (value) => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' }
+      value => nonRussianLettersPattern.test(value),
+      { message: 'Введіть коректне ім’я' },
     ),
   logo: z
     .any()
@@ -41,11 +42,12 @@ export const partnersScheme = z.object({
 
         if (fileSize && fileSize <= maxSizeInBytes) {
           return true;
-        } else {
+        }
+        else {
           return false;
         }
       },
-      `Максимальний розмір файлу ${formatBytes(MAX_IMAGE_SIZE)}`
+      `Максимальний розмір файлу ${formatBytes(MAX_IMAGE_SIZE)}`,
     )
     .refine((value) => {
       if (!value || !value.length) {
@@ -56,18 +58,19 @@ export const partnersScheme = z.object({
       console.log('File Type:', fileType);
 
       if (
-        fileType &&
-        ACCEPTED_IMAGE_TYPES.includes(fileType)
+        fileType
+        && ACCEPTED_IMAGE_TYPES.includes(fileType)
       ) {
         return true;
-      } else {
+      }
+      else {
         return false;
       }
     }, 'Невалідний формат зображення'),
   partner_url: z
     .string()
     .min(2, 'Ви не заповнили всі дані.')
-    .refine((value) => linkValidation.test(value), {
+    .refine(value => linkValidation.test(value), {
       message: 'Введіть дійсний URL',
     }),
 });

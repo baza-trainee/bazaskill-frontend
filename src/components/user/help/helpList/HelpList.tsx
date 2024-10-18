@@ -1,6 +1,8 @@
-import { IImage } from '@/types/gallery';
 import Image from 'next/image';
 import React from 'react';
+
+import type { IImage } from '@/types/gallery';
+
 ('./helpList.css');
 
 interface HelpListProps {
@@ -14,14 +16,14 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
         {photos.map((photo, index) => (
           <li
             key={index}
-            className="  zoom overflow-hidden rounded-[100px]  grayscale filter hover:scale-105 hover:cursor-pointer"
+            className="  zoom overflow-hidden rounded-[100px]  grayscale hover:scale-105 hover:cursor-pointer"
           >
             <Image
               src={photo.image_url}
               width={117}
               height={117}
               alt="specialist"
-              className="zoom hover:scale-103  xs:h-[80px]  xs:w-[80px] xl:h-[112px] xl:w-[112px] 2xl:h-[117px]  2xl:w-[117px] 5xl:h-[132px] 5xl:w-[132px]"
+              className="zoom hover:scale-103  xs:size-[80px]  xl:size-[112px] 2xl:size-[117px] 5xl:size-[132px]"
             />
           </li>
         ))}

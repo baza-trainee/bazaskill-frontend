@@ -1,9 +1,9 @@
-import EditTestimonial from '@/components/admin/testimonials/EditTestimonial';
-
 import React from 'react';
 
-const EditTestimonialPage = () => {
+import EditTestimonial from '@/components/admin/testimonials/EditTestimonial';
+
+function EditTestimonialPage() {
   return <EditTestimonial />;
-};
+}
 
 export default EditTestimonialPage;

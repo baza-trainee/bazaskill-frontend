@@ -1,33 +1,35 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { useParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
+import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import {
   Controller,
-  SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { postScheme } from './postScheme';
-import { TPostScheme } from './postScheme';
-import { updatePost } from '@/api/posts';
-import { getPostsID } from '@/api/posts';
+
+import { getPostsID, updatePost } from '@/api/posts';
 import { constants } from '@/constants';
 
-import PageTitle from '../ui/PageTitle';
-import TextInput from '../ui/TextInput';
-import FileInputPost from '../ui/FileInputPost';
-import TextAreaArticle from '../ui/TextAreaArticle';
+import type { TPostScheme } from './postScheme';
+
+import Loader from '../../shared/loader/Loader';
+import SuccessAlert from '../alerts/SuccessAlert';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import SuccessAlert from '../alerts/SuccessAlert';
-import Loader from '../../shared/loader/Loader';
+import FileInputPost from '../ui/FileInputPost';
+import PageTitle from '../ui/PageTitle';
+import TextAreaArticle from '../ui/TextAreaArticle';
+import TextInput from '../ui/TextInput';
 import PostPreview from './PostPreview';
+import { postScheme } from './postScheme';
 
-const EditPosts = () => {
+function EditPosts() {
   const [file, setFile] = useState<File | null>(null);
   const [image, setImage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -61,12 +63,13 @@ const EditPosts = () => {
   const currentValues = watch();
 
   useEffect(() => {
-    if (!data) return;
+    if (!data)
+      return;
     setValue('title', data.title);
     setValue('text', data.text);
     setValue('link', data.link);
     setFile(
-      [new File([], data.image_url, { type: 'for-url' })][0]
+      [new File([], data.image_url, { type: 'for-url' })][0],
     );
     setImage(data.image_url);
   }, [data]);
@@ -77,12 +80,13 @@ const EditPosts = () => {
   };
 
   useEffect(() => {
-    if (!file || !touchedFields['image']) return;
+    if (!file || !touchedFields.image)
+      return;
     setImagePreview(file);
   }, [file]);
 
   const onSubmit: SubmitHandler<TPostScheme> = async (
-    data
+    data,
   ) => {
     try {
       setIsProcessing(true);
@@ -103,11 +107,13 @@ const EditPosts = () => {
         setIsSuccess(true);
       }
       setIsProcessing(false);
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
@@ -125,7 +131,7 @@ const EditPosts = () => {
 
   return (
     <div className="pl-[24px] pt-[20px]">
-      <PageTitle title={'Редагувати статтю'} />
+      <PageTitle title="Редагувати статтю" />
       <section className="pt-[50px]">
         <form
           className="flex flex-col gap-[50px]"
@@ -223,6 +229,6 @@ const EditPosts = () => {
       {isFetching && <Loader />}
     </div>
   );
-};
+}
 
 export default EditPosts;

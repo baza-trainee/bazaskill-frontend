@@ -1,16 +1,16 @@
-import { StylesConfig } from 'react-select';
+import type { StylesConfig } from 'react-select';
 
 export const selectStyles: StylesConfig = {
-  control: (provided) => ({
+  control: provided => ({
     ...provided,
-    backgroundColor: '#F5F5F5',
-    margin: '10px 0 0 0',
-    color: 'black',
-    fontSize: '16px',
-    fontFamily: 'Open Sans, sans-serif',
-    lineHeight: '1.6',
-    boxShadow: 'initial',
-    borderColor: 'transparent',
+    'backgroundColor': '#F5F5F5',
+    'margin': '10px 0 0 0',
+    'color': 'black',
+    'fontSize': '16px',
+    'fontFamily': 'Open Sans, sans-serif',
+    'lineHeight': '1.6',
+    'boxShadow': 'initial',
+    'borderColor': 'transparent',
     ':hover': {
       cursor: 'pointer',
       border: '1px solid #35DB4F',
@@ -28,33 +28,33 @@ export const selectStyles: StylesConfig = {
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isFocused ? '#e3e3e3' : 'white',
-    rounded: 'md',
-    cursor: 'pointer',
-    borderBottom: '1px solid #787878',
-    color: state.isFocused ? 'black' : 'inherit',
+    'backgroundColor': state.isFocused ? '#e3e3e3' : 'white',
+    'rounded': 'md',
+    'cursor': 'pointer',
+    'borderBottom': '1px solid #787878',
+    'color': state.isFocused ? 'black' : 'inherit',
     ':hover': {
       backgroundColor: '#e3e3e3',
       color: 'black',
     },
   }),
-  indicatorSeparator: (provided) => ({
+  indicatorSeparator: provided => ({
     ...provided,
     display: 'none',
   }),
-  menu: (provided) => ({
+  menu: provided => ({
     ...provided,
 
     marginTop: '0px',
     backgroundColor: '#F5F5F5',
     zIndex: 9999,
   }),
-  menuList: (provided) => ({
+  menuList: provided => ({
     ...provided,
-    padding: '0px',
-    maxHeight: '120px',
-    zIndex: 9999,
-    overflowY: 'scroll', // Устанавливаем значение overflowY в 'scroll'
+    'padding': '0px',
+    'maxHeight': '120px',
+    'zIndex': 9999,
+    'overflowY': 'scroll', // Устанавливаем значение overflowY в 'scroll'
     '&::-webkit-scrollbar': {
       width: '16px',
       height: '25px',
@@ -122,10 +122,10 @@ export const selectStyles: StylesConfig = {
       height: '25px',
     },
   }),
-  clearIndicator: (provided) => ({
+  clearIndicator: provided => ({
     ...provided,
-    color: '#000000',
-    fontSize: '18px',
+    'color': '#000000',
+    'fontSize': '18px',
     ':hover': {
       color: '#000000',
     },

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const HeaderCaretUp = () => {
+function HeaderCaretUp() {
   return (
     <div>
       <svg
-        className="relative top-2 ml-4 h-4 w-4 text-white transition-colors duration-300 group-hover:text-yellow"
+        className="relative top-2 ml-4 size-4 text-white transition-colors duration-300 group-hover:text-yellow"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -14,6 +14,6 @@ const HeaderCaretUp = () => {
       </svg>
     </div>
   );
-};
+}
 
 export default HeaderCaretUp;

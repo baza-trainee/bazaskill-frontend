@@ -1,7 +1,10 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
+
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import PrimaryButtonAdd from './PrimaryButtonAdd';
 import SecondaryButton from './SecondaryButton';
-import { useRouter } from 'next/navigation';
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {

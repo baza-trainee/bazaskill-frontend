@@ -1,11 +1,11 @@
 import PartnerApplication from '@/components/admin/partner-applications/PartnerApplication';
 
-const PartnerApplicationPage = ({
+function PartnerApplicationPage({
   params,
 }: {
   params: { id: string };
-}) => {
+}) {
   return <PartnerApplication id={params.id} />;
-};
+}
 
 export default PartnerApplicationPage;

@@ -1,8 +1,9 @@
-import Specializations from '@/components/admin/specializations/Specializations';
 import React from 'react';
 
-const SpecializationsPage = () => {
+import Specializations from '@/components/admin/specializations/Specializations';
+
+function SpecializationsPage() {
   return <Specializations />;
-};
+}
 
 export default SpecializationsPage;

@@ -1,17 +1,21 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
-import localFont from 'next/font/local';
-import { Open_Sans } from 'next/font/google';
+
 import { GoogleTagManager } from '@next/third-parties/google';
-import NextTopLoader from 'nextjs-toploader';
+import { NextIntlClientProvider } from 'next-intl';
 import {
   getMessages,
   unstable_setRequestLocale,
 } from 'next-intl/server';
-import { NextIntlClientProvider } from 'next-intl';
-import { PageProps } from '@/types';
-import ReactQueryProvider from '@/components/providers/ReactQueryProvider';
+import { Open_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
+import Script from 'next/script';
+import NextTopLoader from 'nextjs-toploader';
+
+import type { PageProps } from '@/types';
+
 import LayoutProvider from '@/components/providers/LayoutProvider';
+import ReactQueryProvider from '@/components/providers/ReactQueryProvider';
+
 import './globals.css';
 
 const open_sans = Open_Sans({
@@ -95,14 +99,15 @@ export default async function RootLayout({
       <head>
         <link
           rel="icon"
-          href={`/favicon.ico`}
+          href="/favicon.ico"
           type="image/vnd"
         />
         <link rel="shortcut icon" href="/favicon.ico" />
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-16605851615"
-        ></Script>
+        >
+        </Script>
         <Script id="google-analytics">
           {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16605851615');`}
         </Script>
@@ -122,7 +127,8 @@ export default async function RootLayout({
               display: 'none',
               visibility: 'hidden',
             }}
-          ></iframe>
+          >
+          </iframe>
         </noscript>
         <ReactQueryProvider>
           <NextIntlClientProvider
@@ -130,7 +136,7 @@ export default async function RootLayout({
             messages={messages}
           >
             <LayoutProvider>
-              <main className="min-h-[100vh] bg-graphite">
+              <main className="min-h-screen bg-graphite">
                 {children}
               </main>
             </LayoutProvider>

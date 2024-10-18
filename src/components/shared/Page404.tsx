@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
-const Page404 = () => {
+function Page404() {
   const t = useTranslations();
   return (
     <div className="container flex h-[calc(100vh-80px)] w-full flex-col items-center justify-center bg-graphite py-[60px] text-white xl:py-[120px]">
@@ -18,6 +18,6 @@ const Page404 = () => {
       </Link>
     </div>
   );
-};
+}
 
 export default Page404;

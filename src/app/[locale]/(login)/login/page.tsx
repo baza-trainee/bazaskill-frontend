@@ -1,8 +1,9 @@
-import Login from '@/components/login/Login';
 import React from 'react';
 
-const SignInPage = () => {
+import Login from '@/components/login/Login';
+
+function SignInPage() {
   return <Login />;
-};
+}
 
 export default SignInPage;

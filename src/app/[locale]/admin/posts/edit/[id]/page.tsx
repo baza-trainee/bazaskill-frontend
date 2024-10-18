@@ -1,8 +1,9 @@
-import EditPosts from '@/components/admin/posts/EditPosts';
 import React from 'react';
 
-const EditPostsPage = () => {
+import EditPosts from '@/components/admin/posts/EditPosts';
+
+function EditPostsPage() {
   return <EditPosts />;
-};
+}
 
 export default EditPostsPage;

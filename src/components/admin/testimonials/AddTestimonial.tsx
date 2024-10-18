@@ -1,25 +1,30 @@
 'use client';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+import type { z } from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useState } from 'react';
 import {
   Controller,
-  SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+
+import { createTestimonial } from '@/api/testimonials';
+
+import SuccessAlert from '../alerts/SuccessAlert';
 import { defaultValues } from '../testimonials/defaultValues';
 import { testimonialValidation } from '../testimonials/validationSchema';
+import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import FileInputPost from '../ui/FileInputPost';
+import PageTitle from '../ui/PageTitle';
 import TextArea from '../ui/TextAreaReviews';
 import TextInput from '../ui/TextInput';
-import PageTitle from '../ui/PageTitle';
-import { z } from 'zod';
-import FileInputPost from '../ui/FileInputPost';
-import { createTestimonial } from '@/api/testimonials';
-import SuccessAlert from '../alerts/SuccessAlert';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
-import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
-import Link from 'next/link';
 
-const AddTestimonial = () => {
+function AddTestimonial() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -36,13 +41,13 @@ const AddTestimonial = () => {
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
   const onSubmit: SubmitHandler<
     z.infer<typeof testimonialValidation>
   > = async (
-    values: z.infer<typeof testimonialValidation>
+    values: z.infer<typeof testimonialValidation>,
   ) => {
     try {
       setIsProcessing(true);
@@ -64,19 +69,22 @@ const AddTestimonial = () => {
       }
       setIsProcessing(false);
       reset();
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
-      } else {
+      }
+      else {
         console.error('Неочікувана помилка', error);
       }
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
 
   return (
-    <section className="relative h-[100vh] max-h-[100vh] p-6 ">
+    <section className="relative h-screen max-h-screen p-6 ">
       <div className="mb-[50px]">
         <PageTitle title="Додати Відгук" />
       </div>
@@ -239,6 +247,6 @@ const AddTestimonial = () => {
       </div>
     </section>
   );
-};
+}
 
 export default AddTestimonial;

@@ -1,21 +1,22 @@
+import type { IHr, IHrResponse } from '@/types/applications';
+
 import axios from '@/config/axios';
-import { IHr, IHrResponse } from '@/types/applications';
 
-export const getHrApplications = async () => {
+export async function getHrApplications() {
   const { data } = await axios.get<IHrResponse[]>(
-    '/hr-application'
+    '/hr-application',
   );
   return data;
-};
+}
 
-export const getHrApplicationById = async (id: string) => {
+export async function getHrApplicationById(id: string) {
   const { data } = await axios.get<IHrResponse>(
-    `/hr-application/${id}`
+    `/hr-application/${id}`,
   );
   return data;
-};
+}
 
-export const createApplication = async (values: IHr) => {
+export async function createApplication(values: IHr) {
   const newApplication = {
     first_name: values.first_name,
     last_name: values.last_name,
@@ -28,14 +29,14 @@ export const createApplication = async (values: IHr) => {
   };
   const response = await axios.post(
     '/hr-application',
-    newApplication
+    newApplication,
   );
   return response;
-};
+}
 
-export const deleteApplication = async (id: number) => {
+export async function deleteApplication(id: number) {
   const response = await axios.delete(
-    `/hr-application/${id}`
+    `/hr-application/${id}`,
   );
   return response;
-};
+}

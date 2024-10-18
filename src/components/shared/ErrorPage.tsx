@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { MdErrorOutline } from 'react-icons/md';
 
-const ErrorPage = ({ reset }: { reset: () => void }) => {
+function ErrorPage({ reset }: { reset: () => void }) {
   const t = useTranslations('Main');
 
   return (
@@ -20,6 +20,6 @@ const ErrorPage = ({ reset }: { reset: () => void }) => {
       </button>
     </div>
   );
-};
+}
 
 export default ErrorPage;

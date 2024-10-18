@@ -64,12 +64,12 @@ export interface ICandidates {
   uniqueId: string;
 }
 
-export type Candidates = {
+export interface Candidates {
   id: number;
   text: string;
-};
+}
 
-export type CoursesResponse = {
+export interface CoursesResponse {
   id: number;
   cources_name: string;
   cources_sertificate: string;
@@ -77,9 +77,9 @@ export type CoursesResponse = {
   cources_specializaton: string;
   cources_start: string;
   cources_end: string;
-};
+}
 
-export type Graduateresponse = {
+export interface Graduateresponse {
   id: number;
   university: string;
   university_specialization: string;
@@ -88,35 +88,35 @@ export type Graduateresponse = {
   graduate_end: string;
   graduate_sertificate: string;
   graduate_sertificate_id: string;
-};
+}
 
-export type LanguageResponse = {
+export interface LanguageResponse {
   id: number;
   language: string;
   level: string;
-};
+}
 
-export type StackResponse = {
+export interface StackResponse {
   id: number;
   stack: { id: number; title: string };
-};
+}
 
-export type BazaExperienceResponse = {
+export interface BazaExperienceResponse {
   id: number;
   project_name: string;
   project_duration: string;
   specialization: { id: number; title: string };
-};
+}
 
-export type OutBazaExperienceResponse = {
+export interface OutBazaExperienceResponse {
   id: number;
   company_name: string;
   company_specialization: string;
   work_start: string;
   work_end: string;
-};
+}
 
-export type CandidatesResponse = {
+export interface CandidatesResponse {
   id: number;
   name_ua: string;
   surname_ua: string;
@@ -145,4 +145,4 @@ export type CandidatesResponse = {
   cources: CoursesResponse[];
   baza_experience: BazaExperienceResponse[];
   uniqueId: string;
-};
+}

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export interface ITestimonial {
   id: string;
   name_ua: string;
@@ -20,7 +18,7 @@ export type TestimonialFormInput = Omit<
   'id' | 'createdAt'
 >;
 
-export type Testimonial = {
+export interface Testimonial {
   id: string;
   name_ua: string;
   name_en?: string;
@@ -32,9 +30,9 @@ export type Testimonial = {
   date: string;
   image_url: string;
   file?: any;
-};
+}
 
-export type TestimonialAdmin = {
+export interface TestimonialAdmin {
   id: string;
   name_ua: string;
   name_en: string;
@@ -46,9 +44,9 @@ export type TestimonialAdmin = {
   date: string;
   image_url: string;
   file?: any;
-};
+}
 
-export type TestimonialPreview = {
+export interface TestimonialPreview {
   name_ua: string;
   name_en?: string | undefined;
   name_pl?: string | undefined;
@@ -59,4 +57,4 @@ export type TestimonialPreview = {
   date: string;
   file?: File | string;
   images_url?: string | undefined;
-};
+}

@@ -1,25 +1,27 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import { useQuery } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+
 import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
-import { useTranslations } from 'next-intl';
-import { useCookies } from '@/stores/useCookies';
 import {
   getLocalStorage,
   setLocalStorage,
 } from '@/lib/storageHelper';
-import Link from 'next/link';
+import { useCookies } from '@/stores/useCookies';
 
 interface CookiesModalProps {}
 
 const CookiesModal: React.FC<CookiesModalProps> = () => {
+  const [cookieConsent, setCookieConsent] = useState(false);
   const t = useTranslations('Main.cookies');
   const { setCookie } = useCookies();
 
-  const [showPanel, setShowPanel] =
-    useState<boolean>(false);
+  const [showPanel, setShowPanel]
+    = useState<boolean>(false);
 
   const { data } = useQuery({
     queryKey: [constants.documents.FETCH_DOCUMENTS],
@@ -27,7 +29,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
   });
 
   const privacyPolicy = data?.find(
-    (item) => item.title === 'privacy_policy'
+    item => item.title === 'privacy_policy',
   );
 
   useEffect(() => {
@@ -45,12 +47,11 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
     setCookieConsent(true);
     setShowPanel(false);
   };
-  const [cookieConsent, setCookieConsent] = useState(false);
 
   useEffect(() => {
     const storedCookieConsent = getLocalStorage(
       'cookie_consent',
-      null
+      null,
     );
 
     setCookieConsent(storedCookieConsent);
@@ -62,10 +63,11 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
 
   return (
     showPanel && (
-      <div className="container fixed bottom-0 left-0 right-0 z-[1000] z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
+      <div className="container fixed inset-x-0 bottom-0 z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
         <div className="flex flex-col justify-between py-6">
           <div className="mb-[25px] max-w-[564px] text-lg">
-            {t('text')}{' '}
+            {t('text')}
+            {' '}
             <Link
               className="text-base font-bold underline"
               href={`/docs/${privacyPolicy?.title}`}
@@ -78,7 +80,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
             <button
               type="button"
               onClick={acceptCookies}
-              className="h-[36px] w-[180px] rounded-md border-2	border-green text-green"
+              className="border-2border-green h-[36px] w-[180px] rounded-md text-green"
             >
               Ok
             </button>

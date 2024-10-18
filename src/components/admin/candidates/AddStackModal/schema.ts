@@ -8,10 +8,10 @@ const schema = z.object({
     .string()
     .min(1, { message: 'Required' })
     .refine(
-      (value) => /^[a-zA-Z\s\d-.,\\/|()@&]+$/.test(value),
+      value => /^[a-z\s\d.,\\/|()@&-]+$/i.test(value),
       {
         message: 'Введіть коректну назву спеціалізації',
-      }
+      },
     ),
 });
 export default schema;

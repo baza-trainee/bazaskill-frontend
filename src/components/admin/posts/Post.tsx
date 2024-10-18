@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import {
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import Link from 'next/link';
-import { IPost } from '@/types/posts';
-import { formatDate } from './dateHelper';
-import { constants } from '@/constants';
-import SuccessAlert from '../alerts/SuccessAlert';
+import { useState } from 'react';
+
+import type { IPost } from '@/types/posts';
 
 import { deletePosts } from '@/api/posts';
-import {
-  useQueryClient,
-  useMutation,
-} from '@tanstack/react-query';
-import QuestionAlert from '../alerts/QuestionAlert';
+import { constants } from '@/constants';
 
-const Post = ({
+import QuestionAlert from '../alerts/QuestionAlert';
+import SuccessAlert from '../alerts/SuccessAlert';
+import { formatDate } from './dateHelper';
+
+function Post({
   id,
   title,
   link,
@@ -20,7 +22,7 @@ const Post = ({
   text,
   image_url,
   isAdmin,
-}: IPost) => {
+}: IPost) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -43,7 +45,8 @@ const Post = ({
     setIsDeleting(false);
     try {
       await mutation.mutateAsync(id);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -64,7 +67,8 @@ const Post = ({
           className={`absolute inset-0 h-[150px] w-full bg-cover bg-center grayscale transition-all ${isHovered && 'filter-none'}`}
           style={{ backgroundImage: `url(${image_url})` }}
           title={title}
-        ></div>
+        >
+        </div>
         <p className="backdrop-brightness-10 absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white backdrop-blur-sm">
           {creationDate}
         </p>
@@ -84,14 +88,14 @@ const Post = ({
       {isAdmin && (
         <div className="absolute bottom-[5px] right-[12px] z-10 flex gap-[24px]">
           <button
-            className="flex h-[32px] w-[32px] items-center justify-center bg-white"
+            className="flex size-[32px] items-center justify-center bg-white"
             onClick={() => setIsDeleting(true)}
           >
             <svg width={28} height={28}>
               <use href="/Icons/sprite.svg#icon-drop"></use>
             </svg>
           </button>
-          <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
+          <button className="flex size-[32px] items-center justify-center bg-white">
             <Link href={`/admin/posts/edit/${id}`}>
               <svg width={28} height={28}>
                 <use href="/Icons/sprite.svg#icon-pen"></use>
@@ -116,6 +120,6 @@ const Post = ({
       )}
     </article>
   );
-};
+}
 
 export default Post;

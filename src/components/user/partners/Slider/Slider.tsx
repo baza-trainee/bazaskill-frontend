@@ -1,22 +1,28 @@
-/* eslint-disable @next/next/no-img-element */
-import { RefObject, useRef } from 'react';
+import type { RefObject } from 'react';
+import type {
+  SwiperRef,
+} from 'swiper/react';
+
+import { useRef } from 'react';
+import { Navigation, Pagination } from 'swiper/modules';
 import {
   Swiper,
-  SwiperRef,
   SwiperSlide,
 } from 'swiper/react';
-import useSwiperParams from './useSwiperParams';
+
+import type { TPartner } from '@/types/partners';
+
+import ButtonLeft from '@/components/shared/icons/ButtonLeft';
+import ButtonRight from '@/components/shared/icons/ButtonRight';
 import useSliderControls from '@/hooks/useSliderControls';
-import { Navigation, Pagination } from 'swiper/modules';
+
+import useSwiperParams from './useSwiperParams';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import './styles.css';
 
-import ButtonRight from '@/components/shared/icons/ButtonRight';
-import ButtonLeft from '@/components/shared/icons/ButtonLeft';
-import { TPartner } from '@/types/partners';
+import './styles.css';
 
 interface SliderProps {
   partners: TPartner[];
@@ -27,15 +33,15 @@ const Slider: React.FC<SliderProps> = ({
 }: SliderProps) => {
   const sliderRef: RefObject<SwiperRef> = useRef(null);
   const swiperParams = useSwiperParams();
-  const { handlePrev, handleNext } =
-    useSliderControls(sliderRef);
+  const { handlePrev, handleNext }
+    = useSliderControls(sliderRef);
 
   return (
     <div className="relative">
       <Swiper
-        key={'partnersSlider'}
+        key="partnersSlider"
         modules={[Navigation, Pagination]}
-        slidesPerView={'auto'}
+        slidesPerView="auto"
         spaceBetween={swiperParams.spaceBetween}
         navigation={{
           prevEl: '.prev-partners',
@@ -47,7 +53,7 @@ const Slider: React.FC<SliderProps> = ({
         loop={true}
         className="xs:max-w-[280px] sm:max-w-[380px] md:max-w-[618px] xl:max-w-[986px] 2xl:max-w-[1006px] 3xl:max-w-[1006px] 4xl:max-w-[1139px] 5xl:max-w-[1450px]"
       >
-        {partners.map((partner) => (
+        {partners.map(partner => (
           <SwiperSlide
             key={partner.id}
             className="partnerSlide z-[999] flex min-h-[250px] items-center justify-center overflow-hidden p-2 sm:max-w-[280]

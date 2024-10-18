@@ -15,14 +15,14 @@ const schema = z.object({
     .refine(
       ({ from, to }) => {
         if (from !== '' && to !== '') {
-          return parseInt(from) < parseInt(to);
+          return Number.parseInt(from) < Number.parseInt(to);
         }
         return true;
       },
       {
         message:
           'Значення Від не повинно бути більшим ніж значення До',
-      }
+      },
     ),
 });
 

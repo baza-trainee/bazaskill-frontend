@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-const linkValidation =
-  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(#[-a-z\d_]*)?$/i;
+const linkValidation
+  = /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-\w%.~+]*)*(\?[;&\w%.~+=-]*)?(#[-\w]*)?$/i;
 
 export const postScheme = z.object({
   title: z
@@ -9,16 +9,16 @@ export const postScheme = z.object({
     .min(2, 'Назва статті повинна мати не менше 2 знаків')
     .max(
       30,
-      'Назва статті повинна бути не більше 30 знаків'
+      'Назва статті повинна бути не більше 30 знаків',
     )
-    .refine((value) => typeof value === 'string', {
+    .refine(value => typeof value === 'string', {
       message: 'Введіть коректну назву статті',
     }),
   image: z.any(),
   link: z
     .string()
     .min(2, 'Поле не повинно бути пустим')
-    .refine((value) => linkValidation.test(value), {
+    .refine(value => linkValidation.test(value), {
       message: 'Введіть дійсний URL',
     }),
   text: z
@@ -26,7 +26,7 @@ export const postScheme = z.object({
     .min(2, 'Введіть опис статті')
     .max(
       350,
-      'Опис статті повинен бути не більшим ніж 350 знаків'
+      'Опис статті повинен бути не більшим ніж 350 знаків',
     ),
 });
 

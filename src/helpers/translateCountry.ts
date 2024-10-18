@@ -1,4 +1,4 @@
-export const translateCountry = (country?: string) => {
+export function translateCountry(country?: string) {
   if (country === 'ukraine') {
     return 'Україна';
   }
@@ -6,4 +6,4 @@ export const translateCountry = (country?: string) => {
     return 'Польща';
   }
   return country;
-};
+}

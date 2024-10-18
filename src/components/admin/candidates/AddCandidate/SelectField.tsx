@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 interface ISelectFieldProps {
   title: string;
   value: string;
@@ -22,7 +21,9 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   return (
     <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor="title">
-        {title} &nbsp;
+        {title}
+        {' '}
+&nbsp;
         {isRequired && (
           <span className="text-red-500">*</span>
         )}
@@ -31,7 +32,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
         id={title}
         value={value}
         className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       >
         <option value="">
           {placeholder || 'Please Select'}

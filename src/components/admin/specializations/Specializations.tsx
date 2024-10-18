@@ -1,25 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
 import {
   useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
-import PageTitle from '../ui/PageTitle';
-import Loader from '../../shared/loader/Loader';
-import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
-
-import { constants } from '@/constants';
 import {
   deleteSpecialization,
   getSpecializations,
 } from '@/api/specialization';
-import QuestionAlert from '../alerts/QuestionAlert';
+import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
+import { constants } from '@/constants';
 
-const Specializations = () => {
+import Loader from '../../shared/loader/Loader';
+import QuestionAlert from '../alerts/QuestionAlert';
+import PageTitle from '../ui/PageTitle';
+
+function Specializations() {
   const queryClient = useQueryClient();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,18 +55,19 @@ const Specializations = () => {
     setIsLoading(true);
     try {
       await deleteMutation.mutateAsync(currentId);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
   };
 
   return (
     <div className="relative pl-[24px] pt-[20px]">
-      <PageTitle title={'Спеціалізації'} />
+      <PageTitle title="Спеціалізації" />
       <section className="flex flex-col flex-wrap gap-[24px] gap-y-12 pt-[50px] md:flex-row">
-        <div className="flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-[2px] border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]">
+        <div className="flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-2 border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]">
           <Link
-            href={'/admin/specializations/add'}
+            href="/admin/specializations/add"
             className="flex flex-col items-center"
           >
             <PlusIcon />
@@ -76,40 +77,40 @@ const Specializations = () => {
           </Link>
         </div>
         <div className="flex flex-wrap items-center gap-4">
-          {data &&
-            Array.isArray(data) &&
-            data?.map((item) => (
-              <div
-                className="relative flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-[2px] border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]"
-                key={item.id}
-              >
-                <p className="font-sans text-[20px] leading-[1.3] text-white">
-                  {item.title}
-                </p>
-                <div className="absolute bottom-[12px] right-[12px] z-10 flex gap-[32px]">
-                  <button
-                    onClick={() => {
-                      setIsDeleting(true),
-                        setCurrentId(item.id.toString());
-                    }}
-                    className="flex h-[32px] w-[32px] items-center justify-center bg-white"
+          {data
+          && Array.isArray(data)
+          && data?.map(item => (
+            <div
+              className="relative flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-2 border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]"
+              key={item.id}
+            >
+              <p className="font-sans text-[20px] leading-[1.3] text-white">
+                {item.title}
+              </p>
+              <div className="absolute bottom-[12px] right-[12px] z-10 flex gap-[32px]">
+                <button
+                  onClick={() => {
+                    setIsDeleting(true);
+                    setCurrentId(item.id.toString());
+                  }}
+                  className="flex size-[32px] items-center justify-center bg-white"
+                >
+                  <svg width={28} height={28}>
+                    <use href="/Icons/sprite.svg#icon-drop"></use>
+                  </svg>
+                </button>
+                <button className="flex size-[32px] items-center justify-center bg-white">
+                  <Link
+                    href={`/admin/specializations/edit/${item.id}`}
                   >
                     <svg width={28} height={28}>
-                      <use href="/Icons/sprite.svg#icon-drop"></use>
+                      <use href="/Icons/sprite.svg#icon-pen"></use>
                     </svg>
-                  </button>
-                  <button className="flex h-[32px] w-[32px] items-center justify-center bg-white">
-                    <Link
-                      href={`/admin/specializations/edit/${item.id}`}
-                    >
-                      <svg width={28} height={28}>
-                        <use href="/Icons/sprite.svg#icon-pen"></use>
-                      </svg>
-                    </Link>
-                  </button>
-                </div>
+                  </Link>
+                </button>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </section>
       {(isFetching || isLoading) && <Loader />}
@@ -122,6 +123,6 @@ const Specializations = () => {
       )}
     </div>
   );
-};
+}
 
 export default Specializations;

@@ -1,17 +1,17 @@
-export type authLoginType = {
+export interface authLoginType {
   email: string;
   password: string;
   role: string;
   access_token: string;
-};
-export type forgotPasswordType = {
+}
+export interface forgotPasswordType {
   email: string;
   token: string;
-};
+}
 
-export type resetPasswordType = {
+export interface resetPasswordType {
   password: string;
-};
+}
 
 export interface IUser {
   id: string;

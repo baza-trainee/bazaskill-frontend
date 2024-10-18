@@ -1,31 +1,37 @@
 'use client';
 
-import React, { useState } from 'react';
-import {
-  useForm,
-  Controller,
+import type {
   SubmitHandler,
 } from 'react-hook-form';
-import { z } from 'zod';
+import type { z } from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import { settingsScheme } from './editSettingsScheme';
-import { defaultValuesEdit } from './editSettingsDefaultValues';
-import { changePassword } from '@/api/settings';
-import { AxiosError } from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
+
+import type { IUser } from '@/types/singIn';
+
+import { changePassword } from '@/api/settings';
 import { getProfile } from '@/api/signIn';
 import { constants } from '@/constants';
-import Link from 'next/link';
-import PageTitle from '../ui/PageTitle';
+
+import Loader from '../../shared/loader/Loader';
+import SuccessAlert from '../alerts/SuccessAlert';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import SuccessAlert from '../alerts/SuccessAlert';
-import Loader from '../../shared/loader/Loader';
-import { IUser } from '@/types/singIn';
+import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
 import { defaultValues } from './defaultValues';
+import { defaultValuesEdit } from './editSettingsDefaultValues';
+import { settingsScheme } from './editSettingsScheme';
 
-const EditSettings = () => {
+function EditSettings() {
   const {
     handleSubmit,
     control,
@@ -55,18 +61,20 @@ const EditSettings = () => {
           newPassword: values.newPassword,
         },
       });
-      if (response.status == 200) {
+      if (response.status === 200) {
         defaultValues.password = values.newPassword;
         setShowModal(true);
       }
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
           setError('Некоректно введений попередній пароль');
           setTimeout(() => {
             setError('');
           }, 3000);
-        } else {
+        }
+        else {
           console.log(error);
           setError('Помилка сервера');
           setTimeout(() => {
@@ -74,7 +82,8 @@ const EditSettings = () => {
           }, 3000);
         }
       }
-    } finally {
+    }
+    finally {
       setError('');
     }
     reset();
@@ -85,7 +94,8 @@ const EditSettings = () => {
     reset();
   };
 
-  if (isFetching) return <Loader />;
+  if (isFetching)
+    return <Loader />;
 
   return (
     <div className="relative p-[24px]">
@@ -146,11 +156,13 @@ const EditSettings = () => {
                 )}
               />
             </div>
-            {error.length ? (
-              <p className="text-[1.2rem] text-error">
-                {error}
-              </p>
-            ) : null}
+            {error.length
+              ? (
+                  <p className="text-[1.2rem] text-error">
+                    {error}
+                  </p>
+                )
+              : null}
           </div>
 
           <div className="flex w-full justify-between">
@@ -179,6 +191,6 @@ const EditSettings = () => {
       </div>
     </div>
   );
-};
+}
 
 export default EditSettings;

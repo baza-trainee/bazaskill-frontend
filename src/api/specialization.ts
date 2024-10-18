@@ -1,56 +1,54 @@
-import {
+import type {
   ISpecializationWithStack,
   Specialization,
 } from '@/types/specialization/index';
+
 import axios from '@/config/axios';
 
-export const getSpecializationsWithStack = async () => {
+export async function getSpecializationsWithStack() {
   const { data } = await axios.get<
     ISpecializationWithStack[]
   >('/specialization/stack');
   return data;
-};
+}
 
-export const getSpecializations = async () => {
+export async function getSpecializations() {
   const { data } = await axios.get<Specialization[]>(
-    '/specialization'
+    '/specialization',
   );
   return data;
-};
+}
 
-export const getSpecializationById = async (id: string) => {
+export async function getSpecializationById(id: string) {
   const { data } = await axios.get<Specialization[]>(
-    `/specialization/${id}`
+    `/specialization/${id}`,
   );
   return data;
-};
+}
 
-export const createSpecialization = async (data: {
+export async function createSpecialization(data: {
   title: string;
-}) => {
+}) {
   const response = await axios.post(
     '/specialization',
-    data
+    data,
   );
   return response;
-};
+}
 
-export const updateSpecialization = async (
-  id: string,
-  data: {
-    title: string;
-  }
-) => {
+export async function updateSpecialization(id: string, data: {
+  title: string;
+}) {
   const response = await axios.patch(
     `/specialization/${id}`,
-    data
+    data,
   );
   return response;
-};
+}
 
-export const deleteSpecialization = async (id: string) => {
+export async function deleteSpecialization(id: string) {
   const response = await axios.delete(
-    `/specialization/${id}`
+    `/specialization/${id}`,
   );
   return response;
-};
+}

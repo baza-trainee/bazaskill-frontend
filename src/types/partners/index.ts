@@ -7,10 +7,10 @@ export interface IPartners {
 
 export type PartnersFormInput = Omit<IPartners, 'id'>;
 
-export type TPartner = {
+export interface TPartner {
   id: string;
   name: string;
   image_url: string;
   partner_url: string;
   public_cloudinary_id: string;
-};
+}

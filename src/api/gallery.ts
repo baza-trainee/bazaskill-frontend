@@ -1,17 +1,18 @@
-import axios from '@/config/axios';
-import { IImage } from '@/types/gallery';
+import type { IImage } from '@/types/gallery';
 
-export const getImages = async () => {
+import axios from '@/config/axios';
+
+export async function getImages() {
   const { data } = await axios.get<IImage[]>('/gallery');
   return data;
-};
+}
 
-export const createImage = async (formData: FormData) => {
+export async function createImage(formData: FormData) {
   const { data } = await axios.post('/gallery', formData);
   return data;
-};
+}
 
-export const deleteImage = async (id: string) => {
+export async function deleteImage(id: string) {
   const { data } = await axios.delete(`/gallery/${id}`);
   return data;
-};
+}

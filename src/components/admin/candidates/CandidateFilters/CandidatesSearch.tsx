@@ -1,22 +1,23 @@
-/* eslint-disable no-unused-vars */
-import React, { ChangeEvent, useState } from 'react';
+import type { ChangeEvent } from 'react';
 
-const CandidatesSearch = ({
+import React, { useState } from 'react';
+
+function CandidatesSearch({
   SubmitHandler,
 }: {
   SubmitHandler: (data: string) => void;
-}) => {
-  const [searchKeyword, setSearchKeyword] =
-    useState<string>('');
+}) {
+  const [searchKeyword, setSearchKeyword]
+    = useState<string>('');
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>
+    e: ChangeEvent<HTMLInputElement>,
   ) => {
     setSearchKeyword(e.target.value);
   };
 
   const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault();
     SubmitHandler(searchKeyword);
@@ -24,7 +25,7 @@ const CandidatesSearch = ({
   };
 
   return (
-    <div className="flex h-[120px] items-center justify-between pl-[24px] pr-[24px] 4xl:pr-[196px]">
+    <div className="flex h-[120px] items-center justify-between px-[24px] 4xl:pr-[196px]">
       <h1 className="font-tahoma text-[40px] font-[700] text-white">
         Всі кандидати
       </h1>
@@ -51,6 +52,6 @@ const CandidatesSearch = ({
       </form>
     </div>
   );
-};
+}
 
 export default CandidatesSearch;

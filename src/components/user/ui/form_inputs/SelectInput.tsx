@@ -1,19 +1,23 @@
-/* eslint-disable no-unused-vars */
 'use client';
-import React, {
+import type {
   ForwardedRef,
+} from 'react';
+import type { ActionMeta } from 'react-select';
+
+import React, {
   forwardRef,
   useState,
 } from 'react';
+import Select from 'react-select';
 
-import Select, { ActionMeta } from 'react-select';
-import { selectStyles } from './selectStyles';
 import DropdownIndicator from '@/components/shared/icons/DropdownIndicator';
 
-export type Option = {
+import { selectStyles } from './selectStyles';
+
+export interface Option {
   value: string;
   label: string;
-};
+}
 
 interface SelectInputProps {
   value: string;
@@ -24,7 +28,7 @@ interface SelectInputProps {
   errorText?: string;
   onChange: (value: string) => void;
 }
-const SelectInput = forwardRef(function SelectInput(
+const SelectInput = forwardRef((
   {
     options,
     onChange,
@@ -34,8 +38,8 @@ const SelectInput = forwardRef(function SelectInput(
     isRequired,
     errorText,
   }: SelectInputProps,
-  _ref: ForwardedRef<HTMLInputElement>
-) {
+  _ref: ForwardedRef<HTMLInputElement>,
+) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMenuOpen = () => {
@@ -48,15 +52,16 @@ const SelectInput = forwardRef(function SelectInput(
 
   const handleChange = (
     newValue: unknown,
-    _actionMeta: ActionMeta<unknown>
+    _actionMeta: ActionMeta<unknown>,
   ) => {
     if (
-      typeof newValue === 'object' &&
-      newValue !== null &&
-      'value' in newValue
+      typeof newValue === 'object'
+      && newValue !== null
+      && 'value' in newValue
     ) {
       onChange((newValue as Option).value);
-    } else {
+    }
+    else {
       onChange('');
     }
   };
@@ -75,11 +80,11 @@ const SelectInput = forwardRef(function SelectInput(
       )}
       <Select
         isClearable
-        defaultValue={''}
+        defaultValue=""
         id={placeholder}
         styles={selectStyles}
         options={options}
-        value={options.find((c) => c.value === value)}
+        value={options.find(c => c.value === value)}
         onChange={handleChange}
         placeholder={placeholder}
         onMenuOpen={handleMenuOpen}
@@ -87,12 +92,12 @@ const SelectInput = forwardRef(function SelectInput(
         components={{
           DropdownIndicator: isValueSelected
             ? null
-            : (props) => (
-                <DropdownIndicator
-                  isOpen={isOpen}
-                  {...props}
-                />
-              ),
+            : props => (
+              <DropdownIndicator
+                isOpen={isOpen}
+                {...props}
+              />
+            ),
         }}
       />
       {isRequired && errorText && (

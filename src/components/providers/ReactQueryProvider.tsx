@@ -2,10 +2,11 @@
 
 import {
   dehydrate,
+  HydrationBoundary,
   QueryClient,
   QueryClientProvider,
-  HydrationBoundary,
 } from '@tanstack/react-query';
+
 import { getAllCandidates } from '@/api/candidates';
 import { constants } from '@/constants';
 

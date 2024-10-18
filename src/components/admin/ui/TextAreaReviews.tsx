@@ -1,10 +1,14 @@
 'use client';
-import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
 } from 'react';
+
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 
 interface TextAreaReviewsProps
   extends InputHTMLAttributes<HTMLTextAreaElement> {
@@ -14,7 +18,7 @@ interface TextAreaReviewsProps
   isRequired?: boolean;
 }
 
-const TextAreaReviews = forwardRef(function TextAreaReviews(
+const TextAreaReviews = forwardRef((
   {
     title,
     errorText,
@@ -22,8 +26,8 @@ const TextAreaReviews = forwardRef(function TextAreaReviews(
     isRequired,
     ...rest
   }: TextAreaReviewsProps,
-  _ref: ForwardedRef<HTMLInputElement>
-) {
+  _ref: ForwardedRef<HTMLInputElement>,
+) => {
   const inputClassName = `bg-[#efefef] mt-[8px] 2xl:w-[290px] 3xl:w-[320px] w-[240px] 4xl:w-[350px] 5xl:w-[442px] h-[200px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 py-[16px] pl-[16px] pr-[40px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] hover:bg-[#ebfcee] 
 ${
   errorText
@@ -58,7 +62,7 @@ ${
         />
 
         <div className="absolute right-[16px] top-[24px]">
-          <WriteIcon className="h-[24px] w-[24px] fill-black" />
+          <WriteIcon className="size-[24px] fill-black" />
         </div>
       </div>
       {errorText && (

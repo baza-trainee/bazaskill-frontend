@@ -1,31 +1,32 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import type {
+  SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import {
+  Controller,
+  useForm,
+} from 'react-hook-form';
 
 import { createPost } from '@/api/posts';
 
-import {
-  Controller,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { postScheme } from './postScheme';
-import { TPostScheme } from './postScheme';
+import type { TPostScheme } from './postScheme';
 
-import PageTitle from '../ui/PageTitle';
-import TextInput from '../ui/TextInput';
-import FileInputPost from '../ui/FileInputPost';
-import TextAreaArticle from '../ui/TextAreaArticle';
-
+import SuccessAlert from '../alerts/SuccessAlert';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import SuccessAlert from '../alerts/SuccessAlert';
+import FileInputPost from '../ui/FileInputPost';
+import PageTitle from '../ui/PageTitle';
+import TextAreaArticle from '../ui/TextAreaArticle';
+import TextInput from '../ui/TextInput';
 import PostPreview from './PostPreview';
+import { postScheme } from './postScheme';
 
-const AddPosts = () => {
+function AddPosts() {
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -57,12 +58,13 @@ const AddPosts = () => {
   };
 
   useEffect(() => {
-    if (!file) return;
+    if (!file)
+      return;
     setImagePreview(file);
   }, [file]);
 
   const onSubmit: SubmitHandler<TPostScheme> = async (
-    data
+    data,
   ) => {
     try {
       setIsProcessing(true);
@@ -84,11 +86,13 @@ const AddPosts = () => {
       }
       setIsProcessing(false);
       reset();
-    } catch (error) {
+    }
+    catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    } finally {
+    }
+    finally {
       setIsProcessing(false);
     }
   };
@@ -104,7 +108,7 @@ const AddPosts = () => {
 
   return (
     <div className="pl-[24px] pt-[20px]">
-      <PageTitle title={'Додати статтю'} />
+      <PageTitle title="Додати статтю" />
       <section className="pt-[50px]">
         <form
           className="flex flex-col gap-[50px]"
@@ -201,6 +205,6 @@ const AddPosts = () => {
       </section>
     </div>
   );
-};
+}
 
 export default AddPosts;

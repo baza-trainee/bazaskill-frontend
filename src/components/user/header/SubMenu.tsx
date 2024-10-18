@@ -1,26 +1,34 @@
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import {
-  useForm,
-  SubmitHandler,
-  FieldValues,
-} from 'react-hook-form';
-import CustomInput from './CustomInput';
-import {
+import type {
   Dispatch,
   RefObject,
   SetStateAction,
+} from 'react';
+import type {
+  FieldValues,
+  SubmitHandler,
+} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import Cookies from 'js-cookie';
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import {
   useEffect,
   useState,
 } from 'react';
-import { useFilters } from '@/stores/useFilters';
-import { SpecializationStack } from '@/types/specialization';
-import { useCookies } from '@/stores/useCookies';
-import { useLocale } from 'next-intl';
-import Cookies from 'js-cookie';
+import {
+  useForm,
+} from 'react-hook-form';
+import * as z from 'zod';
 
-const SubMenu = ({
+import type { SpecializationStack } from '@/types/specialization';
+
+import { useCookies } from '@/stores/useCookies';
+import { useFilters } from '@/stores/useFilters';
+
+import CustomInput from './CustomInput';
+
+function SubMenu({
   inputs,
   reference,
   setIsOpen,
@@ -28,14 +36,14 @@ const SubMenu = ({
   inputs: SpecializationStack[];
   reference: RefObject<HTMLFormElement>;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+}) {
   const router = useRouter();
   const locale = useLocale();
   const { setFilterByStack } = useFilters();
 
-  const isCookie = useCookies((state) => state.isCookies);
-  const [isCookiesAccepted, setIsCookiesAccepted] =
-    useState(false);
+  const isCookie = useCookies(state => state.isCookies);
+  const [isCookiesAccepted, setIsCookiesAccepted]
+    = useState(false);
 
   useEffect(() => {
     setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
@@ -64,7 +72,7 @@ const SubMenu = ({
 
   return (
     <form
-      className=" absolute left-0 top-[100%] flex max-h-[300px] w-[250px] flex-col  rounded-[4px] rounded-tl-none border-[2px] border-[#4E4E4E] bg-[#202020] xl:group-last/item:w-[230px] 3xl:group-last/item:w-[250px] "
+      className=" absolute left-0 top-full flex max-h-[300px] w-[250px] flex-col  rounded-[4px] rounded-tl-none border-2 border-[#4E4E4E] bg-[#202020] xl:group-last/item:w-[230px] 3xl:group-last/item:w-[250px] "
       onSubmit={handleSubmit(onSubmit)}
       ref={reference}
     >
@@ -79,7 +87,7 @@ const SubMenu = ({
       </div>
       <button
         disabled={!isCookiesAccepted}
-        className="relative mx-auto my-[14px] flex h-[36px] w-[72%] items-center justify-center rounded-[6px] border-[2px] border-yellow text-[16px] leading-[36px] text-yellow"
+        className="relative mx-auto my-[14px] flex h-[36px] w-[72%] items-center justify-center rounded-[6px] border-2 border-yellow text-[16px] leading-[36px] text-yellow"
       >
         Знайти
       </button>
@@ -88,6 +96,6 @@ const SubMenu = ({
       </span>
     </form>
   );
-};
+}
 
 export default SubMenu;

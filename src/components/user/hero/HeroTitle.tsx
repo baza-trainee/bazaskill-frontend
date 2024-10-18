@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useMessages } from 'next-intl';
 import { TypeAnimation } from 'react-type-animation';
 
-const HeroTitle = () => {
+function HeroTitle() {
   const messages: any = useMessages();
 
   return (
@@ -30,6 +29,6 @@ const HeroTitle = () => {
       repeat={Infinity}
     />
   );
-};
+}
 
 export default HeroTitle;

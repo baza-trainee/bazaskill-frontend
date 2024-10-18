@@ -1,19 +1,20 @@
 import { createPortal } from 'react-dom';
-import { useModal } from '@/stores/useModal';
-import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+
 import CloseIcon from '@/components/shared/icons/CloseIcon';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { useModal } from '@/stores/useModal';
 
 interface ModalProps {
   children: React.ReactNode;
   handleClose: () => void;
 }
 
-const RegisterModal = ({
+function RegisterModal({
   children,
   handleClose,
-}: ModalProps) => {
+}: ModalProps) {
   const isModalOpen = useModal(
-    (state) => state.isModalOpen
+    state => state.isModalOpen,
   );
 
   useBodyScrollLock(isModalOpen);
@@ -23,7 +24,7 @@ const RegisterModal = ({
       <div className="relative max-h-[90vh] w-[88%] overflow-y-auto rounded-lg bg-white scrollbar-none sm:w-[90.5%] md:max-h-[95vh] md:max-w-[632px] xl:max-w-[900px] 5xl:max-w-[964px]">
         <div
           onClick={handleClose}
-          className="absolute right-[1rem] top-[1rem] h-[1.5rem] w-[1.5rem] cursor-pointer"
+          className="absolute right-4 top-4 size-6 cursor-pointer"
         >
           <CloseIcon />
         </div>
@@ -34,10 +35,10 @@ const RegisterModal = ({
 
   return (
     <>
-      {isModalOpen &&
-        createPortal(<ModalLayout />, document.body)}
+      {isModalOpen
+      && createPortal(<ModalLayout />, document.body)}
     </>
   );
-};
+}
 
 export default RegisterModal;

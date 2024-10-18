@@ -1,16 +1,19 @@
 'use client';
-import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
-import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
 import React from 'react';
-import { TPartner } from '@/types/partners';
-import PartnersCard from './PartnersCard';
-import PageTitle from '../ui/PageTitle';
-import { constants } from '@/constants';
-import { getPartners } from '@/api/partners';
-import Loader from '../../shared/loader/Loader';
 
-const Partners = () => {
+import type { TPartner } from '@/types/partners';
+
+import { getPartners } from '@/api/partners';
+import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
+import { constants } from '@/constants';
+
+import Loader from '../../shared/loader/Loader';
+import PageTitle from '../ui/PageTitle';
+import PartnersCard from './PartnersCard';
+
+function Partners() {
   const { data } = useQuery({
     queryKey: [constants.partners.FETCH_PARTNERS],
     queryFn: getPartners,
@@ -20,15 +23,15 @@ const Partners = () => {
     return <Loader />;
   }
   return (
-    <section className="no-scrollbar h-[100vh] max-h-[100vh] w-full overflow-auto p-[24px]">
+    <section className="no-scrollbar h-screen max-h-screen w-full overflow-auto p-[24px]">
       <PageTitle title="Партнери" />
 
       <div className="mt-[80px] flex flex-wrap gap-[25px]">
         <Link
           href="/admin/partners/add"
-          className="flex h-[286px] w-[286px] flex-col items-center justify-center rounded-[6px] border-4 border-[#fefffe]"
+          className="flex size-[286px] flex-col items-center justify-center rounded-[6px] border-4 border-[#fefffe]"
         >
-          <PlusIcon className="h-[123px] w-[123px] stroke-[#4DC760]" />
+          <PlusIcon className="size-[123px] stroke-[#4DC760]" />
           <p className="ml-[10px] font-sans text-[20px] leading-[1.3] text-[#4DC760]">
             Додати партнера
           </p>
@@ -45,6 +48,6 @@ const Partners = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Partners;

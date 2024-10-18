@@ -1,10 +1,14 @@
 'use client';
-import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
-import {
+import type {
   ForwardedRef,
   InputHTMLAttributes,
+} from 'react';
+
+import {
   forwardRef,
 } from 'react';
+
+import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 
 interface TextInputPartnerProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -16,7 +20,7 @@ interface TextInputPartnerProps
 }
 
 const TextInputPartner = forwardRef(
-  function TextInputPartner(
+  (
     {
       title,
       errorText,
@@ -25,8 +29,8 @@ const TextInputPartner = forwardRef(
       isIcon,
       ...rest
     }: TextInputPartnerProps,
-    _ref: ForwardedRef<HTMLInputElement>
-  ) {
+    _ref: ForwardedRef<HTMLInputElement>,
+  ) => {
     const inputClassName = `bg-[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] text-[#020202] text-[16px]
    hover:bg-[#ebfcee] 
 ${
@@ -38,7 +42,7 @@ ${
 
     return (
       <div
-        className={` 5x:w-[597px] w-[420px] font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+        className={` 5x:w-[597px] w-[420px] font-sans font-normal tracking-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}
       >
         {!!title && (
           <label
@@ -73,7 +77,7 @@ ${
         )}
       </div>
     );
-  }
+  },
 );
 
 TextInputPartner.displayName = 'TextInputPartner';

@@ -1,22 +1,25 @@
-import { useTranslations, useLocale } from 'next-intl';
-import BackToPrevious from './BackButton';
-import { CandidatesResponse } from '@/types/candidates';
+import { useLocale, useTranslations } from 'next-intl';
+
+import type { CandidatesResponse } from '@/types/candidates';
+
 import { useModal } from '@/stores/useModal';
 
-type CandidateHeroProps = {
-  candidate: CandidatesResponse;
-};
+import BackToPrevious from './BackButton';
 
-const CandidateHero = ({
+interface CandidateHeroProps {
+  candidate: CandidatesResponse;
+}
+
+function CandidateHero({
   candidate,
-}: CandidateHeroProps) => {
+}: CandidateHeroProps) {
   const locale = useLocale();
   const t = useTranslations('Candidate');
   const { openModal } = useModal();
 
   return (
     <div className="container flex flex-col gap-[40px] pt-[24px] xl:flex-row xl:justify-between">
-      <div className="flex  w-[100%]  flex-col xl:w-[68%] xl:max-w-[830px]">
+      <div className="flex  w-full  flex-col xl:w-[68%] xl:max-w-[830px]">
         <BackToPrevious />
         <div className="flex items-center gap-[24px]">
           <svg width={40} height={30}>
@@ -35,7 +38,9 @@ const CandidateHero = ({
               : candidate?.name}
           </h2>
           <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
-            ID {candidate?.uniqueId}
+            ID
+            {' '}
+            {candidate?.uniqueId}
           </span>
           {/* <span className="flex h-[50px] max-w-[140px] items-center justify-center rounded-[2px] bg-[#2C2C2C] px-[10px] text-[20px] font-[700] text-white opacity-[.8]">
             <a href={candidate.cv} target="_blank">
@@ -44,33 +49,40 @@ const CandidateHero = ({
           </span> */}
         </div>
 
-        {candidate?.about ? (
-          <div className="mt-[60px] flex flex-col">
-            <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">
-              {t('about')}
-            </h3>
-            <span className="mt-[32px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-              {candidate?.about}
-            </span>
-          </div>
-        ) : null}
+        {candidate?.about
+          ? (
+              <div className="mt-[60px] flex flex-col">
+                <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">
+                  {t('about')}
+                </h3>
+                <span className="mt-[32px] font-sans text-[20px] font-[400] leading-[28px] text-white">
+                  {candidate?.about}
+                </span>
+              </div>
+            )
+          : null}
       </div>
       <div className="w-full sm:w-[310px] xl:w-[29%] xl:max-w-[350px]">
-        <div className="flex w-full flex-col gap-[16px] rounded-[8px] border-[1px] border-white px-[24px] py-[24px]">
+        <div className="flex w-full flex-col gap-[16px] rounded-[8px] border border-white p-[24px]">
           <h3 className="font-tahoma text-[24px] font-[700] text-white">
-            {candidate?.sallary_form}-
-            {candidate?.sallary_to} $
+            {candidate?.sallary_form}
+            -
+            {candidate?.sallary_to}
+            {' '}
+            $
           </h3>
           <div className="flex h-[40px] items-center gap-[20px]">
             <svg width={15} height={20}>
               <use href="/Icons/sprite.svg#icon-place"></use>
             </svg>
             <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
-              {candidate?.city}, {candidate?.country}
+              {candidate?.city}
+              ,
+              {candidate?.country}
             </span>
           </div>
 
-          {candidate?.candidate_language.map((lang) => (
+          {candidate?.candidate_language.map(lang => (
             <div
               key={lang.id}
               className="flex h-[40px] items-center gap-[20px]"
@@ -79,7 +91,8 @@ const CandidateHero = ({
                 <use href="/Icons/sprite.svg#icon-lang"></use>
               </svg>
               <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
-                {lang.language}:
+                {lang.language}
+                :
               </span>
               <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
                 {lang.level}
@@ -113,6 +126,6 @@ const CandidateHero = ({
       </div>
     </div>
   );
-};
+}
 
 export default CandidateHero;

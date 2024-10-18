@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderCaretDown = () => {
+function HeaderCaretDown() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,6 +15,6 @@ const HeaderCaretDown = () => {
       />
     </svg>
   );
-};
+}
 
 export default HeaderCaretDown;
