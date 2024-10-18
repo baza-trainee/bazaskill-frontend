@@ -1,1 +1,0 @@
-npm run ts-check && npm run lint:fix

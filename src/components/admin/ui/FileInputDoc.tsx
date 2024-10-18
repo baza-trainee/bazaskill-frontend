@@ -2,7 +2,7 @@
 
 import { UploadIcon } from 'lucide-react';
 import React, { forwardRef, useEffect, useState } from 'react';
-import { type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form';
+import { type FieldValues, useController, type UseControllerProps } from 'react-hook-form';
 
 type FileInputDocProps<T extends FieldValues> =
   Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> &
