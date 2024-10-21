@@ -1,6 +1,7 @@
 import declineWord from 'decline-word';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import type { CandidatesResponse } from '@/types/candidates';
 
@@ -13,18 +14,19 @@ function CandidatesList({
 }: {
   candidates: CandidatesResponse[];
 }) {
+  const { ref, inView } = useInView({});
   const [numberOnPage, setNumberOnPage] = useState(4);
 
   const increase = () => {
     setNumberOnPage(prev => prev + 4);
   };
 
-  const decrease = () => {
-    setNumberOnPage(4);
-  };
+  useEffect(() => {
+    increase();
+  }, [inView]);
 
   return (
-    <div className="no-scrollbar box-content max-h-[180vh] w-1/2 overflow-y-auto pr-[24px] 5xl:pr-[196px]">
+    <div className="no-scrollbar box-content max-h-[145vh] w-full overflow-y-auto pr-[24px] 5xl:pr-[196px]">
       <div className="pl-[24px] font-tahoma text-[24px]">
         {candidates.length}
         {' '}
@@ -57,7 +59,8 @@ function CandidatesList({
             />
           ))}
       </div>
-      {candidates.length > 4 && (
+      <div ref={ref} className="mx-auto h-4 w-full bg-black"></div>
+      {/* {candidates.length > 4 && (
         <div
           className="mx-auto mb-[94px] mt-[70px] flex w-4/5 items-center justify-center"
         >
@@ -83,7 +86,7 @@ function CandidatesList({
                 </svg>
               )}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

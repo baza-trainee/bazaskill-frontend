@@ -67,8 +67,6 @@ function DocumentsPage() {
 
   const currentValues = watch();
 
-  console.log(currentValues.terms_of_use[0].size);
-
   const handleClose = () => {
     setIsSuccess(false);
     reset();

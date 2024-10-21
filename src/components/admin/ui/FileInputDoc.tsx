@@ -1,51 +1,79 @@
 'use client';
 
-import { UploadIcon } from 'lucide-react';
-import React, { forwardRef, useEffect, useState } from 'react';
-import { type FieldValues, useController, type UseControllerProps } from 'react-hook-form';
+import {UploadIcon} from 'lucide-react';
+import {
+  ForwardedRef,
+  forwardRef,
+  useState,
+  InputHTMLAttributes,
+  useEffect,
+} from 'react';
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
 type FileInputDocProps<T extends FieldValues> =
-  Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> &
-  UseControllerProps<T> & {
-    title?: string;
-    isRequired?: boolean;
-    accept?: string;
-  };
+  InputHTMLAttributes<HTMLInputElement> &
+    UseControllerProps<T> & {
+      title?: string;
+      isRequired: boolean;
+      accept?: string;
+    };
 
-function FileInputDoc<T extends FieldValues>({
-  title,
-  placeholder,
-  control,
-  name,
-  rules,
-  isRequired = false,
-  accept,
-  ...rest
-}: FileInputDocProps<T>, ref: React.Ref<HTMLInputElement>) {
-  const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
+const FileInputDoc = forwardRef(function FileInputDoc<
+  T extends FieldValues,
+>(
+  {
+    title,
+    placeholder,
+    control,
+    name,
+    rules,
+    isRequired,
+    accept,
+    ...rest
+  }: FileInputDocProps<T>,
+  ref: ForwardedRef<HTMLInputElement>
+) {
+  const [selectedFileName, setSelectedFileName] = useState<
+    string | null
+  >(null);
 
-  const {
-    field,
-    fieldState: { error },
-  } = useController<T>({
+  const { field, formState } = useController<T>({
     name,
     control,
     rules,
   });
 
   useEffect(() => {
-    if (field.value && typeof field.value === 'object' && 'length' in field.value && field.value.length > 0) {
+    if (!field.value.length) {
+      setSelectedFileName('');
+    } else{
       setSelectedFileName(field.value[0].name);
     }
-    else {
-      setSelectedFileName(null);
-    }
-  }, [field.value]);
+  }, [field]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const errorText = (
+    formState.errors[name] as DeepMap<
+      FieldValues,
+      FieldError
+    >
+  )?.message;
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const files = event.target.files;
     if (files && files.length > 0) {
-      field.onChange(files);
+      const selectedFile = files[0];
+      setSelectedFileName(selectedFile.name);
+      if (files) {
+        field.onChange(files);
+      }
     }
   };
 
@@ -55,51 +83,65 @@ function FileInputDoc<T extends FieldValues>({
     }
   };
 
+  const inputClassName = `w-[286px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
+    hover:bg-[#ebfcee] 
+${
+  errorText
+    ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
+    : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
+}
+    `;
+
   return (
-    <div className="font-sans font-normal tracking-normal">
-      {title && (
+    <div
+      className={`overflow-hidden  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
+    >
+      {!!title && (
         <label
-          htmlFor={name}
-          className="mb-2 block text-lg leading-tight text-white"
+          htmlFor={title}
+          className="mb-[8px] block text-[20px]  leading-[1.4] text-white"
         >
           {title}
-          {isRequired && <span className="ml-1 text-red-500">*</span>}
+          {isRequired && (
+            <span className="text-error">*</span>
+          )}
         </label>
       )}
       <div
-        className={`bg-gray-100 hover:bg-green-50 focus-within:bg-gray-100 focus-within:border-green-500 relative h-11 w-full max-w-[286px] rounded-md transition-colors focus-within:border ${
-          error ? 'border border-red-500' : ''
-        }`}
+        className={inputClassName}
         onClick={handlePlaceholderClick}
       >
-        <span className="text-gray-500 pointer-events-none absolute inset-y-0 left-4 flex items-center truncate pr-8">
-          {selectedFileName || placeholder}
+        <span className="text-[16px] leading-[1.16] text-[#787878]">
+          {selectedFileName ? (
+            <span className="text-[#020202]">
+              {selectedFileName}
+            </span>
+          ) : (
+            placeholder
+          )}
         </span>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-md bg-white">
-          <UploadIcon className="text-gray-400 size-5" />
+        <div className="absolute -right-1 w-[13%] rounded-md top-0 h-full flex justify-center items-center z-0 bg-white">
+          <UploadIcon />
         </div>
         <input
           {...rest}
-          {...field}
           type="file"
-          id={name}
+          id={title}
           ref={ref}
           accept={accept}
-          className="sr-only"
+          className="absolute left-0 w-full cursor-pointer opacity-0"
           onChange={handleChange}
-          aria-invalid={!!error}
-          aria-describedby={`${name}-error`}
         />
       </div>
-      {error && (
-        <span id={`${name}-error`} className="mt-1 text-xs text-red-500">
-          {error.message}
+      {errorText && (
+        <span className="left top absolute text-xs">
+          {errorText}
         </span>
       )}
     </div>
   );
-}
+});
 
-export default forwardRef(FileInputDoc) as <T extends FieldValues>(
-  props: FileInputDocProps<T> & { ref?: React.Ref<HTMLInputElement> }
-) => React.ReactElement;
+FileInputDoc.displayName = 'FileInputDoc';
+
+export default FileInputDoc;
