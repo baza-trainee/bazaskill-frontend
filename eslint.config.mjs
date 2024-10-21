@@ -36,7 +36,7 @@ export default antfu({
     }],
   },
 }, ...compat.config({
-  extends: ['plugin:tailwindcss/recommended'],
+  extends: ['plugin:tailwindcss/recommended', 'prettier'],
   rules: {
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/no-contradicting-classname': 'off',

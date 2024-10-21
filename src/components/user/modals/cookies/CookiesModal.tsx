@@ -80,7 +80,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
             <button
               type="button"
               onClick={acceptCookies}
-              className="border-2border-green h-[36px] w-[180px] rounded-md text-green"
+              className="border-2 border-green h-[36px] w-[180px] rounded-md text-green"
             >
               Ok
             </button>
