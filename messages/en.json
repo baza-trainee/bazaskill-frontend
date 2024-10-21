@@ -1,4 +1,10 @@
 {
+  "Header":{
+    "about": "About us",
+    "why_juniors": "Why Juniors",
+    "candidates":"Candidates",
+    "contacts":"Contacts"
+  },
   "Main": {
     "banner": "The main hosting partner for Baza Trainee projects is HostIQ web hosting",
     "hero_section": {

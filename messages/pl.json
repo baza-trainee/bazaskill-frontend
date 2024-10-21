@@ -1,4 +1,10 @@
 {
+  "Header":{
+    "about": "Про нас",
+    "why_juniors": "Чому джуни",
+    "candidates":"Кандидати",
+    "contacts":"Контакти"
+  },
   "Main": {
     "banner": "Głównym partnerem hostingowym projektów Baza Trainee jest hosting HostIQ",
     "hero_section": {
