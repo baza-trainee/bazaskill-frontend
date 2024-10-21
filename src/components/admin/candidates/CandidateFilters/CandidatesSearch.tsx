@@ -21,7 +21,6 @@ function CandidatesSearch({
   ) => {
     e.preventDefault();
     SubmitHandler(searchKeyword);
-    setSearchKeyword('');
   };
 
   return (

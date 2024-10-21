@@ -38,12 +38,12 @@ import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
 
 import Stack from '../AddCandidate/Stack';
+import schema from '../schema';
 import BazaExperience from './BazaExperience';
 import defaultValues from './defaultValues';
 import FileInput from './FileInput';
 import Graduate from './Graduate';
 import Languages from './Languages';
-import schema from './schema';
 import SelectField from './SelectField';
 import TextInput from './TextInput';
 import Cources from './Сources';
