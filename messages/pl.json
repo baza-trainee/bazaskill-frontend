@@ -19,10 +19,10 @@
 		"contacts_description": "Baza Skill - Контакти"
 	},
   "Header":{
-    "about": "Про нас",
-    "why_juniors": "Чому джуни",
-    "candidates":"Кандидати",
-    "contacts":"Контакти"
+    "about": "O nas",
+    "why_juniors": "Dlaczego Juniorzy",
+    "candidates":"Kandydaci",
+    "contacts":"Łączność"
   },
   "Main": {
     "banner": "Głównym partnerem hostingowym projektów Baza Trainee jest hosting HostIQ",

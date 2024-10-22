@@ -56,6 +56,6 @@ body.lock {
 
 @layer utilities {
   .main-texture-background {
-    background-image: linear-gradient(180deg, rgba(33, 33, 33, 0.8) 60%, rgba(33, 33, 33, 0.8)),url('/background/background.png');
+    background-image: linear-gradient(180deg, rgba(33, 33, 33, 0.75) 60%, rgba(33, 33, 33, 0.75)),url('/background/background.png');
   }
 }
