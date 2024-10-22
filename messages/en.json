@@ -22,7 +22,12 @@
       "participants": "involved participants",
       "employed": "employed",
       "technologies": "technologies",
-      "libraries": "libraries"
+      "libraries": "libraries",
+      "candidates":"candidates",
+      "partners":"partners",
+      "visitors":"visitors",
+      "specialities":"specialities"
+    
     },
     "help": {
       "title": "We will help you find a worthy specialist",
