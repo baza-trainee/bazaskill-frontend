@@ -1,51 +1,99 @@
 'use client';
 
-import type {
-  UseQueryResult,
-} from '@tanstack/react-query';
+import Image from 'next/image';
 
-import {
-  useQuery,
-} from '@tanstack/react-query';
-import { useTranslations } from 'next-intl';
-
+import type { UseQueryResult } from '@tanstack/react-query';
 import type { TPartner } from '@/types/partners';
 
+import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { getPartners } from '@/api/partners';
 import { constants } from '@/constants';
 
-import Slider from './Slider/Slider';
+import './partners.css'
 
 const Partners: React.FC = () => {
   const t = useTranslations('Main.partners');
 
-  const partners: UseQueryResult<TPartner[], Error>
-    = useQuery({
-      queryKey: [constants.partners.FETCH_PARTNERS],
-      queryFn: getPartners,
-    });
+  // Fetch partners data using react-query
+  const { data: partners, isLoading, error }: UseQueryResult<TPartner[], Error> = useQuery({
+    queryKey: [constants.partners.FETCH_PARTNERS],
+    queryFn: getPartners,
+  });
+
+  // Render loading or error state
+  if (isLoading) return <div aria-live="polite">Loading...</div>;
+  if (error) return <div aria-live="polite">Error loading partners</div>;
 
   return (
-    <div className="4lx:max-w-screen-4xl container my-[50px] xs:max-w-screen-xs sm:max-w-screen-sm md:max-w-screen-md xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl 5xl:max-w-screen-5xl">
+    <section
+      className="my-[50px] xs:max-w-screen-xs sm:max-w-screen-sm md:max-w-screen-md xl:max-w-screen-xl 2xl:max-w-screen-2xl"
+      aria-labelledby="partners-title"
+    >
       <h2
-        className="mb-[53px] mt-[10px]
-          text-center
-          font-tahoma
-          text-[24px]
-          font-bold
-          not-italic
-          text-white
-          md:text-2xl
-          lg:text-[40px]"
+        id="partners-title"
+        className="mb-[53px] mt-[10px] text-center font-tahoma text-[24px] font-bold not-italic text-white md:text-2xl lg:text-[40px]"
       >
         {t('title')}
       </h2>
-      <div>
-        {partners.data && partners.data.length && (
-          <Slider partners={partners.data!} />
-        )}
+      <div className="relative flex gap-[3rem] flex-col overflow-hidden w-full py-10">
+        {/* Marquee row 1 */}
+        <div className="marquee flex" aria-live="polite" aria-atomic="true">
+          {partners && partners.length > 0 && partners.map((partner) => (
+            <figure key={partner.id} className="partner-item mx-4">
+              <Image
+                width={350}
+                height={150}
+                src={partner.image_url}
+                alt={partner.name}
+                className='w-full min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+              />
+              <figcaption className="sr-only">{partner.name}</figcaption>
+            </figure>
+          ))}
+          {partners && partners.length > 0 && partners.map((partner) => (
+            <figure key={`dup-${partner.id}`} className="partner-item mx-4">
+              <Image
+                width={350}
+                height={150}
+                src={partner.image_url}
+                alt={partner.name}
+                className='w-full min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+              />
+              <figcaption className="sr-only">{partner.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        {/* Marquee row 2 */}
+        <div className="marquee-right flex" aria-live="polite" aria-atomic="true">
+          {partners && partners.length > 0 && partners.map((partner) => (
+            <figure key={partner.id} className="partner-item mx-4">
+              <Image
+                width={350}
+                height={150}
+                src={partner.image_url}
+                alt={partner.name}
+                className='w-full min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+              />
+              <figcaption className="sr-only">{partner.name}</figcaption>
+            </figure>
+          ))}
+          {partners && partners.length > 0 && partners.map((partner) => (
+            <figure key={`dup-${partner.id}`} className="partner-item mx-4">
+              <Image
+                width={350}
+                height={150}
+                src={partner.image_url}
+                alt={partner.name}
+                className='w-full min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+              />
+              <figcaption className="sr-only">{partner.name}</figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

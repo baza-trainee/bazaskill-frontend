@@ -1,9 +1,10 @@
 'use client';
 
-import { useMessages } from 'next-intl';
+import { useMessages,useTranslations } from 'next-intl';
 import { TypeAnimation } from 'react-type-animation';
 
 function HeroTitle() {
+  const t = useTranslations('Main.hero_section')
   const messages: any = useMessages();
 
   return (
@@ -27,6 +28,9 @@ function HeroTitle() {
         fontWeight: 'bold',
       }}
       repeat={Infinity}
+      aria-live="polite"
+      aria-label={t('aria-label')}
+      role="heading"
     />
   );
 }

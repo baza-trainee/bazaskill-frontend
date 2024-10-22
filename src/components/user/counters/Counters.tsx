@@ -1,16 +1,17 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import CountUp from 'react-countup';
-import VisibilitySensor from 'react-visibility-sensor';
-import { Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import type { ICounters } from '@/types/counters';
 import { getCounters } from '@/api/counters';
 import { constants } from '@/constants';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -49,7 +50,6 @@ function CountersComp() {
       <h2 id="counters-heading" className="sr-only">
         {t('counters.heading')}
       </h2>
-
       <div className="relative mx-auto hidden justify-center md:flex xl:hidden" role="region" aria-label="Swiper counters navigation">
         <Swiper
           modules={[Navigation]}
