@@ -33,6 +33,7 @@
       "ukraine": "Ukraine",
       "poland": "Poland",
       "germany": "Germany",
+      "aria-label": "Specialist, Designer, Developer, QA, Project Manager",
       "title": {
         "main": "Find your",
         "specialist": "ІТ-specialist",
@@ -51,7 +52,8 @@
       "candidates":"candidates",
       "partners":"partners",
       "visitors":"visitors",
-      "specialities":"specialities"
+      "specialities":"specialities",
+      "heading":"our statistics"
     
     },
     "help": {

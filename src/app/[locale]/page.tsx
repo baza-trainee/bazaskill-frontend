@@ -14,9 +14,9 @@ async function Home() {
     <div className="mt-[110px] flex min-h-screen w-full flex-col items-center justify-center bg-graphite">
       <Hero />
       <Counters />
-      <Help />
-      <ContentCards />
-      <Candidates />
+      {/* <Help /> */}
+      {/* <ContentCards /> */}
+      {/* <Candidates /> */}
       <Partners />
       <Posts />
       <Testimonials />

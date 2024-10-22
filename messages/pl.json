@@ -33,6 +33,7 @@
       "ukraine": "Ukraina",
       "poland": "Polska",
       "germany": "Niemcy",
+      "aria-label": "Specjalista, Projektant, Deweloper, QA, Kierownik Projektu",
       "title": {
         "main": "Znajdź swojego",
         "specialist": "ІТ-fachowca",
@@ -51,7 +52,8 @@
       "candidates":"kandydatów",
       "partners":"partnerów",
       "visitors":"odwiedzających",
-      "specialities":"specjalności"
+      "specialities":"specjalności",
+      "heading":"nasze statystyki"
     },
     "help": {
       "title": "Pomożemy Ci znaleźć godnego specjalistę",
