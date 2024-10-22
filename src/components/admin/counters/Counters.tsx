@@ -128,7 +128,7 @@ function Counters() {
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    title="Живих проектів"
+                    title="Кандидатів"
                     placeholder="Введіть кількість"
                     errorText={errors.liveProject?.message}
                     isIcon
@@ -143,7 +143,7 @@ function Counters() {
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    title="Залучених учасників"
+                    title="Партнерів"
                     placeholder="Вкажіть кількість"
                     errorText={errors.members?.message}
                     isIcon
@@ -158,7 +158,7 @@ function Counters() {
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    title="Працевлаштовано"
+                    title="Відвідувачів"
                     placeholder="Вкажіть кількість"
                     errorText={errors.employed?.message}
                     isIcon
@@ -173,7 +173,7 @@ function Counters() {
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    title="Технологій"
+                    title="Спеціальностей"
                     placeholder="Вкажіть кількість"
                     errorText={errors.technologies?.message}
                     isIcon
@@ -181,14 +181,14 @@ function Counters() {
                 )}
               />
             </div>
-            <div>
+            <div className='hidden'>
               <Controller
                 name="libraries"
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    title="Бібліотек"
+                    title="Спеціальностей"
                     placeholder="Вкажіть кількість"
                     errorText={errors.libraries?.message}
                     isIcon
