@@ -4,6 +4,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import { NextIntlClientProvider } from 'next-intl';
 import {
   getMessages,
+  getTranslations,
   unstable_setRequestLocale,
 } from 'next-intl/server';
 import { Open_Sans } from 'next/font/google';
@@ -57,24 +58,17 @@ const mont = localFont({
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
+  const t = await getTranslations({
+    locale:params.locale, 
+    namespace: 'Metadata'
+  });
+
   return {
     title: {
-      default: `Baza Skill - ${
-        params.locale === 'ua'
-          ? 'рекрутинг junior спеціалістів'
-          : params.locale === 'en'
-            ? 'recruiting junior specialists'
-            : 'rekrutacja młodszych specjalistów'
-      }`,
+      default:t('main_title'),
       template: '%s',
     },
-    description: `BazaSkill ${
-      params.locale === 'ua'
-        ? 'Знайдіть нових зірок ★ серед junior-розробників! Ваш надійний провідник у світі ІТ талантів. Перевірені junior для роботи вже сьогодні ☎ +380956621073'
-        : params.locale === 'en'
-          ? 'Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073'
-          : 'Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073'
-    }`,
+    description: t('main_description'),
     icons: {
       icon: ['/favicon.ico?v=1'],
       apple: ['/apple-touch-icon.png?v=4'],

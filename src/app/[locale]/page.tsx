@@ -11,7 +11,7 @@ import Testimonials from '@/components/user/testimonials/Testimonials';
 
 async function Home() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center gap-2 bg-graphite">
+    <div className="mt-[110px] flex min-h-screen w-full flex-col items-center justify-center bg-graphite">
       <Hero />
       <Counters />
       <Help />

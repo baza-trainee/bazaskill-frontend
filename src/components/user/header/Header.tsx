@@ -1,70 +1,74 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
-
-import type { ISpecializationWithStack } from '@/types/specialization';
-
-import { getSpecializationsWithStack } from '@/api/specialization';
 import Logo from '@/components/shared/icons/Logo';
-import { constants } from '@/constants';
-
-import AffiliateBanner from './AffiliateBanner';
 import LanguageSwitcher from './LanguageSwitcher';
-import MenuItem from './MenuItem';
+import { usePathname } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
-function Header() {
-  const { data } = useQuery({
-    queryKey: [
-      constants.specialization
-        .FETCH_SPECIALIZATIONS_WITH_STACK,
-    ],
-    queryFn: getSpecializationsWithStack,
-  });
+export default function Header(): React.JSX.Element {
+  const t = useTranslations('Header');
+  const pathname = usePathname();
 
-  const sortedStack
-    = data && data?.sort((a, b) => b.id - a.id);
+  const isActive = (name: string):boolean =>{
+    return pathname.split('/').includes(name)
+  }
+
+  interface Item{
+    title: string;
+    pathname: string;
+    href: string;
+  }
+
+  const itemsLink: Item[] = [
+    {
+      title:'about',
+      pathname:'about',
+      href:'/about'
+    },
+    {
+      title:'why_juniors',
+      pathname:'why-juniors',
+      href:'/why-juniors'
+    },
+    {
+      title:'candidates',
+      pathname:'candidates',
+      href:'/candidates'
+    },
+    {
+      title:'contacts',
+      pathname:'contacts',
+      href:'/contacts'
+    }
+  ]
 
   return (
-    <div>
-      <AffiliateBanner />
-      <div className="container relative z-50 flex h-[80px] w-full items-center gap-[4px] border-b border-[#4E4E4E] bg-graphite xl:h-[100px] 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
-        <div className="flex w-full items-center xl:h-[40px] xl:w-[169px]">
+    <header className='fixed top-0 z-50 w-full bg-black border-b border-[#4E4E4E] px-9'>
+      {/* <AffiliateBanner /> */}
+      <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[30px]'>
+        <div className="flex items-center xl:h-[40px] xl:w-[169px]">
           <Link
             className="flex w-full justify-start md:justify-center "
             href="/"
-          >
-            <Logo className="ml-[-20px] scale-75 transition duration-500 md:ml-0 md:scale-100 md:hover:scale-110" />
-          </Link>
+            >
+           <Logo className="ml-[-20px] scale-75 transition duration-500 md:ml-0 md:scale-100 md:hover:scale-110" />
+         </Link>
         </div>
-
-        <div className="hidden grow justify-between gap-[4px]  xl:flex 2xl:gap-[23px] 3xl:gap-[42px] 4xl:gap-[90px] 5xl:gap-[208px]">
-          <nav className="flex grow justify-center gap-0 2xl:gap-[10px] 5xl:gap-[24px]">
-            {data
-            && Array.isArray(data)
-            && sortedStack?.map(
-              ({
-                id,
-                title,
-                stack,
-              }: ISpecializationWithStack) => (
-                <MenuItem
-                  key={id}
-                  title={title}
-                  inputs={stack}
-                />
-              ),
-            )}
-          </nav>
-
-          <LanguageSwitcher />
-        </div>
-        <div className="absolute right-[40px] flex h-full items-center xl:hidden">
-          <LanguageSwitcher />
-        </div>
+        <nav className='hidden items-center justify-center w-full md:flex gap-[3%] xl:gap-[6%]'>
+          {itemsLink.map((el)=>{
+            return (
+              <Link key={el.pathname}
+              className={`group duration-500 flex flex-col gap-0.5 hover:opacity-70 text-white text-open-sans text-lg font-semibold ${isActive(el.pathname) ? 'opacity-70' : ''}`}
+                href={el.href}>
+                <span className='px-2 text-nowrap'>{t(el.title)}</span>
+              <span className={`duration-500 h-[2px] bg-[#fff854] group-hover:w-full ${isActive(el.pathname) ? 'w-full' : 'w-0'}`}></span>  
+            </Link>
+            )
+          })}
+        </nav>
+        <LanguageSwitcher />
       </div>
-    </div>
-  );
+    </header>  
+  )
 }
-
-export default Header;

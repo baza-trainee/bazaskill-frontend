@@ -55,6 +55,7 @@ const config: Config = {
           'url(\'/public/img/workprocessdesk@1x.jpg\')',
         'contacts-tablet':
           'url(\'/public/img/contactstablet.jpg\')',
+        'hero-texture': "url(\'/public/background/background.png\')", 
       },
       backgroundPosition: {
         'pos-0': '100% 0%',

@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { IdPageProps } from '@/types';
 
 import Loader from '@/components/shared/loader/Loader';
+import { getTranslations } from 'next-intl/server';
 
 const DynamicPage = dynamic(
   () =>
@@ -18,13 +19,18 @@ const DynamicPage = dynamic(
 export async function generateMetadata({
   params,
 }: IdPageProps): Promise<Metadata> {
+  const t = await getTranslations({
+    locale:params.locale, 
+    namespace: 'Metadata'
+  });
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates/${params.id}`,
   );
   const candidate = await response.json();
   return {
-    title: `BazaSkill ${params.locale === 'pl' ? 'kandydat' : params.locale === 'en' ? 'candidate' : 'кандидат'} - ${candidate.name} ${candidate.specialization.title}`,
-    description: `${params.locale === 'pl' ? 'Strona kandydata' : params.locale === 'en' ? 'Candidate`s page' : 'Сторінка кандидата'} ${candidate.name} ${candidate.specialization.title}`,
+    title: `${t('candidate_title')} ${candidate.name} ${candidate.specialization.title}`,
+    description: `${t('candidate_description')} ${candidate.name} ${candidate.specialization.title}`,
   };
 }
 

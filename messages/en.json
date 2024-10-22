@@ -1,4 +1,29 @@
 {
+  "Metadata": {
+		"main_title": "Baza Skill - recruiting junior specialists",
+		"main_description": "Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073",
+    
+		"about_title": "Baza Skill - Про нас",
+		"about_description": "Baza Skill - Про нас",
+
+		"why_juniors_title": "Чому джуни",
+		"why_juniors_description": "Baza Skill - Чому джуни",
+
+		"candidates_title": "BazaSkill Candidates",
+		"candidates_description": "BazaSkill Candidates page on BazaSkill",
+
+		"candidate_title": "BazaSkill candidate -",
+		"candidate_description": "Candidate`s page",
+
+		"contacts_title": "Baza Skill - Контакти",
+		"contacts_description": "Baza Skill - Контакти"
+	},
+  "Header":{
+    "about": "About us",
+    "why_juniors": "Why Juniors",
+    "candidates":"Candidates",
+    "contacts":"Contacts"
+  },
   "Main": {
     "banner": "The main hosting partner for Baza Trainee projects is HostIQ web hosting",
     "hero_section": {

@@ -1,4 +1,29 @@
 {
+  "Metadata": {
+		"main_title": "Baza Skill - рекрутинг junior спеціалістів",
+		"main_description": "Знайдіть нових зірок ★ серед junior-розробників! Ваш надійний провідник у світі ІТ талантів. Перевірені junior для роботи вже сьогодні ☎ +380956621073",
+    
+		"about_title": "Baza Skill - Про нас",
+		"about_description": "Baza Skill - Про нас",
+
+		"why_juniors_title": "Чому джуни",
+		"why_juniors_description": "Baza Skill - Чому джуни",
+
+		"candidates_title": "BazaSkill Кандидати",
+		"candidates_description": "BazaSkill Сторінка кандидатів на BazaSkill",
+
+		"candidate_title": "BazaSkill кандидат -",
+		"candidate_description": "Сторінка кандидата",
+
+		"contacts_title": "Baza Skill - Контакти",
+		"contacts_description": "Baza Skill - Контакти"
+	},
+  "Header":{
+    "about": "Про нас",
+    "why_juniors": "Чому джуни",
+    "candidates": "Кандидати",
+    "contacts": "Контакти"
+  },
   "Main": {
     "banner": "Головний партнер розміщення проектів Baza Trainee - веб-хостинг HostIQ",
     "hero_section": {
