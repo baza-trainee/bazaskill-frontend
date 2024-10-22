@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-
+import { getTranslations } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 
 import type { PageProps } from '@/types';
@@ -16,9 +16,15 @@ const DynamicPage = dynamic(
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
+  
+  const t = await getTranslations({
+    locale:params.locale, 
+    namespace: 'Metadata'
+  });
+
   return {
-    title: `BazaSkill ${params.locale === 'pl' ? 'Kandydaci' : params.locale === 'en' ? 'Candidates' : 'Кандидати'} `,
-    description: `BazaSkill ${params.locale === 'pl' ? 'Strona kandydata na BazaSkill' : params.locale === 'en' ? 'Candidates page on BazaSkill' : 'Сторінка кандидатів на BazaSkill'} `,
+    title:  t('candidates_title'),
+    description: t('candidates_description'),
   };
 }
 

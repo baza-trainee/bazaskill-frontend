@@ -1,4 +1,23 @@
 {
+  "Metadata": {
+		"main_title": "Baza Skill - rekrutacja młodszych specjalistów",
+		"main_description": "Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073",
+    
+		"about_title": "Baza Skill - Про нас",
+		"about_description": "Baza Skill - Про нас",
+
+		"why_juniors_title": "Чому джуни",
+		"why_juniors_description": "Baza Skill - Чому джуни",
+
+		"candidates_title": "BazaSkill Kandydaci",
+		"candidates_description": "BazaSkill Strona kandydata na BazaSkill",
+
+		"candidate_title": "BazaSkill kandydat -",
+		"candidate_description": "Strona kandydata",
+
+		"contacts_title": "Baza Skill - Контакти",
+		"contacts_description": "Baza Skill - Контакти"
+	},
   "Header":{
     "about": "Про нас",
     "why_juniors": "Чому джуни",
