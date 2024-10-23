@@ -8,7 +8,7 @@ import NavHeader from './NavHeader';
 export default function Header(): React.JSX.Element {
 
   return (
-    <header className='fixed top-0 z-50 w-full bg-black'>
+    <header className='fixed top-0 z-50 w-screen bg-black'>
       <AffiliateBanner />
       <div className='px-8'>
         <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[16px] md:py-[25px]'>
