@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
       <form
         className="flex flex-col xs:gap-3 md:flex-row md:gap-0"
         autoComplete="off"
-        aria-label={t('search_form')}
+        aria-label={'search_form'}
       >
         <div className="relative flex w-full items-center">
           <TextInput
@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
           <button
             disabled={!isCookiesAccepted}
             className="main-gradient relative items-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
-            aria-label={t('search_disabled_button')}
+            aria-label={'search_button'}
           >
             <SearchIcon className="text-gray-500 absolute left-3 top-5" />
             {t('search')}
