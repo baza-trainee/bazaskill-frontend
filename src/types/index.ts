@@ -10,3 +10,10 @@ export interface IdPageProps {
     locale: string;
   };
 }
+
+export type TAdvantages = {
+  id: string
+  title: string;
+  text: string;
+  icon: string;
+}

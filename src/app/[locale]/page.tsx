@@ -1,3 +1,4 @@
+import Advantages from '@/components/user/advantages/Advantages';
 import Candidates from '@/components/user/candidates/Candidates';
 import Contacts from '@/components/user/contacts/Contacts';
 import ContentCards from '@/components/user/contentCards/ContentCards';
@@ -17,6 +18,7 @@ async function Home() {
       {/* <Help /> */}
       {/* <ContentCards /> */}
       {/* <Candidates /> */}
+      <Advantages/>
       <Partners />
       <Posts />
       <Testimonials />
