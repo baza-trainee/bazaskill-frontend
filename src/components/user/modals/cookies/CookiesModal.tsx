@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { VscChromeClose } from "react-icons/vsc";
 
 import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
@@ -63,8 +64,8 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
 
   return (
     showPanel && (
-      <div className="container fixed inset-x-0 bottom-0 z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
-        <div className="flex flex-col justify-between py-6">
+      <div className="container rounded-md fixed inset-x-0 bottom-0 z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
+        <div className="relative flex flex-col justify-between pt-9 py-6">
           <div className="mb-[25px] max-w-[564px] text-lg">
             {t('text')}
             {' '}
@@ -85,7 +86,15 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
               Ok
             </button>
           </div>
+
         </div>
+
+        <button 
+          type="button" 
+          onClick={()=>setShowPanel(false)}
+          className='absolute top-2 duration-300 hover:opacity-70 right-2 p-1'>
+            <VscChromeClose className='w-6 h-6 text-black'/>
+        </button>
       </div>
     )
   );

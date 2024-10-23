@@ -48,7 +48,7 @@ export default function Header(): React.JSX.Element {
     <header className='fixed top-0 z-50 w-full bg-black'>
       <AffiliateBanner />
       <div className='px-8'>
-        <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[14px] md:py-[25px] '>
+        <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[16px] md:py-[25px]'>
           <div className="flex items-center xl:h-[40px]">
             <Link
               className="flex w-full justify-start md:justify-center"
