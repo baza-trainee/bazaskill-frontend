@@ -1,12 +1,13 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+interface FooterLink {
+  href: string;
+  title: string;
+}
+
 export default function FooterLinks(): JSX.Element {
   const t = useTranslations('Main.footer');
-  interface FooterLink {
-    href: string;
-    title: string;
-  }
 
   const footerLinks: FooterLink[] = [
     { 

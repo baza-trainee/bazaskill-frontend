@@ -2,15 +2,11 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import { useEffect, useState } from 'react';
-
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
-import { useCookies } from '@/stores/useCookies';
 
-import Cookies from 'js-cookie';
 import TextInput from '../ui/TextInput';
 import DesktopIcon from '@/components/shared/icons/DesktopIcon';
 import Pointer from '@/components/shared/icons/Pointer';
@@ -22,12 +18,6 @@ const DynamicHeroTitle = dynamic(
 
 const Hero: React.FC = () => {
   const t = useTranslations('Main.hero_section');
-  const isCookie = useCookies(state => state.isCookies);
-  const [isCookiesAccepted, setIsCookiesAccepted] = useState(false);
-
-  useEffect(() => {
-    setIsCookiesAccepted(!!Cookies.get('cookiesAccepted'));
-  }, [isCookie]);
 
   const { data } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
@@ -89,25 +79,15 @@ const Hero: React.FC = () => {
           />
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
-        {isCookiesAccepted ? (
-          <Link
-            href={"/candidates"}
-            className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
-            aria-label={t('search_button')}
-          >
-            <SearchIcon className="text-gray-500 absolute left-3 top-6" />
-            <span>{t('search')}</span>
-          </Link>
-        ) : (
-          <button
-            disabled={!isCookiesAccepted}
-            className="main-gradient relative items-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
-            aria-label={'search_button'}
-          >
-            <SearchIcon className="text-gray-500 absolute left-3 top-5" />
-            {t('search')}
-          </button>
-        )}
+
+        <Link
+          href={"/candidates"}
+          className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
+          aria-label={t('search_button')}
+        >
+          <SearchIcon className="text-gray-500 absolute left-3 top-6" />
+          <span>{t('search')}</span>
+        </Link>
       </form>
     </section>
   );
