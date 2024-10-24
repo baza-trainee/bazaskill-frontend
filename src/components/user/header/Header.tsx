@@ -10,7 +10,7 @@ export default function Header(): React.JSX.Element {
   return (
     <header className='fixed top-0 z-50 w-screen bg-black'>
       <AffiliateBanner />
-      <div className='px-8'>
+      <div className='px-4 sm:px-5 md:px-8'>
         <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[16px] md:py-[25px]'>
           <div className="flex items-center xl:h-[40px]">
             <Link

@@ -70,9 +70,8 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
             {t('text')}
             {' '}
             <Link
-              className="text-base font-bold underline"
-              href={`/docs/${privacyPolicy?.title}`}
-            >
+              className="text-base font-bold underline duration-300 hover:text-blue-800"
+              href={`/docs/${privacyPolicy?.title}`}>
               {t('privacy_policy')}
             </Link>
           </div>
@@ -81,7 +80,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
             <button
               type="button"
               onClick={acceptCookies}
-              className="border-2 border-green h-[36px] w-[180px] rounded-md text-green"
+              className="border-2 border-green h-[36px] w-[180px] rounded-md text-green duration-300 hover:opacity-80"
             >
               Ok
             </button>
