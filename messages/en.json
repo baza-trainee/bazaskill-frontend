@@ -43,6 +43,13 @@
         "pm": "PM"
       }
     },
+    "history":{
+      "title": "Our Story",
+      "description_1": "The recruiting agency Baza Skill is part of the educational project Baza Trainee Ukraine, the purpose of which is to train, develop and confirm the professional skills of IT specialists.",
+      "description_2": "In the project, graduates of IT courses, switchers, students of technical universities practice in creating real digital products in a team.",
+      "description_3": "Each specialist represented here is ambitious in teamwork, has experience in developing a project from removing the requirements for release, has tried himself in different roles familiar during development and is familiar with all the difficulties and success at different life stages of the project.",
+      "description_4": "The Baza Skill platform will help you select an experienced IT specialist, since each of our candidates has already passed a confirmed practice at Baza Trainee Ukraine and receives our recommendation."
+    },
     "counters": {
       "live_projects": "live projects",
       "participants": "involved participants",

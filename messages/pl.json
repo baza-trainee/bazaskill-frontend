@@ -43,6 +43,13 @@
         "pm": "PMa"
       }
     },
+    "history":{
+      "title": "Nasza historia",
+      "description_1": "Agencja rekrutacyjna Baza Skill jest częścią projektu edukacyjnego Baza Trainee Ukraine, którego celem jest szkolenie, rozwijanie i potwierdzanie umiejętności zawodowych specjalistów IT.",
+      "description_2": "W projekcie absolwenci kursów IT, przełączników, studenci uniwersytetów technicznych ćwiczą w tworzeniu prawdziwych produktów cyfrowych w zespole.",
+      "description_3": "Każdy reprezentowany tutaj specjalista jest ambitny w pracy zespołowej, ma doświadczenie w opracowywaniu projektu przed usunięciem wymagań dotyczących wydania, próbował pełnić różne role znane podczas rozwoju i zna wszystkie trudności i sukcesy na różnych etapach życia projektu.",
+      "description_4": "Platforma Baza Skill pomoże Ci wybrać doświadczonego specjalistę IT, ponieważ każdy z naszych kandydatów zdał już potwierdzoną praktykę na Baza Trainee Ukraine i otrzymuje naszą rekomendację."
+    },
     "counters": {
       "live_projects": "projektów na żywo",
       "participants": "zaangażowanych uczestników",
