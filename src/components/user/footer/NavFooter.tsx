@@ -12,7 +12,7 @@ export default function NavFooter(): JSX.Element {
   }
 
   return (
-    <nav className='flex flex-col gap-2 md:gap-5 items-center md:items-start'>
+    <nav className='flex flex-col gap-2 md:gap-5 items-start'>
       {itemsLink.map((el)=>{
         return (
           <Link key={el.pathname}

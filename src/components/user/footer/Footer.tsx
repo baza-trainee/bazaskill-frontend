@@ -46,7 +46,7 @@ export default function Footer(): JSX.Element {
           <FooterLinks />
         </div>
         
-        <div className='flex items-center justify-between flex-col gap-5 min-[900px]:flex-row min-[900px]:gap-4'>
+        <div className='flex min-[900px]:items-center justify-between flex-col gap-5 min-[900px]:flex-row min-[900px]:gap-4'>
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
             href={`/docs/${privacyPolicy?.title}`}>
@@ -56,8 +56,7 @@ export default function Footer(): JSX.Element {
           <Link
             href="/"
             aria-label="logo-icon"
-            className="flex w-[80%] min-[900px]:w-[35%] xl:w-[40%] max-w-[560px]"
-          >
+            className="flex order-first min-[900px]:order-none mx-auto w-[80%] min-[900px]:w-[35%] xl:w-[40%] max-w-[560px]">
             <LogoFooter className="block"/>
           </Link>
 
