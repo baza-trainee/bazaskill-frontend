@@ -32,6 +32,34 @@ export function useContactsData() {
       return { ...acc, ...item };
     }, {} as IContacts);
 
+  const contactTel: IContactData[] = [
+    {
+      type: 'tel',
+      value: contact?.phone_1,
+      link: `tel:${contact?.phone_1}`,
+    },
+    {
+      type: 'tel',
+      value: contact?.phone_2,
+      link: `tel:${contact?.phone_2}`,
+    }
+  ];
+
+
+  const contactEmail: IContactData[] = [
+    {
+      type: 'email',
+      value: contact?.email,
+      link: `mailto:${contact?.email}`,
+    },
+    {
+      type: 'email',
+      value: 'cv@baza-skill.com.ua',
+      link: 'mailto:cv@baza-skill.com.ua',
+    },
+  ];
+
+
   const contactData: IContactData[] = [
     {
       type: 'tel',
@@ -55,11 +83,13 @@ export function useContactsData() {
     },
   ];
 
+
+
   const socialLinks: ISocialLinks[] = [
-    // {
-    //   icon: 'instagram',
-    //   link: contact?.instagram,
-    // },
+    {
+      icon: 'instagram',
+      link: contact?.instagram,
+    },
     {
       icon: 'lnkedIn',
       link: contact?.linkedin,
@@ -75,5 +105,5 @@ export function useContactsData() {
     },
   ];
 
-  return { contactData, socialLinks, isLoading, error };
+  return { contactData, contactTel, contactEmail, socialLinks, isLoading, error };
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from "next-intl/server";
 import type { PageProps } from '@/types';
+import Contacts from '@/components/user/contacts/Contacts';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata>{
   const t = await getTranslations({
@@ -16,5 +17,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ContactsPage(): JSX.Element {
   // Замінити на готові компоненти.
-  return <div>Contacts Page</div>
+  return <Contacts />
 }

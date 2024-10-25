@@ -16,7 +16,13 @@
 		"candidate_description": "Strona kandydata",
 
 		"contacts_title": "Baza Skill - Контакти",
-		"contacts_description": "Baza Skill - Контакти"
+		"contacts_description": "Baza Skill - Контакти",
+
+    "docs_privacy_policy_title": "Baza Skill - Polityka prywatności",
+		"docs_privacy_policy_description": "Baza Skill - Polityka prywatności",
+
+    "docs_terms_of_use_title": "Baza Skill - Warunki korzystania z serwisu",
+		"docs_terms_of_use_description": "Baza Skill - Warunki korzystania z serwisu"
 	},
   "Header":{
     "about": "O nas",

@@ -4,6 +4,13 @@ export interface PageProps {
   };
 }
 
+export interface DocsPageProps {
+  params: {
+    locale: string;
+    title: string;
+  };
+}
+
 export interface IdPageProps {
   params: {
     id: string;
