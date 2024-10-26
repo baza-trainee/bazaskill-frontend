@@ -16,7 +16,13 @@
 		"candidate_description": "Сторінка кандидата",
 
 		"contacts_title": "Baza Skill - Контакти",
-		"contacts_description": "Baza Skill - Контакти"
+		"contacts_description": "Baza Skill - Контакти",
+
+    "docs_privacy_policy_title": "Baza Skill - Політика конфіденційності",
+		"docs_privacy_policy_description": "Baza Skill - Політика конфіденційності",
+
+    "docs_terms_of_use_title": "Baza Skill - Правила користування сайтом",
+		"docs_terms_of_use_description": "Baza Skill - Правила користування сайтом"
 	},
   "Header":{
     "about": "Про нас",
@@ -34,6 +40,7 @@
       "poland": "Польща",
       "germany": "Німеччина",
       "aria-label": "Спеціаліст, дизайнер, розробник, QA, менеджер проекту",
+      "search_button":"кнопка пошук",
       "title": {
         "main": "Знайди свого",
         "specialist": "ІТ-фахівця",
@@ -92,9 +99,6 @@
     },
     "testimonials": {
       "title": "Відгуки"
-    },
-    "contacts": {
-      "title": "Контакти"
     },
     "footer": {
       "offer": "За крок до офферу",
@@ -176,7 +180,16 @@
     "error": "На жаль, щось пішло не так, спробуйте пізніше",
     "tryagain": "Cпробувати ще раз"
   },
-
+  "Contacts": {
+    "title": "Контакти",
+    "address": "Адреса",
+    "street": "вул. Петропавлівська, 15,",
+    "city": "м.Київ, 04086,",
+    "country": "Україна",
+    "phone_numbers": "Телефони",
+    "email_addresses": "Email пошта",
+    "social_networks": "Ми в соцмережах"
+  },
   "Error": {
     "title": "Вибачте, сторінка, яку ви шукаєте, переміщена або видалена",
     "button": "На головну"

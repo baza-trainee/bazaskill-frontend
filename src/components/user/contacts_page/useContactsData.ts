@@ -7,12 +7,12 @@ import type { IContacts } from '@/types/contacts';
 import { getContact } from '@/api/contacts';
 import { constants } from '@/constants';
 
-interface IContactData {
+export interface IContactData {
   type: string;
   value?: string;
   link: string;
 }
-interface ISocialLinks {
+export interface ISocialLinks {
   icon: string;
   link?: string;
 }
@@ -32,17 +32,20 @@ export function useContactsData() {
       return { ...acc, ...item };
     }, {} as IContacts);
 
-  const contactData: IContactData[] = [
+  const contactTel: IContactData[] = [
     {
       type: 'tel',
       value: contact?.phone_1,
-      link: `tel:${contact?.phone_1}`,
+      link: `tel:${contact?.phone_1.replace(/\s+/g, '')}`,
     },
     {
       type: 'tel',
       value: contact?.phone_2,
-      link: `tel:${contact?.phone_2}`,
-    },
+      link: `tel:${contact?.phone_2.replace(/\s+/g, '')}`,
+    }
+  ];
+
+  const contactEmail: IContactData[] = [
     {
       type: 'email',
       value: contact?.email,
@@ -56,10 +59,10 @@ export function useContactsData() {
   ];
 
   const socialLinks: ISocialLinks[] = [
-    // {
-    //   icon: 'instagram',
-    //   link: contact?.instagram,
-    // },
+    {
+      icon: 'instagram',
+      link: contact?.instagram,
+    },
     {
       icon: 'lnkedIn',
       link: contact?.linkedin,
@@ -75,5 +78,5 @@ export function useContactsData() {
     },
   ];
 
-  return { contactData, socialLinks, isLoading, error };
+  return { contactTel, contactEmail, socialLinks, isLoading, error };
 }

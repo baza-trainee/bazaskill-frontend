@@ -16,7 +16,13 @@
 		"candidate_description": "Candidate`s page",
 
 		"contacts_title": "Baza Skill - Контакти",
-		"contacts_description": "Baza Skill - Контакти"
+		"contacts_description": "Baza Skill - Контакти",
+
+    "docs_privacy_policy_title": "Baza Skill - Privacy policy",
+		"docs_privacy_policy_description": "Baza Skill - Privacy policy",
+
+    "docs_terms_of_use_title": "Baza Skill - Terms of use",
+		"docs_terms_of_use_description": "Baza Skill - Terms of use"
 	},
   "Header":{
     "about": "About us",
@@ -34,6 +40,7 @@
       "poland": "Poland",
       "germany": "Germany",
       "aria-label": "Specialist, Designer, Developer, QA, Project Manager",
+      "search_button":"search button",
       "title": {
         "main": "Find your",
         "specialist": "ІТ-specialist",
@@ -93,9 +100,6 @@
     },
     "testimonials": {
       "title": "Testimonials"
-    },
-    "contacts": {
-      "title": "Contacts"
     },
     "footer": {
       "offer": "One step to the offer",
@@ -176,6 +180,16 @@
     },
     "error": "Oops... something went wrong, try again later",
     "tryagain": "Try again"
+  },
+  "Contacts": {
+    "title": "Contacts",
+    "address": "Address",
+    "street": "Petropavlivska St. 15,",
+    "city": "Kyiv, 04086,",
+    "country": "Ukraine",
+    "phone_numbers": "Telephones",
+    "email_addresses": "Email mail",
+    "social_networks": "We are on social networks"
   },
   "Error": {
     "title": "We apologize, but the page you are looking for has been deleted or replaced",

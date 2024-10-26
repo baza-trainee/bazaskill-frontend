@@ -16,7 +16,13 @@
 		"candidate_description": "Strona kandydata",
 
 		"contacts_title": "Baza Skill - Контакти",
-		"contacts_description": "Baza Skill - Контакти"
+		"contacts_description": "Baza Skill - Контакти",
+
+    "docs_privacy_policy_title": "Baza Skill - Polityka prywatności",
+		"docs_privacy_policy_description": "Baza Skill - Polityka prywatności",
+
+    "docs_terms_of_use_title": "Baza Skill - Warunki korzystania z serwisu",
+		"docs_terms_of_use_description": "Baza Skill - Warunki korzystania z serwisu"
 	},
   "Header":{
     "about": "O nas",
@@ -34,6 +40,7 @@
       "poland": "Polska",
       "germany": "Niemcy",
       "aria-label": "Specjalista, Projektant, Deweloper, QA, Kierownik Projektu",
+      "search_button":"przycisk wyszukiwania",
       "title": {
         "main": "Znajdź swojego",
         "specialist": "ІТ-fachowca",
@@ -92,9 +99,6 @@
     },
     "testimonials": {
       "title": "Opinie"
-    },
-    "contacts": {
-      "title": "Kontakty"
     },
     "footer": {
       "offer": "Za krok do oferty",
@@ -175,6 +179,16 @@
     },
     "error": "Ups... coś poszło nie tak, spróbuj ponownie później",
     "tryagain": "Spróbuj ponownie"
+  },
+  "Contacts": {
+    "title": "Kontakty",
+    "address": "Adres",
+    "street": "ul. Pietropawłowska 15,",
+    "city": "Kijów, 04086,",
+    "country": "Ukraine",
+    "phone_numbers": "Telefony",
+    "email_addresses": "Poczta e-mail",
+    "social_networks": "Jesteśmy w sieciach społecznościowych"
   },
   "Error": {
     "title": "Przepraszamy, strona, której szukasz, została przeniesiona lub usunięta",

@@ -23,7 +23,7 @@ html {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 body.lock {
@@ -40,6 +40,26 @@ body.lock {
     @apply bg-gradient-to-r from-green via-green to-yellow bg-size-200 bg-pos-0  transition-all duration-500 hover:bg-pos-100;
   }
 }
+/* Прихований заголовок */
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+.contact{
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
