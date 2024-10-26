@@ -1,12 +1,13 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+interface FooterLink {
+  href: string;
+  title: string;
+}
+
 export default function FooterLinks(): JSX.Element {
   const t = useTranslations('Main.footer');
-  interface FooterLink {
-    href: string;
-    title: string;
-  }
 
   const footerLinks: FooterLink[] = [
     { 
@@ -24,7 +25,7 @@ export default function FooterLinks(): JSX.Element {
   ]
 
   return (
-    <div className="flex flex-col gap-2 md:gap-5 items-center md:items-start">
+    <div className="flex flex-col gap-2 md:gap-5 items-start">
       {footerLinks.map((el)=>{
         return (
           <Link  
