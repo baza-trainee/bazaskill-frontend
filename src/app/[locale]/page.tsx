@@ -13,7 +13,7 @@ import Testimonials from '@/components/user/testimonials/Testimonials';
 
 async function Home() {
   return (
-    <div className="mt-[80px] md:mt-[100px] flex min-h-screen w-full flex-col items-center justify-center bg-graphite">
+    <div className="mt-[80px] md:mt-[140px] flex min-h-screen w-full flex-col items-center justify-center bg-graphite">
       <Hero />
       <OurHistory/>
       <Counters />

@@ -93,9 +93,6 @@
     "testimonials": {
       "title": "Testimonials"
     },
-    "contacts": {
-      "title": "Contacts"
-    },
     "footer": {
       "offer": "One step to the offer",
       "about_us": "About us",
@@ -175,6 +172,16 @@
     },
     "error": "Oops... something went wrong, try again later",
     "tryagain": "Try again"
+  },
+  "Contacts": {
+    "title": "Contacts",
+    "address": "Address",
+    "street": "Petropavlivska St. 15,",
+    "city": "Kyiv, 04086,",
+    "country": "Ukraine",
+    "phone_numbers": "Telephones",
+    "email_addresses": "Email mail",
+    "social_networks": "We are on social networks"
   },
   "Error": {
     "title": "We apologize, but the page you are looking for has been deleted or replaced",

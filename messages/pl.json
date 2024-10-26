@@ -92,9 +92,6 @@
     "testimonials": {
       "title": "Opinie"
     },
-    "contacts": {
-      "title": "Kontakty"
-    },
     "footer": {
       "offer": "Za krok do oferty",
       "about_us": "O nas",
@@ -174,6 +171,16 @@
     },
     "error": "Ups... coś poszło nie tak, spróbuj ponownie później",
     "tryagain": "Spróbuj ponownie"
+  },
+  "Contacts": {
+    "title": "Kontakty",
+    "address": "Adres",
+    "street": "ul. Pietropawłowska 15,",
+    "city": "Kijów, 04086,",
+    "country": "Ukraine",
+    "phone_numbers": "Telefony",
+    "email_addresses": "Poczta e-mail",
+    "social_networks": "Jesteśmy w sieciach społecznościowych"
   },
   "Error": {
     "title": "Przepraszamy, strona, której szukasz, została przeniesiona lub usunięta",

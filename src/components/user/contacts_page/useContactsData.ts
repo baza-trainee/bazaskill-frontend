@@ -7,12 +7,12 @@ import type { IContacts } from '@/types/contacts';
 import { getContact } from '@/api/contacts';
 import { constants } from '@/constants';
 
-interface IContactData {
+export interface IContactData {
   type: string;
   value?: string;
   link: string;
 }
-interface ISocialLinks {
+export interface ISocialLinks {
   icon: string;
   link?: string;
 }
@@ -36,15 +36,14 @@ export function useContactsData() {
     {
       type: 'tel',
       value: contact?.phone_1,
-      link: `tel:${contact?.phone_1}`,
+      link: `tel:${contact?.phone_1.replace(/\s+/g, '')}`,
     },
     {
       type: 'tel',
       value: contact?.phone_2,
-      link: `tel:${contact?.phone_2}`,
+      link: `tel:${contact?.phone_2.replace(/\s+/g, '')}`,
     }
   ];
-
 
   const contactEmail: IContactData[] = [
     {
@@ -58,32 +57,6 @@ export function useContactsData() {
       link: 'mailto:cv@baza-skill.com.ua',
     },
   ];
-
-
-  const contactData: IContactData[] = [
-    {
-      type: 'tel',
-      value: contact?.phone_1,
-      link: `tel:${contact?.phone_1}`,
-    },
-    {
-      type: 'tel',
-      value: contact?.phone_2,
-      link: `tel:${contact?.phone_2}`,
-    },
-    {
-      type: 'email',
-      value: contact?.email,
-      link: `mailto:${contact?.email}`,
-    },
-    {
-      type: 'email',
-      value: 'cv@baza-skill.com.ua',
-      link: 'mailto:cv@baza-skill.com.ua',
-    },
-  ];
-
-
 
   const socialLinks: ISocialLinks[] = [
     {
@@ -105,5 +78,5 @@ export function useContactsData() {
     },
   ];
 
-  return { contactData, contactTel, contactEmail, socialLinks, isLoading, error };
+  return { contactTel, contactEmail, socialLinks, isLoading, error };
 }
