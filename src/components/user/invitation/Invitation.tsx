@@ -7,7 +7,8 @@ import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
 import RegisterModal from '../modals/RegisterModal';
 
-const Invitation = () => {  const t = useTranslations('Main.invitation');
+const Invitation = () => {
+  const t = useTranslations('Main.invitation');
   const isModalOpen = useModal((state) => state.isModalOpen);
   const modalType = useModal((state) => state.modalType);
   const { closeModal, openModal } = useModal();
@@ -32,10 +33,10 @@ const Invitation = () => {  const t = useTranslations('Main.invitation');
         >
           <div className="flex flex-col justify-center items-center gap-4 text-center">
             <h3 id="hr-invitation-title" className="text-[24px] font-[700]">
-           {t('card1_title')}
+              {t('card1_title')}
             </h3>
             <p className="text-[20px] leading-[28px]">
-            {t('card1_text')}
+              {t('card1_text')}
             </p>
           </div>
           <button
@@ -46,10 +47,12 @@ const Invitation = () => {  const t = useTranslations('Main.invitation');
                 value: 'User opened "To become HR" form',
               });
             }}
-            className="border border-green px-4 py-2"
-            aria-label="Open form to join as HR"
+            className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
+            aria-label="Open form to join as Partner"
           >
-            {t('button')}
+            <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition-all">
+              {t('button')}
+            </span>
           </button>
         </div>
 
@@ -61,10 +64,10 @@ const Invitation = () => {  const t = useTranslations('Main.invitation');
         >
           <div className="flex flex-col justify-center items-center gap-4 text-center">
             <h3 id="partner-invitation-title" className="text-[24px] font-[700]">
-            {t('card2_title')}
+              {t('card2_title')}
             </h3>
             <p className="text-[20px] leading-[28px]">
-            {t('card2_text')}
+              {t('card2_text')}
             </p>
           </div>
           <button
@@ -75,17 +78,19 @@ const Invitation = () => {  const t = useTranslations('Main.invitation');
                 value: 'User opened "To become partner" form',
               });
             }}
-            className="border border-green px-4 py-2"
+            className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
             aria-label="Open form to join as Partner"
           >
-            {t('button')}
+            <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition-all">
+              {t('button')}
+            </span>
           </button>
         </div>
       </div>
 
       {/* Conditional Modals */}
       {isModalOpen && modalType === 'hr' && (
-        <RegisterModal handleClose={closeModal}  aria-labelledby="hr-modal-title">
+        <RegisterModal handleClose={closeModal} aria-labelledby="hr-modal-title">
           <h2 id="hr-modal-title" className="sr-only">
             HR Registration Form
           </h2>
@@ -93,7 +98,7 @@ const Invitation = () => {  const t = useTranslations('Main.invitation');
         </RegisterModal>
       )}
       {isModalOpen && modalType === 'partner' && (
-        <RegisterModal handleClose={closeModal}  aria-labelledby="partner-modal-title">
+        <RegisterModal handleClose={closeModal} aria-labelledby="partner-modal-title">
           <h2 id="partner-modal-title" className="sr-only">
             Partner Registration Form
           </h2>
