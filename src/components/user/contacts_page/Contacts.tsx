@@ -23,11 +23,8 @@ export default function Contacts(): JSX.Element {
       </div>
 
       <div className='container w-full py-10 md:py-24 flex justify-center lg:justify-between flex-wrap gap-8 lg:gap-1 bg-no-repeat bg-cover bg-fixed main-texture-background '>
-
         <PhoneNumbersBlock contactTel={contactTel}/>
-
         <EmailAddressesBlock contactEmail={contactEmail}/>
-
         <SocialNetworksBlock socialLinks={socialLinks}/>
       </div>
     </section>

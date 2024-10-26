@@ -6,6 +6,7 @@ import type { IdPageProps } from '@/types';
 
 import Loader from '@/components/shared/loader/Loader';
 import { getTranslations } from 'next-intl/server';
+import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
 
 const DynamicPage = dynamic(
   () =>
@@ -38,6 +39,7 @@ async function Candidate({ params }: IdPageProps) {
   return (
     <div className="min-h-screen bg-graphite">
       <DynamicPage id={params.id} />
+      <CookiesModal />
     </div>
   );
 }

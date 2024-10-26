@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { PageProps } from '@/types';
 
 import Loader from '@/components/shared/loader/Loader';
+import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
 
 const DynamicPage = dynamic(
   () =>
@@ -32,6 +33,7 @@ async function CandidatesPage() {
   return (
     <div className="flex justify-center overflow-x-hidden bg-graphite p-2 pt-[45px] text-white md:pl-[40px] xl:justify-start xl:pl-[64px]">
       <DynamicPage />
+      <CookiesModal />
     </div>
   );
 }

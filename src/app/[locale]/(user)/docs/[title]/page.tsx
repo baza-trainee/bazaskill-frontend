@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import type { DocsPageProps } from '@/types';
 
 import { PDFView } from '@/components/user/PdfView';
+import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
 
 export async function generateMetadata({ params }: DocsPageProps): Promise<Metadata>{
   const t = await getTranslations({
@@ -19,7 +20,12 @@ export async function generateMetadata({ params }: DocsPageProps): Promise<Metad
 function DocsPage({
   params,
 }: DocsPageProps) {
-  return <PDFView document={params.title} />;
+  return (
+    <>
+      <PDFView document={params.title} />
+      <CookiesModal />
+    </>
+  )
 }
 
 export default DocsPage;
