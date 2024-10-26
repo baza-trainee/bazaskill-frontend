@@ -18,6 +18,7 @@ import { constants } from '@/constants';
 
 import ErrorPage from '../shared/ErrorPage';
 import Loader from '../shared/loader/Loader';
+import CloseIcon from '../shared/icons/CloseIcon';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -84,9 +85,15 @@ export function PDFView({
   return (
     <div>
       <div
-        className="mx-auto flex size-full flex-col items-center justify-center xl:w-2/3"
+        className="mx-auto relative flex size-full flex-col items-center justify-center xl:w-2/3"
         ref={pdfWrapperRef}
       >
+        <button 
+          type="button" 
+          onClick={router.back}
+          className='absolute z-20 top-7 duration-300 hover:opacity-70 right-2 p-1'>
+            <CloseIcon />
+        </button>
         <Document
           loading={<Loader />}
           file={documentUrl}
