@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { ICounters } from '@/types/counters';
 import { getCounters } from '@/api/counters';
@@ -26,6 +26,9 @@ interface Counters {
 function CountersComp() {
   const t = useTranslations('Main');
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [hasCounted, setHasCounted] = useState(false);
+
+
 
   const { data, isFetching } = useQuery<ICounters[], Error>({
     queryKey: [constants.counters.FETCH_COUNTERS],
@@ -65,16 +68,28 @@ function CountersComp() {
           loop={true}
           className="countersSlide max-h-full max-w-[1006px]"
         >
-          {counters.map(({ id, count, title }) => (
-            <SwiperSlide key={id} className="text-center">
+          {counters.map(({ id, count, title }) => {
+              useEffect(() => {
+                if (!hasCounted) {
+                  setHasCounted(true);
+                }
+              }, [count, hasCounted]);
+            return(
+              <SwiperSlide key={id} className="text-center">
               <div>
                 <h3 className="text-[40px] font-bold text-white">
-                  <CountUp end={count} duration={2} redraw={true} formattingFn={value => `${value}+`} />
+                  <CountUp end={count} 
+                  duration={2} 
+                  redraw={false} 
+                  formattingFn={value => `${value}+`}    
+                  onEnd={() => setHasCounted(true)}
+                  start={hasCounted ? count : 0} />
                 </h3>
                 <p className="custom-line-height text-2xl text-white md:text-xl">{id === 4 ? title.replace('залучених ', '') : title}</p>
               </div>
             </SwiperSlide>
-          ))}
+            )
+          })}
         </Swiper>
         <button className="prev-counters swiper-button-prev absolute left-0" aria-label="Previous counters" />
         <button className="next-counters swiper-button-next absolute right-0" aria-label="Next counters" />

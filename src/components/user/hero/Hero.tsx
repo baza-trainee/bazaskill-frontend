@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
         <Link
           href={"/candidates"}
           className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
-          aria-label={t('search_button')}
+          aria-label={'search button'}
         >
           <SearchIcon className="text-gray-500 absolute left-3 top-6" />
           <span>{t('search')}</span>
