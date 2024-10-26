@@ -5,6 +5,7 @@ import ContentCards from '@/components/user/contentCards/ContentCards';
 import Counters from '@/components/user/counters/Counters';
 import Help from '@/components/user/help/Help';
 import Hero from '@/components/user/hero/Hero';
+import Invitation from '@/components/user/invitation/Invitation';
 import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
 import { OurHistory } from '@/components/user/our_history/OurHistory';
 import Partners from '@/components/user/partners/Partners';
@@ -21,6 +22,7 @@ async function Home() {
       {/* <ContentCards /> */}
       {/* <Candidates /> */}
       <Advantages/>
+      <Invitation/>
       <Partners />
       <Posts />
       <Testimonials />

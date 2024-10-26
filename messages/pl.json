@@ -65,6 +65,14 @@
     "advantages":{
       "title":"Korzyści ze współpracy z nami"
     },
+    "invitation":{
+      "title": "Zapraszamy do współpracy",
+      "button": "Dołączyć",
+      "card1_title": "Zostań naszym HR",
+      "card2_title": "Zostań naszym partnerem",
+      "card1_text":"Jesteś rekruterem i szukasz młodych talentów do swojej firmy? W Baza Skill możesz znaleźć młodszego specjalistę dzięki elastycznemu systemowi wyszukiwania.",
+      "card2_text":"Razem możemy osiągnąć nowe szczyty! Dołącz do naszej sieci partnerskiej."
+    },
     "help": {
       "title": "Pomożemy Ci znaleźć godnego specjalistę",
       "paragraph_1": "Platforma Baza Skill pomoże Ci znaleźć doświadczonego specjalistę w dziedzinie IT, gdyż każdy z naszych kandydatów ma już za sobą poważną praktykę w Baza Trainee Ukraine.",

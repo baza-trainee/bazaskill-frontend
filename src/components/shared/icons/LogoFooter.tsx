@@ -25,44 +25,44 @@ const LogoFooter: React.FC<LogoProps> = ({ className }) => {
   <path d="M539.4 82.2381H558.5V91.7302H528.679V44.2698H539.4V82.2381Z" fill="url(#paint9_linear_8903_283)" />
   <defs>
     <linearGradient id="paint0_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint1_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint2_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint3_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint4_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint5_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint6_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint7_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint8_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
     <linearGradient id="paint9_linear_8903_283" x1="253.5" y1="67.9999" x2="355.167" y2="67.9999" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4DC760" />
-      <stop offset="1" stop-color="#FFF854" />
+      <stop stopColor="#4DC760" />
+      <stop offset="1" stopColor="#FFF854" />
     </linearGradient>
   </defs>
     </svg>

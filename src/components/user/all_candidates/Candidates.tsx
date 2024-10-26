@@ -9,7 +9,6 @@ import {
 } from '@tanstack/react-query';
 import {
   useEffect,
-  useLayoutEffect,
   useState,
 } from 'react';
 
@@ -36,10 +35,8 @@ function Candidates() {
   });
 
   const {
-    setFilters,
     setFilterByCountry,
     setFilterBySpeciality,
-    setFilterByStack,
   } = useFilters();
 
   const speciality = useFilters(
@@ -50,25 +47,24 @@ function Candidates() {
     state.country.toLowerCase().trim(),
   );
 
-  const filters = useFilters(state => state.filters);
-
-  const stack = useFilters(state => state.stack);
-
   const inputCountry = translateCountryName(country);
 
   const [filteredCandidates, setFilteredCandidates]
     = useState<CandidatesResponse[]>([]);
+
   const [isMainFilter, setIsMainFilter] = useState(false);
 
-  useLayoutEffect(() => {
-    if (!speciality && !country && filters.length === 0) {
+  useEffect(() => {
+    if (!speciality && !country ) {
       setFilteredCandidates(
         candidates.data as CandidatesResponse[],
       );
     }
   }, [candidates.data]);
 
+
   useEffect(() => {
+    if(!speciality && !country) return
     filterCandidatesByMainFilters({
       candidates,
       setFilteredCandidates,
@@ -79,37 +75,10 @@ function Candidates() {
     });
   }, [speciality, country, candidates.data]);
 
-  useEffect(() => {
-    if (!stack.length)
-      return;
-    const selectedStack: string[] = stack || [];
-
-    const filtered = candidates?.data?.filter(
-      (candidate) => {
-        const candidateStacks = candidate.stack;
-        const hasSelectedStacks = candidateStacks.map(
-          stackItem => stackItem.stack?.title,
-        );
-        const anyMatch = stack.some(item =>
-          hasSelectedStacks.includes(item),
-        );
-        return selectedStack?.length >= 1 ? anyMatch : true;
-      },
-    );
-    setFilteredCandidates(filtered || []);
-  }, [candidates.data, stack]);
-
-  useEffect(() => {
-    if (filters.length) {
-      setFilteredCandidates(filters);
-    }
-  }, [filters]);
 
   const onSubmit = (data: FieldValues) => {
     setFilterByCountry('');
     setFilterBySpeciality('');
-    setFilterByStack([]);
-    setFilters([]);
     const filtered = filterCandidatesOnSubmit({
       data,
       candidates,
@@ -118,7 +87,6 @@ function Candidates() {
       isMainFilter,
     });
     setFilteredCandidates(filtered || []);
-    setFilters(filtered);
     setIsMainFilter(false);
   };
 

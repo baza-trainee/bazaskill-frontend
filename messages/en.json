@@ -66,6 +66,14 @@
     "advantages":{
       "title":"Benefits of working with us"
     },
+    "invitation":{
+      "title": "We invite you to cooperate",
+      "button": "Apply now",
+      "card1_title": "Become our HR",
+      "card2_title": "Become our partner",
+      "card1_text":"Are you a recruiter looking for young talent for your company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
+      "card2_text":"Together we can reach new heights! Join our partner network."
+    },
     "help": {
       "title": "We will help you find a worthy specialist",
       "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
