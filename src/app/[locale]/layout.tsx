@@ -130,7 +130,7 @@ export default async function RootLayout({
             messages={messages}
           >
             <LayoutProvider>
-              <main className="min-h-screen">
+              <main className="min-h-screen bg-graphite">
                 {children}
               </main>
             </LayoutProvider>
