@@ -1,10 +1,9 @@
 'use client';
 import { Pagination } from 'swiper/modules';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import type { IPost } from '@/types/posts';
-
-import { formatDate } from '@/components/admin/posts/dateHelper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,48 +13,52 @@ import './posts-swiper.css';
 function PostsCarousel({ data }: { data: IPost[] }) {
   return (
     <Swiper
-      slidesPerView="auto"
+      simulateTouch={true}
+      touchRatio={1}
       pagination={{
         clickable: true,
       }}
       modules={[Pagination]}
-      spaceBetween={25}
-      className="posts-swiper md:!hidden"
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 25,
+        },
+        1700: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+      }}
+      className="posts-swiper"
     >
       {data.map((post) => {
-        const creationDate = formatDate(post.created_at);
 
         return (
           <SwiperSlide key={post.id}>
-            <article
-              key={post.id}
-              className="relative mx-auto h-[320px] max-w-[442px] flex-col justify-between overflow-hidden rounded-md border-2 border-[#7EFE92]"
-            >
-              <div className="relative">
-                <img
-                  src={post.image_url}
-                  alt={post.title}
-                  className="h-[150px] w-full object-cover grayscale"
-                />
-                <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
-                  {creationDate}
-                </p>
+            <article className="mx-auto flex flex-col-reverse lg:flex-row justify-start items-start h-[600px] lg:h-[336px] w-[350px] sm:w-[500px] xl:w-[592px] 4xl:w-[500px] overflow-hidden rounded-lg bg-black text-white shadow-lg">
+              <div className="flex w-full lg:w-1/2 flex-col justify-between p-6 min-h-[300px]">
+                <div className='relative'>
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    className=""
+                  >
+                    <h2 className="mb-4 text-2xl font-bold text-center">{post.title}</h2>
+                  </a>
+                  <p className="text-sm">{post.text}</p>
+                </div>
               </div>
-              <p className="absolute left-0 top-0 z-10 w-[104px] rounded-br-lg bg-dateBlack/40 p-2 text-center text-white">
-                {creationDate}
-              </p>
-              <a
-                href={post.link}
-                target="_blank"
-                className="absolute inset-x-0 bottom-0 z-10 block h-[69%] bg-black p-6"
+              <div
+                className="relative w-full min-h-[336px] lg:w-1/2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${post.image_url})` }}
               >
-                <h4 className=" overflow-hidden pb-6 text-center text-xl font-semibold text-white">
-                  {post.title}
-                </h4>
-                <p className="line-clamp-5 text-sm text-white">
-                  {post.text}
-                </p>
-              </a>
+              </div>
+
+            
             </article>
           </SwiperSlide>
         );

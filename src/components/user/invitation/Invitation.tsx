@@ -15,7 +15,7 @@ const Invitation = () => {
 
   return (
     <section
-      className="my-[100px] px-[80px] py-[100px] flex gap-4 flex-col text-white justify-center bg-no-repeat bg-auto main-texture-background items-center w-full"
+      className="my-[100px] px-[80px] py-[100px] flex gap-4 flex-col text-white justify-center bg-no-repeat bg-cover main-texture-background items-center w-full"
       aria-labelledby="invitation-title"
     >
       <h2
@@ -24,10 +24,11 @@ const Invitation = () => {
       >
         {t('title')}
       </h2>
-      <div className="flex gap-[80px]">
+      <div className="flex flex-wrap gap-[80px] justify-center items-center">
+
         {/* HR Invitation Card */}
         <div
-          className="border-2 px-4 py-[40px] w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-green"
+          className="border-2 rounded-md px-4 py-[40px] w-[350px] sm:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-green"
           role="region"
           aria-labelledby="hr-invitation-title"
         >
@@ -35,7 +36,7 @@ const Invitation = () => {
             <h3 id="hr-invitation-title" className="text-[24px] font-[700]">
               {t('card1_title')}
             </h3>
-            <p className="text-[20px] leading-[28px]">
+            <p className="text-[14px]sm:text-[20px] leading-[28px]">
               {t('card1_text')}
             </p>
           </div>
@@ -47,10 +48,10 @@ const Invitation = () => {
                 value: 'User opened "To become HR" form',
               });
             }}
-            className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
+           className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
             aria-label="Open form to join as Partner"
           >
-            <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition-all">
+      <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition ease-in-out duration-300">
               {t('button')}
             </span>
           </button>
@@ -58,7 +59,7 @@ const Invitation = () => {
 
         {/* Partner Invitation Card */}
         <div
-          className="border-2 px-4 py-[40px] w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-yellow"
+          className="border-2 rounded-md px-4 py-[40px] w-[350px] sm:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-yellow"
           role="region"
           aria-labelledby="partner-invitation-title"
         >
@@ -66,7 +67,7 @@ const Invitation = () => {
             <h3 id="partner-invitation-title" className="text-[24px] font-[700]">
               {t('card2_title')}
             </h3>
-            <p className="text-[20px] leading-[28px]">
+            <p className="text-[14px]sm:text-[20px] leading-[28px]">
               {t('card2_text')}
             </p>
           </div>
@@ -81,7 +82,7 @@ const Invitation = () => {
             className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
             aria-label="Open form to join as Partner"
           >
-            <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition-all">
+            <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition ease-in-out duration-300">
               {t('button')}
             </span>
           </button>
