@@ -23,7 +23,7 @@ function CandidatesList({
   };
 
   return (
-    <div className="box-content w-full">
+    <div className="box-content w-full max-h-[175vh] no-scrollbar overflow-y-auto overflow-x-hidden">
       <div className="ml-2 w-full pb-[40px] pt-[56px] font-tahoma text-[24px] md:pl-[48px] md:pt-0 2xl:pl-[78px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:pl-[88px]">
         {candidates?.length}
         {' '}
@@ -34,8 +34,10 @@ function CandidatesList({
           t('amount.item_1'),
           t('amount.item_2'),
         )}
+    
       </div>
-      <div className="flex w-full flex-col gap-6 md:pl-[48px] xl:grid xl:grid-cols-2 2xl:gap-[30px] 2xl:pl-[78px] 3xl:gap-[32px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:grid-cols-3 5xl:gap-6 5xl:pl-[88px]">
+   
+      <div className="flex w-full flex-col gap-4 md:pl-[48px] xl:grid xl:grid-cols-2 2xl:gap-[30px] 2xl:pl-[78px] 3xl:gap-[32px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:grid-cols-3 5xl:gap-6 5xl:pl-[88px]">
         {candidates
           ?.slice(0, numberOnPage)
           .map(candidate => (
@@ -44,8 +46,9 @@ function CandidatesList({
               candidate={candidate}
             />
           ))}
+        
       </div>
-
+     
       {candidates.length > 6 && (
         <div className="my-[60px] flex w-full items-center justify-center sm:pr-0 md:mb-[94px] md:mt-[70px] md:pl-[48px] md:pt-0 2xl:pl-[78px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:pl-[88px]">
           {candidates.length <= numberOnPage

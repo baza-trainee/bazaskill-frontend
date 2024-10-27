@@ -19,7 +19,7 @@ const DynamicPost = dynamic(
 function Posts() {
   const t = useTranslations('Main.articles');
 
-  const { data } = useQuery({
+  const { data:posts } = useQuery({
     queryKey: [constants.posts.FETCH_POSTS],
     queryFn: getPosts,
   });
@@ -29,20 +29,7 @@ function Posts() {
       <h2 className="mb-[50px] text-center font-tahoma text-2xl font-bold tracking-[1.08px] text-white lg:text-[40px]">
         {t('title')}
       </h2>
-      <div className="flex flex-wrap justify-center gap-[80px]">
-        {data?.length
-          ? data?.slice(0, 3).map((post) => {
-            return (
-              <DynamicPost
-                key={post.id}
-                {...post}
-                isAdmin={false}
-              />
-            );
-          })
-          : null}
-      </div>
-      {data && <PostsCarousel data={data} />}
+      {posts && <PostsCarousel data={posts} />}
     </section>
   );
 }

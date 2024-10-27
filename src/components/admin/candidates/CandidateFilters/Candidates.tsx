@@ -7,7 +7,7 @@ import type {
 import {
   useQuery,
 } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { CandidatesResponse } from '@/types/candidates';
 
@@ -19,6 +19,9 @@ import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 
 function Candidates() {
+  const [filteredCandidates, setFilteredCandidates]
+  = useState<CandidatesResponse[]>([]);
+
   const candidates: UseQueryResult<
     CandidatesResponse[],
     Error
@@ -27,12 +30,10 @@ function Candidates() {
     queryFn: getAllCandidates,
   });
 
-  const [filteredCandidates, setFilteredCandidates]
-    = useState<CandidatesResponse[]>([]);
+  useEffect(() => {
+    setFilteredCandidates(candidates.data || []);
+  }, [candidates.data]);
 
-
-  if (candidates.status === 'pending')
-    return <Loader />;
 
   const handlerChangeSearch = (data: string) => {
     const dataLowerCase = data.toLowerCase();
@@ -53,6 +54,9 @@ function Candidates() {
 
     setFilteredCandidates(filtered || []);
   };
+
+  if (candidates.status === 'pending')
+    return <Loader />;
 
   return (
     <div className="flex flex-col">
