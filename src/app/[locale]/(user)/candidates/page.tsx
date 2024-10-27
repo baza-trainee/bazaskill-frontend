@@ -31,7 +31,7 @@ export async function generateMetadata({
 
 async function CandidatesPage() {
   return (
-    <div className="overflow-x-hidden bg-graphite p-2 pt-[100px] md:pt-[150px] text-white">
+    <div className="overflow-x-hidden bg-graphite p-2 pt-[80px] md:pt-[150px] text-white">
       <DynamicPage />
       <CookiesModal />
     </div>
