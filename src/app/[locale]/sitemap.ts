@@ -29,6 +29,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     },
     {
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`,
+      lastModified: new Date(),
+      alternates: {
+        languages: {
+          uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/about`,
+          en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/about`,
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/about`,
+        },
+      },
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/why-juniors`,
+      lastModified: new Date(),
+      alternates: {
+        languages: {
+          uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/why-juniors`,
+          en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/why-juniors`,
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/why-juniors`,
+        },
+      },
+    },
+    {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/candidates`,
       lastModified: new Date(),
       alternates: {
@@ -36,6 +58,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/candidates`,
           en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/candidates`,
           pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/candidates`,
+        },
+      },
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/contacts`,
+      lastModified: new Date(),
+      alternates: {
+        languages: {
+          uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/contacts`,
+          en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/contacts`,
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/contacts`,
         },
       },
     },
