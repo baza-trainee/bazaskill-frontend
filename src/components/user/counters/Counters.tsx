@@ -47,6 +47,10 @@ function CountersComp() {
       setIsVisible(true);
     }
   };
+  
+  useEffect(() => {
+    setHasCounted(false);
+  }, []);
 
   return (
     <section className="container py-[48px] lg:py-[91px]" aria-labelledby="counters-heading">
@@ -69,18 +73,13 @@ function CountersComp() {
           className="countersSlide max-h-full max-w-[1006px]"
         >
           {counters.map(({ id, count, title }) => {
-              useEffect(() => {
-                if (!hasCounted) {
-                  setHasCounted(true);
-                }
-              }, [count, hasCounted]);
             return(
               <SwiperSlide key={id} className="text-center">
               <div>
                 <h3 className="text-[40px] font-bold text-white">
                   <CountUp end={count} 
                   duration={2} 
-                  redraw={false} 
+                  redraw={true} 
                   formattingFn={value => `${value}+`}    
                   onEnd={() => setHasCounted(true)}
                   start={hasCounted ? count : 0} />
@@ -101,7 +100,15 @@ function CountersComp() {
             {counters.map(({ id, count, title }) => (
               <li className="p-[25px] md:p-[16px] lg:p-[23px]" key={id}>
                 <h3 className="text-[40px] font-bold leading-10">
-                  {isVisible ? <CountUp end={count} duration={2} redraw={true} formattingFn={value => `${value}+`} /> : 0}
+                  {isVisible ? 
+                  <CountUp 
+                  end={count} 
+                  duration={2} 
+                  start={hasCounted ? count : 0} 
+                  redraw={true} 
+                  formattingFn={(value) => `${value}+`}    
+                  onEnd={() => setHasCounted(true)}
+                  /> : 0}
                 </h3>
                 <p className="text-xl xl:text-2xl">{title}</p>
               </li>

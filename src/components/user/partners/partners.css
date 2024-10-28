@@ -3,13 +3,17 @@
     animation: marquee 30s linear infinite;
   }
 
-  .marquee-right {
+.marquee-right {
     display: flex;
     animation: marquee-right 30s linear infinite;
   }
 
-  
-  @keyframes marquee {
+.marquee:hover,
+.marquee-right:hover {
+    animation-play-state: paused;
+  }
+
+@keyframes marquee {
     0% {
       transform: translateX(0);
     }
@@ -18,7 +22,7 @@
     }
   }
 
-  @keyframes marquee-right {
+@keyframes marquee-right {
     0% {
       transform: translateX(-100%);
     }
