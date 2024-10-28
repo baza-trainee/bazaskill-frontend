@@ -22,7 +22,10 @@
 		"docs_privacy_policy_description": "Baza Skill - Політика конфіденційності",
 
     "docs_terms_of_use_title": "Baza Skill - Правила користування сайтом",
-		"docs_terms_of_use_description": "Baza Skill - Правила користування сайтом"
+		"docs_terms_of_use_description": "Baza Skill - Правила користування сайтом",
+
+    "under_development_title": "Cайт в розробці",
+		"under_development_description": "Baza Skill - Інформаційна сторінка"
 	},
   "Header":{
     "about": "Про нас",
@@ -200,6 +203,11 @@
   },
   "Error": {
     "title": "Вибачте, сторінка, яку ви шукаєте, переміщена або видалена",
+    "button": "На головну"
+  },
+  "UnderDevelopment": {
+    "title": "Under development",
+    "text": "Вибачте, сайт в розробці",
     "button": "На головну"
   },
   "Candidate": {
