@@ -25,7 +25,7 @@ export default function FooterLinks(): JSX.Element {
   ]
 
   return (
-    <div className="flex flex-col gap-2 md:gap-5 items-start">
+    <div className="flex flex-col gap-2 md:gap-5 items-center md:items-start">
       {footerLinks.map((el)=>{
         return (
           <Link  

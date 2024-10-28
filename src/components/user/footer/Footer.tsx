@@ -15,6 +15,7 @@ import BecomeBlock from './BecomeBlock';
 import SupportBlock from './SupportBlock';
 import FooterLinks from './FooterLinks';
 import LogoFooter from '@/components/shared/icons/LogoFooter';
+import MobileLogo from './MobileLogo';
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('Main.footer');
@@ -39,27 +40,29 @@ export default function Footer(): JSX.Element {
 
   return (
     <footer className="relative bg-black">
-      <div className='container flex flex-col gap-4 justify-center pt-10 max-[900px]:gap-3'>
+      <div className='container flex flex-col gap-10 md:gap-5 it justify-center pt-10 pb-6'>
+        <MobileLogo/>
+
         <div className='flex justify-center gap-5 md:gap-0 md:justify-between flex-col md:flex-row'>
           <NavFooter />
           <BecomeBlock />
           <FooterLinks />
         </div>
         
-        <div className='flex min-[900px]:items-center justify-between flex-col gap-5 min-[900px]:flex-row min-[900px]:gap-4'>
+        <div className='flex items-center md:items-end min-[900px]:items-center justify-between flex-col gap-4 md:flex-row'>
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
             href={`/docs/${privacyPolicy?.title}`}>
             {t('privacy_policy')}
           </Link>
-
+      
           <Link
             href="/"
             aria-label="logo-icon"
-            className="flex order-first min-[900px]:order-none mx-auto w-[80%] min-[900px]:w-[35%] xl:w-[40%] max-w-[560px]">
+            className="hidden md:flex w-[36%] max-w-[560px]">
             <LogoFooter className="block"/>
           </Link>
-
+    
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
               href={`/docs/${termsOfUse?.title}`}>
@@ -67,17 +70,14 @@ export default function Footer(): JSX.Element {
           </Link>
         </div>
 
-        <h3 className="py-8 text-center font-tahoma text-2xl font-bold text-white ">
+        <h3 className=" hidden md:block text-center font-tahoma text-2xl font-bold text-white ">
           {t('offer')}
         </h3>
         
         {/* Розробка */}
-        <p className="py-5 text-center text-white text-xs md:text-base text-nowrap">
-          {t('development')}
-          {' '}
-          &#169;
-          {' '}
-          {t('rights')}
+        <p className="flex flex-wrap items-center justify-center text-center gap-1 text-white text-xs md:text-base">
+          <span>{t('development')}{' '}&#169;</span>
+          <span>{t('rights')}</span>
         </p>
       </div>
 
