@@ -48,7 +48,7 @@ export const OurHistory = () => {
               animate={{
                 zIndex: isActive ? 20 : 10 + order,
                 top: isActive ? 0 : `${150 + (order * 50) + (order > 1 ? (order - 1) * 50 : 0)}px`,
-                left: isActive ? '150px' : `${(order * 50)}px`,
+                left: isActive ? '150px' : `${(order * 100)}px`,
                 rotateX: isActive ? 0 : 45,
                 y: isActive ? 0 : 20 * order,
                 scale: isActive ? 1 : 1.05,
