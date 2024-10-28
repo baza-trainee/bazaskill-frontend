@@ -23,7 +23,7 @@ function CandidatesList({
   };
 
   return (
-    <div className="box-content w-full max-h-[175vh] no-scrollbar overflow-y-auto overflow-x-hidden">
+    <div className="box-content w-full max-h-[185vh] no-scrollbar overflow-y-auto overflow-x-hidden">
       <div className="ml-2 w-full pb-[40px] pt-[56px] font-tahoma text-[24px] md:pl-[48px] md:pt-0 2xl:pl-[78px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:pl-[88px]">
         {candidates?.length}
         {' '}

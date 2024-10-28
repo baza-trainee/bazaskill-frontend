@@ -37,7 +37,7 @@ export async function generateMetadata({
 
 async function Candidate({ params }: IdPageProps) {
   return (
-    <div className="min-h-screen bg-graphite">
+    <div className="min-h-screen bg-graphite pt-[80px] md:pt-[150px]">
       <DynamicPage id={params.id} />
       <CookiesModal />
     </div>

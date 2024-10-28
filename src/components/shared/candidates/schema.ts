@@ -21,7 +21,19 @@ const schema = z.object({
       },
       {
         message:
-          'Значення Від не повинно бути більшим ніж значення До',
+          'salary_error.diff',
+      },
+    )
+    .refine(
+      ({ from, to }) => {
+        if (from !== '' && to !== '') {
+          return true
+        }
+        return false;
+      },
+      {
+        message:
+          'salary_error.both_fields',
       },
     ),
 });
