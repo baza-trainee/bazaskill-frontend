@@ -46,7 +46,7 @@ const Partners: React.FC = () => {
                 height={150}
                 src={partner.image_url}
                 alt={partner.name}
-                className='w-full min-w-[200px] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+                className='w-full min-w-[90vw] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
               />
               <figcaption className="sr-only">{partner.name}</figcaption>
             </figure>
@@ -58,7 +58,7 @@ const Partners: React.FC = () => {
                 height={150}
                 src={partner.image_url}
                 alt={partner.name}
-                className='w-full min-w-[200px] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+                className='w-full min-w-[90vw] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
               />
               <figcaption className="sr-only">{partner.name}</figcaption>
             </figure>
@@ -70,7 +70,7 @@ const Partners: React.FC = () => {
                 height={150}
                 src={partner.image_url}
                 alt={partner.name}
-                className='w-full min-w-[200px] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+                className='w-full min-w-[90vw] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
               />
               <figcaption className="sr-only">{partner.name}</figcaption>
             </figure>
@@ -87,7 +87,7 @@ const Partners: React.FC = () => {
                 height={150}
                 src={partner.image_url}
                 alt={partner.name}
-                className='w-full min-w-[200px] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+                className='w-full min-w-[90vw]  md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
               />
               <figcaption className="sr-only">{partner.name}</figcaption>
             </figure>
@@ -99,7 +99,7 @@ const Partners: React.FC = () => {
                 height={150}
                 src={partner.image_url}
                 alt={partner.name}
-                className='w-full min-w-[200px] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+                className='w-full min-w-[90vw]  md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
               />
               <figcaption className="sr-only">{partner.name}</figcaption>
             </figure>
@@ -111,7 +111,7 @@ const Partners: React.FC = () => {
                 height={150}
                 src={partner.image_url}
                 alt={partner.name}
-                className='w-full min-w-[200px] md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
+                className='w-full min-w-[90vw]  md:min-w-[350px] aspect-video object-contain border-[1rem] rounded-md border-zinc-300 grayscale hover:filter-none hover:scale-110 transition ease-in-out duration-700 p-2 bg-white'
               />
               <figcaption className="sr-only">{partner.name}</figcaption>
             </figure>

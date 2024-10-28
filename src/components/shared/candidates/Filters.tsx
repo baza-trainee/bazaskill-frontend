@@ -206,12 +206,14 @@ function Filters({
           <button className="flex h-[32px] w-[68px] items-center justify-center rounded-[4px] border border-yellow px-[24px] py-[15px] text-sm text-yellow sm:min-w-[84px] md:min-w-[51px] md:p-0 xl:min-h-[40px] xl:min-w-[72px] xl:text-base">
             OK
           </button>
-          {errors.sallary?.root && (
-            <span className="absolute bottom-[-20px] left-0 text-xs text-red-500">
-              {errors.sallary?.root?.message?.toString()}
+         
+        </div>
+        {errors.sallary?.root && (
+            <span className=" text-xs text-red-500">
+              {/* {errors.sallary?.root?.message?.toString()} */}
+              {t(errors.sallary?.root?.message?.toString())}
             </span>
           )}
-        </div>
       </div>
 
       <div className="main-gradient flex max-w-[280px] items-center justify-center rounded-[6px] sm:min-w-[363px] md:min-w-[219px] xl:min-w-[256px] 3xl:min-w-[306px] 4xl:min-w-[319px]">
