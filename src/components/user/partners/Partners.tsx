@@ -6,7 +6,7 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import type { TPartner } from '@/types/partners';
 
 import { useQuery } from '@tanstack/react-query';
-import { useTranslations } from 'next-intl';
+import  {useTranslations}  from 'next-intl'
 import { getPartners } from '@/api/partners';
 import { constants } from '@/constants';
 
