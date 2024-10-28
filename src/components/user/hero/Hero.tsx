@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
 
   return (
     <section
-      className="container min-h-[520px] flex justify-center flex-col w-full bg-no-repeat bg-auto bg-fixed main-texture-background"
+      className="container min-h-[520px] flex justify-center flex-col w-full bg-no-repeat bg-auto md:bg-cover bg-fixed main-texture-background"
       aria-labelledby="hero-title"
     >
       <div className="relative mx-auto mb-[64px] flex max-w-[570px] flex-col items-center text-center sm:flex md:flex-row lg:max-w-[915px] ">

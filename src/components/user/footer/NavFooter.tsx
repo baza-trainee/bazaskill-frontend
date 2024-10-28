@@ -8,6 +8,9 @@ export default function NavFooter(): JSX.Element {
   const pathname = usePathname();
 
   const isActive = (name: string):boolean =>{
+    if(pathname.split('/').includes('candidate') && name=='candidates'){
+      return true
+    }
     return pathname.split('/').includes(name)
   }
 

@@ -19,7 +19,7 @@ export default function FooterLinks(): JSX.Element {
       title: 'internship'
     },
     { 
-      href: '/',
+      href: '/under-development',
       title: 'poligon'
     },
   ]
@@ -32,7 +32,7 @@ export default function FooterLinks(): JSX.Element {
             key={el.title}
             className={"underline block text-nowrap text-lg font-normal text-white duration-300 hover:text-yellow"} 
             href={el.href} 
-            target='_blank' 
+            target={el.title === 'poligon' ? '_self' : '_blank'}
             rel='noopener noreferrer'>
               {t(el.title)}
           </Link>
