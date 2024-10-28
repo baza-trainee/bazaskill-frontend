@@ -10,7 +10,7 @@ import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
 import { OurHistory } from '@/components/user/our_history/OurHistory';
 import Partners from '@/components/user/partners/Partners';
 import Posts from '@/components/user/posts/Posts';
-import Testimonials from '@/components/user/testimonials/Testimonials';
+// import Testimonials from '@/components/user/testimonials/Testimonials';
 
 async function Home() {
   return (
@@ -25,7 +25,7 @@ async function Home() {
       <Invitation/>
       <Partners />
       <Posts />
-      <Testimonials />
+      {/* <Testimonials /> */}
       {/* <Contacts /> */}
       <CookiesModal />
     </div>

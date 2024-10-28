@@ -272,6 +272,10 @@
       "item_3": "Kursy"
     },
     "salary": "Wynagrodzenie",
+    "salary_error": {
+      "diff": "Wartość Od nie może być większa niż wartość Do",
+      "both_fields": "Proszę wprowadzić obie wartości"
+    },
     "button": "Zastosuj filtry"
   },
   "Success_modal": {

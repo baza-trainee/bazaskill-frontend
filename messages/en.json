@@ -273,6 +273,10 @@
       "item_3": "Courses"
     },
     "salary": "Salary",
+    "salary_error": {
+      "diff": "The From value must not be greater than the To value",
+      "both_fields": "Please enter both values"
+    },
     "button": "Apply filters"
   },
   "Success_modal": {

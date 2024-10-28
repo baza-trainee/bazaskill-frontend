@@ -11,9 +11,9 @@ function Project({
 
   return (
     <div className="flex w-full flex-col gap-[32px] font-sans text-[20px] text-white md:w-[34%]">
-      <h3 className="font-[700] underline">
+      <a href={project.project_name} target='_blank' className="font-[700] underline">
         {project.project_name}
-      </h3>
+      </a>
       <div className="flex items-center justify-between">
         <span className="flex items-center justify-center gap-[10px]">
           <svg width={20} height={20}>

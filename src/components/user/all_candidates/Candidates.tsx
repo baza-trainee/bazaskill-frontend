@@ -77,6 +77,7 @@ function Candidates() {
 
 
   const onSubmit = (data: FieldValues) => {
+    console.log(data)
     setFilterByCountry('');
     setFilterBySpeciality('');
     const filtered = filterCandidatesOnSubmit({
@@ -94,7 +95,7 @@ function Candidates() {
     return <Loader />;
 
   return (
-    <div className="relative p-4 md:flex md:flex-col">
+    <div className="relative p-4 pb-0 md:flex md:flex-col">
       <CandidatesTitle />
       <div className="md:flex">
         <Filters SubmitHandler={onSubmit} />
