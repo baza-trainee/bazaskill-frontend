@@ -10,11 +10,11 @@ import NavHeaderMenu from './NavHeaderMenu';
 export default function Header(): React.JSX.Element {
 
   return (
-    <header className='fixed top-0 z-50 w-screen bg-black'>
+    <header className='fixed top-0 z-50 w-full max-w-screen bg-black'>
       <AffiliateBanner />
       <div className='px-4 sm:px-5 md:px-8'>
         <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[11px] sm:py-[16px] md:py-[25px]'>
-          <div className="flex items-center xl:h-[40px] sm:ml-[calc(100%/2-70px)] md:ml-0">
+          <div className="flex items-center xl:h-[40px] sm:ml-[calc(100%/2-65px)] md:ml-0">
             <Link
               className="flex w-full justify-start md:justify-center"
               href="/"
@@ -23,7 +23,7 @@ export default function Header(): React.JSX.Element {
           </Link>
           </div>
           <NavHeader/>
-          <div className='flex items-center justify-center gap-2 pr-2'>
+          <div className='flex items-center justify-center gap-2'>
             <LanguageSwitcher />
             <BurgerButton/>
           </div>
