@@ -23,7 +23,6 @@ html {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  overflow-x: hidden;
 }
 
 body.lock {
@@ -53,6 +52,7 @@ body.lock {
   clip-path: inset(50%);
   margin: -1px;
 }
+
 .contact{
   -moz-user-select: text;
   -webkit-user-select: text;
