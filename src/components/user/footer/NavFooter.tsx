@@ -15,11 +15,11 @@ export default function NavFooter(): JSX.Element {
   }
 
   return (
-    <nav className='flex flex-col gap-2 md:gap-5 items-start'>
+    <nav className='flex flex-col gap-2 md:gap-5 items-center md:items-start'>
       {itemsLink.map((el)=>{
         return (
           <Link key={el.pathname}
-            className={`duration-300 text-nowrap hover:opacity-70 hover:text-yellow  text-open-sans text-lg font-semibold 
+            className={`duration-300 text-nowrap hover:opacity-70 hover:text-yellow text-open-sans text-lg font-semibold 
             ${isActive(el.pathname) ? 'opacity-70 text-yellow' : 'text-white'}`}
             href={el.href}>
             {t(el.title)}

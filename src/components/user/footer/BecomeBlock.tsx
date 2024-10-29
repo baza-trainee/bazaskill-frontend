@@ -6,7 +6,7 @@ export default function BecomeBlock(): JSX.Element {
   const t = useTranslations('Main.footer');
   const { openModal } = useModal();
   return (
-    <div className="flex flex-col gap-2 text-white md:gap-5 items-start">
+    <div className="flex flex-col gap-2 text-white md:gap-5 items-center md:items-start">
       <button
         className={'inline-block text-start font-semibold duration-300 text-lg hover:text-yellow'}
         onClick={() => {
