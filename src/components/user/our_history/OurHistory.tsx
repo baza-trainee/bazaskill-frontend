@@ -33,7 +33,7 @@ export const OurHistory = () => {
       aria-labelledby="history-title"
     >
       <div
-        className="relative h-[648px] perspective-[1000px] hidden md:block"
+        className="relative perspective-[1000px] hidden md:block h-[648px]"
         aria-live="polite"
         aria-atomic="true"
       >
@@ -48,10 +48,9 @@ export const OurHistory = () => {
               animate={{
                 zIndex: isActive ? 20 : 10 + order,
                 top: isActive ? 0 : `${150 + (order * 50) + (order > 1 ? (order - 1) * 50 : 0)}px`,
-                left: isActive ? '150px' : `${(order * 100)}px`,
+                left: isActive ? '100px' : `${(order * 50)}px`,
                 rotateX: isActive ? 0 : 45,
                 y: isActive ? 0 : 20 * order,
-                scale: isActive ? 1 : 1.05,
               }}
               transition={{ duration: 0.7, ease: "easeInOut" }}
               className="absolute shadow-lg origin-top"
@@ -74,7 +73,7 @@ export const OurHistory = () => {
           );
         })}
       </div>
-      <div className="2xl:px-[40px]">
+      <div className="2xl:px-[40px] md:h-[648px]">
         <h2
           id="history-title"
           className="text-center lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
