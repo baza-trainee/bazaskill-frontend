@@ -19,7 +19,7 @@ const Advantages = () => {
       </h2>
       <div className="hidden md:flex gap-4 flex-wrap justify-center items-start">
         {cardData.map((item, i) => (
-          <article key={item.id} className={`bg-gradient-to-b from-green to-graphite rounded-lg p-[2px] w-[302px] h-[495px] ${i % 2 === 0 && 'lg:mt-[240px]'}`}>
+          <article key={item.id} className={`bg-gradient-to-b from-green to-graphite rounded-lg p-[2px] w-[302px] h-[495px] ${i % 2 !== 0 && 'lg:mt-[240px]'}`}>
             <div className="bg-graphite overflow-hidden rounded-lg w-full h-full p-6 flex flex-col justify-start text-white">
               <img
                 src={item.icon}
@@ -28,8 +28,8 @@ const Advantages = () => {
                 aria-hidden="true"
                 className="mb-[20px] w-[119px] mx-auto"
               />
-              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-              <p className="text-[16px] leading-[26px]">
+              <h3 className="text-[24px] font-bold mb-2">{item.title}</h3>
+              <p className="text-[20px] leading-[26px]">
                 {item.text}
               </p>
             </div>

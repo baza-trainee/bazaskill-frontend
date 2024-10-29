@@ -55,10 +55,10 @@
     },
     "history":{
       "title": "Our Story",
-      "description_1": "The recruiting agency Baza Skill is part of the educational project Baza Trainee Ukraine, the purpose of which is to train, develop and confirm the professional skills of IT specialists.",
-      "description_2": "In the project, graduates of IT courses, switchers, students of technical universities practice in creating real digital products in a team.",
-      "description_3": "Each specialist represented here is ambitious in teamwork, has experience in developing a project from removing the requirements for release, has tried himself in different roles familiar during development and is familiar with all the difficulties and success at different life stages of the project.",
-      "description_4": "The Baza Skill platform will help you select an experienced IT specialist, since each of our candidates has already passed a confirmed practice at Baza Trainee Ukraine and receives our recommendation."
+      "description_1": "The recruiting agency Baza Skill is part of the educational project Baza Trainee Ukraine, the purpose of which is to train, develop, and confirm the professional skills of IT specialists. ",
+      "description_2": "In the project, graduates of IT courses, switchers, and students of technical universities practice creating real digital products in a team. ",
+      "description_3": "Each of the specialists presented here has experience in teamwork and project implementation, starting with requirements analysis and ending with release. They have tried themselves in different roles and are familiar with all the challenges and achievements at different stages of the project life cycle.",
+      "description_4": "The Baza Skill platform will help you select an experienced IT specialist since each of our candidates has already passed a confirmed practice at Baza Trainee Ukraine and received our recommendation."
     },
     "counters": {
       "live_projects": "live projects",
@@ -81,8 +81,8 @@
       "button": "Apply now",
       "card1_title": "Become our HR",
       "card2_title": "Become our partner",
-      "card1_text":"Are you a recruiter looking for young talent for your company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
-      "card2_text":"Together we can reach new heights! Join our partner network."
+      "card1_text":"Are you a recruiter looking for young talent for your IT company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
+      "card2_text":"Together we can reach new heights! Join our network of partners as an employer and support young people on their career path."
     },
     "help": {
       "title": "We will help you find a worthy specialist",
