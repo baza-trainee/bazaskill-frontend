@@ -40,6 +40,7 @@ body.lock {
     @apply bg-gradient-to-r from-green via-green to-yellow bg-size-200 bg-pos-0  transition-all duration-500 hover:bg-pos-100;
   }
 }
+
 /* Прихований заголовок */
 .visually-hidden {
   position: absolute;
@@ -53,13 +54,13 @@ body.lock {
   clip-path: inset(50%);
   margin: -1px;
 }
+
 .contact{
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
   user-select: text;
 }
-
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
@@ -83,4 +84,40 @@ body.lock {
   .main-texture-background {
     background-image: linear-gradient(180deg, rgba(33, 33, 33, 0.75) 60%, rgba(33, 33, 33, 0.75)),url('/background/background.png');
   }
+}
+
+/* Загальні стилі для бургер-кнопки */
+.burgerIcon span, 
+.burgerIcon::before, 
+.burgerIcon::after {
+  content: "";
+  @apply absolute rounded-md right-0 w-full h-0.5 transition-all ease-in-out duration-300 bg-white;
+}
+.burgerIcon span{
+  width: calc(100% - 5px);
+}
+.burgerIcon::before {
+  @apply top-0;
+}
+
+.burgerIcon::after {
+  @apply bottom-0;
+}
+
+.burgerIcon span {
+  top: calc(50% - 1px);
+}
+/* Стан "відкрито" */
+.burgerIcon.opened span {
+  @apply w-0;
+}
+
+.burgerIcon.opened::before {
+  top: calc(50% - 1px);
+  transform: rotate(-45deg);
+}
+
+.burgerIcon.opened::after {
+  bottom: calc(50% - 1px);
+  transform: rotate(45deg);
 }
