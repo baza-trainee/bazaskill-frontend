@@ -64,7 +64,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
 
   return (
     showPanel && (
-      <div className="container rounded-md fixed inset-x-0 bottom-[130px] md:bottom-[100px] z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
+      <div className="container rounded-md fixed inset-x-0 top-[80px] md:bottom-[100px] md:top-auto z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
         <div className="relative flex flex-col justify-between pt-9 py-6">
           <div className="mb-[25px] max-w-[564px] text-lg text-black">
             {t('text')}
