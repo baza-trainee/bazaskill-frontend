@@ -28,8 +28,8 @@ const Advantages = () => {
                 aria-hidden="true"
                 className="mb-[20px] w-[119px] mx-auto"
               />
-              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-              <p className="text-[16px] leading-[26px]">
+              <h3 className="text-[24px] font-bold mb-2">{item.title}</h3>
+              <p className="text-[20px] leading-[26px]">
                 {item.text}
               </p>
             </div>
