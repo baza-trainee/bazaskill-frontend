@@ -14,7 +14,7 @@ export default function Header(): React.JSX.Element {
       <AffiliateBanner />
       <div className='px-4 sm:px-5 md:px-8'>
         <div className='mx-auto max-w-[1280px] flex items-center justify-between py-[11px] sm:py-[16px] md:py-[25px]'>
-          <div className="flex items-center xl:h-[40px] sm:ml-[calc(100%/2-60px)] md:ml-0">
+          <div className="flex items-center xl:h-[40px] sm:ml-[calc(100%/2-70px)] md:ml-0">
             <Link
               className="flex w-full justify-start md:justify-center"
               href="/"
