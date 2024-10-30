@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 import { useQuery } from '@tanstack/react-query';
@@ -12,12 +12,14 @@ import DesktopIcon from '@/components/shared/icons/DesktopIcon';
 import Pointer from '@/components/shared/icons/Pointer';
 import SearchIcon from '@/components/shared/icons/SearchIcon';
 
+
 const DynamicHeroTitle = dynamic(
   () => import('./HeroTitle'),
 );
 
 const Hero: React.FC = () => {
   const t = useTranslations('Main.hero_section');
+  const router = useRouter();
 
   const { data } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
@@ -27,6 +29,11 @@ const Hero: React.FC = () => {
   const options = data && data
     .sort((a, b) => b.id - a.id)
     .map(({ title }) => title);
+
+  const onSubmit=(ev: React.FormEvent): void =>{
+    ev.preventDefault()
+    router.push('/candidates')
+  }
 
   return (
     <section
@@ -49,6 +56,7 @@ const Hero: React.FC = () => {
 
       <form
         className="flex flex-col xs:gap-3 md:flex-row md:gap-0"
+        onSubmit={onSubmit}
         autoComplete="off"
         aria-label={'search_form'}
       >
@@ -79,15 +87,14 @@ const Hero: React.FC = () => {
           />
           <Pointer className="text-gray-500 absolute left-3" />
         </div>
-
-        <Link
-          href={"/candidates"}
+        <button
+          type='submit'
           className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
           aria-label={'search button'}
         >
           <SearchIcon className="text-gray-500 absolute left-3 top-6" />
           <span>{t('search')}</span>
-        </Link>
+        </button>
       </form>
     </section>
   );
