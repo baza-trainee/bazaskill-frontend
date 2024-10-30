@@ -76,6 +76,16 @@
     "advantages":{
       "title":"Benefits of working with us"
     },
+    "juniors-advantages":{
+      "title":"Advantages of juniors",
+      "subtitle": "3 GOOD REASONS TO HIRE JUNIOR",
+      "card_title_1": "Motivation and desire to learn",
+      "card_title_2": "Economic feasibility in the long term",
+      "card_title_3": "Personnel reserve for future processes",
+      "card_text_1":"Juniors are usually highly motivated to develop and quickly adapt to new technologies and processes. They are open to learning, actively seek knowledge and strive to become valuable members of the team, changing it for the better. Also, they have no negative triggers in writing code or bug reports. Such a specialist is actually a blank sheet that the company can form to work for itself.",
+      "card_text_2":"Young specialists are loyal to the employer company, work with enthusiasm, and are also ready to invest their time in learning and mastering the latest technologies. Often they agree to a lower level of pay and at the same time reduce turnover for the company. However, these conditions should be discussed at the start of the junior's work.",
+      "card_text_3":"Inviting junior specialists to work is a successful strategy of companies playing the long game. The middle rank of specialists will move up the career ladder, freeing up places for newcomers. Therefore, a reserve warehouse, prepared and built on time, is an insurance against personnel errors in the future."
+    },
     "invitation":{
       "title": "We invite you to cooperate",
       "button": "Apply now",

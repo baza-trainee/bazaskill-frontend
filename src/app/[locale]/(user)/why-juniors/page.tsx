@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function WhyJuniorsPage(): JSX.Element {
   return ( 
-  <div className='pt-[80px] md:pt-[150px]'> 
+  <div className='pt-[80px] md:pt-[150px] bg-graphite'> 
     <Help />
     <ContentCards />
     <JuniorsAdvantages/>
