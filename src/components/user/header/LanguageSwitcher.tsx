@@ -52,7 +52,7 @@ function LanguageSwitcher() {
   }, [isOpen]);
   return (
     <div
-      className={clsx('relative flex cursor-pointer items-center rounded-t-[8px] duration-300 hover:bg-[#525252]', isOpen && 'bg-[#525252]')}
+      className={clsx('relative z-20 flex cursor-pointer items-center rounded-t-[8px] duration-300 hover:bg-[#525252]', isOpen && 'bg-[#525252]')}
     >
       <button
         type='button'

@@ -42,7 +42,7 @@ export default function NavHeaderMenu(): JSX.Element {
   useBodyScrollLock(isOpen);
 
   return(
-    <div className={clsx("fixed overflow-hidden top-[72px] sm:top-[80px] right-0 h-screen bg-[#212121c0] duration-500 z-10", isOpen ? 'w-screen': 'w-0 ')}>
+    <div className={clsx("md:hidden fixed overflow-hidden top-[72px] sm:top-[80px] right-0 h-screen bg-[#212121c0] duration-500 z-10", isOpen ? 'w-screen': 'w-0 ')}>
       <nav className="max-w-[420px] sm:max-w-[340px] w-full h-full bg-black place-self-end flex flex-col items-center sm:items-start gap-6 p-5 sm:pl-11">
         {itemsLink.map((el)=>{
           return (
