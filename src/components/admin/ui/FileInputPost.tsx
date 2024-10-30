@@ -114,7 +114,7 @@ const FileInputPost = forwardRef((
             {selectedFileName || placeholder}
           </span>
         </span>
-        <div className="absolute right-[16px] top-[9px] z-0">
+        <div className="absolute right-0 w-[2.5rem] top-0 h-full flex justify-center items-center z-0 bg-white">
           <UploadIcon />
         </div>
         <input
