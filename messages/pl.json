@@ -73,7 +73,15 @@
       "heading":"nasze statystyki"
     },
     "advantages":{
-      "title":"Korzyści ze współpracy z nami"
+      "title":"Korzyści ze współpracy z nami",
+      "card_1_title":"Wszyscy kandydaci przeszli onboarding",
+      "card_2_title":"Doświadczenie w zespołowym tworzeniu oprogramowania",
+      "card_3_title":"Portfolio realnych projektów",
+      "card_4_title":"Rozwinięte 'soft skills' kandydata",
+      "card_1_text":"Podczas standardowej procedury onboardingu brane są pod uwagę wymagania specjalizacyjne, kandydaci rozumieją, jak pojawienie się nowego zawodnika wpływa na zespół. Opracowana metodologia rozwoju produktów, standardy komunikacji, priorytety wyszukiwania informacji.",
+      "card_2_text":"Każdy kandydat brał udział w spotkaniach od wymagań produktu do wydania. Nasi kandydaci rozumieją wzajemne zależności w zespole, uwzględniają czas potrzebny na pracę pozostałych zespołów.",
+      "card_3_text":"Każdy kandydat ma udokumentowane doświadczenie w pracy z rzeczywistymi zadaniami technicznymi. Wszystkie projekty mają charakter realizacyjny i spełniają praktyczną rolę dla Klienta. W trakcie rozwoju przekazywana jest także wiedza dotycząca przydzielania projektów, metod optymalizacji SEO, a także obsługi posprzedażowej.",
+      "card_4_text":"Każdy kandydat może, jeśli chce, pełnić rolę lidera swojego zespołu. Podczas ćwiczeń każdy ustala, która strategia postępowania mu w danym momencie bardziej odpowiada: wykonawca czy menadżer."
     },
     "juniors-advantages":{
       "title":"Zalety juniorów",
