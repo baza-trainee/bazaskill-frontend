@@ -74,7 +74,15 @@
     
     },
     "advantages":{
-      "title":"Benefits of working with us"
+      "title":"Benefits of working with us",
+      "card_1_title":"All candidates have undergone onboarding",
+      "card_2_title":"Experience in team software development",
+      "card_3_title":"Portfolio of real projects",
+      "card_4_title":"Candidate's developed soft skills",
+      "card_1_text":"During the standard onboarding procedure, specialization requirements are taken into account, candidates understand how the arrival of a new player affects the team. Developed product development methodology, communication standards, information search priorities.",
+      "card_2_text":"Each candidate participated in meetings from product requirements to release. Our candidates understand interdependence in the team from each other, take into account the time needed for the work of other teams.",
+      "card_3_text":"Each candidate has a proven track record of working with real technical tasks. All projects have implementation and perform a practical role for the customer. During the development, knowledge is also provided regarding the assignment of projects, SEO optimization methods, as well as after-sales service.",
+      "card_4_text":"Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better at the moment: an executor or a manager."
     },
     "juniors-advantages":{
       "title":"Advantages of juniors",

@@ -8,13 +8,16 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import './styles.css';
 
 type SliderProps = {
   data: any[];
+  showArrows?: boolean;
+  slides?: number;
   Component: FC<{ data: any }>;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component }) => {
+const Slider: FC<SliderProps> = ({ data, Component, showArrows=true,slides }) => {
   const sliderRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
 
@@ -43,8 +46,8 @@ const Slider: FC<SliderProps> = ({ data, Component }) => {
   };
 
   return (
-    <div className="my-8 flex flex-col w-full items-start justify-start">
-      <nav
+    <div className="my-8 flex flex-col w-full items-center justify-center ">
+     {showArrows &&  <nav
         className="mx-auto mt-4 flex w-full items-center justify-end mb-8 text-white px-4"
         aria-label="Slider navigation"
       >
@@ -66,12 +69,12 @@ const Slider: FC<SliderProps> = ({ data, Component }) => {
             <FaChevronRight aria-hidden="true" />
           </button>
         </div>
-      </nav>
+      </nav>}
       <Swiper
         id="slider"
         className="relative flex w-full items-center pb-9"
         spaceBetween={10}
-        slidesPerView={slidesPerView}
+        slidesPerView={slides? slides:slidesPerView}
         modules={[Pagination, Navigation]}
         pagination={{ clickable: true }}
         onSwiper={(swiper) => {
