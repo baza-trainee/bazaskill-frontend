@@ -114,7 +114,7 @@ function AddPosts() {
           className="flex flex-col gap-[50px]"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="flex gap-[200px]">
+          <div className="flex gap-[50px]">
             <div className="flex flex-col gap-[50px]">
               <Controller
                 name="title"
