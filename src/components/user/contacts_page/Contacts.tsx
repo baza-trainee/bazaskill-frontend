@@ -13,7 +13,7 @@ export default function Contacts(): JSX.Element {
   const { contactTel, contactEmail, socialLinks } = useContactsData();
 
   return (
-    <section className="pt-[80px] md:pt-[140px] relative">
+    <section className="pt-[72px] sm:pt-[80px] md:pt-[140px] relative">
       <h1 className="visually-hidden">
         {t('title')}
       </h1>
