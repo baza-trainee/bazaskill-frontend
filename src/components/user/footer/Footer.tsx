@@ -1,7 +1,7 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
+// import Link from 'next/link';
 
 import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
@@ -14,11 +14,16 @@ import NavFooter from './NavFooter';
 import BecomeBlock from './BecomeBlock';
 import SupportBlock from './SupportBlock';
 import FooterLinks from './FooterLinks';
-import LogoFooter from '@/components/shared/icons/LogoFooter';
 import MobileLogo from './MobileLogo';
+import FooterLogo from './FooterLogo';
+import Link from 'next/link';
+// import { Link } from 'lucide-react';
+// import { Link } from '@/navigation';
+
 
 export default function Footer(): JSX.Element {
-  const t = useTranslations('Main.footer');
+  const t = useTranslations('Footer');
+  const locale: string = useLocale();
   const isModalOpen = useModal(
     state => state.isModalOpen,
   );
@@ -38,6 +43,21 @@ export default function Footer(): JSX.Element {
     item => item.title === 'privacy_policy',
   );
 
+  const createLinck =(value: string | undefined): string => {
+    return value ?`${locale}/docs/${value}`: '/'
+  }
+// const MainLink=({
+//   href,
+//   content,
+//   ...rest
+// }: ComponentProps<typeof Link>)=>{
+//   return (
+//     <Link href={href} {...rest}>
+//       {content}
+//     </Link>
+//   )
+// }
+
   return (
     <footer className="relative bg-black">
       <div className='container flex flex-col gap-10 md:gap-5 it justify-center pt-10 pb-6'>
@@ -52,25 +72,20 @@ export default function Footer(): JSX.Element {
         <div className='flex items-center md:items-end min-[900px]:items-center justify-between flex-col gap-4 md:flex-row'>
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
-            href={`/docs/${privacyPolicy?.title}`}>
+            href={createLinck(privacyPolicy?.title)}>
             {t('privacy_policy')}
           </Link>
-      
-          <Link
-            href="/"
-            aria-label="logo-icon"
-            className="hidden md:flex w-[36%] max-w-[560px]">
-            <LogoFooter className="block"/>
-          </Link>
+       
+          <FooterLogo/>
     
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
-              href={`/docs/${termsOfUse?.title}`}>
+              href={createLinck(termsOfUse?.title)}>
               {t('terms_of_use')}
           </Link>
         </div>
 
-        <h3 className=" hidden md:block text-center font-tahoma text-2xl font-bold text-white ">
+        <h3 className="hidden md:block text-center font-tahoma text-2xl font-bold text-white">
           {t('offer')}
         </h3>
         

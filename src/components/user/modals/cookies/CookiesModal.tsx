@@ -1,7 +1,7 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import CloseIcon from '@/components/shared/icons/CloseIcon';
@@ -20,7 +20,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
   const [cookieConsent, setCookieConsent] = useState(false);
   const t = useTranslations('Main.cookies');
   const { setCookie } = useCookies();
-
+  const locale: string = useLocale();
   const [showPanel, setShowPanel]
     = useState<boolean>(false);
 
@@ -62,6 +62,10 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
     setLocalStorage('cookie_consent', cookieConsent);
   }, [cookieConsent]);
 
+  const createLinck =(value: string | undefined): string => {
+    return value ?`${locale}/docs/${value}`: '/'
+  }
+
   return (
     showPanel && (
       <div className="container rounded-md fixed inset-x-0 top-[80px] md:bottom-[100px] md:top-auto z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
@@ -71,7 +75,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
             {' '}
             <Link
               className="text-base font-bold underline duration-300 hover:text-blue-800"
-              href={`/docs/${privacyPolicy?.title}`}>
+              href={createLinck(privacyPolicy?.title)}>
               {t('privacy_policy')}
             </Link>
           </div>

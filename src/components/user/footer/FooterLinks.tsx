@@ -7,7 +7,7 @@ interface FooterLink {
 }
 
 export default function FooterLinks(): JSX.Element {
-  const t = useTranslations('Main.footer');
+  const t = useTranslations('Footer');
 
   const footerLinks: FooterLink[] = [
     { 

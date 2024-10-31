@@ -1,3 +1,4 @@
+'use client';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,7 +18,7 @@ type SliderProps = {
   Component: FC<{ data: any }>;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component, showArrows=true,slides }) => {
+const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slides }) => {
   const sliderRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
 

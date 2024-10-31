@@ -1,5 +1,5 @@
-export interface NavLink{
+export interface NavLink {
   title: string;
   pathname: string;
-  href: string;
+  href: "/" | "/about" |"/why-juniors" | "/candidates" | "/contacts" 
 }

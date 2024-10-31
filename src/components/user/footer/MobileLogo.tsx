@@ -1,9 +1,10 @@
 import Logo from "@/components/shared/icons/Logo";
+import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function MobileLogo(): JSX.Element {
-  const t = useTranslations('Main.footer');
+  const t = useTranslations('Footer');
 
   return (
     <div className=' md:hidden flex flex-col mt-4 gap-10 items-center justify-center'>

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useCallback, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "@/navigation";
+// import Link from "next/link";
+import { Link, usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useNavMenu } from "@/stores/useNavMenu";
@@ -48,7 +48,8 @@ export default function NavHeaderMenu(): JSX.Element {
           return (
             <Link key={el.pathname}
               className={clsx('group duration-500 flex items-end gap-0.5 hover:opacity-70 hover:text-yellow text-white text-open-sans text-lg font-semibold', isActive(el.pathname) && 'opacity-90 text-yellow')}
-              href={el.href} onClick={handleClose}>
+              href={el.href} 
+              onClick={handleClose}>
               
               <span className={clsx('duration-500 w-[2px] bg-yellow group-hover:h-full', 
                 isActive(el.pathname) ? 'h-full' : 'h-0')}></span> 
