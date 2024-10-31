@@ -1,3 +1,4 @@
+'use client';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,10 +12,11 @@ import 'swiper/css';
 
 type SliderProps = {
   data: any[];
+  title?: string;
   Component: FC<{ data: any }>;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component }) => {
+const Slider: FC<SliderProps> = ({ data, Component, title }) => {
   const sliderRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
 
@@ -45,10 +47,12 @@ const Slider: FC<SliderProps> = ({ data, Component }) => {
   return (
     <div className="my-8 flex flex-col w-full items-start justify-start">
       <nav
-        className="mx-auto mt-4 flex w-full items-center justify-end mb-8 text-white px-4"
+        className="mx-auto mt-4 flex w-full items-center justify-center mb-8 text-white px-4 relative"
         aria-label="Slider navigation"
       >
-        <div className="flex gap-4">
+        { title && <h2 className=''>{title}</h2> }
+
+        <div className="flex gap-4 absolute right-0 pr-4">
           <button
             onClick={handlePrev}
             aria-label="Previous slide"

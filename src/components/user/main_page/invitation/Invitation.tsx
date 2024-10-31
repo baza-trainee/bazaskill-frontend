@@ -3,9 +3,9 @@
 import { sendGTMEvent } from '@next/third-parties/google';
 import { useModal } from '@/stores/useModal';
 import { useTranslations } from 'next-intl';
-import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
-import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
-import RegisterModal from '../modals/RegisterModal';
+import RegisterHrForm from '../../modals/forms/register_hr/RegisterHrForm';
+import RegisterPartnerForm from '../../modals/forms/register_partner/RegisterPartnerForm';
+import RegisterModal from '../../modals/RegisterModal';
 
 const Invitation = () => {
   const t = useTranslations('Main.invitation');

@@ -1,9 +1,8 @@
 'use client';
 import { useTranslations } from 'next-intl';
-import React from 'react';
 
-function HelpSpecialist() {
-  const t = useTranslations('Main.help');
+function HelpSpecialist(): JSX.Element {
+  const t = useTranslations('Why_juniors.help');
   return (
     <div className="mx-auto text-white xs:w-[280px] sm:w-[380px] md:w-[354px] xl:w-[510px] xl:pt-0 2xl:w-[562px]   3xl:w-[590px] 3xl:pt-[45px] 4xl:w-[671px] 4xl:pt-[70px] 5xl:w-[830px] 5xl:pt-[100px]">
       <h2 className=" font-tahoma font-bold tracking-[1.2px]  xs:mb-[36px] xs:text-center xs:text-[24px] xs:leading-normal md:text-left  xl:mb-[48px] xl:text-[40px] 4xl:w-[602px] 5xl:w-[830px] ">

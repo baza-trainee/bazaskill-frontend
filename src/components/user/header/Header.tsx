@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import React from 'react';
 import Logo from '@/components/shared/icons/Logo';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -6,6 +6,7 @@ import AffiliateBanner from './AffiliateBanner';
 import NavHeader from './NavHeader';
 import BurgerButton from './BurgerButton';
 import NavHeaderMenu from './NavHeaderMenu';
+import { Link } from '@/navigation';
 
 export default function Header(): React.JSX.Element {
 

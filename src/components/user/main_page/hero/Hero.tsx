@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
 
-import TextInput from '../ui/TextInput';
+import TextInput from '../../ui/TextInput';
 import DesktopIcon from '@/components/shared/icons/DesktopIcon';
 import Pointer from '@/components/shared/icons/Pointer';
 import SearchIcon from '@/components/shared/icons/SearchIcon';
