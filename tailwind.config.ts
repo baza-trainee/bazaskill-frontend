@@ -39,12 +39,12 @@ const config: Config = {
       screens: {
         'xs': '320px',
         'sm': '420px',
-        'md': '768px',
+        'md': '769px',
         'xl': '1280px',
         '2xl': '1368px',
         '3xl': '1440px',
         '4xl': '1536px',
-        '5xl': '1920px',
+        '5xl': '1900px',
       },
       backgroundImage: {
         'gradient-radial':

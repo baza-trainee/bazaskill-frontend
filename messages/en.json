@@ -80,16 +80,16 @@
       "card_3_title":"Portfolio of real projects",
       "card_4_title":"Candidate's developed soft skills",
       "card_1_text":"During the standard onboarding procedure, specialization requirements are taken into account, candidates understand how the arrival of a new player affects the team. Developed product development methodology, communication standards, information search priorities.",
-      "card_2_text":"Each candidate participated in meetings from product requirements to release. Our candidates understand interdependence in the team from each other, take into account the time needed for the work of other teams.",
+      "card_2_text":"Each candidate participated in meetings from product requirements to release. Our candidates understand the interdependence of the team from each other and take into account the time needed for the work of other teams.",
       "card_3_text":"Each candidate has a proven track record of working with real technical tasks. All projects have implementation and perform a practical role for the customer. During the development, knowledge is also provided regarding the assignment of projects, SEO optimization methods, as well as after-sales service.",
-      "card_4_text":"Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better at the moment: an executor or a manager."
+      "card_4_text":"Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better: an executor or a manager."
     },
     "juniors-advantages":{
       "title":"Advantages of juniors",
-      "subtitle": "3 GOOD REASONS TO HIRE JUNIOR",
-      "card_title_1": "Motivation and desire to learn",
-      "card_title_2": "Economic feasibility in the long term",
-      "card_title_3": "Personnel reserve for future processes",
+      "subtitle":"3 GOOD REASONS TO HIRE JUNIOR",
+      "card_title_1":"Motivation and desire to learn",
+      "card_title_2":"Economic feasibility in the long term",
+      "card_title_3":"Personnel reserve for future processes",
       "card_text_1":"Juniors are usually highly motivated to develop and quickly adapt to new technologies and processes. They are open to learning, actively seek knowledge and strive to become valuable members of the team, changing it for the better. Also, they have no negative triggers in writing code or bug reports. Such a specialist is actually a blank sheet that the company can form to work for itself.",
       "card_text_2":"Young specialists are loyal to the employer company, work with enthusiasm, and are also ready to invest their time in learning and mastering the latest technologies. Often they agree to a lower level of pay and at the same time reduce turnover for the company. However, these conditions should be discussed at the start of the junior's work.",
       "card_text_3":"Inviting junior specialists to work is a successful strategy of companies playing the long game. The middle rank of specialists will move up the career ladder, freeing up places for newcomers. Therefore, a reserve warehouse, prepared and built on time, is an insurance against personnel errors in the future."
@@ -104,9 +104,9 @@
     },
     "help": {
       "title": "We will help you find a worthy specialist",
-      "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
-      "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
-      "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
+      "paragraph_1": "The Baza Skill platform will help you find a junior IT specialist, as each of our candidates has already completed an internship in practice",
+      "paragraph_2": "Junior employee positions are an important element in the team of any IT company, as they are an invariable component of the personnel reserve. During the years of work, middle specialists move up the career ladder, eventually making room for replacements. So you should be ready for changes in the staff structure at any time.",
+      "paragraph_3": "We provide you with skilled and well-trained junior specialists who love what they do."
     },
     "candidates": {
       "title": "Our candidates",
@@ -122,7 +122,7 @@
       "paragraph_10": "Proven by successful teamwork."
     },
     "partners": {
-      "title": "Our partners"
+      "title": "We are supported by"
     },
     "articles": {
       "title": "Articles and tips"

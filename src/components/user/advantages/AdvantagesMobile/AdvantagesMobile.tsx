@@ -3,15 +3,14 @@ import { useMediaQuery } from 'react-responsive';
 import { useTranslations } from 'next-intl';
 import Slider from '@/components/shared/slider/Slider';
 
-interface SliderProps {
-  cardData: TAdvantages[];
-}
-
-export const Advantage = ({data:item}:{data:TAdvantages})=>{
+export const AdvantageCard = ({data:item,index}:{data:any,index?:number})=>{
   const t = useTranslations('Main.advantages');
+
   return(
-  <article className={`md:hiddenbg-gradient-to-b from-green to-graphite rounded-lg p-[2px] w-[302px] h-[495px] mx-auto`}>
-      <div className="bg-graphite overflow-hidden rounded-lg w-full h-full p-6 flex flex-col justify-start text-white">
+  <article className={`md:hidden bg-gradient-to-b from-green to-graphite 
+  rounded-lg p-[2px] w-[302px] sm:w-[280px] h-[495px] mx-auto ${index && index % 2 !== 0 && 'mt-[123px]'}`}>
+      <div className="bg-graphite overflow-hidden rounded-lg w-full h-full p-6 
+      flex flex-col justify-start text-white">
     <img
       src={item.icon}
       alt='article icon'
@@ -26,12 +25,17 @@ export const Advantage = ({data:item}:{data:TAdvantages})=>{
   )
 }
 
+interface SliderProps {
+  cardData: TAdvantages[];
+  index?: number;
+}
+
 const AdvantagesMobile: React.FC<SliderProps> = ({
   cardData,
 }: SliderProps) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 420px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 550px)' });
   return (
-    <Slider Component={Advantage} data={cardData} showArrows={false} slides={isMobile ? 1 : 2} />
+    <Slider Component={AdvantageCard} data={cardData} showArrows={false} slides={isMobile ? 1 : 2} />
   );
 };
 

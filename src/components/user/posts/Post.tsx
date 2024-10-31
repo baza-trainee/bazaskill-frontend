@@ -3,8 +3,8 @@ import Image from "next/image"
 const Post = ({ data: post }: { data: any }) => {
   return (
     <article
-      className="mx-auto flex flex-col-reverse lg:flex-row justify-start items-start
-      h-[600px] lg:h-[336px] w-[350px] sm:w-[400px] md:w-[500px] lg:w-[773px] xl:w-[592px] 5xl:w-[773px]
+      className="mx-auto flex flex-col-reverse md:flex-row justify-start items-start
+      h-[600px] md:h-[336px] w-[350px] sm:w-[400px]  md:w-[773px] xl:w-[592px] 5xl:w-[773px]
       overflow-hidden rounded-lg bg-black text-white shadow-lg"
       aria-labelledby={`post-title-${post.id}`}
       role="article"
