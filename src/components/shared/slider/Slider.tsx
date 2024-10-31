@@ -1,3 +1,4 @@
+'use client';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';

@@ -12,7 +12,7 @@ import HelpList from './helpList/HelpList';
 import HelpListSkeleton from './helpListSkeleton/HelpListSkeleton';
 import HelpSpecialist from './helpSpecialist/HelpSpecialist';
 
-function Help() {
+function Help(): JSX.Element {
   const { data } = useQuery<IImage[], Error>({
     queryKey: [constants.gallery.GET_IMAGES],
     queryFn: getImages,

@@ -102,12 +102,6 @@
       "card1_text":"Are you a recruiter looking for young talent for your IT company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
       "card2_text":"Together we can reach new heights! Join our network of partners as an employer and support young people on their career path."
     },
-    "help": {
-      "title": "We will help you find a worthy specialist",
-      "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
-      "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
-      "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
-    },
     "candidates": {
       "title": "Our candidates",
       "paragraph_1": "Follow the rules for using shared tools",
@@ -129,22 +123,6 @@
     },
     "testimonials": {
       "title": "Testimonials"
-    },
-    "footer": {
-      "offer": "One step to the offer",
-      "about_us": "About us",
-      "to_become_hr": "Become our HR",
-      "to_become_partner": "Become our partner",
-      "baza_trainee": "Baza Trainee Ukraine",
-      "internship": "Internship at Baza Educat",
-      "poligon": "Development of Baza Poligon",
-      "development": "Development by Baza Trainee Ukraine 2024",
-      "rights": "All rights reserved",
-      "privacy_policy": "Privacy policy",
-      "terms_of_use": "Terms of use",
-      "support_1": "The company sends 10% of profits to support",
-      "support_2": "of the 59th brigade",
-      "support_3": "named after Yakov Handziuk"
     },
     "forms": {
       "to_become_hr": "Become our HR",
@@ -209,6 +187,30 @@
     },
     "error": "Oops... something went wrong, try again later",
     "tryagain": "Try again"
+  },
+  "Why_juniors": {
+    "help": {
+      "title": "We will help you find a worthy specialist",
+      "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
+      "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
+      "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
+    }
+  },
+  "Footer": {
+    "offer": "One step to the offer",
+    "about_us": "About us",
+    "to_become_hr": "Become our HR",
+    "to_become_partner": "Become our partner",
+    "baza_trainee": "Baza Trainee Ukraine",
+    "internship": "Internship at Baza Educat",
+    "poligon": "Development of Baza Poligon",
+    "development": "Development by Baza Trainee Ukraine 2024",
+    "rights": "All rights reserved",
+    "privacy_policy": "Privacy policy",
+    "terms_of_use": "Terms of use",
+    "support_1": "The company sends 10% of profits to support",
+    "support_2": "of the 59th brigade",
+    "support_3": "named after Yakov Handziuk"
   },
   "Contacts": {
     "title": "Contacts",

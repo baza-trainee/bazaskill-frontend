@@ -1,11 +1,11 @@
-import Advantages from '@/components/user/advantages/Advantages';
-import Counters from '@/components/user/counters/Counters';
-import Hero from '@/components/user/hero/Hero';
-import Invitation from '@/components/user/invitation/Invitation';
+import Advantages from '@/components/user/main_page/advantages/Advantages';
+import Counters from '@/components/user/main_page/counters/Counters';
+import Hero from '@/components/user/main_page/hero/Hero';
+import Invitation from '@/components/user/main_page/invitation/Invitation';
 import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
-import OurHistory from '@/components/user/our_history/OurHistory';
-import Partners from '@/components/user/partners/Partners';
-import Posts from '@/components/user/posts/Posts';
+import OurHistory from '@/components/user/main_page/our_history/OurHistory';
+import Partners from '@/components/user/main_page/partners/Partners';
+import Posts from '@/components/user/main_page/posts/Posts';
 
 async function Home() {
   return (

@@ -3,7 +3,7 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import { useTranslations } from 'next-intl';
 
 export default function BecomeBlock(): JSX.Element {
-  const t = useTranslations('Main.footer');
+  const t = useTranslations('Footer');
   const { openModal } = useModal();
   return (
     <div className="flex flex-col gap-2 text-white md:gap-5 items-center md:items-start">

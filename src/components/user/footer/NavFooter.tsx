@@ -1,7 +1,7 @@
-import { usePathname } from "@/navigation";
+import { Link, usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { itemsLink } from "./itemsLink";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function NavFooter(): JSX.Element {
   const t = useTranslations('Header');
