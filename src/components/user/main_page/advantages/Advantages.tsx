@@ -4,12 +4,24 @@ import {benefitsData} from './data'
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
 import AdvantagesMobile from './AdvantagesMobile/AdvantagesMobile'
+import LoaderLayout from '@/components/shared/loader/Loader';
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
+
+
 
 const Advantages = () => {
   const t = useTranslations('Main.advantages');
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 769px)' });
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
   return (
-    <section
+  <>
+  {isClient &&   <section
       className='mt-[100px] flex gap-4 flex-col justify-center items-center w-full'
       aria-labelledby="advantages-title"
     >
@@ -20,9 +32,10 @@ const Advantages = () => {
         {t('title')}
       </h2>
       <div className="hidden md:flex gap-8 flex-wrap justify-center items-start">
-        {benefitsData.map((item, i) => (
-          <article key={item.id} className={`bg-gradient-to-b from-green to-graphite rounded-lg p-[2px] w-[612px] h-[388px] 
-          ${i % 2 !== 0 && 'mt-0 xl:mt-[240px]'}`}>
+        {benefitsData.map((item, index) => (
+          <article key={item.id} className={`bg-gradient-to-b from-green to-graphite 
+            rounded-lg p-[2px] w-[612px] 5xl:w-[720px] h-[388px] 
+          ${index % 2 !== 0 && ' xl:mt-[240px]'}`}>
             <div className="bg-graphite overflow-hidden rounded-lg w-full h-full p-6 flex gap-4 justify-start items-start text-white">
               <img
                 src={item.icon}
@@ -42,7 +55,8 @@ const Advantages = () => {
         ))}
       </div>
       {isMobile && <AdvantagesMobile cardData={benefitsData} />}
-    </section>
+    </section>}
+  </>
   )
 }
 

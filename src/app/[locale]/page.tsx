@@ -3,7 +3,7 @@ import Counters from '@/components/user/main_page/counters/Counters';
 import Hero from '@/components/user/main_page/hero/Hero';
 import Invitation from '@/components/user/main_page/invitation/Invitation';
 import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
-import { OurHistory } from '@/components/user/main_page/our_history/OurHistory';
+import OurHistory from '@/components/user/main_page/our_history/OurHistory';
 import Partners from '@/components/user/main_page/partners/Partners';
 import Posts from '@/components/user/main_page/posts/Posts';
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from 'react-responsive';
 
 const images = [
   { src: '/images/our_history/image_1.png', alt: 'Baza Trainee Ukraine' },
@@ -12,10 +13,12 @@ const images = [
   { src: '/images/our_history/image_4.png', alt: 'Baza Polygon' },
 ];
 
-export const OurHistory = () => {
+ const OurHistory = () => {
   const t = useTranslations("Main.history");
-
+  const [showText,setShowText] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isMobile = useMediaQuery({ query: '(max-width: 420px)' });
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,16 +27,31 @@ export const OurHistory = () => {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+      setShowText(!isMobile);
+  }, [isMobile]);
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   const descriptionStyle =
     "lg:text-[20px] md:text-[1rem] tracking-[0.02em] text-white font-normal leading-[130%]";
 
   return (
-    <section
-      className="container pt-[100px] flex flex-col-reverse md:grid md:grid-cols-2 lg:gap-[24px] gap-[10px]"
+   <>
+   {isClient &&  <section
+      className="container pt-[100px] flex flex-col xl:grid xl:grid-cols-2 lg:gap-[24px] gap-[48px]"
       aria-labelledby="history-title"
     >
+          <h2
+          id="history-title"
+          className="text-center xl:hidden lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
+        >
+          {t("title")}
+        </h2>
       <div
-        className="relative perspective-[1000px] hidden md:block h-[648px]"
+        className="relative perspective-[1000px] hidden md:block w-3/4 xl:w-full mx-auto h-[648px]"
         aria-live="polite"
         aria-atomic="true"
       >
@@ -74,10 +92,21 @@ export const OurHistory = () => {
           );
         })}
       </div>
-      <div className="2xl:px-[40px] md:h-[648px]">
+      <figure className="md:hidden w-full">
+                <Image
+                  src={'/images/our_history/our_history.png'}
+                  alt={'image'}
+                  priority={false}
+                  width={500}
+                  height={300}
+                  className="object-cover min-h-[200px] w-full"
+                />
+                <figcaption className="sr-only">{'image'}</figcaption>
+              </figure>
+      <div className="2xl:px-[40px] md:h-[648px] ">
         <h2
           id="history-title"
-          className="text-center lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
+          className="hidden xl:block text-center lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
         >
           {t("title")}
         </h2>
@@ -85,10 +114,26 @@ export const OurHistory = () => {
         <br />
         <p className={descriptionStyle}>{t("description_2")}</p>
         <br />
+       <div className={`${showText ? "block" : "hidden"}`}>
         <p className={descriptionStyle}>{t("description_3")}</p>
         <br />
         <p className={descriptionStyle}>{t("description_4")}</p>
+       </div>
+     {isMobile && !showText && 
+          <button
+          onClick={() => setShowText(!showText)} 
+           className="relative mt-4 flex mx-auto text-green items-center justify-center p-[2px] overflow-hidden transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
+         >
+           <span className="px-4 py-2 w-[80vw]  rounded-md bg-graphite group-hover:text-yellow transition ease-in-out duration-300">
+           {"Дізнатись більше"}
+           </span>
+         </button>
+        }
+      
       </div>
-    </section>
+    </section>}
+   </>
   );
 };
+
+export default OurHistory
