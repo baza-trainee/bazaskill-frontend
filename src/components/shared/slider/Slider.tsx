@@ -15,11 +15,10 @@ type SliderProps = {
   data: any[];
   showArrows?: boolean;
   slides?: number;
-  title?: string;
   Component: FC<{ data: any }>;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component, showArrows=true,slides, title }) => {
+const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slides }) => {
   const sliderRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
 
@@ -50,12 +49,10 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true,slides, titl
   return (
     <div className="my-8 flex flex-col w-full items-center justify-center ">
      {showArrows &&  <nav
-        className="mx-auto mt-4 flex w-full items-center justify-center mb-8 text-white px-4 relative"
+        className="mx-auto mt-4 flex w-full items-center justify-end mb-8 text-white px-4"
         aria-label="Slider navigation"
       >
-        { title && <h2 className=''>{title}</h2> }
-
-        <div className="flex gap-4 absolute right-0 pr-4">
+        <div className="flex gap-4">
           <button
             onClick={handlePrev}
             aria-label="Previous slide"
