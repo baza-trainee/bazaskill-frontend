@@ -73,7 +73,25 @@
       "heading":"nasze statystyki"
     },
     "advantages":{
-      "title":"Korzyści ze współpracy z nami"
+      "title":"Korzyści ze współpracy z nami",
+      "card_1_title":"Wszyscy kandydaci przeszli onboarding",
+      "card_2_title":"Doświadczenie w zespołowym tworzeniu oprogramowania",
+      "card_3_title":"Portfolio realnych projektów",
+      "card_4_title":"Rozwinięte 'soft skills' kandydata",
+      "card_1_text":"Podczas standardowej procedury onboardingu brane są pod uwagę wymagania specjalizacyjne, kandydaci rozumieją, jak pojawienie się nowego zawodnika wpływa na zespół. Opracowana metodologia rozwoju produktów, standardy komunikacji, priorytety wyszukiwania informacji.",
+      "card_2_text":"Każdy kandydat brał udział w spotkaniach od wymagań produktu do wydania. Nasi kandydaci rozumieją wzajemne zależności w zespole, uwzględniają czas potrzebny na pracę pozostałych zespołów.",
+      "card_3_text":"Każdy kandydat ma udokumentowane doświadczenie w pracy z rzeczywistymi zadaniami technicznymi. Wszystkie projekty mają charakter realizacyjny i spełniają praktyczną rolę dla Klienta. W trakcie rozwoju przekazywana jest także wiedza dotycząca przydzielania projektów, metod optymalizacji SEO, a także obsługi posprzedażowej.",
+      "card_4_text":"Każdy kandydat może, jeśli chce, pełnić rolę lidera swojego zespołu. Podczas ćwiczeń każdy ustala, która strategia postępowania mu w danym momencie bardziej odpowiada: wykonawca czy menadżer."
+    },
+    "juniors-advantages":{
+      "title":"Zalety juniorów",
+      "subtitle": "3 DOBRE POWODY, ABY ZATRUDNIĆ JUNIORA",
+      "card_title_1": "Motywacja i chęć nauki",
+      "card_title_2": "Ekonomiczna wykonalność w dłuższej perspektywie",
+      "card_title_3": "Rezerwa kadrowa na przyszłe procesy",
+      "card_text_1":"Juniorzy są zazwyczaj silnie zmotywowani do rozwoju i szybkiego dostosowywania się do nowych technologii i procesów. Są otwarci na naukę, aktywnie poszukują wiedzy i dążą do tego, aby stać się wartościowymi członkami zespołu, zmieniając go na lepsze. Ponadto nie mają żadnych negatywnych czynników wyzwalających pisanie kodu lub raportów o błędach. Taki specjalista to właściwie czysta kartka, którą firma może uformować, żeby pracowała dla siebie.",
+      "card_text_2":"Młodzi specjaliści są lojalni wobec pracodawcy, pracują z entuzjazmem, a także są gotowi poświęcić swój czas na naukę i doskonalenie najnowszych technologii. Często zgadzają się na niższy poziom wynagrodzenia i jednocześnie zmniejszają obroty firmy. Warunki te należy jednak omówić na początku pracy juniora.",
+      "card_text_3":"Zapraszanie do pracy młodszych specjalistów to skuteczna strategia firm grających na dłuższą metę. Średni stopień specjalistów będzie piął się po szczeblach kariery, zwalniając miejsca dla nowicjuszy. Dlatego przygotowany i wybudowany na czas magazyn rezerwowy jest zabezpieczeniem przed błędami kadrowymi w przyszłości."
     },
     "invitation":{
       "title": "Zapraszamy do współpracy",
