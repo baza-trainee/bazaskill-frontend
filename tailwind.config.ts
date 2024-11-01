@@ -39,6 +39,7 @@ const config: Config = {
       screens: {
         'xs': '320px',
         'sm': '420px',
+        'sm+': '570px',
         'md': '768px',
         'xl': '1280px',
         '2xl': '1368px',

@@ -9,8 +9,9 @@ export const AdvantageCard = ({data:item,index}:{data:any,index?:number})=>{
 
   return(
   <article className={`md:hidden bg-gradient-to-b from-green to-graphite 
-  rounded-lg p-[2px] w-[302px] sm:w-[280px] h-[495px] mx-auto ${index && index % 2 !== 0 && 'mt-[123px]'}`}>
-      <div className="bg-graphite overflow-hidden rounded-lg w-full h-full p-6 
+  rounded-2xl p-[2px] w-[302px] sm:w-[280px] h-[495px] mx-auto 
+  ${index && index % 2 !== 0 && 'sm+:mt-[123px]'}`}>
+      <div className="bg-graphite overflow-hidden rounded-2xl w-full h-full p-6 
       flex flex-col justify-start text-white">
     <img
       src={item.icon}
@@ -34,9 +35,13 @@ interface SliderProps {
 const AdvantagesMobile: React.FC<SliderProps> = ({
   cardData,
 }: SliderProps) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 550px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 570px)' });
   return (
-    <Slider Component={AdvantageCard} data={cardData} showArrows={false} slidesToView={isMobile ? 1 : 2} />
+    <Slider 
+    Component={AdvantageCard} 
+    data={cardData} 
+    showArrows={false} 
+    slidesToView={isMobile ? 1 : 2} />
   );
 };
 
