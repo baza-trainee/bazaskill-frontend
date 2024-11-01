@@ -41,12 +41,14 @@ const images = [
   return (
    <>
    {isClient &&  <section
-      className="container pt-[100px] flex flex-col xl:grid xl:grid-cols-2 lg:gap-[24px] gap-[48px]"
+      className="pt-[100px] flex flex-col xl:grid xl:grid-cols-2 
+      lg:gap-[24px] gap-[48px] px-4 py-[48px] md:py-[60px] md:px-[80px] xl:py-[100px] xl:px-[80px]"
       aria-labelledby="history-title"
     >
           <h2
           id="history-title"
-          className="text-center xl:hidden lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
+          className="text-center xl:hidden lg:mb-[48px] md:mb-[28px] 
+          font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
         >
           {t("title")}
         </h2>
@@ -103,7 +105,7 @@ const images = [
                 />
                 <figcaption className="sr-only">{'image'}</figcaption>
               </figure>
-      <div className="2xl:px-[40px] md:h-[648px] ">
+      <div className="2xl:px-[25px] md:h-[648px] ">
         <h2
           id="history-title"
           className="hidden xl:block text-center lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
