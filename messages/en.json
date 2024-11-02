@@ -190,11 +190,16 @@
     "tryagain": "Try again"
   },
   "Why_juniors": {
+    "title":"Why juniors",
     "help": {
       "title": "We will help you find a worthy specialist",
       "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
       "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
       "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
+    },
+    "history-juniors":{
+      "title": "History juniors",
+      "btn_details": "More details"
     }
   },
   "Footer": {

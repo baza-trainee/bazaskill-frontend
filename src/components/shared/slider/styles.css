@@ -1,16 +1,26 @@
 .swiper-pagination-bullet{
-    width: 16px;
-    height: 16px;
-    background-color: #fefffe;
-    opacity: 1;
-    margin-right: 16px !important;
-  }
-  
-  .swiper-pagination-bullet-active{
-   background-color: #ffff00;
-  }
-  
-  .swiper-pagination{
-    position: static;
-    margin-top: 35px;
-  }
+  width: 16px;
+  height: 16px;
+  background-color: #fefffe;
+  opacity: 1;
+  transition: all .3s;
+}
+
+.swiper-pagination-bullet-active{
+  background-color: #ffff00;
+  transform: scale(1.05);
+}
+.swiper-pagination-bullet:hover{
+  opacity: .8;
+  transform: scale(1.05);
+}
+
+.swiper-pagination{
+  position: static;
+  padding: 5px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}

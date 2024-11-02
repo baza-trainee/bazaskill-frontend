@@ -1,7 +1,6 @@
 import Logo from "@/components/shared/icons/Logo";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
-// import Link from "next/link";
 
 export default function MobileLogo(): JSX.Element {
   const t = useTranslations('Footer');

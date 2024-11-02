@@ -1,7 +1,6 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
-// import Link from 'next/link';
 
 import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
@@ -17,9 +16,6 @@ import FooterLinks from './FooterLinks';
 import MobileLogo from './MobileLogo';
 import FooterLogo from './FooterLogo';
 import Link from 'next/link';
-// import { Link } from 'lucide-react';
-// import { Link } from '@/navigation';
-
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('Footer');
@@ -46,17 +42,6 @@ export default function Footer(): JSX.Element {
   const createLinck =(value: string | undefined): string => {
     return value ?`${locale}/docs/${value}`: '/'
   }
-// const MainLink=({
-//   href,
-//   content,
-//   ...rest
-// }: ComponentProps<typeof Link>)=>{
-//   return (
-//     <Link href={href} {...rest}>
-//       {content}
-//     </Link>
-//   )
-// }
 
   return (
     <footer className="relative bg-black">
