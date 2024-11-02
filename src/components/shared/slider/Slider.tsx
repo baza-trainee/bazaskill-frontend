@@ -1,9 +1,9 @@
 'use client';
 import { FC, useEffect, useRef, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperOptions } from 'swiper/types';
 import { Pagination, Navigation } from 'swiper/modules';
-
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import 'swiper/css/navigation';
@@ -12,35 +12,35 @@ import 'swiper/css';
 import './styles.css';
 import clsx from 'clsx';
 
-type SliderProps = {
+
+interface SliderProps extends SwiperOptions{
   data: any;
   showArrows?: boolean;
   slidesToView?: number;
   title?: string;
   Component: FC<{ data: any, index?: number }>;
-  minWidth?: string;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToView, title, minWidth='1224'}) => {
+const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToView, title , ...options}) => {
   const sliderRef = useRef(null);
-  const [ slidesPerView, setSlidesPerView ] = useState(1);
+  // const [ slidesPerView, setSlidesPerView ] = useState(1);
   const [ isClient, setIsClient ] = useState(false)
 
-  const isDesktopOrLaptop = useMediaQuery({ query: `(min-width: ${minWidth}px)` });
-  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${minWidth}px)` });
+  // const isDesktopOrLaptop = useMediaQuery({ query: `(min-width: ${minWidth}px)` });
+  // const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${minWidth}px)` });
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  useEffect(() => {
-    if (isDesktopOrLaptop) {
-      setSlidesPerView(2);
-    }
-    if (isTabletOrMobile) {
-      setSlidesPerView(1);
-    }
-  }, [isDesktopOrLaptop, isTabletOrMobile]);
+  // useEffect(() => {
+  //   if (isDesktopOrLaptop) {
+  //     setSlidesPerView(2);
+  //   }
+  //   if (isTabletOrMobile) {
+  //     setSlidesPerView(1);
+  //   }
+  // }, [isDesktopOrLaptop, isTabletOrMobile]);
 
   const handlePrev = () => {
     if (sliderRef.current) {
@@ -69,7 +69,7 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
           </h2>
         }
 
-        {data?.length > slidesPerView && <div className={clsx("h-full items-center justify-center gap-4 pr-4 absolute right-0 top-0 hidden md:flex")}>
+        <div className={clsx("h-full items-center justify-center gap-4 pr-4 absolute right-0 top-0 hidden md:flex")}>
           <button
             onClick={handlePrev}
             aria-label="Previous slide"
@@ -86,14 +86,16 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
           >
             <FaChevronRight aria-hidden="true" />
           </button>
-        </div>}
+        </div>
       </nav>
       }
       <Swiper
         id='slider'
         className="relative flex w-full items-center pb-9"
         spaceBetween={10}
-        slidesPerView={slidesToView ? slidesToView : slidesPerView}
+        // slidesPerView={slidesToView ? slidesToView : slidesPerView}
+        slidesPerView={1}
+        {...options}
         modules={[Pagination, Navigation]}
         pagination={{ clickable: true }}
         onSwiper={(swiper) => {
@@ -105,6 +107,8 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
             <Component data={item} index={i} />
           </SwiperSlide>
         ))}
+        
+      
       </Swiper>
     </div>}
  </>
