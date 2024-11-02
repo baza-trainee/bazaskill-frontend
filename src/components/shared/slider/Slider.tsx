@@ -1,6 +1,5 @@
 'use client';
 import { FC, useEffect, useRef, useState } from 'react';
-// import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
 import { Pagination, Navigation } from 'swiper/modules';
@@ -12,7 +11,6 @@ import 'swiper/css';
 import './styles.css';
 import clsx from 'clsx';
 
-
 interface SliderProps extends SwiperOptions{
   data: any;
   showArrows?: boolean;
@@ -23,24 +21,11 @@ interface SliderProps extends SwiperOptions{
 
 const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToView, title , ...options}) => {
   const sliderRef = useRef(null);
-  // const [ slidesPerView, setSlidesPerView ] = useState(1);
   const [ isClient, setIsClient ] = useState(false)
-
-  // const isDesktopOrLaptop = useMediaQuery({ query: `(min-width: ${minWidth}px)` });
-  // const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${minWidth}px)` });
 
   useEffect(() => {
     setIsClient(true)
   }, [])
-
-  // useEffect(() => {
-  //   if (isDesktopOrLaptop) {
-  //     setSlidesPerView(2);
-  //   }
-  //   if (isTabletOrMobile) {
-  //     setSlidesPerView(1);
-  //   }
-  // }, [isDesktopOrLaptop, isTabletOrMobile]);
 
   const handlePrev = () => {
     if (sliderRef.current) {
@@ -93,7 +78,6 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
         id='slider'
         className="relative flex w-full items-center pb-9"
         spaceBetween={10}
-        // slidesPerView={slidesToView ? slidesToView : slidesPerView}
         slidesPerView={1}
         {...options}
         modules={[Pagination, Navigation]}
@@ -107,8 +91,6 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
             <Component data={item} index={i} />
           </SwiperSlide>
         ))}
-        
-      
       </Swiper>
     </div>}
  </>
