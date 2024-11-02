@@ -9,7 +9,11 @@ export default function HistoryJuniors(): JSX.Element {
   return (
     <section 
       className="container py-12 md:py-[100px] max-md:main-texture-background bg-no-repeat bg-cover">
-      <Slider data={ItemsData} Component={JuniorCard} title={t("title")}/>
+      <Slider 
+        data={ItemsData} 
+        Component={JuniorCard} 
+        title={t("title")} 
+        minWidth="1024"/>
     </section>
   )
 }

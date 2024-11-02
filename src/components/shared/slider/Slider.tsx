@@ -18,15 +18,16 @@ type SliderProps = {
   slidesToView?: number;
   title?: string;
   Component: FC<{ data: any, index?: number }>;
+  minWidth?: string;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToView, title }) => {
+const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToView, title, minWidth='1224'}) => {
   const sliderRef = useRef(null);
   const [ slidesPerView, setSlidesPerView ] = useState(1);
   const [ isClient, setIsClient ] = useState(false)
 
-  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1024px)' });
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isDesktopOrLaptop = useMediaQuery({ query: `(min-width: ${minWidth}px)` });
+  const isTabletOrMobile = useMediaQuery({ query: `(max-width: ${minWidth}px)` });
 
   useEffect(() => {
     setIsClient(true)
@@ -89,7 +90,7 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
       </nav>
       }
       <Swiper
-        id="slider"
+        id='slider'
         className="relative flex w-full items-center pb-9"
         spaceBetween={10}
         slidesPerView={slidesToView ? slidesToView : slidesPerView}
