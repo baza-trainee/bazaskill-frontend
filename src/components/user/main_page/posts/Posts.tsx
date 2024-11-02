@@ -35,6 +35,11 @@ function Posts() {
           Component={Post}
           title={t('title')}
           aria-label="Articles Slider"
+          breakpoints={{
+            1280: {
+              slidesPerView: 2,
+            }
+          }}
         />
       )}
     </section>
