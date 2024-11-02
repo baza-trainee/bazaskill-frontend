@@ -3,7 +3,7 @@ export interface Item{
   img: string;
   name: string;
   role: string;
-  date: string | number;
+  date: string | number | Date;
   description: string;
 }
 
