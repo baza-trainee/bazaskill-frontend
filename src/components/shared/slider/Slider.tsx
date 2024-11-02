@@ -57,7 +57,7 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
     <>
     {isClient &&    <div className="my-8 flex flex-col w-full items-center justify-center">
      {showArrows &&  <nav
-        className="mx-auto mt-4 flex w-full items-center justify-center mb-10 text-white pr-4 relative"
+        className="mx-auto flex w-full items-center justify-center mb-6 text-white pr-4 relative h-fit py-4"
         aria-label="Slider navigation"
       >
 
