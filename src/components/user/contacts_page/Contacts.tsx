@@ -14,7 +14,7 @@ export default function Contacts(): JSX.Element {
 
   return (
     <section className="pt-[72px] sm:pt-[80px] md:pt-[140px] relative">
-      <h1 className="visually-hidden">
+      <h1 className="sr-only">
         {t('title')}
       </h1>
       <div className='container py-10 gap-8 min-h-[550px] flex flex-col md:flex-row justify-between items-center'>

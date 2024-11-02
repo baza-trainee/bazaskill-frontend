@@ -53,14 +53,15 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
   };
 
   return (
- <>
- {isClient &&    <div className="my-8 flex flex-col w-full items-center justify-center ">
+    <>
+    {isClient &&    <div className="my-8 flex flex-col w-full items-center justify-center ">
      {showArrows &&  <nav
         className="mx-auto mt-4 flex w-full items-center justify-between mb-10 text-white pr-4"
         aria-label="Slider navigation"
       >
-        {title &&  <h2
-        className="text-center font-tahoma text-[24px] font-bold not-italic text-white md:text-2xl lg:text-[40px]"
+
+      {title &&  <h2
+        className="w-full text-center font-tahoma text-[24px] font-bold not-italic text-white md:text-2xl lg:text-[40px]"
       >
         {title}
       </h2>}
@@ -69,7 +70,7 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
             onClick={handlePrev}
             aria-label="Previous slide"
             aria-controls="slider"
-            className="cursor-pointer"
+            className="cursor-pointer duration-300 disabled:opacity-50 hover:opacity-70"
           >
             <FaChevronLeft aria-hidden="true" />
           </button>

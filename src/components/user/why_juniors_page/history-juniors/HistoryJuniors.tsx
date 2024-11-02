@@ -1,19 +1,58 @@
 'use client';
 import Slider from "@/components/shared/slider/Slider";
+import JuniorCard from "./junior_card/JuniorCard";
 
 export default function HistoryJuniors(): JSX.Element {
 
-const data:string[] =["slid-1","slid-2","slid-3","slid-4","slid-5"]
+  interface Item{
+    id: string;
+    img: string;
+    name: string;
+    role: string;
+    date: string;
+    description: string;
+  }
 
-const p =({data}:any): JSX.Element=>{
-  return <p className="h-32">{data}</p>
-}
+  // травень, 2023
+  const ItemsData: Item[] = [
+    {
+      id:'100001',
+      img:'/history-juniors/avatar.jpg',
+      name:'Ірина',
+      role: 'учасниця, QA',
+      date: '1730457278762',
+      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a. Malesuada morbi amet urna bibendum tortor sociis vitae habitant orci.Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a.'
+    },
+    {
+      id:'100002',
+      img:'/history-juniors/avatar.jpg',
+      name:'Ірина',
+      role: 'учасниця, Front end',
+      date: '1730457278762',
+      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a. Malesuada morbi amet urna bibendum tortor sociis vitae habitant orci.Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a.'
+    },
+    {
+      id:'100003',
+      img:'/history-juniors/avatar.jpg',
+      name:'Ірина',
+      role: 'учасниця, QA',
+      date: '1730457278762',
+      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a. Malesuada morbi amet urna bibendum tortor sociis vitae habitant orci.Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a.'
+    },
+    {
+      id:'100004',
+      img:'/history-juniors/avatar.jpg',
+      name:'Ірина',
+      role: 'учасниця, QA',
+      date: '1730457278762',
+      description: 'Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a. Malesuada morbi amet urna bibendum tortor sociis vitae habitant orci.Lorem ipsum dolor sit amet consectetur. Pharetra blandit rutrum sed tellus molestie facilisis malesuada vel nec. Consequat pulvinar nunc lacus nunc pharetra etiam. Rhoncus dui sit pretium pretium a.'
+    },
+  ]
+
 
   return (
     <section className="container py-[100px]">
-      <h2>Історії джунів</h2>
-      <Slider data={data} Component={p}/>
-
+      <Slider data={ItemsData} Component={JuniorCard} title="Історії джунів"/>
     </section>
   )
 }

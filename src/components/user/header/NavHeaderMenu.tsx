@@ -1,19 +1,18 @@
 import clsx from "clsx";
 import { useCallback, useEffect } from "react";
-// import Link from "next/link";
 import { Link, usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useNavMenu } from "@/stores/useNavMenu";
 import { itemsLink } from "./itemsLink";
+import { useMediaQuery } from "react-responsive";
 
 export default function NavHeaderMenu(): JSX.Element {
   const t = useTranslations('Header');
   const pathname = usePathname();
   const isOpen = useNavMenu((state) => state.isOpen);
   const closeMenu = useNavMenu((state) => state.closeMenu);
-
-  const BURGER_MENU_BREAKPOINT = 768;
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const isActive = (name: string): boolean =>{
     if(pathname.split('/').includes('candidate') && name=='candidates'){
@@ -26,18 +25,11 @@ export default function NavHeaderMenu(): JSX.Element {
     if (isOpen) closeMenu();
   }, [isOpen]);
 
-  const handleResize = useCallback(() => {
-    if (window.innerWidth > BURGER_MENU_BREAKPOINT) {
+  useEffect(() => {
+    if (isTabletOrMobile) {
       handleClose();
     }
-  }, [handleClose]);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [handleResize]);
+  }, [isTabletOrMobile]);
 
   useBodyScrollLock(isOpen);
 
