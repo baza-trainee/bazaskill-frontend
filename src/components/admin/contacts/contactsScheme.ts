@@ -1,9 +1,7 @@
+import { emailPattern } from '@/constants/regex';
 import { z } from 'zod';
 
 const phonePattern = /^\+380 \d{2} \d{3} \d{4}$/;
-
-const emailPattern
-  = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i;
 
 export const contactsScheme = z.object({
   phone: z

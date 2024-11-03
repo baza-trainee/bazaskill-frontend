@@ -1,9 +1,5 @@
+import { emailPattern, passwordPattern } from '@/constants/regex';
 import { z } from 'zod';
-
-const emailPattern
-  = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i;
-
-const passwordPattern = /^(?!.*\\)[\w!\-.(),]{8,14}$/;
 
 export const settingsScheme = z.object({
   email: z
