@@ -1,7 +1,5 @@
+import { nonRussianLettersPattern } from '@/constants/regex';
 import { z } from 'zod';
-
-const nonRussianLettersPattern
-  = /^(?!.*\s{2}|.*[.-]{2})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-]+$/;
 
 const dateFormat = /^(0[1-9]|1[0-2])\.\d{4}$/;
 

@@ -1,7 +1,5 @@
+import { linkValidation } from '@/constants/regex';
 import { z } from 'zod';
-
-const linkValidation
-  = /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-\w%.~+]*)*(\?[;&\w%.~+=-]*)?(#[-\w]*)?$/i;
 
 export const postScheme = z.object({
   title: z

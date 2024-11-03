@@ -90,14 +90,14 @@ export default function Post({
       </div>
       {isDeleting && !isSuccess && (
         <QuestionAlert
-          title="Are you sure you want to delete this post?"
+          title="Ви впевнені, що хочете видалити цей пост?"
           onCancel={() => setIsDeleting(false)}
           onConfirm={handleDeleteConfirm}
         />
       )}
       {isSuccess && (
         <SuccessAlert
-          title="Post deleted successfully"
+          title="Пост успішно видалено!"
           onClose={handleSuccessAlertClose}
           isSuccess={isSuccess}
         />

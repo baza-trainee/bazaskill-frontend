@@ -68,4 +68,10 @@ export const constants = {
     ADD_CARD: 'ADD_CARD',
     GET_CARD_BY_ID: 'GET_CARD_BY_ID',
   },
+  stories: {
+    GET_STORIES: 'GET_STORIES',
+    DELETE_STORY: 'DELETE_STORY',
+    ADD_STORY: 'ADD_STORY',
+    GET_STORY_BY_ID: 'GET_STORY_BY_ID',
+  },
 };

@@ -1,15 +1,9 @@
 import { z } from 'zod';
 
 import { formatBytes } from '@/helpers/formatBytes';
+import { ACCEPTED_IMAGE_TYPES } from '@/constants/regex';
 
 const MAX_FILE_SIZE = 1024 * 1024 * 3;
-
-const ACCEPTED_IMAGE_TYPES = [
-  'image/jpeg',
-  'image/jpg',
-  'image/png',
-  'image/webp',
-];
 
 export const cardValidation = z.object({
   name: z

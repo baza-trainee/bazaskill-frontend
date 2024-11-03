@@ -80,8 +80,7 @@ function EditPosts() {
   };
 
   useEffect(() => {
-    if (!file || !touchedFields.image)
-      return;
+    if (!file || !touchedFields.image) return;
     setImagePreview(file);
   }, [file]);
 
@@ -97,7 +96,7 @@ function EditPosts() {
       formData.append('link', data.link);
       formData.append('text', data.text);
 
-      if (file) {
+      if (file?.size) {
         formData.append('file', file);
       }
 

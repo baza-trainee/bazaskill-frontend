@@ -71,6 +71,14 @@ const SideBar: React.FC = () => {
           className=""
           icon={<ArticlesIcon />}
           iconClassName="w-[24px] h-[24px]"
+          href="/admin/stories"
+        >
+          Історії джунів
+        </SideBarItem>
+        <SideBarItem
+          className=""
+          icon={<ArticlesIcon />}
+          iconClassName="w-[24px] h-[24px]"
           href="/admin/testimonials"
         >
           Відгуки

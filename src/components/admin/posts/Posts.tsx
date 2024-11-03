@@ -2,7 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import React from 'react';
 
 import { getPosts } from '@/api/posts';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';

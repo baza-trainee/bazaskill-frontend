@@ -1,21 +1,10 @@
 import { z } from 'zod';
 
 import { formatBytes } from '@/helpers/formatBytes';
+import { nonRussianLettersPattern, ACCEPTED_IMAGE_TYPES, linkValidation } from '@/constants/regex';
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 2;
 
-const ACCEPTED_IMAGE_TYPES = [
-  'image/jpeg',
-  'image/png',
-  'image/webp',
-  'image/svg+xml',
-];
-
-const nonRussianLettersPattern
-  = /^(?!.*\s{2}|.*[.-]{2})(?!.*[ЁёЫыЭэЪъ])[A-Za-zА-Яа-яІіЇїЄєҐґ\s`’'-@!#$%&{}[\]—|]+$/;
-
-const linkValidation
-  = /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-\w%.~+]*)*(\?[;&\w%.~+=-]*)?(#[-\w]*)?$/i;
 
 export const partnersScheme = z.object({
   name: z
