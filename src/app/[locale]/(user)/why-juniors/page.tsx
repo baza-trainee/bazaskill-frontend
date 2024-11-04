@@ -6,6 +6,7 @@ import ContentCards from '@/components/user/why_juniors_page/contentCards/Conten
 import JuniorsAdvantages from '@/components/user/why_juniors_page/juniors-advantages/JuniorsAdvantages';
 import HistoryJuniors from '@/components/user/why_juniors_page/history-juniors/HistoryJuniors';
 import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
+import RoiCalculator from '@/components/user/why_juniors_page/ROI-calculator/RoiCalculator';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata>{
   const t = await getTranslations({
@@ -25,6 +26,7 @@ export default function WhyJuniorsPage(): JSX.Element {
     <Help />
     <ContentCards />
     <JuniorsAdvantages/>
+    <RoiCalculator/>
     <HistoryJuniors/>
     <CookiesModal />
   </div>
