@@ -1,10 +1,19 @@
+'use client';
 import Slider from "@/components/shared/slider/Slider";
 import JuniorCard from "./junior_card/JuniorCard";
 import { useTranslations } from "next-intl";
 import { ItemsData } from "./data";
+// import { useQuery } from "@tanstack/react-query";
+// import { getStories } from "@/api/stories";
 
 export default function HistoryJuniors(): JSX.Element {
   const t = useTranslations('Why_juniors.history-juniors');
+
+  // const { data } = useQuery({
+  //   queryKey: ["constants.testimonials.FETCH_TESTIMONIALS"],
+  //   queryFn: getStories,
+  // });
+
 
   return (
     <section 
