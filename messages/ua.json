@@ -199,6 +199,9 @@
     "history-juniors":{
       "title": "Історії джунів",
       "btn_details": "Детальніше"
+    },
+    "testimonials": {
+      "title": "Відгуки"
     }
   },
 
