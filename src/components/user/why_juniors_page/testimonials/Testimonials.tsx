@@ -27,7 +27,7 @@ export default function Testimonials(): JSX.Element {
   // });
 
   return (
-    <section className="container relative py-12 md:py-[100px]">
+    <section className="container py-12 md:py-14 xl:py-[100px]">
       <Slider 
         data={data} 
         Component={TestimonialCard} 

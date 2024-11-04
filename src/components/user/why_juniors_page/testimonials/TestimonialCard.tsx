@@ -6,8 +6,8 @@ import { formatDate } from '@/lib/formatData';
 import { Testimonial } from './Types';
 
 export default function TestimonialCard(
-  {data}: {data: Testimonial}
-): JSX.Element {
+    {data}: {data: Testimonial}
+  ): JSX.Element {
   const locale: string = useLocale();
 
   return (
@@ -27,9 +27,9 @@ export default function TestimonialCard(
           </div>
       
           <div className="text-start py-3">
-            <h4 className="font-tahoma font-bold text-xl md:text-2xl sm:mb-6">
+            <h3 className="font-tahoma font-bold text-xl md:text-2xl sm:mb-6">
               {data.name_ua}
-            </h4>
+            </h3>
     
             <p className="text-sm font-normal">
               {formatDate(data.date, locale)}
