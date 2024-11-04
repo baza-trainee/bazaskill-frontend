@@ -28,10 +28,8 @@ export default function JuniorCard({data}: PropsJuniorCard): JSX.Element {
             <Image 
               src={data.img} 
               fill alt={data.name} 
-              className="brightness-[60%]" 
-              sizes="100%" 
-              objectFit="cover" 
-              objectPosition="top"/>
+              className="brightness-[60%] object-cover object-top" 
+              sizes="100%" />
           }
 
           <div 

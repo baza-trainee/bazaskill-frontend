@@ -21,8 +21,9 @@ export default function TestimonialCard(
               alt={data.name_ua}
               fill
               sizes="100%" 
-              objectFit="cover" 
-              objectPosition="top"
+              className=' object-cover object-top'
+              // objectFit="cover" 
+              // objectPosition="top"
             />
           </div>
       
