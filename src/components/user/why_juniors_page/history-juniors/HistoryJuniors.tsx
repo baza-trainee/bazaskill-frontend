@@ -13,12 +13,14 @@ export default function HistoryJuniors(): JSX.Element {
         data={ItemsData} 
         Component={JuniorCard} 
         title={t("title")} 
+        nextElName="nextHistory"
+        prevElName="prevHistory"
         breakpoints={{
           1024: {
             slidesPerView: 2,
           }
         }}
-        />
+      />
     </section>
   )
 }

@@ -35,6 +35,8 @@ function Posts() {
           Component={Post}
           title={t('title')}
           aria-label="Articles Slider"
+          nextElName="nextPosts"
+          prevElName="prevPosts"
           breakpoints={{
             1280: {
               slidesPerView: 2,
