@@ -14,21 +14,23 @@ import clsx from 'clsx';
 interface SliderProps extends SwiperOptions{
   data: any;
   showArrows?: boolean;
+  slidesToView?: number;
   title?: string;
-  nextElName: string; // назва кнопки next !! Унікальна для секції
-  prevElName: string; // назва кнопки prev !! Унікальна для секції
+  nextElName?: string; // назва кнопки next
+  prevElName?: string; // назва кнопки next
   Component: FC<{ data: any, index?: number }>;
 };
 
 const Slider: FC<SliderProps> = ({ 
   data, 
   Component, 
-  showArrows=true,  
+  showArrows=true,
+  slidesToView, 
   title, 
   nextElName, 
   prevElName,  
   ...options
-}) => {
+  }) => {
   const sliderRef = useRef(null);
 
   const handlePrev = () => {
@@ -88,8 +90,8 @@ const Slider: FC<SliderProps> = ({
         modules={[Pagination, Navigation]}
         navigation={
           {
-            nextEl: `.${nextElName}`,
-            prevEl: `.${prevElName}`,
+            nextEl: nextElName ? `.${nextElName}` : null,
+            prevEl: prevElName ? `.${prevElName}` : null,
           }
         }
         pagination={{ clickable: true }}
