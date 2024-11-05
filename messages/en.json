@@ -197,6 +197,10 @@
       "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
       "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
     },
+    "roi_calculator": {
+      "title": "Try the junior&middle return on investment calculator",
+      "roi_btn": "ROI calculator"
+    },
     "history-juniors":{
       "title": "History juniors",
       "btn_details": "More details"

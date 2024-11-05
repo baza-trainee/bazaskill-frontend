@@ -196,6 +196,10 @@
       "paragraph_2": "Każdy z przedstawionych tutaj specjalistów ma doświadczenie w pracy zespołowej i realizacji projektów, począwszy od analizy wymagań, a skończywszy na wydaniu. Próbowali się w różnych rolach i znają wszystkie wyzwania i osiągnięcia na różnych etapach cyklu życia projektu.",
       "paragraph_3": "Oceniamy wiedzę kandydatów, sprawdzamy ich motywację, a każdemu z osobna udzielamy osobistej rekomendacji. Wysyłamy wykwalifikowanych młodszych specjalistów, którzy kochają to, co robią. Przynajmniej tak mówią."
     },
+    "roi_calculator": {
+      "title": "Wypróbuj kalkulator młodszego i średniego zwrotu z inwestycji",
+      "roi_btn": "ROI kalkulator"
+    },
     "history-juniors":{
       "title":"Juniorzy historii",
       "btn_details":"Więcej szczegółów"
