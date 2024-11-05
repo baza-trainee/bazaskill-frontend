@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
 import { Pagination, Navigation } from 'swiper/modules';
@@ -16,16 +16,22 @@ interface SliderProps extends SwiperOptions{
   showArrows?: boolean;
   slidesToView?: number;
   title?: string;
+  nextElName?: string; // назва кнопки next
+  prevElName?: string; // назва кнопки next
   Component: FC<{ data: any, index?: number }>;
 };
 
-const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToView, title , ...options}) => {
+const Slider: FC<SliderProps> = ({ 
+  data, 
+  Component, 
+  showArrows=true,
+  slidesToView, 
+  title, 
+  nextElName, 
+  prevElName,  
+  ...options
+  }) => {
   const sliderRef = useRef(null);
-  const [ isClient, setIsClient ] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   const handlePrev = () => {
     if (sliderRef.current) {
@@ -40,8 +46,7 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
   };
 
   return (
-    <>
-    {isClient &&    <div className="my-8 flex flex-col w-full items-center justify-center">
+    <div className="my-8 flex flex-col w-full items-center justify-center">
      {showArrows &&  <nav
         className="mx-auto flex w-full items-center justify-center mb-6 text-white pr-4 relative h-fit py-4"
         aria-label="Slider navigation"
@@ -59,7 +64,8 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
             onClick={handlePrev}
             aria-label="Previous slide"
             aria-controls="slider"
-            className="cursor-pointer duration-300 hover:opacity-70"
+            disabled={!sliderRef.current}
+            className={clsx("button-prev duration-300 hover:opacity-70 disabled:opacity-40", prevElName)}
           >
             <FaChevronLeft aria-hidden="true" />
           </button>
@@ -67,7 +73,8 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
             onClick={handleNext}
             aria-label="Next slide"
             aria-controls="slider"
-            className="cursor-pointer duration-300 hover:opacity-70"
+            disabled={!sliderRef.current}
+            className={clsx("button-next duration-300 hover:opacity-70 disabled:opacity-40", nextElName)}
           >
             <FaChevronRight aria-hidden="true" />
           </button>
@@ -81,6 +88,12 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
         slidesPerView={1}
         {...options}
         modules={[Pagination, Navigation]}
+        navigation={
+          {
+            nextEl: nextElName ? `.${nextElName}` : null,
+            prevEl: prevElName ? `.${prevElName}` : null,
+          }
+        }
         pagination={{ clickable: true }}
         onSwiper={(swiper) => {
           (sliderRef.current as any) = swiper;
@@ -92,8 +105,7 @@ const Slider: FC<SliderProps> = ({ data, Component, showArrows=true, slidesToVie
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>}
- </>
+    </div>
   );
 };
 

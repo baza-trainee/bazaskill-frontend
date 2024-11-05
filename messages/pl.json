@@ -199,6 +199,9 @@
     "history-juniors":{
       "title":"Juniorzy historii",
       "btn_details":"Więcej szczegółów"
+    },
+    "testimonials": {
+      "title": "Opinie"
     }
   },
   "Footer": {

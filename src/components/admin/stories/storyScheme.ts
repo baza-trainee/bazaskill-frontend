@@ -63,18 +63,10 @@ export const storyScheme = z.object({
         'Просимо скоротити текст до 500 знаків',
     }),
 
-  role: z
+  date: z
     .string()
-    .nonempty('Поле має бути заповнене')
-    .min(2, 'Найменування ролі має мати не менше 2 знаків')
-    .max(
-      30,
-      'Найменування ролі має бути не більше 30 знаків',
-    )
-    .refine(
-      value => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне найменування ролі' },
-    ),
+    .min(1,'Поле має бути заповнене'),
+
 
   speciality: z
     .string()

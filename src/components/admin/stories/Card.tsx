@@ -65,7 +65,7 @@ export default function JuniorCard({ data }: { data: IStory }): JSX.Element {
 
             <h3 className="text-xl md:text-2xl font-bold md:mb-6 -order-2 md:order-none">{data.name_ua}</h3>
 
-            <p className="text-base md:text-xl mb-4 md:mb-0">{data.role}{' '}{data.speciality}</p>
+            <p className="text-base md:text-xl mb-4 md:mb-0">{data.speciality}</p>
             <p className="text-sm md:mb-5 -order-1 md:order-none">
               {formatDate(data.created_at, locale)}
             </p>

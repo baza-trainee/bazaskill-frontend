@@ -200,6 +200,9 @@
     "history-juniors":{
       "title": "History juniors",
       "btn_details": "More details"
+    },
+    "testimonials": {
+      "title": "Testimonials"
     }
   },
   "Footer": {

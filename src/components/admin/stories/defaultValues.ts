@@ -5,7 +5,7 @@ export const defaultStoryValues = {
  text_ua:'',
  text_en:'',
  text_pl:'',
- role:'',
+ date:'',
  speciality:'',
  image:''
 }
