@@ -56,7 +56,7 @@
     "history":{
       "title": "Our Story",
       "button":"Read more",
-      "description_1": "The recruiting agency Baza Skill is part of the educational project Baza Trainee Ukraine, the purpose of which is to train, develop, and confirm the professional skills of IT specialists. ",
+      "description_1": "The Baza Skill platform will help you find a junior IT specialist, as each of our candidates has already completed an internship in practice.",
       "description_2": "In the project, graduates of IT courses, switchers, and students of technical universities practice creating real digital products in a team. ",
       "description_3": "Each of the specialists presented here has experience in teamwork and project implementation, starting with requirements analysis and ending with release. They have tried themselves in different roles and are familiar with all the challenges and achievements at different stages of the project life cycle.",
       "description_4": "The Baza Skill platform will help you select an experienced IT specialist since each of our candidates has already passed a confirmed practice at Baza Trainee Ukraine and received our recommendation."
@@ -81,9 +81,9 @@
       "card_3_title":"Portfolio of real projects",
       "card_4_title":"Candidate's developed soft skills",
       "card_1_text":"During the standard onboarding procedure, specialization requirements are taken into account, candidates understand how the arrival of a new player affects the team. Developed product development methodology, communication standards, information search priorities.",
-      "card_2_text":"Each candidate participated in meetings from product requirements to release. Our candidates understand interdependence in the team from each other, take into account the time needed for the work of other teams.",
+      "card_2_text":"Each candidate participated in meetings from product requirements to release. Our candidates understand interdependence of the team from each other, take into account the time needed for the work of other teams.",
       "card_3_text":"Each candidate has a proven track record of working with real technical tasks. All projects have implementation and perform a practical role for the customer. During the development, knowledge is also provided regarding the assignment of projects, SEO optimization methods, as well as after-sales service.",
-      "card_4_text":"Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better at the moment: an executor or a manager."
+      "card_4_text":"Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better: an executor or a manager."
     },
     "juniors-advantages":{
       "title":"Advantages of juniors",
@@ -194,8 +194,8 @@
     "help": {
       "title": "We will help you find a worthy specialist",
       "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
-      "paragraph_2": "Each specialist presented here is skilled in teamwork, has experience in project development with knowledge of requirements, is familiar with difficulties and success at all stages of a project's life.",
-      "paragraph_3": "We assess candidates' knowledge, check their motivation, and provide each individual with a personal recommendation. We send skilled junior specialists who love what they do. At least that's what they say."
+      "paragraph_2": "Junior employee positions are an important element in the team of any IT company, as they are an invariable component of the personnel reserve. During the years of work, middle specialists move up the career ladder, eventually making room for replacements. So you should be ready for changes in the staff structure at any time.",
+      "paragraph_3": "We provide you with skilled and well-trained junior specialists who love what they do."
     },
     "roi_calculator": {
       "title": "Try the junior&middle return on investment calculator",
