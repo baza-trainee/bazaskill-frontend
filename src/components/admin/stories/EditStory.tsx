@@ -23,9 +23,10 @@ import TextAreaArticle from '../ui/TextAreaArticle';
 import TextInput from '../ui/TextInput';
 import { defaultStoryValues } from './defaultValues';
 import JuniorCardPreview from './CardPreview';
-import { createStory, getStoryById, updateStory } from '@/api/stories';
+import {  getStoryById, updateStory } from '@/api/stories';
 import { constants } from '@/constants';
 import { useQuery } from '@tanstack/react-query';
+import Loader from '@/components/shared/loader/Loader';
 
 function EditStory() {
   const [file, setFile] = useState<File | null>(null);
@@ -47,7 +48,7 @@ function EditStory() {
     reset,
     watch,
     setValue,
-    formState: { isDirty, errors, isValid, touchedFields },
+    formState: { isDirty, errors, touchedFields },
   } = useForm<TStoryScheme>({
     mode: 'onChange',
     defaultValues: defaultStoryValues,
@@ -64,7 +65,7 @@ function EditStory() {
     setValue('text_ua', data.text_ua);
     setValue('text_en', data.text_en);
     setValue('text_pl', data.text_pl);
-    setValue('role', data.role);
+    setValue('date', data.date);
     setValue('speciality', data.speciality);
     setFile(
       [new File([], data.image_url, { type: 'for-url' })][0],
@@ -95,7 +96,7 @@ function EditStory() {
       formData.append('name_en', values.name_en);
       formData.append('name_pl', values.name_pl);
       formData.append('speciality', values.speciality);
-      formData.append('role', values.role);
+      formData.append('date', values.date);
       formData.append('text_ua', values.text_ua);
       formData.append('text_en', values.text_en);
       formData.append('text_pl', values.text_pl);
@@ -185,15 +186,15 @@ function EditStory() {
                 }}
               />
               <Controller
-                name="role"
+                name="date"
                 control={control}
                 render={({ field }) => {
                   return (
                     <TextInput
                       {...field}
-                      errorText={errors.role?.message}
-                      title="Роль учасника"
-                      placeholder="e.g. 'учасник'"
+                      errorText={errors.date?.message}
+                      title="Дата додання історії"
+                      placeholder="Дата додання"
                     />
                   );
                 }}
@@ -297,6 +298,7 @@ function EditStory() {
           />
         )}
       </section>
+      {isFetching && <Loader />}
     </div>
   );
 }

@@ -6,7 +6,7 @@ export interface IStory {
     text_ua: string;
     text_en: string;
     text_pl: string;
-    role: string;
+    date: string;
     speciality: string;
     image_id: string;
     image_url: string;
@@ -20,7 +20,7 @@ export interface IStory {
     text_ua: string;
     text_en: string;
     text_pl: string;
-    role: string;
+    date: string;
     speciality: string;
     file: File;
   }
