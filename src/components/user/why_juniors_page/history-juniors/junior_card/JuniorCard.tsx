@@ -24,13 +24,11 @@ export default function JuniorCard({data}: PropsJuniorCard): JSX.Element {
       <div className="bg-secondaryGray rounded-2xl px-3 sm:px-5 py-6 md:px-6 w-full max-w-[670px] 4xl:px-16">
         <div className="relative w-full h-[346px] sm:h-[430px] sm+:h-[450px] md:h-[470px] rounded-md overflow-hidden p-4">
           
-          { !isOpen &&  
-            <Image 
-              src={data.img} 
-              fill alt={data.name} 
-              className="brightness-[60%] object-cover object-top" 
-              sizes="100%" />
-          }
+          <Image 
+            src={data.img} 
+            fill alt={data.name} 
+            className={clsx("brightness-[60%] object-cover object-top",isOpen && 'invisible')}
+            sizes="100%" />
 
           <div 
             className={clsx("absolute z-10 bottom-0 left-0 text-white font-normal md:font-semibold px-1 p-1 md:px-6 md:pt-6 flex flex-col h-full md:h-fit overflow-y-auto", 

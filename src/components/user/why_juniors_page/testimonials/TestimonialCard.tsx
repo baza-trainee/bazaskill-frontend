@@ -12,8 +12,8 @@ export default function TestimonialCard(
   const locale: string = useLocale();
 
   return (
-    <div className='flex items-center justify-center h-[292px]'>
-      <div className="w-full h-full max-w-[600px] flex flex-col bg-gradient-to-r from-green/20 to-yellow/20 rounded-2xl px-6 md:px-8 py-6 gap-6 text-white">
+    <div className='flex items-center justify-center'>
+      <div className="w-full md:min-h-[335px] xl:min-h-[310px] 2xl:min-h-[335px] max-w-[600px] flex flex-col bg-gradient-to-r from-green/20 to-yellow/20 rounded-2xl px-6 md:px-8 py-6 gap-6 text-white">
         <div className="flex gap-6 items-center sm:items-start ">
           <div className='relative w-[20vw] h-[20vw] min-w-[60px] min-h-[60px] max-w-[122px] max-h-[122px] rounded-md sm:rounded-[20px] sm:rounded-br-none overflow-hidden '>
             <Image
