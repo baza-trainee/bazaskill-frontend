@@ -51,14 +51,12 @@ const Slider: FC<SliderProps> = ({
         className="mx-auto flex w-full items-center justify-center mb-6 text-white pr-4 relative h-fit py-4"
         aria-label="Slider navigation"
       >
-
         {title &&  <h2
           className="font-tahoma text-2xl font-bold not-italic text-white lg:text-[40px]"
           >
             {title}
           </h2>
         }
-
         <div className={clsx("h-full items-center justify-center gap-4 pr-4 absolute right-0 top-0 hidden md:flex")}>
           <button
             onClick={handlePrev}
@@ -85,7 +83,7 @@ const Slider: FC<SliderProps> = ({
         id='slider'
         className="relative flex w-full items-center pb-9"
         spaceBetween={10}
-        slidesPerView={1}
+        slidesPerView={slidesToView || 1}
         {...options}
         modules={[Pagination, Navigation]}
         navigation={

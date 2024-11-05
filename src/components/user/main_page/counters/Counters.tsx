@@ -96,9 +96,34 @@ function CountersComp() {
 
       <VisibilitySensor partialVisibility onChange={handleVisibilityChange} offset={{ bottom: 100 }}>
         {() => (
-          <ul className="flex grow flex-col justify-between gap-[24px] text-center font-bold text-white md:hidden xl:flex xl:flex-row">
+          <ul className="flex grow flex-col justify-between gap-[24px] text-center font-bold text-white 
+          sm+:hidden xl:flex xl:flex-row">
             {counters.map(({ id, count, title }) => (
               <li className="p-[25px] md:p-[16px] lg:p-[23px]" key={id}>
+                <h3 className="text-[40px] font-bold leading-10">
+                  {isVisible ? 
+                  <CountUp 
+                  end={count} 
+                  duration={2} 
+                  start={hasCounted ? count : 0} 
+                  redraw={true} 
+                  formattingFn={(value) => `${value}+`}    
+                  onEnd={() => setHasCounted(true)}
+                  /> : 0}
+                </h3>
+                <p className="text-xl xl:text-2xl">{title}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </VisibilitySensor>
+      <VisibilitySensor partialVisibility onChange={handleVisibilityChange} offset={{ bottom: 100 }}>
+        {() => (
+          <ul className="flex-wrap justify-center items-center gap-[24px] 
+          text-center font-bold text-white hidden sm+:flex
+           md:hidden">
+            {counters.map(({ id, count, title }) => (
+              <li className="p-[25px] md:p-[16px] lg:p-[23px] min-w-[40vw]" key={id}>
                 <h3 className="text-[40px] font-bold leading-10">
                   {isVisible ? 
                   <CountUp 

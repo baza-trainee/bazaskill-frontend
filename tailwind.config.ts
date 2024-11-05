@@ -40,7 +40,7 @@ const config: Config = {
         'xs': '320px',
         'sm': '420px',
         'sm+': '570px',
-        'md': '768px',
+        'md': '770px',
         'xl': '1280px',
         '2xl': '1368px',
         '3xl': '1440px',

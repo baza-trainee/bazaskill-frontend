@@ -18,7 +18,7 @@ const OurHistoryText = () => {
     "lg:text-[20px] md:text-[1rem] tracking-[0.02em] text-white font-normal leading-[130%]";
 
   return (
-    <div className="2xl:px-[25px] md:h-[648px] ">
+    <div className="2xl:px-[25px] ">
       <h2
         id="history-title"
         className="hidden xl:block text-center lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"

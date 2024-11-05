@@ -43,6 +43,7 @@
     "react-type-animation": "^3.2.0",
     "react-visibility-sensor": "^5.1.1",
     "swiper": "11.0.5",
+    "tailwind-merge": "^2.5.4",
     "uuid": "^9.0.1",
     "validator": "^13.11.0",
     "zod": "^3.22.4",

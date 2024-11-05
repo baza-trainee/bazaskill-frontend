@@ -14,7 +14,7 @@ const Stories = () => {
     queryKey: [constants.stories.GET_STORIES],
     queryFn: getStories,
   });
-
+console.log(data)
   return (
         <div className="relative py-[20px] pl-[24px]">
         <PageTitle title="Статті та поради" />
