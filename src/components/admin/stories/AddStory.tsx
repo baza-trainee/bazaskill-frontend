@@ -65,7 +65,7 @@ function AddStory() {
       formData.append('name_en', values.name_en);
       formData.append('name_pl', values.name_pl);
       formData.append('speciality', values.speciality);
-      formData.append('role', values.role);
+      formData.append('date', values.date);
       formData.append('text_ua', values.text_ua);
       formData.append('text_en', values.text_en);
       formData.append('text_pl', values.text_pl);
@@ -156,15 +156,15 @@ function AddStory() {
                 }}
               />
               <Controller
-                name="role"
+                name="date"
                 control={control}
                 render={({ field }) => {
                   return (
                     <TextInput
                       {...field}
-                      errorText={errors.role?.message}
-                      title="Роль учасника"
-                      placeholder="e.g. 'учасник'"
+                      errorText={errors.date?.message}
+                      title="Дата додання історії"
+                      placeholder="Дата додання"
                     />
                   );
                 }}
