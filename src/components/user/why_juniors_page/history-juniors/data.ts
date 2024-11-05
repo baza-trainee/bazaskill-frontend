@@ -3,7 +3,7 @@ import { Item } from "./Types";
 export const ItemsData: Item[] = [
   {
     id:'100001',
-    img:'/history-juniors/avatar.jpg',
+    img:'/images/history-juniors/avatar.jpg',
     name:'Ірина',
     role: 'учасниця, QA',
     date: '1990-09-15',
@@ -11,7 +11,7 @@ export const ItemsData: Item[] = [
   },
   {
     id:'100002',
-    img:'/history-juniors/avatar.jpg',
+    img:'/images/history-juniors/avatar.jpg',
     name:'Ірина',
     role: 'учасниця, Front end',
     date: 'Sat Sep 13 1976 00:00:00 GMT+0000',
@@ -19,7 +19,7 @@ export const ItemsData: Item[] = [
   },
   {
     id:'100003',
-    img:'/history-juniors/avatar.jpg',
+    img:'/images/history-juniors/avatar.jpg',
     name:'Ірина',
     role: 'учасниця, QA',
     date: 1730457278762,
@@ -27,7 +27,7 @@ export const ItemsData: Item[] = [
   },
   {
     id:'100004',
-    img:'/history-juniors/avatar.jpg',
+    img:'/images/history-juniors/avatar.jpg',
     name:'Ірина',
     role: 'учасниця, QA',
     date: 1730457278762,

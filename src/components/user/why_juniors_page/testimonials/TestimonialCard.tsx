@@ -21,13 +21,16 @@ export default function TestimonialCard(
               alt={data.name_en}
               fill
               sizes="100%" 
-              className=' object-cover object-top'
+              className='object-cover object-top'
             />
           </div>
       
           <div className="text-start py-3">
             <h3 className="font-tahoma font-bold text-xl md:text-2xl sm:mb-6">
-              {locale === 'ua' ? data.name_ua : locale === 'ua' ? data.name_pl : data.name_en}
+              { locale === 'ua' ? data.name_ua : 
+                locale === 'ua' ? data.name_pl : 
+                data.name_en
+              }
             </h3>
     
             <p className="text-sm font-normal">
@@ -37,7 +40,10 @@ export default function TestimonialCard(
         </div>
 
         <p className="text-sm md:text-xl font-normal">
-          {locale === 'ua' ? data.review_ua : locale === 'ua' ? data.review_pl : data.review_en}
+          { locale === 'ua' ? data.review_ua : 
+            locale === 'ua' ? data.review_pl : 
+            data.review_en
+          }
         </p>
       </div>
     </div>

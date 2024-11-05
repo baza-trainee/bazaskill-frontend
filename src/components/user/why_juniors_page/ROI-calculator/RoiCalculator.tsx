@@ -4,7 +4,8 @@ export default function RoiCalculator(): JSX.Element {
   const t = useTranslations('Why_juniors.roi_calculator');
 
   return (
-    <section className="md:main-texture-background bg-no-repeat bg-cover bg-fixed text-white py-12 md:py-[60px] xl:py-[100px]">
+    <section 
+      className="md:main-texture-background bg-no-repeat bg-cover bg-fixed text-white py-12 md:py-[60px] xl:py-[100px]">
 
       <div className="container mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 

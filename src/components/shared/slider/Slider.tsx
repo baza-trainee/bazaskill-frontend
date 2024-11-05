@@ -16,8 +16,8 @@ interface SliderProps extends SwiperOptions{
   showArrows?: boolean;
   slidesToView?: number;
   title?: string;
-  nextElName?: string; // назва кнопки next
-  prevElName?: string; // назва кнопки next
+  nextElName?: string; // назва кнопки next !! Має бути унікальна для секції
+  prevElName?: string; // назва кнопки prev !! Має бути унікальна для секції
   Component: FC<{ data: any, index?: number }>;
 };
 
