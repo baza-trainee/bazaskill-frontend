@@ -21,7 +21,7 @@ const Advantages = () => {
   return (
   <>
   {isClient &&  <section
-      className='mt-[100px] flex gap-4 flex-col justify-center items-center w-full'
+      className='py-12 md:py-[60px] lg:py-[100px] flex gap-4 flex-col justify-center items-center w-full'
       aria-labelledby="advantages-title"
     >
       <h2
