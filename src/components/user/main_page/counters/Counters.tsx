@@ -57,7 +57,7 @@ function CountersComp() {
       <h2 id="counters-heading" className="sr-only">
         {t('counters.heading')}
       </h2>
-      <div className="relative mx-auto hidden justify-center md:flex xl:hidden" role="region" aria-label="Swiper counters navigation">
+      <div className="relative mx-auto hidden justify-center md+:flex xl:hidden" role="region" aria-label="Swiper counters navigation">
         <Swiper
           modules={[Navigation]}
           slidesPerView={3}
@@ -121,7 +121,7 @@ function CountersComp() {
         {() => (
           <ul className="flex-wrap justify-center items-center gap-[24px] 
           text-center font-bold text-white hidden sm+:flex
-           md:hidden">
+           md+:hidden">
             {counters.map(({ id, count, title }) => (
               <li className="p-[25px] md:p-[16px] lg:p-[23px] min-w-[40vw]" key={id}>
                 <h3 className="text-[40px] font-bold leading-10">

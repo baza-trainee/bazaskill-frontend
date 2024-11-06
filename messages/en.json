@@ -316,7 +316,8 @@
     "salary": "Salary",
     "salary_error": {
       "diff": "The From value must not be greater than the To value",
-      "both_fields": "Please enter both values"
+      "both_fields": "Please enter both values",
+      "not_negative":"The value cannot be negative"
     },
     "button": "Apply filters"
   },

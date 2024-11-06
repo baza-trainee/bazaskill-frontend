@@ -15,7 +15,9 @@ const Invitation = () => {
 
   return (
     <section
-      className="my-[100px] px-[80px] py-[100px] flex gap-4 flex-col text-white justify-center bg-no-repeat bg-cover main-texture-background items-center w-full"
+      className="my-[100px] px-[80px] py-[100px] flex gap-4 flex-col
+       text-white justify-center bg-no-repeat bg-cover 
+       main-texture-background items-center w-full"
       aria-labelledby="invitation-title"
     >
       <h2
@@ -28,7 +30,8 @@ const Invitation = () => {
 
         {/* HR Invitation Card */}
         <div
-          className="border-2 md:mr-[30vw] lg:mr-0 rounded-md px-4 py-[40px] w-[350px] sm:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-green"
+          className="border-2 md:mr-[30vw] lg:mr-0 rounded-md px-4 py-[40px] 
+          w-[350px] sm+:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-green"
           role="region"
           aria-labelledby="hr-invitation-title"
         >
@@ -59,7 +62,7 @@ const Invitation = () => {
 
         {/* Partner Invitation Card */}
         <div
-          className="border-2 md:ml-[30vw] lg:ml-0 rounded-md px-4 py-[40px] w-[350px] sm:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-yellow"
+          className="border-2 md:ml-[30vw] lg:ml-0 rounded-md px-4 py-[40px] w-[350px] sm+:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-yellow"
           role="region"
           aria-labelledby="partner-invitation-title"
         >

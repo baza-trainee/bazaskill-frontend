@@ -17,7 +17,7 @@ const OurHistory = () => {
     <>
       {isClient && <section
         className="pt-[100px] flex flex-col xl:grid xl:grid-cols-2 
-      lg:gap-[24px] gap-[48px] px-4 py-[48px] md:pt-[60px] md:px-[80px] 
+      lg:gap-[24px] gap-[48px] px-4 py-[48px] sm+:pt-[60px] sm+:px-[80px] 
       xl:pt-[100px] xl:px-[80px]"
         aria-labelledby="history-title"
       >
