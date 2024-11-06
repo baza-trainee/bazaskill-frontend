@@ -315,7 +315,8 @@
     "salary": "Wynagrodzenie",
     "salary_error": {
       "diff": "Wartość Od nie może być większa niż wartość Do",
-      "both_fields": "Proszę wprowadzić obie wartości"
+      "both_fields": "Proszę wprowadzić obie wartości",
+      "not_negative":"Wartość nie może być ujemna"
     },
     "button": "Zastosuj filtry"
   },
