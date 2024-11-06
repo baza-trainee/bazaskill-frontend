@@ -193,14 +193,26 @@ function Filters({
             placeholder="500"
             type="number"
             onKeyDown={handleInput}
-            className="h-[32px] w-[80px] grow rounded-[4px] border border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px] 3xl:text-lg  4xl:min-w-[93px] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-[32px] w-[80px] grow rounded-[4px] border border-secondaryGray 
+            bg-transparent px-[8px] py-[7px] text-sm text-white 
+            outline-none [appearance:textfield] placeholder:text-secondaryGray 
+            sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 
+            3xl:min-w-[86px] 3xl:text-lg  4xl:min-w-[93px] 
+            [&::-webkit-inner-spin-button]:appearance-none 
+            [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             {...register('sallary.to')}
             placeholder="700"
             type="number"
             onKeyDown={handleInput}
-            className="4xl:min-w-[93px][&::-webkit-inner-spin-button]:appearance-none h-[32px] w-[80px] grow rounded-[4px] border border-secondaryGray bg-transparent px-[8px] py-[7px] text-sm text-white outline-none [appearance:textfield] placeholder:text-secondaryGray sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 3xl:min-w-[86px]  3xl:text-lg [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-[32px] w-[80px] grow rounded-[4px] border border-secondaryGray 
+            bg-transparent px-[8px] py-[7px] text-sm text-white 
+            outline-none [appearance:textfield] placeholder:text-secondaryGray 
+            sm:w-[114px] md:w-[62px] xl:min-h-[40px] xl:min-w-[61px] xl:text-base 
+            3xl:min-w-[86px] 3xl:text-lg  4xl:min-w-[93px] 
+            [&::-webkit-inner-spin-button]:appearance-none 
+            [&::-webkit-outer-spin-button]:appearance-none"
           />
 
           <button className="flex h-[32px] w-[68px] items-center justify-center rounded-[4px] border border-yellow px-[24px] py-[15px] text-sm text-yellow sm:min-w-[84px] md:min-w-[51px] md:p-0 xl:min-h-[40px] xl:min-w-[72px] xl:text-base">
@@ -210,7 +222,6 @@ function Filters({
         </div>
         {errors.sallary?.root && (
             <span className=" text-xs text-red-500">
-              {/* {errors.sallary?.root?.message?.toString()} */}
               {t(errors.sallary?.root?.message?.toString())}
             </span>
           )}

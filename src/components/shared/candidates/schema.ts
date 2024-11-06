@@ -35,7 +35,18 @@ const schema = z.object({
         message:
           'salary_error.both_fields',
       },
-    ),
+      
+    )
+    .refine(
+      ({ from, to }) => {
+        const fromNum = Number.parseInt(from);
+        const toNum = Number.parseInt(to);
+        return (from === '' || fromNum >= 0) && (to === '' || toNum >= 0);
+      },
+      {
+        message: 'salary_error.not_negative',
+      }
+    )
 });
 
 export default schema;
