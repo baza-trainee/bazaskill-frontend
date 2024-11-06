@@ -21,7 +21,8 @@ export default function JuniorCard({data}: {data: IStory}): JSX.Element {
  
   return(
     <div className="flex items-center justify-center">
-      <div className="bg-secondaryGray rounded-2xl px-3 sm:px-5 py-6 md:px-6 w-full max-w-[670px] 4xl:px-16">
+      <div className="bg-secondaryGray rounded-2xl px-3 
+        sm:px-5 py-6 md:px-6 w-full max-w-[670px] 4xl:px-16">
         <div className="relative w-full h-[346px] sm:h-[430px] sm+:h-[450px] md:h-[470px] rounded-md overflow-hidden p-4">
           
           <Image 

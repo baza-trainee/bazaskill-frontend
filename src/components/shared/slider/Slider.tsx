@@ -16,6 +16,7 @@ interface SliderProps extends SwiperOptions{
   showArrows?: boolean;
   slidesToView?: number;
   title?: string;
+  titleClassName?: string;
   nextElName?: string; // назва кнопки next !! Має бути унікальна для секції
   prevElName?: string; // назва кнопки prev !! Має бути унікальна для секції
   Component: FC<{ data: any, index?: number }>;
@@ -27,6 +28,7 @@ const Slider: FC<SliderProps> = ({
   showArrows=true,
   slidesToView, 
   title, 
+  titleClassName,
   nextElName, 
   prevElName,  
   ...options
@@ -47,17 +49,17 @@ const Slider: FC<SliderProps> = ({
 
   return (
     <div className="my-8 flex flex-col w-full items-center justify-center">
-     {showArrows &&  <nav
+      {showArrows &&  <nav
         className="mx-auto flex w-full items-center justify-center mb-6 text-white pr-4 relative h-fit py-4"
         aria-label="Slider navigation"
       >
         {title &&  <h2
-          className="font-tahoma text-2xl font-bold not-italic text-white lg:text-[40px]"
+          className={clsx("w-full font-tahoma text-2xl font-bold not-italic text-center text-white lg:text-[40px]", titleClassName)}
           >
             {title}
           </h2>
         }
-        <div className={clsx("h-full items-center justify-center gap-4 pr-4 absolute right-0 top-0 hidden md:flex")}>
+        <div className="h-full items-center justify-center gap-4 pr-4 absolute right-0 top-0 hidden md:flex">
           <button
             onClick={handlePrev}
             aria-label="Previous slide"
