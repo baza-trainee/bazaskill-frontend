@@ -27,7 +27,7 @@ function Posts() {
           data={posts}
           Component={Post}
           title={t('title')}
-          titleClassName='4xl:text-start'
+          titleClassName='md:text-start'
           aria-label="Articles Slider"
           nextElName="nextPosts"
           prevElName="prevPosts"
