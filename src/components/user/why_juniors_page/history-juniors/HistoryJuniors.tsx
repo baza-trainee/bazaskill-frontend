@@ -23,6 +23,7 @@ export default function HistoryJuniors(): JSX.Element {
         data={ItemsData} 
         Component={JuniorCard} 
         title={t("title")} 
+        // slideClassName="flex items-center justify-center h-full bg-black"
         nextElName="nextHistory"
         prevElName="prevHistory"
         breakpoints={{
