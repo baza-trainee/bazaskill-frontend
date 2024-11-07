@@ -6,7 +6,7 @@ const JuniorsAdvantages = () => {
   const t = useTranslations('Main.juniors-advantages');
   return (
     <section
-      className='mt-[100px] container flex gap-2 flex-col w-full'
+      className='py-12 md:py-[60px] xl:py-[100px] container flex gap-2 flex-col w-full'
       aria-labelledby="advantages-title"
     >
       <h2
