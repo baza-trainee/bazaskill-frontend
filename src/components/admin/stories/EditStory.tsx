@@ -277,7 +277,7 @@ function EditStory() {
           <div className="flex gap-[24px]">
             <PrimaryButton
               text={
-                isProcessing ? 'Обробка запиту' : 'Додати'
+                isProcessing ? 'Обробка запиту' : 'Зберегти'
               }
               disabled={!isDirty}
             />
