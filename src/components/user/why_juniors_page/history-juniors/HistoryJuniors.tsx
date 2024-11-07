@@ -28,6 +28,7 @@ export default function HistoryJuniors(): JSX.Element {
           breakpoints={{
             1024: {
               slidesPerView: 2,
+              spaceBetween: 64
             }
           }}
         />

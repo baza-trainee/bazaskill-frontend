@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { formatDate } from "@/lib/formatData";
 import { IStory } from "@/types/stories";
+import CloseIcon from "@/components/shared/icons/CloseIcon";
 
 export default function JuniorCard({data}: {data: IStory}): JSX.Element {
   const t = useTranslations('Why_juniors.history-juniors');
@@ -35,7 +36,7 @@ export default function JuniorCard({data}: {data: IStory}): JSX.Element {
           <div 
             className={clsx("absolute z-10 bottom-0 left-0 text-white font-normal md:font-semibold px-1 p-1 md:px-6 md:pt-6 flex flex-col h-full overflow-y-auto scrollbar custom-scrollbar w-full", 
             isOpen ? 'bg-gradient-to-r from-green/20 to-yellow/20 h-full':'md:h-fit')} 
-            onClick={()=>{isOpen && setIsopen(false)}}>
+          >
 
             <h3 className="text-xl md:text-2xl font-bold md:mb-6 -order-2 md:order-none">
               { locale === 'ua' ? data.name_ua : 
@@ -58,6 +59,15 @@ export default function JuniorCard({data}: {data: IStory}): JSX.Element {
                 data.text_en
               }
             </p>
+
+            { isOpen && 
+              <button 
+                type="button" 
+                onClick={()=>{isOpen && setIsopen(false)}}
+                className='absolute top-2 duration-300 hover:opacity-70 right-2 p-1'>
+                  <CloseIcon fill="#FEFFFE"/>
+              </button>
+            }
 
             {!isOpen && 
               <button type="button" 
