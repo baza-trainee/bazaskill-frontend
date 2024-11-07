@@ -15,23 +15,23 @@ const Invitation = () => {
 
   return (
     <section
-      className="my-[100px] px-[80px] py-[100px] flex gap-4 flex-col
+      className="container py-12 md:py-[60px] lg:py-[100px] flex gap-4 flex-col
        text-white justify-center bg-no-repeat bg-cover 
        main-texture-background items-center w-full"
       aria-labelledby="invitation-title"
     >
       <h2
         id="invitation-title"
-        className="text-center mb-[66px] font-tahoma text-[24px] font-bold not-italic text-white md:text-2xl lg:text-[40px]"
+        className="text-center mb-10 md:mb-8 lg:mb-[56px] font-tahoma text-[24px] font-bold not-italic text-white md:text-2xl lg:text-[40px]"
       >
         {t('title')}
       </h2>
-      <div className="flex flex-wrap gap-[80px] justify-center items-center">
+      <div className="flex w-full flex-col lg:flex-row gap-[64px] md:gap-[80px] justify-center items-center 4xl:justify-evenly">
 
         {/* HR Invitation Card */}
         <div
-          className="border-2 md:mr-[30vw] lg:mr-0 rounded-md px-4 py-[40px] 
-          w-[350px] sm+:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-green"
+          className="border-2 sm+:mr-[15vw] md:mr-[30vw] lg:mr-0 rounded-md px-4 py-[40px] 
+          w-full max-w-[439px] min-h-[329px] flex flex-col justify-between items-center gap-4 border-green"
           role="region"
           aria-labelledby="hr-invitation-title"
         >
@@ -51,10 +51,10 @@ const Invitation = () => {
                 value: 'User opened "To become HR" form',
               });
             }}
-           className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
+           className="w-full max-w-[235px] relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
             aria-label="Open form to join as Partner"
           >
-      <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition ease-in-out duration-300">
+      <span className="w-full max-w-[235px] px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition ease-in-out duration-300">
               {t('button')}
             </span>
           </button>
@@ -62,7 +62,7 @@ const Invitation = () => {
 
         {/* Partner Invitation Card */}
         <div
-          className="border-2 md:ml-[30vw] lg:ml-0 rounded-md px-4 py-[40px] w-[350px] sm+:w-[439px] h-[329px] flex flex-col justify-between items-center gap-4 border-yellow"
+          className="border-2 sm+:ml-[15vw] md:ml-[30vw] lg:ml-0 rounded-md px-4 py-[40px]  w-full max-w-[439px] min-h-[329px] flex flex-col justify-between items-center gap-4 border-yellow"
           role="region"
           aria-labelledby="partner-invitation-title"
         >
@@ -82,10 +82,10 @@ const Invitation = () => {
                 value: 'User opened "To become partner" form',
               });
             }}
-            className="relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
+            className="w-full max-w-[235px] relative inline-flex items-center justify-center p-[1px] overflow-hidden text-white transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
             aria-label="Open form to join as Partner"
           >
-            <span className="px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition ease-in-out duration-300">
+            <span className="w-full max-w-[235px] px-4 py-2 rounded-md bg-no-repeat bg-auto main-texture-background group-hover:text-green transition ease-in-out duration-300">
               {t('button')}
             </span>
           </button>

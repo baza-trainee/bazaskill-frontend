@@ -27,7 +27,7 @@ const Partners: React.FC = () => {
 
   return (
     <section
-      className="overflow-hidden w-full"
+      className="overflow-hidden w-full py-12 md:py-[60px] lg:py-[100px]"
       aria-labelledby="partners-title"
     >
       <h2
