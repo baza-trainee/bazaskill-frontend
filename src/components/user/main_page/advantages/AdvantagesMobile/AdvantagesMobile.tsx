@@ -36,14 +36,14 @@ const AdvantagesMobile: React.FC<SliderProps> = ({
   // const isMobile = useMediaQuery({ query: '(max-width: 570px)' });
   return (
     <Slider 
-    Component={AdvantageCard} 
-    data={cardData} 
-    showArrows={false} 
-    breakpoints={{
-      570: {
-        slidesPerView: 2,
-      }
-    }}
+      Component={AdvantageCard} 
+      data={cardData} 
+      showArrows={false} 
+      breakpoints={{
+        570: {
+          slidesPerView: 2,
+        }
+      }}
     // slidesToView={isMobile ? 1 : 2} 
     />
   );

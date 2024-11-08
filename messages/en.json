@@ -2,9 +2,6 @@
   "Metadata": {
 		"main_title": "Baza Skill - recruiting junior specialists",
 		"main_description": "Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073",
-    
-		"about_title": "Baza Skill - Про нас",
-		"about_description": "Baza Skill - Про нас",
 
 		"why_juniors_title": "Чому джуни",
 		"why_juniors_description": "Baza Skill - Чому джуни",
@@ -103,27 +100,11 @@
       "card1_text":"Are you a recruiter looking for young talent for your IT company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
       "card2_text":"Together we can reach new heights! Join our network of partners as an employer and support young people on their career path."
     },
-    "candidates": {
-      "title": "Our candidates",
-      "paragraph_1": "Follow the rules for using shared tools",
-      "paragraph_2": "Adhere to deadlines",
-      "paragraph_3": "Obey the obligation to compile documentation",
-      "paragraph_4": "Take well-argued positions in disputes and conflict situations, effectiveness, desire to achieve a common goal",
-      "paragraph_5": "Ready to share information",
-      "paragraph_6": "They express a position of support for colleagues in the team, readiness to replace a colleague in case of force majeure",
-      "paragraph_7": "Interested in new things",
-      "paragraph_8": "Prone to activity",
-      "paragraph_9": "Unconditionally comply with the legislation, in particular in matters of copyright, personal data protection, GDPR, NDA",
-      "paragraph_10": "Proven by successful teamwork."
-    },
     "partners": {
       "title": "Our partners"
     },
     "articles": {
       "title": "Articles and tips"
-    },
-    "testimonials": {
-      "title": "Testimonials"
     },
     "forms": {
       "to_become_hr": "Become our HR",

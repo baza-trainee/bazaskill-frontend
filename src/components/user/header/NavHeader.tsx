@@ -6,7 +6,11 @@ export default function NavHeader(): JSX.Element {
   const t = useTranslations('Header');
   const pathname = usePathname();
 
-  const isActive = (name: string): boolean =>{
+  const isActive = (name: string): boolean => {
+    // Перевірка головної сторінки
+    if(pathname === '/' && name ==='about'){ return true }
+    
+    // Перевірка сторінки кандидат
     if(pathname.split('/').includes('candidate') && name=='candidates'){
       return true
     }

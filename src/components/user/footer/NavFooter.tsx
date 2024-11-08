@@ -7,6 +7,9 @@ export default function NavFooter(): JSX.Element {
   const pathname = usePathname();
 
   const isActive = (name: string):boolean =>{
+    // Перевірка головної сторінки
+    if(pathname === '/' && name ==='about'){ return true }
+    // Перевірка сторінки кандидат
     if(pathname.split('/').includes('candidate') && name=='candidates'){
       return true
     }
