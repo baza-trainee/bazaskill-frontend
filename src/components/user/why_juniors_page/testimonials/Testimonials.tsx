@@ -29,9 +29,11 @@ export default function Testimonials(): JSX.Element {
           breakpoints={{
             1024: {
               slidesPerView: 2,
+              spaceBetween: 60
             },
             1536: {
               slidesPerView: 3,
+              spaceBetween: 60
             }
           }}
         />)

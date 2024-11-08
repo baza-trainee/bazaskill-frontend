@@ -42,7 +42,8 @@ export default function NavHeaderMenu(): JSX.Element {
         {itemsLink.map((el)=>{
           return (
             <Link key={el.pathname}
-              className={clsx('group duration-500 flex items-end gap-0.5 hover:opacity-70 hover:text-yellow text-white text-open-sans text-lg font-semibold', isActive(el.pathname) && 'opacity-90 text-yellow')}
+              className={clsx('group duration-500 flex items-end gap-0.5 hover:opacity-70 hover:text-yellow text-white text-open-sans text-lg font-semibold', 
+              isActive(el.pathname) && 'opacity-90 text-yellow')}
               href={el.href} 
               onClick={handleClose}>
               

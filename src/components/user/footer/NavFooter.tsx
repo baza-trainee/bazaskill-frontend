@@ -1,6 +1,7 @@
 import { Link, usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { itemsLink } from "./itemsLink";
+import clsx from "clsx";
 
 export default function NavFooter(): JSX.Element {
   const t = useTranslations('Header');
@@ -21,8 +22,8 @@ export default function NavFooter(): JSX.Element {
       {itemsLink.map((el)=>{
         return (
           <Link key={el.pathname}
-            className={`duration-300 text-nowrap hover:opacity-70 hover:text-yellow text-open-sans text-lg font-semibold 
-            ${isActive(el.pathname) ? 'opacity-70 text-yellow' : 'text-white'}`}
+            className={clsx('duration-300 text-nowrap hover:opacity-70 hover:text-yellow text-open-sans text-lg font-semibold',
+            isActive(el.pathname) ? 'opacity-70 text-yellow' : 'text-white')}
             href={el.href}>
             {t(el.title)}
           </Link>
