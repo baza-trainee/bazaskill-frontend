@@ -14,7 +14,7 @@ import clsx from 'clsx';
 interface SliderProps extends SwiperOptions{
   data: any;
   showArrows?: boolean;
-  slidesToView?: number;
+  // slidesToView?: number;
   title?: string;
   titleClassName?: string;
   nextElName?: string; // назва кнопки next !! Має бути унікальна для секції
@@ -26,7 +26,7 @@ const Slider: FC<SliderProps> = ({
   data, 
   Component, 
   showArrows=true,
-  slidesToView, 
+  // slidesToView, 
   title, 
   titleClassName,
   nextElName, 
@@ -85,7 +85,8 @@ const Slider: FC<SliderProps> = ({
         id='slider'
         className="relative flex w-full items-center pb-9"
         spaceBetween={10}
-        slidesPerView={slidesToView || 1}
+        // slidesPerView={slidesToView || 1}
+        slidesPerView={1}
         {...options}
         modules={[Pagination, Navigation]}
         navigation={
