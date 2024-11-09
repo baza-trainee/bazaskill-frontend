@@ -1,0 +1,30 @@
+.info {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  fill: var(--white);
+  transition: 0.2s all linear;
+  cursor: pointer;
+}
+.info:hover,
+.info:focus {
+  transition: 0.2s all linear;
+  width: 24px;
+  height: 24px;
+  fill: var(--green);
+}
+.arrow {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  stroke: var(--white);
+  transition: 0.2s all linear;
+  cursor: pointer;
+}
+.arrow:hover,
+.arrow:focus {
+  transition: 0.2s all linear;
+  width: 24px;
+  height: 24px;
+  stroke: var(--green);
+}

@@ -23,6 +23,7 @@
     "axios": "^1.6.5",
     "clsx": "^2.1.1",
     "decline-word": "^1.4.0",
+    "formik": "^2.4.6",
     "framer-motion": "^11.11.10",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.453.0",
@@ -45,6 +46,7 @@
     "swiper": "11.0.5",
     "uuid": "^9.0.1",
     "validator": "^13.11.0",
+    "yup": "^1.4.0",
     "zod": "^3.22.4",
     "zustand": "^4.5.0"
   },

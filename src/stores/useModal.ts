@@ -5,6 +5,7 @@ type ModalType =
   | 'partner'
   | 'add_stack'
   | 'contacts'
+  | 'calculator'
   | '';
 
 interface ModalState {
