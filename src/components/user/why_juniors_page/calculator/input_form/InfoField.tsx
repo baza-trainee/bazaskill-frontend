@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Item } from "./data";
 import Popup from "../Popup";
 import InfoIcon from "../icons/InfoIcon";
@@ -8,6 +9,7 @@ interface InfoProps {
 }
 
 const InfoField: React.FC<InfoProps> = ({ item }) => {
+  const t = useTranslations("Calculator");
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -19,7 +21,7 @@ const InfoField: React.FC<InfoProps> = ({ item }) => {
       <InfoIcon />
       {showPopup && (
         <Popup
-          text={item.text}
+          text={t(item.text)}
           position={{ top: "40px", right: "16px", zIndex: "1" }}
         />
       )}

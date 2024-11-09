@@ -37,14 +37,14 @@ const calculateROI = (values: ValuesState["values"]) => {
 
   const revenue = (projectValue * productivity) / 100;
 
-  return (((revenue - investment) / investment) * 100).toFixed(1);
+  return (((revenue - investment) / investment) * 100).toFixed(0);
 };
 
 
 export const useValues = create<ValuesState>((set) => ({
   values: {
     specialization: "UI/UX Designer",
-    level: "",
+    level: "Junior",
     salary: 0,
     educationCost: 0,
     projectValue: 0,

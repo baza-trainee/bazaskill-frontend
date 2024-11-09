@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { FaChevronUp,FaChevronDown } from "react-icons/fa";
 import { Item } from "./data";
 
@@ -8,14 +9,15 @@ interface IndicatorProps {
 }
 
 const Indicator: React.FC<IndicatorProps> = ({ item, isOpen, openField }) => {
+  const t = useTranslations("Calculator");
   return (
     <div className="grid grid-cols-[24px_1fr_28px] grid-rows-[24px] p-0">
       <div className="grid grid-cols-[24px] grid-rows-[24px]">
         <item.icon />
       </div>
       <p className="grid grid-cols-1 grid-rows-[24px] 
-      font-roboto text-sm font-normal leading-6 text-left uppercase pl-4">
-        {item.title}
+      font-roboto lg:text-sm font-normal leading-6 text-left uppercase pl-4 whitespace-nowrap overflow-hidden truncate text-xs">
+        {t(item.title)}
       </p>
       <button
         type="button"
