@@ -24,7 +24,7 @@ export async function generateMetadata({
   });
 
   return {
-    title:  t('candidates_title'),
+    title: t('candidates_title'),
     description: t('candidates_description'),
   };
 }

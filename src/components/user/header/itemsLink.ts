@@ -4,7 +4,7 @@ export const itemsLink: NavLink[] = [
   {
     title:'about',
     pathname:'about',
-    href:'/about'
+    href:'/'
   },
   {
     title:'why_juniors',

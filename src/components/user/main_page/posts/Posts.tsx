@@ -34,6 +34,11 @@ function Posts() {
           breakpoints={{
             1024: {
               slidesPerView: 2,
+              spaceBetween: 20
+            },
+            1280: {
+              slidesPerView: 2,
+              spaceBetween: 64
             }
           }}
         />

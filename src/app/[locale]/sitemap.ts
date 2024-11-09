@@ -29,17 +29,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     },
     {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`,
-      lastModified: new Date(),
-      alternates: {
-        languages: {
-          uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/about`,
-          en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/about`,
-          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/about`,
-        },
-      },
-    },
-    {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/why-juniors`,
       lastModified: new Date(),
       alternates: {

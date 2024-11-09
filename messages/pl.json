@@ -2,9 +2,6 @@
   "Metadata": {
 		"main_title": "Baza Skill - rekrutacja młodszych specjalistów",
 		"main_description": "Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073",
-    
-		"about_title": "Baza Skill - Про нас",
-		"about_description": "Baza Skill - Про нас",
 
 		"why_juniors_title": "Чому джуни",
 		"why_juniors_description": "Baza Skill - Чому джуни",
@@ -102,27 +99,11 @@
       "card1_text":"Jesteś rekruterem i szukasz młodych talentów do swojej IT firmy? W Baza Skill możesz znaleźć młodszego specjalistę dzięki elastycznemu systemowi wyszukiwania.",
       "card2_text":"Razem możemy osiągnąć nowe szczyty! Dołącz do naszej sieci partnerów jako pracodawca i wspieraj młodych ludzi na ścieżce kariery."
     },
-    "candidates": {
-      "title": "Nasi kandydaci",
-      "paragraph_1": "Przestrzegają zasad korzystania z udostępnionych narzędzi",
-      "paragraph_2": "Trzymają się terminów",
-      "paragraph_3": "Przestrzegają obowiązku gromadzenia dokumentacji",
-      "paragraph_4": "Zajmują dobrze uargumentowanych stanowiska w sporach i sytuacjach konfliktowych, skuteczność, chęć osiągnięcia wspólnego celu",
-      "paragraph_5": "Gotowi do dzielenia się informacjami",
-      "paragraph_6": "Wyrażają postawę wsparcia dla kolegów w zespole, gotowość do zastąpienia kolegi w przypadku wystąpienia siły wyższej",
-      "paragraph_7": "Interesują się nowościami",
-      "paragraph_8": "Skłonni do aktywności",
-      "paragraph_9": "Bezwarunkowo przestrzegają przepisów prawa, w szczególności w zakresie praw autorskich, ochrony danych osobowych, RODO, NDA",
-      "paragraph_10": "Potwierdzone udaną pracą zespołową."
-    },
     "partners": {
       "title": "Nasi partnerzy"
     },
     "articles": {
       "title": "Artykuły i porady"
-    },
-    "testimonials": {
-      "title": "Opinie"
     },
     "forms": {
       "to_become_hr": "Zostań naszym HR",

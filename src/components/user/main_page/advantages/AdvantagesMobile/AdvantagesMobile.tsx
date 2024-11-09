@@ -1,9 +1,7 @@
 import type { TAdvantages } from '@/types';
 import clsx from 'clsx';
-import { useMediaQuery } from 'react-responsive';
 import { useTranslations } from 'next-intl';
 import Slider from '@/components/shared/slider/Slider';
-
 
 export const AdvantageCard = ({data:item, index}:{data:any,index?:number})=>{
   const t = useTranslations('Main.advantages');
@@ -33,13 +31,18 @@ interface SliderProps {
 const AdvantagesMobile: React.FC<SliderProps> = ({
   cardData,
 }: SliderProps) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 570px)' });
+
   return (
     <Slider 
-    Component={AdvantageCard} 
-    data={cardData} 
-    showArrows={false} 
-    slidesToView={isMobile ? 1 : 2} />
+      Component={AdvantageCard} 
+      data={cardData} 
+      showArrows={false} 
+      breakpoints={{
+        570: {
+          slidesPerView: 2,
+        }
+      }}
+    />
   );
 };
 
