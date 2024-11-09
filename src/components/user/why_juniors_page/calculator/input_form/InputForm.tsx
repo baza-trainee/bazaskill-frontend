@@ -1,4 +1,5 @@
 import { Formik, Form, useFormikContext } from "formik";
+import { useTranslations } from "next-intl";
 import InputText from "./InputText";
 import InputRadio from "./InputRadio";
 import {
@@ -9,7 +10,7 @@ import {
   itemLevel,
   itemSalary,
   itemEducation,
-  itemMentoring,
+  itemProjectValue,
   itemProductivity,
   itemFullProductivityYears,
   Item,
@@ -73,6 +74,7 @@ const ErrorSummary = () => {
 };
 
 export default function InputForm() {
+  const t = useTranslations("Calculator");
   const { setValues } = useValues();
   const [openFields, setOpenFields] = useState<{ [key: string]: boolean }>({
     specialization: false,
@@ -92,14 +94,13 @@ export default function InputForm() {
   };
 
   return (
-    <div className="grid grid-cols-[514px] border border-green rounded-lg bg-gray-100 p-10">
+    <div className="mt-10 lg:mt-0 grid grid-cols-[80vw] md:grid-cols-[514px] border border-green rounded-lg p-4 lg:p-10">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values: Values, { resetForm }) => {
           setValues(values);
-          // console.log(values);
-          // resetForm();
+          resetForm();
         }}
       >
         {({ isSubmitting }) => (
@@ -193,7 +194,7 @@ export default function InputForm() {
             <div className="relative grid grid-cols-[1fr_34px] p-0">
               <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
                 <Indicator
-                  item={itemMentoring}
+                  item={itemProjectValue}
                   isOpen={openFields.projectValue}
                   openField={openField}
                 />
@@ -203,7 +204,7 @@ export default function InputForm() {
                   <InputText name="projectValue" />
                 </div>
               </div>
-              {!openFields.mentorshipCost &&  <InfoField item={itemMentoring} />}
+              {!openFields.mentorshipCost &&  <InfoField item={itemProjectValue} />}
             </div>
 
             {/* Productivity Field */}
@@ -261,9 +262,9 @@ export default function InputForm() {
               <button
                 type="submit"
                 className="flex justify-center items-center w-[160px] h-[44px] border-none rounded-[4px] shadow-[inset_2px_2px_8px_16px_rgba(0,0,0,0.25)] bg-gradient-to-br from-[#5bff75] to-[#fff854] text-[#212121] font-roboto font-medium text-[18px] leading-[1.5] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                // disabled={isSubmitting}
+                disabled={isSubmitting}
               >
-                Розрахувати
+                {t('button_submit')}
               </button>
 
             </div>

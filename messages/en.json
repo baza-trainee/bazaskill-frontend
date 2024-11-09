@@ -305,5 +305,26 @@
   "Success_modal": {
     "title": "Thank you for your cooperation!",
     "message": "We will contact you as soon as possible."
+  },
+  "Calculator": {
+    "header":"Interactive ROI calculator to compare Junior vs Middle hires",
+    "header_popup":"This interactive ROI (Return on Investment) calculator is designed to compare the long-term benefits of hiring junior professionals versus more experienced middle professionals. It takes into account various factors, including salary, tuition, productivity and adaptation time.",
+    "specialization_title":"Specialization",
+    "specialization_text":"Choose a specialization for calculation",
+    "level_title":"Level of qualification",
+    "level_text":"Select the qualification level for calculation",
+    "salary_title":"Monthly salary ($)",
+    "salary_text":"Enter the salary per month (in dollars) for the relevant candidate",
+    "education_title":"Tuition fee ($)",
+    "education_text":"Specify the total amount of costs for training and adaptation of the relevant candidate",
+    "project_title":"The cost of the project ($)",
+    "project_text":"The 'Project cost' parameter includes the total cost of the project, which is necessary to calculate the company's profit from the employee",
+    "productivity_title":"Initial performance (%)",
+    "productivity_text":"Specify the initial performance of the candidate (estimated by the company's indicators). For reference: it is determined for Junior - 50%, for Middle - 80%",
+    "full_productivity_title":"Achieving full productivity (years)",
+    "full_productivity_text":"Select the appropriate period to achieve the full performance of the appropriate candidate",
+    "output_title":"ROI Result Report:",
+    "button_submit":"Calculate",
+    "button_reset":"Reset"
   }
 }

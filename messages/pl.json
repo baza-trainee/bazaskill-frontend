@@ -304,5 +304,26 @@
   "Success_modal": {
     "title": "Dziękujemy za współpracę!",
     "message": "My skontaktujemy się z Tobą tak szybko, jak to możliwe."
+  },
+  "Calculator": {
+    "header":"Interaktywny kalkulator ROI pozwalający porównać zatrudnienie na poziomie młodszym i średnim",
+    "header_popup":"Ten interaktywny kalkulator ROI (zwrotu z inwestycji) zaprojektowano w celu porównania długoterminowych korzyści wynikających z zatrudniania młodszych specjalistów z bardziej doświadczonymi średnimi profesjonalistami. Uwzględnia różne czynniki, w tym wynagrodzenie, czesne, produktywność i czas adaptacji.",
+    "specialization_title":"Specjalizacja",
+    "specialization_text":"Wybierz specjalizację do obliczeń",
+    "level_title":"Poziom kwalifikacji",
+    "level_text":"Wybierz poziom kwalifikacji do obliczeń",
+    "salary_title":"Miesięczne wynagrodzenie ($)",
+    "salary_text":"Wprowadź miesięczne wynagrodzenie (w dolarach) odpowiedniego kandydata",
+    "education_title":"Opłata za naukę ($)",
+    "education_text":"Należy podać łączną kwotę kosztów szkolenia i adaptacji odpowiedniego kandydata",
+    "project_title":"Koszt projektu ($)",
+    "project_text":"Parametr „Koszt projektu” uwzględnia całkowity koszt projektu, który jest niezbędny do obliczenia zysku firmy od pracownika",
+    "productivity_title":"Początkowa wydajność (%)",
+    "productivity_text":"Określ początkowe wyniki kandydata (oszacowane na podstawie wskaźników firmy). Dla porównania: dla Juniora - 50%, dla Middle - 80%",
+    "full_productivity_title":"Osiągnięcie pełnej produktywności (lata)",
+    "full_productivity_text":"Wybierz odpowiedni okres, aby osiągnąć pełną wydajność odpowiedniego kandydata",
+    "output_title":"Raport wyników ROI:",
+    "button_submit":"Obliczać",
+    "button_reset":"Zresetuj"
   }
 }

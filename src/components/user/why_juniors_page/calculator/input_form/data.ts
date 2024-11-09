@@ -15,7 +15,7 @@ export const specialities = [
   "Project Manager",
 ];
 export const skills = ["Junior", "Middle"];
-export const times = ["1 рік", "2 роки", "3 роки"];
+export const times = ["1", "2", "3"];
 
 export interface Item {
   name: string;
@@ -26,43 +26,43 @@ export interface Item {
 
 export const itemSpecialization: Item = {
   name: "specialization",
-  title: "спеціалізація",
+  title: "specialization_title",
   icon: UserIcon,
-  text: "Обрати спеціалізацію для розрахунку",
+  text: "specialization_text",
 };
 export const itemLevel: Item = {
   name: "level",
-  title: "pівень кваліфікації",
+  title: "level_title",
   icon: SkillIcon,
-  text: "Обрати рівень кваліфікації для розрахунку",
+  text: "level_text",
 };
 export const itemSalary: Item = {
   name: "salary",
-  title: "місячна зарплата ($)",
+  title: "salary_title",
   icon: SalaryIcon,
-  text: "Вказати заробітну плату за місяць (у доларах) для відповідного кандидата",
+  text: "salary_text",
 };
 export const itemEducation: Item = {
   name: "educationCost",
-  title: "вартість навчання ($)",
+  title: "education_title",
   icon: EducationIcon,
-  text: "Вказати загальну суму витрат на підготовку та адаптацію відповідного кандидата",
+  text: "education_text",
 };
-export const itemMentoring: Item = {
+export const itemProjectValue: Item = {
   name: "projectValue",
-  title: "вартість проекта ($)",
+  title: "project_title",
   icon: MenthorIcon,
-  text: "Параметр “Вартість проекта” включає загальну вартість проекту, яка необхідна для розрахунку прибутку компанії від кандидата",
+  text: "project_text",
 };
 export const itemProductivity: Item = {
   name: "productivity",
-  title: "початкова продуктивність (%)",
+  title: "productivity_title",
   icon: ProductivityIcon,
-  text: "Вказати початкову продуктивність кандидата (оцінка за показниками компанії). Довідково: визначають для Junior - 50%, для Middle - 80%",
+  text: "productivity_text",
 };
 export const itemFullProductivityYears: Item = {
   name: "fullProductivityYears",
-  title: "досягнення повної продуктивності",
+  title: "full_productivity_title",
   icon: ClockIcon,
-  text: "Обрати відповідний період для досягнення повної продуктивності відповідного кандидата",
+  text: "full_productivity_text",
 };
