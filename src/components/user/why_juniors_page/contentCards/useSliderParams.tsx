@@ -16,7 +16,7 @@ function useSliderParams() {
       const windowWidth = window.innerWidth;
       if (windowWidth >= 320 && windowWidth < 420) {
         setSwiperParams({
-          spaceBetween: 24,
+          spaceBetween: 20,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -26,7 +26,7 @@ function useSliderParams() {
       }
       else if (windowWidth >= 420 && windowWidth < 768) {
         setSwiperParams({
-          spaceBetween: 24,
+          spaceBetween: 34,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -36,7 +36,7 @@ function useSliderParams() {
       }
       else if (windowWidth >= 768 && windowWidth < 1280) {
         setSwiperParams({
-          spaceBetween: 46,
+          spaceBetween: 40,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -49,7 +49,7 @@ function useSliderParams() {
         && windowWidth < 1368
       ) {
         setSwiperParams({
-          spaceBetween: 56,
+          spaceBetween: 50,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -62,7 +62,7 @@ function useSliderParams() {
         && windowWidth < 1440
       ) {
         setSwiperParams({
-          spaceBetween: 36,
+          spaceBetween: 30,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -75,7 +75,7 @@ function useSliderParams() {
         && windowWidth < 1536
       ) {
         setSwiperParams({
-          spaceBetween: 46,
+          spaceBetween: 40,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -88,7 +88,7 @@ function useSliderParams() {
         && windowWidth < 1920
       ) {
         setSwiperParams({
-          spaceBetween: 56,
+          spaceBetween: 50,
           containerClass: 'mx-auto',
         });
         setCardParams({
@@ -98,7 +98,7 @@ function useSliderParams() {
       }
       else if (windowWidth >= 1920) {
         setSwiperParams({
-          spaceBetween: 60,
+          spaceBetween: 55,
           containerClass: 'mx-auto',
         });
         setCardParams({

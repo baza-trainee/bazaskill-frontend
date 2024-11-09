@@ -26,9 +26,8 @@ function ContentCards() {
   });
 
   return (
-    <section className="container py-[60px] xs:max-w-screen-xs sm:max-w-screen-sm md:max-w-screen-md xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl 4xl:max-w-screen-4xl 5xl:max-w-screen-5xl">
-      <div className="md:mx-[10px] xl:mx-14 2xl:mx-[3px] 3xl:mx-[3px] 4xl:mx-[31px] 5xl:ml-[25px] 5xl:mr-[47px]">
-
+    <section className="container py-[60px] ">
+      <div className="">
         { data && Array.isArray(data) && 
           <Swiper
             speed={4000}
@@ -41,7 +40,7 @@ function ContentCards() {
             }}
             loop={true}
             modules={[Autoplay]}
-            className="xs:max-w-[280px] sm:max-w-[380px] md:max-w-[688px] xl:max-w-[1152px] 2xl:max-w-[1240px] 3xl:max-w-screen-xl 4xl:max-w-[1376px] 5xl:max-w-[1680px]"
+            className="w-full md:max-w-[688px] xl:max-w-[1152px] 2xl:max-w-[1240px] 3xl:max-w-screen-xl 4xl:max-w-[1376px] 5xl:max-w-[1680px]"
           >
 
           { data.map((card, index) => (

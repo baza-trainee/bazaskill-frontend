@@ -9,7 +9,7 @@ interface HelpListProps {
 const HelpList: React.FC<HelpListProps> = ({ photos }) => {
   return (
     <section
-      className="mx-auto xs:w-[280px] sm:w-[380px] md:w-[293px] xl:w-[508px] 2xl:w-[592px] 4xl:w-[604px] 5xl:w-[708px]"
+      className="mx-auto xs:w-[280px] sm:w-[380px] sm+:w-[80%] md:w-[453px] xl:w-[508px] 2xl:w-[592px] 4xl:w-[604px] 5xl:w-[708px]"
       aria-labelledby="help-list-title"
     >
       <h2 id="help-list-title" className="sr-only">
