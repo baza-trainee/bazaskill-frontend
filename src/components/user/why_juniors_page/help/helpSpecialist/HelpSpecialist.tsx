@@ -5,7 +5,7 @@ function HelpSpecialist(): JSX.Element {
   const t = useTranslations('Why_juniors.help');
   return (
     <section
-      className="mx-auto text-white xs:w-[280px] sm:w-[380px] md:w-[354px] xl:w-[510px] xl:pt-0 2xl:w-[562px] 3xl:w-[590px] 3xl:pt-[45px] 4xl:w-[671px] 4xl:pt-[70px] 5xl:w-[830px] 5xl:pt-[100px]"
+      className="mx-auto text-white xs:w-[280px] sm+:w-[80%] sm:w-[380px] md:w-[354px] xl:w-[510px] xl:pt-0 2xl:w-[562px] 3xl:w-[590px] 3xl:pt-[45px] 4xl:w-[671px] 4xl:pt-[70px] 5xl:w-[830px] 5xl:pt-[100px]"
       aria-labelledby="help-specialist-title"
     >
       <h2
