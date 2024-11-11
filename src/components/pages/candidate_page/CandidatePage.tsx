@@ -11,8 +11,8 @@ import type { CandidatesResponse } from '@/types/candidates';
 
 import { getAllCandidates } from '@/api/candidates';
 import Loader from '@/components/shared/loader/Loader';
-import CandidateHero from '@/components/user/candidate_page/Hero';
-import MainInfo from '@/components/user/candidate_page/MainInfo';
+import CandidateHero from '@/components/pages/candidate_page/Hero';
+import MainInfo from '@/components/pages/candidate_page/MainInfo';
 import RegisterHrForm from '@/components/user/modals/forms/register_hr/RegisterHrForm';
 import RegisterModal from '@/components/user/modals/RegisterModal';
 import { constants } from '@/constants';

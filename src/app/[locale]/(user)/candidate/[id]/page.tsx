@@ -11,7 +11,7 @@ import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
 const DynamicPage = dynamic(
   () =>
     import(
-      '@/components/user/candidate_page/CandidatePage'
+      '@/components/pages/candidate_page/CandidatePage'
     ),
 
   { ssr: false, loading: () => <Loader /> },
