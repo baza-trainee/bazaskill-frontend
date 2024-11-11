@@ -1,4 +1,3 @@
-import React from 'react';
 import { createPortal } from 'react-dom';
 
 import type { CandidatesResponse } from '@/types/candidates';
@@ -101,7 +100,7 @@ function ContactsModal({ candidate }: ModalProps) {
   return (
     <>
       {isModalOpen
-      && createPortal(<ModalLayout />, document.body)}
+        && createPortal(<ModalLayout />, document.body)}
     </>
   );
 }

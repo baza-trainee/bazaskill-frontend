@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AddPosts from '@/components/admin/posts/AddPosts';
 
 function AddPostsPage() {

@@ -1,4 +1,6 @@
 'use client';
+
+import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -15,7 +17,6 @@ import SupportBlock from './SupportBlock';
 import FooterLinks from './FooterLinks';
 import MobileLogo from './MobileLogo';
 import FooterLogo from './FooterLogo';
-import Link from 'next/link';
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('Footer');
@@ -39,41 +40,41 @@ export default function Footer(): JSX.Element {
     item => item.title === 'privacy_policy',
   );
 
-  const createLinck =(value: string | undefined): string => {
-    return value ?`${locale}/docs/${value}`: '/'
+  const createLinck = (value: string | undefined): string => {
+    return value ? `${locale}/docs/${value}` : '/'
   }
 
   return (
     <footer className="relative bg-black">
       <div className='container flex flex-col gap-10 md:gap-5 it justify-center pt-10 pb-6'>
-        <MobileLogo/>
+        <MobileLogo />
 
         <div className='flex justify-center gap-5 md:gap-0 md:justify-between flex-col md:flex-row'>
           <NavFooter />
           <BecomeBlock />
           <FooterLinks />
         </div>
-        
+
         <div className='flex items-center md:items-end min-[900px]:items-center justify-between flex-col gap-4 md:flex-row'>
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
-            href={createLinck(privacyPolicy?.title)}>
+            href={createLinck(privacyPolicy?.title)} target='_blank'>
             {t('privacy_policy')}
           </Link>
-       
-          <FooterLogo/>
-    
+
+          <FooterLogo />
+
           <Link
             className="inline-block underline text-white text-base text-nowrap font-normal duration-300 hover:text-yellow"
-              href={createLinck(termsOfUse?.title)}>
-              {t('terms_of_use')}
+            href={createLinck(termsOfUse?.title)} target='_blank'>
+            {t('terms_of_use')}
           </Link>
         </div>
 
         <h3 className="hidden md:block text-center font-tahoma text-2xl font-bold text-white">
           {t('offer')}
         </h3>
-        
+
         {/* Розробка */}
         <p className="flex flex-wrap items-center justify-center text-center gap-1 text-white text-xs md:text-base">
           <span>{t('development')}{' '}&#169;</span>
@@ -82,7 +83,7 @@ export default function Footer(): JSX.Element {
       </div>
 
       {/* підтримка */}
-      <SupportBlock/>
+      <SupportBlock />
 
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>

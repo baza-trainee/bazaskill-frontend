@@ -14,7 +14,7 @@ import {
 } from '@/lib/storageHelper';
 import { useCookies } from '@/stores/useCookies';
 
-interface CookiesModalProps {}
+interface CookiesModalProps { }
 
 const CookiesModal: React.FC<CookiesModalProps> = () => {
   const [cookieConsent, setCookieConsent] = useState(false);
@@ -62,13 +62,13 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
     setLocalStorage('cookie_consent', cookieConsent);
   }, [cookieConsent]);
 
-  const createLinck =(value: string | undefined): string => {
-    return value ?`${locale}/docs/${value}`: '/'
+  const createLinck = (value: string | undefined): string => {
+    return value ? `${locale}/docs/${value}` : '/'
   }
 
   return (
     showPanel && (
-      <div className="container rounded-md fixed inset-x-0 top-[80px] md:bottom-[100px] md:top-auto z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
+      <div className="container rounded-md fixed inset-x-0 bottom-[30px] md:bottom-[50px] md:top-auto z-[1500] min-h-[180px] w-[90vw] bg-[#F8FAFC] px-5 md:w-[600px]">
         <div className="relative flex flex-col justify-between pt-9 py-6">
           <div className="mb-[25px] max-w-[564px] text-lg text-black">
             {t('text')}
@@ -92,11 +92,11 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
 
         </div>
 
-        <button 
-          type="button" 
-          onClick={()=>setShowPanel(false)}
+        <button
+          type="button"
+          onClick={() => setShowPanel(false)}
           className='absolute top-2 duration-300 hover:opacity-70 right-2 p-1'>
-            <CloseIcon />
+          <CloseIcon />
         </button>
       </div>
     )

@@ -18,7 +18,6 @@ import { constants } from '@/constants';
 
 import ErrorPage from '../shared/ErrorPage';
 import Loader from '../shared/loader/Loader';
-import CloseIcon from '../shared/icons/CloseIcon';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -88,29 +87,25 @@ export function PDFView({
         className="mx-auto relative flex size-full flex-col items-center justify-center xl:w-2/3"
         ref={pdfWrapperRef}
       >
-        <button 
-          type="button" 
-          onClick={router.back}
-          className='absolute z-20 top-7 duration-300 hover:opacity-70 right-2 p-1'>
-            <CloseIcon />
-        </button>
-        <Document
-          loading={<Loader />}
-          file={documentUrl}
-          onLoadSuccess={onDocumentLoadSuccess}
-          error={<ErrorPage reset={reset} />}
-          className="flex w-full flex-col items-center justify-center p-5"
-        >
-          {Array.from({ length: numPages }, (_, index) => (
-            <Page
-              key={`page_${index + 1}`}
-              pageNumber={index + 1}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-              width={width}
-            />
-          ))}
-        </Document>
+        {documentUrl ? (
+          <Document
+            loading={<Loader />}
+            file={documentUrl}
+            onLoadSuccess={onDocumentLoadSuccess}
+            error={<ErrorPage reset={reset} />}
+            className="flex w-full flex-col items-center justify-center p-5"
+          >
+            {Array.from({ length: numPages }, (_, index) => (
+              <Page
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+                width={width}
+              />
+            ))}
+          </Document>
+        ) : <Loader />}
       </div>
     </div>
   );

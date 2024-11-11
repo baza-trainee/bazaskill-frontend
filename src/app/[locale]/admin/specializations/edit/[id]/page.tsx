@@ -1,5 +1,3 @@
-import React from 'react';
-
 import EditSpecialization from '@/components/admin/specializations/EditSpecialization';
 
 function EditSpecializationPage({

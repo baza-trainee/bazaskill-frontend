@@ -51,15 +51,15 @@ function CandidateHero({
 
         {candidate?.about
           ? (
-              <div className="mt-[60px] flex flex-col">
-                <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">
-                  {t('about')}
-                </h3>
-                <span className="mt-[32px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-                  {candidate?.about}
-                </span>
-              </div>
-            )
+            <div className="mt-[60px] flex flex-col">
+              <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">
+                {t('about')}
+              </h3>
+              <span className="mt-[32px] font-sans text-[20px] font-[400] leading-[28px] text-white">
+                {candidate?.about}
+              </span>
+            </div>
+          )
           : null}
       </div>
       <div className="w-full sm:w-[310px] xl:w-[29%] xl:max-w-[350px]">
@@ -77,7 +77,7 @@ function CandidateHero({
             </svg>
             <span className="font-sans text-[20px] font-[400] leading-[28px] text-white">
               {candidate?.city}
-              ,
+              ,{' '}
               {candidate?.country}
             </span>
           </div>

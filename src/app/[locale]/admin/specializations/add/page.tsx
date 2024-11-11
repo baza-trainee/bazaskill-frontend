@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AddSpecialization from '@/components/admin/specializations/AddSpecialization';
 
 function AddSpecializationPage() {

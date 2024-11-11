@@ -1,12 +1,10 @@
-// import Link from 'next/link';
-import React from 'react';
+import { Link } from '@/navigation';
 import Logo from '@/components/shared/icons/Logo';
 import LanguageSwitcher from './LanguageSwitcher';
 import AffiliateBanner from './AffiliateBanner';
 import NavHeader from './NavHeader';
 import BurgerButton from './BurgerButton';
 import NavHeaderMenu from './NavHeaderMenu';
-import { Link } from '@/navigation';
 
 export default function Header(): React.JSX.Element {
 
@@ -19,18 +17,19 @@ export default function Header(): React.JSX.Element {
             <Link
               className="flex w-full justify-start md:justify-center"
               href="/"
-              >
-            <Logo className="ml-[-20px] scale-75 sm:scale-100 transition duration-500 md:ml-0 md:scale-100 md:hover:scale-110" />
-          </Link>
+              scroll={true}
+            >
+              <Logo className="ml-[-20px] scale-75 sm:scale-100 transition duration-500 md:ml-0 md:scale-100 md:hover:scale-110" />
+            </Link>
           </div>
-          <NavHeader/>
+          <NavHeader />
           <div className='flex items-center justify-center gap-2'>
             <LanguageSwitcher />
-            <BurgerButton/>
+            <BurgerButton />
           </div>
         </div>
       </div>
-      <NavHeaderMenu/>
-    </header>  
+      <NavHeaderMenu />
+    </header>
   )
 }

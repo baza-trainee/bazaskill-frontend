@@ -1,5 +1,3 @@
-import React from 'react';
-
 import EditTestimonial from '@/components/admin/testimonials/EditTestimonial';
 
 function EditTestimonialPage() {

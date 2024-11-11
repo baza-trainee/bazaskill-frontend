@@ -1,6 +1,6 @@
 'use client';
 
-import {UploadIcon} from 'lucide-react';
+import { MdOutlineFileUpload } from "react-icons/md";
 import {
   ForwardedRef,
   forwardRef,
@@ -18,11 +18,11 @@ import {
 
 type FileInputDocProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> &
-    UseControllerProps<T> & {
-      title?: string;
-      isRequired: boolean;
-      accept?: string;
-    };
+  UseControllerProps<T> & {
+    title?: string;
+    isRequired: boolean;
+    accept?: string;
+  };
 
 const FileInputDoc = forwardRef(function FileInputDoc<
   T extends FieldValues,
@@ -52,7 +52,7 @@ const FileInputDoc = forwardRef(function FileInputDoc<
   useEffect(() => {
     if (!field.value.length) {
       setSelectedFileName('');
-    } else{
+    } else {
       setSelectedFileName(field.value[0].name);
     }
   }, [field]);
@@ -85,11 +85,10 @@ const FileInputDoc = forwardRef(function FileInputDoc<
 
   const inputClassName = `w-[286px]  cursor-pointer relative z-1  bg-[#efefef] h-[44px] outline-none [border:1px_solid_transparent] rounded-md    px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
     hover:bg-[#ebfcee] 
-${
-  errorText
-    ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
-    : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
-}
+${errorText
+      ? '[border:1px_solid_#f92b2d]  focus:outline-none focus:[border:1px_solid_#f92b2d] '
+      : 'border-none focus:outline-none focus:bg-[#efefef] focus:[border:1px_solid_#35db4f]'
+    }
     `;
 
   return (
@@ -121,7 +120,7 @@ ${
           )}
         </span>
         <div className="absolute -right-1 w-[13%] rounded-md top-0 h-full flex justify-center items-center z-0 bg-white">
-          <UploadIcon />
+          <MdOutlineFileUpload />
         </div>
         <input
           {...rest}

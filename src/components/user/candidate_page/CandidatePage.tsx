@@ -9,14 +9,15 @@ import {
 
 import type { CandidatesResponse } from '@/types/candidates';
 
+import { constants } from '@/constants';
+import { useModal } from '@/stores/useModal';
 import { getAllCandidates } from '@/api/candidates';
+
 import Loader from '@/components/shared/loader/Loader';
 import CandidateHero from '@/components/user/candidate_page/Hero';
 import MainInfo from '@/components/user/candidate_page/MainInfo';
 import RegisterHrForm from '@/components/user/modals/forms/register_hr/RegisterHrForm';
 import RegisterModal from '@/components/user/modals/RegisterModal';
-import { constants } from '@/constants';
-import { useModal } from '@/stores/useModal';
 
 function CandidatePageComponent({ id }: { id: string }) {
   const candidates: UseQueryResult<
@@ -46,15 +47,15 @@ function CandidatePageComponent({ id }: { id: string }) {
     <div className="min-h-screen bg-graphite">
       {candidate
         ? (
-            <>
-              <CandidateHero
-                candidate={candidate as CandidatesResponse}
-              />
-              <MainInfo
-                candidate={candidate as CandidatesResponse}
-              />
-            </>
-          )
+          <>
+            <CandidateHero
+              candidate={candidate as CandidatesResponse}
+            />
+            <MainInfo
+              candidate={candidate as CandidatesResponse}
+            />
+          </>
+        )
         : null}
       {isModalOpen && modalType === 'hr' && (
         <RegisterModal handleClose={closeModal}>

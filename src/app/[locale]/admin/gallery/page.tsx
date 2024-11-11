@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Gallery from '@/components/admin/gallery/Gallery';
 
 function GalleryPage() {

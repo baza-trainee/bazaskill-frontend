@@ -1,5 +1,3 @@
-import React from 'react';
-
 import SignIn from '@/components/login/Login';
 
 function SignInPage() {
