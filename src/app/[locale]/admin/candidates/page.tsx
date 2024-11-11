@@ -1,4 +1,4 @@
-import Candidates from '@/components/admin/candidates/CandidateFilters/Candidates';
+import Candidates from '@/components/pages/admin/candidates/CandidateFilters/Candidates';
 
 function CandidatesPage() {
   return <Candidates />;

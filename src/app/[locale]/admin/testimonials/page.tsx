@@ -1,4 +1,4 @@
-import Testimonials from '@/components/admin/testimonials/Testimonials';
+import Testimonials from '@/components/pages/admin/testimonials/Testimonials';
 
 function TestimonialsPage() {
   return <Testimonials />;

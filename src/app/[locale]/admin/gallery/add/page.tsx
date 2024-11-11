@@ -1,4 +1,4 @@
-import AddImage from '@/components/admin/gallery/AddImage';
+import AddImage from '@/components/pages/admin/gallery/AddImage';
 
 function AddImagePage() {
   return <AddImage />;

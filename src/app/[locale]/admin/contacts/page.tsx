@@ -1,4 +1,4 @@
-import Contacts from '@/components/admin/contacts/Contacts';
+import Contacts from '@/components/pages/admin/contacts/Contacts';
 
 function ContactsPage() {
   return <Contacts />;

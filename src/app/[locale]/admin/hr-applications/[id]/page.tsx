@@ -1,10 +1,6 @@
-import HrApplication from '@/components/admin/hr-applications/HrApplication';
+import HrApplication from '@/components/pages/admin/hr-applications/HrApplication';
 
-function HrApplicationsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+function HrApplicationsPage({ params }: { params: { id: string } }) {
   return <HrApplication id={params.id} />;
 }
 

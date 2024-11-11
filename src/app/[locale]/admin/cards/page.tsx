@@ -1,13 +1,10 @@
 import dynamic from 'next/dynamic';
 
-import Cards from '@/components/admin/cards/Cards';
+import Cards from '@/components/pages/admin/cards/Cards';
 
 const DynamicPage = dynamic(
-  () =>
-    import(
-      '@/components/admin/cards/Cards'
-    ),
-)
+  () => import('@/components/pages/admin/cards/Cards')
+);
 
 function CardsPage() {
   return <DynamicPage />;

@@ -2,8 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
-import Footer from '@/components/user/footer/Footer';
-import Header from '@/components/user/header/Header';
+import Footer from '@/components/shared/footer/Footer';
+import Header from '@/components/shared/header/Header';
 
 export default function LayoutProvider({
   children,
@@ -12,10 +12,10 @@ export default function LayoutProvider({
 }) {
   const pathname = usePathname();
 
-  const noClientPage
-    = pathname.split('/').includes('admin')
-    || pathname.split('/').includes('login')
-    || pathname.split('/').includes('docs');
+  const noClientPage =
+    pathname.split('/').includes('admin') ||
+    pathname.split('/').includes('login') ||
+    pathname.split('/').includes('docs');
 
   if (noClientPage) {
     return <>{children}</>;

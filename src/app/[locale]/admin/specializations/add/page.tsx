@@ -1,4 +1,4 @@
-import AddSpecialization from '@/components/admin/specializations/AddSpecialization';
+import AddSpecialization from '@/components/pages/admin/specializations/AddSpecialization';
 
 function AddSpecializationPage() {
   return <AddSpecialization />;

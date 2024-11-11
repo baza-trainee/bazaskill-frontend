@@ -1,10 +1,6 @@
-import EditSpecialization from '@/components/admin/specializations/EditSpecialization';
+import EditSpecialization from '@/components/pages/admin/specializations/EditSpecialization';
 
-function EditSpecializationPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+function EditSpecializationPage({ params }: { params: { id: string } }) {
   return <EditSpecialization id={params.id} />;
 }
 

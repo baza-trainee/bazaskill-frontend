@@ -1,4 +1,4 @@
-import EditTestimonial from '@/components/admin/testimonials/EditTestimonial';
+import EditTestimonial from '@/components/pages/admin/testimonials/EditTestimonial';
 
 function EditTestimonialPage() {
   return <EditTestimonial />;
