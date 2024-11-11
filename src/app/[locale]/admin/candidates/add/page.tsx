@@ -1,4 +1,4 @@
-import AddCandidate from '@/components/admin/candidates/AddCandidate/AddCandidate';
+import AddCandidate from '@/components/pages/admin/candidates/AddCandidate/AddCandidate';
 
 function AddCandidatePage() {
   return <AddCandidate />;

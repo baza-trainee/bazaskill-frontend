@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import SideBar from '@/components/admin/sidebar/SideBar';
-import { WithAuth } from '@/components/admin/WithAuth';
+import SideBar from '@/components/pages/admin/sidebar/SideBar';
+import { WithAuth } from '@/components/pages/admin/WithAuth';
 
 export const metadata: Metadata = {
   title: 'BazaSkill Admin',

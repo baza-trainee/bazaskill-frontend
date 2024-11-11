@@ -1,20 +1,20 @@
-import Advantages from '@/components/user/main_page/advantages/Advantages';
-import Counters from '@/components/user/main_page/counters/Counters';
-import Hero from '@/components/user/main_page/hero/Hero';
-import Invitation from '@/components/user/main_page/invitation/Invitation';
-import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
-import OurHistory from '@/components/user/main_page/our_history/OurHistory';
-import Partners from '@/components/user/main_page/partners/Partners';
-import Posts from '@/components/user/main_page/posts/Posts';
+import Advantages from '@/components/pages/main/advantages/Advantages';
+import Counters from '@/components/pages/main/counters/Counters';
+import Hero from '@/components/pages/main/hero/Hero';
+import Invitation from '@/components/pages/main/invitation/Invitation';
+import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
+import OurHistory from '@/components/pages/main/our_history/OurHistory';
+import Partners from '@/components/pages/main/partners/Partners';
+import Posts from '@/components/pages/main/posts/Posts';
 
 async function Home() {
   return (
-    <div className="mt-[72px] sm:mt-[80px] md:mt-[140px] flex min-h-screen w-full flex-col items-center justify-center bg-graphite">
+    <div className="mt-[72px] flex min-h-screen w-full flex-col items-center justify-center bg-graphite sm:mt-[80px] md:mt-[140px]">
       <Hero />
-      <OurHistory/>
+      <OurHistory />
       <Counters />
-      <Advantages/>
-      <Invitation/>
+      <Advantages />
+      <Invitation />
       <Partners />
       <Posts />
       <CookiesModal />

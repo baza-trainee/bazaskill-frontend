@@ -1,9 +1,7 @@
-import EditSettings from '@/components/admin/settings/EditSettings';
+import EditSettings from '@/components/pages/admin/settings/EditSettings';
 
 function EditSettingsPage() {
-  return (
-    <EditSettings />
-  );
+  return <EditSettings />;
 }
 
 export default EditSettingsPage;
