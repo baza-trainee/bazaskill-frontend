@@ -52,7 +52,7 @@ function MainInfo({ candidate }: MainInfoProps) {
                   {item.graduate_end}
                 </span>
               </div>
-              {item.graduate_sertificate && (
+              {/* {item.graduate_sertificate && (
                 <div>
                   <a
                     href={item.graduate_sertificate}
@@ -79,7 +79,7 @@ function MainInfo({ candidate }: MainInfoProps) {
                         )}
                   </a>
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>
@@ -104,7 +104,7 @@ function MainInfo({ candidate }: MainInfoProps) {
                   {cource.cources_end}
                 </span>
               </div>
-              {cource.cources_sertificate && (
+              {/* {cource.cources_sertificate && (
                 <div>
                   <a
                     href={cource.cources_sertificate}
@@ -131,7 +131,7 @@ function MainInfo({ candidate }: MainInfoProps) {
                         )}
                   </a>
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>

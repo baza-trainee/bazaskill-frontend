@@ -29,12 +29,12 @@ const open_sans = Open_Sans({
 const tahoma = localFont({
   src: [
     {
-      path: '../../../public/fonts/Tahoma.woff2',
+      path: '../fonts/Tahoma.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../../public/fonts/Tahoma-Bold.woff2',
+      path: '../fonts/Tahoma-Bold.woff2',
       weight: '800',
       style: 'normal',
     },
@@ -46,7 +46,7 @@ const tahoma = localFont({
 const mont = localFont({
   src: [
     {
-      path: '../../../public/fonts/Mont-Regular.woff2',
+      path: '../fonts/Mont-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
@@ -59,13 +59,13 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const t = await getTranslations({
-    locale:params.locale, 
+    locale: params.locale,
     namespace: 'Metadata'
   });
 
   return {
     title: {
-      default:t('main_title'),
+      default: t('main_title'),
       template: '%s',
     },
     description: t('main_description'),

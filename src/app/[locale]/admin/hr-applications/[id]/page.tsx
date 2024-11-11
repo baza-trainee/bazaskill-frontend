@@ -1,5 +1,3 @@
-import React from 'react';
-
 import HrApplication from '@/components/admin/hr-applications/HrApplication';
 
 function HrApplicationsPage({

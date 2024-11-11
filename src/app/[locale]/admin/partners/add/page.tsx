@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AddPartners from '@/components/admin/partners/AddPartners';
 
 function AddPartnersPage() {

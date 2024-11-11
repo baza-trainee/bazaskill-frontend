@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 
 const images = [
-  { src: '/images/our_history/image_1.png', alt: 'Baza Trainee Ukraine' },
-  { src: '/images/our_history/image_2.png', alt: 'Baza Educat' },
-  { src: '/images/our_history/image_3.png', alt: 'Baza Skill' },
-  { src: '/images/our_history/image_4.png', alt: 'Baza Polygon' },
+  { src: '/images/our_history/image_1.webp', alt: 'Baza Trainee Ukraine' },
+  { src: '/images/our_history/image_2.webp', alt: 'Baza Educat' },
+  { src: '/images/our_history/image_3.webp', alt: 'Baza Skill' },
+  { src: '/images/our_history/image_4.webp', alt: 'Baza Polygon' },
 ];
 
 
@@ -68,7 +68,7 @@ const OurHistoryAnimation = () => {
 
       <figure className="block md:hidden w-full">
         <Image
-          src={'/images/our_history/our_history.png'}
+          src={'/images/our_history/our_history.webp'}
           alt={'image'}
           priority={false}
           width={500}
