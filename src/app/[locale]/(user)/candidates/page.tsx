@@ -5,11 +5,11 @@ import dynamic from 'next/dynamic';
 import type { PageProps } from '@/types';
 
 import Loader from '@/components/shared/loader/Loader';
-import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
+import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
 
 const DynamicPage = dynamic(
   () =>
-    import('@/components/user/all_candidates/Candidates'),
+    import('@/components/pages/candidates/Candidates'),
 
   { ssr: false, loading: () => <Loader /> },
 );

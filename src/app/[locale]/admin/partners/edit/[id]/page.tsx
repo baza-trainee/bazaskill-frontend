@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditPartners from '@/components/admin/partners/EditPartners';
+import EditPartners from '@/components/pages/admin/partners/EditPartners';
 
 function EditPartnerPage() {
   return <EditPartners />;

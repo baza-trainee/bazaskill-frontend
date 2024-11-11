@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { getTranslations } from "next-intl/server";
 import type { PageProps } from '@/types';
-import Contacts from '@/components/user/contacts_page/Contacts';
-import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
+import Contacts from '@/components/pages/contacts/Contacts';
+import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata>{
   const t = await getTranslations({

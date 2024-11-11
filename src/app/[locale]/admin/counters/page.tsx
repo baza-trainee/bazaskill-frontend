@@ -1,4 +1,4 @@
-import Counters from '@/components/admin/counters/Counters';
+import Counters from '@/components/pages/admin/counters/Counters';
 
 function CountersPage() {
   return <Counters />;

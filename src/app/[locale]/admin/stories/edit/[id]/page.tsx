@@ -1,4 +1,4 @@
-import EditStory from '@/components/admin/stories/EditStory'
+import EditStory from '@/components/pages/admin/stories/EditStory'
 import React from 'react'
 
 const EditStoryPage = () => {

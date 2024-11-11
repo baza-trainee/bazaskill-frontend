@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditSettings from '@/components/admin/settings/EditSettings';
+import EditSettings from '@/components/pages/admin/settings/EditSettings';
 
 function EditSettingsPage() {
   return (

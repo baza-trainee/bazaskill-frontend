@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditCandidate from '@/components/admin/candidates/EditCandidate/EditCandidate';
+import EditCandidate from '@/components/pages/admin/candidates/EditCandidate/EditCandidate';
 
 function EditCandidatePage({
   params,

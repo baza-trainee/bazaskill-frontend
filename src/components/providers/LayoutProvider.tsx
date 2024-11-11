@@ -2,8 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
-import Footer from '@/components/user/footer/Footer';
-import Header from '@/components/user/header/Header';
+import Footer from '@/components/shared/footer/Footer';
+import Header from '@/components/shared/header/Header';
 
 export default function LayoutProvider({
   children,

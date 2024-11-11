@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Gallery from '@/components/admin/gallery/Gallery';
+import Gallery from '@/components/pages/admin/gallery/Gallery';
 
 function GalleryPage() {
   return <Gallery />;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddPartners from '@/components/admin/partners/AddPartners';
+import AddPartners from '@/components/pages/admin/partners/AddPartners';
 
 function AddPartnersPage() {
   return <AddPartners />;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Settings from '@/components/admin/settings/Settings';
+import Settings from '@/components/pages/admin/settings/Settings';
 
 function SettingsPage() {
   return <Settings />;

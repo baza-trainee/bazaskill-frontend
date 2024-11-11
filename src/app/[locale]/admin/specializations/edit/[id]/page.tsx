@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditSpecialization from '@/components/admin/specializations/EditSpecialization';
+import EditSpecialization from '@/components/pages/admin/specializations/EditSpecialization';
 
 function EditSpecializationPage({
   params,

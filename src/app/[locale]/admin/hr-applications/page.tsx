@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HrApplications from '@/components/admin/hr-applications/HrApplications';
+import HrApplications from '@/components/pages/admin/hr-applications/HrApplications';
 
 function HrApplicationsPage() {
   return <HrApplications />;

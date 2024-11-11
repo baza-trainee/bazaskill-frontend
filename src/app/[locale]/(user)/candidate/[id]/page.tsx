@@ -6,12 +6,12 @@ import type { IdPageProps } from '@/types';
 
 import Loader from '@/components/shared/loader/Loader';
 import { getTranslations } from 'next-intl/server';
-import CookiesModal from '@/components/user/modals/cookies/CookiesModal';
+import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
 
 const DynamicPage = dynamic(
   () =>
     import(
-      '@/components/pages/candidate_page/CandidatePage'
+      '@/components/pages/candidate/CandidatePage'
     ),
 
   { ssr: false, loading: () => <Loader /> },

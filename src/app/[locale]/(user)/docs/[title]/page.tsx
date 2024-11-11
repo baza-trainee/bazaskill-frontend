@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from "next-intl/server";
 import type { DocsPageProps } from '@/types';
 
-import { PDFView } from '@/components/user/PdfView';
+import { PDFView } from '@/components/pages/PdfView';
 
 export async function generateMetadata({ params }: DocsPageProps): Promise<Metadata>{
   const t = await getTranslations({

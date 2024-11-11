@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddCard from '@/components/admin/cards/AddCard';
+import AddCard from '@/components/pages/admin/cards/AddCard';
 
 function AddCardPage() {
   return <AddCard />;

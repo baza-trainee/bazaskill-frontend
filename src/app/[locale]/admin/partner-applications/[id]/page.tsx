@@ -1,4 +1,4 @@
-import PartnerApplication from '@/components/admin/partner-applications/PartnerApplication';
+import PartnerApplication from '@/components/pages/admin/partner-applications/PartnerApplication';
 
 function PartnerApplicationPage({
   params,

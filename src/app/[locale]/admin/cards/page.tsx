@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Cards from '@/components/admin/cards/Cards';
+import Cards from '@/components/pages/admin/cards/Cards';
 
 function CardsPage() {
   return <Cards />;
