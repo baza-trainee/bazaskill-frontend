@@ -3,7 +3,7 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import { getAllCandidates } from '@/api/candidates';
+import { getAllCandidates } from '@/utils/api/candidates';
 import CandidateHero from '@/components/pages/candidate/Hero';
 import MainInfo from '@/components/pages/candidate/MainInfo';
 import Loader from '@/components/shared/loader/Loader';

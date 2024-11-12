@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { deleteTestimonial } from '@/api/testimonials';
+import { deleteTestimonial } from '@/utils/api/testimonials';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import type { Testimonial } from '@/types/testimonials';

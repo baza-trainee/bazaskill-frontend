@@ -8,7 +8,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { createTestimonial } from '@/api/testimonials';
+import { createTestimonial } from '@/utils/api/testimonials';
 
 import SuccessAlert from '../alerts/SuccessAlert';
 import FileInputPost from '../ui/FileInputPost';

@@ -10,8 +10,8 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { changePassword } from '@/api/settings';
-import { getProfile } from '@/api/signIn';
+import { changePassword } from '@/utils/api/settings';
+import { getProfile } from '@/utils/api/signIn';
 import { constants } from '@/constants';
 import type { IUser } from '@/types/singIn';
 

@@ -1,21 +1,19 @@
 'use client';
 
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
 import { useLocale, useTranslations } from 'next-intl';
-
-import { getDocuments } from '@/api/documents';
-import CloseIcon from '@/components/shared/icons/CloseIcon';
 import { constants } from '@/constants';
 import { getLocalStorage, setLocalStorage } from '@/lib/storageHelper';
 import { useCookies } from '@/stores/useCookies';
+import { getDocuments } from '@/utils/api/documents';
 
-interface CookiesModalProps {}
+import CloseIcon from '@/components/shared/icons/CloseIcon';
 
-const CookiesModal: React.FC<CookiesModalProps> = () => {
+const CookiesModal = () => {
   const [cookieConsent, setCookieConsent] = useState(false);
   const t = useTranslations('Main.cookies');
   const { setCookie } = useCookies();
@@ -61,13 +59,21 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
 
   return (
     showPanel && (
-      <div className="container fixed inset-x-0 bottom-[30px] z-[1500] min-h-[180px] w-[90vw] rounded-md bg-[#F8FAFC] px-5 md:bottom-[50px] md:top-auto md:w-[600px]">
+      <div
+        role="dialog"
+        aria-labelledby="cookie-modal-title"
+        aria-describedby="cookie-modal-description"
+        className="container fixed inset-x-0 bottom-[30px] z-[1500] min-h-[180px] w-[90vw] rounded-md bg-[#F8FAFC] px-5 md:bottom-[50px] md:top-auto md:w-[600px]"
+        aria-hidden={!showPanel}
+      >
         <div className="relative flex flex-col justify-between py-6 pt-9">
-          <div className="mb-[25px] max-w-[564px] text-lg text-black">
+          <h2 id="cookie-modal-title" className="sr-only">Cookie Consent</h2> {/* Hidden but read by screen readers */}
+          <div id="cookie-modal-description" className="mb-[25px] max-w-[564px] text-lg text-black">
             {t('text')}{' '}
             <Link
               className="text-base font-bold underline duration-300 hover:text-blue-800"
               href={createLinck(privacyPolicy?.title)}
+              target='_blank'
             >
               {t('privacy_policy')}
             </Link>
@@ -78,6 +84,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
               type="button"
               onClick={acceptCookies}
               className="h-[36px] w-[180px] rounded-md border-2 border-green text-green duration-300 hover:bg-greenBg  hover:text-yellow"
+              aria-label="Accept Cookies"
             >
               Ok
             </button>
@@ -88,6 +95,7 @@ const CookiesModal: React.FC<CookiesModalProps> = () => {
           type="button"
           onClick={() => setShowPanel(false)}
           className="absolute right-2 top-2 p-1 duration-300 hover:opacity-70"
+          aria-label="Close"
         >
           <CloseIcon />
         </button>

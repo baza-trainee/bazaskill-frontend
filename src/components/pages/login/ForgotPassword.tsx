@@ -10,7 +10,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { forgotPassword } from '@/api/signIn';
+import { forgotPassword } from '@/utils/api/signIn';
 
 import SignInEmail from '../admin/ui/SignInEmail';
 import SuccessButton from '../admin/ui/buttons/SuccessButton';

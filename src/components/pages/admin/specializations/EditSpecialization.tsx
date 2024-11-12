@@ -12,7 +12,7 @@ import { Controller, useForm } from 'react-hook-form';
 import {
   getSpecializationById,
   updateSpecialization
-} from '@/api/specialization';
+} from '@/utils/api/specialization';
 import { constants } from '@/constants';
 import type { Specialization } from '@/types/specialization';
 

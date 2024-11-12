@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 
-import { getPartners } from '@/api/partners';
+import { getPartners } from '@/utils/api/partners';
 import { constants } from '@/constants';
 import type { TPartner } from '@/types/partners';
 

@@ -6,12 +6,12 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import type { FieldValues } from 'react-hook-form';
 
-import { getAllCandidates } from '@/api/candidates';
-import CandidatesList from '@/components/shared/candidates/CandidatesList';
-import CandidatesTitle from '@/components/shared/candidates/CandidatesTitle';
-import Filters from '@/components/shared/candidates/Filters';
-import { filterCandidatesByMainFilters } from '@/components/shared/candidates/helpers/filterCandidatesByMainFilters';
-import { filterCandidatesOnSubmit } from '@/components/shared/candidates/helpers/filterCandidatesOnSubmit';
+import { getAllCandidates } from '@/utils/api/candidates';
+import CandidatesList from '@/components/pages/candidates/components/CandidatesList';
+import CandidatesTitle from '@/components/pages/candidates/components/CandidatesTitle';
+import Filters from '@/components/pages/candidates/components/Filters';
+import { filterCandidatesByMainFilters } from '@/components/pages/candidates/components/filters/filterCandidatesByMainFilters';
+import { filterCandidatesOnSubmit } from '@/components/pages/candidates/components/filters/filterCandidatesOnSubmit';
 import Loader from '@/components/shared/loader/Loader';
 import { constants } from '@/constants';
 import { translateCountryName } from '@/helpers/translateCountryName';

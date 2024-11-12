@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { deleteCard, getCards } from '@/api/cards';
+import { deleteCard, getCards } from '@/utils/api/cards';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
 import type { ICard } from '@/types/cards';

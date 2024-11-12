@@ -8,7 +8,7 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { getCards } from '@/api/cards';
+import { getCards } from '@/utils/api/cards';
 import { constants } from '@/constants';
 import type { ICard } from '@/types/cards';
 

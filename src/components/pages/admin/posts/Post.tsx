@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deletePosts } from '@/api/posts';
+import { deletePosts } from '@/utils/api/posts';
 import { constants } from '@/constants';
 import type { IPost } from '@/types/posts';
 

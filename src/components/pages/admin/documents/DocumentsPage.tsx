@@ -10,7 +10,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 
-import { getDocuments, updateDocument } from '@/api/documents';
+import { getDocuments, updateDocument } from '@/utils/api/documents';
 import { constants } from '@/constants';
 
 import Loader from '../../../shared/loader/Loader';

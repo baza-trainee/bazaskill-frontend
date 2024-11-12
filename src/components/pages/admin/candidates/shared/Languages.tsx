@@ -15,7 +15,7 @@ import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import SelectField from './SelectField';
 
 interface ILanguagesProps {
-  fieldsLength: number;
+  fieldsLength?: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<FieldValues, 'languages', 'id'>;
   getValues: UseFormGetValues<FieldValues>;
@@ -39,6 +39,7 @@ function Languages({
   };
 
   useEffect(() => {
+    if (!fieldsLength) return
     if (fieldsLength > 1) {
       for (let i = 1; i < fieldsLength; i++) append;
     }

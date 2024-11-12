@@ -12,13 +12,13 @@ import type {
 import { Controller, useForm } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 
-import { getSpecializations } from '@/api/specialization';
-import { addStack } from '@/api/stack';
+import { getSpecializations } from '@/utils/api/specialization';
+import { addStack } from '@/utils/api/stack';
 import { constants } from '@/constants';
 import { useModal } from '@/stores/useModal';
 import type { ISpecialization } from '@/types/specialization';
 
-import TextInput from '../AddCandidate/TextInput';
+import TextInput from '../shared/TextInput';
 import schema from './schema';
 
 interface FormData {

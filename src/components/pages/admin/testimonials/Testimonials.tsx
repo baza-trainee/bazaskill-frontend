@@ -5,7 +5,7 @@ import React from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getTestimonials } from '@/api/testimonials';
+import { getTestimonials } from '@/utils/api/testimonials';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
 import type { Testimonial } from '@/types/testimonials';

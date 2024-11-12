@@ -9,15 +9,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-import { createImage } from '@/api/gallery';
+import { createImage } from '@/utils/api/gallery';
 import { constants } from '@/constants';
 
 import FileInputDoc from '../ui/FileInputDoc';
 import PageTitle from '../ui/PageTitle';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import type { TGalleryScheme } from './scheme';
-import { imageValidation } from './scheme';
+import type { TGalleryScheme } from './schema';
+import { imageValidation } from './schema';
 
 function AddImage() {
   const router = useRouter();

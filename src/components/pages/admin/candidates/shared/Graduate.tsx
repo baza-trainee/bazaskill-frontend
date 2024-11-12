@@ -16,7 +16,7 @@ import SelectField from './SelectField';
 import TextInput from './TextInput';
 
 interface IGraduateProps {
-  fieldsLength: number;
+  fieldsLength?: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<FieldValues, 'graduate', 'id'>;
 }
@@ -35,7 +35,9 @@ function Graduate({
   control,
   fieldArray: { fields, append, remove }
 }: IGraduateProps) {
+
   useEffect(() => {
+    if (!fieldsLength) return
     if (fieldsLength > 1) {
       for (let i = 1; i < fieldsLength; i++) append;
     }

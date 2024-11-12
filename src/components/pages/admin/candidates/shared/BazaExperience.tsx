@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import type {
@@ -9,7 +11,7 @@ import type {
 } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 
-import { getSpecializations } from '@/api/specialization';
+import { getSpecializations } from '@/utils/api/specialization';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { constants } from '@/constants';
 import type { ISpecialization } from '@/types/specialization';
@@ -17,10 +19,19 @@ import type { ISpecialization } from '@/types/specialization';
 import TextInput from './TextInput';
 
 interface IBazaExperienceProps {
+  fieldsLength?: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<FieldValues, 'baza_experience', 'id'>;
 }
+
+const defaultValues = {
+  role: '',
+  project_name: '',
+  project_duration: ''
+};
+
 const BazaExperience: React.FC<IBazaExperienceProps> = ({
+  fieldsLength,
   control,
   fieldArray: { fields, append, remove }
 }) => {
@@ -28,6 +39,13 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
     queryFn: getSpecializations
   });
+
+  useEffect(() => {
+    if (!fieldsLength) return
+    if (fieldsLength > 1) {
+      for (let i = 1; i < fieldsLength; i++) append;
+    }
+  }, [fieldsLength, append]);
 
   return (
     <div className="flex w-full flex-col gap-[30px]">
@@ -127,7 +145,10 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
           </div>
         );
       })}
-      <div onClick={append} className="flex cursor-pointer justify-end">
+      <div
+        onClick={() => append(defaultValues)}
+        className="flex cursor-pointer justify-end"
+      >
         + Додати ще
       </div>
     </div>

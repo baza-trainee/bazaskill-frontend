@@ -9,7 +9,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { resetPassword } from '@/api/signIn';
+import { resetPassword } from '@/utils/api/signIn';
 
 import SignInPassword from '../admin/ui/SignInPassword';
 import SuccessButton from '../admin/ui/buttons/SuccessButton';

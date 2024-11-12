@@ -9,8 +9,8 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { changeEmail } from '@/api/settings';
-import { getProfile } from '@/api/signIn';
+import { changeEmail } from '@/utils/api/settings';
+import { getProfile } from '@/utils/api/signIn';
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import { constants } from '@/constants';
 import type { IUser } from '@/types/singIn';

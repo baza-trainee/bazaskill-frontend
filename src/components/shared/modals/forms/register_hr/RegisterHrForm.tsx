@@ -9,7 +9,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type * as z from 'zod';
 
-import { createApplication } from '@/api/hr_application';
+import { createApplication } from '@/utils/api/hr_application';
 import CustomCheckbox from '@/components/shared/ui/form_inputs/CustomCheckbox';
 import PhoneInput from '@/components/shared/ui/form_inputs/PhoneInput';
 import SelectInput from '@/components/shared/ui/form_inputs/SelectInput';

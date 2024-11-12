@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { createStory } from '@/api/stories';
+import { createStory } from '@/utils/api/stories';
 
 import SuccessAlert from '../alerts/SuccessAlert';
 import FileInputPost from '../ui/FileInputPost';

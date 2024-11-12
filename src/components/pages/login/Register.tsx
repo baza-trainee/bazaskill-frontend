@@ -7,7 +7,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { registerUser } from '@/api/signIn';
+import { registerUser } from '@/utils/api/signIn';
 
 import ErrorAlert from '../admin/alerts/ErrorAlert';
 import SignInEmail from '../admin/ui/SignInEmail';

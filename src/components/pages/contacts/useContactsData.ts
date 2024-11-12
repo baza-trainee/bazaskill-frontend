@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getContact } from '@/api/contacts';
+import { getContact } from '@/utils/api/contacts';
 import { constants } from '@/constants';
 import type { IContacts } from '@/types/contacts';
 

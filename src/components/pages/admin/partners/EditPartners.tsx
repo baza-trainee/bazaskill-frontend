@@ -9,7 +9,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { getPartnersId, updatePartners } from '@/api/partners';
+import { getPartnersId, updatePartners } from '@/utils/api/partners';
 import { constants } from '@/constants';
 
 import SuccessAlert from '../alerts/SuccessAlert';
@@ -19,7 +19,7 @@ import TextInputPartner from '../ui/TextInputPartner';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PartnersCard from './PartnersCard';
-import { partnersScheme } from './partnersScheme';
+import { partnersScheme } from './schema';
 
 function EditPartners() {
   const router = useRouter();

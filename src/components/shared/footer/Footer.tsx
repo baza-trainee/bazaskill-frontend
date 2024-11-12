@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { getDocuments } from '@/api/documents';
+import { getDocuments } from '@/utils/api/documents';
 import { constants } from '@/constants';
 import { useModal } from '@/stores/useModal';
 
