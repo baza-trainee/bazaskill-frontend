@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -8,15 +9,15 @@ import { getDocuments } from '@/api/documents';
 import { constants } from '@/constants';
 import { useModal } from '@/stores/useModal';
 
+import RegisterModal from '../modals/RegisterModal';
 import RegisterHrForm from '../modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../modals/forms/register_partner/RegisterPartnerForm';
-import RegisterModal from '../modals/RegisterModal';
-import NavFooter from './NavFooter';
 import BecomeBlock from './BecomeBlock';
-import SupportBlock from './SupportBlock';
 import FooterLinks from './FooterLinks';
-import MobileLogo from './MobileLogo';
 import FooterLogo from './FooterLogo';
+import MobileLogo from './MobileLogo';
+import NavFooter from './NavFooter';
+import SupportBlock from './SupportBlock';
 
 export default function Footer(): JSX.Element {
   const t = useTranslations('Footer');
@@ -27,7 +28,7 @@ export default function Footer(): JSX.Element {
 
   const { data } = useQuery({
     queryKey: [constants.documents.FETCH_DOCUMENTS],
-    queryFn: getDocuments,
+    queryFn: getDocuments
   });
 
   const termsOfUse = data?.find((item) => item.title === 'terms_of_use');

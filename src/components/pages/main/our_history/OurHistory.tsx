@@ -1,38 +1,42 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
-import OurHistoryAnimation from "./OurHistoryAnimation";
-import OurHistoryText from "./OurHistoryText";
+import { useEffect, useState } from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import OurHistoryAnimation from './OurHistoryAnimation';
+import OurHistoryText from './OurHistoryText';
 
 const OurHistory = () => {
-  const t = useTranslations("Main.history");
-  const [isClient, setIsClient] = useState(false)
+  const t = useTranslations('Main.history');
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
   return (
     <>
-      {isClient && <section
-        className="pt-[100px] flex flex-col xl:grid xl:grid-cols-2 
-      lg:gap-[24px] gap-[48px] px-4 py-[48px] sm+:pt-[60px] sm+:px-[80px] 
-      xl:pt-[100px] xl:px-[80px]"
-        aria-labelledby="history-title"
-      >
-        <h2
-          id="history-title"
-          className="text-center xl:hidden lg:mb-[48px] md:mb-[28px] 
-          font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
+      {isClient && (
+        <section
+          className="flex flex-col gap-[48px] px-4 py-[48px] 
+      pt-[100px] sm+:px-[80px] sm+:pt-[60px] lg:gap-[24px] xl:grid xl:grid-cols-2 
+      xl:px-[80px] xl:pt-[100px]"
+          aria-labelledby="history-title"
         >
-          {t("title")}
-        </h2>
-        <OurHistoryAnimation />
-        <OurHistoryText />
-      </section>}
+          <h2
+            id="history-title"
+            className="text-center font-tahoma text-[24px] font-bold 
+          text-white md:mb-[28px] md:text-2xl lg:mb-[48px] xl:hidden 2xl:text-[40px]"
+          >
+            {t('title')}
+          </h2>
+          <OurHistoryAnimation />
+          <OurHistoryText />
+        </section>
+      )}
     </>
   );
 };
 
-export default OurHistory
+export default OurHistory;

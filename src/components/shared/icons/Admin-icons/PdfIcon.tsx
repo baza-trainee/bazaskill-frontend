@@ -1,12 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
 interface PdfIconProps extends HTMLProps<HTMLDivElement> {}
-const PdfIcon: React.FC<PdfIconProps> = ({
-  className,
-  ...rest
-}) => {
+const PdfIcon: React.FC<PdfIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

@@ -1,34 +1,34 @@
 {
   "Metadata": {
-		"main_title": "Baza Skill - rekrutacja młodszych specjalistów",
-		"main_description": "Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073",
+    "main_title": "Baza Skill - rekrutacja młodszych specjalistów",
+    "main_description": "Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073",
 
-		"why_juniors_title": "Чому джуни",
-		"why_juniors_description": "Baza Skill - Чому джуни",
+    "why_juniors_title": "Чому джуни",
+    "why_juniors_description": "Baza Skill - Чому джуни",
 
-		"candidates_title": "BazaSkill Kandydaci",
-		"candidates_description": "BazaSkill Strona kandydata na BazaSkill",
+    "candidates_title": "BazaSkill Kandydaci",
+    "candidates_description": "BazaSkill Strona kandydata na BazaSkill",
 
-		"candidate_title": "BazaSkill kandydat -",
-		"candidate_description": "Strona kandydata",
+    "candidate_title": "BazaSkill kandydat -",
+    "candidate_description": "Strona kandydata",
 
-		"contacts_title": "Baza Skill - Контакти",
-		"contacts_description": "Baza Skill - Контакти",
+    "contacts_title": "Baza Skill - Контакти",
+    "contacts_description": "Baza Skill - Контакти",
 
     "docs_privacy_policy_title": "Baza Skill - Polityka prywatności",
-		"docs_privacy_policy_description": "Baza Skill - Polityka prywatności",
+    "docs_privacy_policy_description": "Baza Skill - Polityka prywatności",
 
     "docs_terms_of_use_title": "Baza Skill - Warunki korzystania z serwisu",
-		"docs_terms_of_use_description": "Baza Skill - Warunki korzystania z serwisu",
-    
+    "docs_terms_of_use_description": "Baza Skill - Warunki korzystania z serwisu",
+
     "under_development_title": "Strona jest w fazie rozwoju",
-		"under_development_description": "Baza Skill - Strona informacyjna"
-	},
-  "Header":{
+    "under_development_description": "Baza Skill - Strona informacyjna"
+  },
+  "Header": {
     "about": "O nas",
     "why_juniors": "Dlaczego Juniorzy",
-    "candidates":"Kandydaci",
-    "contacts":"Łączność"
+    "candidates": "Kandydaci",
+    "contacts": "Łączność"
   },
   "Main": {
     "banner": "Głównym partnerem hostingowym projektów Baza Trainee jest hosting HostIQ",
@@ -40,7 +40,7 @@
       "poland": "Polska",
       "germany": "Niemcy",
       "aria-label": "Specjalista, Projektant, Deweloper, QA, Kierownik Projektu",
-      "search_button":"przycisk wyszukiwania",
+      "search_button": "przycisk wyszukiwania",
       "title": {
         "main": "Znajdź swojego",
         "specialist": "ІТ-fachowca",
@@ -50,9 +50,9 @@
         "pm": "PMa"
       }
     },
-    "history":{
+    "history": {
       "title": "Nasza historia",
-      "button":"Przeczytaj więcej",
+      "button": "Przeczytaj więcej",
       "description_1": "Agencja rekrutacyjna Baza Skill jest częścią projektu edukacyjnego Baza Trainee Ukraine, którego celem jest szkolenie, rozwijanie i potwierdzanie umiejętności zawodowych specjalistów IT.",
       "description_2": "W projekcie absolwenci kursów IT, przełączników, studenci uniwersytetów technicznych ćwiczą w tworzeniu prawdziwych produktów cyfrowych w zespole.",
       "description_3": "Każdy reprezentowany tutaj specjalista jest ambitny w pracy zespołowej, ma doświadczenie w opracowywaniu projektu przed usunięciem wymagań dotyczących wydania, próbował pełnić różne role znane podczas rozwoju i zna wszystkie trudności i sukcesy na różnych etapach życia projektu.",
@@ -64,40 +64,40 @@
       "employed": "zatrudnionych",
       "technologies": "technologii",
       "libraries": "bibliotek",
-      "candidates":"kandydatów",
-      "partners":"partnerów",
-      "visitors":"odwiedzających",
-      "specialities":"specjalności",
-      "heading":"nasze statystyki"
+      "candidates": "kandydatów",
+      "partners": "partnerów",
+      "visitors": "odwiedzających",
+      "specialities": "specjalności",
+      "heading": "nasze statystyki"
     },
-    "advantages":{
-      "title":"Korzyści ze współpracy z nami",
-      "card_1_title":"Wszyscy kandydaci przeszli onboarding",
-      "card_2_title":"Doświadczenie w zespołowym tworzeniu oprogramowania",
-      "card_3_title":"Portfolio realnych projektów",
-      "card_4_title":"Rozwinięte 'soft skills' kandydata",
-      "card_1_text":"Podczas standardowej procedury onboardingu brane są pod uwagę wymagania specjalizacyjne, kandydaci rozumieją, jak pojawienie się nowego zawodnika wpływa na zespół. Opracowana metodologia rozwoju produktów, standardy komunikacji, priorytety wyszukiwania informacji.",
-      "card_2_text":"Każdy kandydat brał udział w spotkaniach od wymagań produktu do wydania. Nasi kandydaci rozumieją wzajemne zależności w zespole, uwzględniają czas potrzebny na pracę pozostałych zespołów.",
-      "card_3_text":"Każdy kandydat ma udokumentowane doświadczenie w pracy z rzeczywistymi zadaniami technicznymi. Wszystkie projekty mają charakter realizacyjny i spełniają praktyczną rolę dla Klienta. W trakcie rozwoju przekazywana jest także wiedza dotycząca przydzielania projektów, metod optymalizacji SEO, a także obsługi posprzedażowej.",
-      "card_4_text":"Każdy kandydat może, jeśli chce, pełnić rolę lidera swojego zespołu. Podczas ćwiczeń każdy ustala, która strategia postępowania mu w danym momencie bardziej odpowiada: wykonawca czy menadżer."
+    "advantages": {
+      "title": "Korzyści ze współpracy z nami",
+      "card_1_title": "Wszyscy kandydaci przeszli onboarding",
+      "card_2_title": "Doświadczenie w zespołowym tworzeniu oprogramowania",
+      "card_3_title": "Portfolio realnych projektów",
+      "card_4_title": "Rozwinięte 'soft skills' kandydata",
+      "card_1_text": "Podczas standardowej procedury onboardingu brane są pod uwagę wymagania specjalizacyjne, kandydaci rozumieją, jak pojawienie się nowego zawodnika wpływa na zespół. Opracowana metodologia rozwoju produktów, standardy komunikacji, priorytety wyszukiwania informacji.",
+      "card_2_text": "Każdy kandydat brał udział w spotkaniach od wymagań produktu do wydania. Nasi kandydaci rozumieją wzajemne zależności w zespole, uwzględniają czas potrzebny na pracę pozostałych zespołów.",
+      "card_3_text": "Każdy kandydat ma udokumentowane doświadczenie w pracy z rzeczywistymi zadaniami technicznymi. Wszystkie projekty mają charakter realizacyjny i spełniają praktyczną rolę dla Klienta. W trakcie rozwoju przekazywana jest także wiedza dotycząca przydzielania projektów, metod optymalizacji SEO, a także obsługi posprzedażowej.",
+      "card_4_text": "Każdy kandydat może, jeśli chce, pełnić rolę lidera swojego zespołu. Podczas ćwiczeń każdy ustala, która strategia postępowania mu w danym momencie bardziej odpowiada: wykonawca czy menadżer."
     },
-    "juniors-advantages":{
-      "title":"Zalety juniorów",
+    "juniors-advantages": {
+      "title": "Zalety juniorów",
       "subtitle": "3 DOBRE POWODY, ABY ZATRUDNIĆ JUNIORA",
       "card_title_1": "Motywacja i chęć nauki",
       "card_title_2": "Ekonomiczna wykonalność w dłuższej perspektywie",
       "card_title_3": "Rezerwa kadrowa na przyszłe procesy",
-      "card_text_1":"Juniorzy są zazwyczaj silnie zmotywowani do rozwoju i szybkiego dostosowywania się do nowych technologii i procesów. Są otwarci na naukę, aktywnie poszukują wiedzy i dążą do tego, aby stać się wartościowymi członkami zespołu, zmieniając go na lepsze. Ponadto nie mają żadnych negatywnych czynników wyzwalających pisanie kodu lub raportów o błędach. Taki specjalista to właściwie czysta kartka, którą firma może uformować, żeby pracowała dla siebie.",
-      "card_text_2":"Młodzi specjaliści są lojalni wobec pracodawcy, pracują z entuzjazmem, a także są gotowi poświęcić swój czas na naukę i doskonalenie najnowszych technologii. Często zgadzają się na niższy poziom wynagrodzenia i jednocześnie zmniejszają obroty firmy. Warunki te należy jednak omówić na początku pracy juniora.",
-      "card_text_3":"Zapraszanie do pracy młodszych specjalistów to skuteczna strategia firm grających na dłuższą metę. Średni stopień specjalistów będzie piął się po szczeblach kariery, zwalniając miejsca dla nowicjuszy. Dlatego przygotowany i wybudowany na czas magazyn rezerwowy jest zabezpieczeniem przed błędami kadrowymi w przyszłości."
+      "card_text_1": "Juniorzy są zazwyczaj silnie zmotywowani do rozwoju i szybkiego dostosowywania się do nowych technologii i procesów. Są otwarci na naukę, aktywnie poszukują wiedzy i dążą do tego, aby stać się wartościowymi członkami zespołu, zmieniając go na lepsze. Ponadto nie mają żadnych negatywnych czynników wyzwalających pisanie kodu lub raportów o błędach. Taki specjalista to właściwie czysta kartka, którą firma może uformować, żeby pracowała dla siebie.",
+      "card_text_2": "Młodzi specjaliści są lojalni wobec pracodawcy, pracują z entuzjazmem, a także są gotowi poświęcić swój czas na naukę i doskonalenie najnowszych technologii. Często zgadzają się na niższy poziom wynagrodzenia i jednocześnie zmniejszają obroty firmy. Warunki te należy jednak omówić na początku pracy juniora.",
+      "card_text_3": "Zapraszanie do pracy młodszych specjalistów to skuteczna strategia firm grających na dłuższą metę. Średni stopień specjalistów będzie piął się po szczeblach kariery, zwalniając miejsca dla nowicjuszy. Dlatego przygotowany i wybudowany na czas magazyn rezerwowy jest zabezpieczeniem przed błędami kadrowymi w przyszłości."
     },
-    "invitation":{
+    "invitation": {
       "title": "Zapraszamy do współpracy",
       "button": "Dołączyć",
       "card1_title": "Zostań naszym HR",
       "card2_title": "Zostań naszym partnerem",
-      "card1_text":"Jesteś rekruterem i szukasz młodych talentów do swojej IT firmy? W Baza Skill możesz znaleźć młodszego specjalistę dzięki elastycznemu systemowi wyszukiwania.",
-      "card2_text":"Razem możemy osiągnąć nowe szczyty! Dołącz do naszej sieci partnerów jako pracodawca i wspieraj młodych ludzi na ścieżce kariery."
+      "card1_text": "Jesteś rekruterem i szukasz młodych talentów do swojej IT firmy? W Baza Skill możesz znaleźć młodszego specjalistę dzięki elastycznemu systemowi wyszukiwania.",
+      "card2_text": "Razem możemy osiągnąć nowe szczyty! Dołącz do naszej sieci partnerów jako pracodawca i wspieraj młodych ludzi na ścieżce kariery."
     },
     "partners": {
       "title": "Nasi partnerzy"
@@ -170,7 +170,7 @@
     "tryagain": "Spróbuj ponownie"
   },
   "Why_juniors": {
-    "title":"Dlaczego Juniorzy",
+    "title": "Dlaczego Juniorzy",
     "help": {
       "title": "Pomożemy Ci znaleźć godnego specjalistę",
       "paragraph_1": "Platforma Baza Skill pomoże Ci znaleźć młodszego specjalistę IT, gdyż każdy z naszych kandydatów ma już za sobą staż w praktyce.",
@@ -181,9 +181,9 @@
       "title": "Wypróbuj kalkulator młodszego i średniego zwrotu z inwestycji",
       "roi_btn": "ROI kalkulator"
     },
-    "history-juniors":{
-      "title":"Juniorzy historii",
-      "btn_details":"Więcej szczegółów"
+    "history-juniors": {
+      "title": "Juniorzy historii",
+      "btn_details": "Więcej szczegółów"
     },
     "testimonials": {
       "title": "Opinie"
@@ -297,7 +297,7 @@
     "salary_error": {
       "diff": "Wartość Od nie może być większa niż wartość Do",
       "both_fields": "Proszę wprowadzić obie wartości",
-      "not_negative":"Wartość nie może być ujemna"
+      "not_negative": "Wartość nie może być ujemna"
     },
     "button": "Zastosuj filtry"
   },
@@ -306,24 +306,24 @@
     "message": "My skontaktujemy się z Tobą tak szybko, jak to możliwe."
   },
   "Calculator": {
-    "header":"Interaktywny kalkulator ROI pozwalający porównać zatrudnienie na poziomie młodszym i średnim",
-    "header_popup":"Ten interaktywny kalkulator ROI (zwrotu z inwestycji) zaprojektowano w celu porównania długoterminowych korzyści wynikających z zatrudniania młodszych specjalistów z bardziej doświadczonymi średnimi profesjonalistami. Uwzględnia różne czynniki, w tym wynagrodzenie, czesne, produktywność i czas adaptacji.",
-    "specialization_title":"Specjalizacja",
-    "specialization_text":"Wybierz specjalizację do obliczeń",
-    "level_title":"Poziom kwalifikacji",
-    "level_text":"Wybierz poziom kwalifikacji do obliczeń",
-    "salary_title":"Miesięczne wynagrodzenie ($)",
-    "salary_text":"Wprowadź miesięczne wynagrodzenie (w dolarach) odpowiedniego kandydata",
-    "education_title":"Opłata za naukę ($)",
-    "education_text":"Należy podać łączną kwotę kosztów szkolenia i adaptacji odpowiedniego kandydata",
-    "project_title":"Koszt projektu ($)",
-    "project_text":"Parametr „Koszt projektu” uwzględnia całkowity koszt projektu, który jest niezbędny do obliczenia zysku firmy od pracownika",
-    "productivity_title":"Początkowa wydajność (%)",
-    "productivity_text":"Określ początkowe wyniki kandydata (oszacowane na podstawie wskaźników firmy). Dla porównania: dla Juniora - 50%, dla Middle - 80%",
-    "full_productivity_title":"Osiągnięcie pełnej produktywności (lata)",
-    "full_productivity_text":"Wybierz odpowiedni okres, aby osiągnąć pełną wydajność odpowiedniego kandydata",
-    "output_title":"Raport wyników ROI:",
-    "button_submit":"Obliczać",
-    "button_reset":"Zresetuj"
+    "header": "Interaktywny kalkulator ROI pozwalający porównać zatrudnienie na poziomie młodszym i średnim",
+    "header_popup": "Ten interaktywny kalkulator ROI (zwrotu z inwestycji) zaprojektowano w celu porównania długoterminowych korzyści wynikających z zatrudniania młodszych specjalistów z bardziej doświadczonymi średnimi profesjonalistami. Uwzględnia różne czynniki, w tym wynagrodzenie, czesne, produktywność i czas adaptacji.",
+    "specialization_title": "Specjalizacja",
+    "specialization_text": "Wybierz specjalizację do obliczeń",
+    "level_title": "Poziom kwalifikacji",
+    "level_text": "Wybierz poziom kwalifikacji do obliczeń",
+    "salary_title": "Miesięczne wynagrodzenie ($)",
+    "salary_text": "Wprowadź miesięczne wynagrodzenie (w dolarach) odpowiedniego kandydata",
+    "education_title": "Opłata za naukę ($)",
+    "education_text": "Należy podać łączną kwotę kosztów szkolenia i adaptacji odpowiedniego kandydata",
+    "project_title": "Koszt projektu ($)",
+    "project_text": "Parametr „Koszt projektu” uwzględnia całkowity koszt projektu, który jest niezbędny do obliczenia zysku firmy od pracownika",
+    "productivity_title": "Początkowa wydajność (%)",
+    "productivity_text": "Określ początkowe wyniki kandydata (oszacowane na podstawie wskaźników firmy). Dla porównania: dla Juniora - 50%, dla Middle - 80%",
+    "full_productivity_title": "Osiągnięcie pełnej produktywności (lata)",
+    "full_productivity_text": "Wybierz odpowiedni okres, aby osiągnąć pełną wydajność odpowiedniego kandydata",
+    "output_title": "Raport wyników ROI:",
+    "button_submit": "Obliczać",
+    "button_reset": "Zresetuj"
   }
 }

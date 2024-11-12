@@ -1,8 +1,9 @@
 'use client';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
+
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { deleteApplication, getHrApplications } from '@/api/hr_application';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
@@ -17,16 +18,16 @@ function HrApplications() {
 
   const { data, isFetching, isError, error } = useQuery({
     queryKey: [constants.hr_applications.FETCH_HRS],
-    queryFn: getHrApplications,
+    queryFn: getHrApplications
   });
 
   const deleteApplicationMutation = useMutation({
     mutationFn: deleteApplication,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [constants.hr_applications.FETCH_HRS],
+        queryKey: [constants.hr_applications.FETCH_HRS]
       });
-    },
+    }
   });
 
   const handleRemove = (id: number) => {

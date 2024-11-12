@@ -1,13 +1,14 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+
 import Link from 'next/link';
 import React from 'react';
 
-import type { Testimonial } from '@/types/testimonials';
+import { useQuery } from '@tanstack/react-query';
 
 import { getTestimonials } from '@/api/testimonials';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
+import type { Testimonial } from '@/types/testimonials';
 
 import Loader from '../../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
@@ -16,7 +17,7 @@ import TestimonialCard from './TestimonialCard';
 function Testimonials() {
   const { data, isFetching, refetch } = useQuery({
     queryKey: [constants.testimonials.FETCH_TESTIMONIALS],
-    queryFn: getTestimonials,
+    queryFn: getTestimonials
   });
 
   const handleCardDelete = () => {

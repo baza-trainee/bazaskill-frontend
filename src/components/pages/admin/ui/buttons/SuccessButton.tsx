@@ -1,16 +1,11 @@
 import type { ButtonHTMLAttributes } from 'react';
-
 import React from 'react';
 
-interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
 }
 
-const SuccessButton: React.FC<ButtonProps> = ({
-  text,
-  ...props
-}) => {
+const SuccessButton: React.FC<ButtonProps> = ({ text, ...props }) => {
   return (
     <button
       {...props}

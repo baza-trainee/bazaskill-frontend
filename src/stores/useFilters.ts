@@ -7,7 +7,7 @@ interface FiltersState {
   setFilterByCountry: (query: string) => void;
 }
 
-export const useFilters = create<FiltersState>(set => ({
+export const useFilters = create<FiltersState>((set) => ({
   speciality: '',
   country: '',
 
@@ -16,6 +16,6 @@ export const useFilters = create<FiltersState>(set => ({
   },
 
   setFilterByCountry: (query) => {
-    set({ country: query});
-  },
+    set({ country: query });
+  }
 }));

@@ -40,7 +40,7 @@ body.lock {
   }
 }
 
-.contact{
+.contact {
   -moz-user-select: text;
   -webkit-user-select: text;
   -ms-user-select: text;
@@ -59,7 +59,13 @@ body.lock {
 }
 
 .skeletonCard {
-  background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
+  background: linear-gradient(
+    120deg,
+    #e5e5e5 30%,
+    #f0f0f0 38%,
+    #f0f0f0 40%,
+    #e5e5e5 48%
+  );
   background-size: 200% 100%;
   background-position: 100% 0;
   animation: load 2s infinite;
@@ -73,18 +79,23 @@ body.lock {
 
 @layer utilities {
   .main-texture-background {
-    background-image: linear-gradient(180deg, rgba(33, 33, 33, 0.75) 60%, rgba(33, 33, 33, 0.75)),url('/background/background.webp');
+    background-image: linear-gradient(
+        180deg,
+        rgba(33, 33, 33, 0.75) 60%,
+        rgba(33, 33, 33, 0.75)
+      ),
+      url('/background/background.webp');
   }
 }
 
 /* Загальні стилі для бургер-кнопки */
-.burgerIcon span, 
-.burgerIcon::before, 
+.burgerIcon span,
+.burgerIcon::before,
 .burgerIcon::after {
-  content: "";
-  @apply absolute rounded-md right-0 w-full h-0.5 transition-all ease-in-out duration-300 bg-white;
+  content: '';
+  @apply absolute right-0 h-0.5 w-full rounded-md bg-white transition-all duration-300 ease-in-out;
 }
-.burgerIcon span{
+.burgerIcon span {
   width: calc(100% - 5px);
 }
 .burgerIcon::before {

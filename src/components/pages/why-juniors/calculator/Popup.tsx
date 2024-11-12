@@ -6,8 +6,8 @@ interface PopupProps {
 const Popup = ({ text, position }: PopupProps) => {
   return (
     <div
-      className="absolute bg-white text-black text-sm font-normal 
-        leading-6 min-w-[232px] flex flex-col justify-start items-start p-4"
+      className="absolute flex min-w-[232px] flex-col items-start 
+        justify-start bg-white p-4 text-sm font-normal leading-6 text-black"
       style={{ ...position }}
     >
       {text}

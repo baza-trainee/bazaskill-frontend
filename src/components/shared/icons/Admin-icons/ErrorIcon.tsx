@@ -1,14 +1,9 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface ErrorIconProps
-  extends HTMLProps<HTMLDivElement> {}
+interface ErrorIconProps extends HTMLProps<HTMLDivElement> {}
 
-const ErrorIcon: React.FC<ErrorIconProps> = ({
-  className,
-  ...rest
-}) => {
+const ErrorIcon: React.FC<ErrorIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest} className={` ${className}`}>
       <svg

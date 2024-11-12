@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl';
 import React from 'react';
+
+import { useTranslations } from 'next-intl';
 import { FaPaw } from 'react-icons/fa';
 
 function AffiliateBanner() {

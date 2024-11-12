@@ -6,5 +6,5 @@ export const defaultValues = {
   linkedin: '',
   facebook: '',
   discord: '',
-  instagram: '',
+  instagram: ''
 };

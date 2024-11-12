@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+
+import { useTranslations } from 'next-intl';
 
 import type { CandidatesResponse } from '@/types/candidates';
 
@@ -20,13 +21,10 @@ function MainInfo({ candidate }: MainInfoProps) {
         </h3>
         <div className="mt-[44px] flex flex-wrap gap-[24px]">
           {candidate?.stack.map(
-            item =>
+            (item) =>
               item.stack?.title.length > 0 && (
-                <StackItem
-                  key={item.id}
-                  title={item.stack?.title}
-                />
-              ),
+                <StackItem key={item.id} title={item.stack?.title} />
+              )
           )}
         </div>
       </div>
@@ -36,20 +34,16 @@ function MainInfo({ candidate }: MainInfoProps) {
           {t('education')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          {candidate?.gradaute.map(item => (
+          {candidate?.gradaute.map((item) => (
             <div
               key={item.id}
               className="flex w-full items-center justify-between"
             >
               <div className="flex w-full flex-col md:w-[34%]">
                 <span>{item.university}</span>
+                <span>{item.university_specialization}</span>
                 <span>
-                  {item.university_specialization}
-                </span>
-                <span>
-                  {item.graduate_start}
-                  -
-                  {item.graduate_end}
+                  {item.graduate_start}-{item.graduate_end}
                 </span>
               </div>
               {/* {item.graduate_sertificate && (
@@ -90,7 +84,7 @@ function MainInfo({ candidate }: MainInfoProps) {
           {t('courses')}
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
-          {candidate?.cources.map(cource => (
+          {candidate?.cources.map((cource) => (
             <div
               key={cource.id}
               className="flex w-full items-center justify-between"
@@ -99,9 +93,7 @@ function MainInfo({ candidate }: MainInfoProps) {
                 <span>{cource.cources_name}</span>
                 <span>{cource.cources_specializaton}</span>
                 <span>
-                  {cource.cources_start}
-                  -
-                  {cource.cources_end}
+                  {cource.cources_start}-{cource.cources_end}
                 </span>
               </div>
               {/* {cource.cources_sertificate && (
@@ -139,22 +131,20 @@ function MainInfo({ candidate }: MainInfoProps) {
 
       <div>
         <div className="relative box-border flex flex-col gap-[24px] border-b border-[#929292] py-[12px] font-tahoma text-[20px] font-[700] text-white sm:justify-end sm:text-[24px] md:flex-row lg:justify-center">
-          <h3 className="md:absolute md:left-0">
-            {t('baza_experience')}
-          </h3>
+          <h3 className="md:absolute md:left-0">{t('baza_experience')}</h3>
           <div className="flex items-center gap-[15px] sm:mr-[140px]">
             <svg width={20} height={18}>
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
             {t('projects', {
               count: candidate?.baza_experience.length,
-              ordinal: true,
+              ordinal: true
             })}
           </div>
         </div>
 
         <div className="mt-[32px] flex flex-col flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white md:flex-row">
-          {candidate?.baza_experience.map(project => (
+          {candidate?.baza_experience.map((project) => (
             <Project key={project.id} project={project} />
           ))}
         </div>
@@ -162,9 +152,7 @@ function MainInfo({ candidate }: MainInfoProps) {
 
       <div>
         <h3 className="flex py-[12px] font-tahoma text-[24px] font-[700] text-white">
-          {t('recomendation_from')}
-          {' '}
-          Baza Skill
+          {t('recomendation_from')} Baza Skill
         </h3>
         <span className="mt-[32px] flex font-sans text-[20px] font-[400] leading-[28px] text-white">
           {candidate.baza_recomendation}

@@ -9,7 +9,7 @@ export function localizeCountry(locale: string) {
       { value: 'czech', label: 'Чехія' },
       { value: 'germany', label: 'Німеччина' },
       { value: 'france', label: 'Франція' },
-      { value: 'spain', label: 'Іспанія' },
+      { value: 'spain', label: 'Іспанія' }
     ];
   }
   if (locale === 'en') {
@@ -19,7 +19,7 @@ export function localizeCountry(locale: string) {
       { value: 'czech', label: 'Czech' },
       { value: 'germany', label: 'Germany' },
       { value: 'france', label: 'France' },
-      { value: 'spain', label: 'Spain' },
+      { value: 'spain', label: 'Spain' }
     ];
   }
   if (locale === 'pl') {
@@ -29,7 +29,7 @@ export function localizeCountry(locale: string) {
       { value: 'czech', label: 'Republika Czeska' },
       { value: 'germany', label: 'Niamcy' },
       { value: 'france', label: 'Francja' },
-      { value: 'spain', label: 'Hiszpania' },
+      { value: 'spain', label: 'Hiszpania' }
     ];
   }
   return arr;

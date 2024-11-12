@@ -1,5 +1,6 @@
-import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+
+import { getRequestConfig } from 'next-intl/server';
 
 // Can be imported from a shared config
 export const locales = ['ua', 'en', 'pl'];
@@ -9,9 +10,7 @@ export default getRequestConfig(async ({ locale }) => {
   if (!locales.includes(locale)) notFound();
 
   return {
-    messages: (
-      await import(`../messages/${locale}.json`)
-    ).default,
+    messages: (await import(`../messages/${locale}.json`)).default
   };
 });
 
@@ -22,5 +21,5 @@ export const pathnames = {
   '/about': '/about',
   '/why-juniors': '/why-juniors',
   '/candidates': '/candidates',
-  '/contacts': '/contacts',
-}
+  '/contacts': '/contacts'
+};

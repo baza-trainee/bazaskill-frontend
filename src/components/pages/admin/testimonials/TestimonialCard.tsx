@@ -1,13 +1,13 @@
 'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import type { Testimonial } from '@/types/testimonials';
-
 import { deleteTestimonial } from '@/api/testimonials';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
+import type { Testimonial } from '@/types/testimonials';
 
 import QuestionAlert from '../alerts/QuestionAlert';
 import SuccessAlert from '../alerts/SuccessAlert';
@@ -15,7 +15,7 @@ import './testimonial.css';
 
 function TestimonialCard({
   item,
-  onDelete,
+  onDelete
 }: {
   item: Testimonial;
   isEdit?: boolean;
@@ -29,12 +29,10 @@ function TestimonialCard({
       if (response.status === 200) {
         setIsSuccess(true);
       }
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
-      }
-      else {
+      } else {
         console.error('Неочікувана помилка', error);
       }
     }

@@ -6,7 +6,7 @@ export const countries: Option[] = [
   { value: 'czech', label: 'Чехія' },
   { value: 'germany', label: 'Германія' },
   { value: 'france', label: 'Франція' },
-  { value: 'spain', label: 'Іспанія' },
+  { value: 'spain', label: 'Іспанія' }
 ];
 
 export const stack: Option[] = [
@@ -15,5 +15,5 @@ export const stack: Option[] = [
   { value: 'backend', label: 'Backend' },
   { value: 'PM', label: 'PM' },
   { value: 'QA Manual', label: 'QA Manual' },
-  { value: 'Design', label: 'Design' },
+  { value: 'Design', label: 'Design' }
 ];

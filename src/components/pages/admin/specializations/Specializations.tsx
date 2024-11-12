@@ -1,8 +1,9 @@
 'use client';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import React, { useState } from 'react';
+
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { deleteSpecialization, getSpecializations } from '@/api/specialization';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
@@ -20,7 +21,7 @@ function Specializations() {
 
   const { data, isFetching } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
-    queryFn: getSpecializations,
+    queryFn: getSpecializations
   });
 
   const deleteMutation = useMutation({
@@ -28,13 +29,13 @@ function Specializations() {
     mutationFn: (id: string) => deleteSpecialization(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
+        queryKey: [constants.specialization.FETCH_SPECIALIZATIONS]
       });
       setIsLoading(false);
     },
     onError: (error) => {
       alert(error);
-    },
+    }
   });
 
   const handleDelete = async () => {

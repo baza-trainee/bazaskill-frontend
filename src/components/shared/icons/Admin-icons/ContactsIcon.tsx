@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface ContactsIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const ContactsIcon: React.FC<ContactsIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface ContactsIconProps extends HTMLProps<HTMLDivElement> {}
+const ContactsIcon: React.FC<ContactsIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface TrashIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const TrashIcon: React.FC<TrashIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface TrashIconProps extends HTMLProps<HTMLDivElement> {}
+const TrashIcon: React.FC<TrashIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest}>
       <svg

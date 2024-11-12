@@ -1,13 +1,14 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+
 import Link from 'next/link';
 import React from 'react';
 
-import type { TPartner } from '@/types/partners';
+import { useQuery } from '@tanstack/react-query';
 
 import { getPartners } from '@/api/partners';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
+import type { TPartner } from '@/types/partners';
 
 import Loader from '../../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
@@ -16,7 +17,7 @@ import PartnersCard from './PartnersCard';
 function Partners() {
   const { data } = useQuery({
     queryKey: [constants.partners.FETCH_PARTNERS],
-    queryFn: getPartners,
+    queryFn: getPartners
   });
 
   if (!data) {

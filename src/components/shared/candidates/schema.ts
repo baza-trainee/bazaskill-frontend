@@ -10,7 +10,7 @@ const schema = z.object({
   sallary: z
     .object({
       from: z.string(),
-      to: z.string(),
+      to: z.string()
     })
     .refine(
       ({ from, to }) => {
@@ -20,22 +20,19 @@ const schema = z.object({
         return true;
       },
       {
-        message:
-          'salary_error.diff',
-      },
+        message: 'salary_error.diff'
+      }
     )
     .refine(
       ({ from, to }) => {
         if (from !== '' && to !== '') {
-          return true
+          return true;
         }
         return false;
       },
       {
-        message:
-          'salary_error.both_fields',
-      },
-      
+        message: 'salary_error.both_fields'
+      }
     )
     .refine(
       ({ from, to }) => {
@@ -44,7 +41,7 @@ const schema = z.object({
         return (from === '' || fromNum >= 0) && (to === '' || toNum >= 0);
       },
       {
-        message: 'salary_error.not_negative',
+        message: 'salary_error.not_negative'
       }
     )
 });

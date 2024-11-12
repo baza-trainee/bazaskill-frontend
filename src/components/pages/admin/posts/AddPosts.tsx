@@ -1,29 +1,23 @@
 'use client';
 
-import type {
-  SubmitHandler,
-} from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import {
-  Controller,
-  useForm,
-} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import { createPost } from '@/api/posts';
 
-import type { TPostScheme } from './postScheme';
-
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPost from '../ui/FileInputPost';
 import PageTitle from '../ui/PageTitle';
 import TextAreaArticle from '../ui/TextAreaArticle';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PostPreview from './PostPreview';
+import type { TPostScheme } from './postScheme';
 import { postScheme } from './postScheme';
 
 function AddPosts() {
@@ -38,16 +32,16 @@ function AddPosts() {
     control,
     reset,
     watch,
-    formState: { isDirty, errors },
+    formState: { isDirty, errors }
   } = useForm<TPostScheme>({
     mode: 'onChange',
     defaultValues: {
       title: '',
       image: '',
       link: '',
-      text: '',
+      text: ''
     },
-    resolver: zodResolver(postScheme),
+    resolver: zodResolver(postScheme)
   });
 
   const currentValues = watch();
@@ -58,14 +52,11 @@ function AddPosts() {
   };
 
   useEffect(() => {
-    if (!file)
-      return;
+    if (!file) return;
     setImagePreview(file);
   }, [file]);
 
-  const onSubmit: SubmitHandler<TPostScheme> = async (
-    data,
-  ) => {
+  const onSubmit: SubmitHandler<TPostScheme> = async (data) => {
     try {
       setIsProcessing(true);
 
@@ -86,13 +77,11 @@ function AddPosts() {
       }
       setIsProcessing(false);
       reset();
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    }
-    finally {
+    } finally {
       setIsProcessing(false);
     }
   };
@@ -160,10 +149,7 @@ function AddPosts() {
                 }}
               />
             </div>
-            <PostPreview
-              currentValues={currentValues}
-              image={image}
-            />
+            <PostPreview currentValues={currentValues} image={image} />
           </div>
           <Controller
             name="text"
@@ -181,9 +167,7 @@ function AddPosts() {
           />
           <div className="flex gap-[24px]">
             <PrimaryButton
-              text={
-                isProcessing ? 'Обробка запиту' : 'Додати'
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Додати'}
               disabled={!isDirty}
             />
             <SecondaryButton

@@ -1,12 +1,8 @@
+import axios from '@/config/axios';
 import type { CreatePost, IPost } from '@/types/posts';
 
-import axios from '@/config/axios';
-
 export async function createPost(data: unknown) {
-  const response = await axios.post<CreatePost[]>(
-    '/posts',
-    data,
-  );
+  const response = await axios.post<CreatePost[]>('/posts', data);
   return response;
 }
 

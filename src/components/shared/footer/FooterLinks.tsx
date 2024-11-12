@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+
+import { useTranslations } from 'next-intl';
 
 interface FooterLink {
   href: string;
@@ -10,34 +11,37 @@ export default function FooterLinks(): JSX.Element {
   const t = useTranslations('Footer');
 
   const footerLinks: FooterLink[] = [
-    { 
+    {
       href: 'https://baza-trainee.tech',
       title: 'baza_trainee'
     },
-    { 
+    {
       href: 'https://baza-educat.com.ua',
       title: 'internship'
     },
-    { 
+    {
       href: '/under-development',
       title: 'poligon'
-    },
-  ]
+    }
+  ];
 
   return (
-    <div className="flex flex-col gap-2 md:gap-5 items-center md:items-start">
-      {footerLinks.map((el)=>{
+    <div className="flex flex-col items-center gap-2 md:items-start md:gap-5">
+      {footerLinks.map((el) => {
         return (
-          <Link  
+          <Link
             key={el.title}
-            className={"underline block text-nowrap text-lg font-normal text-white duration-300 hover:text-yellow"} 
-            href={el.href} 
+            className={
+              'block text-nowrap text-lg font-normal text-white underline duration-300 hover:text-yellow'
+            }
+            href={el.href}
             target={el.title === 'poligon' ? '_self' : '_blank'}
-            rel='noopener noreferrer'>
-              {t(el.title)}
+            rel="noopener noreferrer"
+          >
+            {t(el.title)}
           </Link>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

@@ -13,8 +13,8 @@ const defaultValues = {
   languages: [
     {
       language: '',
-      level: '',
-    },
+      level: ''
+    }
   ],
   work_format: '',
   salary_from: '',
@@ -29,8 +29,8 @@ const defaultValues = {
       university_grade: '',
       graduate_start: '',
       graduate_end: '',
-      graduate_sertificate: '',
-    },
+      graduate_sertificate: ''
+    }
   ],
   cources: [
     {
@@ -38,17 +38,17 @@ const defaultValues = {
       cources_specializaton: '',
       cources_start: '',
       cources_end: '',
-      cources_sertificate: '',
-    },
+      cources_sertificate: ''
+    }
   ],
   baza_experience: [
     {
       role: '',
       project_name: '',
-      project_duration: '',
-    },
+      project_duration: ''
+    }
   ],
-  baza_recomendation: '',
+  baza_recomendation: ''
 };
 
 export default defaultValues;

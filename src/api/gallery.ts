@@ -1,6 +1,5 @@
-import type { IImage } from '@/types/gallery';
-
 import axios from '@/config/axios';
+import type { IImage } from '@/types/gallery';
 
 export async function getImages() {
   const { data } = await axios.get<IImage[]>('/gallery');

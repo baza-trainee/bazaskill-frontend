@@ -1,24 +1,18 @@
 import type { ChangeEvent } from 'react';
-
 import React, { useState } from 'react';
 
 function CandidatesSearch({
-  SubmitHandler,
+  SubmitHandler
 }: {
   SubmitHandler: (data: string) => void;
 }) {
-  const [searchKeyword, setSearchKeyword]
-    = useState<string>('');
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     SubmitHandler(searchKeyword);
   };
@@ -28,10 +22,7 @@ function CandidatesSearch({
       <h1 className="font-tahoma text-[40px] font-[700] text-white">
         Всі кандидати
       </h1>
-      <form
-        className="relative flex items-center"
-        onSubmit={handleSubmit}
-      >
+      <form className="relative flex items-center" onSubmit={handleSubmit}>
         <input
           name="searchKeyword"
           value={searchKeyword}
@@ -40,10 +31,7 @@ function CandidatesSearch({
           type="text"
           placeholder="Введіть ключове слово для пошуку"
         />
-        <button
-          className="absolute right-[16px] cursor-pointer"
-          type="submit"
-        >
+        <button className="absolute right-[16px] cursor-pointer" type="submit">
           <svg width={24} height={24}>
             <use href="/Icons/sprite.svg#icon-search"></use>
           </svg>

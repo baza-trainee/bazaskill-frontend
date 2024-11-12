@@ -3,12 +3,9 @@ import type {
   DeepMap,
   FieldError,
   FieldValues,
-  UseFieldArrayReturn,
+  UseFieldArrayReturn
 } from 'react-hook-form';
-
-import {
-  Controller,
-} from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 
@@ -18,41 +15,28 @@ import TextInput from './TextInput';
 
 interface IGraduateProps {
   control: Control<FieldValues>;
-  fieldArray: UseFieldArrayReturn<
-    FieldValues,
-    'graduate',
-    'id'
-  >;
+  fieldArray: UseFieldArrayReturn<FieldValues, 'graduate', 'id'>;
 }
 function Graduate({
   control,
-  fieldArray: { fields, append, remove },
+  fieldArray: { fields, append, remove }
 }: IGraduateProps) {
   return (
     <div className="flex w-full flex-col gap-[30px]">
       {fields.map((field, index) => {
         return (
-          <div
-            key={field.id}
-            className="flex w-full flex-col gap-[32px]"
-          >
+          <div key={field.id} className="flex w-full flex-col gap-[32px]">
             <div className="flex w-full gap-[24px]">
               <Controller
                 name={`graduate.${index}.university`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.graduate as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.university?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.university?.message
                     }
                     isRequired={false}
                     placeholder="Назва навчального закладу"
@@ -63,20 +47,13 @@ function Graduate({
               <Controller
                 name={`graduate.${index}.university_specializaton`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.graduate as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.university_specializaton
-                        ?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.university_specializaton?.message
                     }
                     isRequired={false}
                     placeholder="Введіть назву"
@@ -90,7 +67,7 @@ function Graduate({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  formState: { errors },
+                  formState: { errors }
                 }) => {
                   return (
                     <SelectField
@@ -100,17 +77,13 @@ function Graduate({
                         'Bachelor',
                         'Master',
                         'Not complete',
-                        'Secondary professional',
+                        'Secondary professional'
                       ]}
                       onChange={onChange}
                       errors={
-                        (
-                          errors.graduate as DeepMap<
-                            FieldValues,
-                            FieldError
-                          >
-                        )?.[index]?.universiry_grade
-                          ?.message
+                        (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
+                          index
+                        ]?.universiry_grade?.message
                       }
                       placeholder="Оберіть якщо є"
                     />
@@ -123,19 +96,13 @@ function Graduate({
               <Controller
                 name={`graduate.${index}.graduate_start`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.graduate as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.graduate_start?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.graduate_start?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
@@ -163,20 +130,16 @@ function Graduate({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  formState: { errors },
+                  formState: { errors }
                 }) => (
                   <FileInput
                     onChange={onChange}
                     value={value}
                     title="Завантажити сертифікат"
                     errors={
-                      (
-                        errors.graduate as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.graduate_sertificate
-                        ?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.graduate_sertificate?.message
                     }
                   />
                 )}
@@ -191,10 +154,7 @@ function Graduate({
           </div>
         );
       })}
-      <div
-        onClick={append}
-        className="flex cursor-pointer justify-end"
-      >
+      <div onClick={append} className="flex cursor-pointer justify-end">
         + Додати ще
       </div>
     </div>

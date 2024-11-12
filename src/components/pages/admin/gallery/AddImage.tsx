@@ -1,26 +1,22 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
 import { createImage } from '@/api/gallery';
 import { constants } from '@/constants';
 
-import type { TGalleryScheme } from './scheme';
-
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputDoc from '../ui/FileInputDoc';
 import PageTitle from '../ui/PageTitle';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import type { TGalleryScheme } from './scheme';
 import { imageValidation } from './scheme';
 
 function AddImage() {
@@ -34,11 +30,11 @@ function AddImage() {
     watch,
     control,
     reset,
-    formState: { isValid },
+    formState: { isValid }
   } = useForm<TGalleryScheme>({
     resolver: zodResolver(imageValidation),
     mode: 'onChange',
-    defaultValues: { image: [] },
+    defaultValues: { image: [] }
   });
 
   const currentValues = watch();
@@ -49,7 +45,7 @@ function AddImage() {
     onSuccess: () => {
       setIsProcessing(false);
       queryClient.invalidateQueries({
-        queryKey: [constants.gallery.GET_IMAGES],
+        queryKey: [constants.gallery.GET_IMAGES]
       });
       setIsProcessing(false);
       router.push('/admin/gallery');
@@ -57,7 +53,7 @@ function AddImage() {
     onError: (error) => {
       alert(error);
       setIsProcessing(false);
-    },
+    }
   });
 
   const setImagePreview = (file: File) => {
@@ -66,22 +62,20 @@ function AddImage() {
   };
 
   useEffect(() => {
-    if (!currentValues.image?.length)
-      return;
+    if (!currentValues.image?.length) return;
     const file = currentValues.image[0];
     setImagePreview(file);
   }, [currentValues.image]);
 
   const onSubmit: SubmitHandler<TGalleryScheme> = async (
-    values: TGalleryScheme,
+    values: TGalleryScheme
   ) => {
     setIsProcessing(true);
     try {
       const formData = new FormData();
       formData.append('file', values.image[0]);
       mutate(formData);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -106,9 +100,7 @@ function AddImage() {
             />
 
             <Image
-              src={
-                image || '/images/gallery-placeholder.jpg'
-              }
+              src={image || '/images/gallery-placeholder.jpg'}
               width={117}
               height={117}
               alt="specialist"
@@ -117,9 +109,7 @@ function AddImage() {
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text={
-                isProcessing ? 'Обробка запиту' : 'Додати'
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Додати'}
               disabled={!isValid}
             />
             <SecondaryButton

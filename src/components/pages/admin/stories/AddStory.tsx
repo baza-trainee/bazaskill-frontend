@@ -1,26 +1,23 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import {
-  Controller,
-  useForm,
-  SubmitHandler
-} from 'react-hook-form';
 
-import { TStoryScheme, storyScheme } from './storyScheme';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import { createStory } from '@/api/stories';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPost from '../ui/FileInputPost';
 import PageTitle from '../ui/PageTitle';
 import TextAreaArticle from '../ui/TextAreaArticle';
 import TextInput from '../ui/TextInput';
-import { defaultStoryValues } from './defaultValues';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import JuniorCardPreview from './CardPreview';
-import { createStory } from '@/api/stories';
+import { defaultStoryValues } from './defaultValues';
+import { TStoryScheme, storyScheme } from './storyScheme';
 
 function AddStory() {
   const [file, setFile] = useState<File | null>(null);
@@ -34,11 +31,11 @@ function AddStory() {
     control,
     reset,
     watch,
-    formState: { isDirty, errors },
+    formState: { isDirty, errors }
   } = useForm<TStoryScheme>({
     mode: 'onChange',
     defaultValues: defaultStoryValues,
-    resolver: zodResolver(storyScheme),
+    resolver: zodResolver(storyScheme)
   });
 
   const currentValues = watch();
@@ -53,9 +50,7 @@ function AddStory() {
     setImagePreview(file);
   }, [file]);
 
-  const onSubmit: SubmitHandler<TStoryScheme> = async (
-    values,
-  ) => {
+  const onSubmit: SubmitHandler<TStoryScheme> = async (values) => {
     try {
       setIsProcessing(true);
 
@@ -70,7 +65,6 @@ function AddStory() {
       formData.append('text_en', values.text_en);
       formData.append('text_pl', values.text_pl);
 
-
       if (file) {
         formData.append('file', file);
       }
@@ -83,13 +77,11 @@ function AddStory() {
 
       setIsProcessing(false);
       reset();
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    }
-    finally {
+    } finally {
       setIsProcessing(false);
     }
   };
@@ -104,7 +96,7 @@ function AddStory() {
   };
 
   return (
-    <div className="pl-[24px] py-[20px]">
+    <div className="py-[20px] pl-[24px]">
       <PageTitle title="Додати історію" />
       <section className="pt-[50px]">
         <form
@@ -170,9 +162,7 @@ function AddStory() {
                 }}
               />
             </div>
-            <JuniorCardPreview   
-               currentValues={currentValues}
-              image={image}/>
+            <JuniorCardPreview currentValues={currentValues} image={image} />
           </div>
           <Controller
             name="speciality"
@@ -188,67 +178,65 @@ function AddStory() {
               );
             }}
           />
-               <Controller
-                name="image"
-                control={control}
-                render={({ field }) => {
-                  return (
-                    <FileInputPost
-                      {...field}
-                      placeholder="Завантажте зображення"
-                      title="Зображення"
-                      onChange={handleFileChange}
-                    />
-                  );
-                }}
-              />
-                           <Controller
-                name="text_ua"
-                control={control}
-                render={({ field }) => {
-                  return (
-                    <TextAreaArticle
-                      {...field}
-                      errorText={errors.text_ua?.message}
-                      title="Текст статті українською"
-                      placeholder="Введіть текст статті"
-                    />
-                  );
-                }}
-              />
-              <Controller
-                name="text_en"
-                control={control}
-                render={({ field }) => {
-                  return (
-                    <TextAreaArticle
-                      {...field}
-                      errorText={errors.text_en?.message}
-                      title="Текст статті англійською"
-                      placeholder="Введіть текст статті"
-                    />
-                  );
-                }}
-              />
-              <Controller
-                name="text_pl"
-                control={control}
-                render={({ field }) => {
-                  return (
-                    <TextAreaArticle
-                      {...field}
-                      errorText={errors.text_pl?.message}
-                      title="Текст статті польською"
-                      placeholder="Введіть текст статті"
-                    />
-                  );
-                }}
-              />
+          <Controller
+            name="image"
+            control={control}
+            render={({ field }) => {
+              return (
+                <FileInputPost
+                  {...field}
+                  placeholder="Завантажте зображення"
+                  title="Зображення"
+                  onChange={handleFileChange}
+                />
+              );
+            }}
+          />
+          <Controller
+            name="text_ua"
+            control={control}
+            render={({ field }) => {
+              return (
+                <TextAreaArticle
+                  {...field}
+                  errorText={errors.text_ua?.message}
+                  title="Текст статті українською"
+                  placeholder="Введіть текст статті"
+                />
+              );
+            }}
+          />
+          <Controller
+            name="text_en"
+            control={control}
+            render={({ field }) => {
+              return (
+                <TextAreaArticle
+                  {...field}
+                  errorText={errors.text_en?.message}
+                  title="Текст статті англійською"
+                  placeholder="Введіть текст статті"
+                />
+              );
+            }}
+          />
+          <Controller
+            name="text_pl"
+            control={control}
+            render={({ field }) => {
+              return (
+                <TextAreaArticle
+                  {...field}
+                  errorText={errors.text_pl?.message}
+                  title="Текст статті польською"
+                  placeholder="Введіть текст статті"
+                />
+              );
+            }}
+          />
           <div className="flex gap-[24px]">
             <PrimaryButton
-              text={
-                isProcessing ? 'Обробка запиту' : 'Додати'
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Додати'}
               disabled={!isDirty}
             />
             <SecondaryButton

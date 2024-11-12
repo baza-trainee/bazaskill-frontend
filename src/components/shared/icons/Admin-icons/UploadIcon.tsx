@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface UploadIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const UploadIcon: React.FC<UploadIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface UploadIconProps extends HTMLProps<HTMLDivElement> {}
+const UploadIcon: React.FC<UploadIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest}>
       <svg

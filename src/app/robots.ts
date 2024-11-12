@@ -7,19 +7,19 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/admin', 
-          '/api', 
-          '/public/', 
-          '/login', 
-          '/docs', 
+          '/admin',
+          '/api',
+          '/public/',
+          '/login',
+          '/docs',
           '/under-development'
-        ],
-      },
+        ]
+      }
     ],
     sitemap: [
       `${process.env.NEXT_PUBLIC_BASE_URL}/ua/sitemap.xml`,
       `${process.env.NEXT_PUBLIC_BASE_URL}/en/sitemap.xml`,
-      `${process.env.NEXT_PUBLIC_BASE_URL}/pl/sitemap.xml`,
-    ],
+      `${process.env.NEXT_PUBLIC_BASE_URL}/pl/sitemap.xml`
+    ]
   };
 }

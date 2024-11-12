@@ -1,32 +1,22 @@
-import type {
-  UseQueryResult,
-} from '@tanstack/react-query';
+import React, { useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type {
   DeepMap,
   FieldError,
   FieldValues,
-  SubmitHandler,
+  SubmitHandler
 } from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import React, { useState } from 'react';
-import {
-  Controller,
-  useForm,
-} from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
-
-import type { ISpecialization } from '@/types/specialization';
 
 import { getSpecializations } from '@/api/specialization';
 import { addStack } from '@/api/stack';
 import { constants } from '@/constants';
 import { useModal } from '@/stores/useModal';
+import type { ISpecialization } from '@/types/specialization';
 
 import TextInput from '../AddCandidate/TextInput';
 import schema from './schema';
@@ -41,14 +31,9 @@ function AddStackModal() {
   const { closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const specialization: UseQueryResult<
-    ISpecialization[],
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATIONS,
-    ],
-    queryFn: getSpecializations,
+  const specialization: UseQueryResult<ISpecialization[], Error> = useQuery({
+    queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
+    queryFn: getSpecializations
   });
 
   const { mutate } = useMutation({
@@ -56,33 +41,30 @@ function AddStackModal() {
     mutationFn: addStack,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [constants.stack.GET_STACK],
+        queryKey: [constants.stack.GET_STACK]
       });
       setIsProcessing(false);
       closeModal();
     },
     onError: (error) => {
       alert(error);
-    },
+    }
   });
 
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       specialization_id: '',
-      title: '',
+      title: ''
     },
-    mode: 'onChange',
+    mode: 'onChange'
   });
 
-  const onSubmit: SubmitHandler<FormData> = (
-    values,
-    event,
-  ) => {
+  const onSubmit: SubmitHandler<FormData> = (values, event) => {
     event?.preventDefault();
     setIsProcessing(true);
     mutate(values);
@@ -96,9 +78,7 @@ function AddStackModal() {
         >
           <IoClose />
         </div>
-        <h2 className="mb-8 text-center text-3xl font-bold">
-          Додавання Стеку
-        </h2>
+        <h2 className="mb-8 text-center text-3xl font-bold">Додавання Стеку</h2>
         <form className="mx-auto flex flex-col items-center justify-center gap-[32px] font-sans text-[16px]">
           <Controller
             name="title"
@@ -117,10 +97,7 @@ function AddStackModal() {
           <Controller
             name="specialization_id"
             control={control}
-            render={({
-              field: { onChange, value },
-              formState: { errors },
-            }) => (
+            render={({ field: { onChange, value }, formState: { errors } }) => (
               <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
                 <label htmlFor="specialization">
                   Cпеціальність &nbsp;
@@ -132,10 +109,8 @@ function AddStackModal() {
                   onChange={onChange}
                   className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                 >
-                  <option value="">
-                    Оберіть спеціальність
-                  </option>
-                  {specialization.data?.map(item => (
+                  <option value="">Оберіть спеціальність</option>
+                  {specialization.data?.map((item) => (
                     <option key={item.id} value={item.id}>
                       {item.title}
                     </option>
@@ -160,9 +135,7 @@ function AddStackModal() {
               type="button"
               onClick={() => handleSubmit(onSubmit)()}
             >
-              {isProcessing
-                ? 'Обробка запиту...'
-                : 'Додати'}
+              {isProcessing ? 'Обробка запиту...' : 'Додати'}
             </button>
             <button
               onClick={closeModal}

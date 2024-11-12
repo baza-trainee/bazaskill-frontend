@@ -1,24 +1,23 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
+import React, { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
-
-import type { ICounters } from '@/types/counters';
+import type { z } from 'zod';
 
 import { getCounters, updateCounter } from '@/api/counters';
 import { constants } from '@/constants';
+import type { ICounters } from '@/types/counters';
 
 import Loader from '../../../shared/loader/Loader';
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { countersScheme } from './countersScheme';
 import { defaultValues } from './defaultValues';
 
@@ -28,7 +27,7 @@ function Counters() {
 
   const { data, refetch, isFetching, error } = useQuery<ICounters[], Error>({
     queryKey: [constants.counters.FETCH_COUNTERS],
-    queryFn: getCounters,
+    queryFn: getCounters
   });
 
   console.log(data);
@@ -37,11 +36,11 @@ function Counters() {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<z.infer<typeof countersScheme>>({
     resolver: zodResolver(countersScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   useEffect(() => {
@@ -53,7 +52,7 @@ function Counters() {
         members: value.members.toString(),
         employed: value.employed.toString(),
         technologies: value.technologies.toString(),
-        libraries: value.libraries.toString(),
+        libraries: value.libraries.toString()
       });
     }
   }, [data, reset]);
@@ -69,8 +68,8 @@ function Counters() {
           members: Number(values.members),
           employed: Number(values.employed),
           technologies: Number(values.technologies),
-          libraries: Number(values.libraries),
-        },
+          libraries: Number(values.libraries)
+        }
       });
       refetch();
       setShowModal(true);

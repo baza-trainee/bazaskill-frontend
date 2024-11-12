@@ -1,19 +1,19 @@
 'use client';
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { forgotPassword } from '@/api/signIn';
 
-import SuccessButton from '../admin/ui/buttons/SuccessButton';
 import SignInEmail from '../admin/ui/SignInEmail';
-import SupportBlock from '@/components/shared/footer/SupportBlock';
+import SuccessButton from '../admin/ui/buttons/SuccessButton';
 import { defaultValuesEmail } from './defaultValues';
 import { emailScheme } from './signInScheme';
 
@@ -25,11 +25,11 @@ function ForgotPassword() {
     handleSubmit,
     control,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<z.infer<typeof emailScheme>>({
     resolver: zodResolver(emailScheme),
     mode: 'onChange',
-    defaultValues: defaultValuesEmail,
+    defaultValues: defaultValuesEmail
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof emailScheme>> = async (
@@ -38,7 +38,7 @@ function ForgotPassword() {
     try {
       setIsProcessing(true);
       const response = await forgotPassword({
-        email: values.email,
+        email: values.email
       });
       if (response.status === 201) {
         const token = response.data?.token;
@@ -120,11 +120,10 @@ function ForgotPassword() {
         </div>
       </div>
       <div className="absolute bottom-0 left-0  w-full bg-darkGraphite ">
-        {/* <p className="mt-0 text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
+        <p className="mt-0 text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
           Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова
           Гандзюка
-        </p> */}
-        <SupportBlock />
+        </p>
       </div>
     </div>
   );

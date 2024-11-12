@@ -1,5 +1,4 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
 interface ArrowIconProps extends HTMLProps<HTMLDivElement> {

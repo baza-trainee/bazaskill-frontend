@@ -1,32 +1,27 @@
 'use client';
 
-import type {
-  SubmitHandler,
-} from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import {
-  Controller,
-  useForm,
-} from 'react-hook-form';
 
-import { TStoryScheme, storyScheme } from './storyScheme';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import type { SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+
+import { getStoryById, updateStory } from '@/api/stories';
+import Loader from '@/components/shared/loader/Loader';
+import { constants } from '@/constants';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPost from '../ui/FileInputPost';
 import PageTitle from '../ui/PageTitle';
 import TextAreaArticle from '../ui/TextAreaArticle';
 import TextInput from '../ui/TextInput';
-import { defaultStoryValues } from './defaultValues';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import JuniorCardPreview from './CardPreview';
-import {  getStoryById, updateStory } from '@/api/stories';
-import { constants } from '@/constants';
-import { useQuery } from '@tanstack/react-query';
-import Loader from '@/components/shared/loader/Loader';
+import { defaultStoryValues } from './defaultValues';
+import { TStoryScheme, storyScheme } from './storyScheme';
 
 function EditStory() {
   const [file, setFile] = useState<File | null>(null);
@@ -39,7 +34,7 @@ function EditStory() {
 
   const { data, isFetching } = useQuery({
     queryKey: [constants.stories.GET_STORY_BY_ID, id],
-    queryFn: () => getStoryById(id),
+    queryFn: () => getStoryById(id)
   });
 
   const {
@@ -48,11 +43,11 @@ function EditStory() {
     reset,
     watch,
     setValue,
-    formState: { isDirty, errors, touchedFields },
+    formState: { isDirty, errors, touchedFields }
   } = useForm<TStoryScheme>({
     mode: 'onChange',
     defaultValues: defaultStoryValues,
-    resolver: zodResolver(storyScheme),
+    resolver: zodResolver(storyScheme)
   });
 
   const currentValues = watch();
@@ -67,12 +62,9 @@ function EditStory() {
     setValue('text_pl', data.text_pl);
     setValue('date', data.date);
     setValue('speciality', data.speciality);
-    setFile(
-      [new File([], data.image_url, { type: 'for-url' })][0],
-    );
+    setFile([new File([], data.image_url, { type: 'for-url' })][0]);
     setImage(data.image_url);
   }, [data]);
-
 
   const setImagePreview = (file: File) => {
     const img = URL.createObjectURL(file);
@@ -84,9 +76,7 @@ function EditStory() {
     setImagePreview(file);
   }, [file]);
 
-  const onSubmit: SubmitHandler<TStoryScheme> = async (
-    values,
-  ) => {
+  const onSubmit: SubmitHandler<TStoryScheme> = async (values) => {
     try {
       setIsProcessing(true);
 
@@ -101,7 +91,6 @@ function EditStory() {
       formData.append('text_en', values.text_en);
       formData.append('text_pl', values.text_pl);
 
-
       if (file?.size) {
         formData.append('file', file);
       }
@@ -113,13 +102,11 @@ function EditStory() {
       }
       setIsProcessing(false);
       reset();
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    }
-    finally {
+    } finally {
       setIsProcessing(false);
     }
   };
@@ -134,7 +121,7 @@ function EditStory() {
   };
 
   return (
-    <div className="pl-[24px] py-[20px]">
+    <div className="py-[20px] pl-[24px]">
       <PageTitle title="Редагування історії" />
       <section className="pt-[50px]">
         <form
@@ -200,9 +187,7 @@ function EditStory() {
                 }}
               />
             </div>
-            <JuniorCardPreview
-              currentValues={currentValues}
-              image={image} />
+            <JuniorCardPreview currentValues={currentValues} image={image} />
           </div>
           <Controller
             name="speciality"
@@ -276,9 +261,7 @@ function EditStory() {
           />
           <div className="flex gap-[24px]">
             <PrimaryButton
-              text={
-                isProcessing ? 'Обробка запиту' : 'Зберегти'
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Зберегти'}
               disabled={!isDirty}
             />
             <SecondaryButton

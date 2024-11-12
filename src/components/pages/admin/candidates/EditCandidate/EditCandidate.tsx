@@ -1,51 +1,37 @@
 'use client';
 
-import type {
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type {
   DeepMap,
   FieldError,
   FieldValues,
-  SubmitHandler,
+  SubmitHandler
 } from 'react-hook-form';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import {
-  Controller,
-  useFieldArray,
-  useForm,
-} from 'react-hook-form';
-
-import type {
-  CandidatesResponse,
-  ICandidateLanguages,
-} from '@/types/candidates';
-import type { ISpecialization } from '@/types/specialization';
-
-import {
-  getCandidateById,
-  updateCandidate,
-} from '@/api/candidates';
+import { getCandidateById, updateCandidate } from '@/api/candidates';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
+import type {
+  CandidatesResponse,
+  ICandidateLanguages
+} from '@/types/candidates';
+import type { ISpecialization } from '@/types/specialization';
 
 import Stack from '../AddCandidate/Stack';
 import schema from '../schema';
 import BazaExperience from './BazaExperience';
-import defaultValues from './defaultValues';
 import FileInput from './FileInput';
 import Graduate from './Graduate';
 import Languages from './Languages';
 import SelectField from './SelectField';
 import TextInput from './TextInput';
+import defaultValues from './defaultValues';
 import Cources from './Сources';
 
 function EditCandidate({ id }: { id: string }) {
@@ -61,14 +47,11 @@ function EditCandidate({ id }: { id: string }) {
 
   const { mutate } = useMutation({
     mutationKey: [constants.candidates.UPDATE_CANDIDATE],
-    mutationFn: (params: any) =>
-      updateCandidate(params.id, params.data),
+    mutationFn: (params: any) => updateCandidate(params.id, params.data),
     onSuccess: () => {
       setIsProcessing(false);
       queryClient.invalidateQueries({
-        queryKey: [
-          constants.candidates.FETCH_ALL_CANDIDATES,
-        ],
+        queryKey: [constants.candidates.FETCH_ALL_CANDIDATES]
       });
       router.push('/admin/candidates');
     },
@@ -76,25 +59,17 @@ function EditCandidate({ id }: { id: string }) {
       alert(error.message);
       setIsProcessing(false);
       console.log(error);
-    },
+    }
   });
 
-  const candidate: UseQueryResult<
-    CandidatesResponse,
-    Error
-  > = useQuery({
+  const candidate: UseQueryResult<CandidatesResponse, Error> = useQuery({
     queryKey: [constants.candidates.FETCH_CANDIDATE_BY_ID],
-    queryFn: () => getCandidateById(id),
+    queryFn: () => getCandidateById(id)
   });
 
-  const specialization: UseQueryResult<
-    ISpecialization[],
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATIONS,
-    ],
-    queryFn: getSpecializations,
+  const specialization: UseQueryResult<ISpecialization[], Error> = useQuery({
+    queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
+    queryFn: getSpecializations
   });
 
   const {
@@ -104,16 +79,14 @@ function EditCandidate({ id }: { id: string }) {
     getValues,
     reset,
     setValue,
-    watch,
+    watch
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
     defaultValues,
-    mode: 'onChange',
+    mode: 'onChange'
   });
 
-  const undefinedStack = stack.filter(
-    item => item.id === undefined,
-  );
+  const undefinedStack = stack.filter((item) => item.id === undefined);
 
   useEffect(() => {
     if (stack.length && !undefinedStack.length) {
@@ -139,8 +112,8 @@ function EditCandidate({ id }: { id: string }) {
         languages: value.candidate_language.map(
           (lang: ICandidateLanguages) => ({
             language: lang.language,
-            level: lang.level,
-          }),
+            level: lang.level
+          })
         ),
         work_format: value.work_format,
         salary_from: value.sallary_form,
@@ -150,85 +123,70 @@ function EditCandidate({ id }: { id: string }) {
         cv_id: value.cv_id,
         graduate: value.gradaute.map((item: any) => ({
           university: item.university,
-          university_specializaton:
-            item.university_specialization,
+          university_specializaton: item.university_specialization,
           university_grade: item.university_grade,
           graduate_start: item.graduate_start,
           graduate_end: item.graduate_end,
-          graduate_sertificate_id:
-            item.graduate_sertificate_id,
+          graduate_sertificate_id: item.graduate_sertificate_id
         })),
         cources: value.cources.map((cource: any) => ({
           cources_name: cource.cources_name,
-          cources_specializaton:
-            cource.cources_specializaton,
+          cources_specializaton: cource.cources_specializaton,
           cources_start: cource.cources_start,
           cources_end: cource.cources_end,
-          cources_sertificate_id:
-            cource.cources_sertificate_id,
+          cources_sertificate_id: cource.cources_sertificate_id
         })),
-        baza_experience: value.baza_experience.map(
-          (item: any) => ({
-            role: item.specialization.id.toString(),
-            project_name: item.project_name,
-            project_duration: item.project_duration,
-          }),
-        ),
+        baza_experience: value.baza_experience.map((item: any) => ({
+          role: item.specialization.id.toString(),
+          project_name: item.project_name,
+          project_duration: item.project_duration
+        })),
         uniqueId: value.uniqueId,
         baza_recomendation: value.baza_recomendation,
-        status: value.status,
+        status: value.status
       });
-      candidate.data.gradaute.map(
-        (item: any, index: number) => {
-          setValue(
-            `graduate.${index}.graduate_sertificate`,
-            [
-              new File([], item.graduate_sertificate, {
-                type: 'for-url',
-              }),
-            ],
-          );
-        },
-      );
-      candidate.data.cources.map(
-        (item: any, index: number) => {
-          setValue(`cources.${index}.cources_sertificate`, [
-            new File([], item.cources_sertificate, {
-              type: 'for-url',
-            }),
-          ]);
-        },
-      );
-      setValue('cv', [
-        new File([], value.cv, { type: 'for-url' }),
-      ]);
+      candidate.data.gradaute.map((item: any, index: number) => {
+        setValue(`graduate.${index}.graduate_sertificate`, [
+          new File([], item.graduate_sertificate, {
+            type: 'for-url'
+          })
+        ]);
+      });
+      candidate.data.cources.map((item: any, index: number) => {
+        setValue(`cources.${index}.cources_sertificate`, [
+          new File([], item.cources_sertificate, {
+            type: 'for-url'
+          })
+        ]);
+      });
+      setValue('cv', [new File([], value.cv, { type: 'for-url' })]);
       setStack(
         value.stack.map((item: any) => ({
           ...item.stack,
-          isExist: true,
-        })),
+          isExist: true
+        }))
       );
     }
   }, [candidate.data]);
 
   const graduate = useFieldArray({
     name: 'graduate',
-    control,
+    control
   });
 
   const cources = useFieldArray({
     name: 'cources',
-    control,
+    control
   });
 
   const baza_experience = useFieldArray({
     name: 'baza_experience',
-    control,
+    control
   });
 
   const lang = useFieldArray({
     name: 'languages',
-    control,
+    control
   });
 
   const currentValues = watch();
@@ -237,21 +195,18 @@ function EditCandidate({ id }: { id: string }) {
     console.log(data);
     try {
       if (!stack.length) {
-        setStackError(
-          'Додайте декілька технологій зі стеку',
-        );
+        setStackError('Додайте декілька технологій зі стеку');
         return;
       }
       if (undefinedStack.length) {
         setStackError(
-          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`,
+          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
         );
         return;
       }
       setIsProcessing(true);
       mutate({ id, data: { currentValues, stack } });
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -291,9 +246,7 @@ function EditCandidate({ id }: { id: string }) {
               render={({ field }) => (
                 <TextInput
                   {...field}
-                  error={
-                    errors.surname_ua?.message as string
-                  }
+                  error={errors.surname_ua?.message as string}
                   isRequired={true}
                   placeholder="Прізвище"
                   title="Прізвище"
@@ -438,9 +391,7 @@ function EditCandidate({ id }: { id: string }) {
             control={control}
             fieldArray={lang}
             getValues={getValues}
-            fieldsLength={
-              currentValues.languages.length as number
-            }
+            fieldsLength={currentValues.languages.length as number}
           />
           <div className="flex w-full gap-[24px]">
             <Controller
@@ -448,26 +399,17 @@ function EditCandidate({ id }: { id: string }) {
               control={control}
               render={({
                 field: { onChange, value },
-                formState: { errors },
+                formState: { errors }
               }) => (
                 <SelectField
                   title="Формат роботи"
                   value={value}
-                  values={[
-                    'Remote',
-                    'Office',
-                    'Hybrid',
-                    'Part-time',
-                  ]}
+                  values={['Remote', 'Office', 'Hybrid', 'Part-time']}
                   onChange={onChange}
                   isRequired={true}
                   errors={
-                    (
-                      errors.work_format as DeepMap<
-                        FieldValues,
-                        FieldError
-                      >
-                    )?.message
+                    (errors.work_format as DeepMap<FieldValues, FieldError>)
+                      ?.message
                   }
                 />
               )}
@@ -485,7 +427,7 @@ function EditCandidate({ id }: { id: string }) {
                   control={control}
                   render={({
                     field: { value, onChange },
-                    formState: { errors },
+                    formState: { errors }
                   }) => (
                     <div className="relative flex w-[inherit] flex-col gap-[5px]">
                       <input
@@ -513,7 +455,7 @@ function EditCandidate({ id }: { id: string }) {
                   control={control}
                   render={({
                     field: { value, onChange },
-                    formState: { errors },
+                    formState: { errors }
                   }) => (
                     <div className="relative flex w-[inherit] flex-col gap-[5px]">
                       <input
@@ -524,12 +466,8 @@ function EditCandidate({ id }: { id: string }) {
                       />
                       <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
                         {
-                          (
-                            errors.salary_to as DeepMap<
-                              FieldValues,
-                              FieldError
-                            >
-                          )?.message
+                          (errors.salary_to as DeepMap<FieldValues, FieldError>)
+                            ?.message
                         }
                       </span>
                     </div>
@@ -546,27 +484,20 @@ function EditCandidate({ id }: { id: string }) {
               control={control}
               render={({
                 field: { onChange, value },
-                formState: { errors },
+                formState: { errors }
               }) => (
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
-                  <label htmlFor="about">
-                    Про себе &nbsp;
-                  </label>
+                  <label htmlFor="about">Про себе &nbsp;</label>
                   <textarea
                     value={value}
                     onChange={onChange}
                     placeholder="Коментар"
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  >
-                  </textarea>
+                  ></textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
-                      (
-                        errors.about as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.message
+                      (errors.about as DeepMap<FieldValues, FieldError>)
+                        ?.message
                     }
                   </span>
                 </div>
@@ -585,7 +516,7 @@ function EditCandidate({ id }: { id: string }) {
               control={control}
               render={({
                 field: { onChange, value },
-                formState: { errors },
+                formState: { errors }
               }) => (
                 <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
                   <label htmlFor="specialization">
@@ -598,10 +529,8 @@ function EditCandidate({ id }: { id: string }) {
                     onChange={onChange}
                     className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                   >
-                    <option value="">
-                      Оберіть спеціальність
-                    </option>
-                    {specialization.data?.map(item => (
+                    <option value="">Оберіть спеціальність</option>
+                    {specialization.data?.map((item) => (
                       <option key={item.id} value={item.id}>
                         {item.title}
                       </option>
@@ -626,7 +555,7 @@ function EditCandidate({ id }: { id: string }) {
               control={control}
               render={({
                 field: { onChange, value },
-                formState: { errors },
+                formState: { errors }
               }) => (
                 <FileInput
                   onChange={onChange}
@@ -634,12 +563,7 @@ function EditCandidate({ id }: { id: string }) {
                   isRequired={false}
                   title="Завантажити CV"
                   errors={
-                    (
-                      errors.cv as DeepMap<
-                        FieldValues,
-                        FieldError
-                      >
-                    )?.message
+                    (errors.cv as DeepMap<FieldValues, FieldError>)?.message
                   }
                 />
               )}
@@ -647,10 +571,7 @@ function EditCandidate({ id }: { id: string }) {
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack
-            handleStack={setStack}
-            error={stackError}
-          />
+          <Stack handleStack={setStack} error={stackError} />
 
           <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
@@ -669,9 +590,7 @@ function EditCandidate({ id }: { id: string }) {
           <Cources
             fieldArray={cources}
             control={control}
-            fieldsLength={
-              currentValues.cources.length as number
-            }
+            fieldsLength={currentValues.cources.length as number}
           />
 
           <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
@@ -681,10 +600,7 @@ function EditCandidate({ id }: { id: string }) {
           <BazaExperience
             control={control}
             fieldArray={baza_experience}
-            fieldsLength={
-              currentValues.baza_experience
-                ?.length as number
-            }
+            fieldsLength={currentValues.baza_experience?.length as number}
           />
 
           <div className="flex w-full gap-[24px]">
@@ -693,13 +609,10 @@ function EditCandidate({ id }: { id: string }) {
               control={control}
               render={({
                 field: { value, onChange },
-                formState: { errors },
+                formState: { errors }
               }) => (
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
-                  <label
-                    className="font-[700]"
-                    htmlFor="baza_recomendation"
-                  >
+                  <label className="font-[700]" htmlFor="baza_recomendation">
                     Рекомендації від Baza Skill &nbsp;
                     <span className="text-red-500">*</span>
                   </label>
@@ -708,8 +621,7 @@ function EditCandidate({ id }: { id: string }) {
                     onChange={onChange}
                     placeholder="Рекомендація"
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
-                  >
-                  </textarea>
+                  ></textarea>
                   <span className="font-sans text-[12px] text-error">
                     {
                       (
@@ -733,25 +645,16 @@ function EditCandidate({ id }: { id: string }) {
               control={control}
               render={({
                 field: { onChange, value },
-                formState: { errors },
+                formState: { errors }
               }) => (
                 <SelectField
                   title="Статус кандидата"
                   value={value}
-                  values={[
-                    'Working',
-                    'Searching',
-                    'Inactive',
-                  ]}
+                  values={['Working', 'Searching', 'Inactive']}
                   onChange={onChange}
                   isRequired={true}
                   errors={
-                    (
-                      errors.status as DeepMap<
-                        FieldValues,
-                        FieldError
-                      >
-                    )?.message
+                    (errors.status as DeepMap<FieldValues, FieldError>)?.message
                   }
                 />
               )}
@@ -764,13 +667,10 @@ function EditCandidate({ id }: { id: string }) {
               className="flex h-[44px] w-[286px] items-center justify-center rounded-[6px] bg-white font-sans font-[600] leading-[22px] text-black transition-all hover:border hover:bg-transparent hover:text-white"
               type="submit"
             >
-              {isProcessing
-                ? 'Обробка запиту...'
-                : 'Зберегти зміни'}
+              {isProcessing ? 'Обробка запиту...' : 'Зберегти зміни'}
             </button>
             <button
-              onClick={() =>
-                router.push('/admin/candidates')}
+              onClick={() => router.push('/admin/candidates')}
               className="flex h-[44px] w-[286px] cursor-pointer items-center justify-center rounded-[6px] border font-sans font-[600] leading-[22px] text-white transition-all hover:bg-white hover:text-black"
             >
               Скасувати

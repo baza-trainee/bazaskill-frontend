@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface WriteIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const WriteIcon: React.FC<WriteIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface WriteIconProps extends HTMLProps<HTMLDivElement> {}
+const WriteIcon: React.FC<WriteIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest}>
       <svg

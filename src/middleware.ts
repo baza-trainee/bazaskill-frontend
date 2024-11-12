@@ -8,7 +8,7 @@ const nextIntlMiddleware = createMiddleware({
 
   // Used when no locale matches
   defaultLocale: 'ua',
-  localeDetection: false,
+  localeDetection: false
 });
 
 export default function (req: NextRequest): NextResponse {
@@ -20,6 +20,6 @@ export const config = {
   matcher: [
     '/', // Root path
     '/(ua|en|pl)/:path*', // Internationalized paths
-    '/((?!_next|_vercel|.*\\..*).*)', // Exclude special paths and files with extensions
-  ],
+    '/((?!_next|_vercel|.*\\..*).*)' // Exclude special paths and files with extensions
+  ]
 };

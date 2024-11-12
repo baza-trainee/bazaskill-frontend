@@ -1,22 +1,22 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { createPartners } from '@/api/partners';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import { defaultValues } from './defaultValues';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPartner from '../ui/FileInputPartner';
 import PageTitle from '../ui/PageTitle';
 import TextInputPartner from '../ui/TextInputPartner';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import { defaultValues } from './defaultValues';
 import { partnersScheme } from './partnersScheme';
 
 function AddPartners() {
@@ -33,11 +33,11 @@ function AddPartners() {
     handleSubmit,
     control,
     reset,
-    formState: { isDirty, errors },
+    formState: { isDirty, errors }
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof partnersScheme>> = async (

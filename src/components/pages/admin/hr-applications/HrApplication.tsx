@@ -1,6 +1,8 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
+
+import { useQuery } from '@tanstack/react-query';
 
 import { getHrApplicationById } from '@/api/hr_application';
 import { constants } from '@/constants';
@@ -14,10 +16,10 @@ function HrApplication({ id }: { id: string }) {
     data: hr,
     isFetching,
     isError,
-    error,
+    error
   } = useQuery({
     queryKey: [constants.hr_applications.FETCH_HR_BY_ID],
-    queryFn: () => getHrApplicationById(id),
+    queryFn: () => getHrApplicationById(id)
   });
 
   if (isError) return <p>{`Error: ${error.message}`}</p>;

@@ -4,12 +4,14 @@ import OutputForm from './output_form/OutputForm';
 
 const Calculator = () => {
   return (
-    <div className="w-full min-h-screen flex flex-col justify-center items-center
-     bg-graphite text-white px-2 py-4">
+    <div
+      className="flex min-h-screen w-full flex-col items-center justify-center
+     bg-graphite px-2 py-4 text-white"
+    >
       <header>
         <Header />
       </header>
-      <main className="w-full p-2 lg:p-6 flex flex-col xl:flex-row justify-center items-center gap-8">
+      <main className="flex w-full flex-col items-center justify-center gap-8 p-2 lg:p-6 xl:flex-row">
         <InputForm />
         <OutputForm />
       </main>
@@ -18,4 +20,3 @@ const Calculator = () => {
 };
 
 export default Calculator;
-

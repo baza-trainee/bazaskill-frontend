@@ -1,15 +1,13 @@
+import { useEffect } from 'react';
+
 import type {
   Control,
   DeepMap,
   FieldError,
   FieldValues,
-  UseFieldArrayReturn,
+  UseFieldArrayReturn
 } from 'react-hook-form';
-
-import { useEffect } from 'react';
-import {
-  Controller,
-} from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 
@@ -19,11 +17,7 @@ import TextInput from './TextInput';
 interface ICourcesProps {
   fieldsLength: number;
   control: Control<FieldValues>;
-  fieldArray: UseFieldArrayReturn<
-    FieldValues,
-    'cources',
-    'id'
-  >;
+  fieldArray: UseFieldArrayReturn<FieldValues, 'cources', 'id'>;
 }
 
 const defaultValues = {
@@ -31,13 +25,13 @@ const defaultValues = {
   cources_specializaton: '',
   cources_start: '',
   cources_end: '',
-  cources_sertificate: '',
+  cources_sertificate: ''
 };
 
 const Cources: React.FC<ICourcesProps> = ({
   fieldsLength,
   control,
-  fieldArray: { fields, append, remove },
+  fieldArray: { fields, append, remove }
 }) => {
   useEffect(() => {
     if (fieldsLength > 1) {
@@ -49,27 +43,18 @@ const Cources: React.FC<ICourcesProps> = ({
     <div className="flex w-full flex-col gap-[30px]">
       {fields.map((field, index) => {
         return (
-          <div
-            key={field.id}
-            className="flex w-full flex-col gap-[32px]"
-          >
+          <div key={field.id} className="flex w-full flex-col gap-[32px]">
             <div className="flex w-full gap-[24px]">
               <Controller
                 name={`cources.${index}.cources_name`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.cources as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.name?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.name?.message
                     }
                     isRequired={false}
                     placeholder="Ведіть назву"
@@ -80,20 +65,13 @@ const Cources: React.FC<ICourcesProps> = ({
               <Controller
                 name={`cources.${index}.cources_specializaton`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.cources as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.cources_specializaton
-                        ?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.cources_specializaton?.message
                     }
                     isRequired={false}
                     placeholder="Введіть назву"
@@ -107,20 +85,16 @@ const Cources: React.FC<ICourcesProps> = ({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  formState: { errors },
+                  formState: { errors }
                 }) => (
                   <FileInput
                     onChange={onChange}
                     value={value}
                     title="Завантажити сертифікат"
                     errors={
-                      (
-                        errors.cources as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.cources_sertificate
-                        ?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.cources_sertificate?.message
                     }
                   />
                 )}
@@ -131,19 +105,13 @@ const Cources: React.FC<ICourcesProps> = ({
               <Controller
                 name={`cources.${index}.cources_start`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.cources as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.cources_start?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.cources_start?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
@@ -155,19 +123,13 @@ const Cources: React.FC<ICourcesProps> = ({
               <Controller
                 name={`cources.${index}.cources_end`}
                 control={control}
-                render={({
-                  field,
-                  formState: { errors },
-                }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.cources as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.cources_end?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.cources_end?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"

@@ -1,7 +1,4 @@
-import type {
-  FieldValues,
-  UseFormRegister,
-} from 'react-hook-form';
+import type { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface CustomCheckboxProps {
   title: string;
@@ -13,7 +10,7 @@ function CustomCheckbox({
   title,
   register,
   registerFor,
-  value,
+  value
 }: CustomCheckboxProps) {
   return (
     <div className="relative flex items-center gap-[12px] text-sm">

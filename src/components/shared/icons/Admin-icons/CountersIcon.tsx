@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface CountersIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const CountersIcon: React.FC<CountersIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface CountersIconProps extends HTMLProps<HTMLDivElement> {}
+const CountersIcon: React.FC<CountersIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

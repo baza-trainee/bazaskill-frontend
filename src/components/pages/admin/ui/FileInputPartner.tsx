@@ -1,6 +1,6 @@
 'use client';
-import type { ForwardedRef } from 'react';
 
+import type { ForwardedRef } from 'react';
 import { forwardRef, useState } from 'react';
 
 import UploadIcon from '@/components/shared/icons/Admin-icons/UploadIcon';
@@ -23,24 +23,18 @@ const FileInputPartner = forwardRef(
       onChange,
       ...rest
     }: FileInputPartnerProps,
-    ref: ForwardedRef<HTMLInputElement>,
+    ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const [selectedFileName, setSelectedFileName]
-      = useState<string | null>(null);
+    const [selectedFileName, setSelectedFileName] = useState<string | null>(
+      null
+    );
 
-    const [errorMessage, setErrorMessage] = useState<
-      string | null
-    >(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const [isValid, setIsValid] = useState(true);
 
     const validateFile = (file: File): boolean => {
-      const validExtensions = [
-        '.jpg',
-        '.webp',
-        '.png',
-        '.svg',
-      ];
+      const validExtensions = ['.jpg', '.webp', '.png', '.svg'];
       const extension = file.name
         .substring(file.name.lastIndexOf('.'))
         .toLowerCase();
@@ -50,25 +44,19 @@ const FileInputPartner = forwardRef(
       }
 
       if (file.size > 1024 * 1024 * 2) {
-        setErrorMessage(
-          'Розмір файлу має бути не більш 2 Mb',
-        );
+        setErrorMessage('Розмір файлу має бути не більш 2 Mb');
         return false;
       }
 
       if (file.name.length > 30) {
-        setErrorMessage(
-          'Ім\'я файлу не повинно перевищувати 30 символів',
-        );
+        setErrorMessage("Ім'я файлу не повинно перевищувати 30 символів");
         return false;
       }
 
       return true;
     };
 
-    const handleChange = (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const files = event.target.files;
       if (files && files.length > 0) {
         const selectedFile = files[0];
@@ -76,8 +64,7 @@ const FileInputPartner = forwardRef(
           setSelectedFileName(selectedFile.name);
           onChange(selectedFile);
           setErrorMessage(null);
-        }
-        else {
+        } else {
           setIsValid(false);
           setSelectedFileName(selectedFile.name);
         }
@@ -109,25 +96,16 @@ ${
             className=" mb-[8px]  block text-[20px]  leading-[1.4] text-white"
           >
             {title}
-            {isRequired && (
-              <span className="text-error">*</span>
-            )}
+            {isRequired && <span className="text-error">*</span>}
           </label>
         )}
-        <div
-          className={inputClassName}
-          onClick={handlePlaceholderClick}
-        >
+        <div className={inputClassName} onClick={handlePlaceholderClick}>
           <span className="text-[16px] leading-[1.16] text-secondaryGray">
-            {selectedFileName
-              ? (
-                  <span className="text-[#020202]">
-                    {selectedFileName}
-                  </span>
-                )
-              : (
-                  placeholder
-                )}
+            {selectedFileName ? (
+              <span className="text-[#020202]">{selectedFileName}</span>
+            ) : (
+              placeholder
+            )}
           </span>
           <div className=" absolute right-[16px] top-[9px] z-0 ">
             <UploadIcon />
@@ -149,7 +127,7 @@ ${
         )}
       </div>
     );
-  },
+  }
 );
 
 FileInputPartner.displayName = 'FileInputPartner';

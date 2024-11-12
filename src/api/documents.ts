@@ -1,10 +1,8 @@
+import axios from '@/config/axios';
 import type { IDocument } from '@/types/documents';
 
-import axios from '@/config/axios';
-
 export async function getDocuments() {
-  const { data }
-    = await axios.get<IDocument[]>('/documents');
+  const { data } = await axios.get<IDocument[]>('/documents');
   return data;
 }
 
@@ -14,10 +12,7 @@ export async function createDocument<T>(data: T) {
 }
 
 export async function updateDocument<T>(id: string, data: T) {
-  const response = await axios.patch(
-    `/documents/${id}`,
-    data,
-  );
+  const response = await axios.patch(`/documents/${id}`, data);
   return response;
 }
 

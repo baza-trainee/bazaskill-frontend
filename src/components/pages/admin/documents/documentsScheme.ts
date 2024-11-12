@@ -13,21 +13,17 @@ export const documentsScheme = z.object({
       (value) => {
         if (!value || !value.length) {
           return true;
-        }
-        else {
+        } else {
           return value[0]?.size <= MAX_FILE_SIZE;
         }
       },
-      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`,
+      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`
     )
     .refine((value) => {
       if (!value || !value.length) {
         return true;
-      }
-      else {
-        return ACCEPTED_FILE_TYPES.includes(
-          value?.[0]?.type,
-        );
+      } else {
+        return ACCEPTED_FILE_TYPES.includes(value?.[0]?.type);
       }
     }, 'Документ має бути в форматі .pdf'),
 
@@ -37,21 +33,17 @@ export const documentsScheme = z.object({
       (value) => {
         if (!value || !value.length) {
           return true;
-        }
-        else {
+        } else {
           return value[0]?.size <= MAX_FILE_SIZE;
         }
       },
-      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`,
+      `Максимальний розмір документу ${formatBytes(MAX_FILE_SIZE)}`
     )
     .refine((value) => {
       if (!value || !value.length) {
         return true;
+      } else {
+        return ACCEPTED_FILE_TYPES.includes(value?.[0]?.type);
       }
-      else {
-        return ACCEPTED_FILE_TYPES.includes(
-          value?.[0]?.type,
-        );
-      }
-    }, 'Документ має бути в форматі .pdf'),
+    }, 'Документ має бути в форматі .pdf')
 });

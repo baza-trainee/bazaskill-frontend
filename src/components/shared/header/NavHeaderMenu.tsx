@@ -1,11 +1,14 @@
-import clsx from "clsx";
-import { useCallback, useEffect } from "react";
-import { Link, usePathname } from "@/navigation";
-import { useTranslations } from "next-intl";
-import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
-import { useNavMenu } from "@/stores/useNavMenu";
-import { itemsLink } from "./itemsLink";
-import { useMediaQuery } from "react-responsive";
+import { useCallback, useEffect } from 'react';
+
+import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
+import { useMediaQuery } from 'react-responsive';
+
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { Link, usePathname } from '@/navigation';
+import { useNavMenu } from '@/stores/useNavMenu';
+
+import { itemsLink } from './itemsLink';
 
 export default function NavHeaderMenu(): JSX.Element {
   const t = useTranslations('Header');
@@ -16,13 +19,15 @@ export default function NavHeaderMenu(): JSX.Element {
 
   const isActive = (name: string): boolean => {
     // Перевірка головної сторінки
-    if(pathname === '/' && name ==='about'){ return true }
-    // Перевірка сторінки кандидат
-    if(pathname.split('/').includes('candidate') && name=='candidates'){
-      return true
+    if (pathname === '/' && name === 'about') {
+      return true;
     }
-    return pathname.split('/').includes(name)
-  }
+    // Перевірка сторінки кандидат
+    if (pathname.split('/').includes('candidate') && name == 'candidates') {
+      return true;
+    }
+    return pathname.split('/').includes(name);
+  };
 
   const handleClose = useCallback(() => {
     if (isOpen) closeMenu();
@@ -36,24 +41,36 @@ export default function NavHeaderMenu(): JSX.Element {
 
   useBodyScrollLock(isOpen);
 
-  return(
-    <div className={clsx("md:hidden fixed overflow-hidden top-[72px] sm:top-[80px] right-0 h-screen bg-[#212121c0] duration-500 z-10", isOpen ? 'w-screen': 'w-0 ')}>
-      <nav className="max-w-[420px] sm:max-w-[340px] w-full h-full bg-black place-self-end flex flex-col items-center sm:items-start gap-6 p-5 sm:pl-11">
-        {itemsLink.map((el)=>{
+  return (
+    <div
+      className={clsx(
+        'fixed right-0 top-[72px] z-10 h-screen overflow-hidden bg-[#212121c0] duration-500 sm:top-[80px] md:hidden',
+        isOpen ? 'w-screen' : 'w-0 '
+      )}
+    >
+      <nav className="flex h-full w-full max-w-[420px] flex-col items-center gap-6 place-self-end bg-black p-5 sm:max-w-[340px] sm:items-start sm:pl-11">
+        {itemsLink.map((el) => {
           return (
-            <Link key={el.pathname}
-              className={clsx('group duration-500 flex items-end gap-0.5 hover:opacity-70 hover:text-yellow text-white text-open-sans text-lg font-semibold', 
-              isActive(el.pathname) && 'opacity-90 text-yellow')}
-              href={el.href} 
-              onClick={handleClose}>
-              
-              <span className={clsx('duration-500 w-[2px] bg-yellow group-hover:h-full', 
-                isActive(el.pathname) ? 'h-full' : 'h-0')}></span> 
-              <span className='px-2 text-nowrap'>{t(el.title)}</span>
-          </Link>
-          )
+            <Link
+              key={el.pathname}
+              className={clsx(
+                'text-open-sans group flex items-end gap-0.5 text-lg font-semibold text-white duration-500 hover:text-yellow hover:opacity-70',
+                isActive(el.pathname) && 'text-yellow opacity-90'
+              )}
+              href={el.href}
+              onClick={handleClose}
+            >
+              <span
+                className={clsx(
+                  'w-[2px] bg-yellow duration-500 group-hover:h-full',
+                  isActive(el.pathname) ? 'h-full' : 'h-0'
+                )}
+              ></span>
+              <span className="text-nowrap px-2">{t(el.title)}</span>
+            </Link>
+          );
         })}
       </nav>
     </div>
-  )
+  );
 }

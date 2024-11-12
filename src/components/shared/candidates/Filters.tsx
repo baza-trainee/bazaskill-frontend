@@ -1,23 +1,17 @@
 'use client';
 
-import type {
-  FieldValues,
-  SubmitHandler,
-} from 'react-hook-form';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import {
-  useForm,
-} from 'react-hook-form';
+import type { FieldValues, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import CustomCheckbox from './CustomCheckbox';
-import defaultValues from './defaultValues';
 import FiltersSpecializationMenu from './FiltersSpecializationMenu';
+import defaultValues from './defaultValues';
 import schema from './schema';
 
 function Filters({
-  SubmitHandler,
+  SubmitHandler
 }: {
   SubmitHandler: (data: FieldValues) => void;
 }) {
@@ -25,23 +19,18 @@ function Filters({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: { ...defaultValues },
+    defaultValues: { ...defaultValues }
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (
-    data,
-    event,
-  ) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data, event) => {
     event?.preventDefault();
     SubmitHandler(data);
   };
 
-  const handleInput = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-  ) => {
+  const handleInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const input = e.target as HTMLInputElement;
     const currentValue = input.value;
 
@@ -52,10 +41,7 @@ function Filters({
       e.preventDefault();
     }
 
-    if (
-      !numericKeys.test(e.key)
-      && !specialKeys.includes(e.key)
-    ) {
+    if (!numericKeys.test(e.key) && !specialKeys.includes(e.key)) {
       e.preventDefault();
     }
   };
@@ -72,10 +58,7 @@ function Filters({
       <FiltersSpecializationMenu register={register} />
       <div className="grid w-full grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
         <div className="flex flex-col gap-[20px] font-sans">
-          <h3>
-            {' '}
-            {t('projects.title')}
-          </h3>
+          <h3> {t('projects.title')}</h3>
           <div className="flex flex-col gap-[20px] sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
             <CustomCheckbox
               registerFor="projects"
@@ -218,13 +201,12 @@ function Filters({
           <button className="flex h-[32px] w-[68px] items-center justify-center rounded-[4px] border border-yellow px-[24px] py-[15px] text-sm text-yellow sm:min-w-[84px] md:min-w-[51px] md:p-0 xl:min-h-[40px] xl:min-w-[72px] xl:text-base">
             OK
           </button>
-         
         </div>
         {errors.sallary?.root && (
-            <span className=" text-xs text-red-500">
-              {t(errors.sallary?.root?.message?.toString())}
-            </span>
-          )}
+          <span className=" text-xs text-red-500">
+            {t(errors.sallary?.root?.message?.toString())}
+          </span>
+        )}
       </div>
 
       <div className="main-gradient flex max-w-[280px] items-center justify-center rounded-[6px] sm:min-w-[363px] md:min-w-[219px] xl:min-w-[256px] 3xl:min-w-[306px] 4xl:min-w-[319px]">

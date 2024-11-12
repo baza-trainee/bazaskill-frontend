@@ -1,12 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
 interface PlusIconProps extends HTMLProps<HTMLDivElement> {}
-const PlusIcon: React.FC<PlusIconProps> = ({
-  className,
-  ...rest
-}) => {
+const PlusIcon: React.FC<PlusIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest}>
       <svg

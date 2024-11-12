@@ -1,12 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
 interface PointerProps extends HTMLProps<HTMLDivElement> {}
-const Pointer: React.FC<PointerProps> = ({
-  className,
-  ...rest
-}) => {
+const Pointer: React.FC<PointerProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

@@ -1,20 +1,20 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { authLogin } from '@/api/signIn';
 
 import ErrorAlert from '../admin/alerts/ErrorAlert';
-import SignInButton from '../admin/ui/buttons/SignInButton';
 import SignInEmail from '../admin/ui/SignInEmail';
 import SignInPassword from '../admin/ui/SignInPassword';
+import SignInButton from '../admin/ui/buttons/SignInButton';
 import { defaultValues } from './defaultValues';
 import { signInScheme } from './signInScheme';
 
@@ -28,11 +28,11 @@ function Login() {
     control,
     watch,
     setValue,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<z.infer<typeof signInScheme>>({
     resolver: zodResolver(signInScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function Login() {
       setIsProcessing(true);
       const response = await authLogin({
         email: values.email,
-        password: values.password,
+        password: values.password
       });
       if (response.status === 201) {
         localStorage.setItem('access_token', response.data.access_token);

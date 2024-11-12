@@ -6,15 +6,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locale = await getLocale();
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates`
   );
   const candidates = await response.json();
 
-  const candidatesEntries: MetadataRoute.Sitemap
-    = candidates.map(({ id }: { id: number }) => ({
+  const candidatesEntries: MetadataRoute.Sitemap = candidates.map(
+    ({ id }: { id: number }) => ({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/${locale}/candidate/${id}`,
-      lastModified: new Date(),
-    }));
+      lastModified: new Date()
+    })
+  );
 
   return [
     {
@@ -24,9 +25,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua`,
           en: `${process.env.NEXT_PUBLIC_BASE_URL}/en`,
-          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl`,
-        },
-      },
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl`
+        }
+      }
     },
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/why-juniors`,
@@ -35,9 +36,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/why-juniors`,
           en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/why-juniors`,
-          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/why-juniors`,
-        },
-      },
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/why-juniors`
+        }
+      }
     },
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/candidates`,
@@ -46,9 +47,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/candidates`,
           en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/candidates`,
-          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/candidates`,
-        },
-      },
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/candidates`
+        }
+      }
     },
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/contacts`,
@@ -57,10 +58,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           uk: `${process.env.NEXT_PUBLIC_BASE_URL}/ua/contacts`,
           en: `${process.env.NEXT_PUBLIC_BASE_URL}/en/contacts`,
-          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/contacts`,
-        },
-      },
+          pl: `${process.env.NEXT_PUBLIC_BASE_URL}/pl/contacts`
+        }
+      }
     },
-    ...candidatesEntries,
+    ...candidatesEntries
   ];
 }

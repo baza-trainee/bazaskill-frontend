@@ -1,13 +1,13 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type * as z from 'zod';
+import React, { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
-import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type * as z from 'zod';
 
 import { createApplication } from '@/api/hr_application';
 import CustomCheckbox from '@/components/shared/ui/form_inputs/CustomCheckbox';
@@ -35,11 +35,11 @@ function RegisterHrForm() {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors }
   } = useForm<z.infer<typeof registerScheme>>({
     resolver: zodResolver(registerScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   const createApplicationMutation = useMutation({
@@ -47,9 +47,9 @@ function RegisterHrForm() {
     onSuccess: () => {
       setIsSubmitted(true);
       queryMain.invalidateQueries({
-        queryKey: [constants.hr_applications.FETCH_HRS],
+        queryKey: [constants.hr_applications.FETCH_HRS]
       });
-    },
+    }
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof registerScheme>> = async (
@@ -63,7 +63,7 @@ function RegisterHrForm() {
         window.gtag('event', 'conversion', {
           send_to: 'AW-16605851615/SY9xCMq50roZEN_fpO49',
           value: 1.0,
-          currency: 'UAH',
+          currency: 'UAH'
         });
       } else {
         console.error('Google gtag function is not defined');

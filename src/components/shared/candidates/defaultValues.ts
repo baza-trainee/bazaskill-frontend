@@ -4,7 +4,7 @@ const defaultValues = {
   occupation: [],
   language: [],
   graduate: [],
-  status: [],
+  status: []
 };
 
 export default defaultValues;

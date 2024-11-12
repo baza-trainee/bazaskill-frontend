@@ -1,6 +1,5 @@
-import type { IPartners, TPartner } from '@/types/partners';
-
 import axios from '@/config/axios';
+import type { IPartners, TPartner } from '@/types/partners';
 
 export async function getPartners() {
   const { data } = await axios.get<TPartner[]>('/partners');
@@ -8,25 +7,17 @@ export async function getPartners() {
 }
 
 export async function updatePartners(id: string, data: any) {
-  const response = await axios.patch(
-    `/partners/${id}`,
-    data,
-  );
+  const response = await axios.patch(`/partners/${id}`, data);
   return response;
 }
 
 export async function getPartnersId(id: string) {
-  const { data } = await axios.get<TPartner>(
-    `/partners/${id}`,
-  );
+  const { data } = await axios.get<TPartner>(`/partners/${id}`);
   return data;
 }
 
 export async function createPartners(data: any) {
-  const response = await axios.post<IPartners[]>(
-    '/partners',
-    data,
-  );
+  const response = await axios.post<IPartners[]>('/partners', data);
   return response;
 }
 

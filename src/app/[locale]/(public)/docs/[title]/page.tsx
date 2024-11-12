@@ -1,20 +1,21 @@
 import type { Metadata } from 'next';
+
 import { getTranslations } from 'next-intl/server';
-import type { DocsPageProps } from '@/types';
 
 import { PDFView } from '@/components/pages/PdfView';
+import type { DocsPageProps } from '@/types';
 
 export async function generateMetadata({
-  params,
+  params
 }: DocsPageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
-    namespace: 'Metadata',
+    namespace: 'Metadata'
   });
 
   return {
     title: t(`docs_${params.title}_title`),
-    description: t(`docs_${params.title}_description`),
+    description: t(`docs_${params.title}_description`)
   };
 }
 

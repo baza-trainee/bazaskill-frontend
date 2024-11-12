@@ -1,21 +1,20 @@
-/* eslint-disable style/max-statements-per-line */
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type * as z from 'zod';
+import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import type * as z from 'zod';
 
 import { createDocument } from '@/api/documents';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputDoc from '../ui/FileInputDoc';
 import PageTitle from '../ui/PageTitle';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { documentsScheme } from './documentsScheme';
 
 function AddDocument() {
@@ -27,14 +26,14 @@ function AddDocument() {
     control,
     reset,
     resetField,
-    formState: { isDirty },
+    formState: { isDirty }
   } = useForm<z.infer<typeof documentsScheme>>({
     resolver: zodResolver(documentsScheme),
     mode: 'onChange',
     defaultValues: {
       terms_of_use: [],
-      privacy_policy: [],
-    },
+      privacy_policy: []
+    }
   });
 
   const handleClose = () => {
@@ -43,9 +42,9 @@ function AddDocument() {
     window.location.reload();
   };
 
-  const onSubmit: SubmitHandler<
-    z.infer<typeof documentsScheme>
-  > = async (values: z.infer<typeof documentsScheme>) => {
+  const onSubmit: SubmitHandler<z.infer<typeof documentsScheme>> = async (
+    values: z.infer<typeof documentsScheme>
+  ) => {
     try {
       setIsProcessing(true);
       const formData = new FormData();
@@ -57,11 +56,9 @@ function AddDocument() {
       formData.append('title', 'privacy_policy');
       formData.append('file', values.privacy_policy[0]);
       const response = await createDocument(formData);
-      if (response.status === 201)
-        alert('Документ додано');
+      if (response.status === 201) alert('Документ додано');
       setIsProcessing(false);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -115,11 +112,7 @@ function AddDocument() {
         <div className="buttons flex gap-[24px] py-[24px]">
           <PrimaryButton
             type="submit"
-            text={
-              isProcessing
-                ? 'Обробка запиту'
-                : 'Зберегти зміни'
-            }
+            text={isProcessing ? 'Обробка запиту' : 'Зберегти зміни'}
             disabled={!isDirty}
           />
 
@@ -127,7 +120,8 @@ function AddDocument() {
             type="button"
             text="Скасувати"
             onClick={() => {
-              reset(); window.location.reload();
+              reset();
+              window.location.reload();
             }}
           />
         </div>

@@ -3,10 +3,7 @@ import { IStory } from '@/types/stories';
 
 export async function createStory(data: unknown) {
   console.log(data);
-  const response = await axios.post<IStory[]>(
-    '/stories',
-    data,
-  );
+  const response = await axios.post<IStory[]>('/stories', data);
   return response;
 }
 

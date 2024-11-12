@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 import dynamic from 'next/dynamic';
 
-import type { PageProps } from '@/types';
+import { getTranslations } from 'next-intl/server';
 
 import Loader from '@/components/shared/loader/Loader';
 import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
+import type { PageProps } from '@/types';
 
 const DynamicPage = dynamic(
   () => import('@/components/pages/candidates/Candidates'),
@@ -14,16 +14,16 @@ const DynamicPage = dynamic(
 );
 
 export async function generateMetadata({
-  params,
+  params
 }: PageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
-    namespace: 'Metadata',
+    namespace: 'Metadata'
   });
 
   return {
     title: t('candidates_title'),
-    description: t('candidates_description'),
+    description: t('candidates_description')
   };
 }
 

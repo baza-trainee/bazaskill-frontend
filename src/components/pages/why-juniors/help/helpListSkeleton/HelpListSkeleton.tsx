@@ -6,8 +6,7 @@ function HelpListSkeleton(): JSX.Element {
           <li
             key={index}
             className="skeletonCard overflow-hidden rounded-full xs:size-[80px] xl:size-[112px] 2xl:size-[117px] 5xl:size-[132px]"
-          >
-          </li>
+          ></li>
         ))}
       </ul>
     </div>

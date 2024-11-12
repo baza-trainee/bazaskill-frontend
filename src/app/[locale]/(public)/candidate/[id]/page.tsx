@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-
 import dynamic from 'next/dynamic';
 
-import type { IdPageProps } from '@/types';
+import { getTranslations } from 'next-intl/server';
 
 import Loader from '@/components/shared/loader/Loader';
-import { getTranslations } from 'next-intl/server';
 import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
+import type { IdPageProps } from '@/types';
 
 const DynamicPage = dynamic(
   () => import('@/components/pages/candidate/CandidatePage'),
@@ -15,11 +14,11 @@ const DynamicPage = dynamic(
 );
 
 export async function generateMetadata({
-  params,
+  params
 }: IdPageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
-    namespace: 'Metadata',
+    namespace: 'Metadata'
   });
 
   const response = await fetch(
@@ -28,7 +27,7 @@ export async function generateMetadata({
   const candidate = await response.json();
   return {
     title: `${t('candidate_title')} ${candidate.name} ${candidate.specialization.title}`,
-    description: `${t('candidate_description')} ${candidate.name} ${candidate.specialization.title}`,
+    description: `${t('candidate_description')} ${candidate.name} ${candidate.specialization.title}`
   };
 }
 

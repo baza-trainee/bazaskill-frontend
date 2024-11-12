@@ -5,24 +5,21 @@ interface CentredSlidesState {
 }
 
 function useCentredSlides(): CentredSlidesState {
-  const [centeredSlides, setCenteredSlides]
-    = useState(false);
+  const [centeredSlides, setCenteredSlides] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth >= 320 && windowWidth < 420) {
         setCenteredSlides(true);
-      }
-      else {
+      } else {
         setCenteredSlides(false);
       }
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    return () =>
-      window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return { centeredSlides }; // Corrected property name

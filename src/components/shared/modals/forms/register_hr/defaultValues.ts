@@ -6,5 +6,5 @@ export const defaultValues = {
   company: '',
   country: '',
   specialization: '',
-  message: '',
+  message: ''
 };

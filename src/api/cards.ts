@@ -1,6 +1,5 @@
-import type { ICard } from '@/types/cards';
-
 import axios from '@/config/axios';
+import type { ICard } from '@/types/cards';
 
 export async function getCards() {
   const { data } = await axios.get<ICard[]>('/cards');
@@ -18,10 +17,7 @@ export async function createCard(formData: FormData) {
 }
 
 export async function updateCard(id: string, formData: FormData) {
-  const { data } = await axios.patch(
-    `/cards/${id}`,
-    formData,
-  );
+  const { data } = await axios.patch(`/cards/${id}`, formData);
   return data;
 }
 

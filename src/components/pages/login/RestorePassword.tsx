@@ -1,17 +1,18 @@
 'use client';
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
 
-import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { resetPassword } from '@/api/signIn';
 
-import SuccessButton from '../admin/ui/buttons/SuccessButton';
 import SignInPassword from '../admin/ui/SignInPassword';
+import SuccessButton from '../admin/ui/buttons/SuccessButton';
 import { defaultValuesPassword } from './defaultValues';
 import { passwordScheme } from './signInScheme';
 
@@ -22,11 +23,11 @@ function RestorePassword() {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors }
   } = useForm<z.infer<typeof passwordScheme>>({
     resolver: zodResolver(passwordScheme),
     mode: 'onChange',
-    defaultValues: defaultValuesPassword,
+    defaultValues: defaultValuesPassword
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof passwordScheme>> = async (
@@ -36,7 +37,7 @@ function RestorePassword() {
       setIsProcessing(true);
       const response = await resetPassword({
         token,
-        password: values.password,
+        password: values.password
       });
       if (response.status === 201) {
         setIsProcessing(false);

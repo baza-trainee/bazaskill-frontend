@@ -7,5 +7,5 @@ export const defaultValues = {
   review_ua: '',
   review_en: '',
   review_pl: '',
-  file: '',
+  file: ''
 };
