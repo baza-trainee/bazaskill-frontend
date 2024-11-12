@@ -10,7 +10,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { getTestimonialsId, updateTestimonial } from '@/api/testimonials';
+import { getTestimonialsId, updateTestimonial } from '@/utils/api/testimonials';
 import { constants } from '@/constants';
 import type { TestimonialPreview } from '@/types/testimonials';
 

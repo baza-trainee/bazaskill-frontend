@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { deleteSpecialization, getSpecializations } from '@/api/specialization';
+import { deleteSpecialization, getSpecializations } from '@/utils/api/specialization';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
 

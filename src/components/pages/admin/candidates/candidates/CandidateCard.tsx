@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import declineWord from 'decline-word';
 
-import { deleteCandidate } from '@/api/candidates';
+import { deleteCandidate } from '@/utils/api/candidates';
 import { constants } from '@/constants';
 import { shortenLangs } from '@/helpers/shortenLangs';
 import type { CandidatesResponse } from '@/types/candidates';

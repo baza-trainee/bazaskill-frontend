@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-import { getDocuments } from '@/api/documents';
+import { getDocuments } from '@/utils/api/documents';
 import { constants } from '@/constants';
 
 import ErrorPage from '../shared/ErrorPage';

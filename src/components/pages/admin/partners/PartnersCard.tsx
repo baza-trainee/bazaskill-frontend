@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deletePartners } from '@/api/partners';
+import { deletePartners } from '@/utils/api/partners';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import { constants } from '@/constants';

@@ -8,7 +8,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { addContact, getContact, updateContact } from '@/api/contacts';
+import { addContact, getContact, updateContact } from '@/utils/api/contacts';
 import { constants } from '@/constants';
 import type { IContacts } from '@/types/contacts';
 
@@ -18,8 +18,7 @@ import PhoneInput from '../ui/PhoneInput';
 import TextInput from '../ui/TextInput';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { contactsScheme } from './contactsScheme';
-import { defaultValues } from './defaultValues';
+import { contactsScheme } from './schema';
 
 function Contacts() {
   const [id, setId] = useState<number>(0);
@@ -36,7 +35,16 @@ function Contacts() {
   } = useForm<z.infer<typeof contactsScheme>>({
     resolver: zodResolver(contactsScheme),
     mode: 'onChange',
-    defaultValues
+    defaultValues: {
+      phone: '',
+      secondPhone: '',
+      email: '',
+      telegram: '',
+      linkedin: '',
+      facebook: '',
+      discord: '',
+      instagram: ''
+    }
   });
 
   useEffect(() => {

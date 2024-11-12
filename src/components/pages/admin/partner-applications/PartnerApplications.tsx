@@ -8,7 +8,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   deleteApplication,
   getPartnerApplications
-} from '@/api/partner_application';
+} from '@/utils/api/partner_application';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { constants } from '@/constants';
 import { dateChecker } from '@/helpers/dateChecker';

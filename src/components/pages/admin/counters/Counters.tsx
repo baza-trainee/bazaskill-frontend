@@ -8,7 +8,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { getCounters, updateCounter } from '@/api/counters';
+import { getCounters, updateCounter } from '@/utils/api/counters';
 import { constants } from '@/constants';
 import type { ICounters } from '@/types/counters';
 
@@ -18,8 +18,7 @@ import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { countersScheme } from './countersScheme';
-import { defaultValues } from './defaultValues';
+import { countersScheme } from './schema';
 
 function Counters() {
   const [id, setId] = useState<number>(0);
@@ -30,7 +29,6 @@ function Counters() {
     queryFn: getCounters
   });
 
-  console.log(data);
 
   const {
     handleSubmit,
@@ -40,7 +38,13 @@ function Counters() {
   } = useForm<z.infer<typeof countersScheme>>({
     resolver: zodResolver(countersScheme),
     mode: 'onChange',
-    defaultValues
+    defaultValues: {
+      liveProject: '',
+      members: '',
+      employed: '',
+      technologies: '',
+      libraries: ''
+    }
   });
 
   useEffect(() => {

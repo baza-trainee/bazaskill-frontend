@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { deleteImage, getImages } from '@/api/gallery';
+import { deleteImage, getImages } from '@/utils/api/gallery';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
 import type { IImage } from '@/types/gallery';

@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
-import { createSpecialization } from '@/api/specialization';
+import { createSpecialization } from '@/utils/api/specialization';
 import { constants } from '@/constants';
 
 import SuccessAlert from '../alerts/SuccessAlert';

@@ -8,7 +8,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { createPartners } from '@/api/partners';
+import { createPartners } from '@/utils/api/partners';
 
 import SuccessAlert from '../alerts/SuccessAlert';
 import FileInputPartner from '../ui/FileInputPartner';
@@ -16,8 +16,7 @@ import PageTitle from '../ui/PageTitle';
 import TextInputPartner from '../ui/TextInputPartner';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { defaultValues } from './defaultValues';
-import { partnersScheme } from './partnersScheme';
+import { partnersScheme } from './schema';
 
 function AddPartners() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -37,7 +36,11 @@ function AddPartners() {
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
     mode: 'onChange',
-    defaultValues
+    defaultValues: {
+      name: '',
+      logo: '',
+      partner_url: ''
+    }
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof partnersScheme>> = async (

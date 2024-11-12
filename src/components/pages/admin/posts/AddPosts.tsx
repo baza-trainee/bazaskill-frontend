@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
-import { createPost } from '@/api/posts';
+import { createPost } from '@/utils/api/posts';
 
 import SuccessAlert from '../alerts/SuccessAlert';
 import FileInputPost from '../ui/FileInputPost';

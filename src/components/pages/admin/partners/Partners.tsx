@@ -5,7 +5,7 @@ import React from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getPartners } from '@/api/partners';
+import { getPartners } from '@/utils/api/partners';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
 import type { TPartner } from '@/types/partners';

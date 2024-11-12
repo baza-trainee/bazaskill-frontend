@@ -3,7 +3,7 @@
 import { useMediaQuery } from '@react-hook/media-query';
 import { useQuery } from '@tanstack/react-query';
 
-import { getImages } from '@/api/gallery';
+import { getImages } from '@/utils/api/gallery';
 import { constants } from '@/constants';
 import type { IImage } from '@/types/gallery';
 

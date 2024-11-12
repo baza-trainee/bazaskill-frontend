@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import type { FieldValues, UseFormRegister } from 'react-hook-form';
 
-import { getSpecializationsWithStack } from '@/api/specialization';
+import { getSpecializationsWithStack } from '@/utils/api/specialization';
 import { constants } from '@/constants';
 import type { ISpecializationWithStack } from '@/types/specialization';
 

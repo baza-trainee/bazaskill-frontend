@@ -6,13 +6,13 @@ import React, { useEffect, useState } from 'react';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import { getStack } from '@/api/stack';
+import { getStack } from '@/utils/api/stack';
 import { constants } from '@/constants';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useModal } from '@/stores/useModal';
 import type { IStack } from '@/types/stack';
 
-import AddStackModal from '../AddStackModal/AddStackModal';
+import AddStackModal from '../add-stack/AddStackModal';
 import { StackItem } from './StackItem';
 
 interface Stack {

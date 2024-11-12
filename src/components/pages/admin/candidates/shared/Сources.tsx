@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import type {
   Control,
   DeepMap,
@@ -13,13 +15,32 @@ import FileInput from './FileInput';
 import TextInput from './TextInput';
 
 interface ICourcesProps {
+  fieldsLength?: number;
   control: Control<FieldValues>;
   fieldArray: UseFieldArrayReturn<FieldValues, 'cources', 'id'>;
 }
+
+const defaultValues = {
+  cources_name: '',
+  cources_specializaton: '',
+  cources_start: '',
+  cources_end: '',
+  cources_sertificate: ''
+};
+
 const Cources: React.FC<ICourcesProps> = ({
+  fieldsLength,
   control,
   fieldArray: { fields, append, remove }
 }) => {
+
+  useEffect(() => {
+    if (!fieldsLength) return
+    if (fieldsLength > 1) {
+      for (let i = 1; i < fieldsLength; i++) append;
+    }
+  }, [fieldsLength, append]);
+
   return (
     <div className="flex w-full flex-col gap-[30px]">
       {fields.map((field, index) => {
@@ -35,7 +56,7 @@ const Cources: React.FC<ICourcesProps> = ({
                     error={
                       (errors.cources as DeepMap<FieldValues, FieldError>)?.[
                         index
-                      ]?.cources_name?.message
+                      ]?.name?.message
                     }
                     isRequired={false}
                     placeholder="Ведіть назву"
@@ -104,10 +125,14 @@ const Cources: React.FC<ICourcesProps> = ({
               <Controller
                 name={`cources.${index}.cources_end`}
                 control={control}
-                render={({ field }) => (
+                render={({ field, formState: { errors } }) => (
                   <TextInput
                     {...field}
-                    error=""
+                    error={
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
+                        index
+                      ]?.cources_end?.message
+                    }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
                     title="Випуск"
@@ -126,7 +151,10 @@ const Cources: React.FC<ICourcesProps> = ({
           </div>
         );
       })}
-      <div onClick={append} className="flex cursor-pointer justify-end">
+      <div
+        onClick={() => append(defaultValues)}
+        className="flex cursor-pointer justify-end"
+      >
         + Додати ще
       </div>
     </div>

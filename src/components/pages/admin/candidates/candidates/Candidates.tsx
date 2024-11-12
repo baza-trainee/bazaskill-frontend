@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import { getAllCandidates } from '@/api/candidates';
+import { getAllCandidates } from '@/utils/api/candidates';
 import Loader from '@/components/shared/loader/Loader';
 import { constants } from '@/constants';
 import type { CandidatesResponse } from '@/types/candidates';

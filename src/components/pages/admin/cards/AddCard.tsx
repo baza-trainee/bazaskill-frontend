@@ -14,8 +14,8 @@ import type {
 } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
-import { createCard } from '@/api/cards';
-import { getSpecializations } from '@/api/specialization';
+import { createCard } from '@/utils/api/cards';
+import { getSpecializations } from '@/utils/api/specialization';
 import { constants } from '@/constants';
 import type { ISpecialization } from '@/types/specialization';
 
@@ -24,7 +24,7 @@ import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
 import PrimaryButton from '../ui/buttons/PrimaryButton';
 import SecondaryButton from '../ui/buttons/SecondaryButton';
-import { cardValidation } from './scheme';
+import { cardValidation } from './schema';
 
 function AddCard() {
   const router = useRouter();

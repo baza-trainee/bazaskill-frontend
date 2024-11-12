@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 
-import { getPosts } from '@/api/posts';
+import { getPosts } from '@/utils/api/posts';
 import Slider from '@/components/shared/slider/Slider';
 import { constants } from '@/constants';
 

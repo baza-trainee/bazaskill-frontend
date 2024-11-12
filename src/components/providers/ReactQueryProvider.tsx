@@ -7,7 +7,7 @@ import {
   dehydrate
 } from '@tanstack/react-query';
 
-import { getAllCandidates } from '@/api/candidates';
+import { getAllCandidates } from '@/utils/api/candidates';
 import { constants } from '@/constants';
 
 function QueryProvider(props: { children: React.ReactNode }) {

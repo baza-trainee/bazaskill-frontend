@@ -7,7 +7,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import type * as z from 'zod';
 
-import { createDocument } from '@/api/documents';
+import { createDocument } from '@/utils/api/documents';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 
 import SuccessAlert from '../alerts/SuccessAlert';

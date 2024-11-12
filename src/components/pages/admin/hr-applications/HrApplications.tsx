@@ -5,7 +5,7 @@ import React from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { deleteApplication, getHrApplications } from '@/api/hr_application';
+import { deleteApplication, getHrApplications } from '@/utils/api/hr_application';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { constants } from '@/constants';
 import { dateChecker } from '@/helpers/dateChecker';

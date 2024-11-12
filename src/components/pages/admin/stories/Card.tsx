@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { deleteStories } from '@/api/stories';
+import { deleteStories } from '@/utils/api/stories';
 import { constants } from '@/constants';
 import { formatDate } from '@/lib/formatData';
 import { IStory } from '@/types/stories';

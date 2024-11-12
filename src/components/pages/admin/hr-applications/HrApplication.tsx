@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getHrApplicationById } from '@/api/hr_application';
+import { getHrApplicationById } from '@/utils/api/hr_application';
 import { constants } from '@/constants';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';

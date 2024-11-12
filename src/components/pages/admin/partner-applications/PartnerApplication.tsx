@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getPartnerApplicationsById } from '@/api/partner_application';
+import { getPartnerApplicationsById } from '@/utils/api/partner_application';
 import { constants } from '@/constants';
 import { getEmptyValue } from '@/helpers/getEmptyValue';
 import { translateCountry } from '@/helpers/translateCountry';

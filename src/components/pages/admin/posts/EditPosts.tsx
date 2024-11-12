@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
-import { getPostsID, updatePost } from '@/api/posts';
+import { getPostsID, updatePost } from '@/utils/api/posts';
 import { constants } from '@/constants';
 
 import Loader from '../../../shared/loader/Loader';

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getStories } from '@/api/stories';
+import { getStories } from '@/utils/api/stories';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
 

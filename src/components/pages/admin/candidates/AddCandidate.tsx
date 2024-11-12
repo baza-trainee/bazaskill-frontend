@@ -14,21 +14,21 @@ import type {
 } from 'react-hook-form';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
-import { createCandidate } from '@/api/candidates';
-import { getSpecializations } from '@/api/specialization';
+import { createCandidate } from '@/utils/api/candidates';
+import { getSpecializations } from '@/utils/api/specialization';
 import { constants } from '@/constants';
 import type { ISpecialization } from '@/types/specialization';
 
-import schema from '../schema';
-import BazaExperience from './BazaExperience';
-import FileInput from './FileInput';
-import Graduate from './Graduate';
-import Languages from './Languages';
-import SelectField from './SelectField';
-import Stack from './Stack';
-import TextInput from './TextInput';
-import defaultValues from './defaultValues';
-import Cources from './Сources';
+import schema from './shared/schema';
+import BazaExperience from './shared/BazaExperience';
+import FileInput from './shared/FileInput';
+import Graduate from './shared/Graduate';
+import Languages from './shared/Languages';
+import SelectField from './shared/SelectField';
+import Stack from './shared/Stack';
+import TextInput from './shared/TextInput';
+import defaultValues from './shared/defaultValues';
+import Cources from './shared/Сources';
 
 function AddCandidate() {
   const router = useRouter();

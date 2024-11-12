@@ -37,7 +37,7 @@ const Advantages = () => {
               <article
                 key={item.id}
                 className={clsx(
-                  'h-[388px] w-[612px] rounded-2xl bg-gradient-to-b from-green to-graphite p-[2px] 5xl:w-[720px]',
+                  'h-[348px] w-[612px] rounded-2xl bg-gradient-to-b from-green to-graphite p-[2px] 5xl:w-[720px]',
                   index % 2 !== 0 && 'xl:mt-[240px]'
                 )}
               >

@@ -1,20 +1,18 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
+import { constants } from '@/constants';
+import { getSpecializations } from '@/utils/api/specialization';
+import { Suspense, lazy } from 'react';
 
-import { getSpecializations } from '@/api/specialization';
 import DesktopIcon from '@/components/shared/icons/DesktopIcon';
 import Pointer from '@/components/shared/icons/Pointer';
 import SearchIcon from '@/components/shared/icons/SearchIcon';
-import { constants } from '@/constants';
+import TextInput from '@/components/shared/ui/TextInput';
 
-import TextInput from '../../../shared/ui/TextInput';
-
-const DynamicHeroTitle = dynamic(() => import('./HeroTitle'));
+const DynamicHeroTitle = lazy(() => import('./HeroTitle'));
 
 const Hero: React.FC = () => {
   const t = useTranslations('Main.hero_section');
@@ -22,7 +20,7 @@ const Hero: React.FC = () => {
 
   const { data } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
-    queryFn: getSpecializations
+    queryFn: getSpecializations,
   });
 
   const options =
@@ -38,25 +36,27 @@ const Hero: React.FC = () => {
       className="main-texture-background container flex min-h-[520px] w-full flex-col justify-center bg-auto bg-fixed bg-no-repeat md:bg-cover"
       aria-labelledby="hero-title"
     >
-      <div className="relative mx-auto mb-[64px] flex max-w-[570px] flex-col items-center text-center sm:flex md:flex-row lg:max-w-[915px] ">
+      <div className="relative mx-auto mb-16 flex max-w-[570px] flex-col items-center text-center sm:flex md:flex-row lg:max-w-[915px]">
         <h1
           id="hero-title"
-          className="mr-3 text-6xl text-[40px] font-bold text-white xl:text-[64px]"
+          className="mr-3 text-4xl font-bold text-white md:text-5xl xl:text-6xl"
         >
           <div className="flex max-w-[230px] flex-col items-center whitespace-nowrap md:max-w-[300px] xl:max-w-[470px]">
             {t('title.main')}
           </div>
         </h1>
-        <div className="main-gradient flex-1 bg-clip-text text-transparent xs:text-[40px] md:text-start xl:text-[64px]">
-          <DynamicHeroTitle />
+        <div className="main-gradient flex-1 bg-clip-text text-transparent text-4xl md:text-5xl xl:text-6xl md:text-start">
+          <Suspense fallback={<div className="h-16 w-full bg-gray-200 animate-pulse"></div>}>
+            <DynamicHeroTitle />
+          </Suspense>
         </div>
       </div>
 
       <form
-        className="flex flex-col xs:gap-3 md:flex-row md:gap-0"
+        className="flex flex-col gap-3 md:flex-row md:gap-0"
         onSubmit={onSubmit}
         autoComplete="off"
-        aria-label={'search_form'}
+        aria-label={t('search_form')}
       >
         <div className="relative flex w-full items-center">
           <TextInput
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
             options={options}
             aria-label={t('speciality')}
           />
-          <DesktopIcon className="text-gray-500 absolute left-3" />
+          <DesktopIcon className="absolute left-3 text-gray-500" aria-hidden="true" />
         </div>
         <div className="relative flex w-full items-center">
           <TextInput
@@ -79,14 +79,14 @@ const Hero: React.FC = () => {
             options={[t('ukraine'), t('poland'), t('germany')]}
             aria-label={t('country')}
           />
-          <Pointer className="text-gray-500 absolute left-3" />
+          <Pointer className="absolute left-3 text-gray-500" aria-hidden="true" />
         </div>
         <button
           type="submit"
-          className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium xs:w-full xs:rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
-          aria-label={'search button'}
+          className="main-gradient relative flex items-center justify-center px-6 py-4 text-xl font-medium w-full rounded-md md:max-w-[272px] md:rounded-l-none md:rounded-r-md"
+          aria-label={t('search')}
         >
-          <SearchIcon className="text-gray-500 absolute left-3 top-6" />
+          <SearchIcon className="absolute left-3 text-gray-500" aria-hidden="true" />
           <span>{t('search')}</span>
         </button>
       </form>

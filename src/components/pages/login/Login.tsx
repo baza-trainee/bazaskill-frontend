@@ -9,7 +9,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-import { authLogin } from '@/api/signIn';
+import { authLogin } from '@/utils/api/signIn';
 
 import ErrorAlert from '../admin/alerts/ErrorAlert';
 import SignInEmail from '../admin/ui/SignInEmail';

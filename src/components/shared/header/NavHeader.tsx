@@ -23,7 +23,7 @@ export default function NavHeader(): JSX.Element {
   };
 
   return (
-    <nav className="hidden w-full items-center justify-center gap-[3%] md:flex xl:gap-[6%]">
+    <nav className="hidden w-full items-center justify-center gap-[3%] md:flex xl:gap-[6%]" aria-label="Main navigation">
       {itemsLink.map((el) => {
         return (
           <Link
@@ -34,6 +34,7 @@ export default function NavHeader(): JSX.Element {
             )}
             href={el.href}
             scroll={true}
+            aria-current={isActive(el.pathname) ? 'page' : undefined}
           >
             <span className="text-nowrap px-2">{t(el.title)}</span>
             <span

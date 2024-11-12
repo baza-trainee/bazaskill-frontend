@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-
 import clsx from 'clsx';
 import { useLocale } from 'next-intl';
 
@@ -18,12 +17,10 @@ function LanguageSwitcher() {
   const menuRef = useRef<HTMLButtonElement>(null);
   const submenuRef = useRef<HTMLDivElement>(null);
 
-  const isActive = (name: string): boolean => {
-    return locale == name;
-  };
+  const isActive = (name: string): boolean => locale === name;
 
   const handleCheckLocale = (item: string) => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
     setCurrentLocale(item);
     router.replace(path, { locale: item });
   };
@@ -31,62 +28,59 @@ function LanguageSwitcher() {
   const handleOutsideClick = (event: Event): void => {
     if (
       !submenuRef.current?.contains(event.target as HTMLElement) &&
-      !(
-        event.target === menuRef.current ||
-        menuRef.current?.contains(event.target as HTMLElement)
-      )
+      !menuRef.current?.contains(event.target as HTMLElement)
     ) {
       setIsOpen(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener('click', handleOutsideClick);
     return () => window.removeEventListener('click', handleOutsideClick);
-  }, [isOpen]);
+  }, []);
+
   return (
-    <div
-      className={clsx(
-        'relative z-20 flex cursor-pointer items-center rounded-t-[8px] duration-300 hover:bg-[#525252]',
-        isOpen && 'bg-[#525252]'
-      )}
-    >
+    <div className="relative z-20 flex cursor-pointer items-center">
       <button
         type="button"
         ref={menuRef}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        aria-controls="language-menu"
         className="flex h-[50px] w-[60px] items-center justify-between px-[6px] text-white"
       >
-        <span className="font-sans' text-[18px] font-semibold">
-          {currentLocale.toUpperCase()}
-        </span>
-        <span className={`${!isOpen && 'rotate-180'}`}>
+        <span className="text-[18px] font-semibold">{currentLocale.toUpperCase()}</span>
+        <span className={`${isOpen ? '' : 'rotate-180'}`}>
           <HeaderCaretDown />
         </span>
       </button>
+
       {isOpen && (
         <div
           ref={submenuRef}
-          className="absolute top-full flex w-[60px] flex-col rounded-[4px] rounded-tl-none border-2 border-[#4E4E4E] bg-[#202020]"
+          id="language-menu"
+          role="menu"
+          aria-labelledby="language-switcher"
+          className="absolute top-full flex w-[60px] flex-col rounded-[4px] border-2 border-[#4E4E4E] bg-[#202020]"
         >
-          {locales.map((item: string) => {
-            if (isActive(item)) {
-              return null;
-            } else {
-              return (
-                <button
-                  key={item}
-                  type="button"
-                  className="flex h-[50px] cursor-pointer items-center justify-center border-b border-b-[#4E4E4E] font-sans text-[18px] font-semibold text-white duration-300 last:border-none hover:bg-[#2B2B2B] hover:text-yellow"
-                  onClick={() => handleCheckLocale(item)}
-                >
-                  {item.toUpperCase()}
-                </button>
-              );
-            }
-          })}
+          {locales.map((item: string) => (
+            !isActive(item) && (
+              <button
+                key={item}
+                type="button"
+                role="menuitem"
+                className="flex h-[50px] cursor-pointer items-center justify-center border-b border-b-[#4E4E4E] text-[18px] font-semibold text-white duration-300 last:border-none hover:bg-[#2B2B2B] hover:text-yellow"
+                onClick={() => handleCheckLocale(item)}
+              >
+                {item.toUpperCase()}
+              </button>
+            )
+          ))}
         </div>
       )}
     </div>
   );
 }
+
 export default LanguageSwitcher;
