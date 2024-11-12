@@ -1,16 +1,18 @@
 'use client';
-import { useRouter } from 'next/navigation';
+
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
-import { getSpecializations } from '@/api/specialization';
-import { constants } from '@/constants';
 
-import TextInput from '../../../shared/ui/TextInput';
+import { getSpecializations } from '@/api/specialization';
 import DesktopIcon from '@/components/shared/icons/DesktopIcon';
 import Pointer from '@/components/shared/icons/Pointer';
 import SearchIcon from '@/components/shared/icons/SearchIcon';
+import { constants } from '@/constants';
+
+import TextInput from '../../../shared/ui/TextInput';
 
 const DynamicHeroTitle = dynamic(() => import('./HeroTitle'));
 
@@ -20,7 +22,7 @@ const Hero: React.FC = () => {
 
   const { data } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
-    queryFn: getSpecializations,
+    queryFn: getSpecializations
   });
 
   const options =

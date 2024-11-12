@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface CandidatesProps
-  extends HTMLProps<HTMLDivElement> {}
-const Candidates: React.FC<CandidatesProps> = ({
-  className,
-  ...rest
-}) => {
+interface CandidatesProps extends HTMLProps<HTMLDivElement> {}
+const Candidates: React.FC<CandidatesProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

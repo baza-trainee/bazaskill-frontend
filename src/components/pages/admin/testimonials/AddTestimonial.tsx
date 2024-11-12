@@ -1,23 +1,24 @@
 'use client';
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
 
-import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { createTestimonial } from '@/api/testimonials';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import { defaultValues } from './defaultValues';
-import { testimonialValidation } from './validationSchema';
-import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPost from '../ui/FileInputPost';
 import PageTitle from '../ui/PageTitle';
 import TextArea from '../ui/TextAreaReviews';
 import TextInput from '../ui/TextInput';
+import PrimaryButtonAdd from '../ui/buttons/PrimaryButtonAdd';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import { defaultValues } from './defaultValues';
+import { testimonialValidation } from './validationSchema';
 
 function AddTestimonial() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -32,11 +33,11 @@ function AddTestimonial() {
     handleSubmit,
     control,
     reset,
-    formState: { isDirty, errors },
+    formState: { isDirty, errors }
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof testimonialValidation>> = async (

@@ -1,27 +1,26 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
-
-import type { IUser } from '@/types/singIn';
+import type { z } from 'zod';
 
 import { changeEmail } from '@/api/settings';
 import { getProfile } from '@/api/signIn';
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import { constants } from '@/constants';
+import type { IUser } from '@/types/singIn';
 
 import Loader from '../../../shared/loader/Loader';
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { defaultValues } from './defaultValues';
 import { settingsScheme } from './settingsScheme';
 
@@ -32,11 +31,11 @@ function Settings() {
     reset,
     setValue,
     watch,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<z.infer<typeof settingsScheme>>({
     resolver: zodResolver(settingsScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -44,7 +43,7 @@ function Settings() {
 
   const { data: user, isFetching } = useQuery<IUser>({
     queryKey: [constants.profile.FETCH_PROFILE],
-    queryFn: getProfile,
+    queryFn: getProfile
   });
 
   console.log(user);
@@ -64,7 +63,7 @@ function Settings() {
       setIsProcessing(true);
       const response = await changeEmail({
         id: user?.id as string,
-        email: values.email,
+        email: values.email
       });
       if (response.status === 200) {
         console.log(values);

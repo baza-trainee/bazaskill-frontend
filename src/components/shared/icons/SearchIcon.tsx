@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface SearchIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const SearchIcon: React.FC<SearchIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface SearchIconProps extends HTMLProps<HTMLDivElement> {}
+const SearchIcon: React.FC<SearchIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

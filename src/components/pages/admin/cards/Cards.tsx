@@ -1,15 +1,15 @@
 'use client';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import type { ICard } from '@/types/cards';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { deleteCard, getCards } from '@/api/cards';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
 import { constants } from '@/constants';
+import type { ICard } from '@/types/cards';
 
 import Loader from '../../../shared/loader/Loader';
 import QuestionAlert from '../alerts/QuestionAlert';
@@ -23,7 +23,7 @@ function Cards() {
 
   const { data, isFetching } = useQuery<ICard[], Error>({
     queryKey: [constants.cards.GET_CARDS],
-    queryFn: getCards,
+    queryFn: getCards
   });
 
   const deleteMutation = useMutation({
@@ -31,13 +31,13 @@ function Cards() {
     mutationFn: (id: string) => deleteCard(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [constants.cards.GET_CARDS],
+        queryKey: [constants.cards.GET_CARDS]
       });
       setIsLoading(false);
     },
     onError: (error) => {
       alert(error);
-    },
+    }
   });
 
   const handleDelete = async () => {

@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface SuccesIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const Succes: React.FC<SuccesIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface SuccesIconProps extends HTMLProps<HTMLDivElement> {}
+const Succes: React.FC<SuccesIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg
@@ -17,12 +12,7 @@ const Succes: React.FC<SuccesIconProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect
-          width="24"
-          height="24"
-          rx="12"
-          fill="#4DC760"
-        />
+        <rect width="24" height="24" rx="12" fill="#4DC760" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"

@@ -1,14 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
+
 import { getPartners } from '@/api/partners';
 import { constants } from '@/constants';
+import type { TPartner } from '@/types/partners';
 
 import './partners.css';
-
-import type { TPartner } from '@/types/partners';
 
 const PartnerItem: React.FC<{ partner: TPartner }> = ({ partner }) => (
   <figure className="partner-item mx-4">
@@ -32,10 +33,10 @@ const Partners: React.FC = () => {
   const {
     data: partners,
     isLoading,
-    error,
+    error
   }: UseQueryResult<TPartner[], Error> = useQuery({
     queryKey: [constants.partners.FETCH_PARTNERS],
-    queryFn: getPartners,
+    queryFn: getPartners
   });
 
   if (isLoading) return <div aria-live="polite">Loading...</div>;

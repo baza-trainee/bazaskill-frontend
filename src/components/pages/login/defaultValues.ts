@@ -1,14 +1,14 @@
 export const defaultValues = {
   email: '',
   password: '',
-  rememberMe: false,
+  rememberMe: false
 };
 
 export const defaultValuesEmail = {
-  email: '',
+  email: ''
 };
 
 export const defaultValuesPassword = {
   password: '',
-  passwordAccept: '',
+  passwordAccept: ''
 };

@@ -1,16 +1,10 @@
 'use client';
 
-import type {
-  RefObject,
-} from 'react';
+import { useRouter } from 'next/navigation';
+import type { RefObject } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import {
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
 import { getDocuments } from '@/api/documents';
@@ -21,11 +15,7 @@ import Loader from '../shared/loader/Loader';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-export function PDFView({
-  document,
-}: {
-  document: string | null;
-}) {
+export function PDFView({ document }: { document: string | null }) {
   const router = useRouter();
   const [numPages, setNumPages] = useState<number>(0);
   const [width, setWidth] = useState(0);
@@ -33,34 +23,27 @@ export function PDFView({
 
   const { data } = useQuery({
     queryKey: [constants.documents.FETCH_DOCUMENTS],
-    queryFn: getDocuments,
+    queryFn: getDocuments
   });
 
   useEffect(() => {
-    const found = data?.find(d => d.title === document);
+    const found = data?.find((d) => d.title === document);
     if (found) {
-      setDocumentUrl(
-        found.document_url.replace(/^http:\/\//, 'https://'),
-      );
+      setDocumentUrl(found.document_url.replace(/^http:\/\//, 'https://'));
     }
   }, [data, document]);
 
-  function onDocumentLoadSuccess({
-    numPages,
-  }: {
-    numPages: number;
-  }): void {
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
 
   const pdfWrapperRef = useRef<HTMLDivElement | null>(
-    null,
+    null
   ) as RefObject<HTMLDivElement>;
 
   useEffect(() => {
     const getWidth = () =>
-      pdfWrapperRef?.current?.getBoundingClientRect()
-        ?.width || 0;
+      pdfWrapperRef?.current?.getBoundingClientRect()?.width || 0;
 
     setWidth(getWidth());
 
@@ -84,7 +67,7 @@ export function PDFView({
   return (
     <div>
       <div
-        className="mx-auto relative flex size-full flex-col items-center justify-center xl:w-2/3"
+        className="relative mx-auto flex size-full flex-col items-center justify-center xl:w-2/3"
         ref={pdfWrapperRef}
       >
         {documentUrl ? (
@@ -105,7 +88,9 @@ export function PDFView({
               />
             ))}
           </Document>
-        ) : <Loader />}
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );

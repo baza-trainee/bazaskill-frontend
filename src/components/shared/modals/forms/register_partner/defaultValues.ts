@@ -7,5 +7,5 @@ export const defaultValues = {
   last_name: '',
   specialist: '',
   position: '',
-  message: '',
+  message: ''
 };

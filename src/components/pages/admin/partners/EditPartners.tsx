@@ -1,30 +1,23 @@
 'use client';
-import type {
-  SubmitHandler,
-} from 'react-hook-form';
-import type { z } from 'zod';
+
+import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { useParams, useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import {
-  Controller,
-  useForm,
-} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
-import {
-  getPartnersId,
-  updatePartners,
-} from '@/api/partners';
+import { getPartnersId, updatePartners } from '@/api/partners';
 import { constants } from '@/constants';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPartner from '../ui/FileInputPartner';
 import PageTitle from '../ui/PageTitle';
 import TextInputPartner from '../ui/TextInputPartner';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PartnersCard from './PartnersCard';
 import { partnersScheme } from './partnersScheme';
 
@@ -40,17 +33,17 @@ function EditPartners() {
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: [constants.partners.FETCH_PARTNERS, id],
-    queryFn: () => getPartnersId(id),
+    queryFn: () => getPartnersId(id)
   });
 
   const {
     handleSubmit,
     control,
     setValue,
-    formState: { errors },
+    formState: { errors }
   } = useForm<z.infer<typeof partnersScheme>>({
     resolver: zodResolver(partnersScheme),
-    mode: 'onChange',
+    mode: 'onChange'
   });
 
   useEffect(() => {
@@ -60,9 +53,9 @@ function EditPartners() {
     }
   }, [data, setValue]);
 
-  const onSubmit: SubmitHandler<
-    z.infer<typeof partnersScheme>
-  > = async (values: z.infer<typeof partnersScheme>) => {
+  const onSubmit: SubmitHandler<z.infer<typeof partnersScheme>> = async (
+    values: z.infer<typeof partnersScheme>
+  ) => {
     try {
       setIsProcessing(true);
 
@@ -79,11 +72,9 @@ function EditPartners() {
         refetch();
       }
       setIsProcessing(false);
-    }
-    catch (errors: unknown) {
+    } catch (errors: unknown) {
       console.log(errors);
-    }
-    finally {
+    } finally {
       setIsProcessing(false);
     }
   };
@@ -143,14 +134,8 @@ function EditPartners() {
           </div>
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text={
-                isProcessing
-                  ? 'Обробка запиту'
-                  : 'Зберегти зміни'
-              }
-              disabled={
-                errors && !!Object.keys(errors).length
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Зберегти зміни'}
+              disabled={errors && !!Object.keys(errors).length}
             />
             <SecondaryButton
               onClick={() => router.refresh()}

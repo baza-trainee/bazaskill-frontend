@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface DesktopIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const DesktopIcon: React.FC<DesktopIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface DesktopIconProps extends HTMLProps<HTMLDivElement> {}
+const DesktopIcon: React.FC<DesktopIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

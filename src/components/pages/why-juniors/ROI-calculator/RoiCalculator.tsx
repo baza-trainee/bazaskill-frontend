@@ -1,7 +1,9 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+
 import { useModal } from '@/stores/useModal';
+
 import CalculatorModal from '../../../shared/modals/CalculatorModal';
 import Calculator from '../calculator/Calculator';
 

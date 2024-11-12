@@ -10,11 +10,7 @@ interface AlertProps {
   onClose: () => void;
 }
 
-function SuccessAlert({
-  title,
-  onClose,
-  isSuccess,
-}: AlertProps) {
+function SuccessAlert({ title, onClose, isSuccess }: AlertProps) {
   useBodyScrollLock(isSuccess);
 
   useEffect(() => {
@@ -33,10 +29,7 @@ function SuccessAlert({
     <div className="fixed inset-0 z-[999] flex items-center justify-center overflow-auto bg-black/90">
       <div className="relative flex h-[300px] w-[600px] items-center justify-center rounded-md bg-white text-2xl font-bold text-black">
         {title}
-        <button
-          className="absolute  right-[50px] top-[50px]"
-          onClick={onClose}
-        >
+        <button className="absolute  right-[50px] top-[50px]" onClick={onClose}>
           <CloseIcon />
         </button>
       </div>

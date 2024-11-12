@@ -1,14 +1,14 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type * as z from 'zod';
+import React, { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { sendGTMEvent } from '@next/third-parties/google';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
-import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type * as z from 'zod';
 
 import { createApplication } from '@/api/partner_application';
 import CustomCheckbox from '@/components/shared/ui/form_inputs/CustomCheckbox';
@@ -36,11 +36,11 @@ function RegisterPartnerForm() {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors }
   } = useForm<z.infer<typeof registerScheme>>({
     resolver: zodResolver(registerScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   const createApplicationMutation = useMutation({
@@ -48,9 +48,9 @@ function RegisterPartnerForm() {
     onSuccess: () => {
       setIsSubmitted(true);
       queryMain.invalidateQueries({
-        queryKey: [constants.partner_applications.FETCH_PARTNER_APPLICATIONS],
+        queryKey: [constants.partner_applications.FETCH_PARTNER_APPLICATIONS]
       });
-    },
+    }
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof registerScheme>> = async (
@@ -261,7 +261,7 @@ function RegisterPartnerForm() {
                 onClick={() =>
                   sendGTMEvent({
                     event: 'buttonClicked',
-                    value: 'User sent "To become HR" form',
+                    value: 'User sent "To become HR" form'
                   })
                 }
               >

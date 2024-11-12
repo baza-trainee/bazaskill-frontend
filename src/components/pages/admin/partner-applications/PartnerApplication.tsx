@@ -1,6 +1,8 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
+
+import { useQuery } from '@tanstack/react-query';
 
 import { getPartnerApplicationsById } from '@/api/partner_application';
 import { constants } from '@/constants';
@@ -14,10 +16,10 @@ function PartnerApplication({ id }: { id: string }) {
     data: partner,
     isFetching,
     isError,
-    error,
+    error
   } = useQuery({
     queryKey: [constants.partner_applications.FETCH_PARTNER_APPLICATIONS_BY_ID],
-    queryFn: () => getPartnerApplicationsById(id),
+    queryFn: () => getPartnerApplicationsById(id)
   });
 
   if (isError) return <p>{`Error: ${error.message}`}</p>;

@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface NotEyeIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const NotEyeIcon: React.FC<NotEyeIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface NotEyeIconProps extends HTMLProps<HTMLDivElement> {}
+const NotEyeIcon: React.FC<NotEyeIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest}>
       <svg

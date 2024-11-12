@@ -1,16 +1,13 @@
-import {
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
-import declineWord from 'decline-word';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import type { CandidatesResponse } from '@/types/candidates';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import declineWord from 'decline-word';
 
 import { deleteCandidate } from '@/api/candidates';
 import { constants } from '@/constants';
 import { shortenLangs } from '@/helpers/shortenLangs';
+import type { CandidatesResponse } from '@/types/candidates';
 
 import QuestionAlert from '../../alerts/QuestionAlert';
 
@@ -18,7 +15,7 @@ interface CandidateCardProps {
   candidate: CandidatesResponse;
 }
 const CandidateCard: React.FC<CandidateCardProps> = ({
-  candidate,
+  candidate
 }: CandidateCardProps) => {
   const queryClient = useQueryClient();
   const specialization = candidate.specialization.title;
@@ -29,14 +26,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
     mutationFn: (id: string) => deleteCandidate(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [
-          constants.candidates.FETCH_ALL_CANDIDATES,
-        ],
+        queryKey: [constants.candidates.FETCH_ALL_CANDIDATES]
       });
     },
     onError: (error) => {
       alert(error);
-    },
+    }
   });
 
   const handleDelete = async () => {
@@ -52,8 +47,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         >
           <span
             className={`${candidate.status.toLowerCase() === 'searching' ? 'bg-green' : candidate.status.toLowerCase() === 'working' ? 'bg-orange' : candidate.status.toLowerCase() === 'inactive' ? 'bg-black' : ''} size-[14px] rounded-[100%]`}
-          >
-          </span>
+          ></span>
           <span
             className={`${candidate.status.toLowerCase() === 'searching' ? 'text-green' : candidate.status.toLowerCase() === 'working' ? 'text-orange' : candidate.status.toLowerCase() === 'inactive' ? 'text-black' : ''} rounded-[100%]`}
           >
@@ -61,8 +55,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
               ? 'У пошуку'
               : candidate.status.toLowerCase() === 'working'
                 ? 'Працює'
-                : candidate.status.toLowerCase()
-                  === 'inactive'
+                : candidate.status.toLowerCase() === 'inactive'
                   ? 'Не активний'
                   : null}
           </span>
@@ -85,14 +78,9 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
               <use href="/Icons/sprite.svg#icon-place"></use>
             </svg>
             <span className="truncate">
-              <span className="truncate">
-                {candidate.city}
-                ,
-              </span>
+              <span className="truncate">{candidate.city},</span>
               &nbsp;
-              <span className="truncate">
-                {candidate.country}
-              </span>
+              <span className="truncate">{candidate.country}</span>
             </span>
           </span>
 
@@ -100,17 +88,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             <svg width={20} height={20}>
               <use href="/Icons/sprite.svg#icon-lang"></use>
             </svg>
-            {candidate.candidate_language.map(
-              (lang, index) => (
-                <span key={lang.id}>
-                  <span>{shortenLangs(lang.language)}</span>
-                  &nbsp;
-                  {index
-                  !== candidate.candidate_language.length
-                  - 1 && <span>/</span>}
-                </span>
-              ),
-            )}
+            {candidate.candidate_language.map((lang, index) => (
+              <span key={lang.id}>
+                <span>{shortenLangs(lang.language)}</span>
+                &nbsp;
+                {index !== candidate.candidate_language.length - 1 && (
+                  <span>/</span>
+                )}
+              </span>
+            ))}
           </span>
         </div>
 
@@ -119,16 +105,14 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             <svg width={20} height={20}>
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
-            {candidate.baza_experience.length}
-            {' '}
+            {candidate.baza_experience.length}{' '}
             {declineWord(
               candidate.baza_experience.length,
               'проект',
               '',
               'и',
-              'ів',
-            )}
-            {' '}
+              'ів'
+            )}{' '}
             на базі
           </span>
 
@@ -150,7 +134,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 
         <div className="flex w-full flex-wrap justify-start gap-[15px]">
           {candidate.stack.slice(0, 3).map(
-            item =>
+            (item) =>
               item.stack?.title && (
                 <div
                   key={item.id}
@@ -158,7 +142,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
                 >
                   {item.stack?.title}
                 </div>
-              ),
+              )
           )}
           <span
             className={`flex items-end justify-center ${candidate.stack.length >= 3 && 'hidden'}`}
@@ -170,18 +154,12 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
           <div
             className={`${candidate.about.length ? 'h-[100px]' : 'h-[50px] '} mb-2 font-sans text-[16px] leading-[26px]`}
           >
-            <span className="line-clamp-4">
-              {candidate.about}
-            </span>
+            <span className="line-clamp-4">{candidate.about}</span>
           </div>
 
           <div className="flex h-[44px] w-full items-center justify-between">
             <span className="font-tahoma text-[20px] font-[700]">
-              від
-              {' '}
-              {candidate.sallary_form}
-              {' '}
-              $
+              від {candidate.sallary_form} $
             </span>
             <div className="flex gap-[32px]">
               <Link href={`/candidate/${candidate.id}`}>
@@ -192,9 +170,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
                   </svg>
                 </button>
               </Link>
-              <Link
-                href={`/admin/candidates/edit/${candidate.id}`}
-              >
+              <Link href={`/admin/candidates/edit/${candidate.id}`}>
                 <button className="flex size-[32px] items-center justify-center bg-white">
                   <svg width={24} height={24}>
                     <use href="/Icons/sprite.svg#icon-pen"></use>

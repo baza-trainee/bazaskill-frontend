@@ -1,12 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
 interface ExitIconProps extends HTMLProps<HTMLDivElement> {}
-const ExitIcon: React.FC<ExitIconProps> = ({
-  className,
-  ...rest
-}) => {
+const ExitIcon: React.FC<ExitIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

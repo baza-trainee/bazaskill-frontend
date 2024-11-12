@@ -1,6 +1,7 @@
-import { useTranslations } from "next-intl";
-import { FaChevronUp,FaChevronDown } from "react-icons/fa";
-import { Item } from "./data";
+import { useTranslations } from 'next-intl';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+
+import { Item } from './data';
 
 interface IndicatorProps {
   item: Item;
@@ -9,21 +10,23 @@ interface IndicatorProps {
 }
 
 const Indicator: React.FC<IndicatorProps> = ({ item, isOpen, openField }) => {
-  const t = useTranslations("Calculator");
+  const t = useTranslations('Calculator');
   return (
     <div className="grid grid-cols-[24px_1fr_28px] grid-rows-[24px] p-0">
       <div className="grid grid-cols-[24px] grid-rows-[24px]">
         <item.icon />
       </div>
-      <p className="grid grid-cols-1 grid-rows-[24px] 
-      font-roboto lg:text-sm font-normal leading-6 text-left uppercase pl-4 whitespace-nowrap overflow-hidden truncate text-xs">
+      <p
+        className="font-roboto grid grid-cols-1 
+      grid-rows-[24px] overflow-hidden truncate whitespace-nowrap pl-4 text-left text-xs font-normal uppercase leading-6 lg:text-sm"
+      >
         {t(item.title)}
       </p>
       <button
         type="button"
         onClick={() => openField(item)}
         className="grid grid-cols-[28px] grid-rows-[24px] place-items-center 
-        bg-transparent border-none outline-none p-0"
+        border-none bg-transparent p-0 outline-none"
       >
         {isOpen ? <FaChevronUp /> : <FaChevronDown />}
       </button>

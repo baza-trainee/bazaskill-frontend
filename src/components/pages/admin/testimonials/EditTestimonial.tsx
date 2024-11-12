@@ -1,29 +1,29 @@
 'use client';
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
 
-import type { TestimonialPreview } from '@/types/testimonials';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import type { SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { getTestimonialsId, updateTestimonial } from '@/api/testimonials';
 import { constants } from '@/constants';
+import type { TestimonialPreview } from '@/types/testimonials';
 
 import Loader from '../../../shared/loader/Loader';
 import SuccessAlert from '../alerts/SuccessAlert';
-import { testimonialValidation } from './validationSchema';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPost from '../ui/FileInputPost';
 import PageTitle from '../ui/PageTitle';
 import TextArea from '../ui/TextAreaReviews';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import EditTestimonialCard from './EditTestimonialsCard';
+import { testimonialValidation } from './validationSchema';
 
 function EditTestimonial() {
   const [previewCard, setPreviewCard] = useState<
@@ -36,7 +36,7 @@ function EditTestimonial() {
 
   const { data, refetch, isFetching } = useQuery({
     queryKey: [constants.testimonials.FETCH_TESTIMONIALS, id],
-    queryFn: () => getTestimonialsId(id),
+    queryFn: () => getTestimonialsId(id)
   });
 
   const handleFileChange = (selectedFile: File) => {
@@ -48,10 +48,10 @@ function EditTestimonial() {
     control,
     formState: { errors },
     watch,
-    setValue,
+    setValue
   } = useForm<z.infer<typeof testimonialValidation>>({
     resolver: zodResolver(testimonialValidation),
-    mode: 'onChange',
+    mode: 'onChange'
   });
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function EditTestimonial() {
     setValue('review_pl', data.review_pl);
     setValue('file', data.file, {
       shouldValidate: false,
-      shouldDirty: true,
+      shouldDirty: true
     });
   }, [data, file, setValue]);
 
@@ -82,7 +82,7 @@ function EditTestimonial() {
       review_en: watchedValues.review_en,
       review_pl: watchedValues.review_pl,
       file: file ?? watchedValues.file,
-      images_url: data?.image_url,
+      images_url: data?.image_url
     });
   }, [
     watchedValues.name_ua,
@@ -93,7 +93,7 @@ function EditTestimonial() {
     watchedValues.review_ua,
     watchedValues.review_en,
     watchedValues.review_pl,
-    file,
+    file
   ]);
 
   const onSubmit: SubmitHandler<z.infer<typeof testimonialValidation>> = async (

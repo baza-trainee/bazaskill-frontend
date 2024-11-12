@@ -1,25 +1,24 @@
-/* eslint-disable style/max-statements-per-line */
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type * as z from 'zod';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import type * as z from 'zod';
 
 import { getDocuments, updateDocument } from '@/api/documents';
 import { constants } from '@/constants';
 
 import Loader from '../../../shared/loader/Loader';
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputDoc from '../ui/FileInputDoc';
 import PageTitle from '../ui/PageTitle';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { documentsScheme } from './documentsScheme';
 
 function DocumentsPage() {
@@ -28,7 +27,7 @@ function DocumentsPage() {
 
   const { data: documents, isFetching } = useQuery({
     queryKey: [constants.documents.FETCH_DOCUMENTS],
-    queryFn: getDocuments,
+    queryFn: getDocuments
   });
 
   const {
@@ -37,27 +36,27 @@ function DocumentsPage() {
     reset,
     setValue,
     watch,
-    formState: { isDirty },
+    formState: { isDirty }
   } = useForm<z.infer<typeof documentsScheme>>({
     resolver: zodResolver(documentsScheme),
     mode: 'onChange',
     defaultValues: {
       terms_of_use: [],
-      privacy_policy: [],
-    },
+      privacy_policy: []
+    }
   });
 
   useEffect(() => {
     if (!documents) return;
     setValue('terms_of_use', [
       new File([], documents[0].document_url, {
-        type: 'for-url',
-      }),
+        type: 'for-url'
+      })
     ]);
     setValue('privacy_policy', [
       new File([], documents[1].document_url, {
-        type: 'for-url',
-      }),
+        type: 'for-url'
+      })
     ]);
   }, [documents]);
 

@@ -1,26 +1,28 @@
 import type { Metadata } from 'next';
+
 import { getTranslations } from 'next-intl/server';
-import type { PageProps } from '@/types';
-import Help from '@/components/pages/why-juniors/help/Help';
+
+import RoiCalculator from '@/components/pages/why-juniors/ROI-calculator/RoiCalculator';
 import ContentCards from '@/components/pages/why-juniors/contentCards/ContentCards';
-import JuniorsAdvantages from '@/components/pages/why-juniors/juniors-advantages/JuniorsAdvantages';
+import Help from '@/components/pages/why-juniors/help/Help';
 import HistoryJuniors from '@/components/pages/why-juniors/history-juniors/HistoryJuniors';
-import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
+import JuniorsAdvantages from '@/components/pages/why-juniors/juniors-advantages/JuniorsAdvantages';
 import Testimonials from '@/components/pages/why-juniors/testimonials/Testimonials';
 import HiddenTitle from '@/components/shared/HiddenTitle';
-import RoiCalculator from '@/components/pages/why-juniors/ROI-calculator/RoiCalculator';
+import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
+import type { PageProps } from '@/types';
 
 export async function generateMetadata({
-  params,
+  params
 }: PageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
-    namespace: 'Metadata',
+    namespace: 'Metadata'
   });
 
   return {
     title: t('why_juniors_title'),
-    description: t('why_juniors_description'),
+    description: t('why_juniors_description')
   };
 }
 

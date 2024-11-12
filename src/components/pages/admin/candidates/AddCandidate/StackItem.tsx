@@ -9,7 +9,7 @@ export const StackItem: React.FC<StackItemProps> = ({
   index,
   title,
   isExist,
-  handleDelete,
+  handleDelete
 }) => {
   return (
     <div

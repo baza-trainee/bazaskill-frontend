@@ -1,24 +1,23 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
+import { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
-
-import type { IContacts } from '@/types/contacts';
+import type { z } from 'zod';
 
 import { addContact, getContact, updateContact } from '@/api/contacts';
 import { constants } from '@/constants';
+import type { IContacts } from '@/types/contacts';
 
 import Loader from '../../../shared/loader/Loader';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PageTitle from '../ui/PageTitle';
 import PhoneInput from '../ui/PhoneInput';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { contactsScheme } from './contactsScheme';
 import { defaultValues } from './defaultValues';
 
@@ -26,18 +25,18 @@ function Contacts() {
   const [id, setId] = useState<number>(0);
   const { data, refetch, isFetching } = useQuery<IContacts[], Error>({
     queryKey: [constants.contacts.FETCH_CONTACTS],
-    queryFn: getContact,
+    queryFn: getContact
   });
 
   const {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<z.infer<typeof contactsScheme>>({
     resolver: zodResolver(contactsScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   useEffect(() => {
@@ -52,7 +51,7 @@ function Contacts() {
         linkedin: value.linkedin,
         facebook: value.facebook,
         discord: value.discord,
-        instagram: value.instagram,
+        instagram: value.instagram
       });
     }
   }, [data, reset]);
@@ -72,8 +71,8 @@ function Contacts() {
             linkedin: values.linkedin,
             facebook: values.facebook,
             discord: values.discord,
-            instagram: values.instagram,
-          },
+            instagram: values.instagram
+          }
         });
       } else {
         await addContact({
@@ -84,7 +83,7 @@ function Contacts() {
           linkedin: values.linkedin,
           facebook: values.facebook,
           discord: values.discord,
-          instagram: values.instagram,
+          instagram: values.instagram
         });
       }
 

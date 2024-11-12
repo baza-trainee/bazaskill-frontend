@@ -1,45 +1,28 @@
 'use client';
 
-import type {
-  UseQueryResult,
-} from '@tanstack/react-query';
-import type {
-  SubmitHandler,
-} from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import {
-  Controller,
-  useForm,
-} from 'react-hook-form';
 
-import type { Specialization } from '@/types/specialization';
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import type { SubmitHandler } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import {
   getSpecializationById,
-  updateSpecialization,
+  updateSpecialization
 } from '@/api/specialization';
 import { constants } from '@/constants';
-
-import type {
-  TSpecializationScheme,
-} from './scheme';
+import type { Specialization } from '@/types/specialization';
 
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
-import {
-  specializationScheme,
-} from './scheme';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
+import type { TSpecializationScheme } from './scheme';
+import { specializationScheme } from './scheme';
 
 function EditSpecialization({ id }: { id: string }) {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -52,23 +35,18 @@ function EditSpecialization({ id }: { id: string }) {
     control,
     reset,
     setValue,
-    formState: { isDirty, errors },
+    formState: { isDirty, errors }
   } = useForm<TSpecializationScheme>({
     mode: 'onChange',
     defaultValues: {
-      title: '',
+      title: ''
     },
-    resolver: zodResolver(specializationScheme),
+    resolver: zodResolver(specializationScheme)
   });
 
-  const specialization: UseQueryResult<
-    Specialization,
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATION_BY_ID,
-    ],
-    queryFn: () => getSpecializationById(id),
+  const specialization: UseQueryResult<Specialization, Error> = useQuery({
+    queryKey: [constants.specialization.FETCH_SPECIALIZATION_BY_ID],
+    queryFn: () => getSpecializationById(id)
   });
 
   useEffect(() => {
@@ -76,39 +54,30 @@ function EditSpecialization({ id }: { id: string }) {
   }, [specialization]);
 
   const { mutate } = useMutation({
-    mutationKey: [
-      constants.specialization.UPDATE_SPECIALIZATION,
-    ],
-    mutationFn: (params: any) =>
-      updateSpecialization(params.id, params.data),
+    mutationKey: [constants.specialization.UPDATE_SPECIALIZATION],
+    mutationFn: (params: any) => updateSpecialization(params.id, params.data),
     onSuccess: () => {
       setIsProcessing(false);
       queryClient.invalidateQueries({
-        queryKey: [
-          constants.specialization.FETCH_SPECIALIZATIONS,
-        ],
+        queryKey: [constants.specialization.FETCH_SPECIALIZATIONS]
       });
       router.push('/admin/specializations');
     },
     onError: (error) => {
       alert(error);
       setIsProcessing(false);
-    },
+    }
   });
 
-  const onSubmit: SubmitHandler<
-    TSpecializationScheme
-  > = async (data) => {
+  const onSubmit: SubmitHandler<TSpecializationScheme> = async (data) => {
     try {
       setIsProcessing(true);
       mutate({ id, data });
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
-    }
-    finally {
+    } finally {
       setIsProcessing(false);
     }
   };
@@ -142,11 +111,7 @@ function EditSpecialization({ id }: { id: string }) {
           />
           <div className="flex gap-[24px]">
             <PrimaryButton
-              text={
-                isProcessing
-                  ? 'Обробка запиту'
-                  : 'Зберегти зміни'
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Зберегти зміни'}
               disabled={!isDirty}
             />
             <SecondaryButton

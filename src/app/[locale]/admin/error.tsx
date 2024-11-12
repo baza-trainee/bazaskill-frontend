@@ -4,7 +4,7 @@ import ErrorPage from '@/components/shared/ErrorPage';
 
 export default function ErrorBoundary({
   error,
-  reset,
+  reset
 }: {
   error: Error;
   reset: () => void;

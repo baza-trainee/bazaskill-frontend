@@ -5,9 +5,9 @@ interface CookiesState {
   setCookie: () => void;
 }
 
-export const useCookies = create<CookiesState>(set => ({
+export const useCookies = create<CookiesState>((set) => ({
   isCookies: false,
   setCookie: () => {
     set({ isCookies: true });
-  },
+  }
 }));

@@ -1,21 +1,21 @@
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   width: 16px;
   height: 16px;
   background-color: #fefffe;
   opacity: 1;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
-.swiper-pagination-bullet-active{
+.swiper-pagination-bullet-active {
   background-color: #ffff00;
   transform: scale(1.05);
 }
-.swiper-pagination-bullet:hover{
-  opacity: .8;
+.swiper-pagination-bullet:hover {
+  opacity: 0.8;
   transform: scale(1.05);
 }
 
-.swiper-pagination{
+.swiper-pagination {
   position: static;
   padding: 5px;
   margin-top: 30px;

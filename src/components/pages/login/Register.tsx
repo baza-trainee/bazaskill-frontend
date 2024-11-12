@@ -1,18 +1,18 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
+import React, { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
+import type { z } from 'zod';
 
 import { registerUser } from '@/api/signIn';
 
 import ErrorAlert from '../admin/alerts/ErrorAlert';
-import SignInButton from '../admin/ui/buttons/SignInButton';
 import SignInEmail from '../admin/ui/SignInEmail';
 import SignInPassword from '../admin/ui/SignInPassword';
+import SignInButton from '../admin/ui/buttons/SignInButton';
 import { defaultValues } from './defaultValues';
 import { signInScheme } from './signInScheme';
 
@@ -24,11 +24,11 @@ function Register() {
     handleSubmit,
     control,
     watch,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<z.infer<typeof signInScheme>>({
     resolver: zodResolver(signInScheme),
     mode: 'onChange',
-    defaultValues,
+    defaultValues
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof signInScheme>> = async (
@@ -39,7 +39,7 @@ function Register() {
       const response = await registerUser({
         email: values.email,
         password: values.password,
-        role: 'ADMIN',
+        role: 'ADMIN'
       });
       if (response.status === 201) {
         alert('Користувач створений');

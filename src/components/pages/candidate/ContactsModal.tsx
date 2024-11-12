@@ -1,10 +1,9 @@
 import { createPortal } from 'react-dom';
 
-import type { CandidatesResponse } from '@/types/candidates';
-
 import CloseIcon from '@/components/shared/icons/CloseIcon';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useModal } from '@/stores/useModal';
+import type { CandidatesResponse } from '@/types/candidates';
 
 interface ModalProps {
   candidate: CandidatesResponse;
@@ -12,9 +11,7 @@ interface ModalProps {
 
 function ContactsModal({ candidate }: ModalProps) {
   const { closeModal } = useModal();
-  const isModalOpen = useModal(
-    state => state.isModalOpen,
-  );
+  const isModalOpen = useModal((state) => state.isModalOpen);
 
   useBodyScrollLock(isModalOpen);
 
@@ -37,9 +34,7 @@ function ContactsModal({ candidate }: ModalProps) {
             >
               <use href="/Icons/sprite.svg#icon-tel"></use>
             </svg>
-            <span className="text-lg">
-              {candidate.phone}
-            </span>
+            <span className="text-lg">{candidate.phone}</span>
           </li>
           <li className="flex  w-full items-center justify-between px-6 py-2">
             <svg
@@ -50,9 +45,7 @@ function ContactsModal({ candidate }: ModalProps) {
             >
               <use href="/Icons/sprite.svg#icon-email"></use>
             </svg>
-            <span className="text-lg">
-              {candidate.email}
-            </span>
+            <span className="text-lg">{candidate.email}</span>
           </li>
           <li className="flex  w-full items-center justify-between px-6 py-2">
             <svg
@@ -63,9 +56,7 @@ function ContactsModal({ candidate }: ModalProps) {
             >
               <use href="/Icons/sprite.svg#icon-lnkedIn"></use>
             </svg>
-            <span className="text-lg">
-              {candidate.linkedin}
-            </span>
+            <span className="text-lg">{candidate.linkedin}</span>
           </li>
           <li className="flex  w-full items-center justify-between px-6 py-2">
             <svg
@@ -76,9 +67,7 @@ function ContactsModal({ candidate }: ModalProps) {
             >
               <use href="/Icons/sprite.svg#icon-discord"></use>
             </svg>
-            <span className="text-lg">
-              {candidate.discord}
-            </span>
+            <span className="text-lg">{candidate.discord}</span>
           </li>
           <li className="flex  w-full items-center justify-between px-6 py-2">
             <svg
@@ -89,20 +78,13 @@ function ContactsModal({ candidate }: ModalProps) {
             >
               <use href="/Icons/sprite.svg#icon-telegram"></use>
             </svg>
-            <span className="text-lg">
-              {candidate.telegram}
-            </span>
+            <span className="text-lg">{candidate.telegram}</span>
           </li>
         </ul>
       </div>
     </div>
   );
-  return (
-    <>
-      {isModalOpen
-        && createPortal(<ModalLayout />, document.body)}
-    </>
-  );
+  return <>{isModalOpen && createPortal(<ModalLayout />, document.body)}</>;
 }
 
 export default ContactsModal;

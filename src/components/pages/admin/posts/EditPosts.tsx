@@ -1,27 +1,26 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
+import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { useParams, useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
 import { getPostsID, updatePost } from '@/api/posts';
 import { constants } from '@/constants';
 
-import type { TPostScheme } from './postScheme';
-
 import Loader from '../../../shared/loader/Loader';
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputPost from '../ui/FileInputPost';
 import PageTitle from '../ui/PageTitle';
 import TextAreaArticle from '../ui/TextAreaArticle';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PostPreview from './PostPreview';
+import type { TPostScheme } from './postScheme';
 import { postScheme } from './postScheme';
 
 function EditPosts() {
@@ -35,7 +34,7 @@ function EditPosts() {
 
   const { data, isFetching } = useQuery({
     queryKey: [constants.posts.FETCH_POSTS, id],
-    queryFn: () => getPostsID(id),
+    queryFn: () => getPostsID(id)
   });
 
   const {
@@ -43,7 +42,7 @@ function EditPosts() {
     control,
     watch,
     setValue,
-    formState: { errors, touchedFields },
+    formState: { errors, touchedFields }
   } = useForm<TPostScheme>({
     mode: 'onChange',
     resolver: zodResolver(postScheme),
@@ -51,8 +50,8 @@ function EditPosts() {
       title: '',
       image: '',
       link: '',
-      text: '',
-    },
+      text: ''
+    }
   });
 
   const currentValues = watch();

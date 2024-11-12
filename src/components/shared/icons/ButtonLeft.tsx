@@ -1,10 +1,7 @@
 import type { HTMLProps } from 'react';
 
 interface IButtonLeft extends HTMLProps<HTMLDivElement> {}
-const ButtonLeft: React.FC<IButtonLeft> = ({
-  className,
-  ...rest
-}) => {
+const ButtonLeft: React.FC<IButtonLeft> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

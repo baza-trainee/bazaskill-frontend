@@ -6,8 +6,12 @@ interface NavMenuState {
   closeMenu: () => void;
 }
 
-export const useNavMenu = create<NavMenuState>((set, get)=> ({
+export const useNavMenu = create<NavMenuState>((set, get) => ({
   isOpen: false,
-  toggleMenu: () => {set({ isOpen: !get().isOpen })},
-  closeMenu: () => {set({ isOpen: false })},
+  toggleMenu: () => {
+    set({ isOpen: !get().isOpen });
+  },
+  closeMenu: () => {
+    set({ isOpen: false });
+  }
 }));

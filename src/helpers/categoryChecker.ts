@@ -4,7 +4,7 @@ const specialities = [
   'backend',
   'fullstack',
   'qa manual',
-  'pm',
+  'pm'
 ];
 
 const countries = [
@@ -16,7 +16,7 @@ const countries = [
   'germany',
   'ukraina',
   'polska',
-  'niemcy',
+  'niemcy'
 ];
 
 export function isSpeciality(item: string) {

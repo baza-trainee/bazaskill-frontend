@@ -1,48 +1,50 @@
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
 
-
 const OurHistoryText = () => {
-  const t = useTranslations("Main.history");
-  const [showText, setShowText] = useState(false)
+  const t = useTranslations('Main.history');
+  const [showText, setShowText] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 420px)' });
 
   useEffect(() => {
     setShowText(!isMobile);
-}, [isMobile]);
-
+  }, [isMobile]);
 
   const descriptionStyle =
-    "lg:text-[20px] md:text-[1rem] tracking-[0.02em] text-white font-normal leading-[130%]";
+    'lg:text-[20px] md:text-[1rem] tracking-[0.02em] text-white font-normal leading-[130%]';
 
   return (
     <div className="2xl:px-[25px] ">
       <h2
         id="history-title"
-        className="hidden xl:block text-center lg:mb-[48px] md:mb-[28px] font-tahoma text-[24px] font-bold text-white md:text-2xl 2xl:text-[40px]"
+        className="hidden text-center font-tahoma text-[24px] font-bold text-white md:mb-[28px] md:text-2xl lg:mb-[48px] xl:block 2xl:text-[40px]"
       >
-        {t("title")}
+        {t('title')}
       </h2>
-      <p className={descriptionStyle}>{t("description_1")}</p>
+      <p className={descriptionStyle}>{t('description_1')}</p>
       <br />
-      <p className={descriptionStyle}>{t("description_2")}</p>
+      <p className={descriptionStyle}>{t('description_2')}</p>
       <br />
-      <div className={`${showText ? "block" : "hidden"}`}>
-        <p className={descriptionStyle}>{t("description_3")}</p>
+      <div className={`${showText ? 'block' : 'hidden'}`}>
+        <p className={descriptionStyle}>{t('description_3')}</p>
         <br />
-        <p className={descriptionStyle}>{t("description_4")}</p>
+        <p className={descriptionStyle}>{t('description_4')}</p>
       </div>
-      {isMobile && !showText &&
+      {isMobile && !showText && (
         <button
           onClick={() => setShowText(!showText)}
-          className="relative flex text-transparent bg-clip-text 
-          items-center justify-center p-[2px] overflow-hidden 
-          transition-all bg-gradient-to-r from-green via-green  to-yellow rounded-md group"
-        >{t('button')}</button>}
+          className="group relative flex items-center 
+          justify-center overflow-hidden rounded-md bg-gradient-to-r 
+          from-green via-green to-yellow bg-clip-text  p-[2px] text-transparent transition-all"
+        >
+          {t('button')}
+        </button>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default OurHistoryText
+export default OurHistoryText;

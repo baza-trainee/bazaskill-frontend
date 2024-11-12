@@ -1,27 +1,26 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
-import type { z } from 'zod';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
-
-import type { IUser } from '@/types/singIn';
+import type { z } from 'zod';
 
 import { changePassword } from '@/api/settings';
 import { getProfile } from '@/api/signIn';
 import { constants } from '@/constants';
+import type { IUser } from '@/types/singIn';
 
 import Loader from '../../../shared/loader/Loader';
 import SuccessAlert from '../alerts/SuccessAlert';
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { defaultValues } from './defaultValues';
 import { defaultValuesEdit } from './editSettingsDefaultValues';
 import { settingsScheme } from './editSettingsScheme';
@@ -31,18 +30,18 @@ function EditSettings() {
     handleSubmit,
     control,
     reset,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<z.infer<typeof settingsScheme>>({
     resolver: zodResolver(settingsScheme),
     mode: 'onChange',
-    defaultValues: defaultValuesEdit,
+    defaultValues: defaultValuesEdit
   });
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState('');
 
   const { data: user, isFetching } = useQuery<IUser>({
     queryKey: [constants.profile.FETCH_PROFILE],
-    queryFn: getProfile,
+    queryFn: getProfile
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof settingsScheme>> = async (
@@ -53,8 +52,8 @@ function EditSettings() {
         data: {
           email: user?.email as string,
           oldPassword: values.oldPassword,
-          newPassword: values.newPassword,
-        },
+          newPassword: values.newPassword
+        }
       });
       if (response.status === 200) {
         defaultValues.password = values.newPassword;

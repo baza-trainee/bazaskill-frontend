@@ -1,7 +1,8 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+
+import { useQuery } from '@tanstack/react-query';
 
 import { getPosts } from '@/api/posts';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
@@ -14,7 +15,7 @@ import Post from './Post';
 function Posts() {
   const { data, isFetching } = useQuery({
     queryKey: [constants.posts.FETCH_POSTS],
-    queryFn: getPosts,
+    queryFn: getPosts
   });
 
   return (

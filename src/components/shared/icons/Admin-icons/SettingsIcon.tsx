@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface SettingsIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const SettingsIcon: React.FC<SettingsIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface SettingsIconProps extends HTMLProps<HTMLDivElement> {}
+const SettingsIcon: React.FC<SettingsIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

@@ -3,5 +3,5 @@ export const defaultValues = {
   participants: '',
   employed: '',
   technologies: '',
-  libraries: '',
+  libraries: ''
 };

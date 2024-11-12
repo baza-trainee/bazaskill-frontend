@@ -1,18 +1,16 @@
 'use client';
-import {
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import type { TPartner } from '@/types/partners';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { deletePartners } from '@/api/partners';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 import { constants } from '@/constants';
+import type { TPartner } from '@/types/partners';
 
 import QuestionAlert from '../alerts/QuestionAlert';
 import SuccessAlert from '../alerts/SuccessAlert';
@@ -20,7 +18,7 @@ import SuccessAlert from '../alerts/SuccessAlert';
 function PartnersCard({
   item,
   isEditing,
-  showName = true,
+  showName = true
 }: {
   item: TPartner;
   isEditing: boolean;
@@ -35,17 +33,16 @@ function PartnersCard({
     onSuccess: () => {
       setIsSuccess(true);
       queryClient.invalidateQueries({
-        queryKey: [constants.partners.FETCH_PARTNERS],
+        queryKey: [constants.partners.FETCH_PARTNERS]
       });
-    },
+    }
   });
 
   const handleDeleteConfirm = async () => {
     setIsDeleting(false);
     try {
       await deletePartnersMutation.mutateAsync(item.id);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -86,10 +83,7 @@ function PartnersCard({
             />
           </div>
         </div>
-        <Link
-          className="absolute bottom-6"
-          href={item.partner_url}
-        >
+        <Link className="absolute bottom-6" href={item.partner_url}>
           {showName && (
             <h4 className="flex justify-center font-tahoma font-bold tracking-[.72px] text-white">
               {item.name}

@@ -23,7 +23,7 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
         {photos.map((photo, index) => (
           <li
             key={index}
-            className="overflow-hidden rounded-[100px] duration-700 grayscale hover:scale-105 hover:cursor-pointer"
+            className="overflow-hidden rounded-[100px] grayscale duration-700 hover:scale-105 hover:cursor-pointer"
             role="listitem"
           >
             <Image
@@ -41,4 +41,3 @@ const HelpList: React.FC<HelpListProps> = ({ photos }) => {
 };
 
 export default HelpList;
-

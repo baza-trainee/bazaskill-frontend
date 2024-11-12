@@ -1,13 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
-interface PartnersIconProps
-  extends HTMLProps<HTMLDivElement> {}
-const PartnersIcon: React.FC<PartnersIconProps> = ({
-  className,
-  ...rest
-}) => {
+interface PartnersIconProps extends HTMLProps<HTMLDivElement> {}
+const PartnersIcon: React.FC<PartnersIconProps> = ({ className, ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

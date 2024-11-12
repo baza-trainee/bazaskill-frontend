@@ -1,34 +1,34 @@
 {
   "Metadata": {
-		"main_title": "Baza Skill - recruiting junior specialists",
-		"main_description": "Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073",
+    "main_title": "Baza Skill - recruiting junior specialists",
+    "main_description": "Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073",
 
-		"why_juniors_title": "Чому джуни",
-		"why_juniors_description": "Baza Skill - Чому джуни",
+    "why_juniors_title": "Чому джуни",
+    "why_juniors_description": "Baza Skill - Чому джуни",
 
-		"candidates_title": "BazaSkill Candidates",
-		"candidates_description": "BazaSkill Candidates page on BazaSkill",
+    "candidates_title": "BazaSkill Candidates",
+    "candidates_description": "BazaSkill Candidates page on BazaSkill",
 
-		"candidate_title": "BazaSkill candidate -",
-		"candidate_description": "Candidate`s page",
+    "candidate_title": "BazaSkill candidate -",
+    "candidate_description": "Candidate`s page",
 
-		"contacts_title": "Baza Skill - Контакти",
-		"contacts_description": "Baza Skill - Контакти",
+    "contacts_title": "Baza Skill - Контакти",
+    "contacts_description": "Baza Skill - Контакти",
 
     "docs_privacy_policy_title": "Baza Skill - Privacy policy",
-		"docs_privacy_policy_description": "Baza Skill - Privacy policy",
+    "docs_privacy_policy_description": "Baza Skill - Privacy policy",
 
     "docs_terms_of_use_title": "Baza Skill - Terms of use",
-		"docs_terms_of_use_description": "Baza Skill - Terms of use",
-    
+    "docs_terms_of_use_description": "Baza Skill - Terms of use",
+
     "under_development_title": "The site is under development",
-		"under_development_description": "Baza Skill - Information page"
-	},
-  "Header":{
+    "under_development_description": "Baza Skill - Information page"
+  },
+  "Header": {
     "about": "About us",
     "why_juniors": "Why Juniors",
-    "candidates":"Candidates",
-    "contacts":"Contacts"
+    "candidates": "Candidates",
+    "contacts": "Contacts"
   },
   "Main": {
     "banner": "The main hosting partner for Baza Trainee projects is HostIQ web hosting",
@@ -40,7 +40,7 @@
       "poland": "Poland",
       "germany": "Germany",
       "aria-label": "Specialist, Designer, Developer, QA, Project Manager",
-      "search_button":"search button",
+      "search_button": "search button",
       "title": {
         "main": "Find your",
         "specialist": "ІТ-specialist",
@@ -50,9 +50,9 @@
         "pm": "PM"
       }
     },
-    "history":{
+    "history": {
       "title": "Our Story",
-      "button":"Read more",
+      "button": "Read more",
       "description_1": "The Baza Skill platform will help you find a junior IT specialist, as each of our candidates has already completed an internship in practice.",
       "description_2": "In the project, graduates of IT courses, switchers, and students of technical universities practice creating real digital products in a team. ",
       "description_3": "Each of the specialists presented here has experience in teamwork and project implementation, starting with requirements analysis and ending with release. They have tried themselves in different roles and are familiar with all the challenges and achievements at different stages of the project life cycle.",
@@ -64,41 +64,40 @@
       "employed": "employed",
       "technologies": "technologies",
       "libraries": "libraries",
-      "candidates":"candidates",
-      "partners":"partners",
-      "visitors":"visitors",
-      "specialities":"specialities",
-      "heading":"our statistics"
-    
+      "candidates": "candidates",
+      "partners": "partners",
+      "visitors": "visitors",
+      "specialities": "specialities",
+      "heading": "our statistics"
     },
-    "advantages":{
-      "title":"Benefits of working with us",
-      "card_1_title":"All candidates have undergone onboarding",
-      "card_2_title":"Experience in team software development",
-      "card_3_title":"Portfolio of real projects",
-      "card_4_title":"Candidate's developed soft skills",
-      "card_1_text":"During the standard onboarding procedure, specialization requirements are taken into account, candidates understand how the arrival of a new player affects the team. Developed product development methodology, communication standards, information search priorities.",
-      "card_2_text":"Each candidate participated in meetings from product requirements to release. Our candidates understand interdependence of the team from each other, take into account the time needed for the work of other teams.",
-      "card_3_text":"Each candidate has a proven track record of working with real technical tasks. All projects have implementation and perform a practical role for the customer. During the development, knowledge is also provided regarding the assignment of projects, SEO optimization methods, as well as after-sales service.",
-      "card_4_text":"Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better: an executor or a manager."
+    "advantages": {
+      "title": "Benefits of working with us",
+      "card_1_title": "All candidates have undergone onboarding",
+      "card_2_title": "Experience in team software development",
+      "card_3_title": "Portfolio of real projects",
+      "card_4_title": "Candidate's developed soft skills",
+      "card_1_text": "During the standard onboarding procedure, specialization requirements are taken into account, candidates understand how the arrival of a new player affects the team. Developed product development methodology, communication standards, information search priorities.",
+      "card_2_text": "Each candidate participated in meetings from product requirements to release. Our candidates understand interdependence of the team from each other, take into account the time needed for the work of other teams.",
+      "card_3_text": "Each candidate has a proven track record of working with real technical tasks. All projects have implementation and perform a practical role for the customer. During the development, knowledge is also provided regarding the assignment of projects, SEO optimization methods, as well as after-sales service.",
+      "card_4_text": "Each candidate can perform the role of a team leader for his team if he wishes. During practice, each candidate determines which strategy of behavior suits him better: an executor or a manager."
     },
-    "juniors-advantages":{
-      "title":"Advantages of juniors",
+    "juniors-advantages": {
+      "title": "Advantages of juniors",
       "subtitle": "3 GOOD REASONS TO HIRE JUNIOR",
       "card_title_1": "Motivation and desire to learn",
       "card_title_2": "Economic feasibility in the long term",
       "card_title_3": "Personnel reserve for future processes",
-      "card_text_1":"Juniors are usually highly motivated to develop and quickly adapt to new technologies and processes. They are open to learning, actively seek knowledge and strive to become valuable members of the team, changing it for the better. Also, they have no negative triggers in writing code or bug reports. Such a specialist is actually a blank sheet that the company can form to work for itself.",
-      "card_text_2":"Young specialists are loyal to the employer company, work with enthusiasm, and are also ready to invest their time in learning and mastering the latest technologies. Often they agree to a lower level of pay and at the same time reduce turnover for the company. However, these conditions should be discussed at the start of the junior's work.",
-      "card_text_3":"Inviting junior specialists to work is a successful strategy of companies playing the long game. The middle rank of specialists will move up the career ladder, freeing up places for newcomers. Therefore, a reserve warehouse, prepared and built on time, is an insurance against personnel errors in the future."
+      "card_text_1": "Juniors are usually highly motivated to develop and quickly adapt to new technologies and processes. They are open to learning, actively seek knowledge and strive to become valuable members of the team, changing it for the better. Also, they have no negative triggers in writing code or bug reports. Such a specialist is actually a blank sheet that the company can form to work for itself.",
+      "card_text_2": "Young specialists are loyal to the employer company, work with enthusiasm, and are also ready to invest their time in learning and mastering the latest technologies. Often they agree to a lower level of pay and at the same time reduce turnover for the company. However, these conditions should be discussed at the start of the junior's work.",
+      "card_text_3": "Inviting junior specialists to work is a successful strategy of companies playing the long game. The middle rank of specialists will move up the career ladder, freeing up places for newcomers. Therefore, a reserve warehouse, prepared and built on time, is an insurance against personnel errors in the future."
     },
-    "invitation":{
+    "invitation": {
       "title": "We invite you to cooperate",
       "button": "Apply now",
       "card1_title": "Become our HR",
       "card2_title": "Become our partner",
-      "card1_text":"Are you a recruiter looking for young talent for your IT company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
-      "card2_text":"Together we can reach new heights! Join our network of partners as an employer and support young people on their career path."
+      "card1_text": "Are you a recruiter looking for young talent for your IT company? On Baza Skill, you can find a junior specialist thanks to a flexible search system.",
+      "card2_text": "Together we can reach new heights! Join our network of partners as an employer and support young people on their career path."
     },
     "partners": {
       "title": "Our partners"
@@ -171,7 +170,7 @@
     "tryagain": "Try again"
   },
   "Why_juniors": {
-    "title":"Why juniors",
+    "title": "Why juniors",
     "help": {
       "title": "We will help you find a worthy specialist",
       "paragraph_1": "The Baza Skill platform will help you find an experienced specialist in the IT field, as each of our candidates has already completed serious practice at Baza Trainee Ukraine.",
@@ -182,7 +181,7 @@
       "title": "Try the junior&middle return on investment calculator",
       "roi_btn": "ROI calculator"
     },
-    "history-juniors":{
+    "history-juniors": {
       "title": "History juniors",
       "btn_details": "More details"
     },
@@ -298,7 +297,7 @@
     "salary_error": {
       "diff": "The From value must not be greater than the To value",
       "both_fields": "Please enter both values",
-      "not_negative":"The value cannot be negative"
+      "not_negative": "The value cannot be negative"
     },
     "button": "Apply filters"
   },
@@ -307,24 +306,24 @@
     "message": "We will contact you as soon as possible."
   },
   "Calculator": {
-    "header":"Interactive ROI calculator to compare Junior vs Middle hires",
-    "header_popup":"This interactive ROI (Return on Investment) calculator is designed to compare the long-term benefits of hiring junior professionals versus more experienced middle professionals. It takes into account various factors, including salary, tuition, productivity and adaptation time.",
-    "specialization_title":"Specialization",
-    "specialization_text":"Choose a specialization for calculation",
-    "level_title":"Level of qualification",
-    "level_text":"Select the qualification level for calculation",
-    "salary_title":"Monthly salary ($)",
-    "salary_text":"Enter the salary per month (in dollars) for the relevant candidate",
-    "education_title":"Tuition fee ($)",
-    "education_text":"Specify the total amount of costs for training and adaptation of the relevant candidate",
-    "project_title":"The cost of the project ($)",
-    "project_text":"The 'Project cost' parameter includes the total cost of the project, which is necessary to calculate the company's profit from the employee",
-    "productivity_title":"Initial performance (%)",
-    "productivity_text":"Specify the initial performance of the candidate (estimated by the company's indicators). For reference: it is determined for Junior - 50%, for Middle - 80%",
-    "full_productivity_title":"Achieving full productivity (years)",
-    "full_productivity_text":"Select the appropriate period to achieve the full performance of the appropriate candidate",
-    "output_title":"ROI Result Report:",
-    "button_submit":"Calculate",
-    "button_reset":"Reset"
+    "header": "Interactive ROI calculator to compare Junior vs Middle hires",
+    "header_popup": "This interactive ROI (Return on Investment) calculator is designed to compare the long-term benefits of hiring junior professionals versus more experienced middle professionals. It takes into account various factors, including salary, tuition, productivity and adaptation time.",
+    "specialization_title": "Specialization",
+    "specialization_text": "Choose a specialization for calculation",
+    "level_title": "Level of qualification",
+    "level_text": "Select the qualification level for calculation",
+    "salary_title": "Monthly salary ($)",
+    "salary_text": "Enter the salary per month (in dollars) for the relevant candidate",
+    "education_title": "Tuition fee ($)",
+    "education_text": "Specify the total amount of costs for training and adaptation of the relevant candidate",
+    "project_title": "The cost of the project ($)",
+    "project_text": "The 'Project cost' parameter includes the total cost of the project, which is necessary to calculate the company's profit from the employee",
+    "productivity_title": "Initial performance (%)",
+    "productivity_text": "Specify the initial performance of the candidate (estimated by the company's indicators). For reference: it is determined for Junior - 50%, for Middle - 80%",
+    "full_productivity_title": "Achieving full productivity (years)",
+    "full_productivity_text": "Select the appropriate period to achieve the full performance of the appropriate candidate",
+    "output_title": "ROI Result Report:",
+    "button_submit": "Calculate",
+    "button_reset": "Reset"
   }
 }

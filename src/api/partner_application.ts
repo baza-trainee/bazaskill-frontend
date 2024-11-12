@@ -1,20 +1,14 @@
-import type {
-  IPartner,
-  IPartnerResponse,
-} from '@/types/applications';
-
 import axios from '@/config/axios';
+import type { IPartner, IPartnerResponse } from '@/types/applications';
 
 export async function getPartnerApplications() {
-  const { data } = await axios.get<IPartnerResponse[]>(
-    '/partner-application',
-  );
+  const { data } = await axios.get<IPartnerResponse[]>('/partner-application');
   return data;
 }
 
 export async function getPartnerApplicationsById(id: string) {
   const { data } = await axios.get<IPartnerResponse>(
-    `/partner-application/${id}`,
+    `/partner-application/${id}`
   );
   return data;
 }
@@ -30,18 +24,13 @@ export async function createApplication(values: IPartner) {
     country: values.country,
     specialist: values.specialist,
     position: values.position,
-    message: values.message,
+    message: values.message
   };
-  const res = await axios.post(
-    '/partner-application',
-    newApplication,
-  );
+  const res = await axios.post('/partner-application', newApplication);
   return res;
 }
 
 export async function deleteApplication(id: number) {
-  const response = await axios.delete(
-    `/partner-application/${id}`,
-  );
+  const response = await axios.delete(`/partner-application/${id}`);
   return response;
 }

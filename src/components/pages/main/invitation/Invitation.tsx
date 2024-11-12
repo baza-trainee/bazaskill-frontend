@@ -1,11 +1,13 @@
 'use client';
 
 import { sendGTMEvent } from '@next/third-parties/google';
-import { useModal } from '@/stores/useModal';
 import { useTranslations } from 'next-intl';
+
+import { useModal } from '@/stores/useModal';
+
+import RegisterModal from '../../../shared/modals/RegisterModal';
 import RegisterHrForm from '../../../shared/modals/forms/register_hr/RegisterHrForm';
 import RegisterPartnerForm from '../../../shared/modals/forms/register_partner/RegisterPartnerForm';
-import RegisterModal from '../../../shared/modals/RegisterModal';
 
 const Invitation = () => {
   const t = useTranslations('Main.invitation');
@@ -47,7 +49,7 @@ const Invitation = () => {
               openModal('hr');
               sendGTMEvent({
                 event: 'buttonClicked',
-                value: 'User opened "To become HR" form',
+                value: 'User opened "To become HR" form'
               });
             }}
             className="group relative inline-flex w-full max-w-[235px] items-center justify-center overflow-hidden rounded-md bg-gradient-to-r from-green via-green to-yellow  p-[1px] text-white transition-all"
@@ -81,7 +83,7 @@ const Invitation = () => {
               openModal('partner');
               sendGTMEvent({
                 event: 'buttonClicked',
-                value: 'User opened "To become partner" form',
+                value: 'User opened "To become partner" form'
               });
             }}
             className="group relative inline-flex w-full max-w-[235px] items-center justify-center overflow-hidden rounded-md bg-gradient-to-r from-green via-green to-yellow  p-[1px] text-white transition-all"

@@ -1,10 +1,10 @@
 export const metadata = {
   title: 'Sign In',
-  description: 'Sign in Page',
+  description: 'Sign in Page'
 };
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {

@@ -1,12 +1,8 @@
 import type { HTMLProps } from 'react';
-
 import React from 'react';
 
 interface EyeIconProps extends HTMLProps<HTMLDivElement> {}
-const EyeIcon: React.FC<EyeIconProps> = ({
-  className,
-  ...rest
-}) => {
+const EyeIcon: React.FC<EyeIconProps> = ({ className, ...rest }) => {
   return (
     <div {...rest}>
       <svg

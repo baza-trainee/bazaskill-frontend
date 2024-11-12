@@ -1,6 +1,5 @@
-import type { IContacts } from '@/types/contacts';
-
 import axios from '@/config/axios';
+import type { IContacts } from '@/types/contacts';
 
 interface Data {
   phone_1: string;
@@ -19,35 +18,23 @@ interface IUpdateData {
 }
 
 export async function getContact() {
-  const { data }
-    = await axios.get<IContacts[]>('/contacts');
+  const { data } = await axios.get<IContacts[]>('/contacts');
   return data;
 }
 
 export async function getByIdContact(id: number) {
-  const { data } = await axios.get<IContacts>(
-    `/contacts/${id}`,
-  );
+  const { data } = await axios.get<IContacts>(`/contacts/${id}`);
   return data;
 }
 
-export async function updateContact({
-  id,
-  updateData,
-}: IUpdateData) {
-  const { data } = await axios.patch(
-    `/contacts/${id}`,
-    updateData,
-  );
+export async function updateContact({ id, updateData }: IUpdateData) {
+  const { data } = await axios.patch(`/contacts/${id}`, updateData);
 
   return data;
 }
 
 export async function addContact(value: Data) {
-  const { data } = await axios.post<IContacts[]>(
-    `/contacts`,
-    value,
-  );
+  const { data } = await axios.post<IContacts[]>(`/contacts`, value);
   return data;
 }
 

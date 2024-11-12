@@ -1,46 +1,49 @@
-import { Formik, Form, useFormikContext } from "formik";
-import { useTranslations } from "next-intl";
-import InputText from "./InputText";
-import InputRadio from "./InputRadio";
+import { useState } from 'react';
+
+import { Form, Formik, useFormikContext } from 'formik';
+import { useTranslations } from 'next-intl';
+import * as Yup from 'yup';
+
+import { useValues } from '@/stores/useValuesStore';
+
+import Indicator from './Indicator';
+import InfoField from './InfoField';
+import InputRadio from './InputRadio';
+import InputText from './InputText';
 import {
-  specialities,
-  skills,
-  times,
-  itemSpecialization,
-  itemLevel,
-  itemSalary,
-  itemEducation,
-  itemProjectValue,
-  itemProductivity,
-  itemFullProductivityYears,
   Item,
-} from "./data";
-import Indicator from "./Indicator";
-import InfoField from "./InfoField";
-import { useState } from "react";
-import { useValues } from "@/stores/useValuesStore";
-import * as Yup from "yup";
+  itemEducation,
+  itemFullProductivityYears,
+  itemLevel,
+  itemProductivity,
+  itemProjectValue,
+  itemSalary,
+  itemSpecialization,
+  skills,
+  specialities,
+  times
+} from './data';
 
 const validationSchema = Yup.object().shape({
   specialization: Yup.string().required("Це поле є обов'язковим "),
   level: Yup.string().required("Це поле є обов'язковим "),
   salary: Yup.number()
-    .integer("Значення має бути цілим числом")
-    .positive("Значення має бути більше нуля")
+    .integer('Значення має бути цілим числом')
+    .positive('Значення має бути більше нуля')
     .required("Це поле є обов'язковим "),
   educationCost: Yup.number()
-    .integer("Значення має бути цілим числом")
-    .positive("Значення має бути більше нуля")
+    .integer('Значення має бути цілим числом')
+    .positive('Значення має бути більше нуля')
     .required("Це поле є обов'язковим "),
   projectValue: Yup.number()
-    .integer("Значення має бути цілим числом")
-    .positive("Значення має бути більше нуля")
+    .integer('Значення має бути цілим числом')
+    .positive('Значення має бути більше нуля')
     .required("Це поле є обов'язковим "),
   productivity: Yup.number()
-    .integer("Значення має бути цілим числом")
-    .positive("Значення має бути більше нуля")
+    .integer('Значення має бути цілим числом')
+    .positive('Значення має бути більше нуля')
     .required("Це поле є обов'язковим "),
-  fullProductivityYears: Yup.string().required("Це поле є обов'язковим "),
+  fullProductivityYears: Yup.string().required("Це поле є обов'язковим ")
 });
 
 export interface Values {
@@ -54,13 +57,13 @@ export interface Values {
 }
 
 const initialValues: Values = {
-  specialization: "",
-  level: "",
+  specialization: '',
+  level: '',
   salary: 0,
   educationCost: 0,
   projectValue: 0,
   productivity: 0,
-  fullProductivityYears: "",
+  fullProductivityYears: ''
 };
 
 const ErrorSummary = () => {
@@ -74,7 +77,7 @@ const ErrorSummary = () => {
 };
 
 export default function InputForm() {
-  const t = useTranslations("Calculator");
+  const t = useTranslations('Calculator');
   const { setValues } = useValues();
   const [openFields, setOpenFields] = useState<{ [key: string]: boolean }>({
     specialization: false,
@@ -83,18 +86,18 @@ export default function InputForm() {
     educationCost: false,
     projectValue: false,
     productivity: false,
-    fullProductivityYears: false,
+    fullProductivityYears: false
   });
 
   const openField = (item: Item) => {
     setOpenFields((prev) => ({
       ...prev,
-      [item.name]: !prev[item.name],
+      [item.name]: !prev[item.name]
     }));
   };
 
   return (
-    <div className="mt-10 lg:mt-0 grid grid-cols-[80vw] md:grid-cols-[514px] border border-green rounded-lg p-4 lg:p-10">
+    <div className="mt-10 grid grid-cols-[80vw] rounded-lg border border-green p-4 md:grid-cols-[514px] lg:mt-0 lg:p-10">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -107,13 +110,13 @@ export default function InputForm() {
           <Form autoComplete="off" className="grid gap-6 p-0">
             {/* Specialization Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemSpecialization}
                   isOpen={openFields.specialization}
                   openField={openField}
                 />
-                <div className={openFields.specialization ? "block" : "hidden"}>
+                <div className={openFields.specialization ? 'block' : 'hidden'}>
                   <ul
                     role="group"
                     aria-labelledby="radio-group"
@@ -132,18 +135,20 @@ export default function InputForm() {
                   </ul>
                 </div>
               </div>
-              {!openFields.specialization &&  <InfoField item={itemSpecialization} />}
+              {!openFields.specialization && (
+                <InfoField item={itemSpecialization} />
+              )}
             </div>
 
             {/* Level Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemLevel}
                   isOpen={openFields.level}
                   openField={openField}
                 />
-                <div className={openFields.level ? "block" : "hidden"}>
+                <div className={openFields.level ? 'block' : 'hidden'}>
                   <ul
                     role="group"
                     aria-labelledby="radio-group"
@@ -157,81 +162,85 @@ export default function InputForm() {
                   </ul>
                 </div>
               </div>
-              {!openFields.level &&  <InfoField item={itemLevel} />}
+              {!openFields.level && <InfoField item={itemLevel} />}
             </div>
 
             {/* Salary Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemSalary}
                   isOpen={openFields.salary}
                   openField={openField}
                 />
-                <div className={openFields.salary ? "block" : "hidden"}>
+                <div className={openFields.salary ? 'block' : 'hidden'}>
                   <InputText name="salary" />
                 </div>
               </div>
-              {!openFields.salary &&  <InfoField item={itemSalary} />}
+              {!openFields.salary && <InfoField item={itemSalary} />}
             </div>
 
             {/* Education Cost Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemEducation}
                   isOpen={openFields.educationCost}
                   openField={openField}
                 />
-                <div className={openFields.educationCost ? "block" : "hidden"}>
+                <div className={openFields.educationCost ? 'block' : 'hidden'}>
                   <InputText name="educationCost" />
                 </div>
               </div>
-              {!openFields.education &&  <InfoField item={itemEducation} />}
+              {!openFields.education && <InfoField item={itemEducation} />}
             </div>
 
             {/* Mentorship Cost Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemProjectValue}
                   isOpen={openFields.projectValue}
                   openField={openField}
                 />
-                <div
-                  className={openFields.projectValue ? "block" : "hidden"}
-                >
+                <div className={openFields.projectValue ? 'block' : 'hidden'}>
                   <InputText name="projectValue" />
                 </div>
               </div>
-              {!openFields.mentorshipCost &&  <InfoField item={itemProjectValue} />}
+              {!openFields.mentorshipCost && (
+                <InfoField item={itemProjectValue} />
+              )}
             </div>
 
             {/* Productivity Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemProductivity}
                   isOpen={openFields.productivity}
                   openField={openField}
                 />
-                <div className={openFields.productivity ? "block" : "hidden"}>
+                <div className={openFields.productivity ? 'block' : 'hidden'}>
                   <InputText name="productivity" />
                 </div>
               </div>
-              {!openFields.productivity &&  <InfoField item={itemProductivity} />}
+              {!openFields.productivity && (
+                <InfoField item={itemProductivity} />
+              )}
             </div>
 
             {/* Full Productivity Years Field */}
             <div className="relative grid grid-cols-[1fr_34px] p-0">
-              <div className="grid gap-4 border border-green rounded-md bg-gray-100 p-4">
+              <div className="bg-gray-100 grid gap-4 rounded-md border border-green p-4">
                 <Indicator
                   item={itemFullProductivityYears}
                   isOpen={openFields.fullProductivityYears}
                   openField={openField}
                 />
                 <div
-                  className={openFields.fullProductivityYears ? "block" : "hidden"}
+                  className={
+                    openFields.fullProductivityYears ? 'block' : 'hidden'
+                  }
                 >
                   <ul
                     role="group"
@@ -251,7 +260,9 @@ export default function InputForm() {
                   </ul>
                 </div>
               </div>
-              {!openFields.fullProductivityYears &&  <InfoField item={itemFullProductivityYears} />}
+              {!openFields.fullProductivityYears && (
+                <InfoField item={itemFullProductivityYears} />
+              )}
             </div>
 
             {/* Submit Button and Error Summary */}
@@ -261,12 +272,11 @@ export default function InputForm() {
               </div>
               <button
                 type="submit"
-                className="flex justify-center items-center w-[160px] h-[44px] border-none rounded-[4px] shadow-[inset_2px_2px_8px_16px_rgba(0,0,0,0.25)] bg-gradient-to-br from-[#5bff75] to-[#fff854] text-[#212121] font-roboto font-medium text-[18px] leading-[1.5] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="font-roboto flex h-[44px] w-[160px] cursor-pointer items-center justify-center rounded-[4px] border-none bg-gradient-to-br from-[#5bff75] to-[#fff854] text-[18px] font-medium leading-[1.5] text-[#212121] shadow-[inset_2px_2px_8px_16px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={isSubmitting}
               >
                 {t('button_submit')}
               </button>
-
             </div>
           </Form>
         )}

@@ -1,22 +1,13 @@
-import type {
-  ButtonHTMLAttributes,
-  ReactNode,
-} from 'react';
-
 import { useRouter } from 'next/navigation';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import React from 'react';
 
-interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   iconClassName?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  icon,
-  ...rest
-}) => {
+const Button: React.FC<ButtonProps> = ({ children, ...rest }) => {
   const router = useRouter();
   return (
     <button

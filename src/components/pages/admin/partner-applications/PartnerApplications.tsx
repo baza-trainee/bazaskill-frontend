@@ -1,12 +1,13 @@
 'use client';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
 
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import {
   deleteApplication,
-  getPartnerApplications,
+  getPartnerApplications
 } from '@/api/partner_application';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { constants } from '@/constants';
@@ -20,16 +21,16 @@ function PartnerApplications() {
 
   const { data, isFetching, isError, error } = useQuery({
     queryKey: [constants.partner_applications.FETCH_PARTNER_APPLICATIONS],
-    queryFn: getPartnerApplications,
+    queryFn: getPartnerApplications
   });
 
   const deleteApplicationMutation = useMutation({
     mutationFn: deleteApplication,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [constants.partner_applications.FETCH_PARTNER_APPLICATIONS],
+        queryKey: [constants.partner_applications.FETCH_PARTNER_APPLICATIONS]
       });
-    },
+    }
   });
 
   const handleRemove = (id: number) => {

@@ -13,10 +13,7 @@ export interface ITestimonial {
   image_id: string;
 }
 
-export type TestimonialFormInput = Omit<
-  ITestimonial,
-  'id' | 'createdAt'
->;
+export type TestimonialFormInput = Omit<ITestimonial, 'id' | 'createdAt'>;
 
 export interface Testimonial {
   id: string;

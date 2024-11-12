@@ -9,8 +9,7 @@ export interface SpecializationStack {
   specialization_stack_id: number;
 }
 
-export interface ISpecializationWithStack
-  extends ISpecialization {
+export interface ISpecializationWithStack extends ISpecialization {
   stack: SpecializationStack[];
 }
 

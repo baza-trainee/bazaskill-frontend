@@ -1,24 +1,22 @@
 'use client';
-import type { UseQueryResult } from '@tanstack/react-query';
 
+import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import type { CandidatesResponse } from '@/types/candidates';
-
-import { constants } from '@/constants';
-import { useModal } from '@/stores/useModal';
 import { getAllCandidates } from '@/api/candidates';
-
-import Loader from '@/components/shared/loader/Loader';
 import CandidateHero from '@/components/pages/candidate/Hero';
 import MainInfo from '@/components/pages/candidate/MainInfo';
-import RegisterHrForm from '@/components/shared/modals/forms/register_hr/RegisterHrForm';
+import Loader from '@/components/shared/loader/Loader';
 import RegisterModal from '@/components/shared/modals/RegisterModal';
+import RegisterHrForm from '@/components/shared/modals/forms/register_hr/RegisterHrForm';
+import { constants } from '@/constants';
+import { useModal } from '@/stores/useModal';
+import type { CandidatesResponse } from '@/types/candidates';
 
 function CandidatePageComponent({ id }: { id: string }) {
   const candidates: UseQueryResult<CandidatesResponse[], Error> = useQuery({
     queryKey: [constants.candidates.FETCH_ALL_CANDIDATES],
-    queryFn: getAllCandidates,
+    queryFn: getAllCandidates
   });
 
   const candidate = candidates.data?.find(

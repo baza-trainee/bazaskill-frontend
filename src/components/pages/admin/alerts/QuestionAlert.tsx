@@ -8,11 +8,7 @@ interface AlertProps {
   onConfirm: () => void;
 }
 
-function QuestionAlert({
-  title,
-  onCancel,
-  onConfirm,
-}: AlertProps) {
+function QuestionAlert({ title, onCancel, onConfirm }: AlertProps) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && onCancel) {

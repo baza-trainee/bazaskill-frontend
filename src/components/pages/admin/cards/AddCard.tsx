@@ -1,39 +1,29 @@
 'use client';
 
-import type {
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type {
   DeepMap,
   FieldError,
   FieldValues,
-  SubmitHandler,
+  SubmitHandler
 } from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import {
-  Controller,
-  useForm,
-} from 'react-hook-form';
-
-import type { ISpecialization } from '@/types/specialization';
+import { Controller, useForm } from 'react-hook-form';
 
 import { createCard } from '@/api/cards';
 import { getSpecializations } from '@/api/specialization';
 import { constants } from '@/constants';
+import type { ISpecialization } from '@/types/specialization';
 
-import PrimaryButton from '../ui/buttons/PrimaryButton';
-import SecondaryButton from '../ui/buttons/SecondaryButton';
 import FileInputDoc from '../ui/FileInputDoc';
 import PageTitle from '../ui/PageTitle';
 import TextInput from '../ui/TextInput';
+import PrimaryButton from '../ui/buttons/PrimaryButton';
+import SecondaryButton from '../ui/buttons/SecondaryButton';
 import { cardValidation } from './scheme';
 
 function AddCard() {
@@ -44,25 +34,20 @@ function AddCard() {
   const {
     handleSubmit,
     control,
-    formState: { isValid, errors },
+    formState: { isValid, errors }
   } = useForm<FieldValues>({
     resolver: zodResolver(cardValidation),
     mode: 'onChange',
     defaultValues: {
       image: [],
       name: '',
-      specialization: '',
-    },
+      specialization: ''
+    }
   });
 
-  const specialization: UseQueryResult<
-    ISpecialization[],
-    Error
-  > = useQuery({
-    queryKey: [
-      constants.specialization.FETCH_SPECIALIZATIONS,
-    ],
-    queryFn: getSpecializations,
+  const specialization: UseQueryResult<ISpecialization[], Error> = useQuery({
+    queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
+    queryFn: getSpecializations
   });
 
   const { mutate } = useMutation({
@@ -71,7 +56,7 @@ function AddCard() {
     onSuccess: () => {
       setIsProcessing(false);
       queryClient.invalidateQueries({
-        queryKey: [constants.cards.GET_CARDS],
+        queryKey: [constants.cards.GET_CARDS]
       });
       setIsProcessing(false);
       router.push('/admin/cards');
@@ -79,29 +64,22 @@ function AddCard() {
     onError: (error) => {
       alert(error);
       setIsProcessing(false);
-    },
+    }
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = async (
-    values,
-  ) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     setIsProcessing(true);
-    const specializationTitle: ISpecialization | undefined
-      = specialization.data?.find(
-        item =>
-          item.id.toString() === values.specialization,
+    const specializationTitle: ISpecialization | undefined =
+      specialization.data?.find(
+        (item) => item.id.toString() === values.specialization
       );
     try {
       const formData = new FormData();
       formData.append('file', values.image[0]);
       formData.append('name', values.name);
-      formData.append(
-        'specialization',
-        specializationTitle?.title as string,
-      );
+      formData.append('specialization', specializationTitle?.title as string);
       mutate(formData);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -123,12 +101,7 @@ function AddCard() {
                 <TextInput
                   {...field}
                   errorText={
-                    (
-                      errors.name as DeepMap<
-                        FieldValues,
-                        FieldError
-                      >
-                    )?.message
+                    (errors.name as DeepMap<FieldValues, FieldError>)?.message
                   }
                   title="Ім’я"
                   placeholder="Введіть ім’я"
@@ -140,10 +113,7 @@ function AddCard() {
           <Controller
             name="specialization"
             control={control}
-            render={({
-              field: { onChange, value },
-              formState: { errors },
-            }) => (
+            render={({ field: { onChange, value }, formState: { errors } }) => (
               <div className="flex w-full max-w-[242px] grow flex-col gap-[5px]">
                 <label htmlFor="specialization">
                   Cпеціальність &nbsp;
@@ -155,10 +125,8 @@ function AddCard() {
                   onChange={onChange}
                   className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                 >
-                  <option value="">
-                    Оберіть спеціальність
-                  </option>
-                  {specialization.data?.map(item => (
+                  <option value="">Оберіть спеціальність</option>
+                  {specialization.data?.map((item) => (
                     <option key={item.id} value={item.id}>
                       {item.title}
                     </option>
@@ -166,12 +134,8 @@ function AddCard() {
                 </select>
                 <span className="font-sans text-[12px] text-error">
                   {
-                    (
-                      errors.specialization as DeepMap<
-                        FieldValues,
-                        FieldError
-                      >
-                    )?.message
+                    (errors.specialization as DeepMap<FieldValues, FieldError>)
+                      ?.message
                   }
                 </span>
               </div>
@@ -189,9 +153,7 @@ function AddCard() {
 
           <div className="flex w-full justify-between">
             <PrimaryButton
-              text={
-                isProcessing ? 'Обробка запиту' : 'Додати'
-              }
+              text={isProcessing ? 'Обробка запиту' : 'Додати'}
               disabled={!isValid}
             />
             <SecondaryButton

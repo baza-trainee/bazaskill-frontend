@@ -1,10 +1,13 @@
 import { z } from 'zod';
 
+import {
+  ACCEPTED_IMAGE_TYPES,
+  linkValidation,
+  nonRussianLettersPattern
+} from '@/constants/regex';
 import { formatBytes } from '@/helpers/formatBytes';
-import { nonRussianLettersPattern, ACCEPTED_IMAGE_TYPES, linkValidation } from '@/constants/regex';
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 2;
-
 
 export const partnersScheme = z.object({
   name: z
@@ -12,10 +15,9 @@ export const partnersScheme = z.object({
     .nonempty('Введіть ім’я')
     .min(2, 'Назва повинна мати не менше 2 знаків')
     .max(30, 'Назва повинно бути не більше 30 знаків')
-    .refine(
-      value => nonRussianLettersPattern.test(value),
-      { message: 'Введіть коректне ім’я' },
-    ),
+    .refine((value) => nonRussianLettersPattern.test(value), {
+      message: 'Введіть коректне ім’я'
+    }),
   logo: z
     .any()
     .refine(
@@ -31,12 +33,11 @@ export const partnersScheme = z.object({
 
         if (fileSize && fileSize <= maxSizeInBytes) {
           return true;
-        }
-        else {
+        } else {
           return false;
         }
       },
-      `Максимальний розмір файлу ${formatBytes(MAX_IMAGE_SIZE)}`,
+      `Максимальний розмір файлу ${formatBytes(MAX_IMAGE_SIZE)}`
     )
     .refine((value) => {
       if (!value || !value.length) {
@@ -46,20 +47,16 @@ export const partnersScheme = z.object({
       const fileType = value[0]?.type;
       console.log('File Type:', fileType);
 
-      if (
-        fileType
-        && ACCEPTED_IMAGE_TYPES.includes(fileType)
-      ) {
+      if (fileType && ACCEPTED_IMAGE_TYPES.includes(fileType)) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }, 'Невалідний формат зображення'),
   partner_url: z
     .string()
     .min(2, 'Ви не заповнили всі дані.')
-    .refine(value => linkValidation.test(value), {
-      message: 'Введіть дійсний URL',
-    }),
+    .refine((value) => linkValidation.test(value), {
+      message: 'Введіть дійсний URL'
+    })
 });

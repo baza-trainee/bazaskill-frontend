@@ -1,18 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { getStories } from '@/api/stories';
-import { constants } from '@/constants';
+
 import { useQuery } from '@tanstack/react-query';
+
+import { getStories } from '@/api/stories';
 import PlusIcon from '@/components/shared/icons/Admin-icons/PlusIcon';
-import Card from './Card';
+import { constants } from '@/constants';
+
 import Loader from '../../../shared/loader/Loader';
 import PageTitle from '../ui/PageTitle';
+import Card from './Card';
 
 const Stories = () => {
   const { data, isFetching } = useQuery({
     queryKey: [constants.stories.GET_STORIES],
-    queryFn: getStories,
+    queryFn: getStories
   });
   console.log(data);
   return (

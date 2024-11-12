@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl';
 import React from 'react';
+
+import { useTranslations } from 'next-intl';
 import { createPortal } from 'react-dom';
 
 import CloseIcon from '@/components/shared/icons/CloseIcon';
@@ -12,9 +13,7 @@ interface Props {
 const SuccessModal: React.FC<Props> = ({ onClose }) => {
   const t = useTranslations('Success_modal');
 
-  const handleModalClick = (
-    e: React.MouseEvent<HTMLDivElement>,
-  ) => {
+  const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -31,15 +30,12 @@ const SuccessModal: React.FC<Props> = ({ onClose }) => {
           <p className="">{t('title')}</p>
           <p>{t('message')}</p>
         </div>
-        <button
-          className="absolute right-0 top-0 p-2"
-          onClick={onClose}
-        >
+        <button className="absolute right-0 top-0 p-2" onClick={onClose}>
           <CloseIcon />
         </button>
       </div>
     </div>,
-    document.body,
+    document.body
   );
 };
 

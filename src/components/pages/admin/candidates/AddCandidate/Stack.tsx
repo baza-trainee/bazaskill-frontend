@@ -1,26 +1,16 @@
 'use client';
 
-import type {
-  UseQueryResult,
-} from '@tanstack/react-query';
-import type {
-  ChangeEvent,
-} from 'react';
+import type { ChangeEvent } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import {
-  useQuery,
-} from '@tanstack/react-query';
-import React, {
-  useEffect,
-  useState,
-} from 'react';
-
-import type { IStack } from '@/types/stack';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getStack } from '@/api/stack';
 import { constants } from '@/constants';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useModal } from '@/stores/useModal';
+import type { IStack } from '@/types/stack';
 
 import AddStackModal from '../AddStackModal/AddStackModal';
 import { StackItem } from './StackItem';
@@ -37,34 +27,27 @@ interface IStackProps {
   error: string;
 }
 
-const StackComponent: React.FC<IStackProps> = ({
-  handleStack,
-  error,
-}) => {
+const StackComponent: React.FC<IStackProps> = ({ handleStack, error }) => {
   const [stack, setStack] = useState<Stack[]>([]);
 
-  const isModalOpen = useModal(
-    state => state.isModalOpen,
-  );
-  const modalType = useModal(state => state.modalType);
+  const isModalOpen = useModal((state) => state.isModalOpen);
+  const modalType = useModal((state) => state.modalType);
   const { openModal } = useModal();
 
   useBodyScrollLock(isModalOpen);
 
-  const stackResponse: UseQueryResult<IStack[], Error>
-    = useQuery({
-      queryKey: [constants.stack.GET_STACK],
-      queryFn: getStack,
-    });
+  const stackResponse: UseQueryResult<IStack[], Error> = useQuery({
+    queryKey: [constants.stack.GET_STACK],
+    queryFn: getStack
+  });
 
-  const stackNames = stackResponse?.data?.map(item =>
-    item.title.toLowerCase(),
+  const stackNames = stackResponse?.data?.map((item) =>
+    item.title.toLowerCase()
   );
 
   const getId = (title: string) => {
     const foundedItem = stackResponse.data?.find(
-      item =>
-        item.title.toLowerCase() === title.toLowerCase(),
+      (item) => item.title.toLowerCase() === title.toLowerCase()
     );
     return foundedItem?.id.toString();
   };
@@ -79,10 +62,8 @@ const StackComponent: React.FC<IStackProps> = ({
         {
           id: getId(input) as string,
           title: input,
-          isExist: stackNames!.includes(
-            input.toLowerCase(),
-          ),
-        },
+          isExist: stackNames!.includes(input.toLowerCase())
+        }
       ]);
       setInput('');
     }
@@ -107,9 +88,7 @@ const StackComponent: React.FC<IStackProps> = ({
     <div className="relative flex w-full gap-[24px]">
       <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
         <label htmlFor="stack">
-          Стек
-          {' '}
-          <span className="text-red-500">*</span>
+          Стек <span className="text-red-500">*</span>
         </label>
         <div
           id="stack"
@@ -130,19 +109,16 @@ const StackComponent: React.FC<IStackProps> = ({
             name="stack"
             placeholder="Пишіть тут"
             value={input}
-            onChange={({
-              target: { value },
-            }: ChangeEvent<HTMLInputElement>) =>
-              setInput(value)}
+            onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
+              setInput(value)
+            }
             className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
           />
         </div>
         <div className="flex w-full rounded-[4px] border border-white p-[16px]">
           <div className="flex grow flex-wrap gap-[6px]">
             {stack
-              .filter(
-                ({ isExist }: Stack) => !isExist,
-              )
+              .filter(({ isExist }: Stack) => !isExist)
               .map(({ title }: Stack, index) => (
                 <div
                   key={index}
@@ -157,19 +133,13 @@ const StackComponent: React.FC<IStackProps> = ({
             onClick={() => openModal('add_stack')}
             className="flex min-w-[155px] cursor-pointer items-end justify-end self-end text-[16px] leading-[36px]"
           >
-            + &nbsp;
-            {' '}
-            <span className="underline">
-              Створити новий
-            </span>
+            + &nbsp; <span className="underline">Створити новий</span>
           </div>
         </div>
         <p className="text-xs text-error">{error}</p>
       </div>
       <div className="flex w-full max-w-[442px] shrink-[2] grow flex-col gap-[5px]"></div>
-      {isModalOpen && modalType === 'add_stack' && (
-        <AddStackModal />
-      )}
+      {isModalOpen && modalType === 'add_stack' && <AddStackModal />}
     </div>
   );
 };

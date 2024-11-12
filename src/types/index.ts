@@ -19,8 +19,8 @@ export interface IdPageProps {
 }
 
 export type TAdvantages = {
-  id: string
+  id: string;
   title: string;
   text: string;
   icon: string;
-}
+};
