@@ -16,7 +16,7 @@ export default function FooterLinks(): JSX.Element {
       title: 'baza_trainee'
     },
     {
-      href: 'https://baza-educat.com.ua',
+      href: 'https://baza-educat-fun.fun',
       title: 'internship'
     },
     {

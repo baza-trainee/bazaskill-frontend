@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
         className="flex flex-col gap-3 md:flex-row md:gap-0"
         onSubmit={onSubmit}
         autoComplete="off"
-        aria-label={t('search_form')}
+        aria-label={'search_form'}
       >
         <div className="relative flex w-full items-center">
           <TextInput
