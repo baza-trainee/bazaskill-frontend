@@ -14,9 +14,12 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex bg-graphite text-white">
-      <SideBar />
-      <div className="flex-1">{children}</div>
-    </div>
+    <WithAuth>
+      <div className="flex bg-graphite text-white">
+        <SideBar />
+        <div className="flex-1">{children}</div>
+      </div>
+    </WithAuth>
+
   );
 }
