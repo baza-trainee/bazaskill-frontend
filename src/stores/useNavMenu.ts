@@ -8,9 +8,7 @@ interface NavMenuState {
 
 export const useNavMenu = create<NavMenuState>((set, get) => ({
   isOpen: false,
-  toggleMenu: () => {
-    set({ isOpen: !get().isOpen });
-  },
+  toggleMenu: () => set((state) => ({ isOpen: !state.isOpen })),
   closeMenu: () => {
     set({ isOpen: false });
   }
