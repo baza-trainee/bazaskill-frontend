@@ -48,7 +48,7 @@ function Filters({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-fit w-full flex-col items-center justify-center gap-[32px] md:box-border md:w-[243px] md:border-r md:border-secondaryGray xl:w-full xl:max-w-[288px] xl:pr-[32px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
+      className="flex pb-4 h-fit w-full flex-col items-center justify-center gap-[32px] md:box-border md:w-[243px] md:border-r md:border-secondaryGray xl:w-full xl:max-w-[288px] xl:pr-[32px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
     >
       <div className="w-[280px] border-b  border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
         <h3 className="py-[8px] text-base sm:text-lg 3xl:text-xl">

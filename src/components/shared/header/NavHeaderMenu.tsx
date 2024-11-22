@@ -28,7 +28,7 @@ export default function NavHeaderMenu(): JSX.Element {
   }, [isOpen, closeMenu]);
 
   useEffect(() => {
-    if (isTabletOrMobile) handleClose();
+    if (!isTabletOrMobile) handleClose();
   }, [isTabletOrMobile, handleClose]);
 
   useBodyScrollLock(isOpen);
