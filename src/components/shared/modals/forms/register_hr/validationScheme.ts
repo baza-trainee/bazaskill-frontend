@@ -76,6 +76,13 @@ export const registerScheme = z.object({
     })
   }),
 
+  hpot: z.any().refine((value) => {
+    return value?.length === 0 || value === undefined;
+  }, {
+    message: 'Bot Detected', // Error message
+  }),
+
+
   message: z
     .string()
     .nonempty({

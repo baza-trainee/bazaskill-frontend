@@ -6,6 +6,12 @@ import SalaryIcon from '../icons/SalaryIcon';
 import SkillIcon from '../icons/SkillIcon';
 import UserIcon from '../icons/UserIcon';
 
+import { GiProfit } from "react-icons/gi";
+import { IoTime } from "react-icons/io5";
+import { MdOutlineAttachMoney } from "react-icons/md"
+import { GrMoney } from "react-icons/gr";
+import { FaRegMoneyBillAlt } from "react-icons/fa";
+
 export const specialities = [
   'UA/UX Designer',
   'Frontend',
@@ -24,45 +30,44 @@ export interface Item {
   text: string;
 }
 
-export const itemSpecialization: Item = {
-  name: 'specialization',
-  title: 'specialization_title',
-  icon: UserIcon,
-  text: 'specialization_text'
-};
-export const itemLevel: Item = {
-  name: 'level',
-  title: 'level_title',
-  icon: SkillIcon,
-  text: 'level_text'
-};
 export const itemSalary: Item = {
   name: 'salary',
   title: 'salary_title',
   icon: SalaryIcon,
   text: 'salary_text'
 };
+
+export const itemProfit: Item = {
+  name: 'profit',
+  title: 'profit_title',
+  icon: GiProfit,
+  text: 'profit_text'
+};
+
 export const itemEducation: Item = {
   name: 'educationCost',
   title: 'education_title',
-  icon: EducationIcon,
+  icon: FaRegMoneyBillAlt,
   text: 'education_text'
 };
-export const itemProjectValue: Item = {
-  name: 'projectValue',
-  title: 'project_title',
-  icon: MenthorIcon,
-  text: 'project_text'
+
+export const itemMentorshipTime: Item = {
+  name: 'mentorshipTime',
+  title: 'menthorship_title',
+  icon: IoTime,
+  text: 'menthorship_text'
 };
-export const itemProductivity: Item = {
-  name: 'productivity',
-  title: 'productivity_title',
-  icon: ProductivityIcon,
-  text: 'productivity_text'
+
+export const itemMiddleSalary: Item = {
+  name: 'middleSalary',
+  title: 'middleSalary_title',
+  icon: MdOutlineAttachMoney,
+  text: 'middleSalary_text'
 };
-export const itemFullProductivityYears: Item = {
-  name: 'fullProductivityYears',
-  title: 'full_productivity_title',
-  icon: ClockIcon,
-  text: 'full_productivity_text'
+
+export const itemProfitLoss: Item = {
+  name: 'profitLoss',
+  title: 'profitLoss_title',
+  icon: EducationIcon,
+  text: 'profitLoss_text'
 };

@@ -2,25 +2,18 @@
   "Metadata": {
     "main_title": "Baza Skill - recruiting junior specialists",
     "main_description": "Find new stars ★ among junior developers! Your trusted guide to the world of IT talent. Checked juniors for work today ☎ +380956621073",
-
     "why_juniors_title": "Чому джуни",
     "why_juniors_description": "Baza Skill - Чому джуни",
-
     "candidates_title": "BazaSkill Candidates",
     "candidates_description": "BazaSkill Candidates page on BazaSkill",
-
     "candidate_title": "BazaSkill candidate -",
     "candidate_description": "Candidate`s page",
-
     "contacts_title": "Baza Skill - Контакти",
     "contacts_description": "Baza Skill - Контакти",
-
     "docs_privacy_policy_title": "Baza Skill - Privacy policy",
     "docs_privacy_policy_description": "Baza Skill - Privacy policy",
-
     "docs_terms_of_use_title": "Baza Skill - Terms of use",
     "docs_terms_of_use_description": "Baza Skill - Terms of use",
-
     "under_development_title": "The site is under development",
     "under_development_description": "Baza Skill - Information page"
   },
@@ -306,24 +299,23 @@
     "message": "We will contact you as soon as possible."
   },
   "Calculator": {
-    "header": "Interactive ROI calculator to compare Junior vs Middle hires",
-    "header_popup": "This interactive ROI (Return on Investment) calculator is designed to compare the long-term benefits of hiring junior professionals versus more experienced middle professionals. It takes into account various factors, including salary, tuition, productivity and adaptation time.",
-    "specialization_title": "Specialization",
-    "specialization_text": "Choose a specialization for calculation",
-    "level_title": "Level of qualification",
-    "level_text": "Select the qualification level for calculation",
-    "salary_title": "Monthly salary ($)",
-    "salary_text": "Enter the salary per month (in dollars) for the relevant candidate",
-    "education_title": "Tuition fee ($)",
-    "education_text": "Specify the total amount of costs for training and adaptation of the relevant candidate",
-    "project_title": "The cost of the project ($)",
-    "project_text": "The 'Project cost' parameter includes the total cost of the project, which is necessary to calculate the company's profit from the employee",
-    "productivity_title": "Initial performance (%)",
-    "productivity_text": "Specify the initial performance of the candidate (estimated by the company's indicators). For reference: it is determined for Junior - 50%, for Middle - 80%",
-    "full_productivity_title": "Achieving full productivity (years)",
-    "full_productivity_text": "Select the appropriate period to achieve the full performance of the appropriate candidate",
+    "header": "Interactive ROI Calculator for Comparing Junior vs. Middle Hiring",
+    "header_popup": "Interactive ROI calculator to assess the effectiveness of your investment in hiring Junior specialists versus more experienced Middle specialists. It takes into account salary, training costs, productivity, and onboarding time, helping you optimize costs and increase productivity.",
+    "salary_title": "Monthly Junior Salary ($)",
+    "salary_text": "Specify the monthly salary (in dollars) for the respective candidate.",
+    "profit_title": "Additional Junior Profitability ($)",
+    "profit_text": "This indicator reflects the added value the company gains through Junior's work. It is measured in monetary terms.",
+    "education_title": "Training Costs ($)",
+    "education_text": "Costs for Junior's skill enhancement, such as training, courses, seminars, or certifications.",
+    "menthorship_title": "Mentorship Time (hours)",
+    "menthorship_text": "This parameter shows how many work hours Middle spends checking Junior's work, training, or consulting.",
+    "middleSalary_title": "Middle Hourly Rate ($)",
+    "middleSalary_text": "This is the cost of one hour of Middle's work, measured in monetary terms.",
+    "profitLoss_title": "Lost Profitability ($)",
+    "profitLoss_text": "This is the indirect loss incurred when Middle spends time on mentorship instead of their primary tasks.",
     "output_title": "ROI Result Report:",
     "button_submit": "Calculate",
+    "button_processing": "Calculating...",
     "button_reset": "Reset"
   }
 }

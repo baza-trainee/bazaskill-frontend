@@ -36,25 +36,25 @@ const OutputForm = () => {
           <h3 className="underline">{t('output_title')}</h3>
         </div>
         <p className="rounded-md bg-green px-6 py-1 text-lg font-medium leading-6 text-white">
-          {values.level}
+          Junior
         </p>
       </div>
 
       {/* Fields */}
-      <FieldDisplay
-        label={t('specialization_title')}
-        value={values.specialization}
-      />
       <FieldDisplay label={t('salary_title')} value={values.salary} />
       <FieldDisplay label={t('education_title')} value={values.educationCost} />
-      <FieldDisplay label={t('project_title')} value={values.projectValue} />
+      <FieldDisplay label={t('menthorship_title')} value={values.menthorshipTime} />
       <FieldDisplay
-        label={t('productivity_title')}
-        value={values.productivity}
+        label={t('middleSalary_title')}
+        value={values.middleSalary}
       />
       <FieldDisplay
-        label={t('full_productivity_title')}
-        value={values.fullProductivityYears}
+        label={t('profit_title')}
+        value={values.profit}
+      />
+      <FieldDisplay
+        label={t('profitLoss_title')}
+        value={values.profitLoss}
       />
 
       {/* ROI Section */}

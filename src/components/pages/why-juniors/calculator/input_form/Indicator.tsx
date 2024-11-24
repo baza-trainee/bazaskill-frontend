@@ -13,7 +13,7 @@ const Indicator: React.FC<IndicatorProps> = ({ item, isOpen, openField }) => {
   const t = useTranslations('Calculator');
   return (
     <div className="grid grid-cols-[24px_1fr_28px] grid-rows-[24px] p-0">
-      <div className="grid grid-cols-[24px] grid-rows-[24px]">
+      <div className="grid grid-cols-[24px] grid-rows-[24px] text-green text-3xl items-center">
         <item.icon />
       </div>
       <p

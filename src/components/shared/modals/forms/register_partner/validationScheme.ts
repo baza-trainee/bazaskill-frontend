@@ -91,6 +91,12 @@ export const registerScheme = z.object({
       }
     ),
 
+  hpot: z.any().refine((value) => {
+    return value?.length === 0 || value === undefined;
+  }, {
+    message: 'Bot Detected', // Error message
+  }),
+
   terms: z.literal(true, {
     errorMap: () => ({
       message: 'Main.forms.errors.agreement'

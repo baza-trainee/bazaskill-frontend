@@ -253,6 +253,20 @@ function RegisterPartnerForm() {
                 />
               </div>
             </div>
+
+            <Controller
+              name="hpot"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextInput
+                  hidden
+                  {...field}
+                  errorText={errors.hpot?.message && t(errors.hpot?.message)}
+                />
+              )}
+            />
+
             <div className="text-center ">
               <button
                 type="submit"

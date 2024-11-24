@@ -98,7 +98,7 @@ function RegisterHrForm() {
                   <TextInput
                     title={t('Main.forms.first_name')}
                     {...field}
-                    errorText={t(errors.first_name?.message)}
+                    errorText={errors.first_name?.message && t(errors.first_name?.message)}
                     placeholder={t('Main.forms.first_name')}
                     isRequired={true}
                   />
@@ -111,7 +111,7 @@ function RegisterHrForm() {
                   <TextInput
                     title={t('Main.forms.last_name')}
                     {...field}
-                    errorText={t(errors.last_name?.message)}
+                    errorText={errors.last_name?.message && t(errors.last_name?.message)}
                     placeholder={t('Main.forms.last_name')}
                     isRequired={true}
                   />
@@ -126,7 +126,7 @@ function RegisterHrForm() {
                   <PhoneInput
                     title={t('Main.forms.phone')}
                     {...field}
-                    errorText={t(errors.phone?.message)}
+                    errorText={errors.phone?.message && t(errors.phone?.message)}
                     placeholder={t('Main.forms.phone')}
                     isRequired={true}
                   />
@@ -139,7 +139,7 @@ function RegisterHrForm() {
                   <TextInput
                     title="Email"
                     {...field}
-                    errorText={t(errors.email?.message)}
+                    errorText={errors.email?.message && t(errors.email?.message)}
                     placeholder="Email"
                     isRequired={true}
                   />
@@ -157,7 +157,7 @@ function RegisterHrForm() {
                     {...field}
                     placeholder={t('Main.forms.company')}
                     isRequired={false}
-                    errorText={t(errors.company?.message)}
+                    errorText={errors.company?.message && t(errors.company?.message)}
                   />
                 )}
               />
@@ -186,7 +186,7 @@ function RegisterHrForm() {
                     <SelectInput
                       title={t('Main.forms.search')}
                       {...field}
-                      errorText={t(errors.specialization?.message)}
+                      errorText={errors.specialization?.message && t(errors.specialization?.message)}
                       options={stack}
                       placeholder={t('Main.forms.speciality')}
                       isRequired={true}
@@ -202,7 +202,7 @@ function RegisterHrForm() {
                         {...field}
                         title={t('Main.forms.recruitment_contract')}
                         isRequired={true}
-                        errorText={t(errors.terms?.message)}
+                        errorText={errors.terms?.message && t(errors.terms?.message)}
                       />
                     )}
                   />
@@ -214,7 +214,7 @@ function RegisterHrForm() {
                         {...field}
                         title={t('Main.forms.agreement')}
                         isRequired={true}
-                        errorText={t(errors.terms_2?.message)}
+                        errorText={errors.terms_2?.message && t(errors.terms_2?.message)}
                       />
                     )}
                   />
@@ -227,13 +227,26 @@ function RegisterHrForm() {
                   <TextArea
                     title={t('Main.forms.comment')}
                     {...field}
-                    errorText={t(errors.message?.message)}
+                    errorText={errors.message?.message && t(errors.message?.message)}
                     placeholder={t('Main.forms.comment')}
                     isRequired={true}
                   />
                 )}
               />
             </div>
+
+            <Controller
+              name="hpot"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextInput
+                  hidden
+                  {...field}
+                  errorText={errors.hpot?.message && t(errors.hpot?.message)}
+                />
+              )}
+            />
 
             <div className="text-center">
               <button

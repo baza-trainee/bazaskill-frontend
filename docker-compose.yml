@@ -5,7 +5,7 @@ services:
     image: bazaskill-frontend
     build:
       context: ./
-      target: dev
+      target: production
       dockerfile: Dockerfile
     restart: always
     volumes:
