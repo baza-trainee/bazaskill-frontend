@@ -2,25 +2,18 @@
   "Metadata": {
     "main_title": "Baza Skill - rekrutacja młodszych specjalistów",
     "main_description": "Znajdź nowe gwiazdy ★ wśród młodszych programistów! Twój zaufany przewodnik po świecie talentów IT. Sprawdziliśmy dzisiaj juniorów do pracy ☎ +380956621073",
-
     "why_juniors_title": "Чому джуни",
     "why_juniors_description": "Baza Skill - Чому джуни",
-
     "candidates_title": "BazaSkill Kandydaci",
     "candidates_description": "BazaSkill Strona kandydata na BazaSkill",
-
     "candidate_title": "BazaSkill kandydat -",
     "candidate_description": "Strona kandydata",
-
     "contacts_title": "Baza Skill - Контакти",
     "contacts_description": "Baza Skill - Контакти",
-
     "docs_privacy_policy_title": "Baza Skill - Polityka prywatności",
     "docs_privacy_policy_description": "Baza Skill - Polityka prywatności",
-
     "docs_terms_of_use_title": "Baza Skill - Warunki korzystania z serwisu",
     "docs_terms_of_use_description": "Baza Skill - Warunki korzystania z serwisu",
-
     "under_development_title": "Strona jest w fazie rozwoju",
     "under_development_description": "Baza Skill - Strona informacyjna"
   },
@@ -306,24 +299,23 @@
     "message": "My skontaktujemy się z Tobą tak szybko, jak to możliwe."
   },
   "Calculator": {
-    "header": "Interaktywny kalkulator ROI pozwalający porównać zatrudnienie na poziomie młodszym i średnim",
-    "header_popup": "Ten interaktywny kalkulator ROI (zwrotu z inwestycji) zaprojektowano w celu porównania długoterminowych korzyści wynikających z zatrudniania młodszych specjalistów z bardziej doświadczonymi średnimi profesjonalistami. Uwzględnia różne czynniki, w tym wynagrodzenie, czesne, produktywność i czas adaptacji.",
-    "specialization_title": "Specjalizacja",
-    "specialization_text": "Wybierz specjalizację do obliczeń",
-    "level_title": "Poziom kwalifikacji",
-    "level_text": "Wybierz poziom kwalifikacji do obliczeń",
-    "salary_title": "Miesięczne wynagrodzenie ($)",
-    "salary_text": "Wprowadź miesięczne wynagrodzenie (w dolarach) odpowiedniego kandydata",
-    "education_title": "Opłata za naukę ($)",
-    "education_text": "Należy podać łączną kwotę kosztów szkolenia i adaptacji odpowiedniego kandydata",
-    "project_title": "Koszt projektu ($)",
-    "project_text": "Parametr „Koszt projektu” uwzględnia całkowity koszt projektu, który jest niezbędny do obliczenia zysku firmy od pracownika",
-    "productivity_title": "Początkowa wydajność (%)",
-    "productivity_text": "Określ początkowe wyniki kandydata (oszacowane na podstawie wskaźników firmy). Dla porównania: dla Juniora - 50%, dla Middle - 80%",
-    "full_productivity_title": "Osiągnięcie pełnej produktywności (lata)",
-    "full_productivity_text": "Wybierz odpowiedni okres, aby osiągnąć pełną wydajność odpowiedniego kandydata",
-    "output_title": "Raport wyników ROI:",
-    "button_submit": "Obliczać",
+    "header": "Interaktywny Kalkulator ROI do Porównania Zatrudnienia Juniora vs Middle",
+    "header_popup": "Interaktywny kalkulator ROI pozwalający ocenić efektywność inwestycji w zatrudnienie specjalistów Junior w porównaniu do bardziej doświadczonych Middle. Uwzględnia wynagrodzenie, koszty szkoleń, produktywność i czas adaptacji, pomagając optymalizować koszty i zwiększać produktywność.",
+    "salary_title": "Miesięczne Wynagrodzenie Juniora ($)",
+    "salary_text": "Podaj miesięczne wynagrodzenie (w dolarach) odpowiedniego kandydata.",
+    "profit_title": "Dodatkowa Opłacalność Juniora ($)",
+    "profit_text": "Ten wskaźnik odzwierciedla dodatkową wartość, jaką firma zyskuje dzięki pracy Juniora. Mierzona jest w wartościach pieniężnych.",
+    "education_title": "Koszty Szkolenia ($)",
+    "education_text": "Koszty związane z podnoszeniem kwalifikacji Juniora, takie jak szkolenia, kursy, seminaria lub certyfikaty.",
+    "menthorship_title": "Czas na Mentoring (godziny)",
+    "menthorship_text": "Ten parametr pokazuje, ile godzin pracy Middle przeznacza na sprawdzanie pracy Juniora, szkolenia lub konsultacje.",
+    "middleSalary_title": "Stawka Godzinowa Middle ($)",
+    "middleSalary_text": "Koszt jednej godziny pracy Middle, mierzony w wartościach pieniężnych.",
+    "profitLoss_title": "Utracona Opłacalność ($)",
+    "profitLoss_text": "Jest to pośrednia strata, która występuje, gdy Middle spędza czas na mentoring zamiast realizacji swoich głównych zadań.",
+    "output_title": "Raport Wyniku ROI:",
+    "button_submit": "Oblicz",
+    "button_processing": "Obliczam...",
     "button_reset": "Zresetuj"
   }
 }

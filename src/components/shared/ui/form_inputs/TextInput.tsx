@@ -5,14 +5,14 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   isRequired?: boolean;
   errorText?: string;
+  hidden?: boolean;
 }
 
 const TextInput = forwardRef(
   (
-    { title, errorText, isRequired, value = '', ...rest }: TextInputProps,
+    { title, errorText, isRequired, hidden, value = '', ...rest }: TextInputProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) => {
-    console.log(errorText);
     return (
       <div className="relative m-2 w-[240px] sm:w-[340px] md:w-[264px] xl:w-[358px]">
         {!!title && (
@@ -28,6 +28,7 @@ const TextInput = forwardRef(
           className={`mt-[10px] w-full rounded-sm bg-inputBgGray p-2 outline-none focus:border focus:border-green 
         ${errorText && 'border border-error focus:border-error'}
         ${value && !errorText && 'border border-green'}
+        ${hidden && 'hidden'}
         `}
         />
 

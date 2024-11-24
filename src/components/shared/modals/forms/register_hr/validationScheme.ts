@@ -76,6 +76,8 @@ export const registerScheme = z.object({
     })
   }),
 
+  hpot: z.any(),
+
   message: z
     .string()
     .nonempty({

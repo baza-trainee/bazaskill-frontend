@@ -2,85 +2,78 @@ import { create } from 'zustand';
 
 interface ValuesState {
   values: {
-    specialization: string;
-    level: string;
     salary: number;
+    profit: number;
     educationCost: number;
-    projectValue: number;
-    productivity: number;
-    fullProductivityYears: string;
+    menthorshipTime: number;
+    middleSalary: number;
+    profitLoss: number;
   };
   ROI: string;
   setValues: (newValues: ValuesState['values']) => void;
   resetValues: () => void;
 }
 
-const calculateRoi = (values: ValuesState['values']) => {
-  const totalCost = Number(values.salary) + Number(values.educationCost);
-  const totalProductivity =
-    Number(values.productivity) * parseInt(values.fullProductivityYears);
-  const roi = Math.round((totalProductivity / totalCost) * 100);
-  return roi;
-};
+const calculateROIFormula = (
+  salary: number,
+  profit: number,
+  educationCost: number,
+  menthorshipTime: number,
+  middleSalary: number,
+  profitLoss: number
+): number => {
+  // Погодинна ставка Middle (припускаємо, що 160 годин на місяць)
+  const S_M = middleSalary / 160;
 
-const calculateROI = (values: ValuesState['values']) => {
-  const salary =
-    typeof values.salary === 'string' ? parseInt(values.salary) : values.salary;
-  const educationCost =
-    typeof values.educationCost === 'string'
-      ? parseInt(values.educationCost)
-      : values.educationCost;
-  const productivity =
-    typeof values.productivity === 'string'
-      ? parseInt(values.productivity)
-      : values.productivity;
-  const projectValue =
-    typeof values.projectValue === 'string'
-      ? parseInt(values.projectValue)
-      : values.projectValue;
+  // Загальні витрати
+  const totalCosts = salary + educationCost + (menthorshipTime * S_M) + profitLoss;
 
-  if (
-    isNaN(salary) ||
-    isNaN(educationCost) ||
-    isNaN(productivity) ||
-    isNaN(projectValue)
-  ) {
-    throw new Error('Invalid numeric values provided');
-  }
+  // Якщо витрати 0 або негативні, ROI не можна обчислити
+  if (totalCosts <= 0) return 0;
 
-  const investment =
-    salary * 12 +
-    educationCost +
-    (values.level.toLowerCase() === 'junior' ? educationCost : 0);
-
-  const revenue = (projectValue * productivity) / 100;
-
-  return (((revenue - investment) / investment) * 100).toFixed(0);
+  // Формула розрахунку ROI
+  return profit / totalCosts * 100;
 };
 
 export const useValues = create<ValuesState>((set) => ({
   values: {
-    specialization: 'UI/UX Designer',
-    level: 'Junior',
     salary: 0,
+    profit: 0,
     educationCost: 0,
-    projectValue: 0,
-    productivity: 0,
-    fullProductivityYears: '0'
+    menthorshipTime: 0,
+    middleSalary: 0,
+    profitLoss: 0
   },
   ROI: '',
-  setValues: (newValues) =>
-    set({ values: newValues, ROI: calculateROI(newValues) }),
+  setValues: (newValues) => {
+    // Оновлюємо значення
+    set({ values: newValues });
+
+    // Оновлені значення
+    const { salary, profit, educationCost, menthorshipTime, middleSalary, profitLoss } = newValues;
+
+    // Обчислюємо ROI
+    const ROI = calculateROIFormula(
+      salary,
+      profit,
+      educationCost,
+      menthorshipTime,
+      middleSalary,
+      profitLoss
+    );
+
+    // Зберігаємо результат
+    set({ ROI: ROI > 0 ? ROI.toString() : '' });
+  },
   resetValues: () =>
     set({
       values: {
-        specialization: 'UI/UX Designer',
-        level: '',
         salary: 0,
+        profit: 0,
         educationCost: 0,
-        projectValue: 0,
-        productivity: 0,
-        fullProductivityYears: '0'
+        menthorshipTime: 0,
+        middleSalary: 0,
+        profitLoss: 0
       },
       ROI: ''
     })

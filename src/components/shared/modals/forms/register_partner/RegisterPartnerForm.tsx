@@ -57,9 +57,21 @@ function RegisterPartnerForm() {
     values: z.infer<typeof registerScheme>
   ) => {
     try {
+      if (values.hpot || values.hpot.length) {
+        return
+      }
       setIsProcessing(true);
       createApplicationMutation.mutate(values);
       setIsProcessing(false);
+      if (window.gtag) {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-16605851615/SY9xCMq50roZEN_fpO49',
+          value: 1.0,
+          currency: 'UAH'
+        });
+      } else {
+        console.error('Google gtag function is not defined');
+      }
     } catch (error: unknown) {
       console.log(error);
     }
@@ -90,7 +102,7 @@ function RegisterPartnerForm() {
                   <TextInput
                     title={t('Main.forms.company_name')}
                     {...field}
-                    errorText={t(errors.company_name?.message)}
+                    errorText={errors.company_name?.message && t(errors.company_name?.message)}
                     placeholder={t('Main.forms.name')}
                     isRequired={true}
                   />
@@ -103,7 +115,7 @@ function RegisterPartnerForm() {
                   <TextInput
                     title={t('Main.forms.company_website')}
                     {...field}
-                    errorText={t(errors.company_url?.message)}
+                    errorText={errors.company_url?.message && t(errors.company_url?.message)}
                     placeholder={t('Main.forms.website')}
                     isRequired={true}
                   />
@@ -118,7 +130,7 @@ function RegisterPartnerForm() {
                   <PhoneInput
                     title={t('Main.forms.phone')}
                     {...field}
-                    errorText={t(errors.phone?.message)}
+                    errorText={errors.phone?.message && t(errors.phone?.message)}
                     placeholder={t('Main.forms.phone')}
                     isRequired={true}
                   />
@@ -131,7 +143,7 @@ function RegisterPartnerForm() {
                   <TextInput
                     title="Email"
                     {...field}
-                    errorText={t(errors.email?.message)}
+                    errorText={errors.email?.message && t(errors.email?.message)}
                     placeholder="Email"
                     isRequired={true}
                   />
@@ -146,7 +158,7 @@ function RegisterPartnerForm() {
                   <TextInput
                     title={t('Main.forms.first_name')}
                     {...field}
-                    errorText={t(errors.first_name?.message)}
+                    errorText={errors.first_name?.message && t(errors.first_name?.message)}
                     placeholder={t('Main.forms.first_name')}
                     isRequired={true}
                   />
@@ -159,7 +171,7 @@ function RegisterPartnerForm() {
                   <TextInput
                     title={t('Main.forms.last_name')}
                     {...field}
-                    errorText={t(errors.last_name?.message)}
+                    errorText={errors.last_name?.message && t(errors.last_name?.message)}
                     placeholder={t('Main.forms.last_name')}
                     isRequired={true}
                   />
@@ -175,7 +187,7 @@ function RegisterPartnerForm() {
                   <TextInput
                     title={t('Main.forms.position_name')}
                     {...field}
-                    errorText={t(errors.position?.message)}
+                    errorText={errors.position?.message && t(errors.position?.message)}
                     placeholder={t('Main.forms.position')}
                     isRequired={true}
                   />
@@ -202,7 +214,7 @@ function RegisterPartnerForm() {
               defaultValue=""
               render={({ field }) => (
                 <SelectInput
-                  errorText={t(errors.specialist?.message)}
+                  errorText={errors.specialist?.message && t(errors.specialist?.message)}
                   title={t('Main.forms.search')}
                   {...field}
                   options={stack}
@@ -220,7 +232,7 @@ function RegisterPartnerForm() {
                   <TextArea
                     title={t('Main.forms.comment')}
                     {...field}
-                    errorText={t(errors.message?.message)}
+                    errorText={errors.message?.message && t(errors.message?.message)}
                     placeholder={t('Main.forms.comment')}
                     isRequired={true}
                   />
@@ -235,7 +247,7 @@ function RegisterPartnerForm() {
                       {...field}
                       title={t('Main.forms.partner_contract')}
                       isRequired={true}
-                      errorText={t(errors.terms?.message)}
+                      errorText={errors.terms?.message && t(errors.terms?.message)}
                     />
                   )}
                 />
@@ -247,12 +259,25 @@ function RegisterPartnerForm() {
                       {...field}
                       title={t('Main.forms.agreement')}
                       isRequired={true}
-                      errorText={t(errors.terms_2?.message)}
+                      errorText={errors.terms_2?.message && t(errors.terms_2?.message)}
                     />
                   )}
                 />
               </div>
             </div>
+
+            <Controller
+              name="hpot"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextInput
+                  hidden
+                  {...field}
+                />
+              )}
+            />
+
             <div className="text-center ">
               <button
                 type="submit"

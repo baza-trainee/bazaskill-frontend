@@ -91,6 +91,8 @@ export const registerScheme = z.object({
       }
     ),
 
+  hpot: z.any(),
+
   terms: z.literal(true, {
     errorMap: () => ({
       message: 'Main.forms.errors.agreement'
