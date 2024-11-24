@@ -56,6 +56,9 @@ function RegisterHrForm() {
     values: z.infer<typeof registerScheme>
   ) => {
     try {
+      if (values.hpot || values.hpot.length) {
+        return
+      }
       setIsProcessing(true);
       createApplicationMutation.mutate(values);
       setIsProcessing(false);
@@ -243,7 +246,6 @@ function RegisterHrForm() {
                 <TextInput
                   hidden
                   {...field}
-                  errorText={errors.hpot?.message && t(errors.hpot?.message)}
                 />
               )}
             />
