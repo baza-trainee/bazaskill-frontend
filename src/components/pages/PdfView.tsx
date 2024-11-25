@@ -13,7 +13,7 @@ import { constants } from '@/constants';
 import ErrorPage from '../shared/ErrorPage';
 import Loader from '../shared/loader/Loader';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 export function PDFView({ document }: { document: string | null }) {
   const router = useRouter();

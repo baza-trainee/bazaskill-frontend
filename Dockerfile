@@ -2,12 +2,12 @@ FROM node:18-alpine AS base
 RUN apk add --no-cache g++ make py3-pip libc6-compat
 WORKDIR /app
 COPY package*.json ./
+RUN npm ci
 
 FROM base AS builder
 WORKDIR /app
 COPY . .
 RUN npm run build
-
 
 FROM base AS production
 WORKDIR /app
@@ -27,7 +27,7 @@ COPY --from=builder /app/public ./public
 
 CMD npm start
 
-FROM base as dev
+FROM base AS dev
 ENV NODE_ENV=development
 RUN npm install 
 COPY . .
