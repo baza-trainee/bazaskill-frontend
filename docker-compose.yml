@@ -1,12 +1,12 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   app:
     image: bazaskill-frontend
     build:
-      context: ./
-      target: dev
+      context: .
       dockerfile: Dockerfile
+      target: production
     restart: always
     volumes:
       - .:/app
