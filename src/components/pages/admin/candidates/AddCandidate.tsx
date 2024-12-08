@@ -6,12 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  SubmitHandler
-} from 'react-hook-form';
+import type { DeepMap, FieldError, FieldValues, SubmitHandler } from 'react-hook-form';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
 import { createCandidate } from '@/utils/api/candidates';
@@ -36,9 +31,7 @@ function AddCandidate() {
 
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const [stack, setStack] = useState<
-    Array<{ id: string; title: string; isExist: boolean }>
-  >([]);
+  const [stack, setStack] = useState<Array<{ id: string; title: string; isExist: boolean }>>([]);
 
   const [stackError, setStackError] = useState('');
 
@@ -89,9 +82,7 @@ function AddCandidate() {
         return;
       }
       if (undefinedStack.length) {
-        setStackError(
-          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
-        );
+        setStackError(`Деяких технологій немає в базі даних. Будь ласка, внесіть їх`);
         return;
       }
       setIsProcessing(true);
@@ -297,29 +288,19 @@ function AddCandidate() {
               )}
             />
           </div>
-          <Languages
-            control={control}
-            fieldArray={lang}
-            getValues={getValues}
-          />
+          <Languages control={control} fieldArray={lang} getValues={getValues} />
           <div className="flex w-full gap-[24px]">
             <Controller
               name="work_format"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <SelectField
                   title="Формат роботи"
                   value={value}
                   values={['Remote', 'Office', 'Hybrid', 'Part-time']}
                   onChange={onChange}
                   isRequired={true}
-                  errors={
-                    (errors.work_format as DeepMap<FieldValues, FieldError>)
-                      ?.message
-                  }
+                  errors={(errors.work_format as DeepMap<FieldValues, FieldError>)?.message}
                 />
               )}
             />
@@ -334,10 +315,7 @@ function AddCandidate() {
                 <Controller
                   name="salary_from"
                   control={control}
-                  render={({
-                    field: { value, onChange },
-                    formState: { errors }
-                  }) => (
+                  render={({ field: { value, onChange }, formState: { errors } }) => (
                     <div className="relative flex w-[inherit] flex-col gap-[5px]">
                       <input
                         value={value}
@@ -346,14 +324,7 @@ function AddCandidate() {
                         className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                       />
                       <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
-                        {
-                          (
-                            errors.salary_from as DeepMap<
-                              FieldValues,
-                              FieldError
-                            >
-                          )?.message
-                        }
+                        {(errors.salary_from as DeepMap<FieldValues, FieldError>)?.message}
                       </span>
                     </div>
                   )}
@@ -362,10 +333,7 @@ function AddCandidate() {
                 <Controller
                   name="salary_to"
                   control={control}
-                  render={({
-                    field: { value, onChange },
-                    formState: { errors }
-                  }) => (
+                  render={({ field: { value, onChange }, formState: { errors } }) => (
                     <div className="relative flex w-[inherit] flex-col gap-[5px]">
                       <input
                         value={value}
@@ -374,10 +342,7 @@ function AddCandidate() {
                         className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                       />
                       <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
-                        {
-                          (errors.salary_to as DeepMap<FieldValues, FieldError>)
-                            ?.message
-                        }
+                        {(errors.salary_to as DeepMap<FieldValues, FieldError>)?.message}
                       </span>
                     </div>
                   )}
@@ -391,10 +356,7 @@ function AddCandidate() {
             <Controller
               name="about"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
                   <label htmlFor="about">Про себе &nbsp;</label>
                   <textarea
@@ -404,10 +366,7 @@ function AddCandidate() {
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
                   ></textarea>
                   <span className="font-sans text-[12px] text-error">
-                    {
-                      (errors.about as DeepMap<FieldValues, FieldError>)
-                        ?.message
-                    }
+                    {(errors.about as DeepMap<FieldValues, FieldError>)?.message}
                   </span>
                 </div>
               )}
@@ -423,10 +382,7 @@ function AddCandidate() {
             <Controller
               name="specialization"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
                   <label htmlFor="specialization">
                     Cпеціальність &nbsp;
@@ -446,14 +402,7 @@ function AddCandidate() {
                     ))}
                   </select>
                   <span className="font-sans text-[12px] text-error">
-                    {
-                      (
-                        errors.specialization as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.message
-                    }
+                    {(errors.specialization as DeepMap<FieldValues, FieldError>)?.message}
                   </span>
                 </div>
               )}
@@ -462,29 +411,20 @@ function AddCandidate() {
             <Controller
               name="cv"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <FileInput
                   onChange={onChange}
                   value={value}
                   title="Завантажити CV"
                   isRequired={false}
-                  errors={
-                    (errors.cv as DeepMap<FieldValues, FieldError>)?.message
-                  }
+                  errors={(errors.cv as DeepMap<FieldValues, FieldError>)?.message}
                 />
               )}
             />
             <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]"></div>
           </div>
 
-          <Stack
-            handleStack={setStack}
-            isSubmitted={isSubmitted}
-            error={stackError}
-          />
+          <Stack handleStack={setStack} isSubmitted={isSubmitted} error={stackError} />
 
           <div className="flex w-full gap-[24px] border-b border-white pb-[20px] pt-[40px] font-tahoma text-[24px] font-[700]">
             <h3>Освіта</h3>
@@ -508,10 +448,7 @@ function AddCandidate() {
             <Controller
               name="baza_recomendation"
               control={control}
-              render={({
-                field: { value, onChange },
-                formState: { errors }
-              }) => (
+              render={({ field: { value, onChange }, formState: { errors } }) => (
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
                   <label className="font-[700]" htmlFor="baza_recomendation">
                     Рекомендації від Baza Skill &nbsp;
@@ -524,14 +461,7 @@ function AddCandidate() {
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
                   ></textarea>
                   <span className="font-sans text-[12px] text-error">
-                    {
-                      (
-                        errors.baza_recomendation as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.message
-                    }
+                    {(errors.baza_recomendation as DeepMap<FieldValues, FieldError>)?.message}
                   </span>
                 </div>
               )}
@@ -544,19 +474,14 @@ function AddCandidate() {
             <Controller
               name="status"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <SelectField
                   title="Статус кандидата"
                   value={value}
                   isRequired={true}
                   values={['Working', 'Searching', 'Inactive']}
                   onChange={onChange}
-                  errors={
-                    (errors.status as DeepMap<FieldValues, FieldError>)?.message
-                  }
+                  errors={(errors.status as DeepMap<FieldValues, FieldError>)?.message}
                 />
               )}
             />

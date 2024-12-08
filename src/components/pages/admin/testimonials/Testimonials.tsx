@@ -25,9 +25,7 @@ function Testimonials() {
   };
 
   const handleAmount = () => {
-    alert(
-      'Максимальна кількість відгуків для відображення на головній сторінці це 6'
-    );
+    alert('Максимальна кількість відгуків для відображення на головній сторінці це 6');
   };
 
   return (
@@ -41,9 +39,7 @@ function Testimonials() {
           className="mb-[50px]  flex min-h-[100px] w-[286px]  items-center gap-4 rounded-[6px] p-[20px] [border:2px_solid_#fefffe]"
         >
           <PlusIcon className="size-[60px] stroke-[#4DC760]" />
-          <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">
-            Додати відгук
-          </p>
+          <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">Додати відгук</p>
         </Link>
       ) : (
         <button
@@ -51,9 +47,7 @@ function Testimonials() {
           className="mb-[50px]  flex min-h-[100px] w-[286px]  items-center gap-4 rounded-[6px] p-[20px] [border:2px_solid_#fefffe]"
         >
           <PlusIcon className="size-[60px] stroke-[#4DC760]" />
-          <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">
-            Додати відгук
-          </p>
+          <p className="font-sans text-xl leading-[1.3] text-[#4DC760] ">Додати відгук</p>
         </button>
       )}
 

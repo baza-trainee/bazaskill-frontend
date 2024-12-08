@@ -52,9 +52,7 @@ function Login() {
     }
   });
 
-  const onSubmit: SubmitHandler<z.infer<typeof signInScheme>> = async (
-    values
-  ) => {
+  const onSubmit: SubmitHandler<z.infer<typeof signInScheme>> = async (values) => {
     try {
       setIsProcessing(true);
       const response = await authLogin({
@@ -90,16 +88,11 @@ function Login() {
       <div className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-graphite">
         <div className="relative flex w-[520px]  flex-col items-center justify-center overflow-auto rounded-md bg-white p-[35px] font-['Tahoma',_sans-serif] text-black  5xl:w-[600px]">
           <div className="px-6 py-4 text-center">
-            <h2 className="mb-[24px] text-[36px] font-bold 5xl:text-[40px]">
-              Вхід
-            </h2>
+            <h2 className="mb-[24px] text-[36px] font-bold 5xl:text-[40px]">Вхід</h2>
             <p className="mb-[24px] text-[20px] text-[#020202] 5xl:mb-[36px] 5xl:text-[18px]">
               Введіть дані для входу
             </p>
-            <form
-              className="w-[326px] flex-col"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className="w-[326px] flex-col" onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-[36px] flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
                 <div>
                   <Controller
@@ -162,10 +155,7 @@ function Login() {
                   text={isProcessing ? 'Обробка запиту...' : 'Увійти'}
                   type="submit"
                   onClick={handleSubmit(onSubmit)}
-                  disabled={
-                    (!isDirty && !email && !password) ||
-                    !!Object.keys(errors).length
-                  }
+                  disabled={(!isDirty && !email && !password) || !!Object.keys(errors).length}
                 />
               </div>
             </form>
@@ -173,8 +163,7 @@ function Login() {
         </div>
         <div className="absolute bottom-0 left-0  w-full bg-darkGraphite ">
           <p className="mt-0  text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
-            Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова
-            Гандзюка
+            Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова Гандзюка
           </p>
         </div>
         {isError && (

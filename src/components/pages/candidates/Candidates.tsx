@@ -32,9 +32,7 @@ function Candidates() {
 
   const inputCountry = translateCountryName(country);
 
-  const [filteredCandidates, setFilteredCandidates] = useState<
-    CandidatesResponse[]
-  >([]);
+  const [filteredCandidates, setFilteredCandidates] = useState<CandidatesResponse[]>([]);
 
   const [isMainFilter, setIsMainFilter] = useState(false);
 

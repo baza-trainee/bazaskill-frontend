@@ -85,10 +85,7 @@ function EditPartners() {
     <div className="p-[24px]">
       <PageTitle title="Редагування данних партнерів" />
       <div className="mt-[80px] flex flex-wrap gap-[180px]">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex w-[597px] flex-col gap-[30px]"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="flex w-[597px] flex-col gap-[30px]">
           <div>
             <Controller
               name="name"
@@ -137,10 +134,7 @@ function EditPartners() {
               text={isProcessing ? 'Обробка запиту' : 'Зберегти зміни'}
               disabled={errors && !!Object.keys(errors).length}
             />
-            <SecondaryButton
-              onClick={() => router.refresh()}
-              text="Скасувати"
-            />
+            <SecondaryButton onClick={() => router.refresh()} text="Скасувати" />
           </div>
         </form>
         {isSuccess && (

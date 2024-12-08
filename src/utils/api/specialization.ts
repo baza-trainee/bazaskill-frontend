@@ -1,13 +1,8 @@
 import axios from '@/config/axios';
-import type {
-  ISpecializationWithStack,
-  Specialization
-} from '@/types/specialization/index';
+import type { ISpecializationWithStack, Specialization } from '@/types/specialization/index';
 
 export async function getSpecializationsWithStack() {
-  const { data } = await axios.get<ISpecializationWithStack[]>(
-    '/specialization/stack'
-  );
+  const { data } = await axios.get<ISpecializationWithStack[]>('/specialization/stack');
   return data;
 }
 

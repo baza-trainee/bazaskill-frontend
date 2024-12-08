@@ -35,9 +35,8 @@ function Graduate({
   control,
   fieldArray: { fields, append, remove }
 }: IGraduateProps) {
-
   useEffect(() => {
-    if (!fieldsLength) return
+    if (!fieldsLength) return;
     if (fieldsLength > 1) {
       for (let i = 1; i < fieldsLength; i++) append;
     }
@@ -56,9 +55,8 @@ function Graduate({
                   <TextInput
                     {...field}
                     error={
-                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.universiry?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[index]?.universiry
+                        ?.message
                     }
                     isRequired={false}
                     placeholder="Назва навчального закладу"
@@ -73,9 +71,8 @@ function Graduate({
                   <TextInput
                     {...field}
                     error={
-                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.universiry_specializaton?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.universiry_specializaton?.message
                     }
                     isRequired={false}
                     placeholder="Введіть назву"
@@ -87,24 +84,15 @@ function Graduate({
               <Controller
                 name={`graduate.${index}.university_grade`}
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors }
-                }) => (
+                render={({ field: { onChange, value }, formState: { errors } }) => (
                   <SelectField
                     title="Cтупінь освіти"
                     value={value}
-                    values={[
-                      'Bachelor',
-                      'Master',
-                      'Not complete',
-                      'Secondary professional'
-                    ]}
+                    values={['Bachelor', 'Master', 'Not complete', 'Secondary professional']}
                     onChange={onChange}
                     errors={
-                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.universiry_grade?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.universiry_grade?.message
                     }
                     placeholder="Оберіть якщо є"
                   />
@@ -120,9 +108,8 @@ function Graduate({
                   <TextInput
                     {...field}
                     error={
-                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.graduate_start?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[index]?.graduate_start
+                        ?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
@@ -138,9 +125,8 @@ function Graduate({
                   <TextInput
                     {...field}
                     error={
-                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.graduate_end?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[index]?.graduate_end
+                        ?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
@@ -152,18 +138,14 @@ function Graduate({
               <Controller
                 name={`graduate.${index}.graduate_sertificate`}
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors }
-                }) => (
+                render={({ field: { onChange, value }, formState: { errors } }) => (
                   <FileInput
                     onChange={onChange}
                     value={value}
                     title="Завантажити сертифікат"
                     errors={
-                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.graduate_sertificate?.message
+                      (errors.graduate as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.graduate_sertificate?.message
                     }
                   />
                 )}
@@ -178,10 +160,7 @@ function Graduate({
           </div>
         );
       })}
-      <div
-        onClick={() => append(defaultValues)}
-        className="flex cursor-pointer justify-end"
-      >
+      <div onClick={() => append(defaultValues)} className="flex cursor-pointer justify-end">
         + Додати ще
       </div>
     </div>

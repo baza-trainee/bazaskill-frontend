@@ -51,9 +51,7 @@ export default function JuniorCardPreview({
               {currentValues.name_ua}
             </h3>
 
-            <p className="mb-4 text-base md:mb-0 md:text-xl">
-              {currentValues.speciality}
-            </p>
+            <p className="mb-4 text-base md:mb-0 md:text-xl">{currentValues.speciality}</p>
             <p className="-order-1 text-sm md:order-none md:mb-5">
               {formatDate(new Date(Date.now()), locale)}
             </p>

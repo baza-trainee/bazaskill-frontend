@@ -35,9 +35,7 @@ function CandidatesList({ candidates }: { candidates: CandidatesResponse[] }) {
       <div className="flex w-full flex-col gap-4 md:pl-[48px] xl:grid xl:grid-cols-2 2xl:gap-[30px] 2xl:pl-[78px] 3xl:gap-[32px] 3xl:pl-[88px] 4xl:pl-[92px] 5xl:grid-cols-3 5xl:gap-6 5xl:pl-[88px]">
         {candidates
           ?.slice(0, numberOnPage)
-          .map((candidate) => (
-            <CandidateCard key={candidate.id} candidate={candidate} />
-          ))}
+          .map((candidate) => <CandidateCard key={candidate.id} candidate={candidate} />)}
       </div>
 
       {candidates.length > 6 && (

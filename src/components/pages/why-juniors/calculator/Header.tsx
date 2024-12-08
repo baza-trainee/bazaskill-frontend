@@ -29,10 +29,7 @@ const Header = () => {
         >
           <InfoIcon />
           {showPopup && (
-            <Popup
-              text={t('header_popup')}
-              position={{ right: '16px', top: '24px' }}
-            />
+            <Popup text={t('header_popup')} position={{ right: '16px', top: '24px' }} />
           )}
         </div>
       </div>

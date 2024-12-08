@@ -8,11 +8,7 @@ import type { ISpecializationWithStack } from '@/types/specialization';
 
 import FiltersSpecializationMenuItem from './FiltersSpecializationMenuItem';
 
-function FiltersSpecializationMenu({
-  register
-}: {
-  register: UseFormRegister<FieldValues>;
-}) {
+function FiltersSpecializationMenu({ register }: { register: UseFormRegister<FieldValues> }) {
   const t = useTranslations('Filter');
   const { data, isFetching } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS_WITH_STACK],

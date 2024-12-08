@@ -9,9 +9,7 @@ import type { CandidatesResponse } from '@/types/candidates';
 interface CandidateCardProps {
   candidate: CandidatesResponse;
 }
-const CandidateCard: React.FC<CandidateCardProps> = ({
-  candidate
-}: CandidateCardProps) => {
+const CandidateCard: React.FC<CandidateCardProps> = ({ candidate }: CandidateCardProps) => {
   const locale = useLocale();
   const t = useTranslations('Candidate');
   const specialization = candidate.specialization.title;
@@ -43,9 +41,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </h2>
       <div className="flex w-full items-center justify-between font-sans text-[20px] font-[700] leading-[28px] text-white">
         <h3 className="w-[63%]">{candidate.name}</h3>
-        <span className="w-[37%] whitespace-nowrap">
-          ID {candidate.uniqueId}
-        </span>
+        <span className="w-[37%] whitespace-nowrap">ID {candidate.uniqueId}</span>
       </div>
       <div className="flex h-[34px] w-full items-center gap-[12px] font-sans text-[18px]">
         <span className="flex min-w-[60%] items-center gap-[8px]">
@@ -64,9 +60,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
             <span key={lang.id}>
               <span>{shortenLangs(lang.language)}</span>
               &nbsp;
-              {index !== candidate.candidate_language.length - 1 && (
-                <span>/</span>
-              )}
+              {index !== candidate.candidate_language.length - 1 && <span>/</span>}
             </span>
           ))}
         </span>

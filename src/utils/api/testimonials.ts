@@ -1,8 +1,5 @@
 import axios from '@/config/axios';
-import type {
-  TestimonialAdmin,
-  TestimonialFormInput
-} from '@/types/testimonials';
+import type { TestimonialAdmin, TestimonialFormInput } from '@/types/testimonials';
 
 export async function getTestimonials() {
   const { data } = await axios.get<TestimonialAdmin[]>('/testimonials');
@@ -15,10 +12,7 @@ export async function getTestimonialsId(id: string) {
 }
 
 export async function createTestimonial(data: any) {
-  const response = await axios.post<TestimonialFormInput[]>(
-    '/testimonials',
-    data
-  );
+  const response = await axios.post<TestimonialFormInput[]>('/testimonials', data);
   return response;
 }
 

@@ -5,11 +5,7 @@ import Script from 'next/script';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import { NextIntlClientProvider } from 'next-intl';
-import {
-  getMessages,
-  getTranslations,
-  unstable_setRequestLocale
-} from 'next-intl/server';
+import { getMessages, getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import NextTopLoader from 'nextjs-toploader';
 
 import LayoutProvider from '@/components/providers/LayoutProvider';
@@ -54,9 +50,7 @@ const mont = localFont({
   variable: '--font-mont'
 });
 
-export async function generateMetadata({
-  params
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
     namespace: 'Metadata'
@@ -92,18 +86,13 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" type="image/vnd" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16605851615"
-        ></Script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16605851615"></Script>
         <Script id="google-analytics">
           {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16605851615');`}
         </Script>
       </head>
       <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_ID!} />
-      <body
-        className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}
-      >
+      <body className={`${open_sans.variable} ${tahoma.variable} ${mont.variable}`}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${process.env.GOOGLE_TAG_MANAGER_ID}`}

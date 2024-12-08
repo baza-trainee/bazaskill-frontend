@@ -5,8 +5,7 @@ import { forwardRef } from 'react';
 
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 
-interface TextAreaReviewsProps
-  extends InputHTMLAttributes<HTMLTextAreaElement> {
+interface TextAreaReviewsProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
   iconComponent?: JSX.Element;
@@ -33,29 +32,19 @@ ${
         className={` w-[240px] font-sans font-normal 2xl:w-[290px] 3xl:w-[320px] 4xl:w-[350px] 5xl:w-[442px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
       >
         {!!title && (
-          <label
-            htmlFor={title}
-            className="mb-[8px]  block text-[20px] leading-[1.4]  text-white"
-          >
+          <label htmlFor={title} className="mb-[8px]  block text-[20px] leading-[1.4]  text-white">
             {title}
             {isRequired && <span className="text-error">*</span>}
           </label>
         )}
         <div className="relative ">
-          <textarea
-            {...rest}
-            id={title}
-            value={value}
-            className={inputClassName}
-          />
+          <textarea {...rest} id={title} value={value} className={inputClassName} />
 
           <div className="absolute right-[16px] top-[24px]">
             <WriteIcon className="size-[24px] fill-black" />
           </div>
         </div>
-        {errorText && (
-          <span className="left top absolute ml-2 text-xs">{errorText}</span>
-        )}
+        {errorText && <span className="left top absolute ml-2 text-xs">{errorText}</span>}
       </div>
     );
   }

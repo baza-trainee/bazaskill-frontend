@@ -24,8 +24,7 @@ function CandidatesList({ candidates }: { candidates: CandidatesResponse[] }) {
   return (
     <div className="no-scrollbar box-content max-h-[145vh] w-full overflow-y-auto pr-[24px] 5xl:pr-[196px]">
       <div className="pl-[24px] font-tahoma text-[24px]">
-        {candidates.length}{' '}
-        {declineWord(candidates.length, 'кандидат', '', 'и', 'ів')}
+        {candidates.length} {declineWord(candidates.length, 'кандидат', '', 'и', 'ів')}
       </div>
       <div className="mt-[40px] flex h-fit max-w-[950px] grow flex-wrap items-start justify-start gap-[24px] pl-[24px]">
         <div className="relative box-border flex h-[486px] w-[442px] items-center justify-center rounded-[10px] border-2 border-green bg-transparent">
@@ -41,9 +40,7 @@ function CandidatesList({ candidates }: { candidates: CandidatesResponse[] }) {
         </div>
         {candidates
           ?.slice(0, numberOnPage)
-          .map((candidate) => (
-            <CandidateCard key={candidate.id} candidate={candidate} />
-          ))}
+          .map((candidate) => <CandidateCard key={candidate.id} candidate={candidate} />)}
       </div>
       <div ref={ref} className="mx-auto h-4 w-full bg-graphite"></div>
     </div>

@@ -1,10 +1,6 @@
 import { z } from 'zod';
 
-import {
-  ACCEPTED_IMAGE_TYPES,
-  linkValidation,
-  nonRussianLettersPattern
-} from '@/constants/regex';
+import { ACCEPTED_IMAGE_TYPES, linkValidation, nonRussianLettersPattern } from '@/constants/regex';
 import { formatBytes } from '@/helpers/formatBytes';
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 2;

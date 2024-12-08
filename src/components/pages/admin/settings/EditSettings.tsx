@@ -91,10 +91,7 @@ function EditSettings() {
     <div className="relative p-[24px]">
       <PageTitle title="Змінити пароль"></PageTitle>
       <div className="mt-[80px] flex gap-[180px]">
-        <form
-          className="flex w-[597px] flex-col gap-[30px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex w-[597px] flex-col gap-[30px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-[50px] flex flex-col gap-[50px]">
             <div>
               <Controller
@@ -144,9 +141,7 @@ function EditSettings() {
                 )}
               />
             </div>
-            {error.length ? (
-              <p className="text-[1.2rem] text-error">{error}</p>
-            ) : null}
+            {error.length ? <p className="text-[1.2rem] text-error">{error}</p> : null}
           </div>
 
           <div className="flex w-full justify-between">

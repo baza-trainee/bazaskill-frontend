@@ -54,8 +54,7 @@ export function filterCandidatesOnSubmit({
       selectGraduate.includes('gradaute') && candidateGraduate?.length >= 1;
 
     const candidateCources = candidate.cources;
-    const hasSelectedCources =
-      selectGraduate.includes('cources') && candidateCources?.length >= 1;
+    const hasSelectedCources = selectGraduate.includes('cources') && candidateCources?.length >= 1;
 
     const hasSecondaryEducation =
       selectGraduate.includes('secondary_professional') &&
@@ -85,16 +84,11 @@ export function filterCandidatesOnSubmit({
           )
         : true;
     const candidateWorkFormat = candidate.work_format;
-    const hasSelectedWorkFormat =
-      selectedWorkFormat.includes(candidateWorkFormat);
+    const hasSelectedWorkFormat = selectedWorkFormat.includes(candidateWorkFormat);
 
     const candidateStacks = candidate.stack;
-    const hasSelectedStacks = candidateStacks.map((stackItem) =>
-      stackItem.stack?.id.toString()
-    );
-    const anyMatch = selectedStack.some((item) =>
-      hasSelectedStacks.includes(item)
-    );
+    const hasSelectedStacks = candidateStacks.map((stackItem) => stackItem.stack?.id.toString());
+    const anyMatch = selectedStack.some((item) => hasSelectedStacks.includes(item));
 
     const candidateStatus = candidate.status;
     const hasSelectedStatus = selectedStatus.includes(candidateStatus);
@@ -105,8 +99,7 @@ export function filterCandidatesOnSubmit({
     const inputSallaryFrom = Number.parseInt(inputSallary.from);
     const inputSallaryTo = Number.parseInt(inputSallary.to);
     const hasSelectedSallary =
-      candidateSallaryFrom >= inputSallaryFrom &&
-      candidateSallaryTo <= inputSallaryTo;
+      candidateSallaryFrom >= inputSallaryFrom && candidateSallaryTo <= inputSallaryTo;
     return (
       (selectExperience?.length >= 1 ? hasExperience : true) &&
       (selectedLanguage?.length >= 1 ? hasSelectedLanguages : true) &&
@@ -115,9 +108,7 @@ export function filterCandidatesOnSubmit({
       (selectedStatus?.length >= 1 ? hasSelectedStatus : true) &&
       (selectGraduate.includes('cources') ? hasSelectedCources : true) &&
       (selectGraduate.includes('gradaute') ? hasSelectedGraduate : true) &&
-      (selectGraduate.includes('secondary_professional')
-        ? hasSecondaryEducation
-        : true) &&
+      (selectGraduate.includes('secondary_professional') ? hasSecondaryEducation : true) &&
       (inputSallary.from && inputSallary.to ? hasSelectedSallary : true)
     );
   });

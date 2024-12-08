@@ -37,16 +37,8 @@ const OurHistoryAnimation = () => {
               initial={{ opacity: 1, rotateX: 45, y: 100 }}
               animate={{
                 zIndex: isActive ? 20 : 10 + order,
-                top: isActive
-                  ? 0
-                  : `${150 + order * 50 + (order > 1 ? (order - 1) * 50 : 0)}px`,
-                left: isActive
-                  ? '150px'
-                  : order === 1
-                    ? '0px'
-                    : order === 2
-                      ? '150px'
-                      : '300px',
+                top: isActive ? 0 : `${150 + order * 50 + (order > 1 ? (order - 1) * 50 : 0)}px`,
+                left: isActive ? '150px' : order === 1 ? '0px' : order === 2 ? '150px' : '300px',
                 rotateX: isActive ? 0 : 45,
                 y: isActive ? 0 : 20 * order,
                 scaleY: isActive ? 1 : 1.1

@@ -30,9 +30,7 @@ function RestorePassword() {
     defaultValues: defaultValuesPassword
   });
 
-  const onSubmit: SubmitHandler<z.infer<typeof passwordScheme>> = async (
-    values
-  ) => {
+  const onSubmit: SubmitHandler<z.infer<typeof passwordScheme>> = async (values) => {
     try {
       setIsProcessing(true);
       const response = await resetPassword({
@@ -58,16 +56,11 @@ function RestorePassword() {
     <div className="absolute  inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden bg-graphite">
       <div className="relative flex  w-[520px] flex-col items-center justify-center overflow-auto rounded-md bg-white p-[50px] font-['Tahoma',_sans-serif]  text-black 5xl:w-[600px]">
         <div className="px-6 py-4 text-center">
-          <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">
-            Відновити пароль
-          </h2>
+          <h2 className="mb-6 text-4xl font-bold 5xl:text-[40px]">Відновити пароль</h2>
           <p className="mb-6 mt-0 text-center font-['Open_Sans',_sans-serif] text-base font-semibold not-italic text-[#020202] 5xl:mb-9 ">
             Створіть новий пароль
           </p>
-          <form
-            className="w-[326px] flex-col"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className="w-[326px] flex-col" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-5 text-left text-lg text-[#020202] 5xl:gap-6 5xl:text-xl">
               <div>
                 <Controller
@@ -116,8 +109,7 @@ function RestorePassword() {
       </div>
       <div className="absolute bottom-0 left-0  w-full bg-darkGraphite ">
         <p className="mt-0  text-center font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
-          Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова
-          Гандзюка
+          Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова Гандзюка
         </p>
       </div>
     </div>

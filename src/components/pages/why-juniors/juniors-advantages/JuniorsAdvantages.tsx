@@ -46,15 +46,10 @@ const JuniorsAdvantages = () => {
               role="img"
             />
             <div className="flex w-full flex-col items-start gap-2 p-2 lg:w-[516px]">
-              <h4
-                id={`advantage-${i}-title`}
-                className="text-[24px] font-[700]"
-              >
+              <h4 id={`advantage-${i}-title`} className="text-[24px] font-[700]">
                 {i + 1}. {t(item.title)}
               </h4>
-              <p className="text-[20px] leading-[28px] tracking-[2%]">
-                {t(item.text)}
-              </p>
+              <p className="text-[20px] leading-[28px] tracking-[2%]">{t(item.text)}</p>
             </div>
           </article>
         ))}

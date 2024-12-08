@@ -37,13 +37,10 @@ export function PDFView({ document }: { document: string | null }) {
     setNumPages(numPages);
   }
 
-  const pdfWrapperRef = useRef<HTMLDivElement | null>(
-    null
-  ) as RefObject<HTMLDivElement>;
+  const pdfWrapperRef = useRef<HTMLDivElement | null>(null) as RefObject<HTMLDivElement>;
 
   useEffect(() => {
-    const getWidth = () =>
-      pdfWrapperRef?.current?.getBoundingClientRect()?.width || 0;
+    const getWidth = () => pdfWrapperRef?.current?.getBoundingClientRect()?.width || 0;
 
     setWidth(getWidth());
 

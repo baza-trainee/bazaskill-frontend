@@ -64,19 +64,20 @@ function LanguageSwitcher() {
           aria-labelledby="language-switcher"
           className="absolute top-full flex w-[60px] flex-col rounded-[4px] border-2 border-[#4E4E4E] bg-[#202020]"
         >
-          {locales.map((item: string) => (
-            !isActive(item) && (
-              <button
-                key={item}
-                type="button"
-                role="menuitem"
-                className="flex h-[50px] cursor-pointer items-center justify-center border-b border-b-[#4E4E4E] text-[18px] font-semibold text-white duration-300 last:border-none hover:bg-[#2B2B2B] hover:text-yellow"
-                onClick={() => handleCheckLocale(item)}
-              >
-                {item.toUpperCase()}
-              </button>
-            )
-          ))}
+          {locales.map(
+            (item: string) =>
+              !isActive(item) && (
+                <button
+                  key={item}
+                  type="button"
+                  role="menuitem"
+                  className="flex h-[50px] cursor-pointer items-center justify-center border-b border-b-[#4E4E4E] text-[18px] font-semibold text-white duration-300 last:border-none hover:bg-[#2B2B2B] hover:text-yellow"
+                  onClick={() => handleCheckLocale(item)}
+                >
+                  {item.toUpperCase()}
+                </button>
+              )
+          )}
         </div>
       )}
     </div>

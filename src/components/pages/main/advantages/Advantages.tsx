@@ -52,9 +52,7 @@ const Advantages = () => {
                     className="mx-auto w-[120px]"
                   />
                   <div className="flex flex-col">
-                    <h3 className="mb-2 text-[24px] font-bold">
-                      {t(item.title)}
-                    </h3>
+                    <h3 className="mb-2 text-[24px] font-bold">{t(item.title)}</h3>
                     <p className="text-[20px] leading-[28px]">{t(item.text)}</p>
                   </div>
                 </div>

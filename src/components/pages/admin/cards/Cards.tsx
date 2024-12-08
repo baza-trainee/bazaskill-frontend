@@ -51,9 +51,7 @@ function Cards() {
   };
 
   const handleAmount = () => {
-    alert(
-      'Максимальна кількість карток для відображення на головній сторінці це 6'
-    );
+    alert('Максимальна кількість карток для відображення на головній сторінці це 6');
   };
 
   return (
@@ -63,17 +61,11 @@ function Cards() {
         <div className="relative flex min-w-[218px] rounded-md border border-[#7EFE92] bg-[#2C2C2C] p-6 text-white">
           <div className="flex w-full flex-col items-center justify-center">
             {(data?.length as number) < 6 ? (
-              <Link
-                href="/admin/cards/add"
-                className="flex flex-col items-center"
-              >
+              <Link href="/admin/cards/add" className="flex flex-col items-center">
                 <PlusIcon />
               </Link>
             ) : (
-              <button
-                onClick={handleAmount}
-                className="flex flex-col items-center"
-              >
+              <button onClick={handleAmount} className="flex flex-col items-center">
                 <PlusIcon />
               </button>
             )}
@@ -94,9 +86,7 @@ function Cards() {
                   height={117}
                   className="aspect-square rounded-full object-cover text-center"
                 />
-                <span className="flex-col pb-2 text-lg font-bold">
-                  {card.name}
-                </span>
+                <span className="flex-col pb-2 text-lg font-bold">{card.name}</span>
                 <span className="flex-col text-lg">{card.specialization}</span>
               </div>
               <div className="absolute right-[5px] top-[5px] z-10 flex gap-[12px]">

@@ -57,7 +57,7 @@ function RegisterHrForm() {
   ) => {
     try {
       if (values.hpot || values.hpot.length) {
-        return
+        return;
       }
       setIsProcessing(true);
       createApplicationMutation.mutate(values);
@@ -189,7 +189,9 @@ function RegisterHrForm() {
                     <SelectInput
                       title={t('Main.forms.search')}
                       {...field}
-                      errorText={errors.specialization?.message && t(errors.specialization?.message)}
+                      errorText={
+                        errors.specialization?.message && t(errors.specialization?.message)
+                      }
                       options={stack}
                       placeholder={t('Main.forms.speciality')}
                       isRequired={true}
@@ -242,12 +244,7 @@ function RegisterHrForm() {
               name="hpot"
               control={control}
               defaultValue=""
-              render={({ field }) => (
-                <TextInput
-                  hidden
-                  {...field}
-                />
-              )}
+              render={({ field }) => <TextInput hidden {...field} />}
             />
 
             <div className="text-center">
@@ -256,9 +253,7 @@ function RegisterHrForm() {
                 className="mt-8 w-[231px] rounded-md border border-graphite px-8 py-2 hover:border-transparent hover:bg-green disabled:cursor-not-allowed disabled:border-graphite disabled:bg-inputBgGray disabled:hover:border-graphite"
                 disabled={errors && !!Object.keys(errors).length}
               >
-                {isProcessing
-                  ? t('Main.forms.processing')
-                  : t('Main.forms.send')}
+                {isProcessing ? t('Main.forms.processing') : t('Main.forms.send')}
               </button>
             </div>
           </form>

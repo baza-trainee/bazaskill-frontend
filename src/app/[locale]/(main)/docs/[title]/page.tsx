@@ -6,12 +6,11 @@ import { getTranslations } from 'next-intl/server';
 import type { DocsPageProps } from '@/types';
 import dynamic from 'next/dynamic';
 
-const PdfView = dynamic(() => import('@/components/pages/PdfView').then(mod => mod.PDFView), { ssr: false });
+const PdfView = dynamic(() => import('@/components/pages/PdfView').then((mod) => mod.PDFView), {
+  ssr: false
+});
 
-
-export async function generateMetadata({
-  params
-}: DocsPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: DocsPageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
     namespace: 'Metadata'

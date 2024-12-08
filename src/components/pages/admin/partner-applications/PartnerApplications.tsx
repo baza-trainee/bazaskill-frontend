@@ -5,10 +5,7 @@ import React from 'react';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import {
-  deleteApplication,
-  getPartnerApplications
-} from '@/utils/api/partner_application';
+import { deleteApplication, getPartnerApplications } from '@/utils/api/partner_application';
 import TrashIcon from '@/components/shared/icons/Admin-icons/TrashIcon';
 import { constants } from '@/constants';
 import { dateChecker } from '@/helpers/dateChecker';
@@ -56,9 +53,7 @@ function PartnerApplications() {
                     <span>{item.company_name}</span>
                   </div>
                 </Link>
-                <span className="text-right">
-                  {item.created_at.toString().slice(0, 10)}
-                </span>
+                <span className="text-right">{item.created_at.toString().slice(0, 10)}</span>
               </div>
               <div className="flex flex-1 justify-end">
                 <button

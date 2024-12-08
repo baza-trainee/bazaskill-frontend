@@ -12,9 +12,7 @@ export default function PhoneNumbersBlock({ contactTel }: Props): JSX.Element {
   const t = useTranslations('Contacts');
   return (
     <div className="relative flex w-full max-w-[380px] flex-col items-center justify-start gap-8 overflow-hidden rounded-lg border-t-[1px] border-green py-12 text-white md:w-[350px] lg:w-[32%]">
-      <h3 className="text-center font-tahoma text-2xl font-bold">
-        {t('phone_numbers')}
-      </h3>
+      <h3 className="text-center font-tahoma text-2xl font-bold">{t('phone_numbers')}</h3>
 
       <ul className="flex flex-col gap-8">
         {contactTel &&

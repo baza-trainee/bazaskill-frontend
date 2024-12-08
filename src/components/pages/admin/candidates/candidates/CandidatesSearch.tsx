@@ -1,11 +1,7 @@
 import type { ChangeEvent } from 'react';
 import React, { useState } from 'react';
 
-function CandidatesSearch({
-  SubmitHandler
-}: {
-  SubmitHandler: (data: string) => void;
-}) {
+function CandidatesSearch({ SubmitHandler }: { SubmitHandler: (data: string) => void }) {
   const [searchKeyword, setSearchKeyword] = useState<string>('');
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,9 +15,7 @@ function CandidatesSearch({
 
   return (
     <div className="flex h-[120px] items-center justify-between px-[24px] 4xl:pr-[196px]">
-      <h1 className="font-tahoma text-[40px] font-[700] text-white">
-        Всі кандидати
-      </h1>
+      <h1 className="font-tahoma text-[40px] font-[700] text-white">Всі кандидати</h1>
       <form className="relative flex items-center" onSubmit={handleSubmit}>
         <input
           name="searchKeyword"

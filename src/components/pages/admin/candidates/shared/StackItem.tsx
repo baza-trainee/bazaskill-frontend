@@ -5,12 +5,7 @@ interface StackItemProps {
   handleDelete: (index: number) => void;
 }
 
-export const StackItem: React.FC<StackItemProps> = ({
-  index,
-  title,
-  isExist,
-  handleDelete
-}) => {
+export const StackItem: React.FC<StackItemProps> = ({ index, title, isExist, handleDelete }) => {
   return (
     <div
       className={`flex h-[36px] w-fit items-center gap-[16px] rounded-full border-2 bg-graphite px-[16px] py-[5px] font-sans text-[16px] text-white ${isExist ? 'border-green' : 'border-error'}`}

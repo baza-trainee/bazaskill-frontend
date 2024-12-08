@@ -4,14 +4,14 @@ const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
       fontFamily: {
         'open-sans': 'var(--font-open-sans)',
-        'tahoma': 'var(--font-tahoma)',
-        'mont': 'var(--font-mont)',
+        tahoma: 'var(--font-tahoma)',
+        mont: 'var(--font-mont)'
       },
       colors: {
         white: '#FEFFFE',
@@ -34,38 +34,36 @@ const config: Config = {
         dateBlack: '#020202',
         lightGreen: '#EEFFF1',
         lightGray: '#FEFFFE',
-        greenBg: '#4DC760',
+        greenBg: '#4DC760'
       },
       screens: {
-        'xs': '320px',
-        'sm': '420px',
+        xs: '320px',
+        sm: '420px',
         'sm+': '570px',
-        'md': '768px',
+        md: '768px',
         'md+': '770px',
-        'xl': '1280px',
+        xl: '1280px',
         '2xl': '1368px',
         '3xl': '1440px',
         '4xl': '1536px',
-        '5xl': '1920px',
+        '5xl': '1920px'
       },
       backgroundImage: {
-        'gradient-radial':
-          'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       backgroundPosition: {
         'pos-0': '100% 0%',
-        'pos-100': '0% 0%',
+        'pos-100': '0% 0%'
       },
       backgroundSize: {
-        'size-200': '200% 200%',
+        'size-200': '200% 200%'
       },
       textDecoration: {
-        none: 'none',
-      },
-    },
+        none: 'none'
+      }
+    }
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [require('tailwind-scrollbar')]
 };
 export default config;

@@ -40,9 +40,7 @@ const Invitation = () => {
             <h3 id="hr-invitation-title" className="text-[24px] font-[700]">
               {t('card1_title')}
             </h3>
-            <p className="text-[14px]sm:text-[20px] leading-[28px]">
-              {t('card1_text')}
-            </p>
+            <p className="text-[14px]sm:text-[20px] leading-[28px]">{t('card1_text')}</p>
           </div>
           <button
             onClick={() => {
@@ -68,15 +66,10 @@ const Invitation = () => {
           aria-labelledby="partner-invitation-title"
         >
           <div className="flex flex-col items-center justify-center gap-4 text-center">
-            <h3
-              id="partner-invitation-title"
-              className="text-[24px] font-[700]"
-            >
+            <h3 id="partner-invitation-title" className="text-[24px] font-[700]">
               {t('card2_title')}
             </h3>
-            <p className="text-[14px]sm:text-[20px] leading-[28px]">
-              {t('card2_text')}
-            </p>
+            <p className="text-[14px]sm:text-[20px] leading-[28px]">{t('card2_text')}</p>
           </div>
           <button
             onClick={() => {
@@ -98,10 +91,7 @@ const Invitation = () => {
 
       {/* Conditional Modals */}
       {isModalOpen && modalType === 'hr' && (
-        <RegisterModal
-          handleClose={closeModal}
-          aria-labelledby="hr-modal-title"
-        >
+        <RegisterModal handleClose={closeModal} aria-labelledby="hr-modal-title">
           <h2 id="hr-modal-title" className="sr-only">
             HR Registration Form
           </h2>
@@ -109,10 +99,7 @@ const Invitation = () => {
         </RegisterModal>
       )}
       {isModalOpen && modalType === 'partner' && (
-        <RegisterModal
-          handleClose={closeModal}
-          aria-labelledby="partner-modal-title"
-        >
+        <RegisterModal handleClose={closeModal} aria-labelledby="partner-modal-title">
           <h2 id="partner-modal-title" className="sr-only">
             Partner Registration Form
           </h2>

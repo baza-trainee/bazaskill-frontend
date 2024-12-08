@@ -8,8 +8,7 @@ export function useBodyScrollLock(shouldLock: boolean) {
       return;
     }
 
-    const scrollBarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
+    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
     document.body.style.paddingRight = `${scrollBarWidth}px`;
     document.body.classList.add('lock');

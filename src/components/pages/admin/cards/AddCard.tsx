@@ -6,12 +6,7 @@ import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  SubmitHandler
-} from 'react-hook-form';
+import type { DeepMap, FieldError, FieldValues, SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
 import { createCard } from '@/utils/api/cards';
@@ -69,10 +64,9 @@ function AddCard() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     setIsProcessing(true);
-    const specializationTitle: ISpecialization | undefined =
-      specialization.data?.find(
-        (item) => item.id.toString() === values.specialization
-      );
+    const specializationTitle: ISpecialization | undefined = specialization.data?.find(
+      (item) => item.id.toString() === values.specialization
+    );
     try {
       const formData = new FormData();
       formData.append('file', values.image[0]);
@@ -100,9 +94,7 @@ function AddCard() {
               return (
                 <TextInput
                   {...field}
-                  errorText={
-                    (errors.name as DeepMap<FieldValues, FieldError>)?.message
-                  }
+                  errorText={(errors.name as DeepMap<FieldValues, FieldError>)?.message}
                   title="Ім’я"
                   placeholder="Введіть ім’я"
                 />
@@ -133,10 +125,7 @@ function AddCard() {
                   ))}
                 </select>
                 <span className="font-sans text-[12px] text-error">
-                  {
-                    (errors.specialization as DeepMap<FieldValues, FieldError>)
-                      ?.message
-                  }
+                  {(errors.specialization as DeepMap<FieldValues, FieldError>)?.message}
                 </span>
               </div>
             )}
@@ -152,14 +141,8 @@ function AddCard() {
           />
 
           <div className="flex w-full justify-between">
-            <PrimaryButton
-              text={isProcessing ? 'Обробка запиту' : 'Додати'}
-              disabled={!isValid}
-            />
-            <SecondaryButton
-              onClick={() => router.push('/admin/cards')}
-              text="Скасувати"
-            />
+            <PrimaryButton text={isProcessing ? 'Обробка запиту' : 'Додати'} disabled={!isValid} />
+            <SecondaryButton onClick={() => router.push('/admin/cards')} text="Скасувати" />
           </div>
         </form>
       </div>

@@ -8,11 +8,9 @@ export const contactsScheme = z.object({
   phone: z.string().refine((value) => !value || phonePattern.test(value), {
     message: 'Введіть коректний номер телефону в міжнародному форматі'
   }),
-  secondPhone: z
-    .string()
-    .refine((value) => !value || phonePattern.test(value), {
-      message: 'Введіть коректний номер телефону в міжнародному форматі'
-    }),
+  secondPhone: z.string().refine((value) => !value || phonePattern.test(value), {
+    message: 'Введіть коректний номер телефону в міжнародному форматі'
+  }),
   email: z
     .string()
     .refine((value) => !value || emailPattern.test(value), {
@@ -26,9 +24,7 @@ export const contactsScheme = z.object({
     .refine(
       (value) =>
         !value ||
-        /^(https?:\/\/)?(www\.)?t\.me\/(?:joinchat\/[\w-]+|\+[\w-]+|\w{5,32})$/.test(
-          value
-        ),
+        /^(https?:\/\/)?(www\.)?t\.me\/(?:joinchat\/[\w-]+|\+[\w-]+|\w{5,32})$/.test(value),
       {
         message: 'Введіть дійсний URL Telegram'
       }
@@ -49,10 +45,7 @@ export const contactsScheme = z.object({
     .string()
     .refine(
       (value) =>
-        !value ||
-        /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9./-]{5,}(\?.*)?$/.test(
-          value
-        ),
+        !value || /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9./-]{5,}(\?.*)?$/.test(value),
       {
         message: 'Введіть дійсний URL Facebook'
       }
@@ -61,9 +54,7 @@ export const contactsScheme = z.object({
   instagram: z
     .string()
     .refine(
-      (value) =>
-        !value ||
-        /^(https?:\/\/)?(www\.)?instagram\.com\/[\w.]{1,30}\/?$/.test(value),
+      (value) => !value || /^(https?:\/\/)?(www\.)?instagram\.com\/[\w.]{1,30}\/?$/.test(value),
       {
         message: 'Введіть дійсний URL Instagram'
       }

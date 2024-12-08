@@ -22,9 +22,7 @@ function MainInfo({ candidate }: MainInfoProps) {
         <div className="mt-[44px] flex flex-wrap gap-[24px]">
           {candidate?.stack.map(
             (item) =>
-              item.stack?.title.length > 0 && (
-                <StackItem key={item.id} title={item.stack?.title} />
-              )
+              item.stack?.title.length > 0 && <StackItem key={item.id} title={item.stack?.title} />
           )}
         </div>
       </div>
@@ -35,10 +33,7 @@ function MainInfo({ candidate }: MainInfoProps) {
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
           {candidate?.gradaute.map((item) => (
-            <div
-              key={item.id}
-              className="flex w-full items-center justify-between"
-            >
+            <div key={item.id} className="flex w-full items-center justify-between">
               <div className="flex w-full flex-col md:w-[34%]">
                 <span>{item.university}</span>
                 <span>{item.university_specialization}</span>
@@ -85,10 +80,7 @@ function MainInfo({ candidate }: MainInfoProps) {
         </h3>
         <div className="mt-[32px] flex flex-wrap justify-start gap-[60px] font-sans text-[20px] font-[400] leading-[28px] text-white">
           {candidate?.cources.map((cource) => (
-            <div
-              key={cource.id}
-              className="flex w-full items-center justify-between"
-            >
+            <div key={cource.id} className="flex w-full items-center justify-between">
               <div className="flex w-full flex-col md:w-[34%]">
                 <span>{cource.cources_name}</span>
                 <span>{cource.cources_specializaton}</span>
