@@ -37,7 +37,7 @@ function CountersComp() {
 
   const { data, isFetching } = useQuery<ICounters[], Error>({
     queryKey: [constants.counters.FETCH_COUNTERS],
-    queryFn: getCounters,
+    queryFn: getCounters
   });
 
   useEffect(() => {
@@ -48,14 +48,11 @@ function CountersComp() {
     { id: 1, count: Number(data?.[0]?.liveProject) ?? 0, title: t('counters.candidates') },
     { id: 2, count: Number(data?.[0]?.technologies) ?? 0, title: t('counters.partners') },
     { id: 3, count: Number(data?.[0]?.libraries) ?? 0, title: t('counters.visitors') },
-    { id: 4, count: Number(data?.[0]?.members) ?? 0, title: t('counters.specialities') },
+    { id: 4, count: Number(data?.[0]?.members) ?? 0, title: t('counters.specialities') }
   ];
 
   return (
-    <section
-      className="container py-12 lg:py-24"
-      aria-labelledby="counters-heading"
-    >
+    <section className="container py-12 lg:py-24" aria-labelledby="counters-heading">
       <h2 id="counters-heading" className="sr-only">
         {t('counters.heading')}
       </h2>
@@ -73,7 +70,7 @@ function CountersComp() {
               spaceBetween={10}
               navigation={{
                 prevEl: '.prev-counters',
-                nextEl: '.next-counters',
+                nextEl: '.next-counters'
               }}
               loop={true}
               className="countersSlide max-h-full max-w-[1006px]"
@@ -112,8 +109,10 @@ function CountersComp() {
           </div>
 
           <div ref={ref}>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md+:hidden lg:grid lg:grid-cols-4 gap-6 
-            text-center font-bold text-white">
+            <ul
+              className="grid grid-cols-1 sm:grid-cols-2 md+:hidden lg:grid lg:grid-cols-4 gap-6 
+            text-center font-bold text-white"
+            >
               {counters.map(({ id, count, title }) => (
                 <li key={id} className="p-6 h-32">
                   {isFetching ? (

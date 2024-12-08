@@ -77,16 +77,12 @@ function DocumentsPage() {
       let currentId;
       const formData = new FormData();
       if (values.privacy_policy[0].size && values.terms_of_use[0].size) {
-        const termsItem = documents?.find(
-          (item) => item.title === 'terms_of_use'
-        );
+        const termsItem = documents?.find((item) => item.title === 'terms_of_use');
         currentId = termsItem?.id;
         formData.append('file', values.terms_of_use[0]);
         await updateDocument(currentId as string, formData);
         formData.delete('file');
-        const policyItem = documents?.find(
-          (item) => item.title === 'privacy_policy'
-        );
+        const policyItem = documents?.find((item) => item.title === 'privacy_policy');
         currentId = policyItem?.id;
         formData.append('file', values.privacy_policy[0]);
         const response = await updateDocument(currentId as string, formData);
@@ -97,9 +93,7 @@ function DocumentsPage() {
       }
 
       if (values.terms_of_use[0].size && !values.privacy_policy[0].size) {
-        const currentItem = documents?.find(
-          (item) => item.title === 'terms_of_use'
-        );
+        const currentItem = documents?.find((item) => item.title === 'terms_of_use');
         currentId = currentItem?.id;
         formData.append('file', values.terms_of_use[0]);
         const response = await updateDocument(currentId as string, formData);
@@ -110,9 +104,7 @@ function DocumentsPage() {
       }
 
       if (values.privacy_policy[0].size && !values.terms_of_use[0].size) {
-        const currentItem = documents?.find(
-          (item) => item.title === 'privacy_policy'
-        );
+        const currentItem = documents?.find((item) => item.title === 'privacy_policy');
         currentId = currentItem?.id;
         formData.append('file', values.privacy_policy[0]);
         const response = await updateDocument(currentId as string, formData);
@@ -131,11 +123,7 @@ function DocumentsPage() {
   return (
     <div className="relative h-screen max-h-screen p-[24px]">
       <PageTitle title="Документи" />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        autoComplete="off"
-        className="mt-[50px]"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="mt-[50px]">
         <div className="mb-[50px] flex gap-[50px]">
           <div className="flex items-end justify-center gap-[24px]">
             <FileInputDoc
@@ -147,16 +135,8 @@ function DocumentsPage() {
               accept=".pdf"
             />
             {currentValues?.terms_of_use && (
-              <Link
-                href={currentValues?.terms_of_use[0]?.name || ''}
-                target="_blank"
-              >
-                <Image
-                  src="/images/pdf-placeholder.png"
-                  alt="pdf"
-                  width={40}
-                  height={40}
-                />
+              <Link href={currentValues?.terms_of_use[0]?.name || ''} target="_blank">
+                <Image src="/images/pdf-placeholder.png" alt="pdf" width={40} height={40} />
               </Link>
             )}
           </div>
@@ -172,16 +152,8 @@ function DocumentsPage() {
               accept=".pdf"
             />
             {currentValues?.terms_of_use && (
-              <Link
-                href={currentValues?.privacy_policy[0]?.name || ''}
-                target="_blank"
-              >
-                <Image
-                  src="/images/pdf-placeholder.png"
-                  alt="pdf"
-                  width={40}
-                  height={40}
-                />
+              <Link href={currentValues?.privacy_policy[0]?.name || ''} target="_blank">
+                <Image src="/images/pdf-placeholder.png" alt="pdf" width={40} height={40} />
               </Link>
             )}
           </div>

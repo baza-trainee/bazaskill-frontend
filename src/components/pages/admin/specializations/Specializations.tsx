@@ -53,10 +53,7 @@ function Specializations() {
       <PageTitle title="Спеціалізації" />
       <section className="flex flex-col flex-wrap gap-[24px] gap-y-12 pt-[50px] md:flex-row">
         <div className="flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-2 border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]">
-          <Link
-            href="/admin/specializations/add"
-            className="flex flex-col items-center"
-          >
+          <Link href="/admin/specializations/add" className="flex flex-col items-center">
             <PlusIcon />
             <p className="font-sans text-[20px] leading-[1.3] text-[#4DC760]">
               Додати спеціалізацію
@@ -71,9 +68,7 @@ function Specializations() {
                 className="relative flex h-[236px] w-[242px] flex-col items-center justify-center rounded-[10px] border-2 border-[#7EFE92] md:w-[117px] xl:w-[258px] 5xl:h-[236px] 5xl:w-[364px]"
                 key={item.id}
               >
-                <p className="font-sans text-[20px] leading-[1.3] text-white">
-                  {item.title}
-                </p>
+                <p className="font-sans text-[20px] leading-[1.3] text-white">{item.title}</p>
                 <div className="absolute bottom-[12px] right-[12px] z-10 flex gap-[32px]">
                   <button
                     onClick={() => {

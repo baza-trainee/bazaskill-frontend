@@ -41,7 +41,7 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
   });
 
   useEffect(() => {
-    if (!fieldsLength) return
+    if (!fieldsLength) return;
     if (fieldsLength > 1) {
       for (let i = 1; i < fieldsLength; i++) append;
     }
@@ -56,10 +56,7 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
               <Controller
                 name={`baza_experience.${index}.role`}
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors }
-                }) => (
+                render={({ field: { onChange, value }, formState: { errors } }) => (
                   <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
                     <label htmlFor={`baza_experience.${index}.role`}>
                       Роль на проекті &nbsp;
@@ -80,12 +77,8 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
                     </select>
                     <span className="font-sans text-[12px] text-error">
                       {
-                        (
-                          errors.baza_experience as DeepMap<
-                            FieldValues,
-                            FieldError
-                          >
-                        )?.[index]?.role?.message
+                        (errors.baza_experience as DeepMap<FieldValues, FieldError>)?.[index]?.role
+                          ?.message
                       }
                     </span>
                   </div>
@@ -98,12 +91,8 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.baza_experience as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.project_name?.message
+                      (errors.baza_experience as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.project_name?.message
                     }
                     isRequired={true}
                     placeholder="Введіть назву"
@@ -119,12 +108,8 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
                   <TextInput
                     {...field}
                     error={
-                      (
-                        errors.baza_experience as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.[index]?.project_duration?.message
+                      (errors.baza_experience as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.project_duration?.message
                     }
                     isRequired={true}
                     placeholder="Місяців"
@@ -145,10 +130,7 @@ const BazaExperience: React.FC<IBazaExperienceProps> = ({
           </div>
         );
       })}
-      <div
-        onClick={() => append(defaultValues)}
-        className="flex cursor-pointer justify-end"
-      >
+      <div onClick={() => append(defaultValues)} className="flex cursor-pointer justify-end">
         + Додати ще
       </div>
     </div>

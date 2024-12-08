@@ -4,11 +4,7 @@ import React from 'react';
 interface ArrowIconProps extends HTMLProps<HTMLDivElement> {
   fill?: string;
 }
-const ArrowIcon: React.FC<ArrowIconProps> = ({
-  className,
-  fill = 'none',
-  ...rest
-}) => {
+const ArrowIcon: React.FC<ArrowIconProps> = ({ className, fill = 'none', ...rest }) => {
   return (
     <div className={`${className}`} {...rest}>
       <svg

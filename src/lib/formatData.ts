@@ -1,7 +1,4 @@
-export const formatDate = (
-  value: string | number | Date,
-  locale: string
-): string => {
+export const formatDate = (value: string | number | Date, locale: string): string => {
   const date = new Date(value);
   const currentLocale = locale === 'ua' ? 'uk-UA' : locale;
 

@@ -36,32 +36,21 @@ export default function JuniorCard({ data }: { data: IStory }): JSX.Element {
             src={data.image_url}
             alt={data.name_en}
             fill
-            className={clsx(
-              'object-cover object-top brightness-[60%]',
-              isOpen && 'invisible'
-            )}
+            className={clsx('object-cover object-top brightness-[60%]', isOpen && 'invisible')}
             sizes="100%"
           />
 
           <div
             className={clsx(
               'custom-scrollbar absolute bottom-0 left-0 z-10 flex h-full w-full flex-col overflow-y-auto p-1 px-1 font-normal text-white scrollbar md:px-6 md:pt-6 md:font-semibold',
-              isOpen
-                ? 'h-full bg-gradient-to-r from-green/20 to-yellow/20'
-                : 'md:h-fit'
+              isOpen ? 'h-full bg-gradient-to-r from-green/20 to-yellow/20' : 'md:h-fit'
             )}
           >
             <h3 className="-order-2 text-xl font-bold md:order-none md:mb-6 md:text-2xl">
-              {locale === 'ua'
-                ? data.name_ua
-                : locale === 'ua'
-                  ? data.name_pl
-                  : data.name_en}
+              {locale === 'ua' ? data.name_ua : locale === 'ua' ? data.name_pl : data.name_en}
             </h3>
 
-            <p className="mb-4 text-base md:mb-0 md:text-xl">
-              {data.speciality}
-            </p>
+            <p className="mb-4 text-base md:mb-0 md:text-xl">{data.speciality}</p>
             <p className="-order-1 text-sm md:order-none md:mb-5">
               {formatDate(data.created_at, locale)}
             </p>
@@ -72,11 +61,7 @@ export default function JuniorCard({ data }: { data: IStory }): JSX.Element {
                 !isOpen && 'line-clamp-4 md:line-clamp-2'
               )}
             >
-              {locale === 'ua'
-                ? data.text_ua
-                : locale === 'ua'
-                  ? data.text_pl
-                  : data.text_en}
+              {locale === 'ua' ? data.text_ua : locale === 'ua' ? data.text_pl : data.text_en}
             </p>
 
             {isOpen && (

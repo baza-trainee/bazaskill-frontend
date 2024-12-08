@@ -1,0 +1,7 @@
+.next
+node_modules
+public
+build
+coverage
+.github
+*.md

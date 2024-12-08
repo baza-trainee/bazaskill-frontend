@@ -62,11 +62,7 @@ const Partners: React.FC = () => {
             ))}
           </div>
 
-          <div
-            className="marquee-right flex"
-            aria-live="polite"
-            aria-atomic="true"
-          >
+          <div className="marquee-right flex" aria-live="polite" aria-atomic="true">
             {partners.map((partner) => (
               <PartnerItem key={`dup-${partner.id}`} partner={partner} />
             ))}

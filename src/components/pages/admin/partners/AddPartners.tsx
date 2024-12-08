@@ -129,10 +129,7 @@ function AddPartners() {
             />
           </div>
           <div className="flex w-full justify-between">
-            <PrimaryButton
-              text={isProcessing ? 'Обробка запиту' : 'Додати'}
-              disabled={!isDirty}
-            />
+            <PrimaryButton text={isProcessing ? 'Обробка запиту' : 'Додати'} disabled={!isDirty} />
             <SecondaryButton onClick={() => reset()} text="Скасувати" />
           </div>
         </form>

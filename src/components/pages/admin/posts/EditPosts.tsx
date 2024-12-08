@@ -119,10 +119,7 @@ function EditPosts() {
     <div className="pl-[24px] pt-[20px]">
       <PageTitle title="Редагувати статтю" />
       <section className="pt-[50px]">
-        <form
-          className="flex flex-col gap-[50px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-[50px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-[50px]">
             <div className="flex flex-col gap-[50px]">
               <Controller
@@ -191,10 +188,7 @@ function EditPosts() {
               text={isProcessing ? 'Обробка запиту' : 'Зберегти зміни'}
               disabled={!Object.keys(touchedFields).length}
             />
-            <SecondaryButton
-              text="Скасувати"
-              onClick={() => router.push('/admin/posts')}
-            />
+            <SecondaryButton text="Скасувати" onClick={() => router.push('/admin/posts')} />
           </div>
         </form>
         {isSuccess && (

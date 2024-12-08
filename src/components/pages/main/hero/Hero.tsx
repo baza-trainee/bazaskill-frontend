@@ -20,11 +20,10 @@ const Hero: React.FC = () => {
 
   const { data } = useQuery({
     queryKey: [constants.specialization.FETCH_SPECIALIZATIONS],
-    queryFn: getSpecializations,
+    queryFn: getSpecializations
   });
 
-  const options =
-    data && data.sort((a, b) => b.id - a.id).map(({ title }) => title);
+  const options = data && data.sort((a, b) => b.id - a.id).map(({ title }) => title);
 
   const onSubmit = (ev: React.FormEvent): void => {
     ev.preventDefault();
@@ -37,10 +36,7 @@ const Hero: React.FC = () => {
       aria-labelledby="hero-title"
     >
       <div className="relative mx-auto mb-16 flex max-w-[570px] flex-col items-center text-center sm:flex md:flex-row lg:max-w-[915px]">
-        <h1
-          id="hero-title"
-          className="mr-3 text-4xl font-bold text-white md:text-5xl xl:text-6xl"
-        >
+        <h1 id="hero-title" className="mr-3 text-4xl font-bold text-white md:text-5xl xl:text-6xl">
           <div className="flex max-w-[230px] flex-col items-center whitespace-nowrap md:max-w-[300px] xl:max-w-[470px]">
             {t('title.main')}
           </div>

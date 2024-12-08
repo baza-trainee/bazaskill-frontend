@@ -11,9 +11,7 @@ export function EmailAddressesBlock({ contactEmail }: Props): JSX.Element {
 
   return (
     <div className="relative flex w-full max-w-[380px] flex-col items-center justify-start gap-8 overflow-hidden rounded-lg border-t-[1px] border-green py-12 text-white md:w-[350px] lg:w-[32%] lg:border-b-[1px] lg:border-t-[0]">
-      <h3 className="text-center font-tahoma text-2xl font-bold">
-        {t('email_addresses')}
-      </h3>
+      <h3 className="text-center font-tahoma text-2xl font-bold">{t('email_addresses')}</h3>
 
       <ul className="flex flex-col gap-8">
         {contactEmail &&

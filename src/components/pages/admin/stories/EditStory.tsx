@@ -124,10 +124,7 @@ function EditStory() {
     <div className="py-[20px] pl-[24px]">
       <PageTitle title="Редагування історії" />
       <section className="pt-[50px]">
-        <form
-          className="flex flex-col gap-[50px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-[50px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-[150px]">
             <div className="flex flex-col gap-[50px]">
               <Controller

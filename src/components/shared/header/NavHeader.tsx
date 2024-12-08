@@ -23,7 +23,10 @@ export default function NavHeader(): JSX.Element {
   };
 
   return (
-    <nav className="hidden w-full items-center justify-center gap-[3%] md:flex xl:gap-[6%]" aria-label="Main navigation">
+    <nav
+      className="hidden w-full items-center justify-center gap-[3%] md:flex xl:gap-[6%]"
+      aria-label="Main navigation"
+    >
       {itemsLink.map((el) => {
         return (
           <Link

@@ -44,9 +44,7 @@ function CandidateHero({ candidate }: CandidateHeroProps) {
 
         {candidate?.about ? (
           <div className="mt-[60px] flex flex-col">
-            <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">
-              {t('about')}
-            </h3>
+            <h3 className="h-[20px] font-tahoma text-[24px] font-[700] text-white">{t('about')}</h3>
             <span className="mt-[32px] font-sans text-[20px] font-[400] leading-[28px] text-white">
               {candidate?.about}
             </span>
@@ -68,10 +66,7 @@ function CandidateHero({ candidate }: CandidateHeroProps) {
           </div>
 
           {candidate?.candidate_language.map((lang) => (
-            <div
-              key={lang.id}
-              className="flex h-[40px] items-center gap-[20px]"
-            >
+            <div key={lang.id} className="flex h-[40px] items-center gap-[20px]">
               <svg width={15} height={20}>
                 <use href="/Icons/sprite.svg#icon-lang"></use>
               </svg>

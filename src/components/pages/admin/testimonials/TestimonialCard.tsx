@@ -69,9 +69,7 @@ function TestimonialCard({
             <p className="font-open-sans text-[16px] font-normal tracking-[.4px] text-white 5xl:text-xl">
               {item.position}
             </p>
-            <p className="font-open-sans text-sm font-normal text-white">
-              {item.date}
-            </p>
+            <p className="font-open-sans text-sm font-normal text-white">{item.date}</p>
           </div>
         </div>
         <p className="w-[380px] px-8 py-[22px] text-start  text-lg font-normal leading-[1.4] tracking-normal text-white  xl:w-[480px] 5xl:w-[716px] 5xl:text-xl">
@@ -82,11 +80,7 @@ function TestimonialCard({
         <Link href={`/admin/testimonials/edit/${item.id}`}>
           <WriteIcon className="size-8 fill-white" />
         </Link>
-        <button
-          type="button"
-          onClick={() => setIsDeleting(true)}
-          className="cursor-pointer"
-        >
+        <button type="button" onClick={() => setIsDeleting(true)} className="cursor-pointer">
           <TrashIcon className="size-8 cursor-pointer fill-white" />
         </button>
         {isDeleting && !isSuccess && (

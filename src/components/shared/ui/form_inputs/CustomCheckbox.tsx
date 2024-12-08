@@ -3,8 +3,7 @@ import React, { forwardRef } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-interface CustomCheckboxProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> {
+interface CustomCheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> {
   title?: string;
   isRequired?: boolean;
   checked?: boolean | undefined;
@@ -49,9 +48,7 @@ const CustomCheckbox = forwardRef(
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        {errorText && (
-          <span className="ml-2 text-xs text-error">{errorText}</span>
-        )}
+        {errorText && <span className="ml-2 text-xs text-error">{errorText}</span>}
       </>
     );
   }

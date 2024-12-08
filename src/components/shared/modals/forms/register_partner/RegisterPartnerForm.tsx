@@ -58,7 +58,7 @@ function RegisterPartnerForm() {
   ) => {
     try {
       if (values.hpot || values.hpot.length) {
-        return
+        return;
       }
       setIsProcessing(true);
       createApplicationMutation.mutate(values);
@@ -270,12 +270,7 @@ function RegisterPartnerForm() {
               name="hpot"
               control={control}
               defaultValue=""
-              render={({ field }) => (
-                <TextInput
-                  hidden
-                  {...field}
-                />
-              )}
+              render={({ field }) => <TextInput hidden {...field} />}
             />
 
             <div className="text-center ">
@@ -290,9 +285,7 @@ function RegisterPartnerForm() {
                   })
                 }
               >
-                {isProcessing
-                  ? t('Main.forms.processing')
-                  : t('Main.forms.send')}
+                {isProcessing ? t('Main.forms.processing') : t('Main.forms.send')}
               </button>
             </div>
           </form>

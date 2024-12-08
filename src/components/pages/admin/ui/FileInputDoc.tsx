@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  ForwardedRef,
-  InputHTMLAttributes,
-  forwardRef,
-  useEffect,
-  useState
-} from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef, useEffect, useState } from 'react';
 
 import {
   DeepMap,
@@ -17,25 +11,15 @@ import {
 } from 'react-hook-form';
 import { MdOutlineFileUpload } from 'react-icons/md';
 
-type FileInputDocProps<T extends FieldValues> =
-  InputHTMLAttributes<HTMLInputElement> &
-    UseControllerProps<T> & {
-      title?: string;
-      isRequired: boolean;
-      accept?: string;
-    };
+type FileInputDocProps<T extends FieldValues> = InputHTMLAttributes<HTMLInputElement> &
+  UseControllerProps<T> & {
+    title?: string;
+    isRequired: boolean;
+    accept?: string;
+  };
 
 const FileInputDoc = forwardRef(function FileInputDoc<T extends FieldValues>(
-  {
-    title,
-    placeholder,
-    control,
-    name,
-    rules,
-    isRequired,
-    accept,
-    ...rest
-  }: FileInputDocProps<T>,
+  { title, placeholder, control, name, rules, isRequired, accept, ...rest }: FileInputDocProps<T>,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
@@ -54,8 +38,7 @@ const FileInputDoc = forwardRef(function FileInputDoc<T extends FieldValues>(
     }
   }, [field]);
 
-  const errorText = (formState.errors[name] as DeepMap<FieldValues, FieldError>)
-    ?.message;
+  const errorText = (formState.errors[name] as DeepMap<FieldValues, FieldError>)?.message;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -88,10 +71,7 @@ ${
       className={`overflow-hidden  font-sans font-normal tracking-[0px] ${errorText ? 'text-red-500' : 'text-inherit'}`}
     >
       {!!title && (
-        <label
-          htmlFor={title}
-          className="mb-[8px] block text-[20px]  leading-[1.4] text-white"
-        >
+        <label htmlFor={title} className="mb-[8px] block text-[20px]  leading-[1.4] text-white">
           {title}
           {isRequired && <span className="text-error">*</span>}
         </label>
@@ -117,9 +97,7 @@ ${
           onChange={handleChange}
         />
       </div>
-      {errorText && (
-        <span className="left top absolute text-xs">{errorText}</span>
-      )}
+      {errorText && <span className="left top absolute text-xs">{errorText}</span>}
     </div>
   );
 });

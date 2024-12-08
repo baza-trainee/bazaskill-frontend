@@ -18,10 +18,9 @@ export const registerScheme = z.object({
     .nonempty('Main.forms.errors.companyname_empty')
     .min(2, 'Main.forms.errors.companyname_min')
     .max(30, 'Main.forms.errors.companyname_max')
-    .refine(
-      (value) => nonRussianLettersWithSymbolsAndDigitsPattern.test(value),
-      { message: 'Main.forms.errors.incorrect_companyname' }
-    ),
+    .refine((value) => nonRussianLettersWithSymbolsAndDigitsPattern.test(value), {
+      message: 'Main.forms.errors.incorrect_companyname'
+    }),
 
   company_url: z
     .string()

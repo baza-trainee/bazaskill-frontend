@@ -6,12 +6,7 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <svg
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-      width="169"
-      height="42"
-    >
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="169" height="42">
       <path
         fill="url(#a)"
         d="M9.053 20.602c1.312.691 2.086 1.947 2.086 3.518 0 2.345-2.129 4.23-4.752 4.23H0V13.691h6.215c2.602 0 4.537 1.613 4.537 3.77 0 1.256-.645 2.428-1.699 3.14Zm-1.462-2.659c0-.921-.667-1.55-1.677-1.55H3.183v3.12h2.73c1.011 0 1.678-.649 1.678-1.57Zm-1.505 7.496c1.075 0 1.785-.691 1.785-1.654 0-.942-.71-1.633-1.785-1.633H3.183v3.287h2.903Z"
@@ -41,14 +36,8 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
         d="M140.458 28.328h-3.978l-5.312-7.14v7.14h-3.247V13.672h3.247v6.784l4.946-6.784h3.785l-5.118 7.035 5.677 7.621Z"
       />
       <path fill="url(#h)" d="M142.034 28.328V13.672h3.247v14.656h-3.247Z" />
-      <path
-        fill="url(#i)"
-        d="M151.98 25.397h5.785v2.931h-9.032V13.672h3.247v11.725Z"
-      />
-      <path
-        fill="url(#j)"
-        d="M163.215 25.397H169v2.931h-9.032V13.672h3.247v11.725Z"
-      />
+      <path fill="url(#i)" d="M151.98 25.397h5.785v2.931h-9.032V13.672h3.247v11.725Z" />
+      <path fill="url(#j)" d="M163.215 25.397H169v2.931h-9.032V13.672h3.247v11.725Z" />
       <defs>
         <linearGradient
           id="a"

@@ -56,10 +56,7 @@ function Gallery() {
       <div className="mx-auto mt-[80px] w-[90%]">
         <ul className="flex flex-wrap justify-center xs:gap-[20px] md:gap-[24px] xl:gap-[16px] 2xl:gap-[32px] 4xl:gap-[40px] 5xl:gap-[50px]">
           <li className="relative overflow-hidden rounded-[100px] border-[#7EFE92] hover:cursor-pointer">
-            <Link
-              href="/admin/gallery/add"
-              className="flex flex-col items-center"
-            >
+            <Link href="/admin/gallery/add" className="flex flex-col items-center">
               <PlusIcon />
             </Link>
           </li>

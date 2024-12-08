@@ -9,10 +9,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
-import {
-  getSpecializationById,
-  updateSpecialization
-} from '@/utils/api/specialization';
+import { getSpecializationById, updateSpecialization } from '@/utils/api/specialization';
 import { constants } from '@/constants';
 import type { Specialization } from '@/types/specialization';
 
@@ -91,10 +88,7 @@ function EditSpecialization({ id }: { id: string }) {
     <div className="pl-[24px] pt-[20px]">
       <PageTitle title="Редагувати спеціалізацію" />
       <section className="pt-[50px]">
-        <form
-          className="flex flex-col gap-[50px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-[50px]" onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="title"
             control={control}

@@ -19,22 +19,13 @@ interface MaskedStyledInputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputRef?: ForwardedRef<HTMLInputElement>;
 }
 
-const MaskedStyledInput = IMaskMixin(
-  ({ inputRef, ...props }: MaskedStyledInputProps) => (
-    <input {...props} ref={inputRef} />
-  )
-);
+const MaskedStyledInput = IMaskMixin(({ inputRef, ...props }: MaskedStyledInputProps) => (
+  <input {...props} ref={inputRef} />
+));
 
 const PhoneInput = forwardRef(
   (
-    {
-      title,
-      errorText,
-      value = '',
-      isRequired,
-      isIcon,
-      ...rest
-    }: PhoneInputProps,
+    { title, errorText, value = '', isRequired, isIcon, ...rest }: PhoneInputProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) => {
     const inputClassName = `bg-'[#efefef]' h-[44px] outline-none [border:1px_solid_transparent]  w-full rounded-md placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16] px-[16px] py-[9px] pr-[40px] text-[#020202] text-[16px]
@@ -82,9 +73,7 @@ ${
           )}
         </div>
 
-        {errorText && (
-          <span className="left top absolute text-xs">{errorText}</span>
-        )}
+        {errorText && <span className="left top absolute text-xs">{errorText}</span>}
       </div>
     );
   }

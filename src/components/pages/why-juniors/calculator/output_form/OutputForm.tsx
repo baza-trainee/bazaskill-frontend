@@ -6,13 +6,7 @@ import ArcheryIcon from '../icons/ArcheryIcon';
 import ClipboardPencil from '../icons/ClipboardPencil';
 import PercentIcon from '../icons/PercentIcon';
 
-const FieldDisplay = ({
-  label,
-  value
-}: {
-  label: string;
-  value: string | number;
-}) => (
+const FieldDisplay = ({ label, value }: { label: string; value: string | number }) => (
   <div className="flex items-center justify-between gap-6">
     <p>{label}:</p>
     <p className="whitespace-nowrap rounded-md border border-green bg-[#2A2A2A] px-6 py-1">
@@ -44,18 +38,9 @@ const OutputForm = () => {
       <FieldDisplay label={t('salary_title')} value={values.salary} />
       <FieldDisplay label={t('education_title')} value={values.educationCost} />
       <FieldDisplay label={t('menthorship_title')} value={values.menthorshipTime} />
-      <FieldDisplay
-        label={t('middleSalary_title')}
-        value={values.middleSalary}
-      />
-      <FieldDisplay
-        label={t('profit_title')}
-        value={values.profit}
-      />
-      <FieldDisplay
-        label={t('profitLoss_title')}
-        value={values.profitLoss}
-      />
+      <FieldDisplay label={t('middleSalary_title')} value={values.middleSalary} />
+      <FieldDisplay label={t('profit_title')} value={values.profit} />
+      <FieldDisplay label={t('profitLoss_title')} value={values.profitLoss} />
 
       {/* ROI Section */}
       <div className="flex items-center justify-between gap-6">
@@ -73,9 +58,7 @@ const OutputForm = () => {
 
       {/* Footer Section */}
       <div className="flex items-end justify-between gap-6">
-        <p className="rounded-md border border-green bg-[#2A2A2A] px-6 py-1">
-          {today}
-        </p>
+        <p className="rounded-md border border-green bg-[#2A2A2A] px-6 py-1">{today}</p>
         <button
           onClick={resetValues}
           className="rounded-md border-2 border-yellow px-6 py-2 text-lg font-medium text-yellow

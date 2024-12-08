@@ -6,11 +6,7 @@ interface ChangePasswordRequest {
   newPassword: string;
 }
 
-export async function changePassword({
-  data
-}: {
-  data: ChangePasswordRequest;
-}) {
+export async function changePassword({ data }: { data: ChangePasswordRequest }) {
   const response = await axios.patch('/password/change', {
     email: data.email,
     old_password: data.oldPassword,
@@ -19,13 +15,7 @@ export async function changePassword({
   return response;
 }
 
-export async function changeEmail({
-  id,
-  email
-}: {
-  id: string;
-  email: string;
-}) {
+export async function changeEmail({ id, email }: { id: string; email: string }) {
   const response = await axios.patch(`/user/${id}`, {
     email
   });

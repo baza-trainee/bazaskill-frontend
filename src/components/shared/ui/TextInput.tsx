@@ -46,10 +46,7 @@ const TextInput: FC<TextInputProps> = ({
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -93,9 +90,7 @@ const TextInput: FC<TextInputProps> = ({
       )}
       <div className="relative" ref={dropdownRef}>
         <ArrowIcon
-          className={`absolute right-3 top-7 cursor-pointer ${
-            isOpen ? 'rotate-180' : ''
-          }`}
+          className={`absolute right-3 top-7 cursor-pointer ${isOpen ? 'rotate-180' : ''}`}
           onClick={() => setIsOpen(!isOpen)}
         />
         <input

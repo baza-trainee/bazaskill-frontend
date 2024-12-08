@@ -16,11 +16,7 @@ function EditTestimonialCard({ item }: { item: TestimonialPreview }) {
           <div className="size-[90px] grayscale 5xl:size-[122px]">
             {item.file ? (
               <Image
-                src={
-                  typeof item.file === 'string'
-                    ? item.file
-                    : URL.createObjectURL(item.file)
-                }
+                src={typeof item.file === 'string' ? item.file : URL.createObjectURL(item.file)}
                 alt={altText}
                 width={122}
                 height={122}
@@ -45,9 +41,7 @@ function EditTestimonialCard({ item }: { item: TestimonialPreview }) {
             <p className="font-open-sans text-[16px] font-normal tracking-[.4px] text-white 5xl:text-xl">
               {item.position}
             </p>
-            <p className="font-open-sans text-sm font-normal text-white">
-              {item.date}
-            </p>
+            <p className="font-open-sans text-sm font-normal text-white">{item.date}</p>
           </div>
         </div>
         <p className="w-[380px] px-8 py-[22px] text-start  text-lg font-normal leading-[1.4] tracking-normal text-white  xl:w-[620px] 3xl:w-[716px] 5xl:text-xl">

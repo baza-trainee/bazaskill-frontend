@@ -10,11 +10,7 @@ import FiltersSpecializationMenu from './FiltersSpecializationMenu';
 import defaultValues from './defaultValues';
 import schema from './schema';
 
-function Filters({
-  SubmitHandler
-}: {
-  SubmitHandler: (data: FieldValues) => void;
-}) {
+function Filters({ SubmitHandler }: { SubmitHandler: (data: FieldValues) => void }) {
   const t = useTranslations('Filter');
   const {
     register,
@@ -51,33 +47,16 @@ function Filters({
       className="flex pb-4 h-fit w-full flex-col items-center justify-center gap-[32px] md:box-border md:w-[243px] md:border-r md:border-secondaryGray xl:w-full xl:max-w-[288px] xl:pr-[32px] 2xl:max-w-[316px] 3xl:max-w-[338px] 4xl:max-w-[351px]"
     >
       <div className="w-[280px] border-b  border-secondaryGray font-tahoma text-[20px] font-[700] text-white sm:w-[364px] md:w-[219px] xl:w-[256px]">
-        <h3 className="py-[8px] text-base sm:text-lg 3xl:text-xl">
-          {t('title')}
-        </h3>
+        <h3 className="py-[8px] text-base sm:text-lg 3xl:text-xl">{t('title')}</h3>
       </div>
       <FiltersSpecializationMenu register={register} />
       <div className="grid w-full grid-cols-2 gap-y-[20px] text-sm sm:text-base md:flex md:flex-col xl:text-lg 3xl:text-xl">
         <div className="flex flex-col gap-[20px] font-sans">
           <h3> {t('projects.title')}</h3>
           <div className="flex flex-col gap-[20px] sm:min-w-[176px] sm:text-base xl:text-lg 3xl:text-xl">
-            <CustomCheckbox
-              registerFor="projects"
-              value="1"
-              register={register}
-              title="1"
-            />
-            <CustomCheckbox
-              registerFor="projects"
-              value="2"
-              register={register}
-              title="2"
-            />
-            <CustomCheckbox
-              registerFor="projects"
-              value="3"
-              register={register}
-              title="3"
-            />
+            <CustomCheckbox registerFor="projects" value="1" register={register} title="1" />
+            <CustomCheckbox registerFor="projects" value="2" register={register} title="2" />
+            <CustomCheckbox registerFor="projects" value="3" register={register} title="3" />
             <CustomCheckbox
               registerFor="projects"
               value="4"
@@ -168,9 +147,7 @@ function Filters({
       <div className="relative flex w-full flex-col gap-[20px] font-sans text-[20px]">
         <h3 className="leading-[28px]">{t('salary')}</h3>
         <div className="relative flex h-[40px] max-w-full gap-[10px]">
-          <div className="flex h-full w-[32px] justify-center xl:items-center xl:px-[10px]">
-            $
-          </div>
+          <div className="flex h-full w-[32px] justify-center xl:items-center xl:px-[10px]">$</div>
           <input
             {...register('sallary.from')}
             placeholder="500"

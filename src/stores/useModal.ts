@@ -1,12 +1,6 @@
 import { create } from 'zustand';
 
-type ModalType =
-  | 'hr'
-  | 'partner'
-  | 'add_stack'
-  | 'contacts'
-  | 'calculator'
-  | '';
+type ModalType = 'hr' | 'partner' | 'add_stack' | 'contacts' | 'calculator' | '';
 
 interface ModalState {
   isModalOpen: boolean;

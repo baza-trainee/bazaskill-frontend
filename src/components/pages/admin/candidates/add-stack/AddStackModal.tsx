@@ -3,12 +3,7 @@ import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  SubmitHandler
-} from 'react-hook-form';
+import type { DeepMap, FieldError, FieldValues, SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 
@@ -117,14 +112,7 @@ function AddStackModal() {
                   ))}
                 </select>
                 <span className="font-sans text-[12px] text-error">
-                  {
-                    (
-                      errors.specialization_id as DeepMap<
-                        FieldValues,
-                        FieldError
-                      >
-                    )?.message
-                  }
+                  {(errors.specialization_id as DeepMap<FieldValues, FieldError>)?.message}
                 </span>
               </div>
             )}

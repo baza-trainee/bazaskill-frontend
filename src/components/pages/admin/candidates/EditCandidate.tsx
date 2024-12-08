@@ -6,21 +6,13 @@ import React, { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  SubmitHandler
-} from 'react-hook-form';
+import type { DeepMap, FieldError, FieldValues, SubmitHandler } from 'react-hook-form';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
 import { getCandidateById, updateCandidate } from '@/utils/api/candidates';
 import { getSpecializations } from '@/utils/api/specialization';
 import { constants } from '@/constants';
-import type {
-  CandidatesResponse,
-  ICandidateLanguages
-} from '@/types/candidates';
+import type { CandidatesResponse, ICandidateLanguages } from '@/types/candidates';
 import type { ISpecialization } from '@/types/specialization';
 
 import Stack from './shared/Stack';
@@ -41,9 +33,7 @@ function EditCandidate({ id }: { id: string }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [stackError, setStackError] = useState('');
 
-  const [stack, setStack] = useState<
-    Array<{ id: string; title: string; isExist: boolean }>
-  >([]);
+  const [stack, setStack] = useState<Array<{ id: string; title: string; isExist: boolean }>>([]);
 
   const { mutate } = useMutation({
     mutationKey: [constants.candidates.UPDATE_CANDIDATE],
@@ -109,12 +99,10 @@ function EditCandidate({ id }: { id: string }) {
         linkedin: value.linkedin,
         discord: value.discord,
         telegram: value.telegram,
-        languages: value.candidate_language.map(
-          (lang: ICandidateLanguages) => ({
-            language: lang.language,
-            level: lang.level
-          })
-        ),
+        languages: value.candidate_language.map((lang: ICandidateLanguages) => ({
+          language: lang.language,
+          level: lang.level
+        })),
         work_format: value.work_format,
         salary_from: value.sallary_form,
         salary_to: value.sallary_to,
@@ -199,9 +187,7 @@ function EditCandidate({ id }: { id: string }) {
         return;
       }
       if (undefinedStack.length) {
-        setStackError(
-          `Деяких технологій немає в базі даних. Будь ласка, внесіть їх`
-        );
+        setStackError(`Деяких технологій немає в базі даних. Будь ласка, внесіть їх`);
         return;
       }
       setIsProcessing(true);
@@ -397,20 +383,14 @@ function EditCandidate({ id }: { id: string }) {
             <Controller
               name="work_format"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <SelectField
                   title="Формат роботи"
                   value={value}
                   values={['Remote', 'Office', 'Hybrid', 'Part-time']}
                   onChange={onChange}
                   isRequired={true}
-                  errors={
-                    (errors.work_format as DeepMap<FieldValues, FieldError>)
-                      ?.message
-                  }
+                  errors={(errors.work_format as DeepMap<FieldValues, FieldError>)?.message}
                 />
               )}
             />
@@ -425,10 +405,7 @@ function EditCandidate({ id }: { id: string }) {
                 <Controller
                   name="salary_from"
                   control={control}
-                  render={({
-                    field: { value, onChange },
-                    formState: { errors }
-                  }) => (
+                  render={({ field: { value, onChange }, formState: { errors } }) => (
                     <div className="relative flex w-[inherit] flex-col gap-[5px]">
                       <input
                         value={value}
@@ -437,14 +414,7 @@ function EditCandidate({ id }: { id: string }) {
                         className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                       />
                       <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
-                        {
-                          (
-                            errors.salary_from as DeepMap<
-                              FieldValues,
-                              FieldError
-                            >
-                          )?.message
-                        }
+                        {(errors.salary_from as DeepMap<FieldValues, FieldError>)?.message}
                       </span>
                     </div>
                   )}
@@ -453,10 +423,7 @@ function EditCandidate({ id }: { id: string }) {
                 <Controller
                   name="salary_to"
                   control={control}
-                  render={({
-                    field: { value, onChange },
-                    formState: { errors }
-                  }) => (
+                  render={({ field: { value, onChange }, formState: { errors } }) => (
                     <div className="relative flex w-[inherit] flex-col gap-[5px]">
                       <input
                         value={value}
@@ -465,10 +432,7 @@ function EditCandidate({ id }: { id: string }) {
                         className="box-border h-[44px] w-[inherit] grow rounded-[4px] px-[16px] py-[6px] text-black outline-none"
                       />
                       <span className="absolute left-0 top-[calc(100%+5px)] font-sans text-[12px] text-error">
-                        {
-                          (errors.salary_to as DeepMap<FieldValues, FieldError>)
-                            ?.message
-                        }
+                        {(errors.salary_to as DeepMap<FieldValues, FieldError>)?.message}
                       </span>
                     </div>
                   )}
@@ -482,10 +446,7 @@ function EditCandidate({ id }: { id: string }) {
             <Controller
               name="about"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
                   <label htmlFor="about">Про себе &nbsp;</label>
                   <textarea
@@ -495,10 +456,7 @@ function EditCandidate({ id }: { id: string }) {
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
                   ></textarea>
                   <span className="font-sans text-[12px] text-error">
-                    {
-                      (errors.about as DeepMap<FieldValues, FieldError>)
-                        ?.message
-                    }
+                    {(errors.about as DeepMap<FieldValues, FieldError>)?.message}
                   </span>
                 </div>
               )}
@@ -514,10 +472,7 @@ function EditCandidate({ id }: { id: string }) {
             <Controller
               name="specialization"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <div className="flex w-full max-w-[442px] grow flex-col gap-[5px]">
                   <label htmlFor="specialization">
                     Cпеціальність &nbsp;
@@ -537,14 +492,7 @@ function EditCandidate({ id }: { id: string }) {
                     ))}
                   </select>
                   <span className="font-sans text-[12px] text-error">
-                    {
-                      (
-                        errors.specialization as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.message
-                    }
+                    {(errors.specialization as DeepMap<FieldValues, FieldError>)?.message}
                   </span>
                 </div>
               )}
@@ -553,18 +501,13 @@ function EditCandidate({ id }: { id: string }) {
             <Controller
               name="cv"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <FileInput
                   onChange={onChange}
                   value={value}
                   isRequired={false}
                   title="Завантажити CV"
-                  errors={
-                    (errors.cv as DeepMap<FieldValues, FieldError>)?.message
-                  }
+                  errors={(errors.cv as DeepMap<FieldValues, FieldError>)?.message}
                 />
               )}
             />
@@ -607,10 +550,7 @@ function EditCandidate({ id }: { id: string }) {
             <Controller
               name="baza_recomendation"
               control={control}
-              render={({
-                field: { value, onChange },
-                formState: { errors }
-              }) => (
+              render={({ field: { value, onChange }, formState: { errors } }) => (
                 <div className="grow-2 flex w-full max-w-[908px] flex-col gap-[5px]">
                   <label className="font-[700]" htmlFor="baza_recomendation">
                     Рекомендації від Baza Skill &nbsp;
@@ -623,14 +563,7 @@ function EditCandidate({ id }: { id: string }) {
                     className="max-h-[132px] min-h-[132px] min-w-full appearance-none rounded-[4px] px-[16px] py-[12px] text-black outline-none"
                   ></textarea>
                   <span className="font-sans text-[12px] text-error">
-                    {
-                      (
-                        errors.baza_recomendation as DeepMap<
-                          FieldValues,
-                          FieldError
-                        >
-                      )?.message
-                    }
+                    {(errors.baza_recomendation as DeepMap<FieldValues, FieldError>)?.message}
                   </span>
                 </div>
               )}
@@ -643,19 +576,14 @@ function EditCandidate({ id }: { id: string }) {
             <Controller
               name="status"
               control={control}
-              render={({
-                field: { onChange, value },
-                formState: { errors }
-              }) => (
+              render={({ field: { onChange, value }, formState: { errors } }) => (
                 <SelectField
                   title="Статус кандидата"
                   value={value}
                   values={['Working', 'Searching', 'Inactive']}
                   onChange={onChange}
                   isRequired={true}
-                  errors={
-                    (errors.status as DeepMap<FieldValues, FieldError>)?.message
-                  }
+                  errors={(errors.status as DeepMap<FieldValues, FieldError>)?.message}
                 />
               )}
             />

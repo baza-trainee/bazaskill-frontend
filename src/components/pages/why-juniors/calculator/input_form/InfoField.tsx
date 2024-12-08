@@ -22,10 +22,7 @@ const InfoField: React.FC<InfoProps> = ({ item }) => {
     >
       <InfoIcon />
       {showPopup && (
-        <Popup
-          text={t(item.text)}
-          position={{ top: '40px', right: '16px', zIndex: '1' }}
-        />
+        <Popup text={t(item.text)} position={{ top: '40px', right: '16px', zIndex: '1' }} />
       )}
     </div>
   );

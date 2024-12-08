@@ -93,8 +93,7 @@ const schema = z.object({
           `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
         )
         .refine(
-          (value) =>
-            !value || ACCEPTED_CERTIFICATE_TYPES.includes(value?.[0]?.type),
+          (value) => !value || ACCEPTED_CERTIFICATE_TYPES.includes(value?.[0]?.type),
           'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
         )
     })
@@ -117,8 +116,7 @@ const schema = z.object({
           `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
         )
         .refine(
-          (value) =>
-            !value || ACCEPTED_CERTIFICATE_TYPES.includes(value?.[0]?.type),
+          (value) => !value || ACCEPTED_CERTIFICATE_TYPES.includes(value?.[0]?.type),
           'Сертифікат має бути в форматі .pdf, .png, .jpg або .webp'
         )
     })

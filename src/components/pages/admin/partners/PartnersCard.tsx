@@ -96,11 +96,7 @@ function PartnersCard({
             <Link href={`/admin/partners/edit/${item.id}`}>
               <WriteIcon className="size-[32px] fill-black" />
             </Link>
-            <button
-              type="button"
-              onClick={() => setIsDeleting(true)}
-              className="cursor-pointer"
-            >
+            <button type="button" onClick={() => setIsDeleting(true)} className="cursor-pointer">
               <TrashIcon className="size-[32px] cursor-pointer " />
             </button>
           </div>

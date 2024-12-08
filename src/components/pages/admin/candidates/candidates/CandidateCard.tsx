@@ -14,9 +14,7 @@ import QuestionAlert from '../../alerts/QuestionAlert';
 interface CandidateCardProps {
   candidate: CandidatesResponse;
 }
-const CandidateCard: React.FC<CandidateCardProps> = ({
-  candidate
-}: CandidateCardProps) => {
+const CandidateCard: React.FC<CandidateCardProps> = ({ candidate }: CandidateCardProps) => {
   const queryClient = useQueryClient();
   const specialization = candidate.specialization.title;
   const [isDeleting, setIsDeleting] = useState(false);
@@ -92,9 +90,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
               <span key={lang.id}>
                 <span>{shortenLangs(lang.language)}</span>
                 &nbsp;
-                {index !== candidate.candidate_language.length - 1 && (
-                  <span>/</span>
-                )}
+                {index !== candidate.candidate_language.length - 1 && <span>/</span>}
               </span>
             ))}
           </span>
@@ -106,14 +102,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
               <use href="/Icons/sprite.svg#icon-experience"></use>
             </svg>
             {candidate.baza_experience.length}{' '}
-            {declineWord(
-              candidate.baza_experience.length,
-              'проект',
-              '',
-              'и',
-              'ів'
-            )}{' '}
-            на базі
+            {declineWord(candidate.baza_experience.length, 'проект', '', 'и', 'ів')} на базі
           </span>
 
           <span className="flex w-1/2 items-center gap-[8px] ">

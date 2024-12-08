@@ -16,9 +16,7 @@ export default function MobileLogo(): JSX.Element {
         <Logo className="block scale-150" />
       </Link>
 
-      <h3 className="text-center font-tahoma text-xl font-semibold text-white ">
-        {t('offer')}
-      </h3>
+      <h3 className="text-center font-tahoma text-xl font-semibold text-white ">{t('offer')}</h3>
     </div>
   );
 }

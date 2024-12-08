@@ -67,18 +67,20 @@ const CookiesModal = () => {
         aria-hidden={!showPanel}
       >
         <div className="relative flex flex-col justify-between py-6 pt-9">
-          <h2 id="cookie-modal-title" className="sr-only">Cookie Consent</h2> {/* Hidden but read by screen readers */}
+          <h2 id="cookie-modal-title" className="sr-only">
+            Cookie Consent
+          </h2>{' '}
+          {/* Hidden but read by screen readers */}
           <div id="cookie-modal-description" className="mb-[25px] max-w-[564px] text-lg text-black">
             {t('text')}{' '}
             <Link
               className="text-base font-bold underline duration-300 hover:text-blue-800"
               href={createLinck(privacyPolicy?.title)}
-              target='_blank'
+              target="_blank"
             >
               {t('privacy_policy')}
             </Link>
           </div>
-
           <div className="flex max-h-[61px]">
             <button
               type="button"

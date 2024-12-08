@@ -21,4 +21,3 @@ export default function BurgerButton(): JSX.Element {
     </button>
   );
 }
-

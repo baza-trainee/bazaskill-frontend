@@ -1,11 +1,4 @@
-const specialities = [
-  'design',
-  'frontend',
-  'backend',
-  'fullstack',
-  'qa manual',
-  'pm'
-];
+const specialities = ['design', 'frontend', 'backend', 'fullstack', 'qa manual', 'pm'];
 
 const countries = [
   'україна',

@@ -34,17 +34,13 @@ function HrApplication({ id }: { id: string }) {
         <span className="flex-1  text-xl">Телефон: {hr?.phone}</span>
         <span className="flex-1 text-xl">Email: {hr?.email}</span>
 
-        <span className="flex-1  text-xl">
-          Компанія: {getEmptyValue(hr?.company)}
-        </span>
+        <span className="flex-1  text-xl">Компанія: {getEmptyValue(hr?.company)}</span>
         <span className="flex-1  text-xl">
           Країна: {getEmptyValue(translateCountry(hr?.country))}
         </span>
 
         <div className="flex w-full justify-around gap-[24px]">
-          <span className="text-xl">
-            Я шукаю спеціалістів: {hr?.specialization}
-          </span>
+          <span className="text-xl">Я шукаю спеціалістів: {hr?.specialization}</span>
         </div>
         <h3 className="my-[24px] text-2xl underline">Коментар:</h3>
         <span className="text-xl">{hr?.message}</span>

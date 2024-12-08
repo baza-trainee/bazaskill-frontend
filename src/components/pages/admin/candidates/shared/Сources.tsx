@@ -33,9 +33,8 @@ const Cources: React.FC<ICourcesProps> = ({
   control,
   fieldArray: { fields, append, remove }
 }) => {
-
   useEffect(() => {
-    if (!fieldsLength) return
+    if (!fieldsLength) return;
     if (fieldsLength > 1) {
       for (let i = 1; i < fieldsLength; i++) append;
     }
@@ -54,9 +53,7 @@ const Cources: React.FC<ICourcesProps> = ({
                   <TextInput
                     {...field}
                     error={
-                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.name?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[index]?.name?.message
                     }
                     isRequired={false}
                     placeholder="Ведіть назву"
@@ -71,9 +68,8 @@ const Cources: React.FC<ICourcesProps> = ({
                   <TextInput
                     {...field}
                     error={
-                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.cources_specializaton?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.cources_specializaton?.message
                     }
                     isRequired={false}
                     placeholder="Введіть назву"
@@ -85,18 +81,14 @@ const Cources: React.FC<ICourcesProps> = ({
               <Controller
                 name={`cources.${index}.cources_sertificate`}
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors }
-                }) => (
+                render={({ field: { onChange, value }, formState: { errors } }) => (
                   <FileInput
                     onChange={onChange}
                     value={value}
                     title="Завантажити сертифікат"
                     errors={
-                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.cources_sertificate?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[index]
+                        ?.cources_sertificate?.message
                     }
                   />
                 )}
@@ -111,9 +103,8 @@ const Cources: React.FC<ICourcesProps> = ({
                   <TextInput
                     {...field}
                     error={
-                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.cources_start?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[index]?.cources_start
+                        ?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
@@ -129,9 +120,8 @@ const Cources: React.FC<ICourcesProps> = ({
                   <TextInput
                     {...field}
                     error={
-                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.cources_end?.message
+                      (errors.cources as DeepMap<FieldValues, FieldError>)?.[index]?.cources_end
+                        ?.message
                     }
                     isRequired={false}
                     placeholder="dd.mm.yyyy"
@@ -151,10 +141,7 @@ const Cources: React.FC<ICourcesProps> = ({
           </div>
         );
       })}
-      <div
-        onClick={() => append(defaultValues)}
-        className="flex cursor-pointer justify-end"
-      >
+      <div onClick={() => append(defaultValues)} className="flex cursor-pointer justify-end">
         + Додати ще
       </div>
     </div>

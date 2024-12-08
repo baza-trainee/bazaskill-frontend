@@ -7,9 +7,7 @@ export async function getPartnerApplications() {
 }
 
 export async function getPartnerApplicationsById(id: string) {
-  const { data } = await axios.get<IPartnerResponse>(
-    `/partner-application/${id}`
-  );
+  const { data } = await axios.get<IPartnerResponse>(`/partner-application/${id}`);
   return data;
 }
 

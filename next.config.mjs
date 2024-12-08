@@ -24,6 +24,29 @@ const nextConfig = {
       test: /\.node/,
       use: 'raw-loader',
     });
+    
+    // Add SVGR configuration
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [{
+        loader: '@svgr/webpack',
+        options: {
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }]
+    });
+
     config.resolve.alias.canvas = false;
 
     return config;

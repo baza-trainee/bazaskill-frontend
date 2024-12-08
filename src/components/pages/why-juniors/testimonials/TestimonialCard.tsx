@@ -9,11 +9,7 @@ import { transformDate } from '@/helpers/transformDate';
 import { formatDate } from '@/lib/formatData';
 import { Testimonial } from '@/types/testimonials';
 
-export default function TestimonialCard({
-  data
-}: {
-  data: Testimonial;
-}): JSX.Element {
+export default function TestimonialCard({ data }: { data: Testimonial }): JSX.Element {
   const locale: string = useLocale();
 
   return (
@@ -32,25 +28,15 @@ export default function TestimonialCard({
 
           <div className="py-3 text-start">
             <h3 className="font-tahoma text-xl font-bold sm:mb-6 md:text-2xl">
-              {locale === 'ua'
-                ? data.name_ua
-                : locale === 'ua'
-                  ? data.name_pl
-                  : data.name_en}
+              {locale === 'ua' ? data.name_ua : locale === 'ua' ? data.name_pl : data.name_en}
             </h3>
 
-            <p className="text-sm font-normal">
-              {formatDate(transformDate(data.date), locale)}
-            </p>
+            <p className="text-sm font-normal">{formatDate(transformDate(data.date), locale)}</p>
           </div>
         </div>
 
         <p className="text-sm font-normal md:text-xl">
-          {locale === 'ua'
-            ? data.review_ua
-            : locale === 'ua'
-              ? data.review_pl
-              : data.review_en}
+          {locale === 'ua' ? data.review_ua : locale === 'ua' ? data.review_pl : data.review_en}
         </p>
       </div>
     </div>

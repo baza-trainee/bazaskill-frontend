@@ -12,9 +12,7 @@ import HiddenTitle from '@/components/shared/HiddenTitle';
 import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
 import type { PageProps } from '@/types';
 
-export async function generateMetadata({
-  params
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
     namespace: 'Metadata'

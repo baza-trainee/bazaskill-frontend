@@ -37,19 +37,12 @@ ${
           </label>
         )}
         <div className="relative ">
-          <input
-            {...rest}
-            id={title}
-            value={value}
-            className={inputClassName}
-          />
+          <input {...rest} id={title} value={value} className={inputClassName} />
           <div className="absolute right-[16px] top-[9px] ">
             {errorText && <ErrorIcon className="size-[24px]" />}
           </div>
           {errorText && (
-            <span className=" absolute bottom-[-16px] left-0 text-xs">
-              {errorText}
-            </span>
+            <span className=" absolute bottom-[-16px] left-0 text-xs">{errorText}</span>
           )}
         </div>
       </div>
