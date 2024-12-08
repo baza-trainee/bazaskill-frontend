@@ -238,16 +238,8 @@ function Contacts() {
           />
         </div>
         <div className="flex w-max items-center gap-[24px]">
-          <PrimaryButton
-            text="Зберегти зміни"
-            type="submit"
-            disabled={!isDirty}
-          />
-          <SecondaryButton
-            text="Скасувати"
-            type="button"
-            onClick={() => reset()}
-          />
+          <PrimaryButton text="Зберегти зміни" type="submit" disabled={!isDirty} />
+          <SecondaryButton text="Скасувати" type="button" onClick={() => reset()} />
         </div>
       </form>
       {isFetching && <Loader />}

@@ -39,7 +39,7 @@ function Languages({
   };
 
   useEffect(() => {
-    if (!fieldsLength) return
+    if (!fieldsLength) return;
     if (fieldsLength > 1) {
       for (let i = 1; i < fieldsLength; i++) append;
     }
@@ -54,10 +54,7 @@ function Languages({
               <Controller
                 name={`languages.${index}.language`}
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors }
-                }) => (
+                render={({ field: { onChange, value }, formState: { errors } }) => (
                   <SelectField
                     title="Іноземна мова"
                     value={value}
@@ -66,9 +63,8 @@ function Languages({
                     disableHandler={handleDisable}
                     isRequired={true}
                     errors={
-                      (errors.languages as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.language?.message
+                      (errors.languages as DeepMap<FieldValues, FieldError>)?.[index]?.language
+                        ?.message
                     }
                   />
                 )}
@@ -76,10 +72,7 @@ function Languages({
               <Controller
                 name={`languages.${index}.level`}
                 control={control}
-                render={({
-                  field: { onChange, value },
-                  formState: { errors }
-                }) => (
+                render={({ field: { onChange, value }, formState: { errors } }) => (
                   <SelectField
                     title="Іноземна мова"
                     value={value}
@@ -87,9 +80,8 @@ function Languages({
                     onChange={onChange}
                     isRequired={true}
                     errors={
-                      (errors.languages as DeepMap<FieldValues, FieldError>)?.[
-                        index
-                      ]?.level?.message
+                      (errors.languages as DeepMap<FieldValues, FieldError>)?.[index]?.level
+                        ?.message
                     }
                   />
                 )}

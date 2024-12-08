@@ -26,15 +26,7 @@ interface SelectInputProps {
 }
 const SelectInput = forwardRef(
   (
-    {
-      options,
-      onChange,
-      title,
-      value,
-      placeholder,
-      isRequired,
-      errorText
-    }: SelectInputProps,
+    { options, onChange, title, value, placeholder, isRequired, errorText }: SelectInputProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,15 +39,8 @@ const SelectInput = forwardRef(
       setIsOpen(false);
     };
 
-    const handleChange = (
-      newValue: unknown,
-      _actionMeta: ActionMeta<unknown>
-    ) => {
-      if (
-        typeof newValue === 'object' &&
-        newValue !== null &&
-        'value' in newValue
-      ) {
+    const handleChange = (newValue: unknown, _actionMeta: ActionMeta<unknown>) => {
+      if (typeof newValue === 'object' && newValue !== null && 'value' in newValue) {
         onChange((newValue as Option).value);
       } else {
         onChange('');
@@ -89,9 +74,7 @@ const SelectInput = forwardRef(
               : (props) => <DropdownIndicator isOpen={isOpen} {...props} />
           }}
         />
-        {isRequired && errorText && (
-          <span className="text-xs text-error">{errorText}</span>
-        )}
+        {isRequired && errorText && <span className="text-xs text-error">{errorText}</span>}
       </div>
     );
   }

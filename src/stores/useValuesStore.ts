@@ -26,13 +26,13 @@ const calculateROIFormula = (
   const S_M = middleSalary / 160;
 
   // Загальні витрати
-  const totalCosts = salary + educationCost + (menthorshipTime * S_M) + profitLoss;
+  const totalCosts = salary + educationCost + menthorshipTime * S_M + profitLoss;
 
   // Якщо витрати 0 або негативні, ROI не можна обчислити
   if (totalCosts <= 0) return 0;
 
   // Формула розрахунку ROI
-  return profit / totalCosts * 100;
+  return (profit / totalCosts) * 100;
 };
 
 export const useValues = create<ValuesState>((set) => ({
@@ -63,7 +63,7 @@ export const useValues = create<ValuesState>((set) => ({
     );
 
     // Зберігаємо результат
-    set({ ROI: ROI > 0 ? ROI.toString() : '' });
+    set({ ROI: ROI > 0 ? ROI.toFixed(1).toString() : '' });
   },
   resetValues: () =>
     set({

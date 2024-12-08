@@ -17,18 +17,12 @@ const Post = ({ data: post }: { data: any }) => {
               rel="noopener noreferrer"
               aria-label={`Read more about ${post.title}`}
             >
-              <h3
-                id={`post-title-${post.id}`}
-                className="mb-4 text-center text-2xl font-bold"
-              >
+              <h3 id={`post-title-${post.id}`} className="mb-4 text-center text-2xl font-bold">
                 {post.title}
               </h3>
             </Link>
           </header>
-          <p
-            className="line-clamp-[7] text-sm md:line-clamp-6"
-            role="contentinfo"
-          >
+          <p className="line-clamp-[7] text-sm md:line-clamp-6" role="contentinfo">
             {post.text}
           </p>
         </div>

@@ -3,9 +3,7 @@ export function dateChecker(timestamp: Date) {
 
   const currentDate: Date = new Date();
 
-  const timeDifference: number = Math.abs(
-    currentDate.getTime() - parsedDate.getTime()
-  );
+  const timeDifference: number = Math.abs(currentDate.getTime() - parsedDate.getTime());
 
   const hoursDifference: number = timeDifference / (1000 * 60 * 60);
 

@@ -69,12 +69,7 @@ const SideBar: React.FC = () => {
       </div>
       <ul className="mb-[180px] flex flex-col">
         {sidebarItems.map(({ icon, href, label, className }, index) => (
-          <SideBarItem
-            key={index}
-            href={href}
-            icon={icon}
-            className={className}
-          >
+          <SideBarItem key={index} href={href} icon={icon} className={className}>
             {label}
           </SideBarItem>
         ))}

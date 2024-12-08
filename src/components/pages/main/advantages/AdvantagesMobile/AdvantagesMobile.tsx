@@ -6,13 +6,7 @@ import { useTranslations } from 'next-intl';
 import Slider from '@/components/shared/slider/Slider';
 import type { TAdvantages } from '@/types';
 
-export const AdvantageCard = ({
-  data: item,
-  index
-}: {
-  data: any;
-  index?: number;
-}) => {
+export const AdvantageCard = ({ data: item, index }: { data: any; index?: number }) => {
   const t = useTranslations('Main.advantages');
 
   return (
@@ -33,9 +27,7 @@ export const AdvantageCard = ({
           className="mx-auto mb-[20px] w-[119px]"
         />
         <h3 className="mb-2 text-lg font-bold">{t(item.title)}</h3>
-        <p className="text-[14px] leading-[26px] md:text-[16px]">
-          {t(item.text)}
-        </p>
+        <p className="text-[14px] leading-[26px] md:text-[16px]">{t(item.text)}</p>
       </div>
     </article>
   );

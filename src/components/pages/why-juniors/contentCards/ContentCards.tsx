@@ -57,12 +57,8 @@ function ContentCards() {
                     height={cardParams.imageHeight}
                     className="mb-6 aspect-square rounded-full object-cover text-center grayscale"
                   />
-                  <span className=" flex-col pb-2 text-lg font-bold">
-                    {card.name}
-                  </span>
-                  <span className="flex-col text-lg">
-                    {card.specialization}
-                  </span>
+                  <span className=" flex-col pb-2 text-lg font-bold">{card.name}</span>
+                  <span className="flex-col text-lg">{card.specialization}</span>
                 </div>
               </SwiperSlide>
             ))}

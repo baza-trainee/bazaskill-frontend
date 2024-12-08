@@ -9,8 +9,10 @@ import CookiesModal from '@/components/shared/modals/cookies/CookiesModal';
 
 async function Home() {
   return (
-    <div className="mt-[72px] flex min-h-screen w-full flex-col items-center 
-    justify-center bg-graphite sm:mt-[80px] md:mt-[140px]">
+    <div
+      className="mt-[72px] flex min-h-screen w-full flex-col items-center 
+    justify-center bg-graphite sm:mt-[80px] md:mt-[140px]"
+    >
       <Hero />
       <OurHistory />
       <Counters />

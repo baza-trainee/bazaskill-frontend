@@ -37,8 +37,7 @@ function ErrorAlert({ text, title, onClose, isError }: AlertProps) {
 
       <div className="absolute bottom-0 left-0  w-full  bg-darkGraphite ">
         <p className="mt-0 text-left  font-['Open_Sans',_sans-serif] text-[14px] text-[#ffffff]">
-          Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова
-          Гандзюка
+          Компанія направляє 10% прибутку на підтримку 59-ї бригади ім. Якова Гандзюка
         </p>
       </div>
     </div>

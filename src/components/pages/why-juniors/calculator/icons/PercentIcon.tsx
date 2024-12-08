@@ -1,12 +1,6 @@
 const PercentIcon = () => {
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_366_660)">
         <path
           d="M6 10C7.933 10 9.5 8.433 9.5 6.5C9.5 4.567 7.933 3 6 3C4.067 3 2.5 4.567 2.5 6.5C2.5 8.433 4.067 10 6 10Z"

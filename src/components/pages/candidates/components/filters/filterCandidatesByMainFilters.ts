@@ -23,9 +23,7 @@ export function filterCandidatesByMainFilters({
 }: IFilterCandidatesByMainFilters) {
   if (!speciality && inputCountry) {
     const filtered = candidates?.data?.filter((candidate) => {
-      const candidateCountry = translateCountryName(
-        candidate.country?.toLowerCase()
-      );
+      const candidateCountry = translateCountryName(candidate.country?.toLowerCase());
       const matchesCountry = inputCountry === candidateCountry;
       return matchesCountry;
     });
@@ -34,8 +32,7 @@ export function filterCandidatesByMainFilters({
     setIsMainFilter(true);
   } else if (speciality && !inputCountry) {
     const filtered = candidates?.data?.filter((candidate) => {
-      const candidateSpecialization =
-        candidate.specialization?.title?.toLowerCase();
+      const candidateSpecialization = candidate.specialization?.title?.toLowerCase();
 
       const selectedSpeciality = speciality.toLowerCase();
       const matchesSpeciality = selectedSpeciality === candidateSpecialization;
@@ -45,12 +42,9 @@ export function filterCandidatesByMainFilters({
     setIsMainFilter(true);
   } else {
     const filtered = candidates?.data?.filter((candidate) => {
-      const candidateCountry = translateCountryName(
-        candidate.country?.toLowerCase()
-      );
+      const candidateCountry = translateCountryName(candidate.country?.toLowerCase());
 
-      const candidateSpecialization =
-        candidate.specialization?.title?.toLowerCase();
+      const candidateSpecialization = candidate.specialization?.title?.toLowerCase();
 
       const selectedSpeciality = speciality.toLowerCase();
       const matchesCountry = inputCountry === candidateCountry;

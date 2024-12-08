@@ -19,9 +19,7 @@ function CandidatePageComponent({ id }: { id: string }) {
     queryFn: getAllCandidates
   });
 
-  const candidate = candidates.data?.find(
-    (candidate) => candidate.id.toString() === id
-  );
+  const candidate = candidates.data?.find((candidate) => candidate.id.toString() === id);
 
   const isModalOpen = useModal((state) => state.isModalOpen);
 

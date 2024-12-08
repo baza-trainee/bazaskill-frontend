@@ -17,20 +17,11 @@ export async function authLogin(data: any) {
 }
 
 export async function forgotPassword(data: any) {
-  const response = await axios.post<forgotPasswordType>(
-    '/password/forgot',
-    data
-  );
+  const response = await axios.post<forgotPasswordType>('/password/forgot', data);
   return response;
 }
 
-export async function resetPassword({
-  token,
-  password
-}: {
-  token: string;
-  password: string;
-}) {
+export async function resetPassword({ token, password }: { token: string; password: string }) {
   const response = await axios.post('/password/reset', {
     token,
     password

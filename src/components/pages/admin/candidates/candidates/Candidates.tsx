@@ -14,9 +14,7 @@ import CandidatesList from './CandidatesList';
 import CandidatesSearch from './CandidatesSearch';
 
 function Candidates() {
-  const [filteredCandidates, setFilteredCandidates] = useState<
-    CandidatesResponse[]
-  >([]);
+  const [filteredCandidates, setFilteredCandidates] = useState<CandidatesResponse[]>([]);
 
   const candidates: UseQueryResult<CandidatesResponse[], Error> = useQuery({
     queryKey: [constants.candidates.FETCH_ALL_CANDIDATES],

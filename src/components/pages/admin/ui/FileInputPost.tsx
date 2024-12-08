@@ -17,28 +17,16 @@ interface FileInputPostProps {
 
 const FileInputPost = forwardRef(
   (
-    {
-      title,
-      errorText,
-      placeholder,
-      isRequired,
-      onChange,
-      file,
-      ...rest
-    }: FileInputPostProps,
+    { title, errorText, placeholder, isRequired, onChange, file, ...rest }: FileInputPostProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const [selectedFileName, setSelectedFileName] = useState<string | null>(
-      null
-    );
+    const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
     const [isValid, setIsValid] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const validateFile = (file: File): boolean => {
       const validExtensions = ['.jpg', '.jpeg', '.webp', '.png', '.svg'];
-      const extension = file.name
-        .substring(file.name.lastIndexOf('.'))
-        .toLowerCase();
+      const extension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
       if (!validExtensions.includes(extension)) {
         setErrorMessage('Невалідний формат файлу');
         return false;
@@ -79,10 +67,7 @@ const FileInputPost = forwardRef(
         className={`font-sans font-normal tracking-normal ${errorText ? 'text-red-500' : 'text-inherit'}`}
       >
         {!!title && (
-          <label
-            htmlFor={title}
-            className="mb-[8px] block text-[20px] leading-[1.4] text-white"
-          >
+          <label htmlFor={title} className="mb-[8px] block text-[20px] leading-[1.4] text-white">
             {title}
             {isRequired && <span className="text-error">*</span>}
           </label>
@@ -107,9 +92,7 @@ const FileInputPost = forwardRef(
           />
         </div>
         {errorMessage && (
-          <span className="left top absolute text-xs text-red-500">
-            {errorMessage}
-          </span>
+          <span className="left top absolute text-xs text-red-500">{errorMessage}</span>
         )}
       </div>
     );

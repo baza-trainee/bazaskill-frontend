@@ -13,17 +13,13 @@ const DynamicPage = dynamic(
   { ssr: false, loading: () => <Loader /> }
 );
 
-export async function generateMetadata({
-  params
-}: IdPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: IdPageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
     namespace: 'Metadata'
   });
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates/${params.id}`
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/candidates/${params.id}`);
   const candidate = await response.json();
   return {
     title: `${t('candidate_title')} ${candidate.name} ${candidate.specialization.title}`,

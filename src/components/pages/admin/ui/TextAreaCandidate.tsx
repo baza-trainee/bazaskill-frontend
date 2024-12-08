@@ -5,8 +5,7 @@ import { forwardRef } from 'react';
 
 import WriteIcon from '@/components/shared/icons/Admin-icons/WriteIcon';
 
-interface TextAreaCandidateProps
-  extends InputHTMLAttributes<HTMLTextAreaElement> {
+interface TextAreaCandidateProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
   iconComponent?: JSX.Element;
@@ -15,13 +14,7 @@ interface TextAreaCandidateProps
 
 const TextAreaCandidate = forwardRef(
   (
-    {
-      title,
-      errorText,
-      value = '',
-      isRequired,
-      ...rest
-    }: TextAreaCandidateProps,
+    { title, errorText, value = '', isRequired, ...rest }: TextAreaCandidateProps,
     _ref: ForwardedRef<HTMLInputElement>
   ) => {
     const inputClassName = `bg-[#efefef] mt-[8px] w-[520px] 5xl:w-[908px] h-[123px] text-[#020202] text-[16px]  font-sans font-normal leading-[1.6] tracking-[0px] resize-none rounded-md border-4 py-[16px] pl-[16px] pr-[48px] placeholder:text-[#787878] placeholder:text-[16px] placeholder:leading-[1.16]
@@ -47,21 +40,14 @@ ${
           </label>
         )}
         <div className="relative ">
-          <textarea
-            {...rest}
-            id={title}
-            value={value}
-            className={inputClassName}
-          />
+          <textarea {...rest} id={title} value={value} className={inputClassName} />
 
           <div className="absolute right-[16px] top-[24px]">
             <WriteIcon />
           </div>
         </div>
 
-        {errorText && (
-          <span className="left top absolute ml-2 text-xs">{errorText}</span>
-        )}
+        {errorText && <span className="left top absolute ml-2 text-xs">{errorText}</span>}
       </div>
     );
   }

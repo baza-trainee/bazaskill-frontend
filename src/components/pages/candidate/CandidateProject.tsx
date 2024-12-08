@@ -7,11 +7,7 @@ function Project({ project }: { project: BazaExperienceResponse }) {
 
   return (
     <div className="flex w-full flex-col gap-[32px] font-sans text-[20px] text-white md:w-[34%]">
-      <a
-        href={project.project_name}
-        target="_blank"
-        className="font-[700] underline"
-      >
+      <a href={project.project_name} target="_blank" className="font-[700] underline">
         {project.project_name}
       </a>
       <div className="flex items-center justify-between">

@@ -15,15 +15,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const TextInput = forwardRef(
   (
-    {
-      title,
-      errorText,
-      value = '',
-      isRequired,
-      isIcon,
-      isPassword,
-      ...rest
-    }: TextInputProps,
+    { title, errorText, value = '', isRequired, isIcon, isPassword, ...rest }: TextInputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -76,11 +68,7 @@ ${
               <WriteIcon className="size-[24px]" />
             </div>
           )}
-          {errorText && (
-            <span className="absolute bottom-[-30px] left-0 text-xs">
-              {errorText}
-            </span>
-          )}
+          {errorText && <span className="absolute bottom-[-30px] left-0 text-xs">{errorText}</span>}
         </div>
       </div>
     );

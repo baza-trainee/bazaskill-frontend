@@ -25,9 +25,7 @@ function Posts() {
         <article className="flex h-[336px] w-[442px] flex-col items-center justify-center rounded-[10px] border-2 border-[#7EFE92] md:w-[217px] xl:w-[340px] 5xl:h-[336px] 5xl:w-[464px]">
           <Link href="/admin/posts/add" className="flex flex-col items-center">
             <PlusIcon />
-            <p className="font-sans text-[20px] leading-[1.3] text-[#4DC760]">
-              Додати статтю
-            </p>
+            <p className="font-sans text-[20px] leading-[1.3] text-[#4DC760]">Додати статтю</p>
           </Link>
         </article>
         {data?.reverse().map((post) => {

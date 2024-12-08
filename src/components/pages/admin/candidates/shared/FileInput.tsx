@@ -8,13 +8,7 @@ interface IFileInputProps {
   isRequired?: boolean;
 }
 
-const FileInput: React.FC<IFileInputProps> = ({
-  onChange,
-  value,
-  title,
-  errors,
-  isRequired
-}) => {
+const FileInput: React.FC<IFileInputProps> = ({ onChange, value, title, errors, isRequired }) => {
   return (
     <div className="relative flex w-full max-w-[442px] grow flex-col gap-[5px]">
       <label htmlFor={title}>

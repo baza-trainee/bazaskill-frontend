@@ -5,9 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import UnderDevelopment from '@/components/shared/under_development/UnderDevelopment';
 import { PageProps } from '@/types';
 
-export async function generateMetadata({
-  params
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const t = await getTranslations({
     locale: params.locale,
     namespace: 'Metadata'

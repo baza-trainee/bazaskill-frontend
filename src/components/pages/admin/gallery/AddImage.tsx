@@ -67,9 +67,7 @@ function AddImage() {
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<TGalleryScheme> = async (
-    values: TGalleryScheme
-  ) => {
+  const onSubmit: SubmitHandler<TGalleryScheme> = async (values: TGalleryScheme) => {
     setIsProcessing(true);
     try {
       const formData = new FormData();
@@ -108,10 +106,7 @@ function AddImage() {
             />
           </div>
           <div className="flex w-full justify-between">
-            <PrimaryButton
-              text={isProcessing ? 'Обробка запиту' : 'Додати'}
-              disabled={!isValid}
-            />
+            <PrimaryButton text={isProcessing ? 'Обробка запиту' : 'Додати'} disabled={!isValid} />
             <SecondaryButton
               onClick={() => {
                 reset();

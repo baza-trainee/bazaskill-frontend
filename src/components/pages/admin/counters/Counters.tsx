@@ -29,7 +29,6 @@ function Counters() {
     queryFn: getCounters
   });
 
-
   const {
     handleSubmit,
     control,
@@ -196,11 +195,7 @@ function Counters() {
               onClick={handleSubmit(onSubmit)}
               disabled={!Object.keys(errors).length && !isDirty}
             />
-            <SecondaryButton
-              text="Скасувати"
-              type="reset"
-              onClick={handleCloseAndReset}
-            />
+            <SecondaryButton text="Скасувати" type="reset" onClick={handleCloseAndReset} />
           </div>
           {showModal && (
             <SuccessAlert

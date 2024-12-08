@@ -99,10 +99,7 @@ function AddStory() {
     <div className="py-[20px] pl-[24px]">
       <PageTitle title="Додати історію" />
       <section className="pt-[50px]">
-        <form
-          className="flex flex-col gap-[50px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-[50px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-[150px]">
             <div className="flex flex-col gap-[50px]">
               <Controller
@@ -235,10 +232,7 @@ function AddStory() {
             }}
           />
           <div className="flex gap-[24px]">
-            <PrimaryButton
-              text={isProcessing ? 'Обробка запиту' : 'Додати'}
-              disabled={!isDirty}
-            />
+            <PrimaryButton text={isProcessing ? 'Обробка запиту' : 'Додати'} disabled={!isDirty} />
             <SecondaryButton
               text="Скасувати"
               onClick={() => {

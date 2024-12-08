@@ -26,9 +26,7 @@ import EditTestimonialCard from './EditTestimonialsCard';
 import { testimonialValidation } from './validationSchema';
 
 function EditTestimonial() {
-  const [previewCard, setPreviewCard] = useState<
-    TestimonialPreview | undefined
-  >();
+  const [previewCard, setPreviewCard] = useState<TestimonialPreview | undefined>();
   const [isProcessing, setIsProcessing] = useState(false);
   const [file, setFile] = useState<File | null | string>(null);
   const [isSuccess, setIsSuccess] = useState(false);

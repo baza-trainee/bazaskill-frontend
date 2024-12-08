@@ -41,9 +41,7 @@ const StackComponent: React.FC<IStackProps> = ({ handleStack, error }) => {
     queryFn: getStack
   });
 
-  const stackNames = stackResponse?.data?.map((item) =>
-    item.title.toLowerCase()
-  );
+  const stackNames = stackResponse?.data?.map((item) => item.title.toLowerCase());
 
   const getId = (title: string) => {
     const foundedItem = stackResponse.data?.find(
@@ -109,9 +107,7 @@ const StackComponent: React.FC<IStackProps> = ({ handleStack, error }) => {
             name="stack"
             placeholder="Пишіть тут"
             value={input}
-            onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
-              setInput(value)
-            }
+            onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) => setInput(value)}
             className="box-border h-[44px] rounded-[4px] px-[16px] py-[6px] text-black outline-none"
           />
         </div>

@@ -66,11 +66,7 @@ function AddDocument() {
   return (
     <div className="relative h-screen max-h-screen p-[24px]">
       <PageTitle title="Додати документ" />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        autoComplete="off"
-        className="mt-[50px]"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="mt-[50px]">
         <div className="mb-[50px] flex gap-[50px]">
           <div className="flex items-end justify-center gap-[24px]">
             <FileInputDoc
@@ -81,11 +77,7 @@ function AddDocument() {
               isRequired={false}
               accept=".pdf"
             />
-            <button
-              type="button"
-              className="mb-2"
-              onClick={() => resetField('privacy_policy')}
-            >
+            <button type="button" className="mb-2" onClick={() => resetField('privacy_policy')}>
               <TrashIcon className="size-[32px] fill-white" />
             </button>
           </div>
@@ -100,11 +92,7 @@ function AddDocument() {
               isRequired={false}
               accept=".pdf"
             />
-            <button
-              type="button"
-              className="mb-2"
-              onClick={() => resetField('terms_of_use')}
-            >
+            <button type="button" className="mb-2" onClick={() => resetField('terms_of_use')}>
               <TrashIcon className="size-[32px] fill-white" />
             </button>
           </div>

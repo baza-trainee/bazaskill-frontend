@@ -99,10 +99,7 @@ function AddPosts() {
     <div className="pl-[24px] pt-[20px]">
       <PageTitle title="Додати статтю" />
       <section className="pt-[50px]">
-        <form
-          className="flex flex-col gap-[50px]"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-[50px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-[50px]">
             <div className="flex flex-col gap-[50px]">
               <Controller
@@ -166,10 +163,7 @@ function AddPosts() {
             }}
           />
           <div className="flex gap-[24px]">
-            <PrimaryButton
-              text={isProcessing ? 'Обробка запиту' : 'Додати'}
-              disabled={!isDirty}
-            />
+            <PrimaryButton text={isProcessing ? 'Обробка запиту' : 'Додати'} disabled={!isDirty} />
             <SecondaryButton
               text="Скасувати"
               onClick={() => {

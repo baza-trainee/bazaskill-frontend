@@ -64,11 +64,7 @@ ${
               {isEditing ? <EyeIcon /> : <NotEyeIcon />}
             </button>
           </div>
-          {errorText && (
-            <span className="absolute bottom-[-16px] left-0 text-xs">
-              {errorText}
-            </span>
-          )}
+          {errorText && <span className="absolute bottom-[-16px] left-0 text-xs">{errorText}</span>}
         </div>
       </div>
     );

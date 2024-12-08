@@ -20,10 +20,7 @@ function CalculatorModal({ children, handleClose }: ModalProps) {
       className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 "
     >
       <div className="relative h-[95vh] w-[98vw] overflow-y-auto rounded-lg scrollbar-none sm:w-[90.5%] md:max-h-[95vh]">
-        <div
-          onClick={handleClose}
-          className="absolute right-4 top-4 size-6 cursor-pointer"
-        >
+        <div onClick={handleClose} className="absolute right-4 top-4 size-6 cursor-pointer">
           <CloseIcon fill="#ffffff" />
         </div>
         {children}

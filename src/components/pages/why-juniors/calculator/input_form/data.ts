@@ -6,11 +6,11 @@ import SalaryIcon from '../icons/SalaryIcon';
 import SkillIcon from '../icons/SkillIcon';
 import UserIcon from '../icons/UserIcon';
 
-import { GiProfit } from "react-icons/gi";
-import { IoTime } from "react-icons/io5";
-import { MdOutlineAttachMoney } from "react-icons/md"
-import { GrMoney } from "react-icons/gr";
-import { FaRegMoneyBillAlt } from "react-icons/fa";
+import { GiProfit } from 'react-icons/gi';
+import { IoTime } from 'react-icons/io5';
+import { MdOutlineAttachMoney } from 'react-icons/md';
+import { GrMoney } from 'react-icons/gr';
+import { FaRegMoneyBillAlt } from 'react-icons/fa';
 
 export const specialities = [
   'UA/UX Designer',
@@ -52,7 +52,7 @@ export const itemEducation: Item = {
 };
 
 export const itemMentorshipTime: Item = {
-  name: 'mentorshipTime',
+  name: 'menthorshipTime',
   title: 'menthorship_title',
   icon: IoTime,
   text: 'menthorship_text'

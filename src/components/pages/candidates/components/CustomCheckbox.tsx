@@ -6,12 +6,7 @@ interface CustomCheckboxProps {
   registerFor: string;
   value?: string | number;
 }
-function CustomCheckbox({
-  title,
-  register,
-  registerFor,
-  value
-}: CustomCheckboxProps) {
+function CustomCheckbox({ title, register, registerFor, value }: CustomCheckboxProps) {
   return (
     <div className="relative flex items-center gap-[12px] text-sm">
       <input

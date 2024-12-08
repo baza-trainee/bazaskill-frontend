@@ -20,9 +20,7 @@ function QueryProvider(props: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        {props.children}
-      </HydrationBoundary>
+      <HydrationBoundary state={dehydrate(queryClient)}>{props.children}</HydrationBoundary>
     </QueryClientProvider>
   );
 }

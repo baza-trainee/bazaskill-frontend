@@ -1,12 +1,6 @@
 const MenthorIcon = () => {
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_469_2616)">
         <path
           d="M12.584 17.227V19.03C13.159 18.889 13.584 18.519 13.584 18.094C13.584 17.697 13.251 17.419 12.584 17.227Z"

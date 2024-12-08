@@ -27,21 +27,15 @@ function PartnerApplication({ id }: { id: string }) {
   return (
     <div className="flex min-h-screen items-center justify-center p-[24px]">
       <div className="mx-auto flex w-2/3 flex-col items-center justify-center gap-[24px] border border-gray p-[30px]">
-        <h2 className="mb-[50px] text-3xl font-medium">
-          {partner?.company_name}
-        </h2>
+        <h2 className="mb-[50px] text-3xl font-medium">{partner?.company_name}</h2>
 
-        <span className="flex-1  text-xl">
-          Сторінка компанії: {partner?.company_url}
-        </span>
+        <span className="flex-1  text-xl">Сторінка компанії: {partner?.company_url}</span>
 
         <span className="flex-1  text-xl">
           Моє ім’я: {partner?.first_name} {partner?.last_name}
         </span>
 
-        <span className="flex-1  text-xl">
-          Я займаю посаду: {partner?.position}
-        </span>
+        <span className="flex-1  text-xl">Я займаю посаду: {partner?.position}</span>
 
         <span className="flex-1  text-xl">Телефон: {partner?.phone}</span>
         <span className="flex-1 text-xl">Email: {partner?.email}</span>
@@ -51,9 +45,7 @@ function PartnerApplication({ id }: { id: string }) {
         </span>
 
         <div className="flex w-full justify-around gap-[24px]">
-          <span className="text-xl">
-            Я шукаю спеціалістів: {partner?.specialist}
-          </span>
+          <span className="text-xl">Я шукаю спеціалістів: {partner?.specialist}</span>
         </div>
         <h3 className="my-[24px] text-2xl underline">Коментар:</h3>
         <span className="text-xl">{partner?.message}</span>

@@ -10,14 +10,7 @@ interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
 
 const TextArea = forwardRef(
   (
-    {
-      title,
-      errorText,
-      isRequired,
-      value = '',
-      errorTextStyle,
-      ...rest
-    }: TextAreaProps,
+    { title, errorText, isRequired, value = '', errorTextStyle, ...rest }: TextAreaProps,
     _ref: ForwardedRef<HTMLTextAreaElement>
   ) => {
     return (
@@ -38,10 +31,7 @@ const TextArea = forwardRef(
         />
 
         {errorText && (
-          <span
-            className="relative left-0 text-xs text-error "
-            style={errorTextStyle}
-          >
+          <span className="relative left-0 text-xs text-error " style={errorTextStyle}>
             {errorText}
           </span>
         )}

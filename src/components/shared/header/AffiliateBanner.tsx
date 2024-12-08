@@ -5,7 +5,10 @@ function AffiliateBanner() {
   const t = useTranslations('Main');
 
   return (
-    <div className="hidden w-full items-center justify-center bg-graphite p-2 md:flex" role="banner">
+    <div
+      className="hidden w-full items-center justify-center bg-graphite p-2 md:flex"
+      role="banner"
+    >
       <div
         className="main-gradient flex items-center justify-center bg-clip-text text-transparent transition-all"
         aria-label={t('banner')}
@@ -29,4 +32,3 @@ function AffiliateBanner() {
 }
 
 export default AffiliateBanner;
-

@@ -1,8 +1,7 @@
 import type { ForwardedRef, InputHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 
-interface TextAreaArticleProps
-  extends InputHTMLAttributes<HTMLTextAreaElement> {
+interface TextAreaArticleProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
   isRequired?: boolean;
@@ -27,25 +26,15 @@ ${
         className={`w-[520px] font-sans font-normal 5xl:w-[907px]  ${errorText ? 'text-red-500' : 'text-inherit'} `}
       >
         {!!title && (
-          <label
-            htmlFor={title}
-            className="mb-[8px]  block  text-[20px] leading-[1.4]  text-white"
-          >
+          <label htmlFor={title} className="mb-[8px]  block  text-[20px] leading-[1.4]  text-white">
             {title}
             {isRequired && <span className="text-error">*</span>}
           </label>
         )}
         <div className="relative  ">
-          <textarea
-            {...rest}
-            id={title}
-            value={value}
-            className={inputClassName}
-          />
+          <textarea {...rest} id={title} value={value} className={inputClassName} />
         </div>
-        {errorText && (
-          <span className="left top absolute ml-2 text-xs">{errorText}</span>
-        )}
+        {errorText && <span className="left top absolute ml-2 text-xs">{errorText}</span>}
       </div>
     );
   }

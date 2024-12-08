@@ -2,27 +2,23 @@ import { useState } from 'react';
 
 import type { FieldValues, UseFormRegister } from 'react-hook-form';
 
-import type {
-  ISpecializationWithStack,
-  SpecializationStack
-} from '@/types/specialization';
+import type { ISpecializationWithStack, SpecializationStack } from '@/types/specialization';
 
 import CustomCheckbox from './CustomCheckbox';
 
 interface IFiltersSpecializationMenuItemProps extends ISpecializationWithStack {
   register: UseFormRegister<FieldValues>;
 }
-const FiltersSpecializationMenuItem: React.FC<
-  IFiltersSpecializationMenuItemProps
-> = ({ id, title, stack, register }: IFiltersSpecializationMenuItemProps) => {
+const FiltersSpecializationMenuItem: React.FC<IFiltersSpecializationMenuItemProps> = ({
+  id,
+  title,
+  stack,
+  register
+}: IFiltersSpecializationMenuItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-col gap-[20px]">
-      <div
-        key={id}
-        className="flex items-center gap-[12px]"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <div key={id} className="flex items-center gap-[12px]" onClick={() => setIsOpen(!isOpen)}>
         <svg
           className={`mt-[2px] fill-white transition-all ${isOpen && 'rotate-180'}`}
           width={20}

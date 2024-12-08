@@ -55,16 +55,10 @@ function HrApplications() {
                     <span>{item.last_name}</span>
                   </div>
                 </Link>
-                <span className="text-right">
-                  {item.created_at.toString().slice(0, 10)}
-                </span>
+                <span className="text-right">{item.created_at.toString().slice(0, 10)}</span>
               </div>
               <div className="flex flex-1 justify-end">
-                <button
-                  type="button"
-                  onClick={() => handleRemove(item.id)}
-                  className="self-end"
-                >
+                <button type="button" onClick={() => handleRemove(item.id)} className="self-end">
                   <TrashIcon className="size-[25px] fill-white hover:fill-error" />
                 </button>
               </div>
