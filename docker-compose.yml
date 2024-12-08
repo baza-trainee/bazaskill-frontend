@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: production
+      target: runner
     restart: always
     ports:
       - '${LOCAL_PORT}:${PORT}'
