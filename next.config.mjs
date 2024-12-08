@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // output: 'standalone',
+  output: 'standalone',
   productionBrowserSourceMaps: true,
   images: {
     remotePatterns: [
@@ -18,6 +18,9 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
+  },
+  experimental: {
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
   webpack: (config) => {
     config.module.rules.push({
